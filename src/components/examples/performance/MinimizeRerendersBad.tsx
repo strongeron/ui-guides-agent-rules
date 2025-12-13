@@ -1,0 +1,39 @@
+import { useState } from 'react';
+
+function ExpensiveChild({ data }: { data: string }) {
+  let sum = 0;
+  for (let i = 0; i < 1000000; i++) {
+    sum += i;
+  }
+
+  return <div className="text-sm text-gray-600">Child: {data}</div>;
+}
+
+export function MinimizeRerendersBad() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState('');
+
+  return (
+    <div className="w-full max-w-sm space-y-4">
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <button
+          onClick={() => setCount(count + 1)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        >
+          Count: {count}
+        </button>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          placeholder="Type here..."
+        />
+        <ExpensiveChild data={text} />
+      </div>
+      <p className="text-xs text-red-700">
+        Expensive child re-renders on every keystroke
+      </p>
+    </div>
+  );
+}

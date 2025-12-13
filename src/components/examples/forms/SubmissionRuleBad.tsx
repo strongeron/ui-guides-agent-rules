@@ -1,0 +1,49 @@
+import { useState } from 'react';
+
+export function SubmissionRuleBad() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const isFormValid = email.length > 0 && password.length >= 8;
+
+  return (
+    <div className="w-full max-w-sm">
+      <form className="space-y-4">
+        <div>
+          <label htmlFor="bad-submit-email" className="block text-sm font-medium text-gray-700 mb-1">
+            Email
+          </label>
+          <input
+            id="bad-submit-email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="bad-submit-password" className="block text-sm font-medium text-gray-700 mb-1">
+            Password (min 8 characters)
+          </label>
+          <input
+            id="bad-submit-password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600 transition-colors"
+        >
+          Sign Up
+        </button>
+      </form>
+      <p className="text-xs text-gray-500 mt-4">
+        Button pre-disabled - can't discover validation issues
+      </p>
+    </div>
+  );
+}

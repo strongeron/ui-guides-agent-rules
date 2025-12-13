@@ -1,0 +1,33 @@
+export function PlaceholderValueBad() {
+  return (
+    <div className="w-full max-w-sm">
+      <form className="space-y-4">
+        <div>
+          <label htmlFor="bad-placeholder-phone" className="block text-sm font-medium text-gray-700 mb-1">
+            Phone Number
+          </label>
+          <input
+            id="bad-placeholder-phone"
+            type="tel"
+            placeholder="Enter phone number"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="bad-placeholder-key" className="block text-sm font-medium text-gray-700 mb-1">
+            API Key
+          </label>
+          <input
+            id="bad-placeholder-key"
+            type="text"
+            placeholder="API Key"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          />
+        </div>
+      </form>
+      <p className="text-xs text-red-700 mt-4">
+        Placeholders repeat labels without showing format
+      </p>
+    </div>
+  );
+}

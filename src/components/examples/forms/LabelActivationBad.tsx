@@ -1,0 +1,38 @@
+import { useState } from 'react';
+
+export function LabelActivationBad() {
+  const [agreed, setAgreed] = useState(false);
+  const [newsletter, setNewsletter] = useState(false);
+
+  return (
+    <div className="w-full max-w-sm space-y-4">
+      <div className="flex items-start gap-3">
+        <input
+          id="bad-terms"
+          type="checkbox"
+          checked={agreed}
+          onChange={(e) => setAgreed(e.target.checked)}
+          className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus-visible:ring-2 focus-visible:ring-blue-500"
+        />
+        <span className="text-sm text-gray-700">
+          I agree to the terms and conditions
+        </span>
+      </div>
+      <div className="flex items-start gap-3">
+        <input
+          id="bad-newsletter"
+          type="checkbox"
+          checked={newsletter}
+          onChange={(e) => setNewsletter(e.target.checked)}
+          className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus-visible:ring-2 focus-visible:ring-blue-500"
+        />
+        <span className="text-sm text-gray-700">
+          Subscribe to newsletter
+        </span>
+      </div>
+      <p className="text-xs text-gray-500">
+        Label text not clickable - must click small checkbox
+      </p>
+    </div>
+  );
+}

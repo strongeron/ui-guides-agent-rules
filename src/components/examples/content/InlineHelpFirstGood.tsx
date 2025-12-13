@@ -1,0 +1,24 @@
+export function InlineHelpFirstGood() {
+  return (
+    <div className="w-full max-w-sm">
+      <form className="space-y-4">
+        <div>
+          <label htmlFor="good-inline-api" className="block text-sm font-medium text-gray-700 mb-1">
+            API Key
+          </label>
+          <input
+            id="good-inline-api"
+            type="text"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            Your API key is used to authenticate requests. Find it in your account settings.
+          </p>
+        </div>
+      </form>
+      <p className="text-xs text-green-700 mt-4">
+        Help text always visible and accessible
+      </p>
+    </div>
+  );
+}
