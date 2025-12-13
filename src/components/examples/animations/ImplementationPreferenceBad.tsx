@@ -1,0 +1,59 @@
+import { useEffect, useRef, useState } from 'react';
+
+export function ImplementationPreferenceBad() {
+  const [position, setPosition] = useState(0);
+  const animationRef = useRef<number>();
+  const startTimeRef = useRef<number>();
+
+  const animate = (timestamp: number) => {
+    if (!startTimeRef.current) startTimeRef.current = timestamp;
+    const progress = (timestamp - startTimeRef.current) / 2000;
+
+    if (progress < 1) {
+      setPosition(Math.sin(progress * Math.PI * 4) * 50 + 50);
+      animationRef.current = requestAnimationFrame(animate);
+    } else {
+      startTimeRef.current = undefined;
+      setPosition(50);
+    }
+  };
+
+  const startAnimation = () => {
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    startTimeRef.current = undefined;
+    animationRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
+
+  return (
+    <div className="w-full max-w-sm">
+      <div className="bg-white border border-gray-200 rounded-lg p-4">
+        <button
+          onClick={startAnimation}
+          className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        >
+          Animate
+        </button>
+        <div className="h-16 bg-gray-100 rounded-lg relative">
+          <div
+            className="absolute top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600 rounded-lg"
+            style={{ left: `${position}%`, transform: `translateX(-50%) translateY(-50%)` }}
+          />
+        </div>
+        <div className="mt-3 bg-red-50 border border-red-200 rounded-lg p-2">
+          <code className="text-xs text-red-800 font-mono">
+            requestAnimationFrame + setState
+          </code>
+        </div>
+      </div>
+      <p className="text-xs text-red-700 mt-4">
+        JS-driven animation blocks main thread, causes jank
+      </p>
+    </div>
+  );
+}

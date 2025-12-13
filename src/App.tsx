@@ -8,6 +8,7 @@ import { principles } from './data/principles';
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const currentPrinciple = principles[currentIndex];
 
@@ -33,9 +34,13 @@ function App() {
     }
   }, []);
 
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
         return;
       }
 
@@ -54,6 +59,7 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, handleNext, handlePrevious, isSidebarOpen]);
 
+  // Restore state from URL hash
   useEffect(() => {
     const hash = window.location.hash.slice(1);
     if (hash) {
@@ -64,9 +70,22 @@ function App() {
     }
   }, []);
 
+  // Update URL hash when principle changes
   useEffect(() => {
     window.history.replaceState(null, '', `#${currentPrinciple.id}`);
   }, [currentPrinciple.id]);
+
+  // Dynamic page title
+  useEffect(() => {
+    document.title = `${currentPrinciple.title} - Web Interface Guidelines`;
+  }, [currentPrinciple.title]);
+
+  // Clear search when sidebar closes
+  useEffect(() => {
+    if (!isSidebarOpen) {
+      setSearchQuery('');
+    }
+  }, [isSidebarOpen]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -82,6 +101,8 @@ function App() {
         principles={principles}
         currentPrincipleId={currentPrinciple.id}
         onPrincipleSelect={handlePrincipleSelect}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
       />
 
       <main className="min-h-screen">

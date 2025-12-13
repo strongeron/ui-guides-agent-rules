@@ -1,10 +1,11 @@
-export interface AgentRule {
-  priority: 'MUST' | 'SHOULD' | 'NEVER';
-  rule: string;
-  codeExample?: string;
-}
+import { AgentRule, AgentRulePriority } from '../types/principle';
+import { principles } from './principles';
 
-export const agentRules: Record<string, AgentRule> = {
+// Extract principle IDs as a type
+type KnownPrincipleId = (typeof principles)[number]['id'];
+
+// Agent rules mapped by principle ID
+export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<string, AgentRule> = {
   'interactions-keyboard-everywhere': {
     priority: 'MUST',
     rule: 'Full keyboard support per WAI-ARIA APG (https://www.w3.org/WAI/ARIA/apg/patterns/)'
@@ -379,4 +380,9 @@ export function getAgentRule(principleId: string): string {
 
   const priorityPrefix = rule.priority === 'NEVER' ? 'NEVER:' : `${rule.priority}:`;
   return `${priorityPrefix} ${rule.rule}`;
+}
+
+export function formatAgentRuleForExport(priority: AgentRulePriority, rule: string): string {
+  const prefix = priority === 'NEVER' ? 'NEVER:' : `${priority}:`;
+  return `${prefix} ${rule}`;
 }

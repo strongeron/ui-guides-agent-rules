@@ -1,10 +1,13 @@
 import { useState, memo } from 'react';
 
 const ExpensiveChild = memo(({ data }: { data: string }) => {
+  // Simulate expensive computation
   let sum = 0;
   for (let i = 0; i < 1000000; i++) {
     sum += i;
   }
+  // Use void to suppress unused variable warning while keeping the expensive loop
+  void sum;
 
   return <div className="text-sm text-gray-600">Child: {data}</div>;
 });

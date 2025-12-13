@@ -26,15 +26,16 @@ npm run typecheck    # TypeScript type checking
 ### Data Flow
 
 1. **Principles Data** (`src/data/principles.ts`): Array of `Principle` objects containing metadata, descriptions, and example keys
-2. **Agent Rules** (`src/data/agentRules.ts`): Companion rules for AI agents, keyed by principle ID
-3. **Example Renderer** (`src/components/ExampleRenderer.tsx`): Maps example keys to React components via a registry object
+2. **Agent Rules** (`src/data/agentRules.ts`): Companion rules for AI agents, keyed by principle ID with type-safe linking
+3. **Example Renderer** (`src/components/ExampleRenderer.tsx`): Auto-discovers example components via `import.meta.glob`
 
 ### Component Structure
 
-- `App.tsx`: Main layout with keyboard navigation, URL hash state, sidebar toggle
+- `App.tsx`: Main layout with keyboard navigation, URL hash state, dynamic page title, sidebar toggle
 - `PrincipleView.tsx`: Displays principle details with side-by-side good/bad examples
-- `ExampleRenderer.tsx`: Component registry that dynamically renders examples by key
-- `Sidebar.tsx` / `Navigation.tsx` / `Header.tsx`: Chrome components
+- `ExampleRenderer.tsx`: Lazy-loads examples automatically from `./examples/**/*.tsx`
+- `Sidebar.tsx`: Navigation with search, focus trap, and `overscroll-behavior: contain`
+- `Navigation.tsx` / `Header.tsx`: Chrome components
 
 ### Example Components Pattern
 
@@ -42,24 +43,35 @@ Examples live in `src/components/examples/{category}/` with naming convention:
 - `{PrincipleName}Good.tsx` - Correct implementation
 - `{PrincipleName}Bad.tsx` - Anti-pattern demonstration
 
+Examples are **automatically discovered** - no manual registration needed. Just:
+1. Create the component in the appropriate category folder
+2. Export the component as a named export
+3. The file path is converted to a key: `forms/EnterSubmitsBad.tsx` → `forms-enter-submits-bad`
+
 To add a new principle:
-1. Add the `Principle` object to `src/data/principles.ts`
+1. Add the `Principle` object to `src/data/principles.ts` with matching example keys
 2. Create Good/Bad example components in the appropriate category folder
-3. Register both components in `ExampleRenderer.tsx`'s `exampleComponents` object
-4. Optionally add an agent rule to `src/data/agentRules.ts`
+3. Optionally add an agent rule to `src/data/agentRules.ts`
 
 ### Types
 
 `src/types/principle.ts` defines:
 - `Principle`: Main data structure for each guideline
-- `PrincipleCategory`: Union type for categories (interactions, animations, layout, content, forms, performance, design)
-- `SourceLink`: External reference links
+- `PrincipleCategory`: Union type for categories
+- `AgentRule` / `AgentRulePriority`: Rule types with MUST/SHOULD/NEVER
+
+### Custom Animations
+
+Defined in `src/index.css` using Tailwind v4's `@theme` and `@utility` directives:
+- `motion-safe-fade-in-slide`: Respects `prefers-reduced-motion`
+- `animate-scale-in`, `animate-scale-in-from-top`: Menu animations
+- `transition-transform-shadow`, `transition-transform-opacity`: Compositor-friendly transitions
 
 ## Tech Stack
 
 - React 18 with TypeScript (strict mode)
-- Vite for bundling
-- Tailwind CSS for styling
+- Vite with `@tailwindcss/vite` plugin
+- Tailwind CSS v4 (CSS-based config)
 - lucide-react for icons
 - ESLint with react-hooks and react-refresh plugins
 
@@ -68,10 +80,13 @@ To add a new principle:
 This project implements principles from Vercel's Web Interface Guidelines. When working on this codebase, follow the same principles being demonstrated:
 
 - Full keyboard accessibility with visible focus rings (`:focus-visible`)
+- Focus traps in modals with focus return on close
 - Hit targets ≥24px (≥44px on mobile)
 - Proper form semantics with labels, autocomplete, and validation
 - Respect `prefers-reduced-motion`
 - Use compositor-friendly animations (`transform`, `opacity`)
 - Never `transition: all`
+- `overscroll-behavior: contain` in modals/drawers
+- Dynamic page titles matching current context
 
 See `doc/vercel-web-guides.md` for the full source guidelines and `doc/vercel-web-guides-agent.md` for the condensed agent rules.

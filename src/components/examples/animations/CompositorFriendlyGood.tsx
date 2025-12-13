@@ -13,17 +13,17 @@ export function CompositorFriendlyGood() {
       </button>
       <div className="mt-4 overflow-hidden">
         <div
-          className="bg-gray-100 rounded-lg origin-top"
-          style={{
-            transform: isExpanded ? 'scaleY(1)' : 'scaleY(0)',
-            opacity: isExpanded ? 1 : 0,
-            transition: 'transform 300ms ease-in-out, opacity 300ms ease-in-out'
-          }}
+          className={`bg-gray-100 rounded-lg origin-top transition-transform-opacity ${
+            isExpanded
+              ? 'scale-y-100 opacity-100'
+              : 'scale-y-0 opacity-0'
+          }`}
         >
           <div className="p-4">
             <h3 className="font-medium mb-2">Panel Content</h3>
             <p className="text-sm text-gray-600">
-              This panel animates using transform and opacity, which are GPU-accelerated and smooth.
+              This panel animates using transform and opacity, which are
+              GPU-accelerated and smooth.
             </p>
           </div>
         </div>

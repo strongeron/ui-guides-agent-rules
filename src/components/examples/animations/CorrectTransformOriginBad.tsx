@@ -12,12 +12,7 @@ export function CorrectTransformOriginBad() {
         Open Menu
       </button>
       {isOpen && (
-        <div
-          className="mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-2 space-y-1 origin-center"
-          style={{
-            animation: 'scaleIn 200ms ease-out'
-          }}
-        >
+        <div className="animate-scale-in mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-2 space-y-1 origin-center">
           <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             Edit
           </button>
@@ -26,18 +21,6 @@ export function CorrectTransformOriginBad() {
           </button>
         </div>
       )}
-      <style>{`
-        @keyframes scaleIn {
-          from {
-            transform: scale(0);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1);
-            opacity: 1;
-          }
-        }
-      `}</style>
       <p className="text-xs text-red-700 mt-4">
         Menu scales from center, disconnected from the button
       </p>

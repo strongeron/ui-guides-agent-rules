@@ -12,16 +12,15 @@ export function CompositorFriendlyBad() {
         Toggle Panel
       </button>
       <div
-        className="mt-4 bg-gray-100 rounded-lg overflow-hidden"
-        style={{
-          height: isExpanded ? '200px' : '0px',
-          transition: 'height 300ms ease-in-out'
-        }}
+        className={`mt-4 bg-gray-100 rounded-lg overflow-hidden transition-height ${
+          isExpanded ? 'h-[200px]' : 'h-0'
+        }`}
       >
         <div className="p-4">
           <h3 className="font-medium mb-2">Panel Content</h3>
           <p className="text-sm text-gray-600">
-            This panel animates using height, which triggers layout recalculation and can cause jank.
+            This panel animates using height, which triggers layout recalculation
+            and can cause jank.
           </p>
         </div>
       </div>

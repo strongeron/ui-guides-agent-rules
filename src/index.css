@@ -1,3 +1,76 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Custom animations for examples */
+@theme {
+  --animate-fade-in-slide: fade-in-slide 0.3s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+  --animate-scale-in-from-top: scale-in-from-top 0.2s ease-out;
+}
+
+@keyframes fade-in-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-from-top {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Utility classes for motion-safe animations */
+@utility motion-safe-fade-in-slide {
+  animation: var(--animate-fade-in-slide);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@utility animate-scale-in {
+  animation: var(--animate-scale-in);
+}
+
+@utility animate-scale-in-from-top {
+  animation: var(--animate-scale-in-from-top);
+}
+
+/* Transition utilities for examples */
+@utility transition-all-bad {
+  transition: all 0.3s ease;
+}
+
+@utility transition-transform-shadow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@utility transition-transform-opacity {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+@utility transition-height {
+  transition: height 0.3s ease-in-out;
+}
