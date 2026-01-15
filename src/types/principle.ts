@@ -8,9 +8,26 @@ export type PrincipleCategory =
   | 'design'
   | 'vercel-specific';
 
+// Pattern source types for multi-source "brain center"
+export type PatternSource =
+  | 'vercel'           // Vercel Web Interface Guidelines
+  | 'wcag'             // WCAG 2.1/2.2 Success Criteria
+  | 'aria'             // WAI-ARIA Authoring Practices
+  | 'design-system'    // Design system patterns
+  | 'custom';          // Internal/custom patterns
+
+export interface PatternSourceInfo {
+  id: PatternSource;
+  name: string;
+  description: string;
+  url?: string;
+  color: string;        // Badge color class
+}
+
 export interface Principle {
   id: string;
   category: PrincipleCategory;
+  source?: PatternSource;  // Pattern source for multi-source support
   title: string;
   description: string;
   sourceQuote: string;

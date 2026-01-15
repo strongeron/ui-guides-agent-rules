@@ -2,6 +2,8 @@ import { useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
 import { categories } from '../data/principles';
 import { Principle, PrincipleCategory } from '../types/principle';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -127,25 +129,25 @@ export function Sidebar({
           <h2 className="text-lg font-semibold text-gray-900">
             Interface Guidelines
           </h2>
-          <button
+          <Button
             ref={closeButtonRef}
+            variant="ghost"
+            size="icon"
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label="Close menu"
           >
-            <X className="w-5 h-5 text-gray-700" />
-          </button>
+            <X className="w-5 h-5" />
+          </Button>
         </div>
 
         {/* Search input */}
         <div className="p-4 border-b border-gray-200">
-          <input
+          <Input
             ref={searchInputRef}
             type="search"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search principles..."
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label="Search principles"
           />
         </div>
