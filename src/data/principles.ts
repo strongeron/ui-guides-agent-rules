@@ -42,6 +42,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-enter-submits',
     category: 'forms',
+    source: 'vercel',
     title: 'Enter Submits',
     description: 'When a text input is focused, Enter should submit the form if it\'s the only control',
     sourceQuote: 'Enter submits. When a text input is focused, Enter submits if it\'s the only control. If there are many controls, apply to the last control.',
@@ -55,6 +56,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-textarea-behavior',
     category: 'forms',
+    source: 'vercel',
     title: 'Textarea Behavior',
     description: 'In textarea, Enter should insert a new line while Cmd/Ctrl+Enter submits',
     sourceQuote: 'Textarea behavior. In <textarea>, ⌘/⌃+Enter submits; Enter inserts a new line.',
@@ -68,6 +70,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-labels-everywhere',
     category: 'forms',
+    source: 'vercel',
     title: 'Labels Everywhere',
     description: 'Every form control must have a visible label or accessible name',
     sourceQuote: 'Labels everywhere. Every control has a <label> or is associated with a label for assistive tech.',
@@ -82,6 +85,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-label-activation',
     category: 'forms',
+    source: 'vercel',
     title: 'Label Activation',
     description: 'Clicking a label should focus its associated input',
     sourceQuote: 'Label activation. Clicking a <label> focuses the associated control.',
@@ -95,6 +99,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-submission-rule',
     category: 'forms',
+    source: 'vercel',
     title: 'Submission Rule',
     description: 'Keep submit button enabled until submission starts, then disable with loading state',
     sourceQuote: 'Submission rule. Keep submit enabled until submission starts; then disable during the in-flight request, show a spinner, & include an idempotency key.',
@@ -108,6 +113,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-dont-block-typing',
     category: 'forms',
+    source: 'vercel',
     title: 'Don\'t Block Typing',
     description: 'Allow all input and show validation feedback instead of blocking keystrokes',
     sourceQuote: 'Don\'t block typing. Even if a field only accepts numbers, allow any input & show validation feedback. Blocking keystrokes entirely is confusing because the user gets no explanation.',
@@ -121,6 +127,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-dont-pre-disable-submit',
     category: 'forms',
+    source: 'vercel',
     title: 'Don\'t Pre-disable Submit',
     description: 'Allow submitting incomplete forms to surface validation feedback',
     sourceQuote: 'Don\'t pre-disable submit. Allow submitting incomplete forms to surface validation feedback.',
@@ -134,6 +141,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-error-placement',
     category: 'forms',
+    source: 'vercel',
     title: 'Error Placement',
     description: 'Show errors next to their fields and focus the first error on submit',
     sourceQuote: 'Error placement. Show errors next to their fields; on submit, focus the first error.',
@@ -147,6 +155,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-autocomplete',
     category: 'forms',
+    source: 'vercel',
     title: 'Autocomplete & Names',
     description: 'Set autocomplete and meaningful name values to enable browser autofill',
     sourceQuote: 'Autocomplete & names. Set autocomplete & meaningful name values to enable autofill.',
@@ -160,6 +169,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-spellcheck',
     category: 'forms',
+    source: 'vercel',
     title: 'Spellcheck Selectively',
     description: 'Disable spellcheck for emails, codes, usernames, etc.',
     sourceQuote: 'Spellcheck selectively. Disable for emails, codes, usernames, etc.',
@@ -173,6 +183,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-correct-types',
     category: 'forms',
+    source: 'vercel',
     title: 'Correct Types & Input Modes',
     description: 'Use the right type and inputmode for better keyboards and validation',
     sourceQuote: 'Correct types & input modes. Use the right type & inputmode for better keyboards & validation.',
@@ -187,6 +198,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-placeholder-value',
     category: 'forms',
+    source: 'vercel',
     title: 'Placeholder Value',
     description: 'Set placeholder to an example value or pattern, ending with ellipsis',
     sourceQuote: 'Placeholders signal emptiness. End with an ellipsis. Placeholder value. Set placeholder to an example value or pattern e.g., +1 (123) 456-7890 & sk-012345679…',
@@ -200,6 +212,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-unsaved-changes',
     category: 'forms',
+    source: 'vercel',
     title: 'Unsaved Changes',
     description: 'Warn before navigation when data could be lost',
     sourceQuote: 'Unsaved changes. Warn before navigation when data could be lost.',
@@ -213,6 +226,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-keyboard-everywhere',
     category: 'interactions',
+    source: 'vercel',
     title: 'Keyboard Works Everywhere',
     description: 'All flows are keyboard-operable and follow WAI-ARIA patterns',
     sourceQuote: 'Keyboard works everywhere. All flows are keyboard-operable & follow the WAI-ARIA Authoring Patterns.',
@@ -227,6 +241,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-clear-focus',
     category: 'interactions',
+    source: 'vercel',
     title: 'Clear Focus',
     description: 'Every focusable element shows a visible focus ring',
     sourceQuote: 'Clear focus. Every focusable element shows a visible focus ring. Prefer :focus-visible over :focus to avoid distracting pointer users.',
@@ -241,6 +256,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-match-hit-targets',
     category: 'interactions',
+    source: 'vercel',
     title: 'Match Visual & Hit Targets',
     description: 'If visual target is < 24px, expand hit target to at least 24px',
     sourceQuote: 'Match visual & hit targets. Exception: if the visual target is < 24px, expand its hit target to ≥ 24px. On mobile, the minimum size is 44px.',
@@ -255,6 +271,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-loading-buttons',
     category: 'interactions',
+    source: 'vercel',
     title: 'Loading Buttons',
     description: 'Show a loading indicator and keep the original label',
     sourceQuote: 'Loading buttons. Show a loading indicator & keep the original label.',
@@ -268,6 +285,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-optimistic-updates',
     category: 'interactions',
+    source: 'vercel',
     title: 'Optimistic Updates',
     description: 'Update UI immediately when success is likely; reconcile on response',
     sourceQuote: 'Optimistic updates. Update the UI immediately when success is likely; reconcile on server response. On failure, show an error & roll back or provide Undo.',
@@ -281,6 +299,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-ellipsis-for-input',
     category: 'interactions',
+    source: 'vercel',
     title: 'Ellipsis for Further Input',
     description: 'Menu options that open follow-ups end with ellipsis',
     sourceQuote: 'Ellipsis for further input & loading states. Menu options that open a follow-up e.g., "Rename…" & loading/processing states e.g., "Loading…", "Saving…", "Generating…" end with an ellipsis.',
@@ -294,6 +313,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-confirm-destructive',
     category: 'interactions',
+    source: 'vercel',
     title: 'Confirm Destructive Actions',
     description: 'Require confirmation or provide Undo with a safe window',
     sourceQuote: 'Confirm destructive actions. Require confirmation or provide Undo with a safe window.',
@@ -307,6 +327,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-links-are-links',
     category: 'interactions',
+    source: 'vercel',
     title: 'Links Are Links',
     description: 'Use <a> or <Link> for navigation so browser behaviors work',
     sourceQuote: 'Links are links. Use <a> or <Link> for navigation so standard browser behaviors work (Cmd/Ctrl+Click, middle-click, right-click to open in a new tab). Never substitute with <button> or <div> for navigational links.',
@@ -320,6 +341,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-manage-focus',
     category: 'interactions',
+    source: 'vercel',
     title: 'Manage Focus',
     description: 'Use focus traps, move and return focus according to WAI-ARIA patterns',
     sourceQuote: 'Manage focus. Use focus traps, move & return focus according to the WAI-ARIA Patterns.',
@@ -334,6 +356,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-mobile-input-size',
     category: 'interactions',
+    source: 'vercel',
     title: 'Mobile Input Size',
     description: 'Input font size must be at least 16px on mobile to prevent zoom',
     sourceQuote: 'Mobile input size. <input> font size is ≥ 16px on mobile to prevent iOS Safari auto-zoom/pan on focus. Or set <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />.',
@@ -347,6 +370,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-respect-zoom',
     category: 'interactions',
+    source: 'vercel',
     title: 'Respect Zoom',
     description: 'Never disable browser zoom',
     sourceQuote: 'Respect zoom. Never disable browser zoom.',
@@ -360,6 +384,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-hydration-safe',
     category: 'interactions',
+    source: 'vercel',
     title: 'Hydration-safe Inputs',
     description: 'Inputs must not lose focus or value after hydration',
     sourceQuote: 'Hydration-safe inputs. Inputs must not lose focus or value after hydration.',
@@ -373,6 +398,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-dont-block-paste',
     category: 'interactions',
+    source: 'vercel',
     title: 'Don\'t Block Paste',
     description: 'Never disable paste in input or textarea elements',
     sourceQuote: 'Don\'t block paste. Never disable paste in <input> or <textarea>.',
@@ -386,6 +412,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-url-state',
     category: 'interactions',
+    source: 'vercel',
     title: 'URL as State',
     description: 'Persist state in the URL for sharing and navigation',
     sourceQuote: 'URL as state. Persist state in the URL so share, refresh, Back/Forward navigation work e.g., nuqs.',
@@ -400,6 +427,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-scroll-persistence',
     category: 'interactions',
+    source: 'vercel',
     title: 'Scroll Positions Persist',
     description: 'Back and Forward navigation should restore scroll position',
     sourceQuote: 'Scroll positions persist. Back/Forward restores prior scroll.',
@@ -413,6 +441,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-announce-updates',
     category: 'interactions',
+    source: 'vercel',
     title: 'Announce Async Updates',
     description: 'Use aria-live to announce dynamic content changes',
     sourceQuote: 'Announce async updates. Use polite aria-live for toasts & inline validation.',
@@ -426,6 +455,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-touch-action',
     category: 'interactions',
+    source: 'vercel',
     title: 'Prevent Double-tap Zoom',
     description: 'Set touch-action: manipulation on controls',
     sourceQuote: 'Prevent double-tap zoom on controls. Set touch-action: manipulation.',
@@ -439,6 +469,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-forgiving-design',
     category: 'interactions',
+    source: 'vercel',
     title: 'Design Forgiving Interactions',
     description: 'Controls minimize finickiness with generous hit targets and clear affordances',
     sourceQuote: 'Design forgiving interactions. Controls minimize finickiness with generous hit targets, clear affordances, & predictable interactions, e.g., prediction cones.',
@@ -452,6 +483,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-tooltip-timing',
     category: 'interactions',
+    source: 'vercel',
     title: 'Tooltip Timing',
     description: 'Delay the first tooltip in a group; subsequent peers have no delay',
     sourceQuote: 'Tooltip timing. Delay the first tooltip in a group; subsequent peers have no delay.',
@@ -465,6 +497,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-overscroll-behavior',
     category: 'interactions',
+    source: 'vercel',
     title: 'Overscroll Behavior',
     description: 'Set overscroll-behavior: contain in modals and drawers',
     sourceQuote: 'Overscroll behavior. Set overscroll-behavior: contain intentionally e.g., in modals/drawers.',
@@ -478,6 +511,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-autofocus',
     category: 'interactions',
+    source: 'vercel',
     title: 'Autofocus for Speed',
     description: 'On desktop, autofocus single primary inputs; rarely on mobile',
     sourceQuote: 'Autofocus for speed. On desktop screens with a single primary input, autofocus. Rarely autofocus on mobile because the keyboard opening can cause layout shift.',
@@ -491,6 +525,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-no-dead-zones',
     category: 'interactions',
+    source: 'vercel',
     title: 'No Dead Zones',
     description: 'If part of a control looks interactive, it should be interactive',
     sourceQuote: 'No dead zones. If part of a control looks interactive, it should be interactive. Don\'t leave users guessing where to interact.',
@@ -504,6 +539,7 @@ export const principles: Principle[] = [
   {
     id: 'interactions-clean-drag',
     category: 'interactions',
+    source: 'vercel',
     title: 'Clean Drag Interactions',
     description: 'Disable text selection and apply inert during drag operations',
     sourceQuote: 'Clean drag interactions. Disable text selection & apply inert (which prevents interaction) while an element is dragged so selection/hover don\'t occur simultaneously.',
@@ -518,6 +554,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-prefers-reduced-motion',
     category: 'animations',
+    source: 'vercel',
     title: 'Honor prefers-reduced-motion',
     description: 'Provide a reduced-motion variant for all animations',
     sourceQuote: 'Honor prefers-reduced-motion. Provide a reduced-motion variant.',
@@ -532,6 +569,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-compositor-friendly',
     category: 'animations',
+    source: 'vercel',
     title: 'Compositor-friendly',
     description: 'Prioritize GPU-accelerated properties like transform and opacity',
     sourceQuote: 'Compositor-friendly. Prioritize GPU-accelerated properties (transform, opacity) & avoid properties that trigger reflows/repaints (width, height, top, left).',
@@ -546,6 +584,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-interruptible',
     category: 'animations',
+    source: 'vercel',
     title: 'Interruptible',
     description: 'Animations are cancelable by user input',
     sourceQuote: 'Interruptible. Animations are cancelable by user input.',
@@ -559,6 +598,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-correct-transform-origin',
     category: 'animations',
+    source: 'vercel',
     title: 'Correct Transform Origin',
     description: 'Anchor motion to where it physically starts',
     sourceQuote: 'Correct transform origin. Anchor motion to where it "physically" starts.',
@@ -572,6 +612,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-never-transition-all',
     category: 'animations',
+    source: 'vercel',
     title: 'Never transition: all',
     description: 'Explicitly list only the properties you intend to animate',
     sourceQuote: 'Never transition: all. Explicitly list only the properties you intend to animate (typically opacity, transform). all can unintentionally animate layout-affecting properties causing jank.',
@@ -585,6 +626,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-implementation-preference',
     category: 'animations',
+    source: 'vercel',
     title: 'Implementation Preference',
     description: 'Prefer CSS over Web Animations API over JavaScript libraries',
     sourceQuote: 'Implementation preference. Prefer CSS, avoid main-thread JS-driven animations when possible. Preference: CSS > Web Animations API > JavaScript libraries e.g., motion.',
@@ -599,6 +641,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-necessity-check',
     category: 'animations',
+    source: 'vercel',
     title: 'Necessity Check',
     description: 'Only animate when it clarifies cause and effect or adds deliberate delight',
     sourceQuote: 'Necessity check. Only animate when it clarifies cause & effect or when it adds deliberate delight e.g., the northern lights.',
@@ -612,6 +655,7 @@ export const principles: Principle[] = [
   {
     id: 'animations-easing',
     category: 'animations',
+    source: 'vercel',
     title: 'Easing Fits Subject',
     description: 'Choose easing functions based on what changes',
     sourceQuote: 'Easing fits the subject. Choose easing based on what changes (size, distance, trigger).',
@@ -626,6 +670,7 @@ export const principles: Principle[] = [
   {
     id: 'layout-optical-alignment',
     category: 'layout',
+    source: 'vercel',
     title: 'Optical Alignment',
     description: 'Adjust ±1px when perception beats geometry',
     sourceQuote: 'Optical alignment. Adjust ±1px when perception beats geometry.',
@@ -639,6 +684,7 @@ export const principles: Principle[] = [
   {
     id: 'layout-deliberate-alignment',
     category: 'layout',
+    source: 'vercel',
     title: 'Deliberate Alignment',
     description: 'Every element aligns with something intentionally',
     sourceQuote: 'Deliberate alignment. Every element aligns with something intentionally whether to a grid, baseline, edge, or optical center. No accidental positioning.',
@@ -652,6 +698,7 @@ export const principles: Principle[] = [
   {
     id: 'layout-responsive-coverage',
     category: 'layout',
+    source: 'vercel',
     title: 'Responsive Coverage',
     description: 'Verify on mobile, laptop, and ultra-wide screens',
     sourceQuote: 'Responsive coverage. Verify on mobile, laptop, & ultra-wide. For ultra-wide, zoom out to 50% to simulate.',
@@ -665,6 +712,7 @@ export const principles: Principle[] = [
   {
     id: 'layout-no-excessive-scrollbars',
     category: 'layout',
+    source: 'vercel',
     title: 'No Excessive Scrollbars',
     description: 'Only render useful scrollbars; fix overflow issues',
     sourceQuote: 'No excessive scrollbars. Only render useful scrollbars; fix overflow issues to prevent unwanted scrollbars.',
@@ -678,6 +726,7 @@ export const principles: Principle[] = [
   {
     id: 'layout-balance-contrast',
     category: 'layout',
+    source: 'vercel',
     title: 'Balance Contrast in Lockups',
     description: 'Adjust weight, size, spacing when text and icons sit together',
     sourceQuote: 'Balance contrast in lockups. When text & icons sit side by side, adjust weight, size, spacing, or color so they don\'t clash. For example, a thin-stroke icon may need a bolder stroke next to medium-weight text.',
@@ -691,6 +740,7 @@ export const principles: Principle[] = [
   {
     id: 'layout-safe-areas',
     category: 'layout',
+    source: 'vercel',
     title: 'Respect Safe Areas',
     description: 'Account for notches and insets with safe-area variables',
     sourceQuote: 'Respect safe areas. Account for notches & insets with safe-area variables.',
@@ -705,6 +755,7 @@ export const principles: Principle[] = [
   {
     id: 'content-inline-help-first',
     category: 'content',
+    source: 'vercel',
     title: 'Inline Help First',
     description: 'Prefer inline explanations; use tooltips as last resort',
     sourceQuote: 'Inline help first. Prefer inline explanations; use tooltips as a last resort.',
@@ -718,6 +769,7 @@ export const principles: Principle[] = [
   {
     id: 'content-stable-skeletons',
     category: 'content',
+    source: 'vercel',
     title: 'Stable Skeletons',
     description: 'Skeletons mirror final content exactly to avoid layout shift',
     sourceQuote: 'Stable skeletons. Skeletons mirror final content exactly to avoid layout shift.',
@@ -732,6 +784,7 @@ export const principles: Principle[] = [
   {
     id: 'content-no-dead-ends',
     category: 'content',
+    source: 'vercel',
     title: 'No Dead Ends',
     description: 'Every screen offers a next step or recovery path',
     sourceQuote: 'No dead ends. Every screen offers a next step or recovery path.',
@@ -745,6 +798,7 @@ export const principles: Principle[] = [
   {
     id: 'content-typographic-quotes',
     category: 'content',
+    source: 'vercel',
     title: 'Typographic Quotes',
     description: 'Prefer curly quotes over straight quotes',
     sourceQuote: 'Typographic quotes. Prefer curly quotes (" ") over straight quotes (" ").',
@@ -758,6 +812,7 @@ export const principles: Principle[] = [
   {
     id: 'content-tabular-numbers',
     category: 'content',
+    source: 'vercel',
     title: 'Tabular Numbers',
     description: 'Use tabular-nums for comparisons and tables',
     sourceQuote: 'Tabular numbers for comparisons. Use font-variant-numeric: tabular-nums or a monospace like Geist Mono.',
@@ -771,6 +826,7 @@ export const principles: Principle[] = [
   {
     id: 'content-icons-have-labels',
     category: 'content',
+    source: 'vercel',
     title: 'Icons Have Labels',
     description: 'Convey the same meaning with text for non-sighted users',
     sourceQuote: 'Icons have labels. Convey the same meaning with text for assistive tech. Icon-only buttons are named. Provide a descriptive aria-label.',
@@ -784,6 +840,7 @@ export const principles: Principle[] = [
   {
     id: 'content-non-breaking-spaces',
     category: 'content',
+    source: 'vercel',
     title: 'Non-breaking Spaces',
     description: 'Use non-breaking spaces to keep units and terms together',
     sourceQuote: 'Non-breaking spaces for glued terms. Use a non-breaking space &nbsp; to keep units, shortcuts & names together: 10 MB → 10&nbsp;MB, ⌘ + K → ⌘&nbsp;+&nbsp;K, Vercel SDK → Vercel&nbsp;SDK.',
@@ -797,6 +854,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-minimize-rerenders',
     category: 'performance',
+    source: 'vercel',
     title: 'Minimize Re-renders',
     description: 'Minimize and make re-renders fast',
     sourceQuote: 'Track re-renders. Minimize & make re-renders fast. Use React DevTools or React Scan.',
@@ -811,6 +869,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-large-lists',
     category: 'performance',
+    source: 'vercel',
     title: 'Large Lists',
     description: 'Virtualize large lists or use content-visibility',
     sourceQuote: 'Large lists. Virtualize large lists e.g., virtua or content-visibility: auto.',
@@ -825,6 +884,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-no-image-cls',
     category: 'performance',
+    source: 'vercel',
     title: 'No Image-caused CLS',
     description: 'Set explicit image dimensions and reserve space',
     sourceQuote: 'No image-caused CLS. Set explicit image dimensions & reserve space.',
@@ -839,6 +899,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-preload-fonts',
     category: 'performance',
+    source: 'vercel',
     title: 'Preload Fonts',
     description: 'Preload critical fonts to avoid flash and layout shift',
     sourceQuote: 'Preload fonts. For critical text to avoid flash & layout shift.',
@@ -852,6 +913,7 @@ export const principles: Principle[] = [
   {
     id: 'design-layered-shadows',
     category: 'design',
+    source: 'vercel',
     title: 'Layered Shadows',
     description: 'Mimic ambient and direct light with at least two layers',
     sourceQuote: 'Layered shadows. Mimic ambient + direct light with at least two layers.',
@@ -865,6 +927,7 @@ export const principles: Principle[] = [
   {
     id: 'design-crisp-borders',
     category: 'design',
+    source: 'vercel',
     title: 'Crisp Borders',
     description: 'Combine borders and shadows for clear edges',
     sourceQuote: 'Crisp borders. Combine borders & shadows; semi-transparent borders improve edge clarity.',
@@ -878,6 +941,7 @@ export const principles: Principle[] = [
   {
     id: 'design-nested-radii',
     category: 'design',
+    source: 'vercel',
     title: 'Nested Radii',
     description: 'Child radius ≤ parent radius and concentric',
     sourceQuote: 'Nested radii. Child radius ≤ parent radius & concentric so curves align.',
@@ -891,6 +955,7 @@ export const principles: Principle[] = [
   {
     id: 'design-minimum-contrast',
     category: 'design',
+    source: 'vercel',
     title: 'Minimum Contrast',
     description: 'Prefer APCA over WCAG 2 for accurate perceptual contrast',
     sourceQuote: 'Minimum contrast. Prefer APCA over WCAG 2 for more accurate perceptual contrast.',
@@ -905,6 +970,7 @@ export const principles: Principle[] = [
   {
     id: 'design-interactions-increase-contrast',
     category: 'design',
+    source: 'vercel',
     title: 'Interactions Increase Contrast',
     description: 'Hover, active, focus states have more contrast than rest state',
     sourceQuote: 'Interactions increase contrast. :hover, :active, :focus have more contrast than rest state.',
@@ -918,6 +984,7 @@ export const principles: Principle[] = [
   {
     id: 'content-page-titles',
     category: 'content',
+    source: 'vercel',
     title: 'Accurate Page Titles',
     description: 'Title element reflects the current context',
     sourceQuote: 'Accurate page titles. <title> reflects the current context.',
@@ -931,6 +998,7 @@ export const principles: Principle[] = [
   {
     id: 'content-all-states',
     category: 'content',
+    source: 'vercel',
     title: 'All States Designed',
     description: 'Design empty, sparse, dense, and error states',
     sourceQuote: 'All states designed. Empty, sparse, dense, & error states.',
@@ -944,6 +1012,7 @@ export const principles: Principle[] = [
   {
     id: 'content-redundant-cues',
     category: 'content',
+    source: 'vercel',
     title: 'Redundant Status Cues',
     description: 'Don\'t rely on color alone; include text labels',
     sourceQuote: 'Redundant status cues. Don\'t rely on color alone; include text labels.',
@@ -957,6 +1026,7 @@ export const principles: Principle[] = [
   {
     id: 'content-ellipsis-character',
     category: 'content',
+    source: 'vercel',
     title: 'Use Ellipsis Character',
     description: 'Use … instead of three periods',
     sourceQuote: 'Use the ellipsis character. … over three periods ....',
@@ -970,6 +1040,7 @@ export const principles: Principle[] = [
   {
     id: 'content-anchored-headings',
     category: 'content',
+    source: 'vercel',
     title: 'Anchored Headings',
     description: 'Set scroll-margin-top for headers when linking to sections',
     sourceQuote: 'Anchored headings. Set scroll-margin-top for headers when linking to sections.',
@@ -983,6 +1054,7 @@ export const principles: Principle[] = [
   {
     id: 'content-resilient-ugc',
     category: 'content',
+    source: 'vercel',
     title: 'Resilient to User-generated Content',
     description: 'Layouts handle short, average, and very long content',
     sourceQuote: 'Resilient to user-generated content. Layouts handle short, average, & very long content.',
@@ -996,6 +1068,7 @@ export const principles: Principle[] = [
   {
     id: 'content-locale-formats',
     category: 'content',
+    source: 'vercel',
     title: 'Locale-aware Formats',
     description: 'Format dates, times, numbers, and currency for user locale',
     sourceQuote: 'Locale-aware formats. Format dates, times, numbers, delimiters, & currencies for the user\'s locale.',
@@ -1009,6 +1082,7 @@ export const principles: Principle[] = [
   {
     id: 'content-accessible-content',
     category: 'content',
+    source: 'vercel',
     title: 'Accessible Content',
     description: 'Set accurate names, hide decorations, verify in accessibility tree',
     sourceQuote: 'Accessible content. Set accurate names (aria-label), hide decoration (aria-hidden) & verify in the accessibility tree.',
@@ -1023,6 +1097,7 @@ export const principles: Principle[] = [
   {
     id: 'content-semantics-first',
     category: 'content',
+    source: 'vercel',
     title: 'Semantics Before ARIA',
     description: 'Prefer native elements before ARIA attributes',
     sourceQuote: 'Semantics before ARIA. Prefer native elements (button, a, label, table), before aria-*.',
@@ -1037,6 +1112,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-no-dead-zones',
     category: 'forms',
+    source: 'vercel',
     title: 'No Dead Zones on Controls',
     description: 'Checkboxes and radios share hit target with labels',
     sourceQuote: 'No dead zones on controls. Checkboxes & radios avoid dead zones; the label & control share a single generous hit target.',
@@ -1050,6 +1126,7 @@ export const principles: Principle[] = [
   {
     id: 'forms-password-managers',
     category: 'forms',
+    source: 'vercel',
     title: 'Password Managers & 2FA',
     description: 'Ensure compatibility and allow pasting one-time codes',
     sourceQuote: 'Password managers & 2FA. Ensure compatibility & allow pasting one-time codes.',
@@ -1063,6 +1140,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-device-matrix',
     category: 'performance',
+    source: 'vercel',
     title: 'Device/Browser Matrix',
     description: 'Test iOS Low Power Mode and macOS Safari',
     sourceQuote: 'Device/browser matrix. Test iOS Low Power Mode & macOS Safari.',
@@ -1076,6 +1154,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-throttle-profiling',
     category: 'performance',
+    source: 'vercel',
     title: 'Throttle When Profiling',
     description: 'Test with CPU and network throttling',
     sourceQuote: 'Throttle when profiling. Test with CPU & network throttling.',
@@ -1089,6 +1168,7 @@ export const principles: Principle[] = [
   {
     id: 'performance-latency-budgets',
     category: 'performance',
+    source: 'vercel',
     title: 'Network Latency Budgets',
     description: 'POST/PATCH/DELETE operations complete in under 500ms',
     sourceQuote: 'Network latency budgets. POST/PATCH/DELETE complete in <500ms.',
@@ -1102,6 +1182,7 @@ export const principles: Principle[] = [
   {
     id: 'design-hue-consistency',
     category: 'design',
+    source: 'vercel',
     title: 'Hue Consistency',
     description: 'Tint borders, shadows, and text toward background hue',
     sourceQuote: 'Hue consistency. On non-neutral backgrounds, tint borders/shadows/text toward the same hue.',
@@ -1115,6 +1196,7 @@ export const principles: Principle[] = [
   {
     id: 'design-accessible-charts',
     category: 'design',
+    source: 'vercel',
     title: 'Accessible Charts',
     description: 'Use color-blind-friendly palettes',
     sourceQuote: 'Accessible charts. Use color-blind-friendly palettes.',

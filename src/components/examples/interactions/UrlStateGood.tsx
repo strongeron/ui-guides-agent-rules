@@ -4,31 +4,35 @@ const tabs = ['overview', 'analytics', 'settings'] as const;
 const filters = ['all', 'active', 'archived'] as const;
 
 export function UrlStateGood() {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [filter, setFilter] = useState('all');
+  const [activeTab, setActiveTab] = useState<typeof tabs[number]>('overview');
+  const [filter, setFilter] = useState<typeof filters[number]>('all');
 
   // Sync state with URL (simplified demo - in real app use nuqs or similar)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const tab = params.get('tab');
     const f = params.get('filter');
-    if (tab && tabs.includes(tab)) setActiveTab(tab);
-    if (f && filters.includes(f)) setFilter(f);
+    if (tab && (tabs as readonly string[]).includes(tab)) {
+      setActiveTab(tab as typeof tabs[number]);
+    }
+    if (f && (filters as readonly string[]).includes(f)) {
+      setFilter(f as typeof filters[number]);
+    }
   }, []);
 
-  const updateUrl = (tab: string, f: string) => {
+  const updateUrl = (tab: typeof tabs[number], f: typeof filters[number]) => {
     const url = new URL(window.location.href);
     url.searchParams.set('tab', tab);
     url.searchParams.set('filter', f);
     window.history.replaceState({}, '', url.toString());
   };
 
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = (tab: typeof tabs[number]) => {
     setActiveTab(tab);
     updateUrl(tab, filter);
   };
 
-  const handleFilterChange = (f: string) => {
+  const handleFilterChange = (f: typeof filters[number]) => {
     setFilter(f);
     updateUrl(activeTab, f);
   };

@@ -1,8 +1,12 @@
-import { ExternalLink, AlertCircle, CheckCircle, Copy, Check } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ArrowUpRight01Icon, AlertCircleIcon, CheckmarkCircle01Icon, Copy01Icon, Tick01Icon } from '@hugeicons/core-free-icons';
 import { useState } from 'react';
 import { Principle } from '../types/principle';
 import { ExampleRenderer } from './ExampleRenderer';
 import { getAgentRule } from '../data/agentRules';
+import { SourceBadge } from './SourceBadge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface PrincipleViewProps {
   principle: Principle;
@@ -26,26 +30,32 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
     <div className="pt-16 pb-24 px-4 max-w-screen-2xl mx-auto">
       <div className="mb-8">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
-            {principle.category.toUpperCase()}
+          <div className="flex items-center gap-2">
+            <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
+              {principle.category.toUpperCase()}
+            </div>
+            {principle.source && (
+              <SourceBadge source={principle.source} size="sm" />
+            )}
           </div>
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleCopyAgentRule}
-            className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-colors"
             aria-label="Copy agent rule"
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-green-600" />
+                <HugeiconsIcon icon={Tick01Icon} size={16} className="text-green-600" />
                 <span className="text-green-600">Copied!</span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4" />
+                <HugeiconsIcon icon={Copy01Icon} size={16} />
                 <span>Copy Agent Rule</span>
               </>
             )}
-          </button>
+          </Button>
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
           {principle.title}
@@ -81,7 +91,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
                 className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-2 py-1"
               >
                 {link.text}
-                <ExternalLink className="w-3.5 h-3.5" />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
               </a>
             ))}
           </div>
@@ -89,25 +99,29 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="border-2 border-red-200 rounded-xl overflow-hidden bg-white">
-          <div className="bg-red-50 border-b-2 border-red-200 px-4 py-3 flex items-center gap-2">
-            <AlertCircle className="w-5 h-5 text-red-600" />
-            <h3 className="font-semibold text-red-900">Bad Example</h3>
-          </div>
-          <div className="p-6 min-h-[300px] flex items-center justify-center">
+        <Card className="border-2 border-red-200 overflow-hidden">
+          <CardHeader className="bg-red-50 border-b-2 border-red-200 py-3">
+            <CardTitle className="flex items-center gap-2 text-base font-semibold text-red-900">
+              <HugeiconsIcon icon={AlertCircleIcon} size={20} className="text-red-600" />
+              Bad Example
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 min-h-[300px] flex items-center justify-center">
             <ExampleRenderer exampleKey={principle.badExampleKey} />
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="border-2 border-green-200 rounded-xl overflow-hidden bg-white">
-          <div className="bg-green-50 border-b-2 border-green-200 px-4 py-3 flex items-center gap-2">
-            <CheckCircle className="w-5 h-5 text-green-600" />
-            <h3 className="font-semibold text-green-900">Good Example</h3>
-          </div>
-          <div className="p-6 min-h-[300px] flex items-center justify-center">
+        <Card className="border-2 border-green-200 overflow-hidden">
+          <CardHeader className="bg-green-50 border-b-2 border-green-200 py-3">
+            <CardTitle className="flex items-center gap-2 text-base font-semibold text-green-900">
+              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} className="text-green-600" />
+              Good Example
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 min-h-[300px] flex items-center justify-center">
             <ExampleRenderer exampleKey={principle.goodExampleKey} />
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
