@@ -1,0 +1,41 @@
+---
+title: Sample MDX Content
+description: Testing MDX setup with frontmatter and code blocks
+category: test
+---
+
+# {frontmatter.title}
+
+This is a sample MDX file to verify the MDX setup is working correctly.
+
+## Features Tested
+
+- **Frontmatter**: Title and metadata extraction
+- **GitHub Flavored Markdown**: Tables, strikethrough, etc.
+- **Heading IDs**: Auto-generated slugs via rehype-slug
+
+## Code Example
+
+```typescript
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet('World'));
+```
+
+## Table Example
+
+| Feature | Status |
+|---------|--------|
+| MDX | Working |
+| Frontmatter | Working |
+| GFM | Working |
+
+## Interactive Component
+
+You can also use React components directly in MDX:
+
+<div className="p-4 bg-blue-100 rounded-lg">
+  This is a React component rendered inside MDX!
+</div>
