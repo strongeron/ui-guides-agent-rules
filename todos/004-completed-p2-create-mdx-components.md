@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 priority: p2
 issue_id: "004"
 tags: [mdx, components, react]
@@ -47,10 +47,10 @@ _To be filled during triage_
 
 ## Acceptance Criteria
 
-- [ ] mdx-components.tsx created
-- [ ] Headings render with proper styling
-- [ ] Links use primary color
-- [ ] Custom components available in MDX
+- [x] mdx-components.tsx created
+- [x] Headings render with proper styling and anchor links
+- [x] Links use primary color with external link handling
+- [x] Custom components available in MDX (Button, Card, Badge, Callout)
 
 ## Work Log
 
@@ -61,3 +61,18 @@ _To be filled during triage_
 **Actions:**
 - Created tracking issue
 - Blocked by issue 003 (Vite config)
+
+### 2026-01-16 - Implementation Complete
+
+**By:** Claude Code
+
+**Actions:**
+- Created src/mdx-components.tsx with comprehensive component mappings
+- Implemented styled headings (h1-h6) with anchor link support and scroll-margin
+- Added Link component with external link detection
+- Created Callout component for quotes, tips, warnings, and info
+- Styled code blocks (inline and block) and pre elements
+- Added table components with proper styling
+- Styled paragraphs, lists (ul/ol), blockquotes, and hr
+- Exported useMDXComponents for MDXProvider integration
+- Included shadcn components: Button, Card, CardContent, CardHeader, CardTitle, Badge
