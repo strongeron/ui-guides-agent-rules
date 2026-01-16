@@ -24,3 +24,12 @@ dist-ssr
 
 # Local Netlify folder
 .netlify
+
+# Local MCP and agent config (contains absolute paths)
+.mcp.json
+
+# Ralph loop state (local runtime)
+.ralph/
+
+# Serena workspace state (local runtime)
+.serena/
