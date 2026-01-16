@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
-import { X } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { categories } from '../data/principles';
 import { Principle, PrincipleCategory } from '../types/principle';
 import { Button } from '@/components/ui/button';
@@ -136,7 +137,7 @@ export function Sidebar({
             onClick={onClose}
             aria-label="Close menu"
           >
-            <X className="w-5 h-5" />
+            <HugeiconsIcon icon={Cancel01Icon} size={20} />
           </Button>
         </div>
 

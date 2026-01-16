@@ -1,4 +1,5 @@
-import { ExternalLink, AlertCircle, CheckCircle, Copy, Check } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ArrowUpRight01Icon, AlertCircleIcon, CheckmarkCircle01Icon, Copy01Icon, Tick01Icon } from '@hugeicons/core-free-icons';
 import { useState } from 'react';
 import { Principle } from '../types/principle';
 import { ExampleRenderer } from './ExampleRenderer';
@@ -45,12 +46,12 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-green-600" />
+                <HugeiconsIcon icon={Tick01Icon} size={16} className="text-green-600" />
                 <span className="text-green-600">Copied!</span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4" />
+                <HugeiconsIcon icon={Copy01Icon} size={16} />
                 <span>Copy Agent Rule</span>
               </>
             )}
@@ -90,7 +91,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
                 className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-2 py-1"
               >
                 {link.text}
-                <ExternalLink className="w-3.5 h-3.5" />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
               </a>
             ))}
           </div>
@@ -101,7 +102,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         <Card className="border-2 border-red-200 overflow-hidden">
           <CardHeader className="bg-red-50 border-b-2 border-red-200 py-3">
             <CardTitle className="flex items-center gap-2 text-base font-semibold text-red-900">
-              <AlertCircle className="w-5 h-5 text-red-600" />
+              <HugeiconsIcon icon={AlertCircleIcon} size={20} className="text-red-600" />
               Bad Example
             </CardTitle>
           </CardHeader>
@@ -113,7 +114,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         <Card className="border-2 border-green-200 overflow-hidden">
           <CardHeader className="bg-green-50 border-b-2 border-green-200 py-3">
             <CardTitle className="flex items-center gap-2 text-base font-semibold text-green-900">
-              <CheckCircle className="w-5 h-5 text-green-600" />
+              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} className="text-green-600" />
               Good Example
             </CardTitle>
           </CardHeader>

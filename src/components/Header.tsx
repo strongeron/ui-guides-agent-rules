@@ -1,4 +1,5 @@
-import { Menu } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Menu01Icon } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 
 interface HeaderProps {
@@ -17,7 +18,7 @@ export function Header({ currentIndex, totalCount, onMenuToggle }: HeaderProps) 
           onClick={onMenuToggle}
           aria-label="Toggle menu"
         >
-          <Menu className="w-5 h-5" />
+          <HugeiconsIcon icon={Menu01Icon} size={20} />
         </Button>
 
         <div className="text-sm font-medium text-gray-600">

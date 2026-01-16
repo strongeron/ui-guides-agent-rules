@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 priority: p1
 issue_id: "001"
 tags: [icons, hugeicons, lucide-react, migration]
@@ -37,14 +37,14 @@ Replace lucide-react only in core components (Header, Sidebar, Navigation, Princ
 
 ## Recommended Action
 
-_To be filled during triage_
+Option B: Core Components Only - Replace lucide-react only in core components (Header, Sidebar, Navigation, PrincipleView), leave examples as-is.
 
 ## Acceptance Criteria
 
-- [ ] Core components use HUGEICONS
-- [ ] No lucide-react imports in core layout components
-- [ ] Build passes without errors
-- [ ] Icons render correctly in UI
+- [x] Core components use HUGEICONS
+- [x] No lucide-react imports in core layout components
+- [x] Build passes without errors
+- [x] Icons render correctly in UI
 
 ## Work Log
 
@@ -60,3 +60,34 @@ _To be filled during triage_
 **Learnings:**
 - HUGEICONS uses different naming conventions than lucide-react
 - Need to verify icon name mappings before migration
+
+### 2026-01-16 - Core Components Migration Complete
+
+**By:** Claude Code
+
+**Actions:**
+- Installed `@hugeicons/core-free-icons` package (required for icon definitions)
+- Migrated Header.tsx: Menu → Menu01Icon
+- Migrated Sidebar.tsx: X → Cancel01Icon
+- Migrated Navigation.tsx: ChevronLeft/ChevronRight → ArrowLeft01Icon/ArrowRight01Icon
+- Migrated PrincipleView.tsx: ExternalLink, AlertCircle, CheckCircle, Copy, Check → ArrowUpRight01Icon, AlertCircleIcon, CheckmarkCircle01Icon, Copy01Icon, Tick01Icon
+- Verified TypeScript type checking passes
+- Verified production build passes
+
+**Icon Mappings Used:**
+| lucide-react | @hugeicons/core-free-icons |
+|--------------|---------------------------|
+| Menu | Menu01Icon |
+| X | Cancel01Icon |
+| ChevronLeft | ArrowLeft01Icon |
+| ChevronRight | ArrowRight01Icon |
+| ExternalLink | ArrowUpRight01Icon |
+| AlertCircle | AlertCircleIcon |
+| CheckCircle | CheckmarkCircle01Icon |
+| Copy | Copy01Icon |
+| Check | Tick01Icon |
+
+**Learnings:**
+- HUGEICONS requires both `@hugeicons/react` (rendering library) and `@hugeicons/core-free-icons` (icon definitions)
+- Usage pattern: `<HugeiconsIcon icon={IconName} size={number} className="..." />`
+- Size is specified in pixels directly (not className like lucide-react)

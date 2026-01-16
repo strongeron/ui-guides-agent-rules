@@ -1,4 +1,5 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ArrowLeft01Icon, ArrowRight01Icon } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 
 interface NavigationProps {
@@ -23,7 +24,7 @@ export function Navigation({
           disabled={!hasPrevious}
           aria-label="Previous principle"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <HugeiconsIcon icon={ArrowLeft01Icon} size={16} />
           Previous
         </Button>
 
@@ -33,7 +34,7 @@ export function Navigation({
           aria-label="Next principle"
         >
           Next
-          <ChevronRight className="w-4 h-4" />
+          <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
         </Button>
       </div>
     </div>
