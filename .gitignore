@@ -33,3 +33,4 @@ dist-ssr
 
 # Serena workspace state (local runtime)
 .serena/
+coverage/

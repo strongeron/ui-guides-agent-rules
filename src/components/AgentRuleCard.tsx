@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { COPY_FEEDBACK_DELAY_MS } from '@/constants/ui';
 
 interface AgentRuleCardProps {
   rule: AgentRule;
@@ -44,7 +45,7 @@ export function AgentRuleCard({ rule, principleTitle, onCopy, className }: Agent
       await navigator.clipboard.writeText(formattedRule);
       setCopied(true);
       onCopy?.();
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), COPY_FEEDBACK_DELAY_MS);
     } catch (err) {
       console.error('Failed to copy:', err);
     }
