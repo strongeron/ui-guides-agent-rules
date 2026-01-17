@@ -1,25 +1,11 @@
 import { lazy, Suspense, ComponentType } from 'react';
+import { pathToKey } from '@/utils/exampleKeys';
 
 // Auto-discover all example components using import.meta.glob
 const exampleModules = import.meta.glob<{ [key: string]: ComponentType }>(
   './examples/**/*.tsx',
   { eager: false }
 );
-
-// Convert file paths to example keys
-// e.g., './examples/forms/EnterSubmitsBad.tsx' -> 'forms-enter-submits-bad'
-function pathToKey(path: string): string {
-  const match = path.match(/\.\/examples\/(.+)\/(.+)\.tsx$/);
-  if (!match) return '';
-
-  const [, category, fileName] = match;
-  // Convert PascalCase to kebab-case
-  const kebabName = fileName
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .toLowerCase();
-
-  return `${category}-${kebabName}`;
-}
 
 // Build the component registry from discovered modules
 const exampleComponents: Record<string, ReturnType<typeof lazy>> = {};

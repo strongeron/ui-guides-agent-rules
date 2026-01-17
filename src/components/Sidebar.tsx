@@ -5,6 +5,11 @@ import { categories } from '../data/principles';
 import { Principle, PrincipleCategory } from '../types/principle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+  SIDEBAR_FOCUS_DELAY_MS,
+  SIDEBAR_WIDTH_CLASS,
+  SIDEBAR_HEADER_HEIGHT_PX,
+} from '@/constants/ui';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -90,7 +95,7 @@ export function Sidebar({
     if (isOpen) {
       previousActiveElement.current = document.activeElement as HTMLElement;
       // Focus search input when sidebar opens
-      setTimeout(() => searchInputRef.current?.focus(), 100);
+      setTimeout(() => searchInputRef.current?.focus(), SIDEBAR_FOCUS_DELAY_MS);
       document.addEventListener('keydown', handleKeyDown);
       // Prevent body scroll when sidebar is open
       document.body.style.overflow = 'hidden';
@@ -119,7 +124,7 @@ export function Sidebar({
 
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 bottom-0 w-80 bg-background z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
         aria-label="Navigation menu"
@@ -153,7 +158,7 @@ export function Sidebar({
           />
         </div>
 
-        <nav className="overflow-y-auto overscroll-contain h-[calc(100vh-130px)]">
+        <nav className={`overflow-y-auto overscroll-contain h-[calc(100vh-${SIDEBAR_HEADER_HEIGHT_PX}px)]`}>
           {filteredPrinciples.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">No principles found</p>

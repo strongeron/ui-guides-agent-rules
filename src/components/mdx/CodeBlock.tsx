@@ -2,6 +2,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
 import { Copy01Icon, Tick01Icon } from '@hugeicons/core-free-icons';
 import { useState, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
+import { COPY_FEEDBACK_DELAY_MS } from '@/constants/ui';
 
 interface CodeBlockProps {
   title?: string;
@@ -19,7 +20,7 @@ export function CodeBlock({ title, children }: CodeBlockProps) {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), COPY_FEEDBACK_DELAY_MS);
     } catch (err) {
       console.error('Failed to copy:', err);
     }

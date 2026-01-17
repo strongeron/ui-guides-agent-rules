@@ -19,6 +19,11 @@ npm run preview      # Preview production build
 # Code Quality
 npm run lint         # ESLint check
 npm run typecheck    # TypeScript type checking
+
+# Testing
+npm test             # Run tests once
+npm run test:watch   # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
 ```
 
 ## Architecture
@@ -72,7 +77,8 @@ Defined in `src/index.css` using Tailwind v4's `@theme` and `@utility` directive
 - React 18 with TypeScript (strict mode)
 - Vite with `@tailwindcss/vite` plugin
 - Tailwind CSS v4 (CSS-based config)
-- lucide-react for icons
+- HUGEICONS for icons (@hugeicons/react)
+- Vitest for unit testing
 - ESLint with react-hooks and react-refresh plugins
 
 ## UI/UX Guidelines Reference
