@@ -119,15 +119,15 @@ export function Sidebar({
 
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 bottom-0 w-80 bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 bottom-0 w-80 bg-background z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
         aria-label="Navigation menu"
         aria-hidden={!isOpen}
         inert={!isOpen ? '' : undefined}
       >
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">
+        <div className="flex items-center justify-between p-4 border-b border-border">
+          <h2 className="text-lg font-semibold text-foreground">
             Interface Guidelines
           </h2>
           <Button
@@ -142,7 +142,7 @@ export function Sidebar({
         </div>
 
         {/* Search input */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-border">
           <Input
             ref={searchInputRef}
             type="search"
@@ -155,7 +155,7 @@ export function Sidebar({
 
         <nav className="overflow-y-auto overscroll-contain h-[calc(100vh-130px)]">
           {filteredPrinciples.length === 0 ? (
-            <div className="p-4 text-center text-gray-500">
+            <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">No principles found</p>
               <p className="text-xs mt-1">Try a different search term</p>
             </div>
@@ -165,12 +165,12 @@ export function Sidebar({
               if (!categoryPrinciples?.length) return null;
 
               return (
-                <div key={category.id} className="border-b border-gray-100">
-                  <div className="px-4 py-3 bg-gray-50">
-                    <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                <div key={category.id} className="border-b border-border">
+                  <div className="px-4 py-3 bg-muted">
+                    <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
                       {category.title}
                     </h3>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {category.description}
                     </p>
                   </div>
@@ -179,10 +179,10 @@ export function Sidebar({
                       <li key={principle.id}>
                         <button
                           onClick={() => handlePrincipleClick(principle.id)}
-                          className={`w-full text-left px-4 py-3 text-sm hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 ${
+                          className={`w-full text-left px-4 py-3 text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring ${
                             currentPrincipleId === principle.id
-                              ? 'bg-blue-50 text-blue-700 font-medium border-l-4 border-blue-600'
-                              : 'text-gray-700 border-l-4 border-transparent'
+                              ? 'bg-primary/10 text-primary font-medium border-l-4 border-primary'
+                              : 'text-foreground border-l-4 border-transparent'
                           }`}
                         >
                           {principle.title}

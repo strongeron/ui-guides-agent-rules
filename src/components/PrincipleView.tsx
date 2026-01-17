@@ -26,25 +26,25 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
             <SourceBadge source={principle.source} size="sm" />
           )}
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-4">
           {principle.title}
         </h1>
-        <p className="text-lg text-gray-600 mb-6">{principle.description}</p>
+        <p className="text-lg text-muted-foreground mb-6">{principle.description}</p>
 
-        <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
-          <h2 className="text-sm font-semibold text-blue-900 mb-2">
+        <div className="bg-primary/10 border-l-4 border-primary p-4 mb-6">
+          <h2 className="text-sm font-semibold text-foreground mb-2">
             From the Guidelines:
           </h2>
-          <blockquote className="text-sm text-blue-800 italic">
+          <blockquote className="text-sm text-muted-foreground italic">
             "{principle.sourceQuote}"
           </blockquote>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-4 mb-6">
-          <h2 className="text-sm font-semibold text-gray-900 mb-2">
+        <div className="bg-muted rounded-lg p-4 mb-6">
+          <h2 className="text-sm font-semibold text-foreground mb-2">
             Additional Context:
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed">
             {principle.additionalExplanation}
           </p>
         </div>
@@ -57,7 +57,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-2 py-1"
+                className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-2 py-1"
               >
                 {link.text}
                 <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
@@ -68,7 +68,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
 
         {agentRule && (
           <div className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-900 mb-3">
+            <h2 className="text-sm font-semibold text-foreground mb-3">
               Agent Rule:
             </h2>
             <AgentRuleCard rule={agentRule} className="max-w-xl" />
@@ -77,10 +77,10 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="border-2 border-red-200 overflow-hidden">
-          <CardHeader className="bg-red-50 border-b-2 border-red-200 py-3">
-            <CardTitle className="flex items-center gap-2 text-base font-semibold text-red-900">
-              <HugeiconsIcon icon={AlertCircleIcon} size={20} className="text-red-600" />
+        <Card className="bg-card shadow-sm overflow-hidden">
+          <CardHeader className="py-3">
+            <CardTitle className="flex items-center gap-2 text-base font-semibold text-error">
+              <HugeiconsIcon icon={AlertCircleIcon} size={20} />
               Bad Example
             </CardTitle>
           </CardHeader>
@@ -89,10 +89,10 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-green-200 overflow-hidden">
-          <CardHeader className="bg-green-50 border-b-2 border-green-200 py-3">
-            <CardTitle className="flex items-center gap-2 text-base font-semibold text-green-900">
-              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} className="text-green-600" />
+        <Card className="bg-card shadow-sm overflow-hidden">
+          <CardHeader className="py-3">
+            <CardTitle className="flex items-center gap-2 text-base font-semibold text-success">
+              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} />
               Good Example
             </CardTitle>
           </CardHeader>

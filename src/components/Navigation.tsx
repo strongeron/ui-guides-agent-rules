@@ -16,7 +16,7 @@ export function Navigation({
   hasNext,
 }: NavigationProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-background border-t border-border">
       <div className="flex items-center justify-between px-4 py-4 max-w-screen-2xl mx-auto">
         <Button
           variant="outline"

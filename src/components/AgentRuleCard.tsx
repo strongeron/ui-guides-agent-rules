@@ -17,15 +17,15 @@ interface AgentRuleCardProps {
 const priorityConfig: Record<AgentRulePriority, { label: string; className: string }> = {
   MUST: {
     label: 'MUST',
-    className: 'bg-red-100 text-red-800 border-red-200',
+    className: 'bg-error/20 text-error border-error/30 dark:bg-error/10 dark:border-error/20',
   },
   SHOULD: {
     label: 'SHOULD',
-    className: 'bg-amber-100 text-amber-800 border-amber-200',
+    className: 'bg-amber-500/20 text-amber-700 border-amber-500/30 dark:text-amber-400 dark:bg-amber-500/10 dark:border-amber-500/20',
   },
   NEVER: {
     label: 'NEVER',
-    className: 'bg-gray-100 text-gray-800 border-gray-200',
+    className: 'bg-muted text-muted-foreground border-border',
   },
 };
 
@@ -89,8 +89,8 @@ export function AgentRuleCard({ rule, principleTitle, onCopy, className }: Agent
         >
           {copied ? (
             <>
-              <HugeiconsIcon icon={Tick01Icon} size={16} className="text-green-600" />
-              <span className="text-green-600">Copied!</span>
+              <HugeiconsIcon icon={Tick01Icon} size={16} className="text-success" />
+              <span className="text-success">Copied!</span>
             </>
           ) : (
             <>
