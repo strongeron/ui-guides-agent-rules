@@ -1,0 +1,30 @@
+---
+id: interactions-dont-block-paste
+category: interactions
+source: vercel
+title: Don\
+description: Never disable paste in input or textarea elements
+badExampleKey: interactions-dont-block-paste-bad
+goodExampleKey: interactions-dont-block-paste-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Don\
+</Callout>
+
+## Why This Matters
+
+Blocking paste frustrates users and reduces security by preventing password managers from working. Users should always be able to paste content into form fields. If you need validation, validate after paste, don\
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-dont-block-paste-bad"
+  goodKey="interactions-dont-block-paste-good"
+/>
+
+## Learn More
+
+- [Why Blocking Paste is Bad UX](https://www.nngroup.com/articles/stop-password-masking/)

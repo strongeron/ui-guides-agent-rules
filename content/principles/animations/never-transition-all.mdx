@@ -1,0 +1,30 @@
+---
+id: animations-never-transition-all
+category: animations
+source: vercel
+title: Never transition: all
+description: Explicitly list only the properties you intend to animate
+badExampleKey: animations-never-transition-all-bad
+goodExampleKey: animations-never-transition-all-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Never transition: all. Explicitly list only the properties you intend to animate (typically opacity, transform). all can unintentionally animate layout-affecting properties causing jank.
+</Callout>
+
+## Why This Matters
+
+Using transition: all is tempting but dangerous. It can accidentally animate properties you didn\
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-never-transition-all-bad"
+  goodKey="animations-never-transition-all-good"
+/>
+
+## Learn More
+
+- [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)

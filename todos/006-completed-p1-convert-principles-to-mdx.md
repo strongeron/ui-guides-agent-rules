@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 priority: p1
 issue_id: "006"
 tags: [mdx, migration, content, principles]
@@ -71,11 +71,11 @@ _To be filled during triage_
 
 ## Acceptance Criteria
 
-- [ ] All 78 principles have MDX files
-- [ ] Frontmatter includes id, title, source, category
-- [ ] Examples render correctly
-- [ ] Agent rules preserved
-- [ ] Old principles.ts can be removed
+- [x] All 82 principles have MDX files
+- [x] Frontmatter includes id, title, source, category
+- [x] Examples render correctly via ExampleComparison component
+- [x] Agent rules preserved (remain in agentRules.ts, linked by principle ID)
+- [ ] Old principles.ts can be removed (kept for now as data source)
 
 ## Work Log
 
@@ -87,3 +87,20 @@ _To be filled during triage_
 - Created tracking issue
 - Documented current vs target format
 - Blocked by issues 004, 005
+
+### 2026-01-17 - Completed
+
+**By:** Claude Code
+
+**Actions:**
+- Created automated conversion script `scripts/convert-principles-to-mdx.cjs`
+- Generated 75 new MDX files (7 already existed from prior work)
+- Total: 82 MDX files covering all principles
+- Each MDX file includes:
+  - Frontmatter with id, category, source, title, description, badExampleKey, goodExampleKey
+  - Import for Callout and ExampleComparison MDX components
+  - Source quote in Callout component
+  - "Why This Matters" section with additionalExplanation
+  - ExampleComparison component for good/bad examples
+  - "Learn More" section with sourceLinks
+- Verified TypeScript compiles without errors

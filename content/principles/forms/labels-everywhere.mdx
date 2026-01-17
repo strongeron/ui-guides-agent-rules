@@ -1,0 +1,31 @@
+---
+id: forms-labels-everywhere
+category: forms
+source: vercel
+title: Labels Everywhere
+description: Every form control must have a visible label or accessible name
+badExampleKey: forms-labels-everywhere-bad
+goodExampleKey: forms-labels-everywhere-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Labels everywhere. Every control has a <label> or is associated with a label for assistive tech.
+</Callout>
+
+## Why This Matters
+
+Labels are crucial for accessibility. Screen reader users need labels to understand what each form field is for. Sighted users benefit from clear labels too. Use the <label> element with the "for" attribute pointing to the input\
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-labels-everywhere-bad"
+  goodKey="forms-labels-everywhere-good"
+/>
+
+## Learn More
+
+- [MDN: Label element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
+- [WebAIM: Creating Accessible Forms](https://webaim.org/techniques/forms/)

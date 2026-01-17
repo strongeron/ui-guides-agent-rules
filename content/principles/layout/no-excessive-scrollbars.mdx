@@ -1,0 +1,30 @@
+---
+id: layout-no-excessive-scrollbars
+category: layout
+source: vercel
+title: No Excessive Scrollbars
+description: Only render useful scrollbars; fix overflow issues
+badExampleKey: layout-no-excessive-scrollbars-bad
+goodExampleKey: layout-no-excessive-scrollbars-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  No excessive scrollbars. Only render useful scrollbars; fix overflow issues to prevent unwanted scrollbars.
+</Callout>
+
+## Why This Matters
+
+Unexpected scrollbars indicate layout problems. Fix the root cause (usually overflow issues) rather than hiding scrollbars with CSS. On macOS, set "Show scroll bars" to "Always" during development to catch these issues.
+
+## Implementation
+
+<ExampleComparison
+  badKey="layout-no-excessive-scrollbars-bad"
+  goodKey="layout-no-excessive-scrollbars-good"
+/>
+
+## Learn More
+
+- [CSS Overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)

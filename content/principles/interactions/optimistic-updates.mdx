@@ -1,0 +1,30 @@
+---
+id: interactions-optimistic-updates
+category: interactions
+source: vercel
+title: Optimistic Updates
+description: Update UI immediately when success is likely; reconcile on response
+badExampleKey: interactions-optimistic-updates-bad
+goodExampleKey: interactions-optimistic-updates-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Optimistic updates. Update the UI immediately when success is likely; reconcile on server response. On failure, show an error & roll back or provide Undo.
+</Callout>
+
+## Why This Matters
+
+For actions that usually succeed (like liking a post or adding to cart), update the UI immediately rather than waiting for the server. This makes the interface feel instant. If the request fails, show an error and revert the change or offer an undo option.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-optimistic-updates-bad"
+  goodKey="interactions-optimistic-updates-good"
+/>
+
+## Learn More
+
+- [Optimistic UI](https://www.apollographql.com/docs/react/performance/optimistic-ui/)

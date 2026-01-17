@@ -1,0 +1,30 @@
+---
+id: design-crisp-borders
+category: design
+source: vercel
+title: Crisp Borders
+description: Combine borders and shadows for clear edges
+badExampleKey: design-crisp-borders-bad
+goodExampleKey: design-crisp-borders-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Crisp borders. Combine borders & shadows; semi-transparent borders improve edge clarity.
+</Callout>
+
+## Why This Matters
+
+Shadows alone can look muddy. A subtle border (often semi-transparent) makes edges crisp and clear. Use rgba() with low opacity for borders so they adapt to different backgrounds.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-crisp-borders-bad"
+  goodKey="design-crisp-borders-good"
+/>
+
+## Learn More
+
+- [CSS Borders](https://developer.mozilla.org/en-US/docs/Web/CSS/border)

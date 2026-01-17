@@ -1,0 +1,30 @@
+---
+id: content-non-breaking-spaces
+category: content
+source: vercel
+title: Non-breaking Spaces
+description: Use non-breaking spaces to keep units and terms together
+badExampleKey: content-non-breaking-spaces-bad
+goodExampleKey: content-non-breaking-spaces-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Non-breaking spaces for glued terms. Use a non-breaking space &nbsp; to keep units, shortcuts & names together: 10 MB → 10&nbsp;MB, ⌘ + K → ⌘&nbsp;+&nbsp;K, Vercel SDK → Vercel&nbsp;SDK.
+</Callout>
+
+## Why This Matters
+
+Certain text elements should never wrap onto separate lines. Use &nbsp; (non-breaking space) in HTML or \\u00A0 in JavaScript to keep numbers with their units, keyboard shortcuts together, and brand names intact.
+
+## Implementation
+
+<ExampleComparison
+  badKey="content-non-breaking-spaces-bad"
+  goodKey="content-non-breaking-spaces-good"
+/>
+
+## Learn More
+
+- [Non-breaking space](https://en.wikipedia.org/wiki/Non-breaking_space)

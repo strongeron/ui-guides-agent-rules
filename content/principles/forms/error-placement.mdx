@@ -1,0 +1,30 @@
+---
+id: forms-error-placement
+category: forms
+source: vercel
+title: Error Placement
+description: Show errors next to their fields and focus the first error on submit
+badExampleKey: forms-error-placement-bad
+goodExampleKey: forms-error-placement-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Error placement. Show errors next to their fields; on submit, focus the first error.
+</Callout>
+
+## Why This Matters
+
+Errors should appear immediately adjacent to the field they relate to. When a form is submitted with errors, automatically focus the first problematic field so users can start fixing issues immediately. This is especially important for long forms.
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-error-placement-bad"
+  goodKey="forms-error-placement-good"
+/>
+
+## Learn More
+
+- [WebAIM: Usable and Accessible Form Validation](https://webaim.org/articles/formvalidation/)

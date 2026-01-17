@@ -1,0 +1,31 @@
+---
+id: interactions-url-state
+category: interactions
+source: vercel
+title: URL as State
+description: Persist state in the URL for sharing and navigation
+badExampleKey: interactions-url-state-bad
+goodExampleKey: interactions-url-state-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  URL as state. Persist state in the URL so share, refresh, Back/Forward navigation work e.g., nuqs.
+</Callout>
+
+## Why This Matters
+
+Store filters, search queries, tabs, and other UI state in the URL. This allows users to share links, refresh without losing context, and use browser back/forward buttons naturally. Libraries like nuqs make this easier to implement.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-url-state-bad"
+  goodKey="interactions-url-state-good"
+/>
+
+## Learn More
+
+- [nuqs](https://nuqs.dev)
+- [URL as State](https://www.nngroup.com/articles/url-design/)

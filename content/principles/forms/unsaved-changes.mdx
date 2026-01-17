@@ -1,0 +1,30 @@
+---
+id: forms-unsaved-changes
+category: forms
+source: vercel
+title: Unsaved Changes
+description: Warn before navigation when data could be lost
+badExampleKey: forms-unsaved-changes-bad
+goodExampleKey: forms-unsaved-changes-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Unsaved changes. Warn before navigation when data could be lost.
+</Callout>
+
+## Why This Matters
+
+Track form modifications and show a confirmation dialog if the user tries to navigate away or close the tab with unsaved changes. Use the beforeunload event for page unload and custom logic for in-app navigation.
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-unsaved-changes-bad"
+  goodKey="forms-unsaved-changes-good"
+/>
+
+## Learn More
+
+- [beforeunload event](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event)

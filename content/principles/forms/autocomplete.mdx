@@ -1,0 +1,30 @@
+---
+id: forms-autocomplete
+category: forms
+source: vercel
+title: Autocomplete & Names
+description: Set autocomplete and meaningful name values to enable browser autofill
+badExampleKey: forms-autocomplete-bad
+goodExampleKey: forms-autocomplete-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Autocomplete & names. Set autocomplete & meaningful name values to enable autofill.
+</Callout>
+
+## Why This Matters
+
+Modern browsers can autofill form data, saving users time. Use the autocomplete attribute with standard values like "email", "tel", "street-address", etc. Also use semantic name attributes. This helps password managers and other assistive tools.
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-autocomplete-bad"
+  goodKey="forms-autocomplete-good"
+/>
+
+## Learn More
+
+- [HTML autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)

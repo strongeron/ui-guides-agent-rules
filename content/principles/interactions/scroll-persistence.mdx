@@ -1,0 +1,30 @@
+---
+id: interactions-scroll-persistence
+category: interactions
+source: vercel
+title: Scroll Positions Persist
+description: Back and Forward navigation should restore scroll position
+badExampleKey: interactions-scroll-persistence-bad
+goodExampleKey: interactions-scroll-persistence-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Scroll positions persist. Back/Forward restores prior scroll.
+</Callout>
+
+## Why This Matters
+
+When users navigate back or forward, restore their previous scroll position. This helps maintain context and prevents frustration from having to scroll down again to find what they were viewing.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-scroll-persistence-bad"
+  goodKey="interactions-scroll-persistence-good"
+/>
+
+## Learn More
+
+- [Scroll Restoration](https://developer.mozilla.org/en-US/docs/Web/API/History/scrollRestoration)

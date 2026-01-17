@@ -1,0 +1,31 @@
+---
+id: interactions-clean-drag
+category: interactions
+source: vercel
+title: Clean Drag Interactions
+description: Disable text selection and apply inert during drag operations
+badExampleKey: interactions-clean-drag-bad
+goodExampleKey: interactions-clean-drag-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Clean drag interactions. Disable text selection & apply inert (which prevents interaction) while an element is dragged so selection/hover don\
+</Callout>
+
+## Why This Matters
+
+When dragging elements, prevent text selection and disable hover/interaction states on other elements using the inert attribute. This prevents confusing visual states where content appears selected or hovered while being dragged.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-clean-drag-bad"
+  goodKey="interactions-clean-drag-good"
+/>
+
+## Learn More
+
+- [Drag and Drop](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+- [inert attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert)

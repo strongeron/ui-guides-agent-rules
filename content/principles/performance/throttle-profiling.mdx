@@ -1,0 +1,30 @@
+---
+id: performance-throttle-profiling
+category: performance
+source: vercel
+title: Throttle When Profiling
+description: Test with CPU and network throttling
+badExampleKey: performance-throttle-profiling-bad
+goodExampleKey: performance-throttle-profiling-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Throttle when profiling. Test with CPU & network throttling.
+</Callout>
+
+## Why This Matters
+
+Developer machines are faster than average user devices. Use browser DevTools to throttle CPU (4x slowdown) and network (Fast 3G) to test how your app performs for users on slower devices and connections.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-throttle-profiling-bad"
+  goodKey="performance-throttle-profiling-good"
+/>
+
+## Learn More
+
+- [Chrome DevTools Throttling](https://developer.chrome.com/docs/devtools/device-mode/)
