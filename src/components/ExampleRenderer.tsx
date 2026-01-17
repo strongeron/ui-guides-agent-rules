@@ -44,7 +44,7 @@ for (const path of Object.keys(exampleModules)) {
 function LoadingFallback() {
   return (
     <div className="flex items-center justify-center w-full h-32">
-      <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }
@@ -58,10 +58,10 @@ export function ExampleRenderer({ exampleKey }: ExampleRendererProps) {
 
   if (!Component) {
     return (
-      <div className="text-center text-gray-500">
+      <div className="text-center text-muted-foreground">
         <p className="text-sm font-medium mb-2">Example Coming Soon</p>
         <p className="text-xs">This interactive example is being developed</p>
-        <p className="text-xs text-gray-400 mt-2 font-mono">{exampleKey}</p>
+        <p className="text-xs opacity-70 mt-2 font-mono">{exampleKey}</p>
       </div>
     );
   }

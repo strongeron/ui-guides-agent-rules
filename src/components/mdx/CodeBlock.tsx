@@ -26,21 +26,21 @@ export function CodeBlock({ title, children }: CodeBlockProps) {
   };
 
   return (
-    <div className="my-6 rounded-lg overflow-hidden border border-gray-200 bg-gray-950">
+    <div className="my-6 rounded-lg overflow-hidden border border-border bg-zinc-950">
       {title && (
-        <div className="flex items-center justify-between px-4 py-2 bg-gray-900 border-b border-gray-800">
-          <span className="text-sm font-medium text-gray-300">{title}</span>
+        <div className="flex items-center justify-between px-4 py-2 bg-zinc-900 border-b border-zinc-800">
+          <span className="text-sm font-medium text-zinc-300">{title}</span>
           <Button
             variant="ghost"
             size="sm"
             onClick={handleCopy}
-            className="h-7 px-2 text-gray-400 hover:text-gray-200 hover:bg-gray-800"
+            className="h-7 px-2 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800"
             aria-label="Copy code"
           >
             {copied ? (
               <>
-                <HugeiconsIcon icon={Tick01Icon} size={14} className="text-green-400" />
-                <span className="text-xs text-green-400 ml-1">Copied!</span>
+                <HugeiconsIcon icon={Tick01Icon} size={14} className="text-success" />
+                <span className="text-xs text-success ml-1">Copied!</span>
               </>
             ) : (
               <>
@@ -53,7 +53,7 @@ export function CodeBlock({ title, children }: CodeBlockProps) {
       )}
       <div
         data-code-block-content
-        className="overflow-x-auto p-4 text-sm leading-relaxed [&_pre]:m-0 [&_pre]:p-0 [&_pre]:bg-transparent [&_code]:text-gray-100 [&_code]:font-mono"
+        className="overflow-x-auto p-4 text-sm leading-relaxed [&_pre]:m-0 [&_pre]:p-0 [&_pre]:bg-transparent [&_code]:text-zinc-100 [&_code]:font-mono"
       >
         {children}
       </div>

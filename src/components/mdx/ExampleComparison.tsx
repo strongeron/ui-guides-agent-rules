@@ -21,14 +21,10 @@ export function ExampleComparison({
 }: ExampleComparisonProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-8">
-      <Card className="border-2 border-red-200 overflow-hidden">
-        <CardHeader className="bg-red-50 border-b-2 border-red-200 py-3">
-          <CardTitle className="flex items-center gap-2 text-base font-semibold text-red-900">
-            <HugeiconsIcon
-              icon={AlertCircleIcon}
-              size={20}
-              className="text-red-600"
-            />
+      <Card className="bg-card shadow-sm overflow-hidden">
+        <CardHeader className="py-3">
+          <CardTitle className="flex items-center gap-2 text-base font-semibold text-error">
+            <HugeiconsIcon icon={AlertCircleIcon} size={20} />
             {badTitle}
           </CardTitle>
         </CardHeader>
@@ -37,14 +33,10 @@ export function ExampleComparison({
         </CardContent>
       </Card>
 
-      <Card className="border-2 border-green-200 overflow-hidden">
-        <CardHeader className="bg-green-50 border-b-2 border-green-200 py-3">
-          <CardTitle className="flex items-center gap-2 text-base font-semibold text-green-900">
-            <HugeiconsIcon
-              icon={CheckmarkCircle01Icon}
-              size={20}
-              className="text-green-600"
-            />
+      <Card className="bg-card shadow-sm overflow-hidden">
+        <CardHeader className="py-3">
+          <CardTitle className="flex items-center gap-2 text-base font-semibold text-success">
+            <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} />
             {goodTitle}
           </CardTitle>
         </CardHeader>
