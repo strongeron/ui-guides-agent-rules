@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
+import { SkipLink } from './components/SkipLink';
 import { principles } from './data/principles';
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-muted">
+      <SkipLink />
       <Header
         currentIndex={currentIndex}
         totalCount={principles.length}
@@ -105,7 +107,7 @@ function App() {
         onSearchChange={setSearchQuery}
       />
 
-      <main className="min-h-screen">
+      <main id="main-content" className="min-h-screen">
         <PrincipleView principle={currentPrinciple} />
       </main>
 
