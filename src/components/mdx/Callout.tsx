@@ -25,28 +25,28 @@ const calloutStyles: Record<
   }
 > = {
   info: {
-    container: 'bg-blue-50 border-l-4 border-blue-600',
+    container: 'bg-blue-50 dark:bg-blue-950/50 border-l-4 border-blue-600 dark:border-blue-400',
     icon: InformationCircleIcon,
-    iconColor: 'text-blue-600',
-    titleColor: 'text-blue-900',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    titleColor: 'text-blue-900 dark:text-blue-100',
   },
   warning: {
-    container: 'bg-amber-50 border-l-4 border-amber-500',
+    container: 'bg-amber-50 dark:bg-amber-950/50 border-l-4 border-amber-500 dark:border-amber-400',
     icon: AlertCircleIcon,
-    iconColor: 'text-amber-600',
-    titleColor: 'text-amber-900',
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    titleColor: 'text-amber-900 dark:text-amber-100',
   },
   tip: {
-    container: 'bg-green-50 border-l-4 border-green-600',
+    container: 'bg-green-50 dark:bg-green-950/50 border-l-4 border-green-600 dark:border-green-400',
     icon: BulbIcon,
-    iconColor: 'text-green-600',
-    titleColor: 'text-green-900',
+    iconColor: 'text-green-600 dark:text-green-400',
+    titleColor: 'text-green-900 dark:text-green-100',
   },
   quote: {
-    container: 'bg-gray-50 border-l-4 border-gray-400',
+    container: 'bg-muted border-l-4 border-muted-foreground/40',
     icon: QuoteDownIcon,
-    iconColor: 'text-gray-500',
-    titleColor: 'text-gray-900',
+    iconColor: 'text-muted-foreground',
+    titleColor: 'text-foreground',
   },
 };
 
@@ -68,8 +68,8 @@ export function Callout({ type = 'info', title, children }: CalloutProps) {
             </h4>
           )}
           <div
-            className={`text-sm leading-relaxed ${
-              type === 'quote' ? 'italic text-gray-700' : 'text-gray-700'
+            className={`text-sm leading-relaxed text-muted-foreground ${
+              type === 'quote' ? 'italic' : ''
             }`}
           >
             {children}
