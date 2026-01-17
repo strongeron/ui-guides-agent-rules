@@ -1,0 +1,48 @@
+---
+id: forms-enter-submits
+category: forms
+source: vercel
+title: Enter Submits
+description: When a text input is focused, Enter should submit the form if it's the only control
+badExampleKey: forms-enter-submits-bad
+goodExampleKey: forms-enter-submits-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Enter submits. When a text input is focused, Enter submits if it's the only control. If there are many controls, apply to the last control.
+</Callout>
+
+## Why This Matters
+
+Users expect pressing Enter in a form field to submit the form. This is a fundamental web convention that improves efficiency and meets user expectations. For single-input forms like search boxes or login fields, this should work from any input. For multi-field forms, Enter should submit when focus is on the last input.
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-enter-submits-bad"
+  goodKey="forms-enter-submits-good"
+/>
+
+<CodeBlock title="Good Implementation">
+```tsx
+function SearchForm() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Submit logic
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="query" />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+```
+</CodeBlock>
+
+## Learn More
+
+- [WAI-ARIA Authoring Patterns](https://www.w3.org/WAI/ARIA/apg/)
