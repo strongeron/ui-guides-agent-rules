@@ -51,9 +51,9 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
 
         {principle.sourceLinks.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {principle.sourceLinks.map((link, index) => (
+            {principle.sourceLinks.map((link) => (
               <a
-                key={index}
+                key={link.url}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
