@@ -3,9 +3,72 @@
 ## Overview
 Update theming system with theme switcher, ensure all components support dark mode, fix CTA accessibility issues, and simplify good/bad example cards to minimalistic design.
 
+## Centralized Theming Approach (Best Practice)
+
+All theme colors are defined in **one place**: `src/index.css`
+
+```
+:root { ... }     ← Light mode tokens
+.dark { ... }     ← Dark mode tokens
+```
+
+**Existing tokens** (already defined):
+- `--background`, `--foreground` - Base colors
+- `--card`, `--card-foreground` - Card surfaces
+- `--muted`, `--muted-foreground` - Subtle backgrounds/text
+- `--primary`, `--primary-foreground` - Brand/action colors
+- `--destructive` - Error/danger actions
+- `--border`, `--input`, `--ring` - UI chrome
+
+**Tokens to add** for good/bad cards:
+- `--success`, `--success-foreground` - Good examples (green)
+- `--error`, `--error-foreground` - Bad examples (red)
+
+**Usage in components:**
+- Use `bg-background` NOT `bg-white`
+- Use `bg-muted` NOT `bg-gray-50`
+- Use `text-foreground` NOT `text-gray-900`
+- Use `border-border` NOT `border-gray-200`
+
 ---
 
 ## Epic: Style Fix - Theming & Accessibility
+
+### 0. Add Semantic Color Tokens (NEW)
+**Priority:** P0 (Critical - do first)
+**Labels:** work
+
+Add success/error tokens to `src/index.css`:
+
+```css
+:root {
+  /* Success (good examples) */
+  --success: oklch(0.723 0.219 142.495);
+  --success-foreground: oklch(0.262 0.051 150.107);
+
+  /* Error (bad examples) */
+  --error: oklch(0.637 0.237 25.331);
+  --error-foreground: oklch(0.269 0.066 25.041);
+}
+
+.dark {
+  --success: oklch(0.627 0.194 145.071);
+  --success-foreground: oklch(0.982 0.018 155.826);
+
+  --error: oklch(0.704 0.191 22.216);
+  --error-foreground: oklch(0.982 0.018 15.826);
+}
+```
+
+Also add to `@theme inline`:
+```css
+--color-success: var(--success);
+--color-success-foreground: var(--success-foreground);
+--color-error: var(--error);
+--color-error-foreground: var(--error-foreground);
+```
+
+---
 
 ### 1. Theme Switcher Implementation
 **Priority:** P0 (Critical)
@@ -35,10 +98,11 @@ Current cards have:
 
 **New minimalistic design:**
 - Remove all borders and background fills
-- Use only colored icon and text
-- Full green (`text-green-600`) for good examples
-- Full red (`text-red-600`) for bad examples
-- Clean card with subtle shadow only
+- Use only colored icon and text with semantic tokens:
+  - Good: `text-success` (icon + label)
+  - Bad: `text-error` (icon + label)
+- Clean card with `bg-card` and subtle shadow only
+- Works automatically in both light/dark modes
 
 **File to modify:**
 - `src/components/PrincipleView.tsx` (lines 79-103)
@@ -131,6 +195,7 @@ Convert hardcoded gray/white colors to theme-aware CSS variables.
 
 | Task | Priority | Estimated Scope |
 |------|----------|-----------------|
+| **Add Semantic Tokens** | P0 | 1 file (index.css) |
 | Theme Switcher | P0 | 3 files |
 | Good/Bad Cards Minimalistic | P0 | 1 file |
 | CTA Accessibility | P0 | 3 files |
@@ -143,9 +208,11 @@ Convert hardcoded gray/white colors to theme-aware CSS variables.
 ## Dependencies
 
 ```
-Theme Switcher (1)
+Add Semantic Tokens (0)
     ↓
-Main Components (4) ─────────┐
+Theme Switcher (1) ──────────┐
+    ↓                        │
+Main Components (4) ─────────┤
     ↓                        │
 Example Components (5) ──────┼──→ Review & Testing (6)
                              │
@@ -153,3 +220,16 @@ Good/Bad Cards (2) ──────────┤
                              │
 CTA Accessibility (3) ───────┘
 ```
+
+## Color Token Reference
+
+| Usage | Light Mode | Dark Mode | Tailwind Class |
+|-------|------------|-----------|----------------|
+| Page background | white | near-black | `bg-background` |
+| Card surface | white | dark gray | `bg-card` |
+| Subtle background | gray-50 | dark gray | `bg-muted` |
+| Primary text | gray-900 | white | `text-foreground` |
+| Secondary text | gray-600 | gray-400 | `text-muted-foreground` |
+| Borders | gray-200 | white/10% | `border-border` |
+| Success (good) | green | green | `text-success` |
+| Error (bad) | red | red | `text-error` |
