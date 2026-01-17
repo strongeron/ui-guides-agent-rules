@@ -1,0 +1,31 @@
+---
+id: animations-implementation-preference
+category: animations
+source: vercel
+title: Implementation Preference
+description: Prefer CSS over Web Animations API over JavaScript libraries
+badExampleKey: animations-implementation-preference-bad
+goodExampleKey: animations-implementation-preference-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Implementation preference. Prefer CSS, avoid main-thread JS-driven animations when possible. Preference: CSS > Web Animations API > JavaScript libraries e.g., motion.
+</Callout>
+
+## Why This Matters
+
+CSS animations run off the main thread and are most performant. Web Animations API provides more control when needed. JavaScript animation libraries should be a last resort as they run on the main thread and can block user interactions.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-implementation-preference-bad"
+  goodKey="animations-implementation-preference-good"
+/>
+
+## Learn More
+
+- [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations)
+- [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)

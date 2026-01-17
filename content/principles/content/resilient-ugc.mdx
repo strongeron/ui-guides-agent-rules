@@ -1,0 +1,30 @@
+---
+id: content-resilient-ugc
+category: content
+source: vercel
+title: Resilient to User-generated Content
+description: Layouts handle short, average, and very long content
+badExampleKey: content-resilient-ugc-bad
+goodExampleKey: content-resilient-ugc-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Resilient to user-generated content. Layouts handle short, average, & very long content.
+</Callout>
+
+## Why This Matters
+
+User-generated content is unpredictable. Test your layouts with short text, average text, and extremely long text without spaces. Use text overflow strategies like ellipsis, word-wrap, or scrolling to handle edge cases gracefully.
+
+## Implementation
+
+<ExampleComparison
+  badKey="content-resilient-ugc-bad"
+  goodKey="content-resilient-ugc-good"
+/>
+
+## Learn More
+
+- [Text Overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow)

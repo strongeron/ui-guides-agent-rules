@@ -1,0 +1,31 @@
+---
+id: performance-no-image-cls
+category: performance
+source: vercel
+title: No Image-caused CLS
+description: Set explicit image dimensions and reserve space
+badExampleKey: performance-no-image-cls-bad
+goodExampleKey: performance-no-image-cls-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  No image-caused CLS. Set explicit image dimensions & reserve space.
+</Callout>
+
+## Why This Matters
+
+Images without dimensions cause layout shift when they load. Always set width and height attributes (or use aspect-ratio in CSS) so the browser can reserve the correct space before the image downloads.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-no-image-cls-bad"
+  goodKey="performance-no-image-cls-good"
+/>
+
+## Learn More
+
+- [Image Aspect Ratio](https://web.dev/optimize-cls/)
+- [Cumulative Layout Shift](https://web.dev/cls/)

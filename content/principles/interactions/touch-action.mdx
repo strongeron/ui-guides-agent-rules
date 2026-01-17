@@ -1,0 +1,30 @@
+---
+id: interactions-touch-action
+category: interactions
+source: vercel
+title: Prevent Double-tap Zoom
+description: Set touch-action: manipulation on controls
+badExampleKey: interactions-touch-action-bad
+goodExampleKey: interactions-touch-action-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Prevent double-tap zoom on controls. Set touch-action: manipulation.
+</Callout>
+
+## Why This Matters
+
+Mobile browsers delay click events by ~300ms to detect double-tap zoom. Setting touch-action: manipulation removes this delay for interactive elements, making the interface feel more responsive.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-touch-action-bad"
+  goodKey="interactions-touch-action-good"
+/>
+
+## Learn More
+
+- [touch-action](https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action)

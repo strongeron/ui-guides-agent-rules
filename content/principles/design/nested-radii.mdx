@@ -1,0 +1,30 @@
+---
+id: design-nested-radii
+category: design
+source: vercel
+title: Nested Radii
+description: Child radius ≤ parent radius and concentric
+badExampleKey: design-nested-radii-bad
+goodExampleKey: design-nested-radii-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Nested radii. Child radius ≤ parent radius & concentric so curves align.
+</Callout>
+
+## Why This Matters
+
+When a rounded element contains another rounded element, the inner radius should be the outer radius minus the padding. This keeps the curves concentric and visually aligned. Formula: innerRadius = outerRadius - padding.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-nested-radii-bad"
+  goodKey="design-nested-radii-good"
+/>
+
+## Learn More
+
+- [Nested Border Radius](https://cloudfour.com/thinks/the-math-behind-nesting-rounded-corners/)

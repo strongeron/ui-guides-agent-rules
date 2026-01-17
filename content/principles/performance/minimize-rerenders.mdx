@@ -1,0 +1,31 @@
+---
+id: performance-minimize-rerenders
+category: performance
+source: vercel
+title: Minimize Re-renders
+description: Minimize and make re-renders fast
+badExampleKey: performance-minimize-rerenders-bad
+goodExampleKey: performance-minimize-rerenders-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Track re-renders. Minimize & make re-renders fast. Use React DevTools or React Scan.
+</Callout>
+
+## Why This Matters
+
+Excessive re-renders slow down the UI, especially in controlled inputs. Use React.memo, useMemo, and useCallback judiciously. Profile with React DevTools to identify components that re-render unnecessarily.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-minimize-rerenders-bad"
+  goodKey="performance-minimize-rerenders-good"
+/>
+
+## Learn More
+
+- [React Performance](https://react.dev/learn/render-and-commit)
+- [React DevTools](https://react.dev/learn/react-developer-tools)

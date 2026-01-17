@@ -1,0 +1,30 @@
+---
+id: design-hue-consistency
+category: design
+source: vercel
+title: Hue Consistency
+description: Tint borders, shadows, and text toward background hue
+badExampleKey: design-hue-consistency-bad
+goodExampleKey: design-hue-consistency-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Hue consistency. On non-neutral backgrounds, tint borders/shadows/text toward the same hue.
+</Callout>
+
+## Why This Matters
+
+Pure black borders and shadows look harsh on colored backgrounds. Slightly tint them toward the background color for a more cohesive, refined appearance. For example, on a blue background, use slightly blue-tinted shadows instead of pure gray.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-hue-consistency-bad"
+  goodKey="design-hue-consistency-good"
+/>
+
+## Learn More
+
+- [Color Theory](https://www.smashingmagazine.com/2010/01/color-theory-for-designers-part-1-the-meaning-of-color/)

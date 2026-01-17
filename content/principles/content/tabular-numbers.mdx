@@ -1,0 +1,30 @@
+---
+id: content-tabular-numbers
+category: content
+source: vercel
+title: Tabular Numbers
+description: Use tabular-nums for comparisons and tables
+badExampleKey: content-tabular-numbers-bad
+goodExampleKey: content-tabular-numbers-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Tabular numbers for comparisons. Use font-variant-numeric: tabular-nums or a monospace like Geist Mono.
+</Callout>
+
+## Why This Matters
+
+Proportional numbers have varying widths (1 is narrower than 8), making columns misalign. Tabular numbers have uniform width, so digits stack vertically in tables and make comparisons easier. Essential for prices, metrics, and data tables.
+
+## Implementation
+
+<ExampleComparison
+  badKey="content-tabular-numbers-bad"
+  goodKey="content-tabular-numbers-good"
+/>
+
+## Learn More
+
+- [font-variant-numeric](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric)

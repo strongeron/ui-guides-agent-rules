@@ -1,0 +1,31 @@
+---
+id: design-minimum-contrast
+category: design
+source: vercel
+title: Minimum Contrast
+description: Prefer APCA over WCAG 2 for accurate perceptual contrast
+badExampleKey: design-minimum-contrast-bad
+goodExampleKey: design-minimum-contrast-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Minimum contrast. Prefer APCA over WCAG 2 for more accurate perceptual contrast.
+</Callout>
+
+## Why This Matters
+
+WCAG 2.x contrast ratios have known issues. APCA (Accessible Perceptual Contrast Algorithm) provides more accurate measurements of readability. Aim for APCA values appropriate to text size and weight. Generally, body text should have Lc 60+ and headings Lc 45+.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-minimum-contrast-bad"
+  goodKey="design-minimum-contrast-good"
+/>
+
+## Learn More
+
+- [APCA](https://www.myndex.com/APCA/)
+- [WCAG 3 Contrast](https://www.w3.org/WAI/WCAG3/working-examples/visual-contrast-of-text/)

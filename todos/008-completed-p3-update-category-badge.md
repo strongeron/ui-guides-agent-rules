@@ -1,5 +1,5 @@
 ---
-status: pending
+status: completed
 priority: p3
 issue_id: "008"
 tags: [shadcn, badge, polish]
@@ -38,9 +38,9 @@ Simple replacement - can be done immediately.
 
 ## Acceptance Criteria
 
-- [ ] Category badge uses shadcn Badge component
-- [ ] Visual appearance matches design
-- [ ] Consistent with SourceBadge styling
+- [x] Category badge uses shadcn Badge component
+- [x] Visual appearance matches design
+- [x] Consistent with SourceBadge styling
 
 ## Work Log
 
@@ -51,3 +51,12 @@ Simple replacement - can be done immediately.
 **Actions:**
 - Identified inconsistency in PrincipleView
 - Created tracking issue for polish
+
+### 2026-01-17 - Completed
+
+**By:** Claude Code
+
+**Actions:**
+- Imported Badge component from @/components/ui/badge
+- Replaced hardcoded div with `<Badge variant="secondary" className="uppercase">`
+- Verified TypeScript compiles without errors

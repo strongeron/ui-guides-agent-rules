@@ -1,0 +1,30 @@
+---
+id: performance-latency-budgets
+category: performance
+source: vercel
+title: Network Latency Budgets
+description: POST/PATCH/DELETE operations complete in under 500ms
+badExampleKey: performance-latency-budgets-bad
+goodExampleKey: performance-latency-budgets-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Network latency budgets. POST/PATCH/DELETE complete in <500ms.
+</Callout>
+
+## Why This Matters
+
+Users expect mutations (create, update, delete) to feel instant. Target 500ms or less for these operations. Use optimistic updates, show loading states immediately, and optimize backend performance to meet this budget.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-latency-budgets-bad"
+  goodKey="performance-latency-budgets-good"
+/>
+
+## Learn More
+
+- [Response Time Guidelines](https://www.nngroup.com/articles/response-times-3-important-limits/)

@@ -6,6 +6,7 @@ import { agentRules } from '../data/agentRules';
 import { SourceBadge } from './SourceBadge';
 import { AgentRuleCard } from './AgentRuleCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 interface PrincipleViewProps {
   principle: Principle;
@@ -18,9 +19,9 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
     <div className="pt-16 pb-24 px-4 max-w-screen-2xl mx-auto">
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-3">
-          <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
-            {principle.category.toUpperCase()}
-          </div>
+          <Badge variant="secondary" className="uppercase">
+            {principle.category}
+          </Badge>
           {principle.source && (
             <SourceBadge source={principle.source} size="sm" />
           )}

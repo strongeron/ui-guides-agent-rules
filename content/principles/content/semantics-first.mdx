@@ -1,0 +1,31 @@
+---
+id: content-semantics-first
+category: content
+source: vercel
+title: Semantics Before ARIA
+description: Prefer native elements before ARIA attributes
+badExampleKey: content-semantics-first-bad
+goodExampleKey: content-semantics-first-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Semantics before ARIA. Prefer native elements (button, a, label, table), before aria-*.
+</Callout>
+
+## Why This Matters
+
+Native HTML elements have built-in accessibility, keyboard support, and expected behaviors. Use <button> instead of <div role="button">, <a> instead of <span role="link">. Only add ARIA when native elements don\
+
+## Implementation
+
+<ExampleComparison
+  badKey="content-semantics-first-bad"
+  goodKey="content-semantics-first-good"
+/>
+
+## Learn More
+
+- [ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
+- [No ARIA is Better Than Bad ARIA](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)
