@@ -193,15 +193,17 @@ Convert hardcoded gray/white colors to theme-aware CSS variables.
 
 ## Summary
 
-| Task | Priority | Estimated Scope |
-|------|----------|-----------------|
-| **Add Semantic Tokens** | P0 | 1 file (index.css) |
-| Theme Switcher | P0 | 3 files |
-| Good/Bad Cards Minimalistic | P0 | 1 file |
-| CTA Accessibility | P0 | 3 files |
-| Main Components Dark Mode | P1 | 9 files |
-| Example Components Dark Mode | P2 | ~160 files |
-| Review & Testing | P1 | - |
+| Task | Priority | Status |
+|------|----------|--------|
+| **Add Semantic Tokens** | P0 | DONE |
+| Theme Switcher | P0 | DONE |
+| Good/Bad Cards Minimalistic | P0 | DONE |
+| CTA Accessibility | P0 | DONE |
+| Main Components Dark Mode | P1 | DONE |
+| Example Components Dark Mode | P2 | DONE |
+| Review & Testing | P1 | DONE |
+
+**All tasks completed on 2026-01-17.**
 
 ---
 
