@@ -17,7 +17,7 @@ export function PasswordManagersBad() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="font-semibold mb-3">Enter 2FA Code</h3>
         <div className="flex gap-2 mb-3">
           {code.map((digit, i) => (
@@ -29,11 +29,11 @@ export function PasswordManagersBad() {
               value={digit}
               onChange={(e) => handleChange(i, e.target.value)}
               onPaste={handlePaste}
-              className="w-10 h-12 text-center text-lg font-mono border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-10 h-12 text-center text-lg font-mono border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           ))}
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           Each digit is a separate input. Pasting the full code from an authenticator doesn't work.
         </p>
       </div>

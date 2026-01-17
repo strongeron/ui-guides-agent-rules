@@ -1,16 +1,16 @@
 export function AutofocusBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="font-semibold mb-3">Mobile Search Page</h3>
         <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-3">
           <code className="text-xs text-red-800 font-mono">
             {'<input autoFocus />'}
           </code>
         </div>
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-          <p className="text-sm text-gray-600 mb-2">📱 On mobile:</p>
-          <p className="text-xs text-gray-500">
+        <div className="border-2 border-dashed border-border rounded-lg p-4 text-center">
+          <p className="text-sm text-muted-foreground mb-2">📱 On mobile:</p>
+          <p className="text-xs text-muted-foreground">
             Autofocus opens the keyboard immediately, causing layout shift and potentially hiding important content above the input.
           </p>
         </div>

@@ -3,25 +3,25 @@ export function PlaceholderValueBad() {
     <div className="w-full max-w-sm">
       <form className="space-y-4">
         <div>
-          <label htmlFor="bad-placeholder-phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-placeholder-phone" className="block text-sm font-medium text-foreground mb-1">
             Phone Number
           </label>
           <input
             id="bad-placeholder-phone"
             type="tel"
             placeholder="Enter phone number"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="bad-placeholder-key" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-placeholder-key" className="block text-sm font-medium text-foreground mb-1">
             API Key
           </label>
           <input
             id="bad-placeholder-key"
             type="text"
             placeholder="API Key"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
       </form>

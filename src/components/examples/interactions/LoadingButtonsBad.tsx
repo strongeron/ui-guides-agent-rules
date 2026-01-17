@@ -17,7 +17,7 @@ export function LoadingButtonsBad() {
       >
         {isLoading ? 'Loading...' : 'Save Changes'}
       </button>
-      <p className="text-xs text-gray-500 mt-4">
+      <p className="text-xs text-muted-foreground mt-4">
         Button text changes - causes layout shift
       </p>
     </div>

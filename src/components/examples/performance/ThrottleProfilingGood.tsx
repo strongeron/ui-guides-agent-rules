@@ -1,7 +1,7 @@
 export function ThrottleProfilingGood() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="font-semibold mb-3">Performance Testing</h3>
         <div className="space-y-3">
           <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -23,7 +23,7 @@ export function ThrottleProfilingGood() {
             </div>
           </div>
         </div>
-        <p className="mt-3 text-xs text-gray-500">
+        <p className="mt-3 text-xs text-muted-foreground">
           Throttling reveals performance issues users on slower devices will experience.
         </p>
       </div>

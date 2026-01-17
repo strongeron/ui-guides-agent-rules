@@ -1,7 +1,7 @@
 export function SemanticsFirstGood() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="space-y-3">
           <button
             type="submit"
@@ -22,7 +22,7 @@ export function SemanticsFirstGood() {
 <a href="#docs">...</a>`}
           </code>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-muted-foreground">
           Native elements have keyboard support, form integration, and expected browser behaviors built-in.
         </p>
       </div>

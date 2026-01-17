@@ -14,15 +14,15 @@ export function PrefersReducedMotionBad() {
 
       {show && (
         <div
-          className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow-lg animate-bounce"
+          className="mt-4 p-4 bg-card border border-border rounded-lg shadow-lg animate-bounce"
         >
-          <p className="text-sm text-gray-700">
+          <p className="text-sm text-foreground">
             This card always bounces, even if you have motion sensitivity.
           </p>
         </div>
       )}
 
-      <p className="text-xs text-gray-500 mt-4">
+      <p className="text-xs text-muted-foreground mt-4">
         Animation ignores prefers-reduced-motion
       </p>
     </div>

@@ -25,8 +25,8 @@ export function CleanDragBad() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <p className="text-xs text-gray-500 mb-3">
+      <div className="bg-card border border-border rounded-lg p-4">
+        <p className="text-xs text-muted-foreground mb-3">
           Drag items to reorder. Notice text selection during drag:
         </p>
         <div className="space-y-2">
@@ -37,7 +37,7 @@ export function CleanDragBad() {
               onDragStart={() => handleDragStart(index)}
               onDragOver={(e) => handleDragOver(e, index)}
               onDragEnd={handleDragEnd}
-              className={`p-3 bg-gray-50 border border-gray-200 rounded-lg cursor-grab ${
+              className={`p-3 bg-muted border border-border rounded-lg cursor-grab ${
                 draggedIndex === index ? 'opacity-50' : ''
               }`}
             >

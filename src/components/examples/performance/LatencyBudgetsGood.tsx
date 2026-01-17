@@ -11,7 +11,7 @@ export function LatencyBudgetsGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="flex items-center gap-3 mb-4">
           <button
             onClick={handleSave}
@@ -30,7 +30,7 @@ export function LatencyBudgetsGood() {
             <div className="text-xs mt-1 font-mono">POST /api/save → 350ms ✓</div>
           </div>
         </div>
-        <p className="mt-3 text-xs text-gray-500">
+        <p className="mt-3 text-xs text-muted-foreground">
           Sub-500ms response feels instant. Users stay confident the action worked.
         </p>
       </div>

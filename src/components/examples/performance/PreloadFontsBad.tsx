@@ -1,9 +1,9 @@
 export function PreloadFontsBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="text-lg font-semibold mb-2">Custom Font Heading</h3>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           When fonts aren't preloaded, you may see a flash of unstyled text (FOUT) or invisible text (FOIT) while the font downloads.
         </p>
       </div>

@@ -29,7 +29,7 @@ export function DontPreDisableSubmitGood() {
     <div className="w-full max-w-sm">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="good-disable-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-disable-email" className="block text-sm font-medium text-foreground mb-1">
             Email
           </label>
           <input
@@ -37,7 +37,7 @@ export function DontPreDisableSubmitGood() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             placeholder="you@example.com"
           />
           {touched && errors.email && (
@@ -45,7 +45,7 @@ export function DontPreDisableSubmitGood() {
           )}
         </div>
         <div>
-          <label htmlFor="good-disable-password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-disable-password" className="block text-sm font-medium text-foreground mb-1">
             Password
           </label>
           <input
@@ -53,7 +53,7 @@ export function DontPreDisableSubmitGood() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             placeholder="Min 8 characters"
           />
           {touched && errors.password && (

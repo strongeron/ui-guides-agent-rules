@@ -1,15 +1,15 @@
 export function EllipsisCharacterBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="space-y-3">
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg flex justify-between items-center">
+          <button className="w-full text-left px-4 py-2 hover:bg-muted rounded-lg flex justify-between items-center">
             <span>Rename...</span>
           </button>
-          <button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg flex justify-between items-center">
+          <button className="w-full text-left px-4 py-2 hover:bg-muted rounded-lg flex justify-between items-center">
             <span>Save as...</span>
           </button>
-          <div className="px-4 py-2 text-gray-500">
+          <div className="px-4 py-2 text-muted-foreground">
             Loading...
           </div>
         </div>

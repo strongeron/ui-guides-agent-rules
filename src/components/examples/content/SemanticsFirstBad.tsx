@@ -1,7 +1,7 @@
 export function SemanticsFirstBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="space-y-3">
           <div
             role="button"
@@ -24,7 +24,7 @@ export function SemanticsFirstBad() {
 <div role="link">...</div>`}
           </code>
         </div>
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-muted-foreground">
           Divs with roles don't get native keyboard events, form submission, or middle-click behavior.
         </p>
       </div>

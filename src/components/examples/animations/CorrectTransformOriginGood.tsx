@@ -12,11 +12,11 @@ export function CorrectTransformOriginGood() {
         Open Menu
       </button>
       {isOpen && (
-        <div className="animate-scale-in-from-top mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-2 space-y-1 origin-top-left">
-          <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+        <div className="animate-scale-in-from-top mt-2 bg-card border border-border rounded-lg shadow-lg p-2 space-y-1 origin-top-left">
+          <button className="w-full text-left px-3 py-2 text-sm hover:bg-muted rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             Edit
           </button>
-          <button className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+          <button className="w-full text-left px-3 py-2 text-sm hover:bg-muted rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
             Delete
           </button>
         </div>

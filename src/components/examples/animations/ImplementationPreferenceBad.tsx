@@ -32,14 +32,14 @@ export function ImplementationPreferenceBad() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={startAnimation}
           className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
           Animate
         </button>
-        <div className="h-16 bg-gray-100 rounded-lg relative">
+        <div className="h-16 bg-muted rounded-lg relative">
           <div
             className="absolute top-1/2 -translate-y-1/2 w-12 h-12 bg-blue-600 rounded-lg"
             style={{ left: `${position}%`, transform: `translateX(-50%) translateY(-50%)` }}

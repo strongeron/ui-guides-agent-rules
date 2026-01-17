@@ -39,8 +39,8 @@ export function UrlStateGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="flex gap-1 mb-4 border-b border-gray-200">
+      <div className="bg-card border border-border rounded-lg p-4">
+        <div className="flex gap-1 mb-4 border-b border-border">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -48,7 +48,7 @@ export function UrlStateGood() {
               className={`px-3 py-2 text-sm capitalize ${
                 activeTab === tab
                   ? 'border-b-2 border-blue-600 text-blue-600'
-                  : 'text-gray-600 hover:text-gray-900'
+                  : 'text-muted-foreground hover:text-foreground'
               }`}
             >
               {tab}
@@ -63,14 +63,14 @@ export function UrlStateGood() {
               className={`px-3 py-1 text-xs rounded-full capitalize ${
                 filter === f
                   ? 'bg-blue-100 text-blue-700'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-muted text-muted-foreground hover:bg-muted'
               }`}
             >
               {f}
             </button>
           ))}
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           State synced to URL. Share link or refresh - state persists!
         </p>
       </div>

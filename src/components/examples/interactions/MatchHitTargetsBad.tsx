@@ -3,11 +3,11 @@ import { X } from 'lucide-react';
 export function MatchHitTargetsBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
+      <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
         <span className="text-sm">Notification message</span>
         <button
           onClick={() => alert('Dismissed')}
-          className="text-gray-500 hover:text-gray-700"
+          className="text-muted-foreground hover:text-foreground"
           aria-label="Dismiss"
         >
           <X className="w-4 h-4" />

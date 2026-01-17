@@ -5,14 +5,14 @@ export function NecessityCheckGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+      <div className="bg-card border border-border rounded-lg p-4">
+        <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
           <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-medium">
             A
           </div>
           <div className="flex-1">
             <div className="text-sm font-medium">Project Alpha</div>
-            <div className="text-xs text-gray-500">Updated 2h ago</div>
+            <div className="text-xs text-muted-foreground">Updated 2h ago</div>
           </div>
           <button
             onClick={() => setLiked(!liked)}
@@ -20,7 +20,7 @@ export function NecessityCheckGood() {
           >
             <svg
               className={`w-6 h-6 transition-colors duration-150 ${
-                liked ? 'text-red-500 fill-red-500' : 'text-gray-400'
+                liked ? 'text-red-500 fill-red-500' : 'text-muted-foreground'
               }`}
               fill={liked ? 'currentColor' : 'none'}
               stroke="currentColor"
@@ -35,7 +35,7 @@ export function NecessityCheckGood() {
             </svg>
           </button>
         </div>
-        <p className="mt-3 text-xs text-gray-500">
+        <p className="mt-3 text-xs text-muted-foreground">
           Animation only on the like button - provides feedback on user interaction and creates delight.
         </p>
       </div>

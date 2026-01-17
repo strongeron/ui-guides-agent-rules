@@ -13,8 +13,8 @@ export function PrefersReducedMotionGood() {
       </button>
 
       {show && (
-        <div className="motion-safe-fade-in-slide mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow-lg">
-          <p className="text-sm text-gray-700">
+        <div className="motion-safe-fade-in-slide mt-4 p-4 bg-card border border-border rounded-lg shadow-lg">
+          <p className="text-sm text-foreground">
             This card respects your motion preferences.
           </p>
         </div>

@@ -10,7 +10,7 @@ export function AnnounceUpdatesGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={handleSave}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
@@ -31,7 +31,7 @@ export function AnnounceUpdatesGood() {
           )}
         </div>
 
-        <p className="mt-4 text-xs text-gray-500">
+        <p className="mt-4 text-xs text-muted-foreground">
           The aria-live region announces the message to screen readers when it appears.
         </p>
       </div>

@@ -12,7 +12,7 @@ export function ConfirmDestructiveBad() {
     <div className="w-full max-w-sm">
       <div className="space-y-2">
         {items.map((item, index) => (
-          <div key={index} className="flex items-center justify-between p-3 bg-gray-100 rounded-lg">
+          <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
             <span className="text-sm">{item}</span>
             <button
               onClick={() => handleDelete(index)}

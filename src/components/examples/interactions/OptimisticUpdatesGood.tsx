@@ -20,13 +20,13 @@ export function OptimisticUpdatesGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="p-4 bg-gray-100 rounded-lg">
+      <div className="p-4 bg-muted rounded-lg">
         <p className="text-sm mb-3">Great post about web design!</p>
         <button
           onClick={handleLike}
-          className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="flex items-center gap-2 px-3 py-2 bg-card rounded-lg hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
         >
-          <Heart className={`w-4 h-4 transition-colors ${liked ? 'fill-red-500 text-red-500' : 'text-gray-400'}`} />
+          <Heart className={`w-4 h-4 transition-colors ${liked ? 'fill-red-500 text-red-500' : 'text-muted-foreground'}`} />
           <span className="text-sm">{liked ? 'Liked' : 'Like'}</span>
         </button>
       </div>

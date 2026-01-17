@@ -59,22 +59,22 @@ export function ManageFocusGood() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
-            className="bg-white rounded-lg p-6 w-80 shadow-xl"
+            className="bg-card rounded-lg p-6 w-80 shadow-xl"
           >
             <h2 id="modal-title" className="text-lg font-semibold mb-4">Modal Title</h2>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               Focus is trapped here. Tab cycles within modal. Escape or clicking outside closes it.
             </p>
             <input
               ref={firstFocusableRef}
               type="text"
               placeholder="Type here..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                className="px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
               >
                 Cancel
               </button>

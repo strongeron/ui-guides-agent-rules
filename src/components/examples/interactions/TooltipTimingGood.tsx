@@ -42,14 +42,14 @@ export function TooltipTimingGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="flex gap-1 mb-4">
           {buttons.map((btn) => (
             <div key={btn.id} className="relative">
               <button
                 onMouseEnter={() => handleMouseEnter(btn.id)}
                 onMouseLeave={handleMouseLeave}
-                className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100 font-medium"
+                className="w-8 h-8 flex items-center justify-center rounded hover:bg-muted font-medium"
               >
                 {btn.icon}
               </button>
@@ -61,7 +61,7 @@ export function TooltipTimingGood() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           First tooltip has 500ms delay. After that, moving between peers shows tooltips instantly.
         </p>
       </div>
