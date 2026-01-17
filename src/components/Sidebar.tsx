@@ -158,7 +158,10 @@ export function Sidebar({
           />
         </div>
 
-        <nav className={`overflow-y-auto overscroll-contain h-[calc(100vh-${SIDEBAR_HEADER_HEIGHT_PX}px)]`}>
+        <nav
+          className="overflow-y-auto overscroll-contain"
+          style={{ height: `calc(100vh - ${SIDEBAR_HEADER_HEIGHT_PX}px)` }}
+        >
           {filteredPrinciples.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">No principles found</p>
