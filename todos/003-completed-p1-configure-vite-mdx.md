@@ -1,5 +1,6 @@
 ---
-status: pending
+status: completed
+completed_at: 2026-01-17
 priority: p1
 issue_id: "003"
 tags: [vite, mdx, code-hike, config]
@@ -68,3 +69,13 @@ _To be filled during triage_
 **Actions:**
 - Created tracking issue for Vite MDX configuration
 - Blocked by issue 002 (dependencies)
+
+### 2026-01-17 - Completed
+
+**By:** Claude Code
+
+**Actions:**
+- Verified vite.config.ts already has MDX plugin configured
+- Configuration includes remarkGfm, remarkFrontmatter, remarkMdxFrontmatter, rehypeSlug
+- providerImportSource set to '@mdx-js/react'
+- All acceptance criteria met

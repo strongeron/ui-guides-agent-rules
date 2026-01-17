@@ -1,0 +1,50 @@
+---
+id: layout-optical-alignment
+category: layout
+source: vercel
+title: Optical Alignment
+description: Adjust plus or minus 1px when perception beats geometry
+badExampleKey: layout-optical-alignment-bad
+goodExampleKey: layout-optical-alignment-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Optical alignment. Adjust plus or minus 1px when perception beats geometry.
+</Callout>
+
+## Why This Matters
+
+Mathematical centering doesn't always look centered to the human eye. Our perception is influenced by the visual weight and shape of elements. A play button, for example, appears off-center when mathematically centered because the triangle has more visual weight on the left.
+
+Icons, triangles, and text often need small adjustments (1-2px) to appear properly aligned. Trust your eye over the numbers, but keep adjustments minimal.
+
+## Implementation
+
+<ExampleComparison
+  badKey="layout-optical-alignment-bad"
+  goodKey="layout-optical-alignment-good"
+/>
+
+<CodeBlock title="Good Implementation">
+```tsx
+function PlayButton() {
+  return (
+    <button className="rounded-full bg-primary p-4 flex items-center justify-center">
+      {/* Triangle is shifted 2px right for optical centering */}
+      <svg
+        className="w-6 h-6 translate-x-0.5"
+        viewBox="0 0 24 24"
+      >
+        <path d="M8 5v14l11-7z" fill="currentColor" />
+      </svg>
+    </button>
+  );
+}
+```
+</CodeBlock>
+
+## Learn More
+
+- [Optical Alignment](https://medium.com/@lukejones/optical-adjustment-b55492a1165c)

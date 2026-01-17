@@ -1,5 +1,6 @@
 ---
-status: pending
+status: completed
+completed_at: 2026-01-17
 priority: p2
 issue_id: "004"
 tags: [mdx, components, react]
@@ -47,10 +48,10 @@ _To be filled during triage_
 
 ## Acceptance Criteria
 
-- [ ] mdx-components.tsx created
-- [ ] Headings render with proper styling
-- [ ] Links use primary color
-- [ ] Custom components available in MDX
+- [x] mdx-components.tsx created
+- [x] Headings render with proper styling
+- [x] Links use primary color
+- [x] Custom components available in MDX
 
 ## Work Log
 
@@ -61,3 +62,17 @@ _To be filled during triage_
 **Actions:**
 - Created tracking issue
 - Blocked by issue 003 (Vite config)
+
+### 2026-01-17 - Completed Implementation
+
+**By:** Claude Code
+
+**Actions:**
+- Created `src/mdx-components.tsx` with comprehensive component mappings
+- Styled h1-h4 headings with scroll margins and proper typography
+- Links use primary color with hover transitions
+- Included all custom MDX components: Callout, ExampleComparison, CodeBlock
+- Included AgentRuleCard and PriorityBadge components
+- Included shadcn components: Badge, Button, Card (and sub-components)
+- Added table, list, blockquote, and code styling
+- Export useMDXComponents function following MDX standard
