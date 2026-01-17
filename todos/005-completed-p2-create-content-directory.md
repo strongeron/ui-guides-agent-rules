@@ -1,5 +1,6 @@
 ---
-status: pending
+status: completed
+completed_at: 2026-01-17
 priority: p2
 issue_id: "005"
 tags: [mdx, content, structure]
@@ -47,9 +48,9 @@ _To be filled during triage_
 
 ## Acceptance Criteria
 
-- [ ] src/content/patterns/ directory created
-- [ ] Subdirectories for all 7 categories
-- [ ] Sample MDX file in each category
+- [x] content/principles/ directory created (at project root)
+- [x] Subdirectories for all 7 categories
+- [x] Sample MDX file in each category
 
 ## Work Log
 
@@ -60,3 +61,20 @@ _To be filled during triage_
 **Actions:**
 - Created tracking issue
 - Documented directory structure needed
+
+### 2026-01-17 - Completed Implementation
+
+**By:** Claude Code
+
+**Actions:**
+- Created all 7 category directories under content/principles/
+- Created sample MDX files with proper frontmatter and content for each category:
+  - forms/enter-submits.mdx (already existed)
+  - interactions/keyboard-everywhere.mdx
+  - animations/prefers-reduced-motion.mdx
+  - layout/optical-alignment.mdx
+  - content/inline-help-first.mdx
+  - performance/large-lists.mdx
+  - design/layered-shadows.mdx
+- Each sample includes Callout, ExampleComparison, and CodeBlock components
+- README.md documents the expected format for MDX files

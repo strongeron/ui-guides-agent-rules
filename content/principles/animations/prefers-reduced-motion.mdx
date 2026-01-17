@@ -1,0 +1,55 @@
+---
+id: animations-prefers-reduced-motion
+category: animations
+source: vercel
+title: Honor prefers-reduced-motion
+description: Provide a reduced-motion variant for all animations
+badExampleKey: animations-prefers-reduced-motion-bad
+goodExampleKey: animations-prefers-reduced-motion-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Honor prefers-reduced-motion. Provide a reduced-motion variant.
+</Callout>
+
+## Why This Matters
+
+Some users experience motion sickness, dizziness, or nausea from animations. The prefers-reduced-motion media query lets users indicate they prefer minimal motion. Respecting this preference is both an accessibility requirement and shows care for user wellbeing.
+
+Essential motion (like page transitions) can remain but should be much faster and simpler. Decorative animations should be removed entirely.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-prefers-reduced-motion-bad"
+  goodKey="animations-prefers-reduced-motion-good"
+/>
+
+<CodeBlock title="Good Implementation">
+```css
+.card {
+  transition: transform 200ms ease-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+```
+</CodeBlock>
+
+## Learn More
+
+- [prefers-reduced-motion on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+- [Accessible Animations](https://www.a11yproject.com/posts/understanding-vestibular-disorders/)

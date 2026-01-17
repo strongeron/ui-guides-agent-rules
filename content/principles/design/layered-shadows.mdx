@@ -1,0 +1,52 @@
+---
+id: design-layered-shadows
+category: design
+source: vercel
+title: Layered Shadows
+description: Mimic ambient and direct light with at least two layers
+badExampleKey: design-layered-shadows-bad
+goodExampleKey: design-layered-shadows-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="From the Guidelines">
+  Layered shadows. Mimic ambient + direct light with at least two layers.
+</Callout>
+
+## Why This Matters
+
+Natural shadows have both ambient (soft, diffuse) and direct (sharper, darker) components. A single box-shadow looks flat and artificial.
+
+Use two box-shadow declarations: one large and subtle for ambient light, one smaller and darker for direct light. This creates depth and realism that makes elements feel like they exist in physical space.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-layered-shadows-bad"
+  goodKey="design-layered-shadows-good"
+/>
+
+<CodeBlock title="Good Implementation">
+```css
+.card {
+  /* Two-layer shadow for natural depth */
+  box-shadow:
+    /* Ambient: large, soft, light */
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    /* Direct: smaller, sharper, darker */
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.elevated-card {
+  /* More elevation = more shadow separation */
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+```
+</CodeBlock>
+
+## Learn More
+
+- [Material Design Shadows](https://m2.material.io/design/environment/light-shadows.html)
