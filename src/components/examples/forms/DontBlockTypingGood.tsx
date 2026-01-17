@@ -18,7 +18,7 @@ export function DontBlockTypingGood() {
   return (
     <div className="w-full max-w-sm">
       <div>
-        <label htmlFor="good-phone" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="good-phone" className="block text-sm font-medium text-foreground mb-1">
           Phone Number
         </label>
         <input
@@ -29,7 +29,7 @@ export function DontBlockTypingGood() {
           className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 ${
             error
               ? 'border-red-300 focus-visible:ring-red-500'
-              : 'border-gray-300 focus-visible:ring-blue-500'
+              : 'border-border focus-visible:ring-blue-500'
           }`}
           placeholder="5551234567"
         />

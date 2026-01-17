@@ -1,7 +1,7 @@
 export function AnchoredHeadingsBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+      <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="bg-gray-900 text-white px-4 py-3 text-sm font-medium sticky top-0">
           Fixed Header
         </div>
@@ -13,12 +13,12 @@ export function AnchoredHeadingsBad() {
               {'h2 { }'}
             </code>
           </div>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             When clicking anchor links (e.g., #section-2), the heading scrolls under the fixed header and becomes hidden.
           </p>
           <div className="mt-4 border-t pt-4">
-            <div className="h-4 bg-gray-200 rounded w-full" />
-            <p className="text-xs text-gray-400 mt-1">
+            <div className="h-4 bg-muted rounded w-full" />
+            <p className="text-xs text-muted-foreground mt-1">
               ↑ This heading is hidden behind the fixed header
             </p>
           </div>

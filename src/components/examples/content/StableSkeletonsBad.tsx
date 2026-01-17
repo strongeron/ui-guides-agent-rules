@@ -10,8 +10,8 @@ export function StableSkeletonsBad() {
   if (loading) {
     return (
       <div className="w-full max-w-sm">
-        <div className="bg-gray-200 rounded h-4 w-32 animate-pulse mb-2" />
-        <div className="bg-gray-200 rounded h-3 w-full animate-pulse" />
+        <div className="bg-muted rounded h-4 w-32 animate-pulse mb-2" />
+        <div className="bg-muted rounded h-3 w-full animate-pulse" />
       </div>
     );
   }
@@ -19,7 +19,7 @@ export function StableSkeletonsBad() {
   return (
     <div className="w-full max-w-sm">
       <h3 className="text-lg font-semibold mb-2">Article Title Goes Here</h3>
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-muted-foreground">
         This is a longer paragraph of content that loads after the skeleton. The height difference causes layout shift.
       </p>
       <p className="text-xs text-red-700 mt-4">

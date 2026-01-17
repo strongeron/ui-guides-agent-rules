@@ -14,21 +14,21 @@ export function OverscrollBehaviorGood() {
 
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 z-50">
-          <div className="fixed right-0 top-0 h-full w-80 bg-white shadow-xl overflow-y-auto overscroll-contain">
-            <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+          <div className="fixed right-0 top-0 h-full w-80 bg-card shadow-xl overflow-y-auto overscroll-contain">
+            <div className="p-4 border-b border-border flex justify-between items-center">
               <h2 className="font-semibold">Scrollable Drawer</h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-muted-foreground hover:text-foreground"
               >
                 ✕
               </button>
             </div>
             <div className="p-4">
               {Array.from({ length: 20 }).map((_, i) => (
-                <div key={i} className="py-3 border-b border-gray-100">
-                  <p className="text-sm text-gray-700">Item {i + 1}</p>
-                  <p className="text-xs text-gray-500">Scroll to bottom - it stops here!</p>
+                <div key={i} className="py-3 border-b border-border">
+                  <p className="text-sm text-foreground">Item {i + 1}</p>
+                  <p className="text-xs text-muted-foreground">Scroll to bottom - it stops here!</p>
                 </div>
               ))}
             </div>

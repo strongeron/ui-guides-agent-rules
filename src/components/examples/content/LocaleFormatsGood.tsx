@@ -17,19 +17,19 @@ export function LocaleFormatsGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="font-semibold mb-3">Transaction Details</h3>
         <div className="space-y-3">
           <div className="flex justify-between">
-            <span className="text-sm text-gray-600">Date</span>
+            <span className="text-sm text-muted-foreground">Date</span>
             <span className="text-sm font-medium">{dateFormatter.format(date)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-sm text-gray-600">Amount</span>
+            <span className="text-sm text-muted-foreground">Amount</span>
             <span className="text-sm font-medium">{currencyFormatter.format(amount)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-sm text-gray-600">Items</span>
+            <span className="text-sm text-muted-foreground">Items</span>
             <span className="text-sm font-medium">{numberFormatter.format(items)}</span>
           </div>
         </div>

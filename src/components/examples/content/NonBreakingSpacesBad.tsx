@@ -1,7 +1,7 @@
 export function NonBreakingSpacesBad() {
   return (
     <div className="w-full max-w-xs">
-      <div className="bg-white border border-gray-200 rounded-lg p-4 text-sm">
+      <div className="bg-card border border-border rounded-lg p-4 text-sm">
         <p className="mb-2">File size: 10 MB</p>
         <p className="mb-2">Shortcut: ⌘ + K</p>
         <p>Built with Vercel SDK</p>

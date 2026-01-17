@@ -12,13 +12,13 @@ export function CompositorFriendlyBad() {
         Toggle Panel
       </button>
       <div
-        className={`mt-4 bg-gray-100 rounded-lg overflow-hidden transition-height ${
+        className={`mt-4 bg-muted rounded-lg overflow-hidden transition-height ${
           isExpanded ? 'h-[200px]' : 'h-0'
         }`}
       >
         <div className="p-4">
           <h3 className="font-medium mb-2">Panel Content</h3>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             This panel animates using height, which triggers layout recalculation
             and can cause jank.
           </p>

@@ -1,7 +1,7 @@
 export function NoImageCLSGood() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="text-lg font-semibold mb-2">Product Card</h3>
         <div className="relative w-full mb-2" style={{ aspectRatio: '4/3' }}>
           <img
@@ -12,7 +12,7 @@ export function NoImageCLSGood() {
             height={300}
           />
         </div>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           Reserved aspect ratio prevents layout shift when image loads.
         </p>
       </div>

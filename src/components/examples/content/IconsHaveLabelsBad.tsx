@@ -4,14 +4,14 @@ export function IconsHaveLabelsBad() {
   return (
     <div className="w-full max-w-sm">
       <div className="flex gap-2">
-        <button className="p-2 bg-gray-100 rounded hover:bg-gray-200">
-          <Edit className="w-5 h-5 text-gray-700" />
+        <button className="p-2 bg-muted rounded hover:bg-muted">
+          <Edit className="w-5 h-5 text-foreground" />
         </button>
-        <button className="p-2 bg-gray-100 rounded hover:bg-gray-200">
-          <Trash2 className="w-5 h-5 text-gray-700" />
+        <button className="p-2 bg-muted rounded hover:bg-muted">
+          <Trash2 className="w-5 h-5 text-foreground" />
         </button>
-        <button className="p-2 bg-gray-100 rounded hover:bg-gray-200">
-          <Share2 className="w-5 h-5 text-gray-700" />
+        <button className="p-2 bg-muted rounded hover:bg-muted">
+          <Share2 className="w-5 h-5 text-foreground" />
         </button>
       </div>
       <p className="text-xs text-red-700 mt-4">

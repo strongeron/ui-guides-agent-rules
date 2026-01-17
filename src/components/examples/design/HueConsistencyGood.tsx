@@ -3,14 +3,14 @@ export function HueConsistencyGood() {
     <div className="w-full max-w-sm">
       <div className="bg-blue-600 rounded-lg p-4">
         <div
-          className="bg-white rounded-lg p-4"
+          className="bg-card rounded-lg p-4"
           style={{
             boxShadow: '0 4px 12px rgba(30, 64, 175, 0.35)',
             border: '1px solid rgba(30, 64, 175, 0.15)',
           }}
         >
-          <h3 className="font-semibold text-gray-900 mb-2">Card Title</h3>
-          <p className="text-sm text-gray-600">
+          <h3 className="font-semibold text-foreground mb-2">Card Title</h3>
+          <p className="text-sm text-muted-foreground">
             The blue-tinted shadow and border harmonize with the background.
           </p>
         </div>

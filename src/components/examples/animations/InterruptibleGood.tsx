@@ -18,7 +18,7 @@ export function InterruptibleGood() {
       >
         {isMoving ? 'Moving…' : 'Move Box'}
       </button>
-      <div className="mt-4 h-16 bg-gray-100 rounded-lg relative overflow-hidden">
+      <div className="mt-4 h-16 bg-muted rounded-lg relative overflow-hidden">
         <div
           className={`absolute top-4 w-12 h-8 bg-blue-600 rounded transition-transform duration-500 ease-in-out ${
             position === 'end' ? 'translate-x-[300px]' : 'translate-x-0'

@@ -16,13 +16,13 @@ export function PlaceholderExample({ type, title }: PlaceholderExampleProps) {
             {type === 'good' ? '✓' : '✗'}
           </span>
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        <h3 className="text-lg font-semibold text-foreground mb-2">
           {type === 'good' ? 'Good' : 'Bad'} Example
         </h3>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           {title}
         </p>
-        <p className="text-xs text-gray-500 mt-4">
+        <p className="text-xs text-muted-foreground mt-4">
           Interactive example coming soon
         </p>
       </div>

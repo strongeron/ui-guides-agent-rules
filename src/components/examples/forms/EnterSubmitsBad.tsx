@@ -18,7 +18,7 @@ export function EnterSubmitsBad() {
         className="space-y-4"
       >
         <div>
-          <label htmlFor="bad-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-email" className="block text-sm font-medium text-foreground mb-1">
             Email Address
           </label>
           <input
@@ -26,7 +26,7 @@ export function EnterSubmitsBad() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             placeholder="Enter your email"
           />
         </div>
@@ -38,7 +38,7 @@ export function EnterSubmitsBad() {
           {submitted ? 'Submitted!' : 'Subscribe'}
         </button>
       </form>
-      <p className="text-xs text-gray-500 mt-4">
+      <p className="text-xs text-muted-foreground mt-4">
         Try pressing Enter - it won't submit
       </p>
     </div>

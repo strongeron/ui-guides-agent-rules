@@ -37,7 +37,7 @@ export function InterruptibleBad() {
       >
         Start Animation
       </button>
-      <div className="mt-4 h-16 bg-gray-100 rounded-lg relative overflow-hidden">
+      <div className="mt-4 h-16 bg-muted rounded-lg relative overflow-hidden">
         <div
           className="absolute top-4 w-12 h-8 bg-blue-600 rounded"
           style={{ left: `${position}px` }}

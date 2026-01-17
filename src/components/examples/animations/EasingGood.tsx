@@ -5,7 +5,7 @@ export function EasingGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
@@ -33,15 +33,15 @@ export function EasingGood() {
               : 'max-height 200ms ease-in',
           }}
         >
-          <div className="p-3 bg-gray-50 rounded-lg">
+          <div className="p-3 bg-muted rounded-lg">
             <div className="space-y-2">
-              <div className="p-2 hover:bg-gray-100 rounded">Option 1</div>
-              <div className="p-2 hover:bg-gray-100 rounded">Option 2</div>
-              <div className="p-2 hover:bg-gray-100 rounded">Option 3</div>
+              <div className="p-2 hover:bg-muted rounded">Option 1</div>
+              <div className="p-2 hover:bg-muted rounded">Option 2</div>
+              <div className="p-2 hover:bg-muted rounded">Option 3</div>
             </div>
           </div>
         </div>
-        <p className="mt-3 text-xs text-gray-500">
+        <p className="mt-3 text-xs text-muted-foreground">
           ease-out for entering (decelerates), ease-in for leaving (accelerates away). Matches physical expectations.
         </p>
       </div>

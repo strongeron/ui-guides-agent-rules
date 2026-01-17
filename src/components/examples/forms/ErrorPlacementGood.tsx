@@ -35,7 +35,7 @@ export function ErrorPlacementGood() {
     <div className="w-full max-w-sm">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="good-error-name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-error-name" className="block text-sm font-medium text-foreground mb-1">
             Name
           </label>
           <input
@@ -45,7 +45,7 @@ export function ErrorPlacementGood() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              errors.name ? 'border-red-300' : 'border-gray-300'
+              errors.name ? 'border-red-300' : 'border-border'
             }`}
           />
           {errors.name && (
@@ -53,7 +53,7 @@ export function ErrorPlacementGood() {
           )}
         </div>
         <div>
-          <label htmlFor="good-error-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-error-email" className="block text-sm font-medium text-foreground mb-1">
             Email
           </label>
           <input
@@ -63,7 +63,7 @@ export function ErrorPlacementGood() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              errors.email ? 'border-red-300' : 'border-gray-300'
+              errors.email ? 'border-red-300' : 'border-border'
             }`}
           />
           {errors.email && (

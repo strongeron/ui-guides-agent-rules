@@ -24,7 +24,7 @@ export function ErrorPlacementBad() {
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="bad-error-name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-error-name" className="block text-sm font-medium text-foreground mb-1">
             Name
           </label>
           <input
@@ -32,11 +32,11 @@ export function ErrorPlacementBad() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="bad-error-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-error-email" className="block text-sm font-medium text-foreground mb-1">
             Email
           </label>
           <input
@@ -44,7 +44,7 @@ export function ErrorPlacementBad() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <button

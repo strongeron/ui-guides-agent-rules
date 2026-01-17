@@ -13,7 +13,7 @@ export function CompositorFriendlyGood() {
       </button>
       <div className="mt-4 overflow-hidden">
         <div
-          className={`bg-gray-100 rounded-lg origin-top transition-transform-opacity ${
+          className={`bg-muted rounded-lg origin-top transition-transform-opacity ${
             isExpanded
               ? 'scale-y-100 opacity-100'
               : 'scale-y-0 opacity-0'
@@ -21,7 +21,7 @@ export function CompositorFriendlyGood() {
         >
           <div className="p-4">
             <h3 className="font-medium mb-2">Panel Content</h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               This panel animates using transform and opacity, which are
               GPU-accelerated and smooth.
             </p>

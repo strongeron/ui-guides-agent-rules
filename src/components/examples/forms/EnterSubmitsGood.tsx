@@ -14,7 +14,7 @@ export function EnterSubmitsGood() {
     <div className="w-full max-w-sm">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="good-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-email" className="block text-sm font-medium text-foreground mb-1">
             Email Address
           </label>
           <input
@@ -22,7 +22,7 @@ export function EnterSubmitsGood() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             placeholder="Enter your email"
           />
         </div>

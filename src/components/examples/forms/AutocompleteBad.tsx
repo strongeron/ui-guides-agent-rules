@@ -3,25 +3,25 @@ export function AutocompleteBad() {
     <div className="w-full max-w-sm">
       <form className="space-y-4">
         <div>
-          <label htmlFor="bad-auto-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-auto-email" className="block text-sm font-medium text-foreground mb-1">
             Email
           </label>
           <input
             id="bad-auto-email"
             type="text"
             name="user_email"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="bad-auto-phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-auto-phone" className="block text-sm font-medium text-foreground mb-1">
             Phone
           </label>
           <input
             id="bad-auto-phone"
             type="text"
             name="phone_number"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <button

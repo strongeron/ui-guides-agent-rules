@@ -42,7 +42,7 @@ export function UnsavedChangesGood() {
     <div className="w-full max-w-sm">
       <form onSubmit={handleSave} className="space-y-4">
         <div>
-          <label htmlFor="good-unsaved-content" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-unsaved-content" className="block text-sm font-medium text-foreground mb-1">
             Your Post {!saved && <span className="text-orange-600">(unsaved)</span>}
           </label>
           <textarea
@@ -50,7 +50,7 @@ export function UnsavedChangesGood() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={4}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             placeholder="Write something..."
           />
         </div>
@@ -64,7 +64,7 @@ export function UnsavedChangesGood() {
           <a
             href="#"
             onClick={handleCancel}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+            className="px-4 py-2 bg-muted text-foreground rounded-lg hover:bg-accent transition-colors"
           >
             Cancel
           </a>

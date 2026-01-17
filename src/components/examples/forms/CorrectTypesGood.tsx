@@ -3,36 +3,36 @@ export function CorrectTypesGood() {
     <div className="w-full max-w-sm">
       <form className="space-y-4">
         <div>
-          <label htmlFor="good-types-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-types-email" className="block text-sm font-medium text-foreground mb-1">
             Email
           </label>
           <input
             id="good-types-email"
             type="email"
             inputMode="email"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="good-types-phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-types-phone" className="block text-sm font-medium text-foreground mb-1">
             Phone
           </label>
           <input
             id="good-types-phone"
             type="tel"
             inputMode="tel"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="good-types-amount" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="good-types-amount" className="block text-sm font-medium text-foreground mb-1">
             Amount
           </label>
           <input
             id="good-types-amount"
             type="text"
             inputMode="decimal"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
       </form>

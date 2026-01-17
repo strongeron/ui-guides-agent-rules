@@ -10,7 +10,7 @@ export function SubmissionRuleBad() {
     <div className="w-full max-w-sm">
       <form className="space-y-4">
         <div>
-          <label htmlFor="bad-submit-email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-submit-email" className="block text-sm font-medium text-foreground mb-1">
             Email
           </label>
           <input
@@ -18,11 +18,11 @@ export function SubmissionRuleBad() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <div>
-          <label htmlFor="bad-submit-password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="bad-submit-password" className="block text-sm font-medium text-foreground mb-1">
             Password (min 8 characters)
           </label>
           <input
@@ -30,7 +30,7 @@ export function SubmissionRuleBad() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           />
         </div>
         <button
@@ -41,7 +41,7 @@ export function SubmissionRuleBad() {
           Sign Up
         </button>
       </form>
-      <p className="text-xs text-gray-500 mt-4">
+      <p className="text-xs text-muted-foreground mt-4">
         Button pre-disabled - can't discover validation issues
       </p>
     </div>

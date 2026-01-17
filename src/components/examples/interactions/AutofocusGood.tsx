@@ -13,13 +13,13 @@ export function AutofocusGood() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="font-semibold mb-3">Search</h3>
         <input
           ref={inputRef}
           type="search"
           placeholder="Search..."
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-3">
           <code className="text-xs text-green-800 font-mono block whitespace-pre">
@@ -29,7 +29,7 @@ const isDesktop =
 if (isDesktop) input.focus();`}
           </code>
         </div>
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Desktop: autofocus saves a click. Mobile: no autofocus, no keyboard jump.
         </p>
       </div>
