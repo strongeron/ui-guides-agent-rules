@@ -1,11 +1,10 @@
 import { HugeiconsIcon } from '@hugeicons/react';
-import { ArrowUpRight01Icon, AlertCircleIcon, CheckmarkCircle01Icon, Copy01Icon, Tick01Icon } from '@hugeicons/core-free-icons';
-import { useState } from 'react';
+import { ArrowUpRight01Icon, AlertCircleIcon, CheckmarkCircle01Icon } from '@hugeicons/core-free-icons';
 import { Principle } from '../types/principle';
 import { ExampleRenderer } from './ExampleRenderer';
-import { getAgentRule } from '../data/agentRules';
+import { agentRules } from '../data/agentRules';
 import { SourceBadge } from './SourceBadge';
-import { Button } from '@/components/ui/button';
+import { AgentRuleCard } from './AgentRuleCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface PrincipleViewProps {
@@ -13,49 +12,18 @@ interface PrincipleViewProps {
 }
 
 export function PrincipleView({ principle }: PrincipleViewProps) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyAgentRule = async () => {
-    const agentRule = getAgentRule(principle.id);
-    try {
-      await navigator.clipboard.writeText(agentRule);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  };
+  const agentRule = agentRules[principle.id];
 
   return (
     <div className="pt-16 pb-24 px-4 max-w-screen-2xl mx-auto">
       <div className="mb-8">
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <div className="flex items-center gap-2">
-            <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
-              {principle.category.toUpperCase()}
-            </div>
-            {principle.source && (
-              <SourceBadge source={principle.source} size="sm" />
-            )}
+        <div className="flex items-center gap-2 mb-3">
+          <div className="inline-block px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full">
+            {principle.category.toUpperCase()}
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleCopyAgentRule}
-            aria-label="Copy agent rule"
-          >
-            {copied ? (
-              <>
-                <HugeiconsIcon icon={Tick01Icon} size={16} className="text-green-600" />
-                <span className="text-green-600">Copied!</span>
-              </>
-            ) : (
-              <>
-                <HugeiconsIcon icon={Copy01Icon} size={16} />
-                <span>Copy Agent Rule</span>
-              </>
-            )}
-          </Button>
+          {principle.source && (
+            <SourceBadge source={principle.source} size="sm" />
+          )}
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
           {principle.title}
@@ -81,7 +49,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         </div>
 
         {principle.sourceLinks.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-6">
             {principle.sourceLinks.map((link, index) => (
               <a
                 key={index}
@@ -94,6 +62,15 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
                 <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
               </a>
             ))}
+          </div>
+        )}
+
+        {agentRule && (
+          <div className="mb-6">
+            <h2 className="text-sm font-semibold text-gray-900 mb-3">
+              Agent Rule:
+            </h2>
+            <AgentRuleCard rule={agentRule} className="max-w-xl" />
           </div>
         )}
       </div>
