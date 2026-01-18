@@ -33,7 +33,7 @@ if (isDesktop) input.focus();`}
           Desktop: autofocus saves a click. Mobile: no autofocus, no keyboard jump.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Autofocus only on desktop, skip on mobile
       </p>
     </div>

@@ -36,7 +36,7 @@ export function MinimizeRerendersGood() {
         />
         <ExpensiveChild data={text} />
       </div>
-      <p className="text-xs text-green-700">
+      <p className="text-xs text-success">
         Memoized child only re-renders when data changes
       </p>
     </div>

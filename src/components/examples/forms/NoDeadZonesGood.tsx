@@ -23,7 +23,7 @@ export function NoDeadZonesGood() {
           The entire row is clickable via the label element. Much easier to tap.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Label wraps checkbox + text - full row is clickable
       </p>
     </div>

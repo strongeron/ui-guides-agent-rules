@@ -20,7 +20,7 @@ export function ResilientUgcGood() {
           </code>
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Text truncated or wrapped - layout stays intact
       </p>
     </div>

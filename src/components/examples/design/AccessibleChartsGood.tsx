@@ -30,7 +30,7 @@ export function AccessibleChartsGood() {
           Blue/amber/gray palette is distinguishable. Labels included for clarity.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Color-blind safe palette + text labels for all users
       </p>
     </div>

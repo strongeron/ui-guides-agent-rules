@@ -31,7 +31,7 @@ export function HydrationSafeGood() {
             : 'Hydrating... Input stays interactive.'}
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Same input element persists - focus and value preserved
       </p>
     </div>

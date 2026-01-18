@@ -9,7 +9,7 @@ export function NoExcessiveScrollbarsBad() {
           Content with proper width that doesn't cause issues.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Unwanted horizontal scrollbar from overflow
       </p>
     </div>

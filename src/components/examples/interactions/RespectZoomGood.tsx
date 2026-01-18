@@ -11,7 +11,7 @@ export function RespectZoomGood() {
           This viewport meta tag allows users to zoom freely. Users can pinch-to-zoom or use browser zoom controls as needed.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Users can zoom freely for accessibility needs
       </p>
     </div>

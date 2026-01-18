@@ -21,7 +21,7 @@ export function RedundantCuesBad() {
           Status is only indicated by color. Color blind users can't distinguish between states.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Color alone - inaccessible to color blind users
       </p>
     </div>

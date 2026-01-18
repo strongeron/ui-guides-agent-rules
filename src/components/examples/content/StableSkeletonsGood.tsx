@@ -26,7 +26,7 @@ export function StableSkeletonsGood() {
       <p className="text-sm text-muted-foreground">
         This is a longer paragraph of content that loads after the skeleton. The skeleton matched these dimensions exactly.
       </p>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Skeleton mirrors final content, no layout shift
       </p>
     </div>

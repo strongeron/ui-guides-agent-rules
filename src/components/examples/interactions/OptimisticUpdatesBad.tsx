@@ -25,7 +25,7 @@ export function OptimisticUpdatesBad() {
           <span className="text-sm">{loading ? 'Loading...' : liked ? 'Liked' : 'Like'}</span>
         </button>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         User waits 1s for server response before seeing feedback
       </p>
     </div>

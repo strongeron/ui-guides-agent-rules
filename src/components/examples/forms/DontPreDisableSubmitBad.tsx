@@ -43,7 +43,7 @@ export function DontPreDisableSubmitBad() {
           Sign Up
         </button>
       </form>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Submit button is disabled until valid. Users can't discover what's wrong.
       </p>
     </div>

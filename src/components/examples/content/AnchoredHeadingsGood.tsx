@@ -25,7 +25,7 @@ export function AnchoredHeadingsGood() {
           </div>
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         scroll-margin-top offsets anchor position below fixed header
       </p>
     </div>

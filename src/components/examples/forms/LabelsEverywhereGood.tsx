@@ -34,7 +34,7 @@ export function LabelsEverywhereGood() {
           placeholder="+1 (555) 000-0000"
         />
       </div>
-      <p className="text-xs text-green-700">
+      <p className="text-xs text-success">
         Proper labels for accessibility
       </p>
     </div>

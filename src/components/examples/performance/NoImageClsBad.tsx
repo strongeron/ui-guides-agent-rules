@@ -12,7 +12,7 @@ export function NoImageCLSBad() {
           Product description appears after the image loads, causing content to shift down.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No reserved space causes layout shift when image loads
       </p>
     </div>

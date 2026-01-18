@@ -10,7 +10,7 @@ export function PreloadFontsGood() {
           &lt;link rel="preload" href="font.woff2" as="font" crossorigin&gt;
         </code>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Preload eliminates FOUT/FOIT and layout shift
       </p>
     </div>

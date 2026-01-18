@@ -54,7 +54,7 @@ export function ErrorPlacementBad() {
           Submit
         </button>
       </form>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Error at top is vague. No focus management.
       </p>
     </div>

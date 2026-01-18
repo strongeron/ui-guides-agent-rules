@@ -15,7 +15,7 @@ if ('scrollRestoration' in history) {
           User scrolls down a long list, clicks an item, then presses Back. They're returned to the top instead of their previous scroll position.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Scroll position lost on Back/Forward navigation
       </p>
     </div>

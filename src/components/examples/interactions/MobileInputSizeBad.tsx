@@ -15,7 +15,7 @@ export function MobileInputSizeBad() {
           On iOS Safari, tapping this input causes the page to zoom in because the font size is below 16px.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         14px font size causes iOS Safari to auto-zoom on focus
       </p>
     </div>

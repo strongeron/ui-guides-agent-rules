@@ -29,7 +29,7 @@ export function ForgivingDesignGood() {
           44px hit targets are easy to tap. Generous padding and clear hover states provide feedback.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         44px+ hit targets with clear affordances
       </p>
     </div>

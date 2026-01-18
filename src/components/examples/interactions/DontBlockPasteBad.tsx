@@ -26,7 +26,7 @@ export function DontBlockPasteBad() {
           Try pasting - it's blocked. This breaks password managers and frustrates users.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Paste blocked - breaks password managers, reduces security
       </p>
     </div>

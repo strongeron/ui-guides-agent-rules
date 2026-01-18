@@ -10,7 +10,7 @@ export function AllStatesBad() {
           Empty state shows nothing helpful. No guidance on what to do next.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Empty state with no guidance or next steps
       </p>
     </div>

@@ -9,7 +9,7 @@ export function InteractionsIncreaseContrastBad() {
           Link with no hover change
         </a>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No visual feedback on interaction states
       </p>
     </div>

@@ -7,7 +7,7 @@ export function NoDeadEndsBad() {
         <Search className="w-12 h-12 text-gray-300 mx-auto mb-3" />
         <p className="text-muted-foreground">No results found</p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No guidance on what to do next
       </p>
     </div>

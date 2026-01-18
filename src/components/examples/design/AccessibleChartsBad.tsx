@@ -30,7 +30,7 @@ export function AccessibleChartsBad() {
           Red/green color scheme is indistinguishable for color blind users (~8% of men).
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Red/green colors - invisible to color blind users
       </p>
     </div>

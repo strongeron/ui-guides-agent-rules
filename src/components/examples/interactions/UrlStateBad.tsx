@@ -44,7 +44,7 @@ export function UrlStateBad() {
           State is only in React. Refresh page or share URL - state is lost.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         State not in URL - can't share, refresh loses state
       </p>
     </div>

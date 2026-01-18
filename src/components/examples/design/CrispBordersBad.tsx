@@ -12,7 +12,7 @@ export function CrispBordersBad() {
           Shadow without border can look muddy and lacks definition at the edges.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Shadow alone creates soft, unclear edges
       </p>
     </div>

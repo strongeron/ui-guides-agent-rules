@@ -13,7 +13,7 @@ export function CrispBordersGood() {
           Subtle border combined with shadow creates crisp, well-defined edges that look professional.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Semi-transparent border adds crisp definition
       </p>
     </div>

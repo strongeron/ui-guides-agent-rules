@@ -35,7 +35,7 @@ export function AnnounceUpdatesGood() {
           The aria-live region announces the message to screen readers when it appears.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         aria-live="polite" announces updates to screen readers
       </p>
     </div>

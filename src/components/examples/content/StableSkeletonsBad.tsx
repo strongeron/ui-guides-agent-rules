@@ -22,7 +22,7 @@ export function StableSkeletonsBad() {
       <p className="text-sm text-muted-foreground">
         This is a longer paragraph of content that loads after the skeleton. The height difference causes layout shift.
       </p>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Skeleton dimensions don't match, causing layout shift
       </p>
     </div>

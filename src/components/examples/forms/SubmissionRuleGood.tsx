@@ -74,7 +74,7 @@ export function SubmissionRuleGood() {
           Sign Up
         </button>
       </form>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Button enabled - shows validation on submit, loading state during submission
       </p>
     </div>

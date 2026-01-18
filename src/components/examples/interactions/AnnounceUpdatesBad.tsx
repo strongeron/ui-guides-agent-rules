@@ -28,7 +28,7 @@ export function AnnounceUpdatesBad() {
           The success message appears visually, but screen readers aren't notified of the change.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No aria-live - screen readers miss the notification
       </p>
     </div>

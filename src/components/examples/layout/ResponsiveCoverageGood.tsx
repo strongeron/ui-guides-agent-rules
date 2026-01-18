@@ -10,7 +10,7 @@ export function ResponsiveCoverageGood() {
           <div className="p-4 bg-blue-50 rounded text-sm">Metric 4</div>
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Responsive grid adapts to screen size
       </p>
     </div>

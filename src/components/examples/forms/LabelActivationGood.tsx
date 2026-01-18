@@ -30,7 +30,7 @@ export function LabelActivationGood() {
           Subscribe to newsletter
         </label>
       </div>
-      <p className="text-xs text-green-700">
+      <p className="text-xs text-success">
         Click the label text to toggle checkbox
       </p>
     </div>

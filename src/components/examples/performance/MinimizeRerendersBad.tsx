@@ -34,7 +34,7 @@ export function MinimizeRerendersBad() {
         />
         <ExpensiveChild data={text} />
       </div>
-      <p className="text-xs text-red-700">
+      <p className="text-xs text-error">
         Expensive child re-renders on every keystroke
       </p>
     </div>

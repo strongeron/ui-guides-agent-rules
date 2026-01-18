@@ -36,7 +36,7 @@ export function OverscrollBehaviorBad() {
         </div>
       )}
 
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Scroll chaining - reaching end scrolls page behind
       </p>
     </div>

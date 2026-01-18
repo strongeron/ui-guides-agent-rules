@@ -33,7 +33,7 @@ export function AutocompleteGood() {
           Submit
         </button>
       </form>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Proper autocomplete enables browser autofill.
       </p>
     </div>

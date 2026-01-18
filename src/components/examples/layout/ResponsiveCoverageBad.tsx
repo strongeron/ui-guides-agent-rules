@@ -10,7 +10,7 @@ export function ResponsiveCoverageBad() {
           <div className="p-4 bg-blue-50 rounded">Metric 4</div>
         </div>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Fixed width causes horizontal scroll on smaller screens
       </p>
     </div>

@@ -18,7 +18,7 @@ export function BalanceContrastGood() {
           Consistent 1.5px stroke icons with medium-weight text. Balanced visual hierarchy.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Matched icon stroke and text weight - visual harmony
       </p>
     </div>

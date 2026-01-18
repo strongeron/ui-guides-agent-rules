@@ -51,7 +51,7 @@ export function ImplementationPreferenceBad() {
           </code>
         </div>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         JS-driven animation blocks main thread, causes jank
       </p>
     </div>

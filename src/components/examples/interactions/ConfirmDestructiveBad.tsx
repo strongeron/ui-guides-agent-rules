@@ -24,7 +24,7 @@ export function ConfirmDestructiveBad() {
           </div>
         ))}
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Immediate deletion with no confirmation or undo
       </p>
     </div>

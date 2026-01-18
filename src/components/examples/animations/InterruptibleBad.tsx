@@ -43,7 +43,7 @@ export function InterruptibleBad() {
           style={{ left: `${position}px` }}
         />
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Animation can't be interrupted. Button disabled during animation.
       </p>
     </div>

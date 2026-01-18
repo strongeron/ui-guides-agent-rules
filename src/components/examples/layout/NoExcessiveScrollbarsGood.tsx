@@ -15,7 +15,7 @@ export function NoExcessiveScrollbarsGood() {
           More content here to show how the container handles overflow correctly.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Content wraps properly, only vertical scroll when needed
       </p>
     </div>

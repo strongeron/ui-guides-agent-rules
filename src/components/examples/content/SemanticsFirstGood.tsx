@@ -26,7 +26,7 @@ export function SemanticsFirstGood() {
           Native elements have keyboard support, form integration, and expected browser behaviors built-in.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Native elements - full accessibility and behavior for free
       </p>
     </div>

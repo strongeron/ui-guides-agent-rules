@@ -23,7 +23,7 @@ export function IconsHaveLabelsGood() {
           <Share2 className="w-5 h-5 text-foreground" />
         </button>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Descriptive aria-labels for screen readers
       </p>
     </div>

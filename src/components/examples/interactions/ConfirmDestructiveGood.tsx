@@ -52,7 +52,7 @@ export function ConfirmDestructiveGood() {
           </div>
         ))}
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Provides undo option for 5 seconds after deletion
       </p>
     </div>

@@ -24,7 +24,7 @@ export function NecessityCheckBad() {
           .animate-bounce-subtle { animation: bounce-subtle 2s infinite; }
         `}</style>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Gratuitous animation - distracting, no purpose
       </p>
     </div>

@@ -18,7 +18,7 @@ export function NeverTransitionAllGood() {
         </p>
       </div>
 
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Explicit transitions: transform, box-shadow
       </p>
     </div>

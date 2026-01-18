@@ -46,7 +46,7 @@ export function CleanDragGood() {
           ))}
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         select-none and pointer-events-none during drag
       </p>
     </div>

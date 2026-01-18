@@ -49,7 +49,7 @@ export function DeviceMatrixGood() {
           Tested on all major browsers and devices, including Low Power Mode.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Full device/browser matrix ensures consistent experience
       </p>
     </div>

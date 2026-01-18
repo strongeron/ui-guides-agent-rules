@@ -18,7 +18,7 @@ export function HueConsistencyGood() {
           Blue-tinted shadows blend naturally
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Shadows tinted toward background hue - cohesive look
       </p>
     </div>

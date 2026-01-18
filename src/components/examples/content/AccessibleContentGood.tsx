@@ -35,7 +35,7 @@ export function AccessibleContentGood() {
           aria-label on buttons, aria-hidden on decorative icons.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         aria-label identifies each button for screen readers
       </p>
     </div>
