@@ -66,7 +66,7 @@ init_state() {
 # Check if beads is available
 check_prerequisites() {
   if ! command -v bd &> /dev/null; then
-    log ERROR "beads (bd) not found. Install with: npm install -g @beads/bd"
+    log ERROR "beads (bd) not found. Install with: npm install -g @beads/bd (requires v0.47.1+)"
     exit 1
   fi
 

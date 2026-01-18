@@ -1,6 +1,8 @@
 # Agent Instructions
 
-This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get started.
+This project uses **bd** (beads v0.47.1+) for issue tracking. Run `bd onboard` to get started.
+
+Install: `npm install -g @beads/bd`
 
 ## Quick Reference
 

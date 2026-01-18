@@ -5,10 +5,10 @@ Get up and running in 5 minutes.
 ## 1. Install Dependencies
 
 ```bash
-# Install beads CLI
+# Install beads CLI (requires v0.47.1+)
 npm install -g @beads/bd
 
-# Verify installation
+# Verify installation (should show v0.47.1 or higher)
 bd --version
 ```
 
@@ -108,7 +108,7 @@ bd dep tree <id>  # View dependency tree
 
 ### "bd not found"
 ```bash
-npm install -g @beads/bd
+npm install -g @beads/bd  # requires v0.47.1+
 ```
 
 ## Next Steps

@@ -24,9 +24,9 @@ Initialize Ralph-Beads workflow in the current project.
 ## Execution Steps
 
 ```bash
-# Step 1: Check if beads is installed
+# Step 1: Check if beads is installed (requires v0.47.1+)
 if ! command -v bd &> /dev/null; then
-  echo "Installing beads..."
+  echo "Installing beads v0.47.1+..."
   npm install -g @beads/bd
 fi
 
