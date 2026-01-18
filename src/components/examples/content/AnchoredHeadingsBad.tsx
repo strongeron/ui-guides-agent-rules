@@ -24,7 +24,7 @@ export function AnchoredHeadingsBad() {
           </div>
         </div>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Heading hidden behind fixed header on anchor jump
       </p>
     </div>

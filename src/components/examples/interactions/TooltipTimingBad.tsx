@@ -34,7 +34,7 @@ export function TooltipTimingBad() {
           Tooltips appear instantly. Moving between buttons shows/hides rapidly, causing flicker.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No delay - accidental hovers trigger tooltips
       </p>
     </div>

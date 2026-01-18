@@ -16,7 +16,7 @@ export function NoImageCLSGood() {
           Reserved aspect ratio prevents layout shift when image loads.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         aspect-ratio reserves space, preventing layout shift
       </p>
     </div>

@@ -65,7 +65,7 @@ export function TooltipTimingGood() {
           First tooltip has 500ms delay. After that, moving between peers shows tooltips instantly.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Initial delay prevents accidental triggers, instant switching after
       </p>
     </div>

@@ -18,7 +18,7 @@ export function ResilientUgcBad() {
           Long text without spaces overflows the container, breaking the layout.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No overflow handling - long content breaks layout
       </p>
     </div>

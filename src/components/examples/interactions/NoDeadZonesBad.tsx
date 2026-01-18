@@ -17,7 +17,7 @@ export function NoDeadZonesBad() {
           </div>
         </div>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Only the button is clickable - large card area is dead zone
       </p>
     </div>

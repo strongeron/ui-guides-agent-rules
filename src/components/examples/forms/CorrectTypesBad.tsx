@@ -33,7 +33,7 @@ export function CorrectTypesBad() {
           />
         </div>
       </form>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Generic text type. Mobile shows standard keyboard.
       </p>
     </div>

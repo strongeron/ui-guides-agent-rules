@@ -24,7 +24,7 @@ export function KeyboardEverywhereBad() {
           </div>
         </div>
       </div>
-      <p className="text-xs text-red-700">
+      <p className="text-xs text-error">
         Div elements can't be reached or activated via keyboard
       </p>
     </div>

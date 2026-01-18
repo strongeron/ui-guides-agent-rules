@@ -37,7 +37,7 @@ export function DontBlockTypingGood() {
           <p className="text-xs text-red-600 mt-1">{error}</p>
         )}
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         All input allowed - clear feedback about format
       </p>
     </div>

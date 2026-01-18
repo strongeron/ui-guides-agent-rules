@@ -36,7 +36,7 @@ export function CorrectTypesGood() {
           />
         </div>
       </form>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Correct types show optimized mobile keyboards
       </p>
     </div>

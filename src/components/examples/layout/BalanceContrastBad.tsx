@@ -18,7 +18,7 @@ export function BalanceContrastBad() {
           Thin icon with bold text vs. heavy icon with light text. Visual weight doesn't match.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Mismatched icon/text weights - visual imbalance
       </p>
     </div>

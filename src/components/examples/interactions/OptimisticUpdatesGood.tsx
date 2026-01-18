@@ -30,7 +30,7 @@ export function OptimisticUpdatesGood() {
           <span className="text-sm">{liked ? 'Liked' : 'Like'}</span>
         </button>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         UI updates instantly, rolls back on error
       </p>
     </div>

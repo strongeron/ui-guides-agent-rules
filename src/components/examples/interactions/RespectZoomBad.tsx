@@ -13,7 +13,7 @@ export function RespectZoomBad() {
           This viewport meta tag prevents users from zooming. This is harmful for users with low vision who need to zoom to read content.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Disabling zoom removes an important accessibility feature
       </p>
     </div>

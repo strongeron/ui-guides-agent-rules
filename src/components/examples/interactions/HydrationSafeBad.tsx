@@ -30,7 +30,7 @@ export function HydrationSafeBad() {
           Input is replaced after hydration, losing any typed content and focus.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Input replaced on hydration - focus and value lost
       </p>
     </div>

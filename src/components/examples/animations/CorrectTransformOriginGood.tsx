@@ -21,7 +21,7 @@ export function CorrectTransformOriginGood() {
           </button>
         </div>
       )}
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Menu scales from top-left, connected to the button
       </p>
     </div>

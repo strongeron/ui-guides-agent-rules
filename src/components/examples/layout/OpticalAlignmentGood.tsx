@@ -7,7 +7,7 @@ export function OpticalAlignmentGood() {
         <Play className="w-5 h-5 fill-current" style={{ marginLeft: '2px' }} />
         <span className="font-medium">Play Video</span>
       </button>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Icon shifted 2px right for optical balance
       </p>
     </div>

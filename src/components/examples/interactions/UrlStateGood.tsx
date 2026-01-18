@@ -74,7 +74,7 @@ export function UrlStateGood() {
           State synced to URL. Share link or refresh - state persists!
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         State in URL - shareable, refresh-safe, Back/Forward works
       </p>
     </div>

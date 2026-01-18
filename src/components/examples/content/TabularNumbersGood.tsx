@@ -25,7 +25,7 @@ export function TabularNumbersGood() {
           </tbody>
         </table>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Tabular numbers align perfectly for easy comparison
       </p>
     </div>

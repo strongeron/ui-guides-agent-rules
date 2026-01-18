@@ -34,7 +34,7 @@ export function LatencyBudgetsBad() {
           2.5 second response feels broken. Users may click again or leave.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         2.5s mutation latency feels unresponsive
       </p>
     </div>

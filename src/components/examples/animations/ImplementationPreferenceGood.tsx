@@ -50,7 +50,7 @@ export function ImplementationPreferenceGood() {
           }
         `}</style>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         CSS animation runs off main thread, smooth 60fps
       </p>
     </div>

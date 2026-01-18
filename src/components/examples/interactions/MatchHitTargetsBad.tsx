@@ -13,7 +13,7 @@ export function MatchHitTargetsBad() {
           <X className="w-4 h-4" />
         </button>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         16px icon is hard to click. Hit target is too small.
       </p>
     </div>

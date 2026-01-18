@@ -34,7 +34,7 @@ export function UnsavedChangesBad() {
           </a>
         </div>
       </form>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No warning when navigating away with unsaved changes
       </p>
     </div>

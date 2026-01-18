@@ -28,7 +28,7 @@ export function SemanticsFirstBad() {
           Divs with roles don't get native keyboard events, form submission, or middle-click behavior.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         ARIA roles on divs - missing native behaviors
       </p>
     </div>

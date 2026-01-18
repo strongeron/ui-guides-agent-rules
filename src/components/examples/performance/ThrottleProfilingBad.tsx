@@ -27,7 +27,7 @@ export function ThrottleProfilingBad() {
           Testing on a fast dev machine doesn't reflect real user experience on slower devices.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No throttling - results don't reflect real users
       </p>
     </div>

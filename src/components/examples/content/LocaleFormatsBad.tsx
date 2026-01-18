@@ -21,7 +21,7 @@ export function LocaleFormatsBad() {
           Hardcoded US format. A German user would expect 25.12.2024 for date and 1.234,56 € for currency.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Hardcoded format - confusing for international users
       </p>
     </div>

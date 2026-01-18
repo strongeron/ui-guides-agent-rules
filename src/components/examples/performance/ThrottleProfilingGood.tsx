@@ -27,7 +27,7 @@ export function ThrottleProfilingGood() {
           Throttling reveals performance issues users on slower devices will experience.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         CPU + network throttling shows realistic performance
       </p>
     </div>

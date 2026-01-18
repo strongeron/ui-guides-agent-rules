@@ -6,7 +6,7 @@ export function NonBreakingSpacesBad() {
         <p className="mb-2">Shortcut: ⌘ + K</p>
         <p>Built with Vercel SDK</p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Units and shortcuts can break across lines
       </p>
     </div>

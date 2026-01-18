@@ -39,7 +39,7 @@ export function SpellcheckGood() {
           />
         </div>
       </form>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Spellcheck disabled for technical fields, enabled for prose
       </p>
     </div>

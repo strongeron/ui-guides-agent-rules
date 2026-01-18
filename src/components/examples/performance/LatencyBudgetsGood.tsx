@@ -34,7 +34,7 @@ export function LatencyBudgetsGood() {
           Sub-500ms response feels instant. Users stay confident the action worked.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         350ms mutation latency feels instant
       </p>
     </div>

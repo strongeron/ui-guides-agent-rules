@@ -14,7 +14,7 @@ export function IconsHaveLabelsBad() {
           <Share2 className="w-5 h-5 text-foreground" />
         </button>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Icon-only buttons have no accessible labels
       </p>
     </div>

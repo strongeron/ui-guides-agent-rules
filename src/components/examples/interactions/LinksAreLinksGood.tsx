@@ -10,7 +10,7 @@ export function LinksAreLinksGood() {
           View Dashboard
         </a>
       </div>
-      <p className="text-xs text-green-700">
+      <p className="text-xs text-success">
         Right-click or Cmd+click works - standard link behavior
       </p>
     </div>

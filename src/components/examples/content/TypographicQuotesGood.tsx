@@ -7,7 +7,7 @@ export function TypographicQuotesGood() {
         </blockquote>
         <p className="text-xs text-muted-foreground">— Steve Jobs</p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Curly quotes and em dash look professional
       </p>
     </div>

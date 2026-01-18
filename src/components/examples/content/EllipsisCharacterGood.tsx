@@ -22,7 +22,7 @@ export function EllipsisCharacterGood() {
           </p>
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Proper ellipsis character (…) for professional typography
       </p>
     </div>

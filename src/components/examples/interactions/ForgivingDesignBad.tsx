@@ -29,7 +29,7 @@ export function ForgivingDesignBad() {
           Small hit targets (24px) are hard to tap on mobile. Slider track is thin and difficult to grab.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Tiny hit targets require precise tapping
       </p>
     </div>

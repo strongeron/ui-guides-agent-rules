@@ -13,7 +13,7 @@ export function MatchHitTargetsGood() {
           <X className="w-4 h-4" />
         </button>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Padding expands hit target to 24px+ while keeping icon small
       </p>
     </div>

@@ -24,7 +24,7 @@ export function NoDeadZonesGood() {
           </div>
         </div>
       </button>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Entire card is clickable - no dead zones
       </p>
     </div>

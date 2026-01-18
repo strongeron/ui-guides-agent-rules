@@ -28,7 +28,7 @@ export function CompositorFriendlyGood() {
           </div>
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Transform and opacity are compositor-friendly
       </p>
     </div>

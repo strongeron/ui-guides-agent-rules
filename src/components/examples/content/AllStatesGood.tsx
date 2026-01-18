@@ -18,7 +18,7 @@ export function AllStatesGood() {
           </button>
         </div>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Empty state with icon, explanation, and clear CTA
       </p>
     </div>

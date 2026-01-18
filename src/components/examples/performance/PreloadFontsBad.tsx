@@ -7,7 +7,7 @@ export function PreloadFontsBad() {
           When fonts aren't preloaded, you may see a flash of unstyled text (FOUT) or invisible text (FOIT) while the font downloads.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No preload causes FOUT/FOIT and layout shift
       </p>
     </div>

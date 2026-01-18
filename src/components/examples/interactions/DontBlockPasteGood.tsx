@@ -21,7 +21,7 @@ export function DontBlockPasteGood() {
           Paste works normally. Password managers can fill this field, improving security.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Paste allowed - works with password managers, better security
       </p>
     </div>

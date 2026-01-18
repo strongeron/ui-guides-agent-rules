@@ -45,7 +45,7 @@ export function EasingGood() {
           ease-out for entering (decelerates), ease-in for leaving (accelerates away). Matches physical expectations.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Contextual easing - ease-out enter, ease-in exit
       </p>
     </div>

@@ -14,7 +14,7 @@ export function MobileInputSizeGood() {
           Font size is 16px (text-base), so iOS Safari won't auto-zoom when this input is focused.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         16px font size prevents iOS Safari auto-zoom on focus
       </p>
     </div>

@@ -37,7 +37,7 @@ export function PasswordManagersBad() {
           Each digit is a separate input. Pasting the full code from an authenticator doesn't work.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Can't paste 2FA code - breaks authenticator workflow
       </p>
     </div>

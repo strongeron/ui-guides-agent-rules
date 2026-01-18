@@ -7,7 +7,7 @@ export function TypographicQuotesBad() {
         </blockquote>
         <p className="text-xs text-muted-foreground">- Steve Jobs</p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Straight quotes look unpolished
       </p>
     </div>

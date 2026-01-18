@@ -36,7 +36,7 @@ export function OverscrollBehaviorGood() {
         </div>
       )}
 
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         overscroll-behavior: contain prevents scroll chaining
       </p>
     </div>

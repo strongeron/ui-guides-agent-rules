@@ -30,7 +30,7 @@ export function PageTitlesGood() {
           Each page has a unique title reflecting the current context.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Dynamic titles help users navigate between tabs
       </p>
     </div>

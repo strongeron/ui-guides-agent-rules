@@ -27,7 +27,7 @@ export function SafeAreasBad() {
           </p>
         </div>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         No safe-area-inset-bottom - UI hidden by home bar
       </p>
     </div>

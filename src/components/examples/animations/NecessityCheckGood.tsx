@@ -39,7 +39,7 @@ export function NecessityCheckGood() {
           Animation only on the like button - provides feedback on user interaction and creates delight.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Purposeful animation - feedback + delight on interaction
       </p>
     </div>

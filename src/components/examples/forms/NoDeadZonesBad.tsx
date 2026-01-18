@@ -25,7 +25,7 @@ export function NoDeadZonesBad() {
           Only the tiny checkbox is clickable. The text next to it doesn't activate the control.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Only 16px checkbox is clickable - hard to tap
       </p>
     </div>

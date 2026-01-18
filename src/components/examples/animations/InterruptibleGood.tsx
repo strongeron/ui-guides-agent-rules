@@ -25,7 +25,7 @@ export function InterruptibleGood() {
           }`}
         />
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Clicking again interrupts and reverses the animation
       </p>
     </div>

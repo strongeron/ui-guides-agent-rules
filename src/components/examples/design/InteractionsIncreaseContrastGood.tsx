@@ -9,7 +9,7 @@ export function InteractionsIncreaseContrastGood() {
           Link darkens on hover
         </a>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Clear visual feedback with increased contrast
       </p>
     </div>

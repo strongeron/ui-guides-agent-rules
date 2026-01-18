@@ -43,7 +43,7 @@ export function EasingBad() {
           Linear easing feels robotic and mechanical. The motion lacks natural feel.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Linear easing - robotic, unnatural motion
       </p>
     </div>

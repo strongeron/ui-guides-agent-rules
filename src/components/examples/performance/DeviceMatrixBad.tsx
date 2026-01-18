@@ -33,7 +33,7 @@ export function DeviceMatrixBad() {
           Only tested on Chrome. Other browsers and devices may have different behavior.
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Chrome-only testing misses Safari and mobile issues
       </p>
     </div>

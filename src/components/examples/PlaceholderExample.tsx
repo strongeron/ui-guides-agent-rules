@@ -8,10 +8,10 @@ export function PlaceholderExample({ type, title }: PlaceholderExampleProps) {
     <div className="flex items-center justify-center w-full h-full">
       <div className="text-center p-8">
         <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${
-          type === 'good' ? 'bg-green-100' : 'bg-red-100'
+          type === 'good' ? 'bg-success/20' : 'bg-error/20'
         }`}>
           <span className={`text-2xl ${
-            type === 'good' ? 'text-green-600' : 'text-red-600'
+            type === 'good' ? 'text-success' : 'text-error'
           }`}>
             {type === 'good' ? '✓' : '✗'}
           </span>

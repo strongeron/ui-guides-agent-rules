@@ -18,7 +18,7 @@ export function HueConsistencyBad() {
           Pure gray shadows clash with colored background
         </p>
       </div>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Neutral shadows on colored background look harsh
       </p>
     </div>

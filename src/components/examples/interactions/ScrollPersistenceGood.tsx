@@ -20,7 +20,7 @@ sessionStorage.setItem(
           User scrolls, navigates, presses Back - returned to exact scroll position. Context is preserved.
         </p>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Scroll position restored on Back/Forward navigation
       </p>
     </div>

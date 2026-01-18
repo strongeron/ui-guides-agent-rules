@@ -15,7 +15,7 @@ export function EllipsisForInputGood() {
           Delete…
         </button>
       </div>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Ellipsis signals actions that open dialogs for further input
       </p>
     </div>

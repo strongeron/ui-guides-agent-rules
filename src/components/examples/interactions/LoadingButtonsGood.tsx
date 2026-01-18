@@ -19,7 +19,7 @@ export function LoadingButtonsGood() {
         {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
         Save Changes
       </button>
-      <p className="text-xs text-green-700 mt-4">
+      <p className="text-xs text-success mt-4">
         Spinner added, text stays - no layout shift
       </p>
     </div>

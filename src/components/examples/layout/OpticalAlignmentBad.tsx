@@ -7,7 +7,7 @@ export function OpticalAlignmentBad() {
         <Play className="w-5 h-5 fill-current" />
         <span className="font-medium">Play Video</span>
       </button>
-      <p className="text-xs text-red-700 mt-4">
+      <p className="text-xs text-error mt-4">
         Play icon mathematically centered but looks off-balance
       </p>
     </div>
