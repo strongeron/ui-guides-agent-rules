@@ -2,6 +2,8 @@
 
 Welcome to Beads! This repository uses **Beads** for issue tracking - a modern, AI-native tool designed to live directly in your codebase alongside your code.
 
+**Minimum required version:** v0.47.1
+
 ## What is Beads?
 
 Beads is issue tracking that lives in your repo, making it perfect for AI coding agents and developers who want their issues close to their code. No web UI required - everything works through the CLI and integrates seamlessly with git.
@@ -60,8 +62,12 @@ Issues in Beads are:
 Try Beads in your own projects:
 
 ```bash
-# Install Beads
-curl -sSL https://raw.githubusercontent.com/steveyegge/beads/main/scripts/install.sh | bash
+# Install Beads (pick one method)
+npm install -g @beads/bd                  # via npm (recommended)
+curl -sSL https://raw.githubusercontent.com/steveyegge/beads/main/scripts/install.sh | bash  # via script
+
+# Verify installation (should show v0.47.1 or higher)
+bd --version
 
 # Initialize in your repo
 bd init
