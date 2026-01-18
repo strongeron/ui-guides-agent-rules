@@ -185,16 +185,17 @@ export function Sidebar({
                   <ul>
                     {categoryPrinciples.map((principle) => (
                       <li key={principle.id}>
-                        <button
+                        <Button
+                          variant="ghost"
                           onClick={() => handlePrincipleClick(principle.id)}
-                          className={`w-full text-left px-4 py-3 text-sm hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring ${
+                          className={`w-full justify-start rounded-none px-4 py-3 h-auto text-sm hover:bg-muted ${
                             currentPrincipleId === principle.id
                               ? 'bg-primary/10 text-primary font-medium border-l-4 border-primary'
                               : 'text-foreground border-l-4 border-transparent'
                           }`}
                         >
                           {principle.title}
-                        </button>
+                        </Button>
                       </li>
                     ))}
                   </ul>
