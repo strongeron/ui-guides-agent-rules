@@ -10,7 +10,7 @@ export function PlaceholderValueGood() {
             id="good-placeholder-phone"
             type="tel"
             placeholder="+1 (555) 123-4567"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -21,7 +21,7 @@ export function PlaceholderValueGood() {
             id="good-placeholder-key"
             type="text"
             placeholder="sk-proj_abc123…"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
       </form>

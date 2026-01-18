@@ -33,8 +33,8 @@ export function LocaleFormatsGood() {
             <span className="text-sm font-medium">{numberFormatter.format(items)}</span>
           </div>
         </div>
-        <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-2">
-          <code className="text-xs text-green-800 font-mono">
+        <div className="mt-3 bg-success/10 border border-success/20 rounded-lg p-2">
+          <code className="text-xs text-success font-mono">
             Intl.DateTimeFormat / Intl.NumberFormat
           </code>
         </div>

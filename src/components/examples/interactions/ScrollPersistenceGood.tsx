@@ -2,8 +2,8 @@ export function ScrollPersistenceGood() {
   return (
     <div className="w-full max-w-sm">
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
-          <code className="text-xs text-green-800 font-mono block whitespace-pre">
+        <div className="bg-success/10 border border-success/20 rounded-lg p-3 mb-4">
+          <code className="text-xs text-success-foreground font-mono block whitespace-pre">
 {`// Let browser handle it (default)
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'auto';

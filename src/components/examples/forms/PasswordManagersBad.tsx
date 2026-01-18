@@ -29,7 +29,7 @@ export function PasswordManagersBad() {
               value={digit}
               onChange={(e) => handleChange(i, e.target.value)}
               onPaste={handlePaste}
-              className="w-10 h-12 text-center text-lg font-mono border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-10 h-12 text-center text-lg font-mono border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             />
           ))}
         </div>

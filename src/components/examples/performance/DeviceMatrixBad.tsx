@@ -5,8 +5,8 @@ export function DeviceMatrixBad() {
         <h3 className="font-semibold mb-3">Testing Checklist</h3>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-green-500 rounded-sm flex items-center justify-center">
-              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-4 h-4 bg-success rounded-sm flex items-center justify-center">
+              <svg className="w-3 h-3 text-success-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
             </div>

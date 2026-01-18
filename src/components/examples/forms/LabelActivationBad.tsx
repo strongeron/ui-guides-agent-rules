@@ -12,7 +12,7 @@ export function LabelActivationBad() {
           type="checkbox"
           checked={agreed}
           onChange={(e) => setAgreed(e.target.checked)}
-          className="mt-1 w-4 h-4 text-blue-600 border-border rounded focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="mt-1 w-4 h-4 text-primary border-border rounded focus-visible:ring-2 focus-visible:ring-ring"
         />
         <span className="text-sm text-foreground">
           I agree to the terms and conditions
@@ -24,7 +24,7 @@ export function LabelActivationBad() {
           type="checkbox"
           checked={newsletter}
           onChange={(e) => setNewsletter(e.target.checked)}
-          className="mt-1 w-4 h-4 text-blue-600 border-border rounded focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="mt-1 w-4 h-4 text-primary border-border rounded focus-visible:ring-2 focus-visible:ring-ring"
         />
         <span className="text-sm text-foreground">
           Subscribe to newsletter

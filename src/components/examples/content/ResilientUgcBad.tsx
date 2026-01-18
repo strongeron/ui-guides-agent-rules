@@ -5,7 +5,7 @@ export function ResilientUgcBad() {
         <h3 className="font-semibold mb-3">User Comments</h3>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex-shrink-0" />
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm">VeryyyyyyyyLongUsernameWithoutAnySpacesThatBreaksTheLayoutCompletely</p>
               <p className="text-sm text-muted-foreground">

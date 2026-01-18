@@ -129,6 +129,14 @@
   --color-success-foreground: var(--success-foreground);
   --color-error: var(--error);
   --color-error-foreground: var(--error-foreground);
+  /* Warning semantic tokens */
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  /* Info semantic tokens */
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  /* Overlay token */
+  --color-overlay: var(--overlay);
 }
 
 :root {
@@ -173,6 +181,14 @@
   /* Error (bad examples) */
   --error: oklch(0.637 0.237 25.331);
   --error-foreground: oklch(0.269 0.066 25.041);
+  /* Warning (yellow) */
+  --warning: oklch(0.879 0.169 91.605);
+  --warning-foreground: oklch(0.421 0.095 78.765);
+  /* Info (blue) */
+  --info: oklch(0.623 0.214 259.815);
+  --info-foreground: oklch(0.282 0.091 267.935);
+  /* Overlay */
+  --overlay: oklch(0 0 0 / 50%);
 }
 
 .dark {
@@ -218,6 +234,14 @@
   /* Error (bad examples) */
   --error: oklch(0.704 0.191 22.216);
   --error-foreground: oklch(0.982 0.018 15.826);
+  /* Warning (yellow) */
+  --warning: oklch(0.741 0.165 75.836);
+  --warning-foreground: oklch(0.982 0.018 85.826);
+  /* Info (blue) */
+  --info: oklch(0.623 0.214 259.815);
+  --info-foreground: oklch(0.932 0.032 255.826);
+  /* Overlay */
+  --overlay: oklch(0 0 0 / 60%);
 }
 
 @layer base {

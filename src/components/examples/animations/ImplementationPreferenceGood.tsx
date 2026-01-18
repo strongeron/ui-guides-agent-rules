@@ -18,13 +18,13 @@ export function ImplementationPreferenceGood() {
       <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={startAnimation}
-          className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="mb-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
         >
           Animate
         </button>
         <div className="h-16 bg-muted rounded-lg relative overflow-hidden">
           <div
-            className={`absolute top-1/2 w-12 h-12 bg-blue-600 rounded-lg ${
+            className={`absolute top-1/2 w-12 h-12 bg-primary rounded-lg ${
               isAnimating ? 'animate-slide-bounce' : ''
             }`}
             style={{
@@ -33,8 +33,8 @@ export function ImplementationPreferenceGood() {
             }}
           />
         </div>
-        <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-2">
-          <code className="text-xs text-green-800 font-mono">
+        <div className="mt-3 bg-success/10 border border-success/20 rounded-lg p-2">
+          <code className="text-xs text-success-foreground font-mono">
             CSS animation (GPU-accelerated)
           </code>
         </div>

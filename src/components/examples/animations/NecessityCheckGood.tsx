@@ -7,7 +7,7 @@ export function NecessityCheckGood() {
     <div className="w-full max-w-sm">
       <div className="bg-card border border-border rounded-lg p-4">
         <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
-          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-medium">
+          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-medium">
             A
           </div>
           <div className="flex-1">

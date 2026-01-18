@@ -13,11 +13,11 @@ export function EllipsisCharacterBad() {
             Loading...
           </div>
         </div>
-        <div className="mt-3 bg-red-50 border border-red-200 rounded-lg p-3">
-          <p className="text-xs text-red-800 font-mono">
+        <div className="mt-3 bg-error/10 border border-error/20 rounded-lg p-3">
+          <p className="text-xs text-error font-mono">
             Using three periods: ... (U+002E × 3)
           </p>
-          <p className="text-xs text-red-700 mt-1">
+          <p className="text-xs text-error/80 mt-1">
             Wider spacing, looks unprofessional
           </p>
         </div>

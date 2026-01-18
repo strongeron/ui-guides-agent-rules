@@ -7,13 +7,13 @@ export function ManageFocusBad() {
     <div className="w-full max-w-sm">
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Open Modal
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-overlay flex items-center justify-center z-50">
           <div className="bg-card rounded-lg p-6 w-80 shadow-xl">
             <h2 className="text-lg font-semibold mb-4">Modal Title</h2>
             <p className="text-sm text-muted-foreground mb-4">
@@ -22,7 +22,7 @@ export function ManageFocusBad() {
             <input
               type="text"
               placeholder="Type here..."
-              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <div className="flex justify-end gap-2">
               <button
@@ -33,7 +33,7 @@ export function ManageFocusBad() {
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
               >
                 Confirm
               </button>

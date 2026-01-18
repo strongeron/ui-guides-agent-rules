@@ -2,12 +2,12 @@ export function AnchoredHeadingsBad() {
   return (
     <div className="w-full max-w-sm">
       <div className="bg-card border border-border rounded-lg overflow-hidden">
-        <div className="bg-gray-900 text-white px-4 py-3 text-sm font-medium sticky top-0">
+        <div className="bg-card dark:bg-muted px-4 py-3 text-sm font-medium sticky top-0">
           Fixed Header
         </div>
         <div className="p-4">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-            <code className="text-xs text-red-800 font-mono block">
+          <div className="bg-error/10 border border-error/20 rounded-lg p-3 mb-4">
+            <code className="text-xs text-error font-mono block">
               {'/* No scroll-margin-top */'}
               <br />
               {'h2 { }'}

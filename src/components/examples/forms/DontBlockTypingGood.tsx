@@ -28,13 +28,13 @@ export function DontBlockTypingGood() {
           onChange={handleChange}
           className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 ${
             error
-              ? 'border-red-300 focus-visible:ring-red-500'
-              : 'border-border focus-visible:ring-blue-500'
+              ? 'border-error/50 focus-visible:ring-error'
+              : 'border-border focus-visible:ring-ring'
           }`}
           placeholder="5551234567"
         />
         {error && (
-          <p className="text-xs text-red-600 mt-1">{error}</p>
+          <p className="text-xs text-error mt-1">{error}</p>
         )}
       </div>
       <p className="text-xs text-success mt-4">

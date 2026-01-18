@@ -6,21 +6,21 @@ export function KeyboardEverywhereGood() {
         <div className="space-y-2" role="menu">
           <button
             onClick={() => alert('Edit clicked')}
-            className="w-full text-left px-3 py-2 bg-card rounded hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full text-left px-3 py-2 bg-card rounded hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             role="menuitem"
           >
             Edit
           </button>
           <button
             onClick={() => alert('Delete clicked')}
-            className="w-full text-left px-3 py-2 bg-card rounded hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full text-left px-3 py-2 bg-card rounded hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             role="menuitem"
           >
             Delete
           </button>
           <button
             onClick={() => alert('Share clicked')}
-            className="w-full text-left px-3 py-2 bg-card rounded hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full text-left px-3 py-2 bg-card rounded hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             role="menuitem"
           >
             Share

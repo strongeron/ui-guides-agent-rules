@@ -7,7 +7,7 @@ export function SafeAreasBad() {
           <div className="bg-gray-900 text-white px-4 py-2 flex justify-center">
             <div className="w-20 h-5 bg-black rounded-b-xl" />
           </div>
-          <div className="bg-blue-600 text-white px-4 py-3">
+          <div className="bg-primary text-primary-foreground px-4 py-3">
             <h3 className="font-semibold">App Header</h3>
           </div>
           <div className="p-4 min-h-[100px]">
@@ -21,8 +21,8 @@ export function SafeAreasBad() {
           </div>
           <div className="h-6 bg-gray-900" /> {/* Home indicator area */}
         </div>
-        <div className="p-3 bg-red-50 border-t border-red-200">
-          <p className="text-xs text-red-800">
+        <div className="p-3 bg-error/10 border-t border-error/20">
+          <p className="text-xs text-error-foreground">
             Nav buttons overlap home indicator area
           </p>
         </div>

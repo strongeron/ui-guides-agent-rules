@@ -27,11 +27,11 @@ export function ConfirmDestructiveGood() {
   return (
     <div className="w-full max-w-sm">
       {deletedItem && (
-        <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between">
-          <span className="text-sm text-blue-900">Deleted "{deletedItem.item}"</span>
+        <div className="mb-3 p-3 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-between">
+          <span className="text-sm text-foreground">Deleted "{deletedItem.item}"</span>
           <button
             onClick={handleUndo}
-            className="flex items-center gap-1 text-sm text-blue-700 hover:text-blue-800 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded px-2 py-1"
+            className="flex items-center gap-1 text-sm text-primary hover:text-primary/80 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-2 py-1"
           >
             <Undo className="w-3 h-3" />
             Undo
@@ -44,7 +44,7 @@ export function ConfirmDestructiveGood() {
             <span className="text-sm">{item}</span>
             <button
               onClick={() => handleDelete(index)}
-              className="p-1 text-red-600 hover:text-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded"
+              className="p-1 text-destructive hover:text-destructive/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded"
               aria-label="Delete"
             >
               <Trash2 className="w-4 h-4" />

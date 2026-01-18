@@ -7,7 +7,7 @@ export function PrefersReducedMotionGood() {
     <div className="w-full max-w-sm">
       <button
         onClick={() => setShow(!show)}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Toggle Card
       </button>

@@ -13,11 +13,11 @@ export function EllipsisCharacterGood() {
             Loading…
           </div>
         </div>
-        <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-3">
-          <p className="text-xs text-green-800 font-mono">
+        <div className="mt-3 bg-success/10 border border-success/20 rounded-lg p-3">
+          <p className="text-xs text-success font-mono">
             Using ellipsis: … (U+2026)
           </p>
-          <p className="text-xs text-green-700 mt-1">
+          <p className="text-xs text-success/80 mt-1">
             Proper spacing, professional appearance
           </p>
         </div>

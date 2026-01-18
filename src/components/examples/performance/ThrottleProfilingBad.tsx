@@ -16,8 +16,8 @@ export function ThrottleProfilingBad() {
               <span className="text-muted-foreground">No throttling</span>
             </div>
           </div>
-          <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-            <div className="text-sm text-green-800">
+          <div className="p-3 bg-success/10 border border-success/20 rounded-lg">
+            <div className="text-sm text-success-foreground">
               <div className="font-medium">Results</div>
               <div className="text-xs mt-1">FCP: 0.3s • LCP: 0.8s • TBT: 10ms</div>
             </div>

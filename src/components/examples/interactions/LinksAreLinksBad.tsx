@@ -9,7 +9,7 @@ export function LinksAreLinksBad() {
         <h3 className="font-semibold text-foreground mb-2">Your Projects</h3>
         <button
           onClick={handleClick}
-          className="text-blue-600 hover:text-blue-700 hover:underline"
+          className="text-primary hover:text-primary/90 hover:underline"
         >
           View Dashboard
         </button>

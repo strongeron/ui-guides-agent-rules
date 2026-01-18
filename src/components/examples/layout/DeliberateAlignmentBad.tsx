@@ -9,7 +9,7 @@ export function DeliberateAlignmentBad() {
           This is some content text that appears in the card.
         </p>
         <div className="flex gap-2" style={{ marginLeft: '5px' }}>
-          <button className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded">
+          <button className="px-3 py-1.5 bg-primary text-primary-foreground text-sm rounded">
             Action
           </button>
           <button className="px-3 py-1.5 bg-muted text-foreground text-sm rounded">

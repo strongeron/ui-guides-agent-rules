@@ -16,16 +16,16 @@ export function LatencyBudgetsBad() {
           <button
             onClick={handleSave}
             disabled={status === 'loading'}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50"
           >
             {status === 'loading' ? 'Saving...' : 'Save Changes'}
           </button>
           {status === 'done' && (
-            <span className="text-green-600 text-sm">✓ Saved</span>
+            <span className="text-success text-sm">✓ Saved</span>
           )}
         </div>
-        <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-          <div className="text-sm text-red-800">
+        <div className="p-3 bg-error/10 border border-error/20 rounded-lg">
+          <div className="text-sm text-error-foreground">
             <div className="font-medium">API Response Time</div>
             <div className="text-xs mt-1 font-mono">POST /api/save → 2,500ms</div>
           </div>
