@@ -6,20 +6,20 @@ export function SemanticsFirstBad() {
           <div
             role="button"
             tabIndex={0}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg cursor-pointer hover:bg-primary/90"
           >
             Submit Form
           </div>
           <div
             role="link"
             tabIndex={0}
-            className="text-blue-600 underline cursor-pointer hover:text-blue-800"
+            className="text-primary underline cursor-pointer hover:text-primary/80"
           >
             View Documentation
           </div>
         </div>
-        <div className="mt-3 bg-red-50 border border-red-200 rounded-lg p-3">
-          <code className="text-xs text-red-800 font-mono block whitespace-pre">
+        <div className="mt-3 bg-error/10 border border-error/20 rounded-lg p-3">
+          <code className="text-xs text-error font-mono block whitespace-pre">
 {`<div role="button">...</div>
 <div role="link">...</div>`}
           </code>

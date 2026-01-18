@@ -25,22 +25,22 @@ const calloutStyles: Record<
   }
 > = {
   info: {
-    container: 'bg-blue-50 dark:bg-blue-950/50 border-l-4 border-blue-600 dark:border-blue-400',
+    container: 'bg-info/10 border-l-4 border-info',
     icon: InformationCircleIcon,
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    titleColor: 'text-blue-900 dark:text-blue-100',
+    iconColor: 'text-info',
+    titleColor: 'text-info-foreground dark:text-info',
   },
   warning: {
-    container: 'bg-amber-50 dark:bg-amber-950/50 border-l-4 border-amber-500 dark:border-amber-400',
+    container: 'bg-warning/10 border-l-4 border-warning',
     icon: AlertCircleIcon,
-    iconColor: 'text-amber-600 dark:text-amber-400',
-    titleColor: 'text-amber-900 dark:text-amber-100',
+    iconColor: 'text-warning',
+    titleColor: 'text-warning-foreground dark:text-warning',
   },
   tip: {
-    container: 'bg-green-50 dark:bg-green-950/50 border-l-4 border-green-600 dark:border-green-400',
+    container: 'bg-success/10 border-l-4 border-success',
     icon: BulbIcon,
-    iconColor: 'text-green-600 dark:text-green-400',
-    titleColor: 'text-green-900 dark:text-green-100',
+    iconColor: 'text-success',
+    titleColor: 'text-success-foreground dark:text-success',
   },
   quote: {
     container: 'bg-muted border-l-4 border-muted-foreground/40',

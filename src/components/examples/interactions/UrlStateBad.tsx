@@ -17,7 +17,7 @@ export function UrlStateBad() {
               onClick={() => setActiveTab(tab)}
               className={`px-3 py-2 text-sm capitalize ${
                 activeTab === tab
-                  ? 'border-b-2 border-blue-600 text-blue-600'
+                  ? 'border-b-2 border-primary text-primary'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
@@ -32,7 +32,7 @@ export function UrlStateBad() {
               onClick={() => setFilter(f)}
               className={`px-3 py-1 text-xs rounded-full capitalize ${
                 filter === f
-                  ? 'bg-blue-100 text-blue-700'
+                  ? 'bg-primary/10 text-primary'
                   : 'bg-muted text-muted-foreground hover:bg-muted'
               }`}
             >

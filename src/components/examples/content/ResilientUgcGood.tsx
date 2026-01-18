@@ -5,7 +5,7 @@ export function ResilientUgcGood() {
         <h3 className="font-semibold mb-3">User Comments</h3>
         <div className="space-y-3">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex-shrink-0" />
+            <div className="w-8 h-8 bg-primary/10 rounded-full flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm truncate">VeryyyyyyyyLongUsernameWithoutAnySpacesThatBreaksTheLayoutCompletely</p>
               <p className="text-sm text-muted-foreground break-words overflow-wrap-anywhere">
@@ -14,8 +14,8 @@ export function ResilientUgcGood() {
             </div>
           </div>
         </div>
-        <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-2">
-          <code className="text-xs text-green-800 font-mono block">
+        <div className="mt-3 bg-success/10 border border-success/20 rounded-lg p-2">
+          <code className="text-xs text-success font-mono block">
             truncate / break-words / overflow-wrap
           </code>
         </div>

@@ -1,7 +1,7 @@
 export function NestedRadiiBad() {
   return (
     <div className="w-full max-w-sm flex items-center justify-center py-8">
-      <div className="w-48 p-4 bg-blue-100 rounded-xl">
+      <div className="w-48 p-4 bg-primary/10 rounded-xl">
         <div className="p-3 bg-card rounded-xl">
           <p className="text-sm text-foreground">
             Inner radius doesn't match outer - curves misaligned

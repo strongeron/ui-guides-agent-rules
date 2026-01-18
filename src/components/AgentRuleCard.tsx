@@ -22,7 +22,7 @@ const priorityConfig: Record<AgentRulePriority, { label: string; className: stri
   },
   SHOULD: {
     label: 'SHOULD',
-    className: 'bg-amber-500/20 text-amber-700 border-amber-500/30 dark:text-amber-400 dark:bg-amber-500/10 dark:border-amber-500/20',
+    className: 'bg-warning/20 text-warning-foreground border-warning/30 dark:text-warning dark:bg-warning/10 dark:border-warning/20',
   },
   NEVER: {
     label: 'NEVER',

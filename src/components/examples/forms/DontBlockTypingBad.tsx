@@ -21,7 +21,7 @@ export function DontBlockTypingBad() {
           type="text"
           value={phoneNumber}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="5551234567"
         />
       </div>

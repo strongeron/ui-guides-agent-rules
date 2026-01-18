@@ -33,13 +33,13 @@ export function InterruptibleBad() {
       <button
         onClick={startAnimation}
         disabled={isAnimating}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors disabled:bg-muted-foreground disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Start Animation
       </button>
       <div className="mt-4 h-16 bg-muted rounded-lg relative overflow-hidden">
         <div
-          className="absolute top-4 w-12 h-8 bg-blue-600 rounded"
+          className="absolute top-4 w-12 h-8 bg-primary rounded"
           style={{ left: `${position}px` }}
         />
       </div>

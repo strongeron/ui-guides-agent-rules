@@ -37,11 +37,11 @@ export function DontPreDisableSubmitGood() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             placeholder="you@example.com"
           />
           {touched && errors.email && (
-            <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+            <p className="text-xs text-error mt-1">{errors.email}</p>
           )}
         </div>
         <div>
@@ -53,16 +53,16 @@ export function DontPreDisableSubmitGood() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             placeholder="Min 8 characters"
           />
           {touched && errors.password && (
-            <p className="text-xs text-red-600 mt-1">{errors.password}</p>
+            <p className="text-xs text-error mt-1">{errors.password}</p>
           )}
         </div>
         <button
           type="submit"
-          className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
         >
           Sign Up
         </button>

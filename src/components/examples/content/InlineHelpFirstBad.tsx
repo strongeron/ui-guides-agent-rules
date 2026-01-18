@@ -20,7 +20,7 @@ export function InlineHelpFirstBad() {
           <input
             id="bad-inline-api"
             type="text"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
       </form>

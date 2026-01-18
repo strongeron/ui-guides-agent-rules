@@ -1,7 +1,7 @@
 export function HueConsistencyBad() {
   return (
     <div className="w-full max-w-sm">
-      <div className="bg-blue-600 rounded-lg p-4">
+      <div className="bg-primary rounded-lg p-4">
         <div
           className="bg-card rounded-lg p-4"
           style={{
@@ -14,7 +14,7 @@ export function HueConsistencyBad() {
             The gray/black shadow and border look harsh against the blue background.
           </p>
         </div>
-        <p className="text-xs text-blue-100 mt-4">
+        <p className="text-xs text-primary-foreground/70 mt-4">
           Pure gray shadows clash with colored background
         </p>
       </div>

@@ -41,10 +41,10 @@ export function SubmissionRuleGood() {
               setEmail(e.target.value);
               if (errors.email) setErrors({ ...errors, email: undefined });
             }}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
           {errors.email && (
-            <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+            <p className="text-xs text-error mt-1">{errors.email}</p>
           )}
         </div>
         <div>
@@ -59,16 +59,16 @@ export function SubmissionRuleGood() {
               setPassword(e.target.value);
               if (errors.password) setErrors({ ...errors, password: undefined });
             }}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
           {errors.password && (
-            <p className="text-xs text-red-600 mt-1">{errors.password}</p>
+            <p className="text-xs text-error mt-1">{errors.password}</p>
           )}
         </div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+          className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-70 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
         >
           {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
           Sign Up

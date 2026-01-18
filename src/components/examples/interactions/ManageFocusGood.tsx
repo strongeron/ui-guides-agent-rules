@@ -44,14 +44,14 @@ export function ManageFocusGood() {
       <button
         ref={triggerRef}
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Open Modal
       </button>
 
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-overlay flex items-center justify-center z-50"
           onClick={(e) => e.target === e.currentTarget && setIsOpen(false)}
         >
           <div
@@ -69,18 +69,18 @@ export function ManageFocusGood() {
               ref={firstFocusableRef}
               type="text"
               placeholder="Type here..."
-              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                className="px-4 py-2 text-muted-foreground hover:bg-muted rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Cancel
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Confirm
               </button>

@@ -13,13 +13,13 @@ export function AnnounceUpdatesBad() {
       <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={handleSave}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           Save Changes
         </button>
 
         {saved && (
-          <div className="mt-4 p-3 bg-green-100 text-green-800 rounded-lg text-sm">
+          <div className="mt-4 p-3 bg-success/20 text-success-foreground rounded-lg text-sm">
             ✓ Changes saved successfully
           </div>
         )}

@@ -6,13 +6,13 @@ export function ClearFocusBad() {
           outline: none;
         }
       `}</style>
-      <button className="no-focus-ring px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+      <button className="no-focus-ring px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
         Button 1
       </button>
-      <button className="no-focus-ring px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+      <button className="no-focus-ring px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
         Button 2
       </button>
-      <button className="no-focus-ring px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+      <button className="no-focus-ring px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
         Button 3
       </button>
       <p className="text-xs text-muted-foreground mt-4">

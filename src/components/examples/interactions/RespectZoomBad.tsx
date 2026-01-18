@@ -2,10 +2,10 @@ export function RespectZoomBad() {
   return (
     <div className="w-full max-w-sm">
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-          <code className="text-xs text-red-800 font-mono block">
+        <div className="bg-error/10 border border-error/20 rounded-lg p-3 mb-4">
+          <code className="text-xs text-error-foreground font-mono block">
             {'<meta name="viewport" content="'}
-            <span className="bg-red-200">maximum-scale=1, user-scalable=no</span>
+            <span className="bg-error/30">maximum-scale=1, user-scalable=no</span>
             {'" />'}
           </code>
         </div>

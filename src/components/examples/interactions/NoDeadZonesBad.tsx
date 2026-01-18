@@ -4,14 +4,14 @@ export function NoDeadZonesBad() {
       <div className="bg-card border border-border rounded-lg overflow-hidden">
         <div className="p-4">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-medium">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
               A
             </div>
             <div className="flex-1">
               <h3 className="font-medium text-foreground">Project Alpha</h3>
               <p className="text-sm text-muted-foreground">Updated 2 hours ago</p>
             </div>
-            <button className="px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <button className="px-3 py-1 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90">
               Open
             </button>
           </div>

@@ -23,7 +23,7 @@ export function HydrationSafeGood() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Start typing..."
-          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-ring"
         />
         <p className="mt-2 text-xs text-muted-foreground">
           {mounted

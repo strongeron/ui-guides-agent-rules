@@ -19,10 +19,10 @@ export function AutofocusGood() {
           ref={inputRef}
           type="search"
           placeholder="Search..."
-          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-ring"
         />
-        <div className="mt-3 bg-green-50 border border-green-200 rounded-lg p-3">
-          <code className="text-xs text-green-800 font-mono block whitespace-pre">
+        <div className="mt-3 bg-success/10 border border-success/20 rounded-lg p-3">
+          <code className="text-xs text-success-foreground font-mono block whitespace-pre">
 {`// Conditional autofocus
 const isDesktop =
   matchMedia('(pointer: fine)').matches;

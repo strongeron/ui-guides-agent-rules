@@ -23,7 +23,7 @@ export function TooltipTimingBad() {
                 {btn.icon}
               </button>
               {activeTooltip === btn.id && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-popover text-popover-foreground text-xs rounded whitespace-nowrap">
                   {btn.label}
                 </div>
               )}

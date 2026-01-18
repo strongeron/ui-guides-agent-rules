@@ -4,20 +4,20 @@ export function ThrottleProfilingGood() {
       <div className="bg-card border border-border rounded-lg p-4">
         <h3 className="font-semibold mb-3">Performance Testing</h3>
         <div className="space-y-3">
-          <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div className="p-3 bg-warning/10 border border-warning/20 rounded-lg">
             <div className="flex items-center gap-2 text-sm">
-              <span className="font-mono text-yellow-800">CPU:</span>
-              <span className="text-yellow-700">4x slowdown</span>
+              <span className="font-mono text-warning-foreground">CPU:</span>
+              <span className="text-warning">4x slowdown</span>
             </div>
           </div>
-          <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <div className="p-3 bg-warning/10 border border-warning/20 rounded-lg">
             <div className="flex items-center gap-2 text-sm">
-              <span className="font-mono text-yellow-800">Network:</span>
-              <span className="text-yellow-700">Fast 3G (562 kB/s)</span>
+              <span className="font-mono text-warning-foreground">Network:</span>
+              <span className="text-warning">Fast 3G (562 kB/s)</span>
             </div>
           </div>
-          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-            <div className="text-sm text-blue-800">
+          <div className="p-3 bg-info/10 border border-info/20 rounded-lg">
+            <div className="text-sm text-info-foreground">
               <div className="font-medium">Realistic Results</div>
               <div className="text-xs mt-1">FCP: 1.8s • LCP: 3.2s • TBT: 180ms</div>
             </div>

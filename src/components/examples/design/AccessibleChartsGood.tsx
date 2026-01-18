@@ -1,8 +1,8 @@
 export function AccessibleChartsGood() {
   const data = [
-    { label: 'Active', value: 45, color: 'bg-blue-600', pattern: '' },
-    { label: 'Pending', value: 30, color: 'bg-amber-500', pattern: 'bg-stripes' },
-    { label: 'Inactive', value: 25, color: 'bg-gray-400', pattern: 'bg-dots' },
+    { label: 'Active', value: 45, color: 'bg-primary', pattern: '' },
+    { label: 'Pending', value: 30, color: 'bg-warning', pattern: 'bg-stripes' },
+    { label: 'Inactive', value: 25, color: 'bg-muted-foreground', pattern: 'bg-dots' },
   ];
 
   return (

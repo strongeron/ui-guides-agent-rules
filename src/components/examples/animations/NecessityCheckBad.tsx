@@ -4,12 +4,12 @@ export function NecessityCheckBad() {
       <div className="bg-card border border-border rounded-lg p-4">
         <div className="space-y-3">
           <div className="flex items-center gap-3 p-3 bg-muted rounded-lg animate-pulse-slow">
-            <div className="w-8 h-8 bg-blue-100 rounded-full animate-spin-slow" />
+            <div className="w-8 h-8 bg-primary/10 rounded-full animate-spin-slow" />
             <div className="flex-1">
-              <div className="h-3 bg-blue-100 rounded animate-bounce-subtle w-3/4" />
+              <div className="h-3 bg-primary/10 rounded animate-bounce-subtle w-3/4" />
               <div className="h-2 bg-muted rounded mt-1 animate-bounce-subtle w-1/2" style={{ animationDelay: '0.1s' }} />
             </div>
-            <div className="w-16 h-8 bg-blue-600 rounded animate-pulse" />
+            <div className="w-16 h-8 bg-primary rounded animate-pulse" />
           </div>
         </div>
         <p className="mt-3 text-xs text-muted-foreground">

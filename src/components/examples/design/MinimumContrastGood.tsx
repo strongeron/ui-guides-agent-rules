@@ -7,7 +7,7 @@ export function MinimumContrastGood() {
           <p className="text-sm text-muted-foreground">
             This darker gray meets APCA contrast standards for readability
           </p>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             High Contrast Button
           </button>
         </div>

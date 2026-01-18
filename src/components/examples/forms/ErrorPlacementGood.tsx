@@ -44,12 +44,12 @@ export function ErrorPlacementGood() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              errors.name ? 'border-red-300' : 'border-border'
+            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              errors.name ? 'border-error/50' : 'border-border'
             }`}
           />
           {errors.name && (
-            <p className="text-xs text-red-600 mt-1">{errors.name}</p>
+            <p className="text-xs text-error mt-1">{errors.name}</p>
           )}
         </div>
         <div>
@@ -62,17 +62,17 @@ export function ErrorPlacementGood() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-              errors.email ? 'border-red-300' : 'border-border'
+            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              errors.email ? 'border-error/50' : 'border-border'
             }`}
           />
           {errors.email && (
-            <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+            <p className="text-xs text-error mt-1">{errors.email}</p>
           )}
         </div>
         <button
           type="submit"
-          className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
         >
           Submit
         </button>

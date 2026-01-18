@@ -10,7 +10,7 @@ export function PlaceholderValueBad() {
             id="bad-placeholder-phone"
             type="tel"
             placeholder="Enter phone number"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -21,7 +21,7 @@ export function PlaceholderValueBad() {
             id="bad-placeholder-key"
             type="text"
             placeholder="API Key"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
       </form>
