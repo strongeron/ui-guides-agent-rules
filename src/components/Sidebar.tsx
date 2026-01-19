@@ -141,8 +141,8 @@ export function Sidebar({
 
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed top-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background z-50 shadow-2xl transition-[left] duration-300 ease-in-out ${
+          isOpen ? 'left-0' : '-left-80'
         }`}
         aria-label="Navigation menu"
         aria-hidden={!isOpen}

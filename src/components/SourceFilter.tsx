@@ -86,7 +86,7 @@ export function SourceFilter({
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0" align="start">
+      <PopoverContent className="w-[200px] p-0" align="start" sideOffset={4} avoidCollisions={false}>
         <Command shouldFilter={false}>
           <CommandList>
             <CommandGroup>
