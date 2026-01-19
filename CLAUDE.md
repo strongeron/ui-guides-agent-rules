@@ -63,7 +63,72 @@ To add a new principle:
 `src/types/principle.ts` defines:
 - `Principle`: Main data structure for each guideline
 - `PrincipleCategory`: Union type for categories
+- `PatternSource` / `PatternSourceInfo`: Multi-source tagging system
 - `AgentRule` / `AgentRulePriority`: Rule types with MUST/SHOULD/NEVER
+
+### Multi-Source Tagging System
+
+Principles can be tagged with their pattern source for the "brain center" concept:
+
+```typescript
+type PatternSource = 'vercel' | 'wcag' | 'aria' | 'design-system' | 'custom';
+```
+
+Each principle has an optional `source` field linking it to its origin (Vercel guidelines, WCAG criteria, ARIA practices, etc.). This enables filtering and attribution.
+
+### Agent Rules System
+
+Agent rules in `src/data/agentRules.ts` provide AI-consumable guidelines:
+
+```typescript
+type AgentRulePriority = 'MUST' | 'SHOULD' | 'NEVER';
+
+interface AgentRule {
+  priority: AgentRulePriority;
+  rule: string;
+  codeExample?: string;
+}
+```
+
+Rules are keyed by principle ID with type-safe linking to ensure every rule maps to a valid principle.
+
+### MDX Content Structure
+
+Principles are stored as MDX files in `content/principles/{category}/`:
+
+```
+content/principles/
+├── animations/
+├── content/
+├── design/
+├── forms/
+├── interactions/
+├── layout/
+└── performance/
+```
+
+Each MDX file has frontmatter (id, category, source, title, description, example keys) and uses custom components:
+- `<Callout type="quote|info|warning|tip">` - Highlighted boxes
+- `<ExampleComparison badKey="..." goodKey="..." />` - Side-by-side examples
+- `<CodeBlock title="..." language="tsx">` - Syntax-highlighted code
+
+### UI Components (shadcn/ui + Radix)
+
+Uses shadcn/ui (new-york style) with Radix UI primitives:
+
+```
+src/components/ui/
+├── badge.tsx + badge.variants.ts
+├── button.tsx + button.variants.ts
+├── card.tsx
+├── input.tsx
+├── switch.tsx (Radix primitive)
+└── tabs.tsx
+```
+
+**Pattern**: Components use `class-variance-authority` (CVA) for variants, extracted to `.variants.ts` files for fast-refresh compatibility.
+
+**Adding components**: Use `npx shadcn@latest add <component>` - configured in `components.json` with path aliases (@/components, @/lib/utils, etc.)
 
 ### Custom Animations
 
