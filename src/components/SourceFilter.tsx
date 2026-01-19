@@ -87,7 +87,7 @@ export function SourceFilter({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0" align="start">
-        <Command>
+        <Command shouldFilter={false}>
           <CommandList>
             <CommandGroup>
               {/* Select All / Clear All */}
@@ -107,7 +107,15 @@ export function SourceFilter({
                   <CommandItem
                     key={source}
                     value={source}
-                    onSelect={() => toggleSource(source)}
+                    onSelect={(value) => {
+                      // cmdk lowercases values, find the original source
+                      const originalSource = availableSources.find(
+                        (s) => s.toLowerCase() === value.toLowerCase()
+                      );
+                      if (originalSource) {
+                        toggleSource(originalSource);
+                      }
+                    }}
                     className="gap-2"
                   >
                     <Checkbox
