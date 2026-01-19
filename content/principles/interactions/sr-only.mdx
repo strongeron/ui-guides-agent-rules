@@ -1,0 +1,49 @@
+---
+id: interactions-sr-only
+category: interactions
+source: tailwind
+title: Screen Reader Only Content
+description: Use sr-only for visually hidden but accessible content
+badExampleKey: interactions-sr-only-bad
+goodExampleKey: interactions-sr-only-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Use the sr-only utility for content that should be read by screen readers but hidden visually. Never use display:none or visibility:hidden for accessible content.
+</Callout>
+
+## Why This Matters
+
+Screen reader users need context that sighted users get visually. Icon-only buttons need labels, status indicators need descriptions. The `sr-only` class hides content visually while keeping it in the accessibility tree.
+
+## Implementation
+
+<CodeBlock title="Tailwind Classes" language="html">
+{`<!-- Icon button with sr-only label -->
+<button aria-label="Close">
+  <XIcon aria-hidden="true" />
+  <span class="sr-only">Close dialog</span>
+</button>
+
+<!-- Status with visual and screen reader text -->
+<div class="flex items-center gap-2">
+  <span class="w-2 h-2 bg-green-500 rounded-full" aria-hidden="true" />
+  <span class="sr-only">Status:</span>
+  Online
+</div>
+
+<!-- Table with sr-only headers -->
+<th class="sr-only">Actions</th>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-sr-only-bad"
+  goodKey="interactions-sr-only-good"
+/>
+
+## Learn More
+
+- [Screen Readers Utility](https://tailwindcss.com/docs/screen-readers)
+- [Visually Hidden](https://www.a11yproject.com/posts/how-to-hide-content/)

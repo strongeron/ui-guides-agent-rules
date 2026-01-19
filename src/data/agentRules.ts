@@ -369,6 +369,112 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'design-gradient-banding': {
     priority: 'SHOULD',
     rule: 'Avoid gradient banding (use masks when needed)'
+  },
+  // Tailwind CSS Golden Rules - Performance
+  'performance-content-paths': {
+    priority: 'MUST',
+    rule: 'Configure Tailwind content paths to include all files using utility classes'
+  },
+  'performance-gpu-animations': {
+    priority: 'MUST',
+    rule: 'Use transform/opacity for animations (GPU-accelerated), not margin/width/height'
+  },
+  'performance-no-transition-all': {
+    priority: 'NEVER',
+    rule: 'Use transition-all; explicitly specify transition-transform, transition-opacity, etc.'
+  },
+  'performance-avoid-arbitrary': {
+    priority: 'SHOULD',
+    rule: 'Avoid arbitrary values [17px]; use theme tokens (p-4, text-foreground)'
+  },
+  'performance-dynamic-classes': {
+    priority: 'NEVER',
+    rule: 'Dynamically construct class names (`bg-${color}-500`); use object lookup with complete strings'
+  },
+  'performance-purge-optimization': {
+    priority: 'SHOULD',
+    rule: 'Keep content paths specific; minimize safelist to only CMS-driven classes'
+  },
+  // Tailwind CSS Golden Rules - Design
+  'design-theme-config': {
+    priority: 'MUST',
+    rule: 'Use theme.extend to add custom values; never overwrite top-level theme keys'
+  },
+  'design-semantic-colors': {
+    priority: 'MUST',
+    rule: 'Use semantic tokens (bg-primary, text-destructive) instead of raw colors (bg-blue-500)'
+  },
+  'design-complete-theme': {
+    priority: 'SHOULD',
+    rule: 'Define complete token pairs: background + foreground, ring, border for each semantic color'
+  },
+  'design-mobile-first': {
+    priority: 'MUST',
+    rule: 'Write mobile styles first; use sm:/md:/lg: to enhance for larger screens (min-width based)'
+  },
+  'design-custom-breakpoints': {
+    priority: 'SHOULD',
+    rule: 'Add custom breakpoints via theme.extend.screens; avoid arbitrary min-[Xpx]: values'
+  },
+  'design-dark-mode-class': {
+    priority: 'SHOULD',
+    rule: 'Use darkMode: "class" for user-controllable themes with light/dark/system options'
+  },
+  'design-dark-preferences': {
+    priority: 'MUST',
+    rule: 'Apply dark class in inline <head> script before first paint to prevent theme flash'
+  },
+  // Tailwind CSS Golden Rules - Interactions
+  'interactions-focus-visible-tw': {
+    priority: 'MUST',
+    rule: 'Use focus-visible: instead of focus: for focus rings (keyboard-only indicators)'
+  },
+  'interactions-skip-link-tw': {
+    priority: 'MUST',
+    rule: 'Implement skip links with sr-only focus:not-sr-only pattern'
+  },
+  'interactions-aria-variants': {
+    priority: 'SHOULD',
+    rule: 'Use aria-* variants (aria-selected:, aria-expanded:) to tie styles to ARIA state'
+  },
+  'interactions-sr-only': {
+    priority: 'MUST',
+    rule: 'Use sr-only for accessible but visually hidden content (icon labels, status context)'
+  },
+  'interactions-class-precedence': {
+    priority: 'SHOULD',
+    rule: 'Use tailwind-merge (via cn()) to handle class conflicts in dynamic composition'
+  },
+  // Tailwind CSS Golden Rules - Forms
+  'forms-tailwind-merge': {
+    priority: 'MUST',
+    rule: 'Use tailwind-merge for components accepting className props to ensure override classes win'
+  },
+  'forms-cn-utility': {
+    priority: 'SHOULD',
+    rule: 'Create cn() utility combining clsx + tailwind-merge for conditional class merging'
+  },
+  // Tailwind CSS Golden Rules - Content
+  'content-class-formatting': {
+    priority: 'SHOULD',
+    rule: 'Use prettier-plugin-tailwindcss for automatic class ordering (layout → spacing → typography → colors)'
+  },
+  'content-official-plugins': {
+    priority: 'SHOULD',
+    rule: 'Use official plugins (@tailwindcss/typography for prose, @tailwindcss/forms for inputs)'
+  },
+  'content-intellisense': {
+    priority: 'SHOULD',
+    rule: 'Configure Tailwind CSS IntelliSense extension for autocomplete and invalid class linting'
+  },
+  // Tailwind CSS Golden Rules - Layout
+  'layout-layer-directives': {
+    priority: 'MUST',
+    rule: 'Use @layer (base/components/utilities) for custom CSS to integrate with Tailwind specificity'
+  },
+  'layout-custom-utilities': {
+    priority: 'SHOULD',
+    rule: 'Create custom utilities in @layer utilities for missing CSS properties (text-wrap, scrollbar)'
   }
 };
 

@@ -1,0 +1,53 @@
+---
+id: content-official-plugins
+category: content
+source: tailwind
+title: Use Official Plugins
+description: Leverage Tailwind's official plugins for common needs
+badExampleKey: content-official-plugins-bad
+goodExampleKey: content-official-plugins-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Use Tailwind's official plugins (@tailwindcss/typography, @tailwindcss/forms, @tailwindcss/container-queries) instead of reinventing styles.
+</Callout>
+
+## Why This Matters
+
+Official plugins are well-tested, follow Tailwind conventions, and handle edge cases. The typography plugin styles prose content beautifully. The forms plugin normalizes form element styling. Container queries enable modern responsive patterns.
+
+## Implementation
+
+<CodeBlock title="tailwind.config.js" language="javascript">
+{`module.exports = {
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/container-queries'),
+  ],
+}
+
+// Usage
+<article class="prose prose-lg dark:prose-invert">
+  {/* Markdown content styled automatically */}
+</article>
+
+<div class="@container">
+  <div class="@lg:flex">
+    {/* Responds to container, not viewport */}
+  </div>
+</div>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="content-official-plugins-bad"
+  goodKey="content-official-plugins-good"
+/>
+
+## Learn More
+
+- [@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)
+- [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
+- [@tailwindcss/container-queries](https://github.com/tailwindlabs/tailwindcss-container-queries)

@@ -1,0 +1,49 @@
+---
+id: design-complete-theme
+category: design
+source: tailwind
+title: Build Complete Theme
+description: Define all interactive states and component variants
+badExampleKey: design-complete-theme-bad
+goodExampleKey: design-complete-theme-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Build a complete design token system with foreground colors for every background, ring colors, and all interactive states.
+</Callout>
+
+## Why This Matters
+
+A partial theme leads to inconsistency. If you define `primary` but not `primary-foreground`, you'll hardcode text colors. Complete themes include: background/foreground pairs, border variants, ring/focus colors, and state variants (hover, active, disabled).
+
+## Implementation
+
+<CodeBlock title="Complete Token Set" language="css">
+{`:root {
+  /* Background + foreground pairs */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 4%;
+
+  --primary: 220 90% 56%;
+  --primary-foreground: 0 0% 100%;
+
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+
+  /* Interactive states */
+  --ring: 220 90% 56%;
+  --border: 240 6% 90%;
+}`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-complete-theme-bad"
+  goodKey="design-complete-theme-good"
+/>
+
+## Learn More
+
+- [shadcn/ui Theming](https://ui.shadcn.com/docs/theming)
+- [Design Token Structure](https://spectrum.adobe.com/page/design-tokens/)
