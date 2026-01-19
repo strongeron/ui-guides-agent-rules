@@ -1207,5 +1207,382 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'design-accessible-charts-bad',
     goodExampleKey: 'design-accessible-charts-good'
+  },
+  // Tailwind CSS Golden Rules - Performance
+  {
+    id: 'performance-content-paths',
+    category: 'performance',
+    source: 'tailwind',
+    title: 'Configure Content Paths',
+    description: 'Specify all files using Tailwind classes in the content config',
+    sourceQuote: 'Always configure content paths to include all files that use Tailwind classes. Missing paths mean unused CSS in production or missing styles.',
+    additionalExplanation: 'Tailwind CSS v4 uses @source directive (or v3\'s content config) to scan files for class names. If a file isn\'t included in these paths, its classes won\'t be included in the production build. Conversely, overly broad globs can slow down builds.',
+    sourceLinks: [
+      { text: 'Tailwind Content Configuration', url: 'https://tailwindcss.com/docs/content-configuration' }
+    ],
+    badExampleKey: 'performance-content-paths-bad',
+    goodExampleKey: 'performance-content-paths-good'
+  },
+  {
+    id: 'performance-gpu-animations',
+    category: 'performance',
+    source: 'tailwind',
+    title: 'GPU-Accelerated Animations',
+    description: 'Use transform and opacity for smooth 60fps animations',
+    sourceQuote: 'Animate only transform and opacity properties. These run on the GPU compositor thread and won\'t cause layout recalculations.',
+    additionalExplanation: 'Animating properties like width, height, top, left, or margin triggers expensive layout recalculations on every frame. GPU-accelerated properties (transform, opacity) run on a separate compositor thread, achieving smooth 60fps animations.',
+    sourceLinks: [
+      { text: 'CSS GPU Animation', url: 'https://web.dev/animations-guide/' },
+      { text: 'Compositor-only Properties', url: 'https://web.dev/stick-to-compositor-only-properties-and-manage-layer-count/' }
+    ],
+    badExampleKey: 'performance-gpu-animations-bad',
+    goodExampleKey: 'performance-gpu-animations-good'
+  },
+  {
+    id: 'performance-no-transition-all',
+    category: 'performance',
+    source: 'tailwind',
+    title: 'Never transition-all',
+    description: 'Explicitly transition only needed properties',
+    sourceQuote: 'Never use transition-all. Explicitly specify which properties to transition for better performance and predictable behavior.',
+    additionalExplanation: 'transition-all animates every CSS property that changes, including layout-triggering properties you didn\'t intend to animate. This causes unexpected animations, performance issues, and harder debugging.',
+    sourceLinks: [
+      { text: 'CSS Transition Property', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property' }
+    ],
+    badExampleKey: 'performance-no-transition-all-bad',
+    goodExampleKey: 'performance-no-transition-all-good'
+  },
+  {
+    id: 'performance-avoid-arbitrary',
+    category: 'performance',
+    source: 'tailwind',
+    title: 'Avoid Arbitrary Values',
+    description: 'Prefer theme tokens over arbitrary bracket values',
+    sourceQuote: 'Avoid arbitrary values like p-[17px] or text-[#1a1a1a]. Use theme tokens for consistency and smaller CSS output.',
+    additionalExplanation: 'Arbitrary values create one-off utility classes that bypass your design system\'s spacing/color scale, create inconsistencies, generate additional CSS, and make maintenance harder with magic numbers scattered throughout.',
+    sourceLinks: [
+      { text: 'Tailwind Customization', url: 'https://tailwindcss.com/docs/customizing-spacing' },
+      { text: 'Tailwind Theme Configuration', url: 'https://tailwindcss.com/docs/theme' }
+    ],
+    badExampleKey: 'performance-avoid-arbitrary-bad',
+    goodExampleKey: 'performance-avoid-arbitrary-good'
+  },
+  {
+    id: 'performance-dynamic-classes',
+    category: 'performance',
+    source: 'tailwind',
+    title: 'No Dynamic Class Construction',
+    description: 'Write complete class names for Tailwind to detect them',
+    sourceQuote: 'Never dynamically construct class names. Tailwind scans source files as strings and cannot detect computed class names.',
+    additionalExplanation: 'Tailwind\'s build process scans your source files for complete class name strings. It cannot execute JavaScript or interpolate template literals. Dynamically constructed classes like bg-${color}-500 will be purged from production builds.',
+    sourceLinks: [
+      { text: 'Dynamic Class Names', url: 'https://tailwindcss.com/docs/content-configuration#dynamic-class-names' },
+      { text: 'Safelist Configuration', url: 'https://tailwindcss.com/docs/content-configuration#safelisting-classes' }
+    ],
+    badExampleKey: 'performance-dynamic-classes-bad',
+    goodExampleKey: 'performance-dynamic-classes-good'
+  },
+  {
+    id: 'performance-purge-optimization',
+    category: 'performance',
+    source: 'tailwind',
+    title: 'Optimize Purge Configuration',
+    description: 'Use specific globs and safelist only when necessary',
+    sourceQuote: 'Keep content paths specific and safelist minimal. Overly broad configurations slow builds and bloat CSS output.',
+    additionalExplanation: 'Tailwind\'s purge/content scanning determines what CSS ships to production. Overly broad globs scan unnecessary files (like node_modules), slowing builds. Overused safelists defeat tree-shaking and bloat CSS output.',
+    sourceLinks: [
+      { text: 'Optimizing for Production', url: 'https://tailwindcss.com/docs/optimizing-for-production' },
+      { text: 'Content Configuration', url: 'https://tailwindcss.com/docs/content-configuration' }
+    ],
+    badExampleKey: 'performance-purge-optimization-bad',
+    goodExampleKey: 'performance-purge-optimization-good'
+  },
+  // Tailwind CSS Golden Rules - Design
+  {
+    id: 'design-theme-config',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Extend Theme Properly',
+    description: 'Use theme.extend to add values without losing defaults',
+    sourceQuote: 'Always use theme.extend to add custom values. Overwriting top-level theme keys removes all default values.',
+    additionalExplanation: 'When you define theme.colors directly, you replace all of Tailwind\'s default colors. Using theme.extend.colors adds your custom colors while keeping the defaults like slate, gray, red, etc.',
+    sourceLinks: [
+      { text: 'Theme Configuration', url: 'https://tailwindcss.com/docs/theme' },
+      { text: 'Customizing Colors', url: 'https://tailwindcss.com/docs/customizing-colors' }
+    ],
+    badExampleKey: 'design-theme-config-bad',
+    goodExampleKey: 'design-theme-config-good'
+  },
+  {
+    id: 'design-semantic-colors',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Use Semantic Color Tokens',
+    description: 'Define colors by purpose, not appearance',
+    sourceQuote: 'Use semantic color names (primary, destructive, muted) instead of raw colors (blue-500, red-600). This enables theming and dark mode.',
+    additionalExplanation: 'Semantic tokens describe purpose, not appearance. bg-destructive means "danger/error background" regardless of the actual color. This separation allows themes to change without touching component code.',
+    sourceLinks: [
+      { text: 'Using CSS Variables', url: 'https://tailwindcss.com/docs/customizing-colors#using-css-variables' }
+    ],
+    badExampleKey: 'design-semantic-colors-bad',
+    goodExampleKey: 'design-semantic-colors-good'
+  },
+  {
+    id: 'design-complete-theme',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Build Complete Theme',
+    description: 'Define all interactive states and component variants',
+    sourceQuote: 'Build a complete design token system with foreground colors for every background, ring colors, and all interactive states.',
+    additionalExplanation: 'A partial theme leads to inconsistency. Complete themes include: background/foreground pairs, border variants, ring/focus colors, and state variants (hover, active, disabled).',
+    sourceLinks: [
+      { text: 'shadcn/ui Theming', url: 'https://ui.shadcn.com/docs/theming' }
+    ],
+    badExampleKey: 'design-complete-theme-bad',
+    goodExampleKey: 'design-complete-theme-good'
+  },
+  {
+    id: 'design-mobile-first',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Mobile-First Responsive',
+    description: 'Start with mobile styles, add breakpoints for larger screens',
+    sourceQuote: 'Write mobile styles first, then use sm:, md:, lg: breakpoints to enhance for larger screens. Tailwind\'s breakpoints are min-width based.',
+    additionalExplanation: 'Tailwind breakpoints are mobile-first (min-width). md:flex means "flex at medium screens AND UP." Starting desktop-first leads to verbose code with unnecessary overrides.',
+    sourceLinks: [
+      { text: 'Responsive Design', url: 'https://tailwindcss.com/docs/responsive-design' },
+      { text: 'Mobile First', url: 'https://tailwindcss.com/docs/responsive-design#mobile-first' }
+    ],
+    badExampleKey: 'design-mobile-first-bad',
+    goodExampleKey: 'design-mobile-first-good'
+  },
+  {
+    id: 'design-custom-breakpoints',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Custom Breakpoints When Needed',
+    description: 'Add project-specific breakpoints for unique layout requirements',
+    sourceQuote: 'Use Tailwind\'s default breakpoints unless your design requires specific values. Add custom breakpoints in theme.extend when needed.',
+    additionalExplanation: 'Default breakpoints work for most projects, but some designs need specific widths. Custom breakpoints should be added via theme.extend.screens, not arbitrary values like min-[960px]:.',
+    sourceLinks: [
+      { text: 'Customizing Screens', url: 'https://tailwindcss.com/docs/screens' }
+    ],
+    badExampleKey: 'design-custom-breakpoints-bad',
+    goodExampleKey: 'design-custom-breakpoints-good'
+  },
+  {
+    id: 'design-dark-mode-class',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Dark Mode Class Strategy',
+    description: 'Use class-based dark mode for user preference control',
+    sourceQuote: 'Use class-based dark mode (darkMode: \'class\') for user-controllable themes. This allows toggling between light/dark/system preferences.',
+    additionalExplanation: 'The media strategy only responds to OS settings. The class strategy lets you add/remove the dark class on <html>, enabling theme toggles and respecting user choice over system preference.',
+    sourceLinks: [
+      { text: 'Dark Mode', url: 'https://tailwindcss.com/docs/dark-mode' },
+      { text: 'Class Strategy', url: 'https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually' }
+    ],
+    badExampleKey: 'design-dark-mode-class-bad',
+    goodExampleKey: 'design-dark-mode-class-good'
+  },
+  {
+    id: 'design-dark-preferences',
+    category: 'design',
+    source: 'tailwind',
+    title: 'Respect Color Scheme Preference',
+    description: 'Initialize theme from prefers-color-scheme before page renders',
+    sourceQuote: 'Read prefers-color-scheme on initial load and apply the dark class before first paint to prevent flash of wrong theme.',
+    additionalExplanation: 'If you wait for JavaScript to run before checking the color scheme, users see a flash of the wrong theme (FART). Inline a script in <head> that runs synchronously before render.',
+    sourceLinks: [
+      { text: 'Avoiding FART', url: 'https://css-tricks.com/flash-of-inaccurate-color-theme-fart/' },
+      { text: 'prefers-color-scheme', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme' }
+    ],
+    badExampleKey: 'design-dark-preferences-bad',
+    goodExampleKey: 'design-dark-preferences-good'
+  },
+  // Tailwind CSS Golden Rules - Interactions
+  {
+    id: 'interactions-focus-visible-tw',
+    category: 'interactions',
+    source: 'tailwind',
+    title: 'Focus-Visible Rings',
+    description: 'Use focus-visible for keyboard-only focus indicators',
+    sourceQuote: 'Use focus-visible: instead of focus: for focus rings. This shows focus indicators only for keyboard navigation, not mouse clicks.',
+    additionalExplanation: 'The focus: variant shows focus rings on every focus, including mouse clicks. focus-visible: uses the browser\'s heuristic to only show focus rings when navigating with keyboard.',
+    sourceLinks: [
+      { text: 'Focus Visible', url: 'https://tailwindcss.com/docs/hover-focus-and-other-states#focus-visible' },
+      { text: ':focus-visible MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible' }
+    ],
+    badExampleKey: 'interactions-focus-visible-tw-bad',
+    goodExampleKey: 'interactions-focus-visible-tw-good'
+  },
+  {
+    id: 'interactions-skip-link-tw',
+    category: 'interactions',
+    source: 'tailwind',
+    title: 'Skip Link with Tailwind',
+    description: 'Create accessible skip links using sr-only and focus-visible',
+    sourceQuote: 'Implement skip links using sr-only combined with focus:not-sr-only to show the link only when focused via keyboard.',
+    additionalExplanation: 'Skip links allow keyboard users to bypass repetitive navigation and jump to main content. They should be visually hidden until focused, then appear prominently.',
+    sourceLinks: [
+      { text: 'Screen Reader Only', url: 'https://tailwindcss.com/docs/screen-readers' },
+      { text: 'Skip Links', url: 'https://webaim.org/techniques/skipnav/' }
+    ],
+    badExampleKey: 'interactions-skip-link-tw-bad',
+    goodExampleKey: 'interactions-skip-link-tw-good'
+  },
+  {
+    id: 'interactions-aria-variants',
+    category: 'interactions',
+    source: 'tailwind',
+    title: 'ARIA State Variants',
+    description: 'Use aria-* variants for accessible interactive states',
+    sourceQuote: 'Use Tailwind\'s aria-* variants (aria-selected:, aria-expanded:, aria-disabled:) to style based on ARIA state.',
+    additionalExplanation: 'Using aria-* variants ensures your visual styles match the accessibility state. This prevents mismatches where something looks selected but isn\'t announced as selected.',
+    sourceLinks: [
+      { text: 'ARIA States', url: 'https://tailwindcss.com/docs/hover-focus-and-other-states#aria-states' },
+      { text: 'WAI-ARIA', url: 'https://www.w3.org/WAI/ARIA/apg/' }
+    ],
+    badExampleKey: 'interactions-aria-variants-bad',
+    goodExampleKey: 'interactions-aria-variants-good'
+  },
+  {
+    id: 'interactions-sr-only',
+    category: 'interactions',
+    source: 'tailwind',
+    title: 'Screen Reader Only Content',
+    description: 'Use sr-only for visually hidden but accessible content',
+    sourceQuote: 'Use the sr-only utility for content that should be read by screen readers but hidden visually. Never use display:none for accessible content.',
+    additionalExplanation: 'Screen reader users need context that sighted users get visually. Icon-only buttons need labels, status indicators need descriptions. The sr-only class hides content visually while keeping it accessible.',
+    sourceLinks: [
+      { text: 'Screen Readers Utility', url: 'https://tailwindcss.com/docs/screen-readers' },
+      { text: 'Visually Hidden', url: 'https://www.a11yproject.com/posts/how-to-hide-content/' }
+    ],
+    badExampleKey: 'interactions-sr-only-bad',
+    goodExampleKey: 'interactions-sr-only-good'
+  },
+  {
+    id: 'interactions-class-precedence',
+    category: 'interactions',
+    source: 'tailwind',
+    title: 'Class Precedence',
+    description: 'Understand Tailwind\'s class order and override patterns',
+    sourceQuote: 'Tailwind classes don\'t have inherent specificity ordering. Use tailwind-merge or careful class ordering when you need predictable overrides.',
+    additionalExplanation: 'When combining classes dynamically, the last class in CSS source order wins (not the last class you write). Use tailwind-merge to intelligently merge Tailwind classes and resolve conflicts.',
+    sourceLinks: [
+      { text: 'tailwind-merge', url: 'https://github.com/dcastil/tailwind-merge' },
+      { text: 'clsx', url: 'https://github.com/lukeed/clsx' }
+    ],
+    badExampleKey: 'interactions-class-precedence-bad',
+    goodExampleKey: 'interactions-class-precedence-good'
+  },
+  // Tailwind CSS Golden Rules - Forms
+  {
+    id: 'forms-tailwind-merge',
+    category: 'forms',
+    source: 'tailwind',
+    title: 'Use tailwind-merge',
+    description: 'Use tailwind-merge for intelligent class conflict resolution',
+    sourceQuote: 'Use tailwind-merge to intelligently merge Tailwind CSS classes, resolving conflicts without style duplication.',
+    additionalExplanation: 'When combining base component styles with variant or override classes, tailwind-merge ensures the last conflicting class wins. This is essential for reusable components that accept className props.',
+    sourceLinks: [
+      { text: 'tailwind-merge', url: 'https://github.com/dcastil/tailwind-merge' },
+      { text: 'Why tailwind-merge', url: 'https://github.com/dcastil/tailwind-merge/blob/main/docs/what-is-it-for.md' }
+    ],
+    badExampleKey: 'forms-tailwind-merge-bad',
+    goodExampleKey: 'forms-tailwind-merge-good'
+  },
+  {
+    id: 'forms-cn-utility',
+    category: 'forms',
+    source: 'tailwind',
+    title: 'cn() Utility Pattern',
+    description: 'Create a cn() utility combining clsx and tailwind-merge',
+    sourceQuote: 'Combine clsx for conditional classes with tailwind-merge for conflict resolution in a single cn() utility function.',
+    additionalExplanation: 'The cn() utility is a standard pattern that combines clsx (for conditional class logic) with tailwind-merge (for conflict resolution). This provides the best of both worlds for component styling.',
+    sourceLinks: [
+      { text: 'shadcn/ui cn()', url: 'https://ui.shadcn.com/docs/installation/manual#add-a-cn-helper' },
+      { text: 'clsx', url: 'https://github.com/lukeed/clsx' }
+    ],
+    badExampleKey: 'forms-cn-utility-bad',
+    goodExampleKey: 'forms-cn-utility-good'
+  },
+  // Tailwind CSS Golden Rules - Content
+  {
+    id: 'content-class-formatting',
+    category: 'content',
+    source: 'tailwind',
+    title: 'Class Formatting',
+    description: 'Follow consistent class ordering and formatting conventions',
+    sourceQuote: 'Maintain consistent class ordering: layout → spacing → sizing → typography → colors → effects. Use Prettier plugin for automation.',
+    additionalExplanation: 'Consistent class ordering makes code scannable and maintainable. The Prettier plugin for Tailwind CSS automatically sorts classes following the recommended order.',
+    sourceLinks: [
+      { text: 'Prettier Plugin', url: 'https://github.com/tailwindlabs/prettier-plugin-tailwindcss' },
+      { text: 'Class Sorting', url: 'https://tailwindcss.com/blog/automatic-class-sorting-with-prettier' }
+    ],
+    badExampleKey: 'content-class-formatting-bad',
+    goodExampleKey: 'content-class-formatting-good'
+  },
+  {
+    id: 'content-official-plugins',
+    category: 'content',
+    source: 'tailwind',
+    title: 'Official Plugins',
+    description: 'Use official Tailwind plugins for specialized content styling',
+    sourceQuote: 'Use official plugins (@tailwindcss/typography, @tailwindcss/forms, @tailwindcss/container-queries) for comprehensive feature coverage.',
+    additionalExplanation: 'Official plugins provide well-designed, tested utilities that integrate seamlessly with Tailwind. The typography plugin is essential for prose content, forms for consistent input styling.',
+    sourceLinks: [
+      { text: '@tailwindcss/typography', url: 'https://tailwindcss.com/docs/typography-plugin' },
+      { text: '@tailwindcss/forms', url: 'https://github.com/tailwindlabs/tailwindcss-forms' },
+      { text: '@tailwindcss/container-queries', url: 'https://github.com/tailwindlabs/tailwindcss-container-queries' }
+    ],
+    badExampleKey: 'content-official-plugins-bad',
+    goodExampleKey: 'content-official-plugins-good'
+  },
+  {
+    id: 'content-intellisense',
+    category: 'content',
+    source: 'tailwind',
+    title: 'IDE IntelliSense',
+    description: 'Configure IDE extension for autocomplete and linting',
+    sourceQuote: 'Install and configure Tailwind CSS IntelliSense extension for autocomplete, linting, and hover documentation.',
+    additionalExplanation: 'The official Tailwind CSS IntelliSense extension provides autocomplete, syntax highlighting, and linting. It catches errors like non-existent classes and suggests valid utilities.',
+    sourceLinks: [
+      { text: 'IntelliSense Extension', url: 'https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code' },
+      { text: 'VS Code Extension', url: 'https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss' }
+    ],
+    badExampleKey: 'content-intellisense-bad',
+    goodExampleKey: 'content-intellisense-good'
+  },
+  // Tailwind CSS Golden Rules - Layout
+  {
+    id: 'layout-layer-directives',
+    category: 'layout',
+    source: 'tailwind',
+    title: '@layer Directives',
+    description: 'Use @layer directives to control CSS specificity',
+    sourceQuote: 'Use @layer base, @layer components, and @layer utilities to add custom CSS that integrates with Tailwind\'s specificity cascade.',
+    additionalExplanation: 'The @layer directive ensures your custom CSS works within Tailwind\'s specificity system. Base for resets, components for reusable patterns, utilities for single-purpose helpers.',
+    sourceLinks: [
+      { text: 'Adding Custom Styles', url: 'https://tailwindcss.com/docs/adding-custom-styles' },
+      { text: 'Using @layer', url: 'https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer' }
+    ],
+    badExampleKey: 'layout-layer-directives-bad',
+    goodExampleKey: 'layout-layer-directives-good'
+  },
+  {
+    id: 'layout-custom-utilities',
+    category: 'layout',
+    source: 'tailwind',
+    title: 'Create Custom Utilities',
+    description: 'Add project-specific utilities in the utilities layer',
+    sourceQuote: 'Create custom utilities in @layer utilities (or @utility in v4) for reusable single-purpose classes that Tailwind doesn\'t provide.',
+    additionalExplanation: 'Some CSS properties aren\'t in Tailwind by default (text-wrap: balance, scrollbar styling). Adding them as utilities means they work with variants and get purged correctly.',
+    sourceLinks: [
+      { text: 'Adding Custom Utilities', url: 'https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities' },
+      { text: 'Tailwind v4 @utility', url: 'https://tailwindcss.com/docs/v4-beta#new-utility-directive' }
+    ],
+    badExampleKey: 'layout-custom-utilities-bad',
+    goodExampleKey: 'layout-custom-utilities-good'
   }
 ];

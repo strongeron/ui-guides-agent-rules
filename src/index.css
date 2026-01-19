@@ -252,3 +252,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Fix Radix Popover positioning - override broken transform calculations */
+[data-radix-popper-content-wrapper]:has([data-slot="popover-content"]) {
+  position: fixed !important;
+  left: 16px !important;
+  top: 150px !important;
+  transform: none !important;
+}

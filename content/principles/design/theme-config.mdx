@@ -1,0 +1,55 @@
+---
+id: design-theme-config
+category: design
+source: tailwind
+title: Extend Theme Properly
+description: Use theme.extend to add values without losing defaults
+badExampleKey: design-theme-config-bad
+goodExampleKey: design-theme-config-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Always use theme.extend to add custom values. Overwriting top-level theme keys removes all default values.
+</Callout>
+
+## Why This Matters
+
+When you define `theme.colors` directly, you replace all of Tailwind's default colors. Using `theme.extend.colors` adds your custom colors while keeping the defaults like `slate`, `gray`, `red`, etc.
+
+## Implementation
+
+<CodeBlock title="tailwind.config.js" language="javascript">
+{`// Bad: Overwrites ALL default colors
+module.exports = {
+  theme: {
+    colors: {
+      brand: '#0066cc',
+    }
+  }
+}
+// Result: Only 'brand' exists, no 'red', 'blue', etc.
+
+// Good: Extends defaults
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: '#0066cc',
+      }
+    }
+  }
+}
+// Result: 'brand' + all default colors`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-theme-config-bad"
+  goodKey="design-theme-config-good"
+/>
+
+## Learn More
+
+- [Theme Configuration](https://tailwindcss.com/docs/theme)
+- [Customizing Colors](https://tailwindcss.com/docs/customizing-colors)

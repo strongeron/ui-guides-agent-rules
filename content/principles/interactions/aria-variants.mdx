@@ -1,0 +1,56 @@
+---
+id: interactions-aria-variants
+category: interactions
+source: tailwind
+title: ARIA State Variants
+description: Use aria-* variants for accessible interactive states
+badExampleKey: interactions-aria-variants-bad
+goodExampleKey: interactions-aria-variants-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Use Tailwind's aria-* variants (aria-selected:, aria-expanded:, aria-disabled:) to style based on ARIA state, keeping styles in sync with accessibility attributes.
+</Callout>
+
+## Why This Matters
+
+ARIA attributes communicate state to assistive technologies. Using `aria-*` variants ensures your visual styles match the accessibility state. This prevents mismatches where something *looks* selected but isn't *announced* as selected, or vice versa.
+
+## Implementation
+
+<CodeBlock title="Tailwind Classes" language="html">
+{`<!-- Tab with aria-selected styling -->
+<button
+  role="tab"
+  aria-selected="true"
+  class="aria-selected:bg-primary aria-selected:text-primary-foreground"
+>
+  Tab 1
+</button>
+
+<!-- Accordion trigger -->
+<button
+  aria-expanded="false"
+  class="aria-expanded:rotate-180"
+>
+  <ChevronIcon />
+</button>
+
+<!-- Disabled state -->
+<button
+  aria-disabled="true"
+  class="aria-disabled:opacity-50 aria-disabled:cursor-not-allowed"
+>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-aria-variants-bad"
+  goodKey="interactions-aria-variants-good"
+/>
+
+## Learn More
+
+- [ARIA States](https://tailwindcss.com/docs/hover-focus-and-other-states#aria-states)
+- [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/)

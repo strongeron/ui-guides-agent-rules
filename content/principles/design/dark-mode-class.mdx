@@ -1,0 +1,46 @@
+---
+id: design-dark-mode-class
+category: design
+source: tailwind
+title: Dark Mode Class Strategy
+description: Use class-based dark mode for user preference control
+badExampleKey: design-dark-mode-class-bad
+goodExampleKey: design-dark-mode-class-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Use class-based dark mode (darkMode: 'class') for user-controllable themes. This allows toggling between light/dark/system preferences.
+</Callout>
+
+## Why This Matters
+
+The `media` strategy only responds to OS settings - users can't override it. The `class` strategy lets you add/remove the `dark` class on `<html>`, enabling theme toggles and respecting user choice over system preference.
+
+## Implementation
+
+<CodeBlock title="Configuration" language="javascript">
+{`// tailwind.config.js
+module.exports = {
+  darkMode: 'class', // or 'selector' in v4
+}
+
+// HTML structure
+<html class="dark">
+  <!-- dark: variants now work -->
+</html>
+
+// Toggle with JavaScript
+document.documentElement.classList.toggle('dark');`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-dark-mode-class-bad"
+  goodKey="design-dark-mode-class-good"
+/>
+
+## Learn More
+
+- [Dark Mode](https://tailwindcss.com/docs/dark-mode)
+- [Class Strategy](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually)

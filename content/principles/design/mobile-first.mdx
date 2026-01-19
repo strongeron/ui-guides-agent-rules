@@ -1,0 +1,42 @@
+---
+id: design-mobile-first
+category: design
+source: tailwind
+title: Mobile-First Responsive
+description: Start with mobile styles, add breakpoints for larger screens
+badExampleKey: design-mobile-first-bad
+goodExampleKey: design-mobile-first-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Write mobile styles first, then use sm:, md:, lg: breakpoints to enhance for larger screens. Tailwind's breakpoints are min-width based.
+</Callout>
+
+## Why This Matters
+
+Tailwind breakpoints are mobile-first (min-width). `md:flex` means "flex at medium screens AND UP." Starting desktop-first leads to verbose code with unnecessary overrides. Mobile-first is simpler and produces smaller CSS.
+
+## Implementation
+
+<CodeBlock title="Tailwind Classes" language="html">
+{`<!-- Bad: Desktop-first (fighting the system) -->
+<div class="flex flex-row md:flex-col sm:flex-col">
+
+<!-- Good: Mobile-first (with the system) -->
+<div class="flex flex-col md:flex-row">
+
+<!-- Mobile: stacked (default)
+     md+: side by side -->`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-mobile-first-bad"
+  goodKey="design-mobile-first-good"
+/>
+
+## Learn More
+
+- [Responsive Design](https://tailwindcss.com/docs/responsive-design)
+- [Mobile First](https://tailwindcss.com/docs/responsive-design#mobile-first)

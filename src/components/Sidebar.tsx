@@ -2,9 +2,10 @@ import { useEffect, useRef, useCallback } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { categories } from '../data/principles';
-import { Principle, PrincipleCategory } from '../types/principle';
+import { Principle, PrincipleCategory, PatternSource } from '../types/principle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { SourceFilter } from './SourceFilter';
 import {
   SIDEBAR_FOCUS_DELAY_MS,
   SIDEBAR_WIDTH_CLASS,
@@ -19,6 +20,9 @@ interface SidebarProps {
   onPrincipleSelect: (principleId: string) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  selectedSources: PatternSource[];
+  onSourcesChange: (sources: PatternSource[]) => void;
+  availableSources: PatternSource[];
 }
 
 export function Sidebar({
@@ -29,21 +33,34 @@ export function Sidebar({
   onPrincipleSelect,
   searchQuery,
   onSearchChange,
+  selectedSources,
+  onSourcesChange,
+  availableSources,
 }: SidebarProps) {
   const sidebarRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
-  // Filter principles based on search query
+  // Filter principles based on search query and selected sources
   const filteredPrinciples = principles.filter((p) => {
-    if (!searchQuery.trim()) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      p.title.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query) ||
-      p.category.toLowerCase().includes(query)
-    );
+    // Source filter (empty selection means show all)
+    const matchesSource =
+      selectedSources.length === 0 ||
+      (p.source && selectedSources.includes(p.source));
+
+    // Search filter
+    const matchesSearch = (() => {
+      if (!searchQuery.trim()) return true;
+      const query = searchQuery.toLowerCase();
+      return (
+        p.title.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+    })();
+
+    return matchesSource && matchesSearch;
   });
 
   const groupedPrinciples = categories.reduce(
@@ -124,8 +141,8 @@ export function Sidebar({
 
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background z-50 shadow-2xl transform transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed top-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background z-50 shadow-2xl transition-[left] duration-300 ease-in-out ${
+          isOpen ? 'left-0' : '-left-80'
         }`}
         aria-label="Navigation menu"
         aria-hidden={!isOpen}
@@ -146,8 +163,13 @@ export function Sidebar({
           </Button>
         </div>
 
-        {/* Search input */}
-        <div className="p-4 border-b border-border">
+        {/* Filters */}
+        <div className="p-4 border-b border-border space-y-3">
+          <SourceFilter
+            selectedSources={selectedSources}
+            onSourcesChange={onSourcesChange}
+            availableSources={availableSources}
+          />
           <Input
             ref={searchInputRef}
             type="search"

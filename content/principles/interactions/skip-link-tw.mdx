@@ -1,0 +1,46 @@
+---
+id: interactions-skip-link-tw
+category: interactions
+source: tailwind
+title: Skip Link with Tailwind
+description: Create accessible skip links using sr-only and focus-visible
+badExampleKey: interactions-skip-link-tw-bad
+goodExampleKey: interactions-skip-link-tw-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Implement skip links using sr-only combined with focus:not-sr-only to show the link only when focused via keyboard.
+</Callout>
+
+## Why This Matters
+
+Skip links allow keyboard users to bypass repetitive navigation and jump to main content. They should be visually hidden until focused, then appear prominently. Tailwind's `sr-only` and `not-sr-only` utilities make this pattern simple.
+
+## Implementation
+
+<CodeBlock title="Tailwind Classes" language="html">
+{`<!-- Skip link pattern -->
+<a
+  href="#main-content"
+  class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded"
+>
+  Skip to main content
+</a>
+
+<!-- Main content target -->
+<main id="main-content" tabindex="-1">
+  ...
+</main>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-skip-link-tw-bad"
+  goodKey="interactions-skip-link-tw-good"
+/>
+
+## Learn More
+
+- [Screen Reader Only](https://tailwindcss.com/docs/screen-readers)
+- [Skip Links](https://webaim.org/techniques/skipnav/)

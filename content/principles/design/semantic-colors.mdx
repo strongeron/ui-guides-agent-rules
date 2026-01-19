@@ -1,0 +1,46 @@
+---
+id: design-semantic-colors
+category: design
+source: tailwind
+title: Use Semantic Color Tokens
+description: Define colors by purpose, not appearance
+badExampleKey: design-semantic-colors-bad
+goodExampleKey: design-semantic-colors-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Use semantic color names (primary, destructive, muted) instead of raw colors (blue-500, red-600). This enables theming and dark mode.
+</Callout>
+
+## Why This Matters
+
+Semantic tokens describe *purpose*, not appearance. `bg-destructive` means "danger/error background" regardless of whether it's red in light mode or a different shade in dark mode. This separation allows themes to change colors without touching component code.
+
+## Implementation
+
+<CodeBlock title="CSS Variables" language="css">
+{`/* Define semantic tokens */
+:root {
+  --primary: 220 90% 56%;
+  --destructive: 0 84% 60%;
+  --muted: 240 5% 96%;
+}
+
+.dark {
+  --primary: 220 90% 66%;
+  --destructive: 0 84% 70%;
+  --muted: 240 4% 16%;
+}`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-semantic-colors-bad"
+  goodKey="design-semantic-colors-good"
+/>
+
+## Learn More
+
+- [Using CSS Variables](https://tailwindcss.com/docs/customizing-colors#using-css-variables)
+- [Design Tokens](https://css-tricks.com/what-are-design-tokens/)

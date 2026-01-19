@@ -29,6 +29,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     description: 'Component and pattern library',
     color: 'bg-primary text-primary-foreground border-primary',
   },
+  tailwind: {
+    id: 'tailwind',
+    name: 'Tailwind',
+    description: 'Tailwind CSS golden rules and best practices',
+    url: 'https://tailwindcss.com/docs',
+    color: 'bg-[#38bdf8] text-slate-900 border-[#38bdf8]',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

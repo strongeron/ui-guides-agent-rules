@@ -14,6 +14,7 @@ export type PatternSource =
   | 'wcag'             // WCAG 2.1/2.2 Success Criteria
   | 'aria'             // WAI-ARIA Authoring Practices
   | 'design-system'    // Design system patterns
+  | 'tailwind'         // Tailwind CSS golden rules
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

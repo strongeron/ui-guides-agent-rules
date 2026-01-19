@@ -1,0 +1,48 @@
+---
+id: performance-dynamic-classes
+category: performance
+source: tailwind
+title: No Dynamic Class Construction
+description: Write complete class names for Tailwind to detect them
+badExampleKey: performance-dynamic-classes-bad
+goodExampleKey: performance-dynamic-classes-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Never dynamically construct class names. Tailwind scans source files as strings and cannot detect computed class names.
+</Callout>
+
+## Why This Matters
+
+Tailwind's build process scans your source files for complete class name strings. It cannot execute JavaScript or interpolate template literals. Dynamically constructed classes like `bg-${color}-500` will be purged from production builds because Tailwind never sees the complete string.
+
+## Implementation
+
+<CodeBlock title="JavaScript/JSX" language="tsx">
+{`// Bad: Dynamic construction (classes will be purged!)
+const color = 'red';
+<div className={\`bg-\${color}-500\`}>  // bg-red-500 NOT included
+
+// Good: Complete class names
+const colorClasses = {
+  red: 'bg-red-500',
+  blue: 'bg-blue-500',
+  green: 'bg-green-500',
+};
+<div className={colorClasses[color]}>  // Works!
+
+// Good: Conditional with full class names
+<div className={isActive ? 'bg-green-500' : 'bg-gray-500'}>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="performance-dynamic-classes-bad"
+  goodKey="performance-dynamic-classes-good"
+/>
+
+## Learn More
+
+- [Dynamic Class Names](https://tailwindcss.com/docs/content-configuration#dynamic-class-names)
+- [Safelist Configuration](https://tailwindcss.com/docs/content-configuration#safelisting-classes)

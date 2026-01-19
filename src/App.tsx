@@ -1,15 +1,26 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
 import { SkipLink } from './components/SkipLink';
 import { principles } from './data/principles';
+import type { PatternSource } from './types/principle';
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSources, setSelectedSources] = useState<PatternSource[]>([]);
+
+  // Compute available sources from principles data
+  const availableSources = useMemo(() => {
+    const sources = new Set<PatternSource>();
+    principles.forEach((p) => {
+      if (p.source) sources.add(p.source);
+    });
+    return Array.from(sources);
+  }, []);
 
   const currentPrinciple = principles[currentIndex];
 
@@ -105,6 +116,9 @@ function App() {
         onPrincipleSelect={handlePrincipleSelect}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        selectedSources={selectedSources}
+        onSourcesChange={setSelectedSources}
+        availableSources={availableSources}
       />
 
       <main id="main-content" className="min-h-screen">

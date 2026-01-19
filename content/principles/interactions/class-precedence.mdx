@@ -1,0 +1,46 @@
+---
+id: interactions-class-precedence
+category: interactions
+source: tailwind
+title: Class Precedence
+description: Understand Tailwind's class order and override patterns
+badExampleKey: interactions-class-precedence-bad
+goodExampleKey: interactions-class-precedence-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Tailwind Golden Rule">
+  Tailwind classes don't have inherent specificity ordering. Use tailwind-merge or careful class ordering when you need predictable overrides in dynamic class composition.
+</Callout>
+
+## Why This Matters
+
+When combining classes dynamically, the last class in CSS source order wins (not the last class you write). This can cause unexpected results. Use `tailwind-merge` to intelligently merge Tailwind classes, properly handling conflicts.
+
+## Implementation
+
+<CodeBlock title="JavaScript/JSX" language="tsx">
+{`import { twMerge } from 'tailwind-merge';
+import { clsx } from 'clsx';
+
+// Bad: Unpredictable which wins
+<div className={\`p-4 \${props.className}\`}>
+
+// Good: tailwind-merge resolves conflicts
+<div className={twMerge('p-4', props.className)}>
+
+// Better: cn() utility (clsx + twMerge)
+import { cn } from '@/lib/utils';
+<div className={cn('p-4 text-sm', isLarge && 'p-6 text-lg')}>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-class-precedence-bad"
+  goodKey="interactions-class-precedence-good"
+/>
+
+## Learn More
+
+- [tailwind-merge](https://github.com/dcastil/tailwind-merge)
+- [clsx](https://github.com/lukeed/clsx)
