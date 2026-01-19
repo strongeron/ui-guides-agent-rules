@@ -1,0 +1,57 @@
+---
+id: interactions-rams-aria-labels
+category: interactions
+source: rams
+title: Interactive Elements Need Labels
+description: Buttons and controls without visible text must have aria-label
+badExampleKey: interactions-rams-aria-labels-bad
+goodExampleKey: interactions-rams-aria-labels-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 4.1.2 - Level A">
+  All user interface components must have an accessible name. Icon-only buttons and controls without visible text are inaccessible without aria-label or aria-labelledby.
+</Callout>
+
+## Why This Matters
+
+Screen readers announce interactive elements by their accessible name. If a button only contains an icon with no text or label, it's announced as "button" with no indication of what it does. Users are left guessing whether it's delete, edit, settings, or something else entirely.
+
+## Implementation
+
+<CodeBlock title="HTML/JSX" language="html">
+{`<!-- Icon button with aria-label -->
+<button aria-label="Close dialog">
+  <XIcon />
+</button>
+
+<!-- Icon button with visually hidden text -->
+<button>
+  <XIcon aria-hidden="true" />
+  <span className="sr-only">Close dialog</span>
+</button>
+
+<!-- Icon link -->
+<a href="/settings" aria-label="Account settings">
+  <SettingsIcon />
+</a>
+
+<!-- Toggle with aria-label -->
+<button
+  aria-label="Toggle dark mode"
+  aria-pressed={isDark}
+>
+  {isDark ? <MoonIcon /> : <SunIcon />}
+</button>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-rams-aria-labels-bad"
+  goodKey="interactions-rams-aria-labels-good"
+/>
+
+## Learn More
+
+- [WCAG 4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- [Accessible Icon Buttons](https://www.sarasoueidan.com/blog/accessible-icon-buttons/)

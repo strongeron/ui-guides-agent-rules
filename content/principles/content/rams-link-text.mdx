@@ -1,0 +1,51 @@
+---
+id: content-rams-link-text
+category: content
+source: rams
+title: Links Need Descriptive Text
+description: Link text must describe the destination, not just "click here"
+badExampleKey: content-rams-link-text-bad
+goodExampleKey: content-rams-link-text-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 2.4.4 - Level A">
+  The purpose of each link can be determined from the link text alone, or from the link text together with its programmatically determined context. Generic text like "click here" provides no information about the destination.
+</Callout>
+
+## Why This Matters
+
+Screen reader users often navigate by listing all links on a page. Hearing "click here, click here, click here, read more, read more" tells them nothing. Descriptive link text like "View pricing plans" or "Read the accessibility guide" lets users understand destinations without surrounding context.
+
+## Implementation
+
+<CodeBlock title="HTML/JSX" language="html">
+{`<!-- Descriptive link text -->
+<a href="/pricing">View pricing plans</a>
+
+<!-- Context from surrounding text -->
+<p>
+  Learn about our <a href="/features">product features</a>.
+</p>
+
+<!-- If generic text is needed, use aria-label -->
+<a href="/doc.pdf" aria-label="Download annual report (PDF)">
+  Download
+</a>
+
+<!-- Icon links need text or aria-label -->
+<a href="/settings" aria-label="Account settings">
+  <SettingsIcon aria-hidden="true" />
+</a>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="content-rams-link-text-bad"
+  goodKey="content-rams-link-text-good"
+/>
+
+## Learn More
+
+- [WCAG 2.4.4 Link Purpose](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html)
+- [Writing Hyperlinks](https://www.nngroup.com/articles/writing-hyperlinks/)

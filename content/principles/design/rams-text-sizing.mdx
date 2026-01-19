@@ -1,0 +1,50 @@
+---
+id: design-rams-text-sizing
+category: design
+source: rams
+title: Use Consistent Text Sizing
+description: Text sizes should follow a consistent scale
+badExampleKey: design-rams-text-sizing-bad
+goodExampleKey: design-rams-text-sizing-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Design System Principle">
+  Text should be sized from a consistent scale with clear hierarchy. Random sizes create visual noise and unclear importance levels.
+</Callout>
+
+## Why This Matters
+
+A type scale creates visual hierarchy that helps users understand content structure. Random sizes (13px here, 17px there) feel arbitrary and make it hard to determine what's most important. Most design systems use a modular scale (e.g., 12, 14, 16, 18, 20, 24, 30, 36).
+
+## Implementation
+
+<CodeBlock title="CSS/Tailwind" language="html">
+{`<!-- Tailwind's default type scale -->
+text-xs: 12px   /* Fine print, badges */
+text-sm: 14px   /* Secondary text, captions */
+text-base: 16px /* Body text (default) */
+text-lg: 18px   /* Section headings, lead text */
+text-xl: 20px   /* Page section titles */
+text-2xl: 24px  /* Page titles */
+text-3xl: 30px  /* Hero headings */
+
+<!-- Consistent hierarchy -->
+<article>
+  <h1 className="text-2xl font-bold">Page Title</h1>
+  <p className="text-base">Body paragraph text.</p>
+  <h2 className="text-lg font-semibold">Section</h2>
+  <p className="text-sm text-muted-foreground">Caption text</p>
+</article>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-rams-text-sizing-bad"
+  goodKey="design-rams-text-sizing-good"
+/>
+
+## Learn More
+
+- [Modular Scale](https://www.modularscale.com/)
+- [Type Scale Generator](https://typescale.com/)

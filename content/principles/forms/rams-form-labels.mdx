@@ -1,0 +1,57 @@
+---
+id: forms-rams-form-labels
+category: forms
+source: rams
+title: Form Inputs Must Have Labels
+description: Every form input must have an associated label element
+badExampleKey: forms-rams-form-labels-bad
+goodExampleKey: forms-rams-form-labels-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 1.3.1 - Level A">
+  Form inputs must have labels that describe their purpose. Placeholders alone are not accessible labels - they disappear when typing and are not reliably announced by all screen readers.
+</Callout>
+
+## Why This Matters
+
+Labels tell users what information to enter. Without labels, screen reader users hear "edit text" with no context. Visual users also benefit - clicking a label focuses the input. Placeholders are hints, not labels; they vanish on input and have low contrast.
+
+## Implementation
+
+<CodeBlock title="HTML/JSX" language="html">
+{`<!-- Explicit label with htmlFor/for -->
+<label htmlFor="email">Email address</label>
+<input id="email" type="email" />
+
+<!-- Implicit label wrapping input -->
+<label>
+  Email address
+  <input type="email" />
+</label>
+
+<!-- With placeholder as additional hint -->
+<label htmlFor="email">Email address</label>
+<input
+  id="email"
+  type="email"
+  placeholder="you@example.com"
+/>
+
+<!-- Visually hidden label for search -->
+<label htmlFor="search" className="sr-only">
+  Search
+</label>
+<input id="search" type="search" placeholder="Search..." />`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="forms-rams-form-labels-bad"
+  goodKey="forms-rams-form-labels-good"
+/>
+
+## Learn More
+
+- [WCAG 1.3.1 Info and Relationships](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html)
+- [Form Labels](https://www.w3.org/WAI/tutorials/forms/labels/)

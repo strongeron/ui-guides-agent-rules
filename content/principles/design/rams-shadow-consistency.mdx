@@ -1,0 +1,54 @@
+---
+id: design-rams-shadow-consistency
+category: design
+source: rams
+title: Use Consistent Shadows
+description: Shadows should follow a consistent elevation system
+badExampleKey: design-rams-shadow-consistency-bad
+goodExampleKey: design-rams-shadow-consistency-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Design System Principle">
+  Shadows indicate elevation and should follow a consistent system. Mixing different shadow styles (hard vs. soft, colored vs. neutral) creates visual confusion.
+</Callout>
+
+## Why This Matters
+
+Shadows communicate depth and layering. Inconsistent shadows confuse the visual hierarchy - users can't tell what's on top of what. A consistent shadow scale (sm, md, lg, xl) with consistent color and blur creates predictable, understandable elevation.
+
+## Implementation
+
+<CodeBlock title="CSS/Tailwind" language="html">
+{`<!-- Tailwind shadow scale -->
+shadow-sm: Subtle lift (cards, inputs)
+shadow: Standard elevation (dropdowns)
+shadow-md: Medium elevation (popovers)
+shadow-lg: High elevation (modals)
+shadow-xl: Highest elevation (dialogs)
+
+<!-- Consistent usage by component type -->
+<Card className="shadow-sm" />        /* Base cards */
+<Dropdown className="shadow-md" />    /* Floating menus */
+<Modal className="shadow-lg" />       /* Dialogs */
+
+<!-- Interaction elevation -->
+<Card className="shadow-sm hover:shadow-md transition-shadow">
+  Lifts slightly on hover
+</Card>
+
+<!-- AVOID: Mixed shadow colors/styles -->
+<!-- shadow-[0_0_10px_red] on one card -->
+<!-- shadow-xl on another card at same level -->`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-rams-shadow-consistency-bad"
+  goodKey="design-rams-shadow-consistency-good"
+/>
+
+## Learn More
+
+- [Elevation in Material Design](https://m3.material.io/styles/elevation/overview)
+- [CSS Shadows Guide](https://css-tricks.com/almanac/properties/b/box-shadow/)

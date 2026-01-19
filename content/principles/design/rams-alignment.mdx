@@ -1,0 +1,58 @@
+---
+id: design-rams-alignment
+category: design
+source: rams
+title: Align Elements Consistently
+description: Related elements must align to a consistent grid
+badExampleKey: design-rams-alignment-bad
+goodExampleKey: design-rams-alignment-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Design System Principle">
+  Elements should align to a grid. Misaligned text, uneven spacing, and elements that don't line up create a sloppy, unprofessional appearance.
+</Callout>
+
+## Why This Matters
+
+Alignment creates visual order. When elements don't align - text starts at different x positions, cards have uneven widths, buttons float randomly - users perceive carelessness. Even a few pixels of misalignment registers subconsciously as "off."
+
+## Implementation
+
+<CodeBlock title="CSS/Tailwind" language="html">
+{`<!-- Flex alignment -->
+<div className="flex items-center justify-between">
+  <span>Left aligned</span>
+  <span>Right aligned</span>
+</div>
+
+<!-- Grid for consistent columns -->
+<div className="grid grid-cols-3 gap-4">
+  <Card />  <!-- All same width -->
+  <Card />
+  <Card />
+</div>
+
+<!-- Text alignment -->
+<div className="text-left">   /* Default, for LTR text */
+<div className="text-center"> /* Centered headings */
+<div className="text-right">  /* Numbers, prices */
+
+<!-- Stack with consistent spacing -->
+<div className="space-y-4">
+  <Item />  /* All evenly spaced */
+  <Item />
+  <Item />
+</div>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-rams-alignment-bad"
+  goodKey="design-rams-alignment-good"
+/>
+
+## Learn More
+
+- [Alignment in Design](https://www.interaction-design.org/literature/article/the-building-blocks-of-visual-design)
+- [Grid Systems](https://www.designsystems.com/space-grids-and-layouts/)

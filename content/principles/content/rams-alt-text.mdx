@@ -1,0 +1,56 @@
+---
+id: content-rams-alt-text
+category: content
+source: rams
+title: Images Must Have Alt Text
+description: All images must have descriptive alt text for screen readers
+badExampleKey: content-rams-alt-text-bad
+goodExampleKey: content-rams-alt-text-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 1.1.1 - Level A">
+  All non-text content must have a text alternative that serves the equivalent purpose. Images without alt text are invisible to screen reader users.
+</Callout>
+
+## Why This Matters
+
+Screen reader users rely on alt text to understand images. Missing alt text means the image is either skipped entirely or the filename is read aloud (e.g., "IMG_2847.jpg"), providing no useful information. Decorative images should have an empty `alt=""` to be properly ignored.
+
+## Implementation
+
+<CodeBlock title="HTML" language="html">
+{`<!-- Informative image - describe the content -->
+<img src="/team-photo.jpg" alt="Team members at the 2024 company retreat" />
+
+<!-- Functional image (link/button) - describe the action -->
+<button>
+  <img src="/search-icon.svg" alt="Search" />
+</button>
+
+<!-- Decorative image - empty alt to hide from AT -->
+<img src="/decorative-border.png" alt="" />
+
+<!-- Complex image - use aria-describedby for long descriptions -->
+<figure>
+  <img
+    src="/chart.png"
+    alt="Q3 revenue chart"
+    aria-describedby="chart-desc"
+  />
+  <figcaption id="chart-desc">
+    Revenue grew 23% from $2.1M to $2.6M...
+  </figcaption>
+</figure>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="content-rams-alt-text-bad"
+  goodKey="content-rams-alt-text-good"
+/>
+
+## Learn More
+
+- [WCAG 1.1.1 Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
+- [Alt Text Decision Tree](https://www.w3.org/WAI/tutorials/images/decision-tree/)
