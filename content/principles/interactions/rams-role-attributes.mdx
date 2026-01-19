@@ -1,0 +1,62 @@
+---
+id: interactions-rams-role-attributes
+category: interactions
+source: rams
+title: ARIA Roles Need Required Attributes
+description: Elements with ARIA roles must include all required attributes
+badExampleKey: interactions-rams-role-attributes-bad
+goodExampleKey: interactions-rams-role-attributes-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 4.1.2 - Level A">
+  For all user interface components, the name and role can be programmatically determined. ARIA roles have required attributes - using a role without its required attributes creates broken, unusable components for assistive technology users.
+</Callout>
+
+## Why This Matters
+
+ARIA roles come with contracts. A checkbox must have aria-checked. A slider must have aria-valuenow, aria-valuemin, and aria-valuemax. Missing required attributes mean the role is announced but the state is unknown - like a checkbox that never tells you if it's checked.
+
+## Implementation
+
+<CodeBlock title="HTML/JSX" language="html">
+{`<!-- checkbox requires aria-checked -->
+<div
+  role="checkbox"
+  aria-checked={isChecked}
+  tabIndex={0}
+>
+  <CheckIcon />
+</div>
+
+<!-- slider requires aria-valuenow, min, max -->
+<div
+  role="slider"
+  aria-valuenow={50}
+  aria-valuemin={0}
+  aria-valuemax={100}
+  aria-label="Volume"
+  tabIndex={0}
+/>
+
+<!-- tablist/tab/tabpanel pattern -->
+<div role="tablist">
+  <button role="tab" aria-selected={true} aria-controls="panel-1">
+    Tab 1
+  </button>
+</div>
+<div role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+  Content
+</div>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-rams-role-attributes-bad"
+  goodKey="interactions-rams-role-attributes-good"
+/>
+
+## Learn More
+
+- [WCAG 4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- [ARIA Roles Reference](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)

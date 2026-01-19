@@ -1584,5 +1584,346 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'layout-custom-utilities-bad',
     goodExampleKey: 'layout-custom-utilities-good'
+  },
+  // RAMS Accessibility and Visual Design Rules - Content
+  {
+    id: 'content-rams-alt-text',
+    category: 'content',
+    source: 'rams',
+    title: 'Images Missing Alt Text',
+    description: 'All images must have descriptive alt text for screen reader users',
+    sourceQuote: 'Images without alt text are invisible to screen reader users. Provide descriptive text that conveys the image content and purpose.',
+    additionalExplanation: 'Alt text is essential for accessibility. Decorative images should use alt="" to be skipped by screen readers, while meaningful images need descriptive text.',
+    sourceLinks: [
+      { text: 'WCAG 1.1.1', url: 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html' }
+    ],
+    badExampleKey: 'content-rams-alt-text-bad',
+    goodExampleKey: 'content-rams-alt-text-good'
+  },
+  {
+    id: 'content-rams-heading-levels',
+    category: 'content',
+    source: 'rams',
+    title: 'Skipped Heading Levels',
+    description: 'Heading levels should not skip (e.g., h1 to h3 without h2)',
+    sourceQuote: 'Skipping heading levels breaks the logical document structure. Screen reader users navigate by headings; skipped levels cause confusion.',
+    additionalExplanation: 'Headings create a document outline. Going from h1 to h3 suggests missing content. Always maintain sequential heading hierarchy.',
+    sourceLinks: [
+      { text: 'WCAG 1.3.1', url: 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html' }
+    ],
+    badExampleKey: 'content-rams-heading-levels-bad',
+    goodExampleKey: 'content-rams-heading-levels-good'
+  },
+  {
+    id: 'content-rams-link-text',
+    category: 'content',
+    source: 'rams',
+    title: 'Links Without Descriptive Text',
+    description: 'Links should have descriptive text, not generic phrases like "click here"',
+    sourceQuote: 'Generic link text like "click here" or "read more" provides no context. Link text should describe the destination or action.',
+    additionalExplanation: 'Screen reader users often navigate by links. Descriptive text helps them understand where the link goes without reading surrounding content.',
+    sourceLinks: [
+      { text: 'WCAG 2.4.4', url: 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html' }
+    ],
+    badExampleKey: 'content-rams-link-text-bad',
+    goodExampleKey: 'content-rams-link-text-good'
+  },
+  // RAMS Accessibility and Visual Design Rules - Interactions
+  {
+    id: 'interactions-rams-aria-labels',
+    category: 'interactions',
+    source: 'rams',
+    title: 'Interactive Elements Missing ARIA Labels',
+    description: 'Interactive elements without visible text need aria-label or aria-labelledby',
+    sourceQuote: 'Icon buttons and other interactive elements without visible text must have accessible names via aria-label or aria-labelledby.',
+    additionalExplanation: 'Screen readers announce the accessible name of interactive elements. Without it, users hear only "button" with no indication of purpose.',
+    sourceLinks: [
+      { text: 'WCAG 4.1.2', url: 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html' }
+    ],
+    badExampleKey: 'interactions-rams-aria-labels-bad',
+    goodExampleKey: 'interactions-rams-aria-labels-good'
+  },
+  {
+    id: 'interactions-rams-focus-outline',
+    category: 'interactions',
+    source: 'rams',
+    title: 'Missing Focus Outline',
+    description: 'Interactive elements must have visible focus indicators',
+    sourceQuote: 'Removing focus outlines with outline: none without providing an alternative makes keyboard navigation impossible.',
+    additionalExplanation: 'Focus indicators show keyboard users where they are on the page. Use :focus-visible to show outlines only for keyboard navigation.',
+    sourceLinks: [
+      { text: 'WCAG 2.4.7', url: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html' }
+    ],
+    badExampleKey: 'interactions-rams-focus-outline-bad',
+    goodExampleKey: 'interactions-rams-focus-outline-good'
+  },
+  {
+    id: 'interactions-rams-keyboard-handlers',
+    category: 'interactions',
+    source: 'rams',
+    title: 'onClick Without Keyboard Handler',
+    description: 'Elements with onClick should also handle keyboard events',
+    sourceQuote: 'Elements with mouse handlers but no keyboard handlers are inaccessible to keyboard-only users. Add onKeyDown or use semantic elements.',
+    additionalExplanation: 'Semantic elements like button and a handle keyboard events automatically. Custom elements with onClick need explicit onKeyDown handlers.',
+    sourceLinks: [
+      { text: 'WCAG 2.1.1', url: 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html' }
+    ],
+    badExampleKey: 'interactions-rams-keyboard-handlers-bad',
+    goodExampleKey: 'interactions-rams-keyboard-handlers-good'
+  },
+  {
+    id: 'interactions-rams-role-attributes',
+    category: 'interactions',
+    source: 'rams',
+    title: 'Role Without Required Attributes',
+    description: 'ARIA roles must include all required attributes',
+    sourceQuote: 'ARIA roles have required attributes. A checkbox needs aria-checked; a slider needs aria-valuenow, aria-valuemin, aria-valuemax.',
+    additionalExplanation: 'Incomplete ARIA is often worse than no ARIA. If you use a role, include all attributes that screen readers expect.',
+    sourceLinks: [
+      { text: 'WCAG 4.1.2', url: 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html' }
+    ],
+    badExampleKey: 'interactions-rams-role-attributes-bad',
+    goodExampleKey: 'interactions-rams-role-attributes-good'
+  },
+  {
+    id: 'interactions-rams-semantic-handlers',
+    category: 'interactions',
+    source: 'rams',
+    title: 'Non-Interactive Element with Keyboard Handler',
+    description: 'Use semantic interactive elements instead of divs with handlers',
+    sourceQuote: 'Adding keyboard handlers to non-interactive elements like div requires role, tabIndex, and proper keyboard handling. Use button or a instead.',
+    additionalExplanation: 'Semantic elements come with built-in accessibility. A button handles focus, keyboard events, and announces correctly without extra work.',
+    sourceLinks: [
+      { text: 'WCAG 4.1.2', url: 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html' }
+    ],
+    badExampleKey: 'interactions-rams-semantic-handlers-bad',
+    goodExampleKey: 'interactions-rams-semantic-handlers-good'
+  },
+  {
+    id: 'interactions-rams-tabindex',
+    category: 'interactions',
+    source: 'rams',
+    title: 'Positive tabindex Values',
+    description: 'Avoid positive tabindex values that disrupt natural tab order',
+    sourceQuote: 'Positive tabindex values create unpredictable tab order. Use tabindex="0" to add to natural order or tabindex="-1" for programmatic focus.',
+    additionalExplanation: 'Natural tab order follows the DOM. Positive tabindex creates a parallel ordering system that confuses keyboard users.',
+    sourceLinks: [
+      { text: 'WCAG 2.4.3', url: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html' }
+    ],
+    badExampleKey: 'interactions-rams-tabindex-bad',
+    goodExampleKey: 'interactions-rams-tabindex-good'
+  },
+  {
+    id: 'interactions-rams-touch-targets',
+    category: 'interactions',
+    source: 'rams',
+    title: 'Small Touch Targets',
+    description: 'Interactive elements should be at least 44x44 pixels for touch',
+    sourceQuote: 'Touch targets smaller than 44x44 pixels are difficult to tap accurately. This is especially important on mobile devices.',
+    additionalExplanation: 'The 44px minimum comes from Apple\'s Human Interface Guidelines and WCAG 2.5.5 AAA. Padding can increase hit area without changing visual size.',
+    sourceLinks: [
+      { text: 'WCAG 2.5.5', url: 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html' }
+    ],
+    badExampleKey: 'interactions-rams-touch-targets-bad',
+    goodExampleKey: 'interactions-rams-touch-targets-good'
+  },
+  // RAMS Accessibility and Visual Design Rules - Forms
+  {
+    id: 'forms-rams-form-labels',
+    category: 'forms',
+    source: 'rams',
+    title: 'Form Inputs Missing Labels',
+    description: 'All form inputs must have associated labels',
+    sourceQuote: 'Form inputs without labels are inaccessible. Use the label element with htmlFor, or aria-label for inputs without visible labels.',
+    additionalExplanation: 'Labels tell users what to enter. Screen readers announce the label when the input is focused. Placeholder text is not a substitute.',
+    sourceLinks: [
+      { text: 'WCAG 1.3.1', url: 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html' }
+    ],
+    badExampleKey: 'forms-rams-form-labels-bad',
+    goodExampleKey: 'forms-rams-form-labels-good'
+  },
+  // RAMS Accessibility and Visual Design Rules - Design
+  {
+    id: 'design-rams-color-only',
+    category: 'design',
+    source: 'rams',
+    title: 'Color-Only Information',
+    description: 'Don\'t rely on color alone to convey information',
+    sourceQuote: 'Information conveyed only through color is inaccessible to colorblind users. Add icons, patterns, or text labels.',
+    additionalExplanation: 'About 8% of men have color vision deficiency. Use multiple visual cues: icons with status colors, underlines with links, patterns in charts.',
+    sourceLinks: [
+      { text: 'WCAG 1.4.1', url: 'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html' }
+    ],
+    badExampleKey: 'design-rams-color-only-bad',
+    goodExampleKey: 'design-rams-color-only-good'
+  },
+  {
+    id: 'design-rams-color-contrast',
+    category: 'design',
+    source: 'rams',
+    title: 'Insufficient Color Contrast',
+    description: 'Text must have sufficient contrast with its background',
+    sourceQuote: 'Low contrast text is hard to read, especially for users with low vision. WCAG requires 4.5:1 for normal text, 3:1 for large text.',
+    additionalExplanation: 'Use tools like the WebAIM contrast checker. Gray text on white backgrounds is a common violation. Large text (18pt+) has lower requirements.',
+    sourceLinks: [
+      { text: 'WCAG 1.4.3', url: 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html' }
+    ],
+    badExampleKey: 'design-rams-color-contrast-bad',
+    goodExampleKey: 'design-rams-color-contrast-good'
+  },
+  {
+    id: 'design-rams-text-contrast',
+    category: 'design',
+    source: 'rams',
+    title: 'Poor Text-Background Contrast',
+    description: 'Ensure readable text contrast, especially for secondary text',
+    sourceQuote: 'Secondary text, captions, and disabled states often have insufficient contrast. All readable text should meet contrast requirements.',
+    additionalExplanation: 'Don\'t sacrifice readability for aesthetics. Light gray on white is a common problem. Test with contrast checkers and in different lighting.',
+    sourceLinks: [
+      { text: 'WCAG 1.4.3', url: 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html' }
+    ],
+    badExampleKey: 'design-rams-text-contrast-bad',
+    goodExampleKey: 'design-rams-text-contrast-good'
+  },
+  {
+    id: 'design-rams-inconsistent-spacing',
+    category: 'design',
+    source: 'rams',
+    title: 'Inconsistent Spacing',
+    description: 'Use consistent spacing between similar elements',
+    sourceQuote: 'Inconsistent spacing creates visual noise and makes relationships between elements unclear. Use a spacing scale consistently.',
+    additionalExplanation: 'Tailwind\'s spacing scale (4, 8, 12, 16, 24, 32...) provides consistent increments. Related elements should have consistent gaps.',
+    sourceLinks: [
+      { text: 'Design System Spacing', url: 'https://tailwindcss.com/docs/customizing-spacing' }
+    ],
+    badExampleKey: 'design-rams-inconsistent-spacing-bad',
+    goodExampleKey: 'design-rams-inconsistent-spacing-good'
+  },
+  {
+    id: 'design-rams-crowded-elements',
+    category: 'design',
+    source: 'rams',
+    title: 'Crowded Elements',
+    description: 'Elements too close together reduce readability and usability',
+    sourceQuote: 'Cramped layouts make content hard to scan and interactive elements hard to tap. Give elements room to breathe.',
+    additionalExplanation: 'Whitespace is not wasted space. Adequate padding and margins improve scanability and make touch targets easier to hit.',
+    sourceLinks: [
+      { text: 'Visual Design Principles', url: 'https://www.nngroup.com/articles/whitespace/' }
+    ],
+    badExampleKey: 'design-rams-crowded-elements-bad',
+    goodExampleKey: 'design-rams-crowded-elements-good'
+  },
+  {
+    id: 'design-rams-excessive-whitespace',
+    category: 'design',
+    source: 'rams',
+    title: 'Excessive Whitespace',
+    description: 'Too much whitespace can fragment related content',
+    sourceQuote: 'While whitespace is important, excessive gaps between related elements break visual relationships and make scanning difficult.',
+    additionalExplanation: 'Balance is key. Related content should be grouped with proximity. Use Gestalt principles to create clear visual hierarchies.',
+    sourceLinks: [
+      { text: 'Gestalt Principles', url: 'https://www.nngroup.com/articles/gestalt-proximity/' }
+    ],
+    badExampleKey: 'design-rams-excessive-whitespace-bad',
+    goodExampleKey: 'design-rams-excessive-whitespace-good'
+  },
+  {
+    id: 'design-rams-font-consistency',
+    category: 'design',
+    source: 'rams',
+    title: 'Inconsistent Font Usage',
+    description: 'Limit font families and use them consistently',
+    sourceQuote: 'Too many font families create visual chaos. Stick to 2-3 fonts maximum with clear roles for each.',
+    additionalExplanation: 'Use one font for headings, one for body text. Font variations (weight, size) should follow a consistent type scale.',
+    sourceLinks: [
+      { text: 'Typography Guidelines', url: 'https://tailwindcss.com/docs/font-family' }
+    ],
+    badExampleKey: 'design-rams-font-consistency-bad',
+    goodExampleKey: 'design-rams-font-consistency-good'
+  },
+  {
+    id: 'design-rams-text-sizing',
+    category: 'design',
+    source: 'rams',
+    title: 'Inconsistent Text Sizing',
+    description: 'Use a consistent type scale for text sizes',
+    sourceQuote: 'Random text sizes create visual noise. Follow a type scale where each size has a clear purpose in the hierarchy.',
+    additionalExplanation: 'Tailwind\'s type scale (xs, sm, base, lg, xl, 2xl...) provides harmonious ratios. Each size should have a specific role.',
+    sourceLinks: [
+      { text: 'Type Scale', url: 'https://tailwindcss.com/docs/font-size' }
+    ],
+    badExampleKey: 'design-rams-text-sizing-bad',
+    goodExampleKey: 'design-rams-text-sizing-good'
+  },
+  {
+    id: 'design-rams-color-harmony',
+    category: 'design',
+    source: 'rams',
+    title: 'Colors That Clash',
+    description: 'Use harmonious color combinations from a defined palette',
+    sourceQuote: 'Colors that clash create visual discomfort. Use complementary, analogous, or triadic color schemes from a defined palette.',
+    additionalExplanation: 'Design systems provide color palettes for consistency. Don\'t pick arbitrary colors; use the palette\'s semantic colors.',
+    sourceLinks: [
+      { text: 'Color Theory', url: 'https://www.smashingmagazine.com/2021/08/create-color-scheme-user-interfaces/' }
+    ],
+    badExampleKey: 'design-rams-color-harmony-bad',
+    goodExampleKey: 'design-rams-color-harmony-good'
+  },
+  {
+    id: 'design-rams-semantic-colors',
+    category: 'design',
+    source: 'rams',
+    title: 'Inconsistent Semantic Colors',
+    description: 'Use semantic colors consistently (error=red, success=green)',
+    sourceQuote: 'Semantic colors convey meaning. Using red for success or green for errors violates user expectations and causes confusion.',
+    additionalExplanation: 'Establish and follow semantic color conventions: red/destructive for errors, green/success for positive, yellow/warning for caution.',
+    sourceLinks: [
+      { text: 'Semantic Colors', url: 'https://www.smashingmagazine.com/2021/07/color-meaning-design/' }
+    ],
+    badExampleKey: 'design-rams-semantic-colors-bad',
+    goodExampleKey: 'design-rams-semantic-colors-good'
+  },
+  {
+    id: 'design-rams-border-radius',
+    category: 'design',
+    source: 'rams',
+    title: 'Inconsistent Border Radius',
+    description: 'Use consistent border radius values across components',
+    sourceQuote: 'Mixing sharp corners with rounded ones creates visual inconsistency. Pick a radius style and apply it systematically.',
+    additionalExplanation: 'Tailwind provides radius tokens (sm, md, lg). Use them consistently: all buttons same radius, all cards same radius.',
+    sourceLinks: [
+      { text: 'Border Radius', url: 'https://tailwindcss.com/docs/border-radius' }
+    ],
+    badExampleKey: 'design-rams-border-radius-bad',
+    goodExampleKey: 'design-rams-border-radius-good'
+  },
+  {
+    id: 'design-rams-shadow-consistency',
+    category: 'design',
+    source: 'rams',
+    title: 'Inconsistent Shadow Usage',
+    description: 'Apply shadows consistently to establish visual hierarchy',
+    sourceQuote: 'Shadows indicate elevation. Inconsistent shadow usage confuses the visual hierarchy and makes the UI feel disjointed.',
+    additionalExplanation: 'Define shadow levels for different component types: cards get one shadow, modals get deeper shadow, buttons may have subtle hover shadow.',
+    sourceLinks: [
+      { text: 'Box Shadow', url: 'https://tailwindcss.com/docs/box-shadow' }
+    ],
+    badExampleKey: 'design-rams-shadow-consistency-bad',
+    goodExampleKey: 'design-rams-shadow-consistency-good'
+  },
+  {
+    id: 'design-rams-alignment',
+    category: 'design',
+    source: 'rams',
+    title: 'Misaligned Elements',
+    description: 'Elements should align to a consistent grid or baseline',
+    sourceQuote: 'Misaligned elements make the UI look unprofessional. Use grid systems and alignment utilities to maintain visual order.',
+    additionalExplanation: 'Tailwind\'s flex and grid utilities make alignment straightforward. Left-align text blocks, center icons within buttons, maintain baseline alignment.',
+    sourceLinks: [
+      { text: 'Flexbox', url: 'https://tailwindcss.com/docs/flex' },
+      { text: 'Grid', url: 'https://tailwindcss.com/docs/grid-template-columns' }
+    ],
+    badExampleKey: 'design-rams-alignment-bad',
+    goodExampleKey: 'design-rams-alignment-good'
   }
 ];

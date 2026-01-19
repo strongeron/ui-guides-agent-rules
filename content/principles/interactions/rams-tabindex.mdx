@@ -1,0 +1,52 @@
+---
+id: interactions-rams-tabindex
+category: interactions
+source: rams
+title: Never Use Positive tabindex
+description: Avoid tabindex values greater than 0
+badExampleKey: interactions-rams-tabindex-bad
+goodExampleKey: interactions-rams-tabindex-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 2.4.3 - Level A">
+  If a Web page can be navigated sequentially, focusable components receive focus in an order that preserves meaning. Positive tabindex values disrupt natural tab order, creating a confusing navigation experience.
+</Callout>
+
+## Why This Matters
+
+Positive tabindex values (1, 2, 3...) override the natural DOM order, creating an unpredictable tab sequence. Users expect to tab through elements in visual/DOM order. Only use tabindex="0" (add to tab order) or tabindex="-1" (programmatic focus only).
+
+## Implementation
+
+<CodeBlock title="HTML/JSX" language="html">
+{`<!-- tabindex="0" - add to natural tab order -->
+<div role="button" tabIndex={0}>
+  Custom interactive
+</div>
+
+<!-- tabindex="-1" - focusable by script, not tab -->
+<div tabIndex={-1} ref={modalRef}>
+  Modal content (focused programmatically)
+</div>
+
+<!-- Native elements don't need tabindex -->
+<button>Already focusable</button>
+<a href="/page">Already focusable</a>
+<input type="text" /> <!-- Already focusable -->
+
+<!-- NEVER use positive tabindex -->
+<!-- tabIndex={1} - DON'T DO THIS -->
+<!-- tabIndex={2} - DON'T DO THIS -->`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-rams-tabindex-bad"
+  goodKey="interactions-rams-tabindex-good"
+/>
+
+## Learn More
+
+- [WCAG 2.4.3 Focus Order](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html)
+- [Using tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)

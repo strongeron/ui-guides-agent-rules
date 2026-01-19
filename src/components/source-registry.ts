@@ -36,6 +36,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://tailwindcss.com/docs',
     color: 'bg-[#38bdf8] text-slate-900 border-[#38bdf8]',
   },
+  rams: {
+    id: 'rams',
+    name: 'RAMS',
+    description: 'Accessibility and visual design review rules',
+    url: 'https://github.com/anthropics/rams',
+    color: 'bg-purple-500 text-white border-purple-500',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

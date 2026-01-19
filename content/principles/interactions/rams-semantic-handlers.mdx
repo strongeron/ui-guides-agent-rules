@@ -1,0 +1,60 @@
+---
+id: interactions-rams-semantic-handlers
+category: interactions
+source: rams
+title: Use Semantic Interactive Elements
+description: Don't add click handlers to non-interactive elements like divs
+badExampleKey: interactions-rams-semantic-handlers-bad
+goodExampleKey: interactions-rams-semantic-handlers-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 4.1.2 - Level A">
+  User interface components must have accessible names and roles. Adding click handlers to divs and spans creates custom widgets that lack the built-in accessibility of native elements.
+</Callout>
+
+## Why This Matters
+
+Native interactive elements (button, a, input) come with built-in accessibility: keyboard support, focus management, and proper ARIA roles. When you put onClick on a div, you get none of this. You'd need to add role, tabIndex, keyboard handlers, and focus styling manually - and often something gets missed.
+
+## Implementation
+
+<CodeBlock title="HTML/JSX" language="html">
+{`<!-- Use button for actions -->
+<button onClick={handleDelete}>Delete</button>
+
+<!-- Use anchor for navigation -->
+<a href="/settings">Settings</a>
+
+<!-- If you MUST use a div (rarely needed), add everything -->
+<div
+  role="button"
+  tabIndex={0}
+  onClick={handleAction}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleAction();
+    }
+  }}
+  aria-label="Perform action"
+>
+  Custom interactive
+</div>
+
+<!-- But really, just use a button -->
+<button className="custom-styles">
+  Much simpler
+</button>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="interactions-rams-semantic-handlers-bad"
+  goodKey="interactions-rams-semantic-handlers-good"
+/>
+
+## Learn More
+
+- [WCAG 4.1.2 Name, Role, Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- [No ARIA is better than bad ARIA](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)

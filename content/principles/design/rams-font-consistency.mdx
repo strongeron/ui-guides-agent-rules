@@ -1,0 +1,50 @@
+---
+id: design-rams-font-consistency
+category: design
+source: rams
+title: Use Fonts Consistently
+description: Maintain consistent font families, weights, and styles
+badExampleKey: design-rams-font-consistency-bad
+goodExampleKey: design-rams-font-consistency-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Design System Principle">
+  Mixing too many fonts creates visual chaos. Stick to one or two font families and use weight/size variations for hierarchy instead of adding more fonts.
+</Callout>
+
+## Why This Matters
+
+Typography consistency builds trust and professionalism. Random font changes feel jarring and unprofessional. A system font stack or single chosen font family, with consistent weights (400 for body, 500 or 600 for emphasis, 700 for headings) creates harmony.
+
+## Implementation
+
+<CodeBlock title="CSS/Tailwind" language="html">
+{`<!-- Define fonts in your config/CSS -->
+--font-sans: "Inter", system-ui, sans-serif;
+--font-mono: "JetBrains Mono", monospace;
+
+<!-- Use consistently -->
+<body className="font-sans">
+  <h1 className="font-semibold">Heading</h1>  <!-- Same family, heavier weight -->
+  <p className="font-normal">Body text</p>
+  <code className="font-mono">Code</code>  <!-- Only exception: code -->
+</body>
+
+<!-- Weight hierarchy -->
+font-normal (400): Body text
+font-medium (500): Labels, subtle emphasis
+font-semibold (600): Headings, strong emphasis
+font-bold (700): Primary headings only`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-rams-font-consistency-bad"
+  goodKey="design-rams-font-consistency-good"
+/>
+
+## Learn More
+
+- [Typography in Design Systems](https://www.designsystems.com/typography-guides/)
+- [System Font Stack](https://systemfontstack.com/)

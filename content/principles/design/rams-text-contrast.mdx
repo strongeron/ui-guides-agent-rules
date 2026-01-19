@@ -1,0 +1,50 @@
+---
+id: design-rams-text-contrast
+category: design
+source: rams
+title: Ensure Text Contrast
+description: Text must have sufficient contrast against its background
+badExampleKey: design-rams-text-contrast-bad
+goodExampleKey: design-rams-text-contrast-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 1.4.3 - Level AA">
+  Normal text needs at least 4.5:1 contrast ratio. Large text (18px+ bold or 24px+ regular) needs 3:1 minimum. Low contrast text is difficult or impossible to read for users with low vision.
+</Callout>
+
+## Why This Matters
+
+Poor text contrast affects everyone - in bright sunlight, on low-quality displays, or with any vision impairment. Gray text on white backgrounds is a common violation. Always check contrast ratios, especially for secondary/muted text which is often made too light.
+
+## Implementation
+
+<CodeBlock title="CSS/Tailwind" language="html">
+{`<!-- Good contrast for body text -->
+<p className="text-foreground">Primary content</p>  <!-- ~15:1 -->
+
+<!-- Muted but still readable -->
+<p className="text-muted-foreground">Secondary text</p>  <!-- ~7:1 -->
+
+<!-- Check placeholders meet contrast -->
+<input placeholder="Search..." className="placeholder:text-muted-foreground" />
+
+<!-- Large text can have lower contrast -->
+<h1 className="text-4xl text-muted-foreground">Heading</h1>  <!-- 3:1 OK -->
+
+<!-- Tools to check:
+     - Chrome DevTools > Elements > Contrast ratio
+     - WebAIM Contrast Checker
+     - Figma A11y plugins -->`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-rams-text-contrast-bad"
+  goodKey="design-rams-text-contrast-good"
+/>
+
+## Learn More
+
+- [WCAG 1.4.3 Contrast Minimum](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)

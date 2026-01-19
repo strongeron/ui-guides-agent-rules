@@ -1,0 +1,53 @@
+---
+id: design-rams-border-radius
+category: design
+source: rams
+title: Use Consistent Border Radius
+description: Border radius values should come from a consistent scale
+badExampleKey: design-rams-border-radius-bad
+goodExampleKey: design-rams-border-radius-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Design System Principle">
+  Border radius should follow a consistent scale. Mixing sharp corners with very rounded elements, or using arbitrary values, creates visual discord.
+</Callout>
+
+## Why This Matters
+
+Consistent border radius establishes visual language - sharp vs. rounded conveys different personalities. Mixing random radii (4px here, 12px there, 24px elsewhere) looks accidental and unprofessional. Choose a scale and use it systematically.
+
+## Implementation
+
+<CodeBlock title="CSS/Tailwind" language="html">
+{`<!-- Tailwind radius scale -->
+rounded-none: 0px     /* Sharp, technical */
+rounded-sm: 2px       /* Subtle rounding */
+rounded: 4px          /* Default, standard UI */
+rounded-md: 6px       /* Cards, inputs */
+rounded-lg: 8px       /* Larger cards, modals */
+rounded-xl: 12px      /* Feature cards */
+rounded-full: 9999px  /* Avatars, pills */
+
+<!-- Consistent usage -->
+<Card className="rounded-lg">       /* 8px */
+  <Input className="rounded-md" />  /* 6px - slightly smaller */
+  <Button className="rounded-md" /> /* 6px - matches input */
+</Card>
+
+<!-- Nested radius rule: inner = outer - padding -->
+<div className="rounded-lg p-2">
+  <div className="rounded-md">Inner</div>
+</div>`}
+</CodeBlock>
+
+<ExampleComparison
+  badKey="design-rams-border-radius-bad"
+  goodKey="design-rams-border-radius-good"
+/>
+
+## Learn More
+
+- [Border Radius in Design Systems](https://medium.com/design-with-figma/the-complete-guide-to-border-radius-in-design-systems-fa1eb7db0ef8)
+- [Nested Border Radius](https://www.30secondsofcode.org/css/s/nested-border-radius/)

@@ -15,6 +15,7 @@ export type PatternSource =
   | 'aria'             // WAI-ARIA Authoring Practices
   | 'design-system'    // Design system patterns
   | 'tailwind'         // Tailwind CSS golden rules
+  | 'rams'             // RAMS accessibility and visual design review
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {
