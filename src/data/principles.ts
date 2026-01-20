@@ -1925,5 +1925,91 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'design-rams-alignment-bad',
     goodExampleKey: 'design-rams-alignment-good'
+  },
+  // @Ibelick UI Skills - Stack principles
+  {
+    id: 'performance-ibelick-tailwind-defaults',
+    category: 'performance',
+    source: 'ibelick',
+    title: 'Tailwind Defaults First',
+    description: 'Use Tailwind CSS default spacing, colors, and sizing scales unless a custom design token exists',
+    sourceQuote: 'MUST use Tailwind CSS defaults (spacing, colors, sizing) unless a custom design token exists in the config.',
+    additionalExplanation: 'Tailwind\'s default scale is carefully designed for consistency. Using arbitrary values like p-[13px] creates visual inconsistency and makes CSS harder to maintain.',
+    sourceLinks: [
+      { text: 'Tailwind Spacing Scale', url: 'https://tailwindcss.com/docs/customizing-spacing' }
+    ],
+    badExampleKey: 'performance-ibelick-tailwind-defaults-bad',
+    goodExampleKey: 'performance-ibelick-tailwind-defaults-good'
+  },
+  {
+    id: 'animations-ibelick-motion-library',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Use motion/react for JS Animations',
+    description: 'Use motion/react (Framer Motion) for JavaScript-driven animations instead of manual implementations',
+    sourceQuote: 'MUST use motion/react for JavaScript animations. It handles interruption, spring physics, and gesture integration correctly.',
+    additionalExplanation: 'Hand-rolling animations with requestAnimationFrame or direct DOM manipulation leads to buggy, interruptible animations. motion/react handles complex edge cases out of the box.',
+    sourceLinks: [
+      { text: 'Motion Documentation', url: 'https://motion.dev/docs/react-quick-start' }
+    ],
+    badExampleKey: 'animations-ibelick-motion-library-bad',
+    goodExampleKey: 'animations-ibelick-motion-library-good'
+  },
+  {
+    id: 'animations-ibelick-tw-animate',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'tw-animate-css for Micro Animations',
+    description: 'Use tw-animate-css plugin for entrance and micro-interaction animations',
+    sourceQuote: 'Use tw-animate-css for entrance animations and micro-interactions. It provides consistent, performant CSS animations as Tailwind utilities.',
+    additionalExplanation: 'The tw-animate-css plugin provides a comprehensive set of entrance, exit, and micro-interaction animations. Using a standardized library ensures consistency.',
+    sourceLinks: [
+      { text: 'tw-animate-css', url: 'https://github.com/chrismlusk/tw-animate-css' }
+    ],
+    badExampleKey: 'animations-ibelick-tw-animate-bad',
+    goodExampleKey: 'animations-ibelick-tw-animate-good'
+  },
+  {
+    id: 'forms-ibelick-cn-utility',
+    category: 'forms',
+    source: 'ibelick',
+    title: 'Use cn() Utility for Class Merging',
+    description: 'Always use the cn() utility (clsx + tailwind-merge) for conditional and merged class names',
+    sourceQuote: 'MUST use cn utility (clsx + tailwind-merge) for class name merging. It handles conflicts and conditionals correctly.',
+    additionalExplanation: 'When merging Tailwind classes, conflicts can occur (e.g., p-4 and p-2 both present). The cn() utility combines clsx for conditional logic with tailwind-merge for intelligent conflict resolution.',
+    sourceLinks: [
+      { text: 'tailwind-merge', url: 'https://github.com/dcastil/tailwind-merge' }
+    ],
+    badExampleKey: 'forms-ibelick-cn-utility-bad',
+    goodExampleKey: 'forms-ibelick-cn-utility-good'
+  },
+  // @Ibelick UI Skills - Layout principles
+  {
+    id: 'layout-ibelick-z-index-scale',
+    category: 'layout',
+    source: 'ibelick',
+    title: 'Use Fixed Z-Index Scale',
+    description: 'Use a defined z-index scale instead of arbitrary values like z-[999]',
+    sourceQuote: 'MUST use fixed z-index scale, no arbitrary z-*. Define semantic z-index layers (base, dropdown, sticky, modal, popover, tooltip).',
+    additionalExplanation: 'Arbitrary z-index values like z-[999] create an unmanageable stacking context. A semantic scale ensures predictable stacking: tooltips above modals, modals above dropdowns.',
+    sourceLinks: [
+      { text: 'Tailwind Z-Index', url: 'https://tailwindcss.com/docs/z-index' }
+    ],
+    badExampleKey: 'layout-ibelick-z-index-scale-bad',
+    goodExampleKey: 'layout-ibelick-z-index-scale-good'
+  },
+  {
+    id: 'layout-ibelick-size-utility',
+    category: 'layout',
+    source: 'ibelick',
+    title: 'Use size-* Utility',
+    description: 'Use size-* instead of separate w-* and h-* for square elements',
+    sourceQuote: 'Use size-* instead of separate w-* h-* for square elements. It\'s more concise and clearly communicates intent.',
+    additionalExplanation: 'When an element should be square (icons, avatars, buttons), using size-8 instead of w-8 h-8 is more concise and communicates intent clearly.',
+    sourceLinks: [
+      { text: 'Tailwind Size Utility', url: 'https://tailwindcss.com/docs/size' }
+    ],
+    badExampleKey: 'layout-ibelick-size-utility-bad',
+    goodExampleKey: 'layout-ibelick-size-utility-good'
   }
 ];

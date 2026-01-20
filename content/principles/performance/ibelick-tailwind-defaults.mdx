@@ -1,0 +1,31 @@
+---
+id: performance-ibelick-tailwind-defaults
+category: performance
+source: ibelick
+title: Tailwind Defaults First
+description: Use Tailwind CSS default spacing, colors, and sizing scales unless a custom design token exists
+badExampleKey: performance-ibelick-tailwind-defaults-bad
+goodExampleKey: performance-ibelick-tailwind-defaults-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST use Tailwind CSS defaults (spacing, colors, sizing) unless a custom design token exists in the config.
+</Callout>
+
+## Why This Matters
+
+Tailwind's default scale is carefully designed for consistency. Using arbitrary values like `p-[13px]` or `text-[17px]` creates visual inconsistency and makes your CSS harder to maintain. The default spacing scale (4, 8, 12, 16, 20, 24, etc.) aligns to a 4px grid that works well across components.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-ibelick-tailwind-defaults-bad"
+  goodKey="performance-ibelick-tailwind-defaults-good"
+/>
+
+## Learn More
+
+- [Tailwind Spacing Scale](https://tailwindcss.com/docs/customizing-spacing)
+- [Tailwind Default Theme](https://tailwindcss.com/docs/theme)

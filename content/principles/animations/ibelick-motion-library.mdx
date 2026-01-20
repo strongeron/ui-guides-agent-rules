@@ -1,0 +1,31 @@
+---
+id: animations-ibelick-motion-library
+category: animations
+source: ibelick
+title: Use motion/react for JS Animations
+description: Use motion/react (Framer Motion) for JavaScript-driven animations instead of manual implementations
+badExampleKey: animations-ibelick-motion-library-bad
+goodExampleKey: animations-ibelick-motion-library-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST use motion/react for JavaScript animations. It handles interruption, spring physics, and gesture integration correctly.
+</Callout>
+
+## Why This Matters
+
+Hand-rolling animations with `requestAnimationFrame` or direct DOM manipulation leads to buggy, interruptible animations. The motion library handles complex edge cases like animation interruption, spring physics, layout animations, and gesture integration out of the box.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-ibelick-motion-library-bad"
+  goodKey="animations-ibelick-motion-library-good"
+/>
+
+## Learn More
+
+- [Motion Documentation](https://motion.dev/docs/react-quick-start)
+- [Framer Motion](https://www.framer.com/motion/)

@@ -1,0 +1,31 @@
+---
+id: forms-ibelick-cn-utility
+category: forms
+source: ibelick
+title: Use cn() Utility for Class Merging
+description: Always use the cn() utility (clsx + tailwind-merge) for conditional and merged class names
+badExampleKey: forms-ibelick-cn-utility-bad
+goodExampleKey: forms-ibelick-cn-utility-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST use cn utility (clsx + tailwind-merge) for class name merging. It handles conflicts and conditionals correctly.
+</Callout>
+
+## Why This Matters
+
+When merging Tailwind classes, conflicts can occur (e.g., `p-4` and `p-2` both present). The cn() utility combines clsx for conditional logic with tailwind-merge for intelligent conflict resolution. Without it, you get duplicate or conflicting classes that lead to unpredictable styling.
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-ibelick-cn-utility-bad"
+  goodKey="forms-ibelick-cn-utility-good"
+/>
+
+## Learn More
+
+- [tailwind-merge](https://github.com/dcastil/tailwind-merge)
+- [clsx](https://github.com/lukeed/clsx)

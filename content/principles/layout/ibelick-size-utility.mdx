@@ -1,0 +1,31 @@
+---
+id: layout-ibelick-size-utility
+category: layout
+source: ibelick
+title: Use size-* Utility
+description: Use size-* instead of separate w-* and h-* for square elements
+badExampleKey: layout-ibelick-size-utility-bad
+goodExampleKey: layout-ibelick-size-utility-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Use size-* instead of separate w-* h-* for square elements. It's more concise and clearly communicates intent.
+</Callout>
+
+## Why This Matters
+
+When an element should be square (icons, avatars, buttons), using `size-8` instead of `w-8 h-8` is more concise and communicates intent clearly. It's immediately obvious the element is meant to be square, and you only need to change one value to resize it.
+
+## Implementation
+
+<ExampleComparison
+  badKey="layout-ibelick-size-utility-bad"
+  goodKey="layout-ibelick-size-utility-good"
+/>
+
+## Learn More
+
+- [Tailwind Size Utility](https://tailwindcss.com/docs/size)
+- [Tailwind Width](https://tailwindcss.com/docs/width)
