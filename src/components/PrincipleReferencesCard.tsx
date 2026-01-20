@@ -51,7 +51,7 @@ export function PrincipleReferencesCard({
                 className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-2 py-1"
               >
                 {link.text}
-                <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} aria-hidden="true" />
               </a>
             ))}
           </div>

@@ -54,7 +54,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         <Card className="bg-card shadow-sm overflow-hidden">
           <CardHeader className="py-3">
             <CardTitle className="flex items-center gap-2 text-base font-semibold text-error">
-              <HugeiconsIcon icon={AlertCircleIcon} size={20} />
+              <HugeiconsIcon icon={AlertCircleIcon} size={20} aria-hidden="true" />
               Bad Example
             </CardTitle>
           </CardHeader>
@@ -66,7 +66,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         <Card className="bg-card shadow-sm overflow-hidden">
           <CardHeader className="py-3">
             <CardTitle className="flex items-center gap-2 text-base font-semibold text-success">
-              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} />
+              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={20} aria-hidden="true" />
               Good Example
             </CardTitle>
           </CardHeader>
