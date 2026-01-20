@@ -1,10 +1,11 @@
 import { HugeiconsIcon } from '@hugeicons/react';
-import { ArrowUpRight01Icon, AlertCircleIcon, CheckmarkCircle01Icon } from '@hugeicons/core-free-icons';
+import { AlertCircleIcon, CheckmarkCircle01Icon } from '@hugeicons/core-free-icons';
 import { Principle } from '../types/principle';
 import { ExampleRenderer } from './ExampleRenderer';
 import { agentRules } from '../data/agentRules';
 import { SourceBadge } from './SourceBadge';
 import { AgentRuleCard } from './AgentRuleCard';
+import { PrincipleReferencesCard } from './PrincipleReferencesCard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -14,66 +15,39 @@ interface PrincipleViewProps {
 
 export function PrincipleView({ principle }: PrincipleViewProps) {
   const agentRule = agentRules[principle.id];
+  const hasAgentRule = Boolean(agentRule);
 
   return (
     <div className="pt-16 pb-24 px-4 max-w-screen-2xl mx-auto">
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-3">
-          <Badge variant="secondary" className="uppercase">
+      <div className="mb-10">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <Badge
+            variant="outline"
+            className="uppercase bg-card border-border text-foreground"
+          >
             {principle.category}
           </Badge>
-          {principle.source && (
-            <SourceBadge source={principle.source} size="sm" />
-          )}
+          {principle.source && <SourceBadge source={principle.source} size="sm" />}
         </div>
-        <h1 className="text-3xl font-bold text-foreground mb-4">
+        <h1 className="text-3xl font-bold text-foreground mb-3">
           {principle.title}
         </h1>
-        <p className="text-lg text-muted-foreground mb-6">{principle.description}</p>
+        <p className="text-lg text-muted-foreground max-w-3xl">
+          {principle.description}
+        </p>
+      </div>
 
-        <div className="bg-primary/10 border-l-4 border-primary p-4 mb-6">
-          <h2 className="text-sm font-semibold text-foreground mb-2">
-            From the Guidelines:
-          </h2>
-          <blockquote className="text-sm text-muted-foreground italic">
-            "{principle.sourceQuote}"
-          </blockquote>
-        </div>
-
-        <div className="bg-muted rounded-lg p-4 mb-6">
-          <h2 className="text-sm font-semibold text-foreground mb-2">
-            Additional Context:
-          </h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {principle.additionalExplanation}
-          </p>
-        </div>
-
-        {principle.sourceLinks.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6">
-            {principle.sourceLinks.map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded px-2 py-1"
-              >
-                {link.text}
-                <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} />
-              </a>
-            ))}
-          </div>
-        )}
-
+      <div
+        className={`grid gap-6 mb-10 ${hasAgentRule ? 'lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]' : ''}`}
+      >
         {agentRule && (
-          <div className="mb-6">
-            <h2 className="text-sm font-semibold text-foreground mb-3">
-              Agent Rule:
-            </h2>
-            <AgentRuleCard rule={agentRule} className="max-w-xl" />
-          </div>
+          <AgentRuleCard rule={agentRule} className="h-full" />
         )}
+        <PrincipleReferencesCard
+          sourceQuote={principle.sourceQuote}
+          additionalExplanation={principle.additionalExplanation}
+          links={principle.sourceLinks}
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
