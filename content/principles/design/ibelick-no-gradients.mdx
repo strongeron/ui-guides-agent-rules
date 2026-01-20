@@ -1,0 +1,36 @@
+---
+id: design-ibelick-no-gradients
+category: design
+source: ibelick
+title: Avoid Gradients Unless Requested
+description: Solid colors are cleaner and more maintainable - only use gradients when explicitly asked
+badExampleKey: design-ibelick-no-gradients-bad
+goodExampleKey: design-ibelick-no-gradients-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Avoid gradients unless explicitly requested. Solid colors are cleaner, more accessible, and easier to maintain.
+</Callout>
+
+## Why This Matters
+
+Gradients often signal "AI-generated design" and can:
+- Reduce contrast for text readability
+- Create visual noise that distracts from content
+- Be harder to maintain across light/dark themes
+- Look dated quickly as design trends change
+
+Solid colors are timeless and professional.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-ibelick-no-gradients-bad"
+  goodKey="design-ibelick-no-gradients-good"
+/>
+
+## Learn More
+
+- [When to Use Gradients](https://www.nngroup.com/articles/gradients/)

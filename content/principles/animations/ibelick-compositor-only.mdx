@@ -1,0 +1,31 @@
+---
+id: animations-ibelick-compositor-only
+category: animations
+source: ibelick
+title: Animate Only Compositor Properties
+description: Only animate transform and opacity for smooth 60fps animations
+badExampleKey: animations-ibelick-compositor-only-bad
+goodExampleKey: animations-ibelick-compositor-only-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Animate only transform and opacity. These are compositor-thread properties that can achieve 60fps without triggering layout or paint.
+</Callout>
+
+## Why This Matters
+
+The browser rendering pipeline has three main phases: Layout → Paint → Composite. Properties like `transform` and `opacity` only affect the composite phase, allowing the GPU to handle them on a separate thread. This means smooth animations even when the main thread is busy.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-ibelick-compositor-only-bad"
+  goodKey="animations-ibelick-compositor-only-good"
+/>
+
+## Learn More
+
+- [High Performance Animations](https://web.dev/articles/animations-guide)
+- [CSS Triggers](https://csstriggers.com/)

@@ -1,0 +1,37 @@
+---
+id: forms-ibelick-no-paste-blocking
+category: forms
+source: ibelick
+title: Never Block Paste
+description: Never prevent users from pasting into form fields - it breaks password managers and accessibility
+badExampleKey: forms-ibelick-no-paste-blocking-bad
+goodExampleKey: forms-ibelick-no-paste-blocking-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  NEVER block paste in form fields. It breaks password managers, accessibility tools, and frustrates users.
+</Callout>
+
+## Why This Matters
+
+Blocking paste:
+- Breaks password managers (the #1 security tool)
+- Prevents users with motor disabilities from using assistive tools
+- Forces users to type sensitive data (increasing errors)
+- Annoys power users who copy/paste long values
+
+The "confirm email" anti-pattern makes this worse by blocking paste on re-entry fields.
+
+## Implementation
+
+<ExampleComparison
+  badKey="forms-ibelick-no-paste-blocking-bad"
+  goodKey="forms-ibelick-no-paste-blocking-good"
+/>
+
+## Learn More
+
+- [NCSC: Let Users Paste Passwords](https://www.ncsc.gov.uk/blog-post/let-them-paste-passwords)
+- [Troy Hunt: The "Paste" Problem](https://www.troyhunt.com/the-cobra-effect-that-is-disabling/)

@@ -1,0 +1,34 @@
+---
+id: animations-ibelick-timing
+category: animations
+source: ibelick
+title: Proper Animation Timing
+description: Use ease-out for entrances and keep interaction feedback under 200ms
+badExampleKey: animations-ibelick-timing-bad
+goodExampleKey: animations-ibelick-timing-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Use ease-out for entrances (elements appear fast, settle slow). Keep interaction feedback under 200ms to feel instant.
+</Callout>
+
+## Why This Matters
+
+Animation timing affects perceived performance:
+- **ease-out** for entrances: Elements appear quickly and decelerate naturally
+- **ease-in** for exits: Elements accelerate out of view
+- **< 200ms** for interactions: Users perceive delays over 200ms as sluggish
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-ibelick-timing-bad"
+  goodKey="animations-ibelick-timing-good"
+/>
+
+## Learn More
+
+- [The Science of Animation Timing](https://uxdesign.cc/the-ultimate-guide-to-proper-use-of-animation-in-ux-10bd98614fa9)
+- [Material Design Motion](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs)

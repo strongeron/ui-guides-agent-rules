@@ -1,0 +1,31 @@
+---
+id: animations-ibelick-minimize-paint
+category: animations
+source: ibelick
+title: Minimize Paint Animations
+description: Avoid animating colors, backgrounds, and box-shadows which trigger expensive paint operations
+badExampleKey: animations-ibelick-minimize-paint-bad
+goodExampleKey: animations-ibelick-minimize-paint-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Minimize animating colors, backgrounds, and box-shadows. These trigger paint operations which are more expensive than compositor-only animations.
+</Callout>
+
+## Why This Matters
+
+Paint operations require the browser to fill in pixels, which is CPU-intensive. While not as expensive as layout, animating paint-triggering properties like `background-color`, `color`, or `box-shadow` can still cause frame drops. For color transitions, use opacity on overlaid elements instead.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-ibelick-minimize-paint-bad"
+  goodKey="animations-ibelick-minimize-paint-good"
+/>
+
+## Learn More
+
+- [Simplify Paint Complexity](https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas)
+- [CSS Triggers - Paint](https://csstriggers.com/)

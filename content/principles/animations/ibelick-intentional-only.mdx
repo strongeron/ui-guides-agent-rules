@@ -1,0 +1,35 @@
+---
+id: animations-ibelick-intentional-only
+category: animations
+source: ibelick
+title: Animation Only When Requested
+description: Never add animations unless explicitly requested - they can hurt UX if overused
+badExampleKey: animations-ibelick-intentional-only-bad
+goodExampleKey: animations-ibelick-intentional-only-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  NEVER add animation unless explicitly requested. Animations can hurt user experience if overused or inappropriate.
+</Callout>
+
+## Why This Matters
+
+Animations should serve a purpose: provide feedback, guide attention, or smooth transitions. Adding animation "because it looks cool" often:
+- Slows down perceived performance
+- Distracts from content
+- Frustrates users who just want to complete tasks
+- Creates accessibility issues for motion-sensitive users
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-ibelick-intentional-only-bad"
+  goodKey="animations-ibelick-intentional-only-good"
+/>
+
+## Learn More
+
+- [The Case Against Animation](https://web.dev/articles/animations-guide)
+- [When to Use Animation](https://uxdesign.cc/the-ultimate-guide-to-proper-use-of-animation-in-ux-10bd98614fa9)

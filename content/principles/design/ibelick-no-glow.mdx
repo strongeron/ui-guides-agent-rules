@@ -1,0 +1,36 @@
+---
+id: design-ibelick-no-glow
+category: design
+source: ibelick
+title: Don't Use Glow as Affordance
+description: Never rely on glow effects as the primary indicator for interactive elements
+badExampleKey: design-ibelick-no-glow-bad
+goodExampleKey: design-ibelick-no-glow-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  NEVER use glow as primary affordance. Glows are decorative, not functional - they don't clearly indicate interactivity.
+</Callout>
+
+## Why This Matters
+
+Glow effects:
+- Are hard to see in bright environments
+- Don't provide clear affordance (what can I click?)
+- Look inconsistent across displays
+- Can be expensive to render (blur + blend modes)
+
+Use clear visual hierarchy, borders, and contrast instead.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-ibelick-no-glow-bad"
+  goodKey="design-ibelick-no-glow-good"
+/>
+
+## Learn More
+
+- [Affordance in UI Design](https://www.nngroup.com/articles/affordance-conventions/)

@@ -2011,5 +2011,459 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'layout-ibelick-size-utility-bad',
     goodExampleKey: 'layout-ibelick-size-utility-good'
+  },
+  // @Ibelick UI Skills - Animation principles
+  {
+    id: 'animations-ibelick-intentional-only',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Animation Only When Requested',
+    description: 'Never add animations unless explicitly requested - they can hurt UX if overused',
+    sourceQuote: 'NEVER add animation unless explicitly requested. Animations can hurt user experience if overused or inappropriate.',
+    additionalExplanation: 'Animations should serve a purpose: provide feedback, guide attention, or smooth transitions. Adding animation "because it looks cool" often slows perceived performance and frustrates users.',
+    sourceLinks: [
+      { text: 'The Case Against Animation', url: 'https://web.dev/articles/animations-guide' }
+    ],
+    badExampleKey: 'animations-ibelick-intentional-only-bad',
+    goodExampleKey: 'animations-ibelick-intentional-only-good'
+  },
+  {
+    id: 'animations-ibelick-compositor-only',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Animate Only Compositor Properties',
+    description: 'Only animate transform and opacity for smooth 60fps animations',
+    sourceQuote: 'Animate only transform and opacity. These are compositor-thread properties that can achieve 60fps without triggering layout or paint.',
+    additionalExplanation: 'Properties like transform and opacity only affect the composite phase, allowing the GPU to handle them on a separate thread for smooth animations even when the main thread is busy.',
+    sourceLinks: [
+      { text: 'High Performance Animations', url: 'https://web.dev/articles/animations-guide' }
+    ],
+    badExampleKey: 'animations-ibelick-compositor-only-bad',
+    goodExampleKey: 'animations-ibelick-compositor-only-good'
+  },
+  {
+    id: 'animations-ibelick-no-layout',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Never Animate Layout Properties',
+    description: 'Never animate width, height, top, left, or other layout-triggering properties',
+    sourceQuote: 'NEVER animate width, height, top, left, margin, or padding. These trigger expensive layout recalculations on every frame.',
+    additionalExplanation: 'Animating layout properties forces the browser to recalculate positions of potentially hundreds of elements every frame. Use transform: scale() for size and translate() for position instead.',
+    sourceLinks: [
+      { text: 'Avoid Layout Thrashing', url: 'https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing' }
+    ],
+    badExampleKey: 'animations-ibelick-no-layout-bad',
+    goodExampleKey: 'animations-ibelick-no-layout-good'
+  },
+  {
+    id: 'animations-ibelick-minimize-paint',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Minimize Paint Animations',
+    description: 'Avoid animating colors, backgrounds, and box-shadows which trigger expensive paint operations',
+    sourceQuote: 'Minimize animating colors, backgrounds, and box-shadows. These trigger paint operations which are more expensive than compositor-only animations.',
+    additionalExplanation: 'Paint operations require the browser to fill in pixels, which is CPU-intensive. For color transitions, use opacity on overlaid elements instead of animating the color directly.',
+    sourceLinks: [
+      { text: 'Simplify Paint Complexity', url: 'https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas' }
+    ],
+    badExampleKey: 'animations-ibelick-minimize-paint-bad',
+    goodExampleKey: 'animations-ibelick-minimize-paint-good'
+  },
+  {
+    id: 'animations-ibelick-timing',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Proper Animation Timing',
+    description: 'Use ease-out for entrances and keep interaction feedback under 200ms',
+    sourceQuote: 'Use ease-out for entrances (elements appear fast, settle slow). Keep interaction feedback under 200ms to feel instant.',
+    additionalExplanation: 'Animation timing affects perceived performance: ease-out for entrances (elements appear quickly and decelerate), ease-in for exits, and < 200ms for interactions to feel responsive.',
+    sourceLinks: [
+      { text: 'Material Design Motion', url: 'https://m3.material.io/styles/motion/easing-and-duration/tokens-specs' }
+    ],
+    badExampleKey: 'animations-ibelick-timing-bad',
+    goodExampleKey: 'animations-ibelick-timing-good'
+  },
+  {
+    id: 'animations-ibelick-pause-offscreen',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Pause Offscreen Animations',
+    description: 'Pause looping animations when they\'re not visible to save battery and CPU',
+    sourceQuote: 'Pause looping animations when not visible. Use IntersectionObserver to detect visibility and stop wasting resources.',
+    additionalExplanation: 'Animations running off-screen waste CPU cycles and drain battery on mobile devices. Use IntersectionObserver or Page Visibility API to pause animations when not visible.',
+    sourceLinks: [
+      { text: 'IntersectionObserver API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API' }
+    ],
+    badExampleKey: 'animations-ibelick-pause-offscreen-bad',
+    goodExampleKey: 'animations-ibelick-pause-offscreen-good'
+  },
+  {
+    id: 'animations-ibelick-reduced-motion',
+    category: 'animations',
+    source: 'ibelick',
+    title: 'Respect Reduced Motion',
+    description: 'Honor prefers-reduced-motion for users who are sensitive to animation',
+    sourceQuote: 'SHOULD respect prefers-reduced-motion. Disable or simplify animations for users who have requested reduced motion in their OS settings.',
+    additionalExplanation: 'Some users experience motion sickness or vestibular disorders. The prefers-reduced-motion media query lets you detect this preference and provide a calmer experience.',
+    sourceLinks: [
+      { text: 'prefers-reduced-motion MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion' }
+    ],
+    badExampleKey: 'animations-ibelick-reduced-motion-bad',
+    goodExampleKey: 'animations-ibelick-reduced-motion-good'
+  },
+  // @Ibelick UI Skills - Components principles
+  {
+    id: 'interactions-ibelick-accessible-primitives',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Use Accessible Primitives',
+    description: 'Always use accessible primitives (Radix, Headless UI, Base UI) for keyboard and focus management',
+    sourceQuote: 'MUST use accessible primitives (Radix, Headless UI, Base UI) for keyboard navigation, focus trapping, and ARIA attributes.',
+    additionalExplanation: 'Building accessible components from scratch is incredibly difficult. You need to handle keyboard navigation, focus trapping, ARIA attributes, and screen reader announcements. Primitive libraries handle all of this correctly.',
+    sourceLinks: [
+      { text: 'Radix UI Primitives', url: 'https://www.radix-ui.com/primitives' }
+    ],
+    badExampleKey: 'interactions-ibelick-accessible-primitives-bad',
+    goodExampleKey: 'interactions-ibelick-accessible-primitives-good'
+  },
+  {
+    id: 'interactions-ibelick-existing-components',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Use Existing Components First',
+    description: 'Before building custom UI, check if an existing component library already solves the problem',
+    sourceQuote: 'MUST use existing components from your design system or component library before building custom solutions.',
+    additionalExplanation: 'Building UI components from scratch introduces accessibility bugs, inconsistent behavior, maintenance burden, and duplicated effort. Use existing components that have been tested and documented.',
+    sourceLinks: [
+      { text: 'shadcn/ui Components', url: 'https://ui.shadcn.com/' }
+    ],
+    badExampleKey: 'interactions-ibelick-existing-components-bad',
+    goodExampleKey: 'interactions-ibelick-existing-components-good'
+  },
+  {
+    id: 'interactions-ibelick-no-primitive-mixing',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Don\'t Mix Primitive Systems',
+    description: 'Never mix different primitive libraries (Radix + Headless UI) in the same project',
+    sourceQuote: 'NEVER mix primitive systems (e.g., Radix + Headless UI). Pick one and stick with it for consistency.',
+    additionalExplanation: 'Mixing primitive libraries creates inconsistent keyboard navigation patterns, different focus behaviors, conflicting styling approaches, and larger bundle sizes.',
+    sourceLinks: [
+      { text: 'Choosing a Component Library', url: 'https://www.joshwcomeau.com/react/component-library/' }
+    ],
+    badExampleKey: 'interactions-ibelick-no-primitive-mixing-bad',
+    goodExampleKey: 'interactions-ibelick-no-primitive-mixing-good'
+  },
+  {
+    id: 'interactions-ibelick-base-ui',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Consider Base UI for New Components',
+    description: 'When building new accessible components, consider Base UI for its unstyled, accessible primitives',
+    sourceQuote: 'Consider Base UI for new accessible components. It provides unstyled, accessible primitives that work with any styling solution.',
+    additionalExplanation: 'Base UI provides fully accessible primitives with no default styling, excellent TypeScript support, and works great with Tailwind CSS.',
+    sourceLinks: [
+      { text: 'Base UI Documentation', url: 'https://mui.com/base-ui/' }
+    ],
+    badExampleKey: 'interactions-ibelick-base-ui-bad',
+    goodExampleKey: 'interactions-ibelick-base-ui-good'
+  },
+  {
+    id: 'interactions-ibelick-icon-buttons',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Icon Buttons Need Labels',
+    description: 'Always add aria-label to icon-only buttons for screen reader users',
+    sourceQuote: 'MUST add aria-label to icon-only buttons. Screen readers need text to announce the button\'s purpose.',
+    additionalExplanation: 'Icon-only buttons have no visible text, so screen readers have nothing to announce. Users hear only "button" with no context. Adding aria-label gives screen readers meaningful text.',
+    sourceLinks: [
+      { text: 'Icon Button Accessibility', url: 'https://www.sarasoueidan.com/blog/accessible-icon-buttons/' }
+    ],
+    badExampleKey: 'interactions-ibelick-icon-buttons-bad',
+    goodExampleKey: 'interactions-ibelick-icon-buttons-good'
+  },
+  {
+    id: 'interactions-ibelick-manual-behavior',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Don\'t Rebuild Keyboard Behavior',
+    description: 'Avoid manually implementing keyboard navigation and focus management that libraries handle correctly',
+    sourceQuote: 'Avoid rebuilding keyboard navigation and focus behavior. Accessible primitive libraries handle edge cases you\'ll miss.',
+    additionalExplanation: 'Manual keyboard handling is error-prone. You\'ll likely miss RTL handling, disabled item navigation, type-ahead search, focus restoration, and roving tabindex patterns.',
+    sourceLinks: [
+      { text: 'WAI-ARIA Authoring Practices', url: 'https://www.w3.org/WAI/ARIA/apg/' }
+    ],
+    badExampleKey: 'interactions-ibelick-manual-behavior-bad',
+    goodExampleKey: 'interactions-ibelick-manual-behavior-good'
+  },
+  // @Ibelick UI Skills - Interaction & UX principles
+  {
+    id: 'interactions-ibelick-alert-dialog',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Use AlertDialog for Destructive Actions',
+    description: 'Always use AlertDialog for destructive or irreversible actions to require explicit confirmation',
+    sourceQuote: 'MUST use AlertDialog for destructive actions. Users need explicit confirmation before irreversible operations like deletion.',
+    additionalExplanation: 'Destructive actions like deletion are irreversible. A simple click shouldn\'t trigger them. AlertDialog requires explicit action, focuses on confirm/cancel, and makes severity clear.',
+    sourceLinks: [
+      { text: 'Radix AlertDialog', url: 'https://www.radix-ui.com/primitives/docs/components/alert-dialog' }
+    ],
+    badExampleKey: 'interactions-ibelick-alert-dialog-bad',
+    goodExampleKey: 'interactions-ibelick-alert-dialog-good'
+  },
+  {
+    id: 'interactions-ibelick-loading-skeletons',
+    category: 'interactions',
+    source: 'ibelick',
+    title: 'Prefer Skeletons Over Spinners',
+    description: 'Use skeleton placeholders instead of spinners for loading states to reduce perceived load time',
+    sourceQuote: 'Use skeleton screens instead of spinners for loading states. Skeletons reduce perceived load time and prevent layout shift.',
+    additionalExplanation: 'Skeleton screens show the structure of content before it loads, reducing perceived loading time and preventing cumulative layout shift (CLS). Spinners feel like waiting.',
+    sourceLinks: [
+      { text: 'Skeleton Screens', url: 'https://www.lukew.com/ff/entry.asp?1797' }
+    ],
+    badExampleKey: 'interactions-ibelick-loading-skeletons-bad',
+    goodExampleKey: 'interactions-ibelick-loading-skeletons-good'
+  },
+  {
+    id: 'layout-ibelick-viewport-height',
+    category: 'layout',
+    source: 'ibelick',
+    title: 'Use dvh Instead of h-screen',
+    description: 'Never use h-screen or 100vh on mobile - use h-dvh for dynamic viewport height',
+    sourceQuote: 'NEVER use h-screen (100vh) for full-height layouts. Use h-dvh (dynamic viewport height) to account for mobile browser chrome.',
+    additionalExplanation: 'On mobile browsers, 100vh includes the area behind the browser\'s address bar and navigation. This causes content to be cut off. dvh adjusts as the browser chrome shows/hides.',
+    sourceLinks: [
+      { text: 'Dynamic Viewports', url: 'https://web.dev/blog/viewport-units' }
+    ],
+    badExampleKey: 'layout-ibelick-viewport-height-bad',
+    goodExampleKey: 'layout-ibelick-viewport-height-good'
+  },
+  {
+    id: 'layout-ibelick-safe-areas',
+    category: 'layout',
+    source: 'ibelick',
+    title: 'Respect Safe Area Insets',
+    description: 'Use safe-area-inset padding to prevent content from being hidden behind notches and home indicators',
+    sourceQuote: 'MUST respect safe-area-inset for content near screen edges. Use pb-safe, pt-safe, or env(safe-area-inset-*) to avoid notches and home indicators.',
+    additionalExplanation: 'Modern phones have notches, rounded corners, and home indicators that can obscure content. The safe-area-inset CSS environment variables add padding that respects these hardware features.',
+    sourceLinks: [
+      { text: 'Designing for Notches', url: 'https://webkit.org/blog/7929/designing-websites-for-iphone-x/' }
+    ],
+    badExampleKey: 'layout-ibelick-safe-areas-bad',
+    goodExampleKey: 'layout-ibelick-safe-areas-good'
+  },
+  {
+    id: 'forms-ibelick-error-placement',
+    category: 'forms',
+    source: 'ibelick',
+    title: 'Show Errors Near Actions',
+    description: 'Display form errors next to the submit button or action, not just at the field level',
+    sourceQuote: 'MUST show form errors next to the submit action. Users focus on the button when submitting - that\'s where they need to see errors.',
+    additionalExplanation: 'When users submit a form, their attention is on the submit button. If errors only appear at individual fields (which may be scrolled away), users may not notice them.',
+    sourceLinks: [
+      { text: 'Form Error Handling', url: 'https://www.nngroup.com/articles/errors-forms-design-guidelines/' }
+    ],
+    badExampleKey: 'forms-ibelick-error-placement-bad',
+    goodExampleKey: 'forms-ibelick-error-placement-good'
+  },
+  {
+    id: 'forms-ibelick-no-paste-blocking',
+    category: 'forms',
+    source: 'ibelick',
+    title: 'Never Block Paste',
+    description: 'Never prevent users from pasting into form fields - it breaks password managers and accessibility',
+    sourceQuote: 'NEVER block paste in form fields. It breaks password managers, accessibility tools, and frustrates users.',
+    additionalExplanation: 'Blocking paste breaks password managers (the #1 security tool), prevents users with motor disabilities from using assistive tools, and forces users to type sensitive data.',
+    sourceLinks: [
+      { text: 'NCSC: Let Users Paste Passwords', url: 'https://www.ncsc.gov.uk/blog-post/let-them-paste-passwords' }
+    ],
+    badExampleKey: 'forms-ibelick-no-paste-blocking-bad',
+    goodExampleKey: 'forms-ibelick-no-paste-blocking-good'
+  },
+  // @Ibelick UI Skills - Design principles
+  {
+    id: 'design-ibelick-no-gradients',
+    category: 'design',
+    source: 'ibelick',
+    title: 'Avoid Gradients Unless Requested',
+    description: 'Solid colors are cleaner and more maintainable - only use gradients when explicitly asked',
+    sourceQuote: 'Avoid gradients unless explicitly requested. Solid colors are cleaner, more accessible, and easier to maintain.',
+    additionalExplanation: 'Gradients often signal "AI-generated design" and can reduce contrast, create visual noise, be harder to maintain across themes, and look dated quickly.',
+    sourceLinks: [
+      { text: 'When to Use Gradients', url: 'https://www.nngroup.com/articles/gradients/' }
+    ],
+    badExampleKey: 'design-ibelick-no-gradients-bad',
+    goodExampleKey: 'design-ibelick-no-gradients-good'
+  },
+  {
+    id: 'design-ibelick-no-purple',
+    category: 'design',
+    source: 'ibelick',
+    title: 'Avoid Purple and Multicolor Gradients',
+    description: 'Purple and rainbow gradients are overused in AI-generated designs - avoid them',
+    sourceQuote: 'No purple or multicolor gradients. These are telltale signs of AI-generated or generic SaaS design.',
+    additionalExplanation: 'Purple-to-pink and rainbow gradients have become the default output of AI design tools. They signal "generic" rather than "thoughtful design."',
+    sourceLinks: [
+      { text: 'Avoiding AI Design Clichés', url: 'https://www.nngroup.com/articles/ai-generated-imagery/' }
+    ],
+    badExampleKey: 'design-ibelick-no-purple-bad',
+    goodExampleKey: 'design-ibelick-no-purple-good'
+  },
+  {
+    id: 'design-ibelick-no-glow',
+    category: 'design',
+    source: 'ibelick',
+    title: 'Don\'t Use Glow as Affordance',
+    description: 'Never rely on glow effects as the primary indicator for interactive elements',
+    sourceQuote: 'NEVER use glow as primary affordance. Glows are decorative, not functional - they don\'t clearly indicate interactivity.',
+    additionalExplanation: 'Glow effects are hard to see in bright environments, don\'t provide clear affordance, look inconsistent across displays, and can be expensive to render.',
+    sourceLinks: [
+      { text: 'Affordance in UI Design', url: 'https://www.nngroup.com/articles/affordance-conventions/' }
+    ],
+    badExampleKey: 'design-ibelick-no-glow-bad',
+    goodExampleKey: 'design-ibelick-no-glow-good'
+  },
+  {
+    id: 'design-ibelick-default-shadows',
+    category: 'design',
+    source: 'ibelick',
+    title: 'Use Tailwind Default Shadows',
+    description: 'Stick with Tailwind\'s default shadow scale instead of custom values',
+    sourceQuote: 'Stick with Tailwind default shadows (shadow-sm, shadow, shadow-md, shadow-lg). Custom shadows create inconsistency.',
+    additionalExplanation: 'Tailwind\'s shadow scale is carefully designed for visual consistency, proper elevation hierarchy, good performance, and easy maintenance.',
+    sourceLinks: [
+      { text: 'Tailwind Box Shadow', url: 'https://tailwindcss.com/docs/box-shadow' }
+    ],
+    badExampleKey: 'design-ibelick-default-shadows-bad',
+    goodExampleKey: 'design-ibelick-default-shadows-good'
+  },
+  {
+    id: 'design-ibelick-empty-states',
+    category: 'design',
+    source: 'ibelick',
+    title: 'Empty States Need Clear Actions',
+    description: 'Every empty state should have one clear action to guide users forward',
+    sourceQuote: 'MUST give empty states one clear action. Users need guidance on what to do next - don\'t leave them stranded.',
+    additionalExplanation: 'Empty states are critical onboarding moments. Users seeing "No items" with no guidance will feel confused and may abandon the product.',
+    sourceLinks: [
+      { text: 'Empty State Design', url: 'https://www.nngroup.com/articles/empty-state-interface-design/' }
+    ],
+    badExampleKey: 'design-ibelick-empty-states-bad',
+    goodExampleKey: 'design-ibelick-empty-states-good'
+  },
+  {
+    id: 'design-ibelick-color-restraint',
+    category: 'design',
+    source: 'ibelick',
+    title: 'Limit Accent Colors',
+    description: 'Use only one accent color per view to maintain visual hierarchy and reduce noise',
+    sourceQuote: 'Limit accent colors to one per view. Multiple bright colors compete for attention and create visual chaos.',
+    additionalExplanation: 'When everything is highlighted, nothing is. Multiple accent colors dilute visual hierarchy, make it unclear what\'s important, and create cognitive overload.',
+    sourceLinks: [
+      { text: 'Color in UI Design', url: 'https://www.nngroup.com/articles/color-in-interface-design/' }
+    ],
+    badExampleKey: 'design-ibelick-color-restraint-bad',
+    goodExampleKey: 'design-ibelick-color-restraint-good'
+  },
+  // @Ibelick UI Skills - Performance principles
+  {
+    id: 'performance-ibelick-no-blur-animation',
+    category: 'performance',
+    source: 'ibelick',
+    title: 'Never Animate Blur Effects',
+    description: 'Never animate blur or backdrop-filter - they\'re extremely expensive and cause frame drops',
+    sourceQuote: 'NEVER animate large blur or backdrop-filter. These operations are extremely expensive and cause significant frame drops.',
+    additionalExplanation: 'Blur operations require sampling many pixels for every pixel rendered. Animating blur means recalculating this on every frame. Instead, use a static blur and animate opacity.',
+    sourceLinks: [
+      { text: 'CSS Filter Performance', url: 'https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas' }
+    ],
+    badExampleKey: 'performance-ibelick-no-blur-animation-bad',
+    goodExampleKey: 'performance-ibelick-no-blur-animation-good'
+  },
+  {
+    id: 'performance-ibelick-will-change',
+    category: 'performance',
+    source: 'ibelick',
+    title: 'Use will-change Sparingly',
+    description: 'Only apply will-change during active animations, never as a permanent style',
+    sourceQuote: 'Only apply will-change during active animations. Permanent will-change wastes GPU memory and can hurt performance.',
+    additionalExplanation: 'will-change tells the browser to create a GPU layer. Using it permanently on many elements wastes memory and can hurt performance through layer explosion.',
+    sourceLinks: [
+      { text: 'will-change MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/will-change' }
+    ],
+    badExampleKey: 'performance-ibelick-will-change-bad',
+    goodExampleKey: 'performance-ibelick-will-change-good'
+  },
+  {
+    id: 'performance-ibelick-no-effect-render',
+    category: 'performance',
+    source: 'ibelick',
+    title: 'Don\'t Use useEffect for Render Logic',
+    description: 'Never use useEffect to compute values that should be derived during render',
+    sourceQuote: 'NEVER use useEffect for render logic. If a value can be computed from props or state, compute it during render instead.',
+    additionalExplanation: 'Using useEffect to set state based on other state causes extra re-renders and potential infinite loops. Compute derived values directly or use useMemo.',
+    sourceLinks: [
+      { text: 'You Might Not Need an Effect', url: 'https://react.dev/learn/you-might-not-need-an-effect' }
+    ],
+    badExampleKey: 'performance-ibelick-no-effect-render-bad',
+    goodExampleKey: 'performance-ibelick-no-effect-render-good'
+  },
+  // @Ibelick UI Skills - Typography principles
+  {
+    id: 'content-ibelick-text-balance',
+    category: 'content',
+    source: 'ibelick',
+    title: 'Use text-balance and text-pretty',
+    description: 'Use text-balance for headings and text-pretty for body text to improve readability',
+    sourceQuote: 'Use text-balance for headings and text-pretty for body text. These CSS properties improve line breaks and readability.',
+    additionalExplanation: 'text-balance balances line lengths in headings. text-pretty prevents orphans (single words on last line) in paragraphs. Both improve readability without manual line break management.',
+    sourceLinks: [
+      { text: 'CSS text-wrap', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap' }
+    ],
+    badExampleKey: 'content-ibelick-text-balance-bad',
+    goodExampleKey: 'content-ibelick-text-balance-good'
+  },
+  {
+    id: 'content-ibelick-tabular-nums',
+    category: 'content',
+    source: 'ibelick',
+    title: 'Use Tabular Numbers for Data',
+    description: 'Always use tabular-nums for numbers in tables and data displays for proper alignment',
+    sourceQuote: 'MUST use tabular-nums (font-variant-numeric: tabular-nums) for data tables, prices, and numerical lists.',
+    additionalExplanation: 'Proportional numbers have varying widths, causing columns to misalign. Tabular numbers have uniform widths, ensuring perfect alignment and professional appearance.',
+    sourceLinks: [
+      { text: 'font-variant-numeric MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric' }
+    ],
+    badExampleKey: 'content-ibelick-tabular-nums-bad',
+    goodExampleKey: 'content-ibelick-tabular-nums-good'
+  },
+  {
+    id: 'content-ibelick-text-overflow',
+    category: 'content',
+    source: 'ibelick',
+    title: 'Handle Text Overflow Properly',
+    description: 'Use truncate or line-clamp for predictable text overflow in dense layouts',
+    sourceQuote: 'Apply truncate or line-clamp for text in cards, lists, and dense layouts. Predictable overflow prevents layout breaking.',
+    additionalExplanation: 'User-generated content can be any length. Without overflow handling, cards expand unexpectedly and grids break. Use truncate for single lines, line-clamp for multi-line limits.',
+    sourceLinks: [
+      { text: 'Tailwind Line Clamp', url: 'https://tailwindcss.com/docs/line-clamp' }
+    ],
+    badExampleKey: 'content-ibelick-text-overflow-bad',
+    goodExampleKey: 'content-ibelick-text-overflow-good'
+  },
+  {
+    id: 'content-ibelick-letter-spacing',
+    category: 'content',
+    source: 'ibelick',
+    title: 'Don\'t Modify Letter Spacing',
+    description: 'Avoid changing letter-spacing unless explicitly requested - fonts are designed with proper spacing',
+    sourceQuote: 'Avoid modifying letter-spacing unless explicitly requested. Type designers carefully craft letter spacing for readability.',
+    additionalExplanation: 'Professional typefaces are meticulously designed with optimal letter spacing. Modifying it reduces readability and often looks unprofessional. Consider different font weights instead.',
+    sourceLinks: [
+      { text: 'Typography Best Practices', url: 'https://fonts.google.com/knowledge/using_type/best_practices_for_line_spacing' }
+    ],
+    badExampleKey: 'content-ibelick-letter-spacing-bad',
+    goodExampleKey: 'content-ibelick-letter-spacing-good'
   }
 ];

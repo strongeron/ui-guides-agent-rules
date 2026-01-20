@@ -1,0 +1,35 @@
+---
+id: animations-ibelick-pause-offscreen
+category: animations
+source: ibelick
+title: Pause Offscreen Animations
+description: Pause looping animations when they're not visible to save battery and CPU
+badExampleKey: animations-ibelick-pause-offscreen-bad
+goodExampleKey: animations-ibelick-pause-offscreen-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Pause looping animations when not visible. Use IntersectionObserver to detect visibility and stop wasting resources.
+</Callout>
+
+## Why This Matters
+
+Animations running off-screen waste CPU cycles and drain battery on mobile devices. This is especially important for:
+- Infinite loading spinners
+- Background video/canvas animations
+- CSS keyframe loops
+- requestAnimationFrame loops
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-ibelick-pause-offscreen-bad"
+  goodKey="animations-ibelick-pause-offscreen-good"
+/>
+
+## Learn More
+
+- [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API)
