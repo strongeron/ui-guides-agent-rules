@@ -11,12 +11,14 @@ interface PrincipleReferencesCardProps {
   sourceQuote: string;
   additionalExplanation: string;
   links: ReferenceLink[];
+  summary?: string;
 }
 
 export function PrincipleReferencesCard({
   sourceQuote,
   additionalExplanation,
   links,
+  summary,
 }: PrincipleReferencesCardProps) {
   return (
     <Card className="h-full">
@@ -24,6 +26,16 @@ export function PrincipleReferencesCard({
         <CardTitle className="text-base">References</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        {summary && (
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
+              Summary:
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {summary}
+            </p>
+          </div>
+        )}
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
             From the Guidelines:

@@ -15,7 +15,6 @@ interface PrincipleViewProps {
 
 export function PrincipleView({ principle }: PrincipleViewProps) {
   const agentRule = agentRules[principle.id];
-  const hasAgentRule = Boolean(agentRule);
 
   return (
     <div className="pt-16 pb-24 px-4 max-w-screen-2xl mx-auto">
@@ -32,23 +31,17 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         <h1 className="text-3xl font-bold text-foreground mb-3">
           {principle.title}
         </h1>
-        <p className="text-lg text-muted-foreground max-w-3xl">
-          {principle.description}
-        </p>
       </div>
 
-      <div
-        className={`grid gap-6 mb-10 ${hasAgentRule ? 'lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]' : ''}`}
-      >
-        {agentRule && (
-          <AgentRuleCard rule={agentRule} className="h-full" />
-        )}
-        <PrincipleReferencesCard
-          sourceQuote={principle.sourceQuote}
-          additionalExplanation={principle.additionalExplanation}
-          links={principle.sourceLinks}
-        />
-      </div>
+      {agentRule && (
+        <div className="mb-10">
+          <AgentRuleCard
+            rule={agentRule}
+            description={principle.description}
+            className="max-w-3xl"
+          />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="bg-card shadow-sm overflow-hidden">
@@ -74,6 +67,15 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
             <ExampleRenderer exampleKey={principle.goodExampleKey} />
           </CardContent>
         </Card>
+      </div>
+
+      <div className="mt-10">
+        <PrincipleReferencesCard
+          sourceQuote={principle.sourceQuote}
+          additionalExplanation={principle.additionalExplanation}
+          links={principle.sourceLinks}
+          summary={agentRule ? undefined : principle.description}
+        />
       </div>
     </div>
   );
