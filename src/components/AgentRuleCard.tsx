@@ -31,9 +31,24 @@ const priorityConfig: Record<AgentRulePriority, { label: string; className: stri
   },
 };
 
-function formatRuleForCopy(priority: AgentRulePriority, rule: string): string {
+function formatRuleForCopy(
+  priority: AgentRulePriority,
+  rule: string,
+  description?: string,
+  codeExample?: string
+): string {
   const prefix = priority === 'NEVER' ? 'NEVER:' : `${priority}:`;
-  return `${prefix} ${rule}`;
+  const lines = [`${prefix} ${rule}`];
+
+  if (description) {
+    lines.push('', description);
+  }
+
+  if (codeExample) {
+    lines.push('', 'Example:', codeExample);
+  }
+
+  return lines.join('\n');
 }
 
 export function AgentRuleCard({
@@ -46,10 +61,16 @@ export function AgentRuleCard({
   const [copied, setCopied] = useState(false);
   const config = priorityConfig[rule.priority];
   const formattedRule = formatRuleForCopy(rule.priority, rule.rule);
+  const formattedCopy = formatRuleForCopy(
+    rule.priority,
+    rule.rule,
+    description,
+    rule.codeExample
+  );
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(formattedRule);
+      await navigator.clipboard.writeText(formattedCopy);
       setCopied(true);
       onCopy?.();
       setTimeout(() => setCopied(false), COPY_FEEDBACK_DELAY_MS);

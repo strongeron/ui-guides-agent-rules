@@ -71,10 +71,8 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
 
       <div className="mt-10">
         <PrincipleReferencesCard
-          sourceQuote={principle.sourceQuote}
           additionalExplanation={principle.additionalExplanation}
           links={principle.sourceLinks}
-          summary={agentRule ? undefined : principle.description}
         />
       </div>
     </div>
