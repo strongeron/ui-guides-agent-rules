@@ -475,6 +475,83 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'layout-custom-utilities': {
     priority: 'SHOULD',
     rule: 'Create custom utilities in @layer utilities for missing CSS properties (text-wrap, scrollbar)'
+  },
+  // ============================================================================
+  // Claude Code Suggestion - Animation, Performance & Interaction Rules
+  // Research: Missing rules identified via WCAG compliance analysis, CSS perf
+  // optimization patterns, and modern API best practices (2025)
+  // ============================================================================
+
+  // WCAG 2.2.2 Level A - Pause, Stop, Hide
+  // Ref: https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html
+  // Ref: https://www.digitala11y.com/understanding-sc-2-2-2-pause-stop-hide/
+  'animations-pause-stop-hide': {
+    priority: 'MUST',
+    rule: 'Auto-playing animations >5s MUST have pause/stop/hide controls; OR auto-stop after 5s. Applies to carousels, video backgrounds, infinite loops. Essential animations (loading spinners, progress) are exempt.'
+  },
+
+  // CSS Containment for Performance
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/contain
+  // Ref: https://web.dev/articles/content-visibility
+  'performance-css-containment': {
+    priority: 'SHOULD',
+    rule: 'Use CSS `contain: layout paint` on reusable cards/list items to isolate layout/paint scope. Use `content-visibility: auto` with `contain-intrinsic-size` for offscreen content (up to 7x render improvement).'
+  },
+
+  // will-change Usage Guidelines
+  // Ref: https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
+  'animations-will-change-sparingly': {
+    priority: 'SHOULD',
+    rule: 'Use `will-change` sparingly—only on frequently animated elements. Apply via JS before animation starts, remove after completion. Never blanket-apply; each layer consumes GPU memory.'
+  },
+
+  // Animation Frame Budget (60fps)
+  // Ref: https://www.viget.com/articles/animation-performance-101-browser-under-the-hood/
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals
+  'animations-frame-budget': {
+    priority: 'SHOULD',
+    rule: 'Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch DOM reads then writes to avoid layout thrashing in animation loops.'
+  },
+
+  // View Transitions API
+  // Ref: https://developer.chrome.com/blog/view-transitions-in-2025
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API
+  'animations-view-transitions': {
+    priority: 'SHOULD',
+    rule: 'Use View Transitions API for page/state transitions. Add `@view-transition { navigation: auto; }` for MPA. Use `view-transition-name` for morphing elements. Progressive enhancement—works without JS.'
+  },
+
+  // Spring Physics for Natural Motion
+  // Ref: https://www.dhiwise.com/post/react-spring-vs-framer-motion-a-detailed-guide-to-react
+  // Ref: https://react-spring-visualizer.com/
+  'animations-spring-physics': {
+    priority: 'SHOULD',
+    rule: 'Prefer spring-based animations for interactive elements (buttons, modals, drag). Configure mass/tension/friction instead of duration/easing for natural feel and interruptible motion.'
+  },
+
+  // Motion Library + Tailwind Conflicts
+  // Ref: https://motion.dev/docs/react-tailwind
+  // Ref: https://dev.to/manukumar07/framer-motion-tailwind-the-2025-animation-stack-1801
+  'animations-motion-tailwind-conflict': {
+    priority: 'SHOULD',
+    rule: 'When using Framer Motion/Motion with Tailwind, remove conflicting `transition-*` classes from animated elements. Let Motion handle transitions to prevent stuttery/weird motion.'
+  },
+
+  // Tailwind motion-safe/motion-reduce Variants
+  // Ref: https://tailwindcss.com/docs/animation
+  // Ref: https://dev.to/hexshift/building-fluid-motion-safe-animations-in-tailwind-css-that-respect-user-preferences-3i6e
+  'animations-tailwind-motion-variants': {
+    priority: 'MUST',
+    rule: 'Use Tailwind `motion-safe:` and `motion-reduce:` variants to conditionally apply animations. Default pattern: `motion-safe:animate-*` ensures animations only run when user allows motion.'
+  },
+
+  // Pause Offscreen Animations
+  // Ref: https://web.dev/articles/content-visibility
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
+  'animations-pause-offscreen': {
+    priority: 'SHOULD',
+    rule: 'Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.'
   }
 };
 
