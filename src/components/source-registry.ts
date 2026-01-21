@@ -50,6 +50,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://www.ui-skills.com/',
     color: 'bg-amber-500 text-white border-amber-500',
   },
+  'claude-code': {
+    id: 'claude-code',
+    name: 'Claude Code',
+    description: 'Rules from Claude Code research on animation, performance & accessibility',
+    url: 'https://claude.ai/code',
+    color: 'bg-[#d97706] text-white border-[#d97706]',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

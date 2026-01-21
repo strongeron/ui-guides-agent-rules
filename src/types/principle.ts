@@ -17,6 +17,7 @@ export type PatternSource =
   | 'tailwind'         // Tailwind CSS golden rules
   | 'rams'             // RAMS accessibility and visual design review
   | 'ibelick'          // @Ibelick UI Skills - opinionated constraints
+  | 'claude-code'      // Claude Code suggested rules from research
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {
