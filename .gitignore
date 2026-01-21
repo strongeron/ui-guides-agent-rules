@@ -34,3 +34,6 @@ dist-ssr
 # Serena workspace state (local runtime)
 .serena/
 coverage/
+playwright-report/
+test-results/
+.playwright/

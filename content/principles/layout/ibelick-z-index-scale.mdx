@@ -1,0 +1,31 @@
+---
+id: layout-ibelick-z-index-scale
+category: layout
+source: ibelick
+title: Use Fixed Z-Index Scale
+description: Use a defined z-index scale instead of arbitrary values like z-[999]
+badExampleKey: layout-ibelick-z-index-scale-bad
+goodExampleKey: layout-ibelick-z-index-scale-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST use fixed z-index scale, no arbitrary z-*. Define semantic z-index layers (base, dropdown, sticky, modal, popover, tooltip).
+</Callout>
+
+## Why This Matters
+
+Arbitrary z-index values like `z-[999]` or `z-[9999]` create an unmanageable stacking context. When you need something on top of `z-[9999]`, you end up with `z-[99999]`. A semantic scale ensures predictable stacking: tooltips above modals, modals above dropdowns, etc.
+
+## Implementation
+
+<ExampleComparison
+  badKey="layout-ibelick-z-index-scale-bad"
+  goodKey="layout-ibelick-z-index-scale-good"
+/>
+
+## Learn More
+
+- [Tailwind Z-Index](https://tailwindcss.com/docs/z-index)
+- [Understanding Z-Index](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index)

@@ -1,0 +1,36 @@
+---
+id: design-ibelick-default-shadows
+category: design
+source: ibelick
+title: Use Tailwind Default Shadows
+description: Stick with Tailwind's default shadow scale instead of custom values
+badExampleKey: design-ibelick-default-shadows-bad
+goodExampleKey: design-ibelick-default-shadows-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Stick with Tailwind default shadows (shadow-sm, shadow, shadow-md, shadow-lg). Custom shadows create inconsistency.
+</Callout>
+
+## Why This Matters
+
+Tailwind's shadow scale is carefully designed for:
+- Visual consistency across your app
+- Proper elevation hierarchy
+- Good performance (no custom blur values)
+- Easy maintenance
+
+Custom shadows like `shadow-[0_10px_40px_rgba(0,0,0,0.3)]` create inconsistency and are hard to maintain.
+
+## Implementation
+
+<ExampleComparison
+  badKey="design-ibelick-default-shadows-bad"
+  goodKey="design-ibelick-default-shadows-good"
+/>
+
+## Learn More
+
+- [Tailwind Box Shadow](https://tailwindcss.com/docs/box-shadow)

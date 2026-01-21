@@ -1,0 +1,37 @@
+---
+id: interactions-ibelick-loading-skeletons
+category: interactions
+source: ibelick
+title: Prefer Skeletons Over Spinners
+description: Use skeleton placeholders instead of spinners for loading states to reduce perceived load time
+badExampleKey: interactions-ibelick-loading-skeletons-bad
+goodExampleKey: interactions-ibelick-loading-skeletons-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Use skeleton screens instead of spinners for loading states. Skeletons reduce perceived load time and prevent layout shift.
+</Callout>
+
+## Why This Matters
+
+Skeleton screens:
+- Show the structure of content before it loads
+- Reduce perceived loading time
+- Prevent cumulative layout shift (CLS)
+- Feel faster than generic spinners
+
+Spinners give no indication of what's coming and feel like waiting.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-ibelick-loading-skeletons-bad"
+  goodKey="interactions-ibelick-loading-skeletons-good"
+/>
+
+## Learn More
+
+- [Skeleton Screens](https://www.lukew.com/ff/entry.asp?1797)
+- [Perceived Performance](https://web.dev/articles/rail)

@@ -16,6 +16,7 @@ export type PatternSource =
   | 'design-system'    // Design system patterns
   | 'tailwind'         // Tailwind CSS golden rules
   | 'rams'             // RAMS accessibility and visual design review
+  | 'ibelick'          // @Ibelick UI Skills - opinionated constraints
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

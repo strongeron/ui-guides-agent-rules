@@ -5,8 +5,7 @@ export function DynamicClassesBad() {
   const colors = ['green', 'yellow', 'red'];
 
   // This pattern breaks in production!
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const _dynamicClass = `bg-${color}-500`;
+  const dynamicClass = `bg-${color}-500`;
 
   return (
     <div className="w-full max-w-sm space-y-4">
@@ -26,7 +25,7 @@ export function DynamicClassesBad() {
           ))}
         </div>
         <div className="px-4 py-2 rounded bg-muted text-muted-foreground">
-          Would be: bg-{color}-500
+          Would be: {dynamicClass}
         </div>
       </div>
       <div className="bg-muted rounded p-3 font-mono text-xs">

@@ -1,0 +1,34 @@
+---
+id: content-ibelick-text-balance
+category: content
+source: ibelick
+title: Use text-balance and text-pretty
+description: Use text-balance for headings and text-pretty for body text to improve readability
+badExampleKey: content-ibelick-text-balance-bad
+goodExampleKey: content-ibelick-text-balance-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  Use text-balance for headings and text-pretty for body text. These CSS properties improve line breaks and readability.
+</Callout>
+
+## Why This Matters
+
+- **text-balance**: Balances line lengths in headings so no line is too short or long
+- **text-pretty**: Prevents orphans (single words on the last line) in paragraphs
+
+Both improve readability and visual appearance without manual line break management.
+
+## Implementation
+
+<ExampleComparison
+  badKey="content-ibelick-text-balance-bad"
+  goodKey="content-ibelick-text-balance-good"
+/>
+
+## Learn More
+
+- [CSS text-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap)
+- [Tailwind Typography](https://tailwindcss.com/docs/text-wrap)

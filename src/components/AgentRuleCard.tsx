@@ -11,6 +11,7 @@ import { COPY_FEEDBACK_DELAY_MS } from '@/constants/ui';
 interface AgentRuleCardProps {
   rule: AgentRule;
   principleTitle?: string;
+  description?: string;
   onCopy?: () => void;
   className?: string;
 }
@@ -30,19 +31,46 @@ const priorityConfig: Record<AgentRulePriority, { label: string; className: stri
   },
 };
 
-function formatRuleForCopy(priority: AgentRulePriority, rule: string): string {
+function formatRuleForCopy(
+  priority: AgentRulePriority,
+  rule: string,
+  description?: string,
+  codeExample?: string
+): string {
   const prefix = priority === 'NEVER' ? 'NEVER:' : `${priority}:`;
-  return `${prefix} ${rule}`;
+  const lines = [`${prefix} ${rule}`];
+
+  if (description) {
+    lines.push('', description);
+  }
+
+  if (codeExample) {
+    lines.push('', 'Example:', codeExample);
+  }
+
+  return lines.join('\n');
 }
 
-export function AgentRuleCard({ rule, principleTitle, onCopy, className }: AgentRuleCardProps) {
+export function AgentRuleCard({
+  rule,
+  principleTitle,
+  description,
+  onCopy,
+  className,
+}: AgentRuleCardProps) {
   const [copied, setCopied] = useState(false);
   const config = priorityConfig[rule.priority];
+  const formattedRule = formatRuleForCopy(rule.priority, rule.rule);
+  const formattedCopy = formatRuleForCopy(
+    rule.priority,
+    rule.rule,
+    description,
+    rule.codeExample
+  );
 
   const handleCopy = async () => {
-    const formattedRule = formatRuleForCopy(rule.priority, rule.rule);
     try {
-      await navigator.clipboard.writeText(formattedRule);
+      await navigator.clipboard.writeText(formattedCopy);
       setCopied(true);
       onCopy?.();
       setTimeout(() => setCopied(false), COPY_FEEDBACK_DELAY_MS);
@@ -69,9 +97,14 @@ export function AgentRuleCard({ rule, principleTitle, onCopy, className }: Agent
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-sm text-foreground leading-relaxed">
-          {rule.rule}
+        <p className="text-sm font-semibold text-foreground leading-relaxed">
+          {formattedRule}
         </p>
+        {description && (
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            {description}
+          </p>
+        )}
 
         {rule.codeExample && (
           <pre className="mt-4 p-3 bg-muted rounded-md text-xs overflow-x-auto">

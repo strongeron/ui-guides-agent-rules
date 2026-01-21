@@ -1,0 +1,31 @@
+---
+id: layout-ibelick-safe-areas
+category: layout
+source: ibelick
+title: Respect Safe Area Insets
+description: Use safe-area-inset padding to prevent content from being hidden behind notches and home indicators
+badExampleKey: layout-ibelick-safe-areas-bad
+goodExampleKey: layout-ibelick-safe-areas-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST respect safe-area-inset for content near screen edges. Use pb-safe, pt-safe, or env(safe-area-inset-*) to avoid notches and home indicators.
+</Callout>
+
+## Why This Matters
+
+Modern phones have notches, rounded corners, and home indicators that can obscure content. The `safe-area-inset` CSS environment variables let you add padding that respects these hardware features.
+
+## Implementation
+
+<ExampleComparison
+  badKey="layout-ibelick-safe-areas-bad"
+  goodKey="layout-ibelick-safe-areas-good"
+/>
+
+## Learn More
+
+- [Designing for Notches](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
+- [Safe Area Insets](https://developer.mozilla.org/en-US/docs/Web/CSS/env)

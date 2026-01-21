@@ -43,6 +43,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://github.com/anthropics/rams',
     color: 'bg-purple-500 text-white border-purple-500',
   },
+  ibelick: {
+    id: 'ibelick',
+    name: '@Ibelick',
+    description: 'UI Skills - opinionated constraints for better interfaces',
+    url: 'https://www.ui-skills.com/',
+    color: 'bg-amber-500 text-white border-amber-500',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

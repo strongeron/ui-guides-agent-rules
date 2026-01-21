@@ -1,0 +1,31 @@
+---
+id: interactions-ibelick-icon-buttons
+category: interactions
+source: ibelick
+title: Icon Buttons Need Labels
+description: Always add aria-label to icon-only buttons for screen reader users
+badExampleKey: interactions-ibelick-icon-buttons-bad
+goodExampleKey: interactions-ibelick-icon-buttons-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST add aria-label to icon-only buttons. Screen readers need text to announce the button's purpose.
+</Callout>
+
+## Why This Matters
+
+Icon-only buttons have no visible text, so screen readers have nothing to announce. Users hear "button" with no context about what the button does. Adding `aria-label` gives screen readers text to announce.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-ibelick-icon-buttons-bad"
+  goodKey="interactions-ibelick-icon-buttons-good"
+/>
+
+## Learn More
+
+- [Icon Button Accessibility](https://www.sarasoueidan.com/blog/accessible-icon-buttons/)
+- [ARIA Labels](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label)

@@ -1,0 +1,32 @@
+---
+id: performance-ibelick-no-blur-animation
+category: performance
+source: ibelick
+title: Never Animate Blur Effects
+description: Never animate blur or backdrop-filter - they're extremely expensive and cause frame drops
+badExampleKey: performance-ibelick-no-blur-animation-bad
+goodExampleKey: performance-ibelick-no-blur-animation-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  NEVER animate large blur or backdrop-filter. These operations are extremely expensive and cause significant frame drops.
+</Callout>
+
+## Why This Matters
+
+Blur operations require sampling many pixels for every pixel rendered. Animating blur means recalculating this on every frame - often causing severe jank. Even modern GPUs struggle with animated blur on large elements.
+
+Instead: use a static blur and animate opacity to fade it in/out.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-ibelick-no-blur-animation-bad"
+  goodKey="performance-ibelick-no-blur-animation-good"
+/>
+
+## Learn More
+
+- [CSS Filter Performance](https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas)

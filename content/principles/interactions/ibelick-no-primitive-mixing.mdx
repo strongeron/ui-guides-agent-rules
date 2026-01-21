@@ -1,0 +1,37 @@
+---
+id: interactions-ibelick-no-primitive-mixing
+category: interactions
+source: ibelick
+title: Don't Mix Primitive Systems
+description: Never mix different primitive libraries (Radix + Headless UI) in the same project
+badExampleKey: interactions-ibelick-no-primitive-mixing-bad
+goodExampleKey: interactions-ibelick-no-primitive-mixing-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  NEVER mix primitive systems (e.g., Radix + Headless UI). Pick one and stick with it for consistency.
+</Callout>
+
+## Why This Matters
+
+Mixing primitive libraries creates:
+- Inconsistent keyboard navigation patterns
+- Different focus behaviors
+- Conflicting styling approaches
+- Larger bundle sizes
+- Confusing developer experience
+
+Choose one primitive library and use it consistently throughout your project.
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-ibelick-no-primitive-mixing-bad"
+  goodKey="interactions-ibelick-no-primitive-mixing-good"
+/>
+
+## Learn More
+
+- [Choosing a Component Library](https://www.joshwcomeau.com/react/component-library/)

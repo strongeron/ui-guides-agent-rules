@@ -1,0 +1,34 @@
+---
+id: interactions-ibelick-alert-dialog
+category: interactions
+source: ibelick
+title: Use AlertDialog for Destructive Actions
+description: Always use AlertDialog for destructive or irreversible actions to require explicit confirmation
+badExampleKey: interactions-ibelick-alert-dialog-bad
+goodExampleKey: interactions-ibelick-alert-dialog-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="UI Skills Rule">
+  MUST use AlertDialog for destructive actions. Users need explicit confirmation before irreversible operations like deletion.
+</Callout>
+
+## Why This Matters
+
+Destructive actions like deleting data, canceling subscriptions, or removing accounts are irreversible. A simple click shouldn't trigger them. AlertDialog:
+- Requires explicit action (not just clicking away)
+- Focuses on the confirm/cancel buttons
+- Makes the severity clear through visual design
+
+## Implementation
+
+<ExampleComparison
+  badKey="interactions-ibelick-alert-dialog-bad"
+  goodKey="interactions-ibelick-alert-dialog-good"
+/>
+
+## Learn More
+
+- [Radix AlertDialog](https://www.radix-ui.com/primitives/docs/components/alert-dialog)
+- [Confirmation Dialog Patterns](https://www.nngroup.com/articles/confirmation-dialog/)
