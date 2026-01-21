@@ -363,6 +363,57 @@ const components = {
 const modules = import.meta.glob('./examples/**/*.tsx');
 ```
 
+## Advanced Code Highlighting with CodeHike
+
+[CodeHike](https://codehike.org/) provides rich code blocks with annotations, focus, diffs, and more.
+
+**Install:**
+```bash
+npm install codehike
+```
+
+**Configure in Vite:**
+```typescript
+// vite.config.ts
+import { remarkCodeHike, recmaCodeHike } from 'codehike/mdx';
+
+const chConfig = {
+  components: { code: "Code" },
+};
+
+export default defineConfig({
+  plugins: [
+    mdx({
+      remarkPlugins: [
+        remarkGfm,
+        remarkFrontmatter,
+        [remarkMdxFrontmatter, { name: 'frontmatter' }],
+        [remarkCodeHike, chConfig],
+      ],
+      recmaPlugins: [[recmaCodeHike, chConfig]],
+      // ...
+    }),
+  ],
+});
+```
+
+**Usage in MDX:**
+```mdx
+```tsx
+// !focus[1:3]
+function Example() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+CodeHike features:
+- Line highlighting and focus
+- Code annotations with callouts
+- Diff highlighting (additions/removals)
+- Scrollycoding (step-through tutorials)
+- File tabs and file trees
+
 ## Advanced Patterns
 
 For detailed implementation patterns, see [REFERENCE.md](REFERENCE.md).

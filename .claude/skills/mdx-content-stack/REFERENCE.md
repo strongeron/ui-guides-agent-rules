@@ -602,6 +602,133 @@ export function ExpandableExample({ exampleKey, title }: ExpandableExampleProps)
 | `Switch` | Interactive toggles in demos |
 | `Checkbox` | Form examples, option lists |
 
+## CodeHike Integration
+
+[CodeHike](https://codehike.org/) transforms code blocks into rich, interactive experiences.
+
+### Full Configuration
+
+```typescript
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import mdx from '@mdx-js/rollup';
+import { remarkCodeHike, recmaCodeHike } from 'codehike/mdx';
+import remarkGfm from 'remark-gfm';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+
+const chConfig = {
+  components: { code: "Code" },
+  syntaxHighlighting: {
+    theme: "github-dark",
+  },
+};
+
+export default defineConfig({
+  plugins: [
+    mdx({
+      remarkPlugins: [
+        remarkGfm,
+        remarkFrontmatter,
+        [remarkMdxFrontmatter, { name: 'frontmatter' }],
+        [remarkCodeHike, chConfig],
+      ],
+      recmaPlugins: [[recmaCodeHike, chConfig]],
+      providerImportSource: '@mdx-js/react',
+    }),
+    react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
+  ],
+});
+```
+
+### CodeHike Component Setup
+
+```typescript
+// src/components/mdx/Code.tsx
+import { Pre, RawCode, highlight } from "codehike/code";
+
+export async function Code({ codeblock }: { codeblock: RawCode }) {
+  const highlighted = await highlight(codeblock, "github-dark");
+  return <Pre code={highlighted} />;
+}
+```
+
+Register in MDX provider:
+```typescript
+// src/components/MDXProvider.tsx
+import { MDXProvider } from '@mdx-js/react';
+import { Code } from './mdx/Code';
+
+const components = {
+  Code,
+};
+
+export function MDXWrapper({ children }) {
+  return <MDXProvider components={components}>{children}</MDXProvider>;
+}
+```
+
+### CodeHike Features in MDX
+
+**Line Focus:**
+```mdx
+```tsx
+// !focus[2:4]
+function Component() {
+  const [value, setValue] = useState('');
+  const handleChange = (e) => setValue(e.target.value);
+  return <input value={value} onChange={handleChange} />;
+}
+```
+
+**Annotations:**
+```mdx
+```tsx
+function Example() {
+  // !callout[/useState/] React hook for local state
+  const [count, setCount] = useState(0);
+  return <button>{count}</button>;
+}
+```
+
+**Diff Highlighting:**
+```mdx
+```tsx
+function Component() {
+-  const value = props.value;
++  const { value } = props;
+  return <div>{value}</div>;
+}
+```
+
+**File Tabs:**
+```mdx
+<CodeWithTabs>
+```tsx App.tsx
+export function App() {
+  return <Counter />;
+}
+```
+
+```tsx Counter.tsx
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <button>{count}</button>;
+}
+```
+</CodeWithTabs>
+```
+
+### When to Use CodeHike
+
+| Use Case | CodeHike Benefit |
+|----------|------------------|
+| Tutorials | Step-through with focus changes |
+| API docs | Highlight specific parameters |
+| Code reviews | Show diffs with explanations |
+| Pattern comparison | Side-by-side with annotations |
+
 ## Alternative Frameworks
 
 ### When to Consider Next.js + MDX
