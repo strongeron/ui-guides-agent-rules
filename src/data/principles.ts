@@ -2465,5 +2465,144 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'content-ibelick-letter-spacing-bad',
     goodExampleKey: 'content-ibelick-letter-spacing-good'
+  },
+  // ============================================================================
+  // Claude Code Suggested Rules - Animation, Performance & Accessibility
+  // Research-backed rules for WCAG compliance, CSS performance, and modern APIs
+  // ============================================================================
+  {
+    id: 'animations-pause-stop-hide',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Pause, Stop, Hide Controls (WCAG 2.2.2)',
+    description: 'Auto-playing animations over 5 seconds must have pause/stop/hide controls',
+    sourceQuote: 'Auto-playing animations >5s MUST have pause/stop/hide controls; OR auto-stop after 5s. Applies to carousels, video backgrounds, infinite loops. Essential animations (loading spinners, progress) are exempt.',
+    additionalExplanation: 'WCAG 2.2.2 Level A requires that users can pause, stop, or hide moving content. This prevents distraction for users with attention disorders and reduces seizure risk. Loading indicators and progress bars are exempt as they provide essential feedback.',
+    sourceLinks: [
+      { text: 'WCAG 2.2.2 Understanding', url: 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html' },
+      { text: 'Digital A11y Guide', url: 'https://www.digitala11y.com/understanding-sc-2-2-2-pause-stop-hide/' }
+    ],
+    badExampleKey: 'animations-pause-stop-hide-bad',
+    goodExampleKey: 'animations-pause-stop-hide-good'
+  },
+  {
+    id: 'performance-css-containment',
+    category: 'performance',
+    source: 'claude-code',
+    title: 'CSS Containment for Performance',
+    description: 'Use CSS contain and content-visibility to isolate layout/paint scope',
+    sourceQuote: 'Use CSS `contain: layout paint` on reusable cards/list items to isolate layout/paint scope. Use `content-visibility: auto` with `contain-intrinsic-size` for offscreen content (up to 7x render improvement).',
+    additionalExplanation: 'CSS containment tells the browser that an element\'s layout/paint is independent from the rest of the page. content-visibility: auto skips rendering offscreen content entirely, dramatically improving initial render for long lists.',
+    sourceLinks: [
+      { text: 'MDN CSS contain', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/contain' },
+      { text: 'web.dev content-visibility', url: 'https://web.dev/articles/content-visibility' }
+    ],
+    badExampleKey: 'performance-css-containment-bad',
+    goodExampleKey: 'performance-css-containment-good'
+  },
+  {
+    id: 'animations-will-change-sparingly',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Use will-change Sparingly',
+    description: 'Apply will-change only to frequently animated elements, and remove after animation',
+    sourceQuote: 'Use `will-change` sparingly—only on frequently animated elements. Apply via JS before animation starts, remove after completion. Never blanket-apply; each layer consumes GPU memory.',
+    additionalExplanation: 'will-change creates a new compositor layer, consuming GPU memory. Overusing it degrades performance. Apply it just before animation starts and remove it after completion. Never apply it to many elements at once.',
+    sourceLinks: [
+      { text: 'GPU Animation Best Practices', url: 'https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/' },
+      { text: 'MDN will-change', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/will-change' }
+    ],
+    badExampleKey: 'animations-will-change-sparingly-bad',
+    goodExampleKey: 'animations-will-change-sparingly-good'
+  },
+  {
+    id: 'animations-frame-budget',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Animation Frame Budget (60fps)',
+    description: 'Animation work should complete within 16ms frame budget for smooth 60fps',
+    sourceQuote: 'Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch DOM reads then writes to avoid layout thrashing in animation loops.',
+    additionalExplanation: 'At 60fps, each frame has ~16.67ms. Heavy JavaScript, layout recalculation, or paint work can cause dropped frames. Batch DOM reads before writes, use requestAnimationFrame, and keep animation logic minimal.',
+    sourceLinks: [
+      { text: 'Animation Performance 101', url: 'https://www.viget.com/articles/animation-performance-101-browser-under-the-hood/' },
+      { text: 'MDN Performance Fundamentals', url: 'https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals' }
+    ],
+    badExampleKey: 'animations-frame-budget-bad',
+    goodExampleKey: 'animations-frame-budget-good'
+  },
+  {
+    id: 'animations-view-transitions',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'View Transitions API',
+    description: 'Use View Transitions API for smooth page/state transitions',
+    sourceQuote: 'Use View Transitions API for page/state transitions. Add `@view-transition { navigation: auto; }` for MPA. Use `view-transition-name` for morphing elements. Progressive enhancement—works without JS.',
+    additionalExplanation: 'The View Transitions API enables smooth animated transitions between DOM states or pages. It works for both SPAs and MPAs, morphs elements across states, and degrades gracefully in unsupported browsers.',
+    sourceLinks: [
+      { text: 'View Transitions in 2025', url: 'https://developer.chrome.com/blog/view-transitions-in-2025' },
+      { text: 'MDN View Transitions', url: 'https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API' }
+    ],
+    badExampleKey: 'animations-view-transitions-bad',
+    goodExampleKey: 'animations-view-transitions-good'
+  },
+  {
+    id: 'animations-spring-physics',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Spring Physics for Natural Motion',
+    description: 'Prefer spring-based animations for interactive elements like buttons and modals',
+    sourceQuote: 'Prefer spring-based animations for interactive elements (buttons, modals, drag). Configure mass/tension/friction instead of duration/easing for natural feel and interruptible motion.',
+    additionalExplanation: 'Spring physics produce more natural-feeling motion than CSS easing. They respond to velocity changes, can be interrupted mid-animation, and settle naturally. Libraries like react-spring make this easy.',
+    sourceLinks: [
+      { text: 'React Spring vs Framer Motion', url: 'https://www.dhiwise.com/post/react-spring-vs-framer-motion-a-detailed-guide-to-react' },
+      { text: 'React Spring Visualizer', url: 'https://react-spring-visualizer.com/' }
+    ],
+    badExampleKey: 'animations-spring-physics-bad',
+    goodExampleKey: 'animations-spring-physics-good'
+  },
+  {
+    id: 'animations-motion-tailwind-conflict',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Motion Library + Tailwind Conflicts',
+    description: 'Remove Tailwind transition classes from elements animated by Framer Motion',
+    sourceQuote: 'When using Framer Motion/Motion with Tailwind, remove conflicting `transition-*` classes from animated elements. Let Motion handle transitions to prevent stuttery/weird motion.',
+    additionalExplanation: 'Tailwind\'s transition-* classes apply CSS transitions. When combined with Framer Motion\'s JS-based animations, they conflict and cause stuttering. Use Motion\'s transition prop instead.',
+    sourceLinks: [
+      { text: 'Motion + Tailwind Guide', url: 'https://motion.dev/docs/react-tailwind' },
+      { text: 'Framer Motion + Tailwind 2025', url: 'https://dev.to/manukumar07/framer-motion-tailwind-the-2025-animation-stack-1801' }
+    ],
+    badExampleKey: 'animations-motion-tailwind-conflict-bad',
+    goodExampleKey: 'animations-motion-tailwind-conflict-good'
+  },
+  {
+    id: 'animations-tailwind-motion-variants',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Tailwind motion-safe/motion-reduce Variants',
+    description: 'Use Tailwind motion-safe: and motion-reduce: variants for accessible animations',
+    sourceQuote: 'Use Tailwind `motion-safe:` and `motion-reduce:` variants to conditionally apply animations. Default pattern: `motion-safe:animate-*` ensures animations only run when user allows motion.',
+    additionalExplanation: 'These variants respect the user\'s prefers-reduced-motion setting. motion-safe: applies styles only when motion is allowed. motion-reduce: applies alternative styles when user prefers reduced motion.',
+    sourceLinks: [
+      { text: 'Tailwind Animation', url: 'https://tailwindcss.com/docs/animation' },
+      { text: 'Motion-Safe Animations Guide', url: 'https://dev.to/hexshift/building-fluid-motion-safe-animations-in-tailwind-css-that-respect-user-preferences-3i6e' }
+    ],
+    badExampleKey: 'animations-tailwind-motion-variants-bad',
+    goodExampleKey: 'animations-tailwind-motion-variants-good'
+  },
+  {
+    id: 'animations-pause-offscreen',
+    category: 'animations',
+    source: 'claude-code',
+    title: 'Pause Offscreen Animations',
+    description: 'Use IntersectionObserver or content-visibility to pause animations when not visible',
+    sourceQuote: 'Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.',
+    additionalExplanation: 'Running animations on elements outside the viewport wastes CPU and battery. IntersectionObserver can pause animations when elements scroll out of view. content-visibility: auto automatically handles this for render-heavy content.',
+    sourceLinks: [
+      { text: 'web.dev content-visibility', url: 'https://web.dev/articles/content-visibility' },
+      { text: 'MDN content-visibility', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility' }
+    ],
+    badExampleKey: 'animations-pause-offscreen-bad',
+    goodExampleKey: 'animations-pause-offscreen-good'
   }
 ];
