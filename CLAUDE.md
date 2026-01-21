@@ -24,6 +24,12 @@ npm run typecheck    # TypeScript type checking
 npm test             # Run tests once
 npm run test:watch   # Run tests in watch mode
 npm run test:coverage # Run tests with coverage report
+
+# E2E Testing (Playwright)
+npm run test:e2e           # Run all e2e tests
+npm run test:e2e:headed    # Run with visible browser
+npm run test:e2e:ui        # Run with Playwright UI
+npm run test:e2e:principle # Run principle visual tests only
 ```
 
 ## Architecture
@@ -94,18 +100,7 @@ Rules are keyed by principle ID with type-safe linking to ensure every rule maps
 
 ### MDX Content Structure
 
-Principles are stored as MDX files in `content/principles/{category}/`:
-
-```
-content/principles/
-├── animations/
-├── content/
-├── design/
-├── forms/
-├── interactions/
-├── layout/
-└── performance/
-```
+Principles are stored as MDX files in `content/principles/{category}/` (animations, content, design, forms, interactions, layout, performance).
 
 Each MDX file has frontmatter (id, category, source, title, description, example keys) and uses custom components:
 - `<Callout type="quote|info|warning|tip">` - Highlighted boxes
@@ -114,17 +109,7 @@ Each MDX file has frontmatter (id, category, source, title, description, example
 
 ### UI Components (shadcn/ui + Radix)
 
-Uses shadcn/ui (new-york style) with Radix UI primitives:
-
-```
-src/components/ui/
-├── badge.tsx + badge.variants.ts
-├── button.tsx + button.variants.ts
-├── card.tsx
-├── input.tsx
-├── switch.tsx (Radix primitive)
-└── tabs.tsx
-```
+Uses shadcn/ui (new-york style) with Radix UI primitives in `src/components/ui/`.
 
 **Pattern**: Components use `class-variance-authority` (CVA) for variants, extracted to `.variants.ts` files for fast-refresh compatibility.
 
