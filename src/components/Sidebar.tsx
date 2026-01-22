@@ -225,6 +225,33 @@ export function Sidebar({
               );
             })
           )}
+
+          {/* Demos Section */}
+          <div className="border-b border-border">
+            <div className="px-4 py-3 bg-muted">
+              <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
+                Demos
+              </h3>
+              <p className="text-xs text-muted-foreground mt-1">
+                Interactive code examples
+              </p>
+            </div>
+            <ul>
+              <li>
+                <Button
+                  variant="ghost"
+                  onClick={() => handlePrincipleClick('codehike-demo')}
+                  className={`w-full justify-start rounded-none px-4 py-3 h-auto text-sm hover:bg-muted ${
+                    currentPrincipleId === 'codehike-demo'
+                      ? 'bg-primary/10 text-primary font-medium border-l-4 border-primary'
+                      : 'text-foreground border-l-4 border-transparent'
+                  }`}
+                >
+                  CodeHike Demo
+                </Button>
+              </li>
+            </ul>
+          </div>
         </nav>
       </aside>
     </>
