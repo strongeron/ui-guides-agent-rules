@@ -41,6 +41,15 @@ function App() {
   }, [currentIndex]);
 
   const handlePrincipleSelect = useCallback((principleId: string) => {
+    // Handle special CodeHike demo route
+    if (principleId === 'codehike-demo') {
+      setShowCodeHikeDemo(true);
+      window.history.replaceState(null, '', '#codehike-demo');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    setShowCodeHikeDemo(false);
     const index = principles.findIndex((p) => p.id === principleId);
     if (index !== -1) {
       setCurrentIndex(index);
@@ -123,7 +132,7 @@ function App() {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         principles={principles}
-        currentPrincipleId={currentPrinciple.id}
+        currentPrincipleId={showCodeHikeDemo ? 'codehike-demo' : currentPrinciple.id}
         onPrincipleSelect={handlePrincipleSelect}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
