@@ -1,0 +1,126 @@
+---
+id: performance-skeleton-dimensions
+category: performance
+source: claude-code
+title: Skeleton Placeholders with Matching Dimensions
+description: Loading skeletons must match final content dimensions to prevent CLS
+badExampleKey: performance-skeleton-dimensions-bad
+goodExampleKey: performance-skeleton-dimensions-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Impact on CLS">
+  Cumulative Layout Shift (CLS) measures visual stability. Skeleton loaders that don't match final content dimensions cause shift when real content loads. Target CLS: under 0.1.
+</Callout>
+
+## Why This Matters
+
+Skeleton screens provide better perceived performance than spinners because they show the page structure immediately. But if the skeleton's dimensions don't match the final content, users experience jarring shifts that hurt both UX and CLS scores.
+
+## Key Strategies
+
+### 1. Match Exact Dimensions
+Skeletons should occupy the same space as final content.
+
+<CodeBlock title="Matching Dimensions" language="tsx">
+{`// Bad: Skeleton with arbitrary height
+<div className="animate-pulse h-20 bg-muted rounded" />
+
+// Good: Skeleton matches actual card height
+<div className="animate-pulse">
+  <div className="h-[180px] bg-muted rounded-t-lg" /> {/* Image */}
+  <div className="p-4">
+    <div className="h-6 bg-muted rounded w-3/4 mb-2" /> {/* Title */}
+    <div className="h-4 bg-muted rounded w-full" /> {/* Description */}
+  </div>
+</div>`}
+</CodeBlock>
+
+### 2. Use Aspect Ratios for Images
+Reserve exact space for images before they load.
+
+<CodeBlock title="Aspect Ratio Skeletons" language="tsx">
+{`// Skeleton with preserved aspect ratio
+<div className="aspect-video bg-muted animate-pulse rounded-lg" />
+
+// Or with explicit dimensions
+<div
+  className="bg-muted animate-pulse rounded-lg"
+  style={{ aspectRatio: '16/9' }}
+/>`}
+</CodeBlock>
+
+### 3. Match Typography Metrics
+Skeleton text lines should match actual font sizes and line heights.
+
+<CodeBlock title="Typography-Matched Skeletons" language="tsx">
+{`// Real content uses text-xl (20px) with line-height 28px
+<h2 className="text-xl">Product Title</h2>
+
+// Skeleton should match that height
+<div className="h-7 bg-muted rounded animate-pulse" />
+
+// For body text (text-base = 16px, line-height 24px)
+<div className="h-6 bg-muted rounded animate-pulse" />`}
+</CodeBlock>
+
+### 4. Create Reusable Skeleton Components
+Encapsulate dimension logic to ensure consistency.
+
+<CodeBlock title="Skeleton Component" language="tsx">
+{`interface CardSkeletonProps {
+  imageAspect?: '16/9' | '4/3' | '1/1';
+}
+
+function CardSkeleton({ imageAspect = '16/9' }: CardSkeletonProps) {
+  return (
+    <div className="rounded-lg border border-border overflow-hidden">
+      <div
+        className="bg-muted animate-pulse"
+        style={{ aspectRatio: imageAspect }}
+      />
+      <div className="p-4 space-y-3">
+        <div className="h-6 bg-muted rounded w-3/4 animate-pulse" />
+        <div className="h-4 bg-muted rounded animate-pulse" />
+        <div className="h-4 bg-muted rounded w-5/6 animate-pulse" />
+      </div>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+### 5. Handle Variable Content
+For content with variable heights, use `min-height` or reserve space for the maximum expected size.
+
+<CodeBlock title="Variable Content Strategy" language="tsx">
+{`// Comments may have 1-5 lines of text
+// Reserve space for average case (3 lines)
+function CommentSkeleton() {
+  return (
+    <div className="flex gap-3">
+      <div className="size-10 rounded-full bg-muted animate-pulse" />
+      <div className="flex-1 space-y-2">
+        <div className="h-4 bg-muted rounded w-24 animate-pulse" />
+        {/* 3 lines of content */}
+        <div className="h-4 bg-muted rounded animate-pulse" />
+        <div className="h-4 bg-muted rounded animate-pulse" />
+        <div className="h-4 bg-muted rounded w-2/3 animate-pulse" />
+      </div>
+    </div>
+  );
+}`}
+</CodeBlock>
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-skeleton-dimensions-bad"
+  goodKey="performance-skeleton-dimensions-good"
+/>
+
+## Learn More
+
+- [Cumulative Layout Shift](https://web.dev/articles/cls)
+- [Skeleton screens](https://uxdesign.cc/what-you-should-know-about-skeleton-screens-a820c45a571a)
+- [Optimize CLS](https://web.dev/articles/optimize-cls)

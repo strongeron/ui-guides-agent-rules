@@ -1,0 +1,90 @@
+---
+id: performance-font-display-strategy
+category: performance
+source: claude-code
+title: Font Display Strategy
+description: Prevent invisible text (FOIT) and layout shift from web fonts with proper loading strategies
+badExampleKey: performance-font-display-strategy-bad
+goodExampleKey: performance-font-display-strategy-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Impact on CLS & LCP">
+  Web fonts can cause Flash of Invisible Text (FOIT) affecting LCP, and Flash of Unstyled Text (FOUT) causing CLS when fonts swap. Proper font-display and preloading eliminates both issues.
+</Callout>
+
+## Why This Matters
+
+When browsers download web fonts, text can either be invisible (FOIT) or flash when the font loads (FOUT). Both hurt user experience and Core Web Vitals:
+- **FOIT** blocks text rendering, increasing LCP
+- **FOUT** causes layout shift when font metrics differ, increasing CLS
+
+## Key Strategies
+
+### 1. Use font-display: swap
+This shows fallback text immediately, then swaps when the font loads. Prevents FOIT.
+
+<CodeBlock title="CSS @font-face" language="css">
+{`@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  /* Show fallback immediately, swap when loaded */
+  font-display: swap;
+}`}
+</CodeBlock>
+
+### 2. Preconnect to Font Origins
+Establish early connections to font CDNs to reduce latency.
+
+<CodeBlock title="HTML Head" language="html">
+{`<!-- Preconnect to Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Or preload self-hosted fonts -->
+<link
+  rel="preload"
+  href="/fonts/inter-var.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>`}
+</CodeBlock>
+
+### 3. Match Fallback Font Metrics
+Use CSS `size-adjust`, `ascent-override`, and `descent-override` to minimize layout shift during font swap.
+
+<CodeBlock title="Font Metric Matching" language="css">
+{`/* Adjusted system font to match Inter metrics */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+body {
+  font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+}`}
+</CodeBlock>
+
+### 4. Subset Fonts
+Only include the character sets you need. Google Fonts does this automatically with `&display=swap`.
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-font-display-strategy-bad"
+  goodKey="performance-font-display-strategy-good"
+/>
+
+## Learn More
+
+- [Optimize web fonts](https://web.dev/articles/optimize-webfont-loading)
+- [font-display](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display)
+- [Fallback font generator](https://screenspan.net/fallback)

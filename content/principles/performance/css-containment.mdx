@@ -1,0 +1,110 @@
+---
+id: performance-css-containment
+category: performance
+source: claude-code
+title: CSS Containment
+description: Use the contain property to isolate layout, paint, and style recalculations for better INP
+badExampleKey: performance-css-containment-bad
+goodExampleKey: performance-css-containment-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Impact on INP">
+  Interaction to Next Paint (INP) measures responsiveness. When users interact with one part of the page, the browser shouldn't recalculate layout for unrelated elements. CSS containment creates optimization boundaries.
+</Callout>
+
+## Why This Matters
+
+By default, a change to any element can trigger layout recalculation for the entire page. For complex UIs with many elements, this becomes expensive. The `contain` property tells the browser that an element's contents are independent, allowing it to skip unnecessary work.
+
+## Key Strategies
+
+### 1. Layout Containment
+Prevents internal layout changes from affecting siblings or ancestors.
+
+<CodeBlock title="Layout Containment" language="css">
+{`.card {
+  /* Internal layout changes won't affect other cards */
+  contain: layout;
+}
+
+/* Perfect for: cards, list items, modals */`}
+</CodeBlock>
+
+### 2. Paint Containment
+Clips the element's rendering to its bounds. Internal changes won't repaint outside.
+
+<CodeBlock title="Paint Containment" language="css">
+{`.scrollable-panel {
+  /* Scrolling won't trigger repaints outside this area */
+  contain: paint;
+  overflow: auto;
+}
+
+/* Perfect for: scroll containers, carousels, tabs */`}
+</CodeBlock>
+
+### 3. Content Visibility
+The most powerful optimization: skips rendering for off-screen content entirely.
+
+<CodeBlock title="Content Visibility" language="css">
+{`.below-fold-section {
+  /* Skip rendering until visible, reserve 500px height */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Perfect for: long pages, infinite scroll, hidden tabs */`}
+</CodeBlock>
+
+### 4. Combined Containment
+Use `contain: strict` or `contain: content` for maximum optimization.
+
+<CodeBlock title="Combined Containment" language="css">
+{`/* content = layout + paint + style (most common) */
+.isolated-widget {
+  contain: content;
+}
+
+/* strict = size + layout + paint + style (rare, element must have explicit size) */
+.fixed-size-component {
+  contain: strict;
+  width: 300px;
+  height: 200px;
+}`}
+</CodeBlock>
+
+## Tailwind CSS Usage
+
+<CodeBlock title="Tailwind Utilities" language="html">
+{`<!-- Layout containment -->
+<div class="contain-layout">...</div>
+
+<!-- Paint containment -->
+<div class="contain-paint">...</div>
+
+<!-- Content containment (layout + paint + style) -->
+<div class="contain-content">...</div>
+
+<!-- Strict containment (all) -->
+<div class="contain-strict w-[300px] h-[200px]">...</div>
+
+<!-- Content visibility for off-screen optimization -->
+<div class="content-visibility-auto [contain-intrinsic-size:auto_500px]">
+  Long content here...
+</div>`}
+</CodeBlock>
+
+## Implementation
+
+<ExampleComparison
+  badKey="performance-css-containment-bad"
+  goodKey="performance-css-containment-good"
+/>
+
+## Learn More
+
+- [CSS contain property](https://developer.mozilla.org/en-US/docs/Web/CSS/contain)
+- [content-visibility](https://web.dev/articles/content-visibility)
+- [Optimize INP](https://web.dev/articles/optimize-inp)

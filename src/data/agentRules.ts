@@ -552,6 +552,44 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'animations-pause-offscreen': {
     priority: 'SHOULD',
     rule: 'Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.'
+  },
+
+  // ============================================================================
+  // Claude Code - Core Web Vitals Performance Rules
+  // Research: LCP, CLS, INP optimization strategies for modern web performance
+  // Ref: https://web.dev/articles/vitals
+  // ============================================================================
+
+  // LCP Hero Optimization
+  // Ref: https://web.dev/articles/optimize-lcp
+  // Ref: https://web.dev/articles/preload-critical-assets
+  'performance-lcp-hero-optimization': {
+    priority: 'MUST',
+    rule: 'LCP images (hero, banner): Use `loading="eager"` + `fetchpriority="high"` + `decoding="async"`. Add `<link rel="preload" as="image">` in head. NEVER lazy-load above-the-fold content.'
+  },
+
+  // Font Display Strategy
+  // Ref: https://web.dev/articles/optimize-webfont-loading
+  // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display
+  'performance-font-display-strategy': {
+    priority: 'MUST',
+    rule: 'Use `font-display: swap` to prevent FOIT (invisible text). Preconnect to font CDNs. Preload critical fonts. Match fallback font metrics with `size-adjust` to minimize CLS during font swap.'
+  },
+
+  // Responsive Images
+  // Ref: https://web.dev/articles/serve-responsive-images
+  // Ref: https://web.dev/articles/serve-images-webp
+  'performance-responsive-images': {
+    priority: 'MUST',
+    rule: 'Use `srcset` + `sizes` for responsive images. Serve WebP/AVIF with `<picture>` fallback. Always set explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent CLS.'
+  },
+
+  // Skeleton Dimensions
+  // Ref: https://web.dev/articles/cls
+  // Ref: https://web.dev/articles/optimize-cls
+  'performance-skeleton-dimensions': {
+    priority: 'MUST',
+    rule: 'Skeleton placeholders MUST match final content dimensions exactly. Include image placeholders with correct aspect ratios. Text skeleton heights should match typography line heights. Poor skeletons cause CLS.'
   }
 };
 
