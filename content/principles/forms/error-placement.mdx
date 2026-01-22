@@ -8,7 +8,7 @@ badExampleKey: forms-error-placement-bad
 goodExampleKey: forms-error-placement-good
 ---
 
-import { Callout, ExampleComparison } from '@/components/mdx';
+import { Callout, ExampleComparison, Code } from '@/components/mdx';
 
 <Callout type="quote" title="From the Guidelines">
   Error placement. Show errors next to their fields; on submit, focus the first error.
@@ -18,7 +18,59 @@ import { Callout, ExampleComparison } from '@/components/mdx';
 
 Errors should appear immediately adjacent to the field they relate to. When a form is submitted with errors, automatically focus the first problematic field so users can start fixing issues immediately. This is especially important for long forms.
 
-## Implementation
+## The Pattern
+
+### Step 1: Create refs for focus management
+
+```tsx !
+function Form() {
+  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+  // !focus(1:2)
+  // !callout[/useRef/] Refs let us programmatically focus inputs
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+```
+
+### Step 2: Focus the first error on submit
+
+```tsx !
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  const newErrors = validate();
+  setErrors(newErrors);
+
+  // !focus(1:5)
+  // !callout[/nameRef.current?.focus/] Focus first error field
+  if (Object.keys(newErrors).length > 0) {
+    if (newErrors.name) {
+      nameRef.current?.focus();
+    } else if (newErrors.email) {
+      emailRef.current?.focus();
+    }
+  }
+};
+```
+
+### Step 3: Show errors inline next to each field
+
+```tsx !
+<div>
+  <label htmlFor="name">Name</label>
+  <input
+    ref={nameRef}
+    id="name"
+    // !mark[4:45]
+    className={errors.name ? 'border-error' : 'border-default'}
+  />
+  {/* !focus(1:3) */}
+  {/* Inline error - appears directly below the field */}
+  {errors.name && (
+    <p className="text-error text-xs mt-1">{errors.name}</p>
+  )}
+</div>
+```
+
+## Try It
 
 <ExampleComparison
   badKey="forms-error-placement-bad"

@@ -6,7 +6,16 @@ import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeSlug from 'rehype-slug';
+import { remarkCodeHike, recmaCodeHike } from 'codehike/mdx';
 import path from 'path';
+
+// CodeHike configuration
+const chConfig = {
+  components: { code: 'Code' },
+  syntaxHighlighting: {
+    theme: 'github-dark',
+  },
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,7 +25,9 @@ export default defineConfig({
         remarkGfm,
         remarkFrontmatter,
         [remarkMdxFrontmatter, { name: 'frontmatter' }],
+        [remarkCodeHike, chConfig],
       ],
+      recmaPlugins: [[recmaCodeHike, chConfig]],
       rehypePlugins: [rehypeSlug],
       providerImportSource: '@mdx-js/react',
     }),

@@ -8,7 +8,7 @@ badExampleKey: animations-never-transition-all-bad
 goodExampleKey: animations-never-transition-all-good
 ---
 
-import { Callout, ExampleComparison } from '@/components/mdx';
+import { Callout, ExampleComparison, Code } from '@/components/mdx';
 
 <Callout type="quote" title="From the Guidelines">
   Never transition: all. Explicitly list only the properties you intend to animate (typically opacity, transform). all can unintentionally animate layout-affecting properties causing jank.
@@ -16,15 +16,45 @@ import { Callout, ExampleComparison } from '@/components/mdx';
 
 ## Why This Matters
 
-Using transition: all is tempting but dangerous. It can accidentally animate properties you didn\
+Using `transition: all` is tempting but dangerous. It can accidentally animate properties you didn't intend to change—like `width`, `height`, `padding`, or `margin`—causing expensive layout recalculations and visual jank.
 
-## Implementation
+## The Key Difference
+
+```css !
+/* ❌ Bad - animates EVERYTHING including layout properties */
+.card {
+  /* !mark[14:16] */
+  transition: all 0.3s ease;
+}
+
+/* ✅ Good - only animates compositor-friendly properties */
+.card {
+  /* !mark[14:52] */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+```
+
+## Try It
 
 <ExampleComparison
   badKey="animations-never-transition-all-bad"
   goodKey="animations-never-transition-all-good"
 />
 
+## Safe Properties to Animate
+
+```css !
+/* !callout[/transform/] GPU-accelerated, no layout recalc */
+transform: scale(1.05);
+
+/* !callout[/opacity/] Compositor-only, very cheap */
+opacity: 0.8;
+
+/* !callout[/box-shadow/] Paint-only, reasonably cheap */
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+```
+
 ## Learn More
 
 - [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
+- [High Performance Animations](https://web.dev/animations-guide/)

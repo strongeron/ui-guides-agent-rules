@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
+import { CodeHikeDemo } from './components/CodeHikeDemo';
 import { SkipLink } from './components/SkipLink';
 import { principles } from './data/principles';
 import type { PatternSource } from './types/principle';
@@ -12,6 +13,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSources, setSelectedSources] = useState<PatternSource[]>([]);
+  const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(false);
 
   // Compute available sources from principles data
   const availableSources = useMemo(() => {
@@ -74,7 +76,10 @@ function App() {
   // Restore state from URL hash
   useEffect(() => {
     const hash = window.location.hash.slice(1);
-    if (hash) {
+    if (hash === 'codehike-demo') {
+      setShowCodeHikeDemo(true);
+    } else if (hash) {
+      setShowCodeHikeDemo(false);
       const index = principles.findIndex((p) => p.id === hash);
       if (index !== -1) {
         setCurrentIndex(index);
@@ -84,13 +89,19 @@ function App() {
 
   // Update URL hash when principle changes
   useEffect(() => {
-    window.history.replaceState(null, '', `#${currentPrinciple.id}`);
-  }, [currentPrinciple.id]);
+    if (!showCodeHikeDemo) {
+      window.history.replaceState(null, '', `#${currentPrinciple.id}`);
+    }
+  }, [currentPrinciple.id, showCodeHikeDemo]);
 
   // Dynamic page title
   useEffect(() => {
-    document.title = `${currentPrinciple.title} - Web Interface Guidelines`;
-  }, [currentPrinciple.title]);
+    if (showCodeHikeDemo) {
+      document.title = 'CodeHike Demo - Web Interface Guidelines';
+    } else {
+      document.title = `${currentPrinciple.title} - Web Interface Guidelines`;
+    }
+  }, [currentPrinciple.title, showCodeHikeDemo]);
 
   // Clear search when sidebar closes
   useEffect(() => {
@@ -122,15 +133,21 @@ function App() {
       />
 
       <main id="main-content" className="min-h-screen">
-        <PrincipleView principle={currentPrinciple} />
+        {showCodeHikeDemo ? (
+          <CodeHikeDemo />
+        ) : (
+          <PrincipleView principle={currentPrinciple} />
+        )}
       </main>
 
-      <Navigation
-        onPrevious={handlePrevious}
-        onNext={handleNext}
-        hasPrevious={currentIndex > 0}
-        hasNext={currentIndex < principles.length - 1}
-      />
+      {!showCodeHikeDemo && (
+        <Navigation
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          hasPrevious={currentIndex > 0}
+          hasNext={currentIndex < principles.length - 1}
+        />
+      )}
     </div>
   );
 }
