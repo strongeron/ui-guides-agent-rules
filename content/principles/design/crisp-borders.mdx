@@ -8,7 +8,7 @@ badExampleKey: design-crisp-borders-bad
 goodExampleKey: design-crisp-borders-good
 ---
 
-import { Callout, ExampleComparison } from '@/components/mdx';
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
 
 <Callout type="quote" title="From the Guidelines">
   Crisp borders. Combine borders & shadows; semi-transparent borders improve edge clarity.
@@ -16,9 +16,26 @@ import { Callout, ExampleComparison } from '@/components/mdx';
 
 ## Why This Matters
 
-Shadows alone can look muddy. A subtle border (often semi-transparent) makes edges crisp and clear. Use rgba() with low opacity for borders so they adapt to different backgrounds.
+Shadows alone can look muddy and undefined. A subtle semi-transparent border makes edges crisp and clear. The key is using low opacity (8-12%) so the border adapts to both light and dark backgrounds.
 
 ## Implementation
+
+<CodeBlock title="Tailwind CSS" language="html">
+{`<!-- Bad: Shadow only - edges look soft/muddy -->
+<div class="bg-card rounded-lg p-4 shadow-md">
+  Content
+</div>
+
+<!-- Good: Shadow + semi-transparent border -->
+<div class="bg-card rounded-lg p-4 shadow-md border border-black/[0.08] dark:border-white/[0.08]">
+  Content
+</div>
+
+<!-- Alternative: Use design system border token -->
+<div class="bg-card rounded-lg p-4 shadow-md border border-border">
+  Content
+</div>`}
+</CodeBlock>
 
 <ExampleComparison
   badKey="design-crisp-borders-bad"
@@ -28,3 +45,4 @@ Shadows alone can look muddy. A subtle border (often semi-transparent) makes edg
 ## Learn More
 
 - [CSS Borders](https://developer.mozilla.org/en-US/docs/Web/CSS/border)
+- [Tailwind Border Opacity](https://tailwindcss.com/docs/border-color#changing-the-opacity)
