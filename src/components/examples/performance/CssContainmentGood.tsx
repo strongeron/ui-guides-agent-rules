@@ -11,13 +11,7 @@ export function CssContainmentGood() {
         {items.map((item) => (
           <div
             key={item.id}
-            className="p-3 bg-muted rounded-lg"
-            style={{
-              contain: 'layout paint',
-              // content-visibility for offscreen optimization:
-              // contentVisibility: 'auto',
-              // containIntrinsicSize: '0 56px',
-            }}
+            className="p-3 bg-muted rounded-lg [contain:layout_paint]"
           >
             <h4 className="font-medium text-sm">{item.title}</h4>
             <p className="text-xs text-muted-foreground">{item.description}</p>
@@ -25,7 +19,7 @@ export function CssContainmentGood() {
         ))}
       </div>
       <p className="text-xs text-success">
-        ✓ contain: layout paint isolates each card's layout scope (up to 7x render improvement)
+        [contain:layout_paint] isolates each card's layout scope
       </p>
     </div>
   );

@@ -5,7 +5,7 @@ export function LcpHeroOptimizationBad() {
         {/* Lazy-loading hero image - delays LCP */}
         <img
           src="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=800"
-          alt="Hero banner"
+          alt="E-commerce store promotional hero showing colorful products"
           className="w-full h-48 object-cover"
           loading="lazy"
         />

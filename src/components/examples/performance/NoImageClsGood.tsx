@@ -6,7 +6,7 @@ export function NoImageCLSGood() {
         <div className="relative w-full mb-2" style={{ aspectRatio: '4/3' }}>
           <img
             src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400"
-            alt="Product"
+            alt="Black premium wireless headphones with cushioned ear cups"
             className="absolute inset-0 w-full h-full object-cover rounded"
             width={400}
             height={300}

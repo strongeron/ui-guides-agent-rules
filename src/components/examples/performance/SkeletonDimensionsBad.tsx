@@ -22,7 +22,7 @@ export function SkeletonDimensionsBad() {
           <>
             <img
               src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="Product"
+              alt="Black premium wireless headphones with cushioned ear cups"
               className="w-full h-40 object-cover"
             />
             <div className="p-4">

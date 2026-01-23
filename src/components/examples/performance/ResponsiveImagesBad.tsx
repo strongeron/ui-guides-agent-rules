@@ -5,7 +5,7 @@ export function ResponsiveImagesBad() {
         {/* Single large image for all devices */}
         <img
           src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1600"
-          alt="Product showcase"
+          alt="Developer working at a desk with multiple monitors showing code"
           className="w-full h-48 object-cover"
         />
         <div className="p-4">

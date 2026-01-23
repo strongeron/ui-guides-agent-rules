@@ -14,7 +14,7 @@ export function ResponsiveImagesGood() {
             ${baseUrl}&w=1200 1200w
           `}
           sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 400px"
-          alt="Product showcase"
+          alt="Developer working at a desk with multiple monitors showing code"
           className="w-full h-48 object-cover"
           width={800}
           height={533}
