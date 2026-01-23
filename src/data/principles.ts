@@ -2501,6 +2501,66 @@ export const principles: Principle[] = [
     goodExampleKey: 'performance-css-containment-good'
   },
   {
+    id: 'performance-lcp-hero-optimization',
+    category: 'performance',
+    source: 'claude-code',
+    title: 'LCP Hero Optimization',
+    description: 'Preload above-the-fold images and prioritize LCP elements for fast perceived loading',
+    sourceQuote: 'LCP images (hero, banner): Use `loading="eager"` + `fetchpriority="high"` + `decoding="async"`. Add `<link rel="preload" as="image">` in head. NEVER lazy-load above-the-fold content.',
+    additionalExplanation: 'Largest Contentful Paint (LCP) is a Core Web Vital measuring when the largest content becomes visible. Hero images are often the LCP element. Preloading and eager loading ensures they render as fast as possible.',
+    sourceLinks: [
+      { text: 'Optimize LCP', url: 'https://web.dev/articles/optimize-lcp' },
+      { text: 'Preload critical assets', url: 'https://web.dev/articles/preload-critical-assets' }
+    ],
+    badExampleKey: 'performance-lcp-hero-optimization-bad',
+    goodExampleKey: 'performance-lcp-hero-optimization-good'
+  },
+  {
+    id: 'performance-font-display-strategy',
+    category: 'performance',
+    source: 'claude-code',
+    title: 'Font Display Strategy',
+    description: 'Prevent invisible text (FOIT) and layout shift from web fonts with proper loading strategies',
+    sourceQuote: 'Use `font-display: swap` to prevent FOIT (invisible text). Preconnect to font CDNs. Preload critical fonts. Match fallback font metrics with `size-adjust` to minimize CLS during font swap.',
+    additionalExplanation: 'Web fonts can cause Flash of Invisible Text (FOIT) affecting LCP, and layout shift when fonts swap. font-display: swap shows fallback text immediately. Metric matching with size-adjust minimizes CLS.',
+    sourceLinks: [
+      { text: 'Optimize web fonts', url: 'https://web.dev/articles/optimize-webfont-loading' },
+      { text: 'font-display MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display' }
+    ],
+    badExampleKey: 'performance-font-display-strategy-bad',
+    goodExampleKey: 'performance-font-display-strategy-good'
+  },
+  {
+    id: 'performance-responsive-images',
+    category: 'performance',
+    source: 'claude-code',
+    title: 'Responsive Images',
+    description: 'Serve optimally-sized images for each device with srcset, sizes, and modern formats',
+    sourceQuote: 'Use `srcset` + `sizes` for responsive images. Serve WebP/AVIF with `<picture>` fallback. Always set explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent CLS.',
+    additionalExplanation: 'Without responsive images, mobile users download desktop-sized images, wasting bandwidth and slowing LCP. srcset lets browsers choose optimal sizes. Modern formats (WebP, AVIF) reduce file size 25-50%.',
+    sourceLinks: [
+      { text: 'Serve responsive images', url: 'https://web.dev/articles/serve-responsive-images' },
+      { text: 'Use WebP images', url: 'https://web.dev/articles/serve-images-webp' }
+    ],
+    badExampleKey: 'performance-responsive-images-bad',
+    goodExampleKey: 'performance-responsive-images-good'
+  },
+  {
+    id: 'performance-skeleton-dimensions',
+    category: 'performance',
+    source: 'claude-code',
+    title: 'Skeleton Placeholders with Matching Dimensions',
+    description: 'Loading skeletons must match final content dimensions to prevent CLS',
+    sourceQuote: 'Skeleton placeholders MUST match final content dimensions exactly. Include image placeholders with correct aspect ratios. Text skeleton heights should match typography line heights. Poor skeletons cause CLS.',
+    additionalExplanation: 'Skeleton screens show page structure before content loads. If skeleton dimensions don\'t match final content, users experience jarring shifts (CLS). Match image aspect ratios, text line heights, and overall container sizes.',
+    sourceLinks: [
+      { text: 'Cumulative Layout Shift', url: 'https://web.dev/articles/cls' },
+      { text: 'Optimize CLS', url: 'https://web.dev/articles/optimize-cls' }
+    ],
+    badExampleKey: 'performance-skeleton-dimensions-bad',
+    goodExampleKey: 'performance-skeleton-dimensions-good'
+  },
+  {
     id: 'animations-will-change-sparingly',
     category: 'animations',
     source: 'claude-code',
