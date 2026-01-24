@@ -40,7 +40,7 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     id: 'rams',
     name: 'RAMS',
     description: 'Accessibility and visual design review rules',
-    url: 'https://github.com/anthropics/rams',
+    url: 'https://www.rams.ai/',
     color: 'bg-purple-500 text-white border-purple-500',
   },
   ibelick: {

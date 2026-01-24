@@ -624,8 +624,10 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
 
   // ============================================================================
   // RAMS - Accessibility and Visual Design Rules
-  // Source: https://github.com/anthropics/rams
-  // WCAG 2.1/2.2 compliance with automated review
+  // Source: https://www.rams.ai/
+  // Automated design review for AI-generated code - catches accessibility issues
+  // and visual bugs. Checks semantic HTML, keyboard/focus, typography, layout,
+  // color/contrast, and component states.
   // ============================================================================
 
   // Content Accessibility
@@ -735,7 +737,9 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   // ============================================================================
   // @Ibelick UI-Skills Rules
   // Source: https://www.ui-skills.com/
-  // Opinionated constraints for building better interfaces
+  // GitHub: https://github.com/ibelick/ui-skills
+  // Skills: baseline-ui, fixing-motion-performance, fixing-accessibility
+  // Opinionated constraints for building better interfaces with AI agents
   // ============================================================================
 
   // Performance

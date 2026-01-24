@@ -22,7 +22,7 @@
 | ARIA | `aria` | Red (destructive) | https://www.w3.org/WAI/ARIA/apg/ |
 | Design System | `design-system` | Primary | — |
 | Tailwind | `tailwind` | Cyan (#38bdf8) | https://tailwindcss.com/docs |
-| RAMS | `rams` | Purple | https://github.com/anthropics/rams |
+| RAMS | `rams` | Purple | https://www.rams.ai/ |
 | @Ibelick | `ibelick` | Amber | https://www.ui-skills.com/ |
 | Claude Code | `claude-code` | Orange (#d97706) | https://claude.ai/code |
 | Anthropic | `anthropic` | Terracotta (#cc785c) | https://github.com/anthropics/skills |
