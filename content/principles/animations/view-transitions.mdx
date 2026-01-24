@@ -1,0 +1,71 @@
+---
+id: animations-view-transitions
+category: animations
+source: claude-code
+title: View Transitions API
+description: Use View Transitions API for smooth page/state transitions
+badExampleKey: animations-view-transitions-bad
+goodExampleKey: animations-view-transitions-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Modern Page Transitions">
+  Use View Transitions API for page/state transitions. Add `@view-transition { navigation: auto; }` for MPA. Use `view-transition-name` for morphing elements. Progressive enhancement—works without JS.
+</Callout>
+
+## Why This Matters
+
+The View Transitions API enables smooth animated transitions between DOM states or pages. It works for both SPAs and MPAs, can morph elements across states, and degrades gracefully in unsupported browsers.
+
+This eliminates the need for complex animation libraries just for page transitions.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-view-transitions-bad"
+  goodKey="animations-view-transitions-good"
+/>
+
+<CodeBlock title="MPA View Transitions (CSS)">
+```css
+@view-transition {
+  navigation: auto;
+}
+
+/* Customize the transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+}
+
+/* Morph specific elements */
+.hero-image {
+  view-transition-name: hero;
+}
+```
+</CodeBlock>
+
+<CodeBlock title="SPA View Transitions (JS)">
+```tsx
+async function navigateWithTransition(url: string) {
+  if (!document.startViewTransition) {
+    // Fallback for unsupported browsers
+    window.location.href = url;
+    return;
+  }
+
+  const transition = document.startViewTransition(async () => {
+    // Update DOM here
+    await loadNewContent(url);
+  });
+
+  await transition.finished;
+}
+```
+</CodeBlock>
+
+## Learn More
+
+- [View Transitions in 2025](https://developer.chrome.com/blog/view-transitions-in-2025)
+- [MDN View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)

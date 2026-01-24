@@ -1,0 +1,55 @@
+---
+id: animations-pause-stop-hide
+category: animations
+source: claude-code
+title: Pause, Stop, Hide Controls (WCAG 2.2.2)
+description: Auto-playing animations over 5 seconds must have pause/stop/hide controls
+badExampleKey: animations-pause-stop-hide-bad
+goodExampleKey: animations-pause-stop-hide-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="WCAG 2.2.2 Pause, Stop, Hide">
+  Auto-playing animations >5s MUST have pause/stop/hide controls; OR auto-stop after 5s. Applies to carousels, video backgrounds, infinite loops. Essential animations (loading spinners, progress) are exempt.
+</Callout>
+
+## Why This Matters
+
+WCAG 2.2.2 Level A requires that users can pause, stop, or hide moving content. This prevents distraction for users with attention disorders (ADHD), cognitive disabilities, and reduces seizure risk for users with photosensitive epilepsy.
+
+Loading indicators and progress bars are exempt as they provide essential feedback about system status.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-pause-stop-hide-bad"
+  goodKey="animations-pause-stop-hide-good"
+/>
+
+<CodeBlock title="Good Implementation">
+```tsx
+function AutoPlayCarousel() {
+  const [isPaused, setIsPaused] = useState(false);
+
+  return (
+    <div>
+      <div className="carousel" aria-live={isPaused ? 'polite' : 'off'}>
+        {/* Carousel content */}
+      </div>
+      <button
+        onClick={() => setIsPaused(!isPaused)}
+        aria-label={isPaused ? 'Play carousel' : 'Pause carousel'}
+      >
+        {isPaused ? 'Play' : 'Pause'}
+      </button>
+    </div>
+  );
+}
+```
+</CodeBlock>
+
+## Learn More
+
+- [WCAG 2.2.2 Understanding](https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html)
+- [Digital A11y Guide](https://www.digitala11y.com/understanding-sc-2-2-2-pause-stop-hide/)

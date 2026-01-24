@@ -1,0 +1,73 @@
+---
+id: animations-pause-offscreen
+category: animations
+source: claude-code
+title: Pause Offscreen Animations
+description: Use IntersectionObserver or content-visibility to pause animations when not visible
+badExampleKey: animations-pause-offscreen-bad
+goodExampleKey: animations-pause-offscreen-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Resource-Efficient Animations">
+  Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.
+</Callout>
+
+## Why This Matters
+
+Running animations on elements outside the viewport wastes CPU cycles and drains battery, especially on mobile devices. Users can't see offscreen animations anyway.
+
+IntersectionObserver can pause animations when elements scroll out of view. The CSS `content-visibility: auto` property automatically handles this for render-heavy content.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-pause-offscreen-bad"
+  goodKey="animations-pause-offscreen-good"
+/>
+
+<CodeBlock title="IntersectionObserver Approach">
+```tsx
+function PausableAnimation() {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={isVisible ? 'animate-pulse' : 'animate-none'}
+    >
+      Only animates when visible
+    </div>
+  );
+}
+```
+</CodeBlock>
+
+<CodeBlock title="CSS content-visibility Approach">
+```css
+.animated-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px; /* Estimated height */
+}
+
+/* Browser automatically skips rendering
+   and animation for offscreen sections */
+```
+</CodeBlock>
+
+## Learn More
+
+- [web.dev content-visibility](https://web.dev/articles/content-visibility)
+- [MDN content-visibility](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility)

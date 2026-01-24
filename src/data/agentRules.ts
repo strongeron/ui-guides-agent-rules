@@ -620,6 +620,288 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'aesthetics-bold-direction': {
     priority: 'SHOULD',
     rule: 'Commit to a design direction (brutalist, editorial, organic) and execute with precision. Avoid generic AI aesthetics: purple gradients, sparkles, excessive border-radius. Polarizing is better than forgettable.'
+  },
+
+  // ============================================================================
+  // RAMS - Accessibility and Visual Design Rules
+  // Source: https://github.com/anthropics/rams
+  // WCAG 2.1/2.2 compliance with automated review
+  // ============================================================================
+
+  // Content Accessibility
+  'content-rams-alt-text': {
+    priority: 'MUST',
+    rule: 'All images must have alt attribute - descriptive for informative images, empty alt="" for decorative images. Screen readers announce images; missing alt creates confusion.'
+  },
+  'content-rams-heading-levels': {
+    priority: 'MUST',
+    rule: 'Heading levels must be hierarchical (h1-h6) without skipping levels. Never go from h1 to h3. Screen reader users navigate by headings; skipped levels break navigation.'
+  },
+  'content-rams-link-text': {
+    priority: 'MUST',
+    rule: 'Link text must describe its destination - avoid generic text like "click here" or "read more". Links should make sense out of context for screen reader link lists.'
+  },
+
+  // Interaction Accessibility
+  'interactions-rams-aria-labels': {
+    priority: 'MUST',
+    rule: 'Icon-only buttons must have aria-label describing the action. Decorative icons need aria-hidden="true". Screen readers cannot interpret visual icons.'
+  },
+  'interactions-rams-focus-outline': {
+    priority: 'MUST',
+    rule: 'Interactive elements must have visible focus indicator. Never use outline-none without providing focus-visible replacement. Keyboard users must see where focus is.'
+  },
+  'interactions-rams-keyboard-handlers': {
+    priority: 'MUST',
+    rule: 'Interactive elements with onClick must also handle keyboard events (Enter/Space for buttons). Use semantic elements (<button>) which handle this automatically.'
+  },
+  'interactions-rams-role-attributes': {
+    priority: 'MUST',
+    rule: 'Use semantic HTML elements (<button>, <a>, <nav>) before ARIA roles. If using role="button" on a div, also add tabIndex="0" and keyboard handlers.'
+  },
+  'interactions-rams-semantic-handlers': {
+    priority: 'NEVER',
+    rule: 'Use <div onClick> or <span onClick> for interactive elements. Use <button> for actions, <a>/<Link> for navigation. Non-semantic elements lack keyboard support.'
+  },
+  'interactions-rams-tabindex': {
+    priority: 'NEVER',
+    rule: 'Use positive tabIndex values (>0) as they disrupt natural tab order. Use tabIndex="0" to add to flow, tabIndex="-1" for programmatic focus only.'
+  },
+  'interactions-rams-touch-targets': {
+    priority: 'MUST',
+    rule: 'Clickable elements must be at least 44x44px for touch accessibility (WCAG 2.5.5 AAA). Minimum 24x24px (WCAG 2.5.8 AA). Small targets cause misclicks.'
+  },
+
+  // Form Accessibility
+  'forms-rams-form-labels': {
+    priority: 'MUST',
+    rule: 'Every form input must have associated <label> with htmlFor, be wrapped by <label>, or have aria-label. Placeholder is not a substitute for labels.'
+  },
+
+  // Design Accessibility
+  'design-rams-color-only': {
+    priority: 'NEVER',
+    rule: 'Convey information using color alone. Add text labels, icons, or patterns as secondary indicators. Color-blind users (8% of males) cannot distinguish certain colors.'
+  },
+  'design-rams-color-contrast': {
+    priority: 'MUST',
+    rule: 'UI components (buttons, inputs, icons) must have minimum 3:1 contrast ratio against adjacent colors (WCAG 1.4.11). Test in both light and dark themes.'
+  },
+  'design-rams-text-contrast': {
+    priority: 'MUST',
+    rule: 'Text must have minimum 4.5:1 contrast ratio against background (WCAG 1.4.3). Large text (18pt+/14pt+ bold) can use 3:1. Low contrast causes eye strain.'
+  },
+  'design-rams-inconsistent-spacing': {
+    priority: 'SHOULD',
+    rule: 'Use consistent spacing values from a defined scale (4px, 8px, 16px, etc.). Avoid mixing arbitrary pixel values. Inconsistent spacing creates visual imbalance.'
+  },
+  'design-rams-crowded-elements': {
+    priority: 'SHOULD',
+    rule: 'Provide adequate whitespace between interactive elements to prevent accidental activation. Touch targets should have at least 8px gap between them.'
+  },
+  'design-rams-excessive-whitespace': {
+    priority: 'SHOULD',
+    rule: 'Balance whitespace - excessive gaps break visual relationships and increase scrolling. Group related elements with proximity. Whitespace should be intentional.'
+  },
+  'design-rams-font-consistency': {
+    priority: 'SHOULD',
+    rule: 'Use consistent font families and weights throughout the interface. Limit to 2-3 font families maximum. Too many fonts create visual chaos.'
+  },
+  'design-rams-text-sizing': {
+    priority: 'SHOULD',
+    rule: 'Use a consistent typographic scale for text sizes. Body text should be minimum 16px on web, never below 12px. Small text causes readability issues.'
+  },
+  'design-rams-color-harmony': {
+    priority: 'SHOULD',
+    rule: 'Use harmonious color combinations from a defined palette. Clashing colors create visual discomfort. Consider color temperature and saturation balance.'
+  },
+  'design-rams-semantic-colors': {
+    priority: 'SHOULD',
+    rule: 'Use semantic color tokens consistently - red/destructive for errors, green/success for confirmation, yellow/warning for caution, blue/info for information.'
+  },
+  'design-rams-border-radius': {
+    priority: 'SHOULD',
+    rule: 'Apply consistent border-radius values from a defined scale. Nested elements should have proportionally smaller radii (outer - border-width = inner).'
+  },
+  'design-rams-shadow-consistency': {
+    priority: 'SHOULD',
+    rule: 'Use consistent elevation/shadow tokens to convey hierarchy. Ensure shadows have sufficient contrast in both light and dark themes. Avoid mixing shadow styles.'
+  },
+  'design-rams-alignment': {
+    priority: 'SHOULD',
+    rule: 'Align related elements consistently using a grid system. Left-align text content for readability. Center buttons only when intentionally creating a focal point.'
+  },
+
+  // ============================================================================
+  // @Ibelick UI-Skills Rules
+  // Source: https://www.ui-skills.com/
+  // Opinionated constraints for building better interfaces
+  // ============================================================================
+
+  // Performance
+  'performance-ibelick-tailwind-defaults': {
+    priority: 'MUST',
+    rule: 'Use Tailwind CSS defaults unless custom values already exist or are explicitly requested. Arbitrary values (w-[347px]) indicate design system gaps.'
+  },
+  'performance-ibelick-no-blur-animation': {
+    priority: 'NEVER',
+    rule: 'Animate large blur() or backdrop-filter surfaces. They are expensive paint operations that cause frame drops, especially on mobile devices.'
+  },
+  'performance-ibelick-will-change': {
+    priority: 'NEVER',
+    rule: 'Apply will-change outside an active animation. It wastes GPU memory when not needed. Add dynamically before animation, remove after completion.'
+  },
+  'performance-ibelick-no-effect-render': {
+    priority: 'NEVER',
+    rule: 'Use useEffect for anything that can be expressed as render logic. Derive state during render, not in effects. Effects are for synchronization with external systems.'
+  },
+
+  // Animations
+  'animations-ibelick-motion-library': {
+    priority: 'MUST',
+    rule: 'Use motion/react (formerly framer-motion) when JavaScript animation is required. It provides spring physics, gesture support, and exit animations out of the box.'
+  },
+  'animations-ibelick-tw-animate': {
+    priority: 'SHOULD',
+    rule: 'Use tw-animate-css for entrance and micro-animations in Tailwind CSS. Provides consistent, performant CSS animations without JavaScript overhead.'
+  },
+  'animations-ibelick-intentional-only': {
+    priority: 'NEVER',
+    rule: 'Add animation unless it is explicitly requested. Gratuitous animation slows perceived performance and can cause motion sickness. Animation should serve purpose.'
+  },
+  'animations-ibelick-compositor-only': {
+    priority: 'MUST',
+    rule: 'Animate only compositor properties (transform, opacity). These run on GPU without triggering layout or paint. 60fps requires < 16ms per frame.'
+  },
+  'animations-ibelick-no-layout': {
+    priority: 'NEVER',
+    rule: 'Animate layout properties (width, height, top, left, margin, padding). Use transform: scale() and translate() instead. Layout triggers are expensive.'
+  },
+  'animations-ibelick-minimize-paint': {
+    priority: 'SHOULD',
+    rule: 'Avoid animating paint properties (background, color, box-shadow) except for small, local UI elements. Large paint areas cause jank on lower-end devices.'
+  },
+  'animations-ibelick-timing': {
+    priority: 'NEVER',
+    rule: 'Exceed 200ms for interaction feedback. Use ease-out on entrance, ease-in on exit. Never introduce custom easing curves unless explicitly requested.'
+  },
+  'animations-ibelick-pause-offscreen': {
+    priority: 'MUST',
+    rule: 'Pause looping animations when off-screen using IntersectionObserver. Saves CPU/battery on mobile. Resume when element enters viewport.'
+  },
+  'animations-ibelick-reduced-motion': {
+    priority: 'SHOULD',
+    rule: 'Respect prefers-reduced-motion media query. Reduce or disable animations for users who experience motion sickness. Use motion-safe: and motion-reduce: variants.'
+  },
+
+  // Forms
+  'forms-ibelick-cn-utility': {
+    priority: 'MUST',
+    rule: 'Use cn utility (clsx + tailwind-merge) for conditional class logic. Handles class conflicts, falsy values, and array inputs cleanly.'
+  },
+  'forms-ibelick-error-placement': {
+    priority: 'MUST',
+    rule: 'Show errors inline next to where the action happens. Disconnected toasts or top-of-form error summaries force users to hunt for problems.'
+  },
+  'forms-ibelick-no-paste-blocking': {
+    priority: 'NEVER',
+    rule: 'Block paste in input or textarea elements. Users paste from password managers, notes, and other sources. Blocking paste creates friction and security issues.'
+  },
+
+  // Layout
+  'layout-ibelick-z-index-scale': {
+    priority: 'MUST',
+    rule: 'Use a fixed z-index scale (z-10, z-20, z-30) not arbitrary values. Document the scale. Arbitrary z-index values lead to escalating z-index wars.'
+  },
+  'layout-ibelick-size-utility': {
+    priority: 'SHOULD',
+    rule: 'Use size-* for square elements instead of separate w-* and h-* classes. Reduces class count and communicates intent (this element is square).'
+  },
+  'layout-ibelick-viewport-height': {
+    priority: 'NEVER',
+    rule: 'Use h-screen or 100vh on mobile. Use h-dvh (dynamic viewport height) instead to account for mobile browser chrome (address bar, navigation).'
+  },
+  'layout-ibelick-safe-areas': {
+    priority: 'MUST',
+    rule: 'Respect safe-area-inset for fixed/sticky elements on notched devices. Use pb-safe, pt-safe or env(safe-area-inset-*) to prevent content obscuring.'
+  },
+
+  // Interactions
+  'interactions-ibelick-accessible-primitives': {
+    priority: 'MUST',
+    rule: 'Use accessible component primitives (Base UI, React Aria, Radix) for keyboard/focus behavior. These handle ARIA, focus management, and keyboard navigation correctly.'
+  },
+  'interactions-ibelick-existing-components': {
+    priority: 'MUST',
+    rule: 'Use the project\'s existing component primitives before introducing new libraries. Check for existing Button, Dialog, Popover components first.'
+  },
+  'interactions-ibelick-no-primitive-mixing': {
+    priority: 'NEVER',
+    rule: 'Mix primitive systems (Radix + React Aria) within the same interaction surface. Focus management conflicts cause bugs. Pick one system per component.'
+  },
+  'interactions-ibelick-base-ui': {
+    priority: 'SHOULD',
+    rule: 'Prefer Base UI for new primitives if compatible with the stack. It\'s unstyled, accessible, and doesn\'t impose styling opinions.'
+  },
+  'interactions-ibelick-icon-buttons': {
+    priority: 'MUST',
+    rule: 'Add aria-label to icon-only buttons describing the action. "Close", "Delete", "Edit" - not "X icon" or "Trash icon". Screen readers need action context.'
+  },
+  'interactions-ibelick-manual-behavior': {
+    priority: 'NEVER',
+    rule: 'Rebuild keyboard or focus behavior by hand unless explicitly requested. Use established primitives. Hand-rolled accessibility is usually incomplete.'
+  },
+  'interactions-ibelick-alert-dialog': {
+    priority: 'MUST',
+    rule: 'Use AlertDialog (not Dialog) for destructive or irreversible actions. AlertDialog traps focus and requires explicit confirmation, preventing accidents.'
+  },
+  'interactions-ibelick-loading-skeletons': {
+    priority: 'SHOULD',
+    rule: 'Use structural skeletons for loading states instead of spinners. Skeletons show content shape, reduce perceived wait time, and prevent layout shift.'
+  },
+
+  // Design
+  'design-ibelick-no-gradients': {
+    priority: 'NEVER',
+    rule: 'Use gradients unless explicitly requested. Solid colors are easier to maintain, more accessible, and don\'t clash with content.'
+  },
+  'design-ibelick-no-purple': {
+    priority: 'NEVER',
+    rule: 'Use purple or multicolor gradients. They are hallmarks of AI-generated slop and generic templates. Choose distinctive, intentional colors.'
+  },
+  'design-ibelick-no-glow': {
+    priority: 'NEVER',
+    rule: 'Use glow effects (box-shadow with blur and color) as primary affordances. Glows are decorative, not functional. Use borders or backgrounds for affordance.'
+  },
+  'design-ibelick-default-shadows': {
+    priority: 'SHOULD',
+    rule: 'Use Tailwind CSS default shadow scale (shadow-sm, shadow, shadow-md) unless explicitly requested. Custom shadows often clash with the design system.'
+  },
+  'design-ibelick-empty-states': {
+    priority: 'MUST',
+    rule: 'Give empty states one clear next action. "No results" with a button to adjust filters. "No items" with a button to create first item. Never leave users stuck.'
+  },
+  'design-ibelick-color-restraint': {
+    priority: 'SHOULD',
+    rule: 'Limit accent color usage to one per view. Use existing theme or Tailwind color tokens before introducing new colors. Every new color needs justification.'
+  },
+
+  // Content
+  'content-ibelick-text-balance': {
+    priority: 'MUST',
+    rule: 'Use text-balance for headings (prevents orphans) and text-pretty for body paragraphs (optimizes line breaks). Improves readability without manual tweaking.'
+  },
+  'content-ibelick-tabular-nums': {
+    priority: 'MUST',
+    rule: 'Use tabular-nums (font-variant-numeric: tabular-nums) for numerical data in tables, counters, and prices. Numbers align in columns without jumping.'
+  },
+  'content-ibelick-text-overflow': {
+    priority: 'SHOULD',
+    rule: 'Use truncate or line-clamp-* for dense UI to prevent layout breaking. Add title attribute for full text on hover. Long text should never break layout.'
+  },
+  'content-ibelick-letter-spacing': {
+    priority: 'NEVER',
+    rule: 'Modify letter-spacing (tracking-*) unless explicitly requested. Default tracking is optimized for readability. Custom tracking often hurts legibility.'
   }
 };
 

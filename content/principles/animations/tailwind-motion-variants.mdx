@@ -1,0 +1,73 @@
+---
+id: animations-tailwind-motion-variants
+category: animations
+source: claude-code
+title: Tailwind motion-safe/motion-reduce Variants
+description: Use Tailwind motion-safe: and motion-reduce: variants for accessible animations
+badExampleKey: animations-tailwind-motion-variants-bad
+goodExampleKey: animations-tailwind-motion-variants-good
+---
+
+import { Callout, ExampleComparison, CodeBlock } from '@/components/mdx';
+
+<Callout type="quote" title="Accessible Animation Variants">
+  Use Tailwind `motion-safe:` and `motion-reduce:` variants to conditionally apply animations. Default pattern: `motion-safe:animate-*` ensures animations only run when user allows motion.
+</Callout>
+
+## Why This Matters
+
+These variants respect the user's `prefers-reduced-motion` setting:
+- `motion-safe:` applies styles only when motion is allowed
+- `motion-reduce:` applies alternative styles when user prefers reduced motion
+
+This provides accessible animations without needing custom media queries.
+
+## Implementation
+
+<ExampleComparison
+  badKey="animations-tailwind-motion-variants-bad"
+  goodKey="animations-tailwind-motion-variants-good"
+/>
+
+<CodeBlock title="Default Pattern: motion-safe">
+```tsx
+// Animation only runs if user allows motion
+<div className="motion-safe:animate-fade-in">
+  Accessible animated content
+</div>
+
+// Combine with hover states
+<button className="motion-safe:hover:scale-105 motion-safe:transition-transform">
+  Hover me
+</button>
+```
+</CodeBlock>
+
+<CodeBlock title="Alternative Content with motion-reduce">
+```tsx
+// Show different content based on preference
+<div className="motion-safe:animate-bounce motion-reduce:animate-none">
+  <span className="motion-safe:hidden">Loading...</span>
+  <span className="motion-reduce:hidden">
+    <Spinner />
+  </span>
+</div>
+```
+</CodeBlock>
+
+<CodeBlock title="Complete Accessible Animation">
+```tsx
+<div className={cn(
+  "opacity-0",
+  "motion-safe:animate-fade-in-up",
+  "motion-reduce:opacity-100" // Instant appearance
+)}>
+  Content respects user preferences
+</div>
+```
+</CodeBlock>
+
+## Learn More
+
+- [Tailwind Animation](https://tailwindcss.com/docs/animation)
+- [Motion-Safe Animations Guide](https://dev.to/hexshift/building-fluid-motion-safe-animations-in-tailwind-css-that-respect-user-preferences-3i6e)
