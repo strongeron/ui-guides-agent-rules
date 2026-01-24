@@ -85,6 +85,47 @@ Add to `src/data/principles.ts`:
 - `claude-code` - Research-based rules from Claude Code
 - `custom` - Internal patterns without external source
 
+**Using Anthropic Skills as Source:**
+
+Anthropic publishes agent skills at [github.com/anthropics/skills](https://github.com/anthropics/skills) that contain high-quality UI/UX guidelines. To extract principles from skills:
+
+1. **Find relevant skills:**
+   ```
+   https://github.com/anthropics/skills/tree/main/skills
+   ```
+   Key skills for UI principles:
+   - `frontend-design` - Visual design, typography, color, motion
+   - `ui-skills` - Interface constraints and patterns
+
+2. **Read the SKILL.md file:**
+   ```
+   https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md
+   ```
+
+3. **Extract principles from skill sections:**
+   - Each numbered guideline or rule can become a principle
+   - Use the skill's exact wording for `sourceQuote`
+   - Link back to the skill file or specific line
+
+4. **Source attribution for Anthropic skills:**
+   ```typescript
+   {
+     source: 'anthropic',
+     sourceQuote: 'Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter.',
+     sourceLinks: [
+       {
+         text: 'Anthropic frontend-design skill',
+         url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md'
+       }
+     ]
+   }
+   ```
+
+5. **Verify skill content is current:**
+   - Check the skill's last commit date
+   - Skills may be updated; re-verify periodically
+   - Use raw GitHub URLs for stable references
+
 **sourceQuote guidelines:**
 - Use exact quotes when available
 - Keep under 2 sentences

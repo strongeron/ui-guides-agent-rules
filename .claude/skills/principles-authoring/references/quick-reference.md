@@ -28,6 +28,23 @@
 | Anthropic | `anthropic` | Terracotta (#cc785c) | https://github.com/anthropics/skills |
 | Custom | `custom` | Muted | — |
 
+## Anthropic Skills Repository
+
+| Skill | Path | Use For |
+|-------|------|---------|
+| frontend-design | `skills/frontend-design/SKILL.md` | Typography, color, motion, layouts |
+| ui-skills | `skills/ui-skills/SKILL.md` | Interface constraints, patterns |
+
+**Base URL:** `https://github.com/anthropics/skills/blob/main/`
+
+**Raw content URL:** `https://raw.githubusercontent.com/anthropics/skills/main/`
+
+**Extracting principles from skills:**
+1. Read the SKILL.md file for the relevant skill
+2. Identify numbered guidelines or rules
+3. Use exact wording for `sourceQuote`
+4. Link to the skill file in `sourceLinks`
+
 ## File Naming Conventions
 
 | Type | Pattern | Example |
