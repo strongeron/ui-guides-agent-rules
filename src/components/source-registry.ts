@@ -57,6 +57,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://claude.ai/code',
     color: 'bg-[#d97706] text-white border-[#d97706]',
   },
+  anthropic: {
+    id: 'anthropic',
+    name: 'Anthropic',
+    description: 'Anthropic frontend-design skill guidelines',
+    url: 'https://github.com/anthropics/skills',
+    color: 'bg-[#cc785c] text-white border-[#cc785c]',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

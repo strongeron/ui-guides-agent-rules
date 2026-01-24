@@ -6,6 +6,7 @@ export type PrincipleCategory =
   | 'forms'
   | 'performance'
   | 'design'
+  | 'aesthetics'
   | 'vercel-specific';
 
 // Pattern source types for multi-source "brain center"
@@ -18,6 +19,7 @@ export type PatternSource =
   | 'rams'             // RAMS accessibility and visual design review
   | 'ibelick'          // @Ibelick UI Skills - opinionated constraints
   | 'claude-code'      // Claude Code suggested rules from research
+  | 'anthropic'        // Anthropic frontend-design skill guidelines
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

@@ -1,0 +1,46 @@
+---
+id: aesthetics-distinctive-typography
+category: aesthetics
+source: anthropic
+title: Distinctive Font Choices
+description: Choose unique, characterful fonts over generic defaults
+badExampleKey: aesthetics-distinctive-typography-bad
+goodExampleKey: aesthetics-distinctive-typography-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts
+  like Arial and Inter; opt instead for distinctive choices that elevate the
+  frontend's aesthetics.
+</Callout>
+
+## Why This Matters
+
+Typography carries singular voice. Generic fonts like Inter, Roboto, and system
+fonts are everywhere—they're safe but forgettable. Distinctive font pairings
+create immediate visual identity and memorability.
+
+The right typography pairing—a characterful display font for headlines with a
+refined body font—establishes brand personality before users read a single word.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-distinctive-typography-bad"
+  goodKey="aesthetics-distinctive-typography-good"
+/>
+
+## Best Practices
+
+- **Display fonts** for headlines: Playfair Display, Fraunces, Space Grotesk
+- **Body fonts** with character: Source Serif, Literata, IBM Plex
+- Use `font-display: swap` to prevent invisible text during load
+- Match fallback font metrics with `size-adjust` to minimize CLS
+
+## Learn More
+
+- [Google Fonts](https://fonts.google.com/)
+- [Fontshare](https://www.fontshare.com/)
+- [Beautiful Web Type](https://beautifulwebtype.com/)

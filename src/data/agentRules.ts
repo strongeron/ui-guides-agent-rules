@@ -590,6 +590,36 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'performance-skeleton-dimensions': {
     priority: 'MUST',
     rule: 'Skeleton placeholders MUST match final content dimensions exactly. Include image placeholders with correct aspect ratios. Text skeleton heights should match typography line heights. Poor skeletons cause CLS.'
+  },
+
+  // ============================================================================
+  // Aesthetics - Anthropic Frontend-Design Skill
+  // Source: https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md
+  // ============================================================================
+
+  'aesthetics-distinctive-typography': {
+    priority: 'SHOULD',
+    rule: 'Use distinctive, characterful fonts instead of generic defaults (Inter, Roboto, Arial). Pair a display font with a refined body font for memorable visual identity.'
+  },
+  'aesthetics-color-dominance': {
+    priority: 'SHOULD',
+    rule: 'Use bold dominant colors with 1-2 sharp accent highlights. Avoid timid, evenly-distributed palettes. The 60-30-10 rule works, but pushing to 90% dominant with surgical accent placement is often better.'
+  },
+  'aesthetics-orchestrated-motion': {
+    priority: 'SHOULD',
+    rule: 'Orchestrate page load reveals with staggered animation-delay (100-150ms intervals). Reveal in reading order: hero first, then navigation, then content. Random micro-interactions feel chaotic.'
+  },
+  'aesthetics-spatial-composition': {
+    priority: 'SHOULD',
+    rule: 'Break predictable symmetric grids with asymmetry, overlap, negative margins, and varied scale. Feature one dominant element at unexpected scale. Use whitespace asymmetrically to create tension.'
+  },
+  'aesthetics-atmospheric-backgrounds': {
+    priority: 'SHOULD',
+    rule: 'Add depth with gradient meshes (layered radial-gradient), subtle noise textures (2-5% opacity), and backdrop-filter effects. Plain solid backgrounds feel flat and lifeless.'
+  },
+  'aesthetics-bold-direction': {
+    priority: 'SHOULD',
+    rule: 'Commit to a design direction (brutalist, editorial, organic) and execute with precision. Avoid generic AI aesthetics: purple gradients, sparkles, excessive border-radius. Polarizing is better than forgettable.'
   }
 };
 

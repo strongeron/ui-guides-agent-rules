@@ -1,0 +1,47 @@
+---
+id: aesthetics-atmospheric-backgrounds
+category: aesthetics
+source: anthropic
+title: Atmospheric Visual Details
+description: Add depth with gradient meshes, noise textures, and layered transparencies
+badExampleKey: aesthetics-atmospheric-backgrounds-bad
+goodExampleKey: aesthetics-atmospheric-backgrounds-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Add atmospheric visual details. Gradient meshes, noise textures, and layered
+  transparencies create depth and richness. Plain solid backgrounds feel flat
+  and lifeless.
+</Callout>
+
+## Why This Matters
+
+Flat, solid backgrounds are the absence of design. They're not minimalist—
+they're incomplete. Even the most minimal interfaces benefit from atmospheric
+depth: subtle gradients, grain, or texture that gives content a place to live.
+
+The goal isn't decoration—it's creating an environment where your UI feels
+grounded rather than floating in a void.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-atmospheric-backgrounds-bad"
+  goodKey="aesthetics-atmospheric-backgrounds-good"
+/>
+
+## Best Practices
+
+- Layer multiple `radial-gradient` for organic gradient meshes
+- Add subtle noise texture (2-5% opacity) for tactile quality
+- Use CSS `backdrop-filter` for frosted glass effects
+- Consider `mix-blend-mode` for layered transparency
+- Keep atmospheric effects subtle—enhance, don't distract
+
+## Learn More
+
+- [Mesh Gradients](https://meshgradient.in/)
+- [CSS Gradient Generator](https://cssgradient.io/)
+- [Grainy Gradients](https://css-tricks.com/grainy-gradients/)

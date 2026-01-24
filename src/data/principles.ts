@@ -35,6 +35,11 @@ export const categories: CategoryInfo[] = [
     id: 'design',
     title: 'Design',
     description: 'Visual design principles and aesthetics'
+  },
+  {
+    id: 'aesthetics',
+    title: 'Aesthetics',
+    description: 'Creative visual design principles for distinctive, production-grade interfaces'
   }
 ];
 
@@ -2664,5 +2669,100 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'animations-pause-offscreen-bad',
     goodExampleKey: 'animations-pause-offscreen-good'
+  },
+  // ============================================================================
+  // Aesthetics - Anthropic Frontend-Design Skill
+  // Source: https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md
+  // ============================================================================
+  {
+    id: 'aesthetics-distinctive-typography',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Distinctive Font Choices',
+    description: 'Choose unique, characterful fonts over generic defaults like Inter and Roboto',
+    sourceQuote: 'Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend\'s aesthetics.',
+    additionalExplanation: 'Typography carries singular voice. Generic fonts are everywhere—they\'re safe but forgettable. Distinctive font pairings create immediate visual identity. Pair a characterful display font for headlines with a refined body font for memorable experiences.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Google Fonts', url: 'https://fonts.google.com/' },
+      { text: 'Fontshare', url: 'https://www.fontshare.com/' }
+    ],
+    badExampleKey: 'aesthetics-distinctive-typography-bad',
+    goodExampleKey: 'aesthetics-distinctive-typography-good'
+  },
+  {
+    id: 'aesthetics-color-dominance',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Dominant Colors with Sharp Accents',
+    description: 'Use bold primary colors with 1-2 sharp accent highlights instead of evenly-distributed palettes',
+    sourceQuote: 'Employ dominant colors as the primary visual element, with sharp accent colors used sparingly for highlights. Don\'t be timid with color—be bold and intentional.',
+    additionalExplanation: 'Timid, evenly-distributed palettes create visual confusion. When every color competes for attention, nothing stands out. A dominant color establishes hierarchy, while sharp accents draw the eye to key actions.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Refactoring UI', url: 'https://www.refactoringui.com/' }
+    ],
+    badExampleKey: 'aesthetics-color-dominance-bad',
+    goodExampleKey: 'aesthetics-color-dominance-good'
+  },
+  {
+    id: 'aesthetics-orchestrated-motion',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Orchestrated Page Load Reveals',
+    description: 'Use staggered reveal sequences with animation-delay instead of scattered micro-interactions',
+    sourceQuote: 'Orchestrate page load reveals. Staggered reveal sequences with animation-delay create intentional, polished experiences. Random micro-interactions scattered throughout feel chaotic.',
+    additionalExplanation: 'Motion is choreography. When animations fire randomly, the interface feels broken. Orchestrated reveals—elements appearing in sequence with consistent timing—communicate intentionality and craftsmanship.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Motion One', url: 'https://motion.dev/' }
+    ],
+    badExampleKey: 'aesthetics-orchestrated-motion-bad',
+    goodExampleKey: 'aesthetics-orchestrated-motion-good'
+  },
+  {
+    id: 'aesthetics-spatial-composition',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Unexpected Spatial Layouts',
+    description: 'Break predictable symmetric grids with asymmetry, overlap, and varied scale',
+    sourceQuote: 'Design unexpected spatial layouts. Break out of predictable symmetric grids with asymmetry, overlap, negative margins, and diagonal flow. Grid-breaking creates visual interest.',
+    additionalExplanation: 'Symmetric grids are the default. Every SaaS landing page reaches for the same 3-column grid. Breaking these expectations with asymmetry, overlap, and varied scale creates memorable, distinctive experiences.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Refactoring UI: Layout', url: 'https://www.refactoringui.com/' }
+    ],
+    badExampleKey: 'aesthetics-spatial-composition-bad',
+    goodExampleKey: 'aesthetics-spatial-composition-good'
+  },
+  {
+    id: 'aesthetics-atmospheric-backgrounds',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Atmospheric Visual Details',
+    description: 'Add depth with gradient meshes, noise textures, and layered transparencies',
+    sourceQuote: 'Add atmospheric visual details. Gradient meshes, noise textures, and layered transparencies create depth and richness. Plain solid backgrounds feel flat and lifeless.',
+    additionalExplanation: 'Flat, solid backgrounds are the absence of design. Even minimal interfaces benefit from atmospheric depth: subtle gradients, grain, or texture that gives content a place to live rather than floating in a void.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Mesh Gradients', url: 'https://meshgradient.in/' }
+    ],
+    badExampleKey: 'aesthetics-atmospheric-backgrounds-bad',
+    goodExampleKey: 'aesthetics-atmospheric-backgrounds-good'
+  },
+  {
+    id: 'aesthetics-bold-direction',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Intentional Design Direction',
+    description: 'Commit to a design direction and execute with precision over generic AI aesthetics',
+    sourceQuote: 'Commit to a design direction and execute with precision. Generic AI aesthetics (purple gradients, sparkles, rounded everything) are forgettable. Intentionality matters more than intensity.',
+    additionalExplanation: 'Every AI-generated landing page looks the same: purple gradients, floating orbs, excessive border-radius. Real design is choosing a direction—brutalist, editorial, organic—and executing it with conviction. A committed direction is more memorable than safe median aesthetics.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Awwwards', url: 'https://www.awwwards.com/' }
+    ],
+    badExampleKey: 'aesthetics-bold-direction-bad',
+    goodExampleKey: 'aesthetics-bold-direction-good'
   }
 ];
