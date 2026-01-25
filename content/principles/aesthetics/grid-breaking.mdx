@@ -1,0 +1,56 @@
+---
+id: aesthetics-grid-breaking
+category: aesthetics
+source: anthropic
+title: Intentional Grid-Breaking
+description: Break grid patterns intentionally with asymmetry, overlap, and diagonal flow
+badExampleKey: aesthetics-grid-breaking-bad
+goodExampleKey: aesthetics-grid-breaking-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Employ unexpected layouts, asymmetry, overlap, and diagonal flow. Break grid
+  patterns intentionally.
+</Callout>
+
+## Why This Matters
+
+Perfectly symmetrical grids are the path of least resistance. They're safe,
+predictable, and instantly forgettable. When every feature section uses the
+same 3-column layout with identical card sizes, nothing stands out.
+
+Intentional grid-breaking isn't chaos---it's strategic composition. By varying
+card sizes, creating diagonal visual flow, and allowing elements to overlap,
+you establish hierarchy and guide the viewer's eye through the content.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-grid-breaking-bad"
+  goodKey="aesthetics-grid-breaking-good"
+/>
+
+## Best Practices
+
+- **One dominant element**: Make one card significantly larger to establish hierarchy
+- **Diagonal flow**: Arrange elements so the eye moves diagonally across the layout
+- **Intentional overlap**: Use z-index and absolute positioning to create depth
+- **Varied proportions**: Mix different aspect ratios and sizes deliberately
+- **Preserve relationships**: Related content should still feel grouped despite asymmetry
+
+## When to Use
+
+Grid-breaking works best for:
+- Hero feature sections where you want visual impact
+- Marketing pages that need to stand out
+- Portfolio or showcase layouts
+- Landing pages competing for attention
+
+For data-heavy interfaces or comparison tables, traditional grids remain appropriate.
+
+## Learn More
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Breaking the Grid](https://www.smashingmagazine.com/2017/08/breaking-the-grid/)

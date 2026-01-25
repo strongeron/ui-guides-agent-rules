@@ -27,6 +27,7 @@ export interface PatternSourceInfo {
   name: string;
   description: string;
   url?: string;
+  rulesUrl?: string;    // Direct URL to raw rules content
   color: string;        // Badge color class
 }
 

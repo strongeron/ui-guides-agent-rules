@@ -1,4 +1,5 @@
-source: https://vercel.com/design/guidelines 
+source: https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
+rules: https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
 
 Web Interface Guidelines
 Interfaces succeed because of hundreds of choices. This is a living, non-exhaustive list of those decisions. Most guidelines are framework-agnostic, some specific to React/Next.js. Feedback is welcome.

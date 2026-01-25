@@ -17,7 +17,7 @@
 
 | Source | ID | Badge Color | URL |
 |--------|----|----|-----|
-| Vercel | `vercel` | Black/white | https://vercel.com/design |
+| Vercel | `vercel` | Black/white | https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md |
 | WCAG | `wcag` | Blue (info) | https://www.w3.org/WAI/WCAG21/quickref/ |
 | ARIA | `aria` | Red (destructive) | https://www.w3.org/WAI/ARIA/apg/ |
 | Design System | `design-system` | Primary | — |

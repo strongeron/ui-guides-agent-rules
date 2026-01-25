@@ -621,6 +621,46 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Commit to a design direction (brutalist, editorial, organic) and execute with precision. Avoid generic AI aesthetics: purple gradients, sparkles, excessive border-radius. Polarizing is better than forgettable.'
   },
+  'aesthetics-anti-generic': {
+    priority: 'NEVER',
+    rule: 'Use generic fonts (Inter, Roboto, Arial, system-ui), purple gradients, perfectly centered layouts, excessive border-radius, or sparkle emojis. These are hallmarks of AI-generated slop. Choose distinctive typography, intentional colors, and layouts with asymmetry.'
+  },
+  'aesthetics-css-first-animations': {
+    priority: 'SHOULD',
+    rule: 'Use CSS transitions and animations for hover effects, reveals, and simple state changes. Reserve JavaScript animations for physics-based motion, gestures, or complex orchestration. CSS runs on compositor thread; JS blocks main thread.'
+  },
+  'aesthetics-craftsmanship': {
+    priority: 'SHOULD',
+    rule: 'Demonstrate meticulous craftsmanship: consistent spacing scale (4/8/12/16/24px), pixel-perfect alignment, harmonious proportions. No arbitrary values, misaligned elements, or inconsistent padding. Every detail should feel intentional.'
+  },
+  'aesthetics-design-commitment': {
+    priority: 'SHOULD',
+    rule: 'Commit fully to a cohesive aesthetic using CSS variables. Deploy dominant colors (deep black, vibrant brand color) with sharp accents. Avoid timid palettes with pale grays and washed-out colors. Half-measures are forgettable; conviction is memorable.'
+  },
+  'aesthetics-visual-first': {
+    priority: 'SHOULD',
+    rule: 'Aim for 90% visual, 10% essential text. Communicate through large icons, bold illustrations, color, and space—not paragraphs. Text should be rare and powerful: single words, short labels, essential context only. If you need a paragraph to explain something, the visual design has failed.'
+  },
+  'aesthetics-negative-space': {
+    priority: 'SHOULD',
+    rule: 'Use generous or controlled negative space intentionally as a design element. Avoid cramped layouts with tight padding. Apply comfortable line-height (1.5-1.75), generous padding (16-24px), and meaningful space between sections. Whitespace creates hierarchy and lets content breathe.'
+  },
+  'aesthetics-scroll-interactions': {
+    priority: 'SHOULD',
+    rule: 'Use IntersectionObserver for scroll-triggered reveals. Stagger animations with animation-delay (100-150ms intervals). Keep animations subtle (translate 10-20px, fade 0 to 1). Use motion-safe: to respect reduced motion preferences. Transform passive browsing into active discovery.'
+  },
+  'aesthetics-memorable-differentiation': {
+    priority: 'SHOULD',
+    rule: 'Include one memorable, unforgettable element per design (animated border, distinctive illustration, dramatic typography, unexpected shadow). Ask: "What will someone remember?" If you cannot answer, add a signature element. One bold detail beats a dozen safe flourishes.'
+  },
+  'aesthetics-design-variety': {
+    priority: 'SHOULD',
+    rule: 'Never converge on common choices. Vary themes (light/dark), fonts (serif/sans/mono), and aesthetics across designs. Avoid using Space Grotesk, Inter, or blue accents on every project. Each design should have a distinct personality.'
+  },
+  'aesthetics-complexity-matching': {
+    priority: 'SHOULD',
+    rule: 'Match implementation complexity to aesthetic vision. Minimalist designs need restrained styling (single shadows, solid colors, clean borders). Maximalist designs can layer effects, gradients, and animations. Mismatch creates cognitive dissonance—a simple note card with layered shadows, blurs, and glowing buttons signals importance the content does not warrant.'
+  },
 
   // ============================================================================
   // RAMS - Accessibility and Visual Design Rules
@@ -906,6 +946,18 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'content-ibelick-letter-spacing': {
     priority: 'NEVER',
     rule: 'Modify letter-spacing (tracking-*) unless explicitly requested. Default tracking is optimized for readability. Custom tracking often hurts legibility.'
+  },
+
+  // Aesthetics - Grid Breaking
+  'aesthetics-grid-breaking': {
+    priority: 'SHOULD',
+    rule: 'Break rigid grids intentionally with varied card sizes, diagonal flow, and overlapping elements. One dominant element, asymmetric spacing, and depth through z-index create visual hierarchy over predictable symmetry.'
+  },
+
+  // Aesthetics - Font Pairing
+  'aesthetics-font-pairing': {
+    priority: 'SHOULD',
+    rule: 'Pair a distinctive display font (serif or geometric sans) for headlines with a refined body font for content. Same font everywhere creates flat hierarchy. Limit to 2 font families; use font-display: swap.'
   }
 };
 

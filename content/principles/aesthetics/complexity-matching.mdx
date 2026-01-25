@@ -1,0 +1,55 @@
+---
+id: aesthetics-complexity-matching
+category: aesthetics
+source: anthropic
+title: Complexity Matching
+description: Match implementation complexity to aesthetic vision - maximalist designs need elaborate code, minimalist designs need restraint
+badExampleKey: aesthetics-complexity-matching-bad
+goodExampleKey: aesthetics-complexity-matching-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Match implementation complexity to the aesthetic vision. Maximalist designs need
+  elaborate code with extensive animations. Minimalist designs need restraint,
+  precision, and careful spacing attention.
+</Callout>
+
+## Why This Matters
+
+There is no universal "right amount" of visual complexity. A brutalist portfolio
+site might intentionally feel raw and unpolished. A luxury brand landing page
+might layer gradients, textures, and animations for richness. Both are valid.
+
+The problem is mismatch: applying maximalist techniques to minimalist content
+(or vice versa) creates cognitive dissonance. A simple note card with layered
+shadows, gradient backgrounds, blur effects, and glowing buttons signals
+importance that the content does not warrant.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-complexity-matching-bad"
+  goodKey="aesthetics-complexity-matching-good"
+/>
+
+## Best Practices
+
+- Audit your content's inherent complexity before styling
+- Simple content (notes, basic forms, status cards) needs restrained styling
+- Complex content (dashboards, data visualization, hero sections) can support elaborate treatment
+- Count your effects: if layered shadows, gradients, blurs, and animations appear together, ask if each earns its place
+- Minimalism requires precision, not absence—every pixel matters
+
+## Complexity Calibration
+
+- **Low complexity content**: Use single shadows, solid colors, simple borders
+- **Medium complexity content**: Add subtle gradients, layered shadows, or one animation
+- **High complexity content**: Layer effects, use atmospheric backgrounds, orchestrate motion
+
+## Learn More
+
+- [Anthropic Frontend-Design Skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Refactoring UI](https://www.refactoringui.com/)
+- [Laws of UX](https://lawsofux.com/)

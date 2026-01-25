@@ -1,0 +1,78 @@
+---
+id: aesthetics-css-first-animations
+category: aesthetics
+source: anthropic
+title: CSS-First Animations
+description: Prioritize CSS-only animation solutions for HTML implementations over JavaScript
+badExampleKey: aesthetics-css-first-animations-bad
+goodExampleKey: aesthetics-css-first-animations-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Prioritize CSS-only solutions for HTML implementations. Focus on high-impact
+  moments like orchestrated page loads with staggered reveals.
+</Callout>
+
+## Why This Matters
+
+CSS animations run on the browser's compositor thread, separate from the main
+JavaScript thread. This means hover effects, transitions, and simple reveals
+can animate at 60fps even when JavaScript is busy with other tasks.
+
+When you use JavaScript state (useState, inline styles) for simple effects
+like hover states, you're introducing:
+- Unnecessary re-renders
+- Main thread blocking
+- More code to maintain
+- Potential for jank during heavy JS execution
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-css-first-animations-bad"
+  goodKey="aesthetics-css-first-animations-good"
+/>
+
+## Best Practices
+
+- Use `transition-*` utilities for hover, focus, and active states
+- Use `animate-*` for entrance animations and looping effects
+- Combine with `motion-safe:` to respect user preferences
+- Reserve JavaScript animations for:
+  - Physics-based motion (springs, gestures)
+  - Complex orchestrated sequences
+  - Animations driven by scroll position or user input
+
+## CSS Animation Patterns
+
+```css
+/* Simple hover transition */
+.button {
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Entrance animation with @starting-style */
+.card {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+@starting-style {
+  .card {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+```
+
+## Learn More
+
+- [MDN: CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions)
+- [MDN: CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations)
+- [Web.dev: Animations Guide](https://web.dev/articles/animations-guide)

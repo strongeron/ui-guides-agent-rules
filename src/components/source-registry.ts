@@ -6,7 +6,8 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     id: 'vercel',
     name: 'Vercel',
     description: 'Web Interface Guidelines from Vercel',
-    url: 'https://vercel.com/design',
+    url: 'https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md',
+    rulesUrl: 'https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md',
     color: 'bg-foreground text-background border-foreground',
   },
   wcag: {

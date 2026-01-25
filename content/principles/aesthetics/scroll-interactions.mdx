@@ -1,0 +1,69 @@
+---
+id: aesthetics-scroll-interactions
+category: aesthetics
+source: anthropic
+title: Surprising Scroll Interactions
+description: Use scroll-triggering and hover states that surprise and delight users
+badExampleKey: aesthetics-scroll-interactions-bad
+goodExampleKey: aesthetics-scroll-interactions-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Use scroll-triggering and hover states that surprise.
+</Callout>
+
+## Why This Matters
+
+Static content is forgettable. When all elements appear immediately, there is
+no journey, no discovery, no delight. Scroll-triggered animations transform
+passive browsing into active exploration.
+
+Each reveal becomes a moment of anticipation. Users feel rewarded for scrolling.
+The interface responds to their input, creating a dialogue between user and design.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-scroll-interactions-bad"
+  goodKey="aesthetics-scroll-interactions-good"
+/>
+
+## Best Practices
+
+- Use `IntersectionObserver` for performant scroll detection
+- Stagger animations with `animation-delay` (100-150ms intervals)
+- Keep animations subtle - translate 10-20px, fade from 0 to 1
+- Use `motion-safe:` to respect user preferences for reduced motion
+- Reveal elements in natural reading order (top to bottom, left to right)
+- Avoid revealing too many elements at once - let users discover progressively
+
+## Code Pattern
+
+```tsx
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  },
+  { threshold: 0.3 }
+);
+
+// CSS with Tailwind
+// .item {
+//   @apply opacity-0 translate-y-5 transition-all duration-500;
+// }
+// .item.is-visible {
+//   @apply opacity-100 translate-y-0;
+// }
+```
+
+## Learn More
+
+- [Anthropic Frontend-Design Skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- [Scroll-driven animations](https://developer.chrome.com/docs/css-ui/scroll-driven-animations)

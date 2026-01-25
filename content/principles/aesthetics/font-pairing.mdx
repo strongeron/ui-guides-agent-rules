@@ -1,0 +1,51 @@
+---
+id: aesthetics-font-pairing
+category: aesthetics
+source: anthropic
+title: Intentional Font Pairing
+description: Pair a distinctive display font with a refined body font for visual hierarchy
+badExampleKey: aesthetics-font-pairing-bad
+goodExampleKey: aesthetics-font-pairing-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Pair a distinctive display font with a refined body font.
+</Callout>
+
+## Why This Matters
+
+Typography hierarchy is the foundation of visual communication. When headlines and body text share the same generic font, the page becomes a flat wall of text with no clear entry points for the eye.
+
+Intentional font pairing creates immediate visual structure. A distinctive display font for headlines commands attention, while a refined body font ensures comfortable reading. The contrast between them guides users through content naturally.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-font-pairing-bad"
+  goodKey="aesthetics-font-pairing-good"
+/>
+
+## Best Practices
+
+- **Display fonts** for headlines: Playfair Display, Fraunces, DM Serif, Space Grotesk
+- **Body fonts** for readability: Source Sans, Inter (as body only), IBM Plex Sans, Nunito
+- Contrast styles: pair a serif display with a sans-serif body, or a geometric display with a humanist body
+- Use `font-display: swap` to prevent invisible text during font loading
+- Limit to 2 font families maximum to maintain cohesion
+
+## Common Pairings
+
+| Display (Headlines) | Body (Content) | Style |
+|---------------------|----------------|-------|
+| Playfair Display | Source Sans 3 | Editorial |
+| Space Grotesk | Inter | Technical |
+| DM Serif Display | Nunito | Warm |
+| Fraunces | IBM Plex Sans | Modern |
+
+## Learn More
+
+- [Anthropic Frontend-Design Skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Google Fonts Pairings](https://fonts.google.com/)
+- [Typewolf Font Pairing](https://www.typewolf.com/)

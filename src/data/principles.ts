@@ -2764,5 +2764,177 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'aesthetics-bold-direction-bad',
     goodExampleKey: 'aesthetics-bold-direction-good'
+  },
+  {
+    id: 'aesthetics-anti-generic',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Anti-Generic Design',
+    description: 'Avoid generic fonts like Inter/Arial, clichéd purple gradients, and cookie-cutter component patterns',
+    sourceQuote: 'Anti-Patterns (Never Use): Generic fonts (Inter, Roboto, Arial, system fonts). Clichéd schemes like purple gradients on white backgrounds. Predictable layouts or cookie-cutter component patterns.',
+    additionalExplanation: 'Generic design is the result of following defaults instead of making intentional choices. Inter, system fonts, and Arial are everywhere—they say nothing about your product. Purple-to-blue gradients, centered layouts, excessive border-radius, and sparkle emojis are hallmarks of AI-generated slop. Distinctive design requires actively rejecting these patterns in favor of fonts with character, intentional color choices, and layouts that break from the predictable grid.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-anti-generic-bad',
+    goodExampleKey: 'aesthetics-anti-generic-good'
+  },
+  {
+    id: 'aesthetics-css-first-animations',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'CSS-First Animations',
+    description: 'Prioritize CSS-only animation solutions for HTML implementations over JavaScript',
+    sourceQuote: 'Prioritize CSS-only solutions for HTML implementations. Focus on high-impact moments like orchestrated page loads with staggered reveals.',
+    additionalExplanation: 'CSS animations are more performant, requiring no JavaScript runtime overhead. They run on the compositor thread, avoiding main thread blocking. For simple effects like hover states, transitions, and reveals, CSS is cleaner, more maintainable, and declarative. Reserve JavaScript animations for complex interactions requiring physics or gesture responses.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'MDN: CSS Transitions', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions' },
+      { text: 'MDN: CSS Animations', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations' }
+    ],
+    badExampleKey: 'aesthetics-css-first-animations-bad',
+    goodExampleKey: 'aesthetics-css-first-animations-good'
+  },
+  {
+    id: 'aesthetics-craftsmanship',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Meticulous Craftsmanship',
+    description: 'Work must appear meticulously crafted with painstaking attention to detail',
+    sourceQuote: 'Work must appear meticulously crafted, labored over with countless hours of care. Should demonstrate master-level execution from someone at the absolute top of their field.',
+    additionalExplanation: 'Craftsmanship is in the details users feel but rarely consciously notice: consistent spacing rhythms, pixel-perfect alignment, harmonious proportions. Sloppy execution—misaligned elements, inconsistent padding, arbitrary values—destroys trust and perceived quality. Every pixel is intentional in master-level work.',
+    sourceLinks: [
+      { text: 'Anthropic Canvas-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/canvas-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-craftsmanship-bad',
+    goodExampleKey: 'aesthetics-craftsmanship-good'
+  },
+  {
+    id: 'aesthetics-design-commitment',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Full Design Commitment',
+    description: 'Commit fully to a cohesive aesthetic direction rather than timid half-measures',
+    sourceQuote: 'Commit to cohesive aesthetic using CSS variables. Deploy dominant colors with sharp accents over timid palettes.',
+    additionalExplanation: 'Timid design choices—pale grays, washed-out colors, safe neutral tones—communicate uncertainty and lack of confidence. When you commit fully to an aesthetic direction, every element reinforces the identity. Bold dominants with sharp accents create memorable, distinctive experiences. Half-measures are forgettable; conviction is memorable.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-design-commitment-bad',
+    goodExampleKey: 'aesthetics-design-commitment-good'
+  },
+  {
+    id: 'aesthetics-visual-first',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Visual-First Communication',
+    description: 'Ideas communicate through space, form, and color - text should be rare and powerful',
+    sourceQuote: '90% visual design, 10% essential text. Ideas communicate through space, form, color, and composition—not paragraphs. Text should appear as rare, powerful gestures integrated into visual architecture.',
+    additionalExplanation: 'Most interfaces rely too heavily on text to communicate. Walls of paragraphs explaining features, long descriptions under icons, copy-heavy layouts. Great visual design lets form, color, and space tell the story. Text becomes a rare, powerful punctuation—short labels, single words, essential context only. When visuals lead, the experience becomes immediate and memorable.',
+    sourceLinks: [
+      { text: 'Anthropic Canvas-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/canvas-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-visual-first-bad',
+    goodExampleKey: 'aesthetics-visual-first-good'
+  },
+  {
+    id: 'aesthetics-negative-space',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Negative Space Mastery',
+    description: 'Use generous or controlled negative space intentionally as a design element',
+    sourceQuote: 'Break grid patterns intentionally with generous or controlled negative space.',
+    additionalExplanation: 'Negative space is not empty space—it is active design. Cramped layouts with no breathing room feel claustrophobic and unprofessional. Generous whitespace creates visual hierarchy, improves readability, and gives content room to breathe. Master designers use negative space as deliberately as positive elements.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Refactoring UI', url: 'https://www.refactoringui.com/' }
+    ],
+    badExampleKey: 'aesthetics-negative-space-bad',
+    goodExampleKey: 'aesthetics-negative-space-good'
+  },
+  {
+    id: 'aesthetics-memorable-differentiation',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Memorable Differentiation',
+    description: 'Every design needs one unforgettable element that makes it memorable',
+    sourceQuote: 'What makes this UNFORGETTABLE? What\'s the one thing someone will remember?',
+    additionalExplanation: 'The most memorable designs have a signature element that lodges in the viewer\'s mind. It might be an animated border, a distinctive illustration, dramatic typography, or an unexpected shadow. Without this differentiator, designs blur into the endless sea of similar interfaces. One bold, unforgettable detail is worth more than a dozen safe, forgettable flourishes.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-memorable-differentiation-bad',
+    goodExampleKey: 'aesthetics-memorable-differentiation-good'
+  },
+  {
+    id: 'aesthetics-grid-breaking',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Intentional Grid-Breaking',
+    description: 'Break grid patterns intentionally with asymmetry, overlap, and diagonal flow',
+    sourceQuote: 'Employ unexpected layouts, asymmetry, overlap, and diagonal flow. Break grid patterns intentionally.',
+    additionalExplanation: 'Rigid, perfectly symmetrical grids feel predictable and forgettable. By intentionally breaking the grid with varied card sizes, slight offsets, overlapping elements, or diagonal arrangements, you create visual hierarchy and movement that guides the eye and makes the layout memorable.',
+    sourceLinks: [
+      { text: 'Anthropic frontend-design skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-grid-breaking-bad',
+    goodExampleKey: 'aesthetics-grid-breaking-good'
+  },
+  {
+    id: 'aesthetics-scroll-interactions',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Surprising Scroll Interactions',
+    description: 'Use scroll-triggering and hover states that surprise and delight users',
+    sourceQuote: 'Use scroll-triggering and hover states that surprise.',
+    additionalExplanation: 'Scroll-triggered animations transform passive browsing into active discovery. When elements reveal themselves as users scroll, each section becomes a moment of anticipation. Staggered reveals create rhythm, static content creates monotony. The best interfaces reward exploration with delightful surprises.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-scroll-interactions-bad',
+    goodExampleKey: 'aesthetics-scroll-interactions-good'
+  },
+  {
+    id: 'aesthetics-font-pairing',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Intentional Font Pairing',
+    description: 'Pair a distinctive display font with a refined body font for visual hierarchy',
+    sourceQuote: 'Pair a distinctive display font with a refined body font.',
+    additionalExplanation: 'Typography hierarchy is the foundation of visual communication. When headlines and body text share the same generic font, the page becomes flat. A distinctive display font for headlines commands attention, while a refined body font ensures comfortable reading. The contrast between them guides users through content naturally.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
+      { text: 'Typewolf Font Pairing', url: 'https://www.typewolf.com/' }
+    ],
+    badExampleKey: 'aesthetics-font-pairing-bad',
+    goodExampleKey: 'aesthetics-font-pairing-good'
+  },
+  {
+    id: 'aesthetics-design-variety',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Design Variety',
+    description: 'Never converge on common choices - vary themes, fonts, and aesthetics across designs',
+    sourceQuote: 'No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.',
+    additionalExplanation: 'When every design looks the same, nothing stands out. Templates using identical fonts, colors, and layouts create visual monotony. Variety is memorable - each aesthetic direction creates its own emotional resonance and brand identity. Intentional differentiation makes work distinctive.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-design-variety-bad',
+    goodExampleKey: 'aesthetics-design-variety-good'
+  },
+  {
+    id: 'aesthetics-complexity-matching',
+    category: 'aesthetics',
+    source: 'anthropic',
+    title: 'Complexity Matching',
+    description: 'Match implementation complexity to aesthetic vision - maximalist designs need elaborate code, minimalist designs need restraint',
+    sourceQuote: 'Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations. Minimalist designs need restraint, precision, and careful spacing attention.',
+    additionalExplanation: 'There is no universal "right amount" of visual complexity. The problem is mismatch: applying maximalist techniques to minimalist content creates cognitive dissonance. A simple note card with layered shadows, gradient backgrounds, blur effects, and glowing buttons signals importance that the content does not warrant.',
+    sourceLinks: [
+      { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' }
+    ],
+    badExampleKey: 'aesthetics-complexity-matching-bad',
+    goodExampleKey: 'aesthetics-complexity-matching-good'
   }
 ];

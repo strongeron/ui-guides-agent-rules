@@ -1,0 +1,69 @@
+---
+id: aesthetics-anti-generic
+category: aesthetics
+source: anthropic
+title: Anti-Generic Design
+description: Avoid generic fonts like Inter/Arial, purple gradients, and cookie-cutter patterns
+badExampleKey: aesthetics-anti-generic-bad
+goodExampleKey: aesthetics-anti-generic-good
+---
+
+import { Callout, ExampleComparison } from '@/components/mdx';
+
+<Callout type="quote" title="From Anthropic Frontend-Design Skill">
+  Anti-Patterns (Never Use): Generic fonts (Inter, Roboto, Arial, system fonts).
+  Clichéd schemes like purple gradients on white backgrounds. Predictable
+  layouts or cookie-cutter component patterns.
+</Callout>
+
+## Why This Matters
+
+Generic design is invisible—it communicates nothing about your product because
+it looks like everything else. When you use Inter because it's the default,
+purple gradients because AI suggested them, and centered layouts because
+they're "safe," you're not designing. You're accepting defaults.
+
+The hallmarks of AI-generated "slop":
+- Inter, Roboto, or system fonts (safe, forgettable)
+- Purple-to-blue gradients (the new "make it pop")
+- Perfectly centered, symmetric layouts
+- Excessive border-radius on everything
+- Sparkle emojis and buzzwords like "supercharge"
+
+These patterns have become so ubiquitous that they signal *lack* of design
+rather than presence of it.
+
+## Implementation
+
+<ExampleComparison
+  badKey="aesthetics-anti-generic-bad"
+  goodKey="aesthetics-anti-generic-good"
+/>
+
+## How to Break Free
+
+### Typography
+- Choose fonts with personality: display serifs, geometric sans, monospace
+- Pair a distinctive heading font with a refined body font
+- Even Google Fonts has characterful options: Playfair Display, Space Grotesk, JetBrains Mono
+
+### Color
+- Single bold color with one sharp accent beats a rainbow
+- Black, white, and one color is a powerful constraint
+- If you use gradients, make them subtle and purposeful
+
+### Layout
+- Left-align instead of center-everything
+- Asymmetric compositions create visual interest
+- Let content dictate structure, not templates
+
+### Details
+- Crisp corners (0-4px radius) instead of pill shapes
+- Solid borders instead of blur and glow effects
+- Structured whitespace instead of even padding everywhere
+
+## Learn More
+
+- [Anthropic Frontend-Design Skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Refactoring UI](https://www.refactoringui.com/)
+- [Minimal Gallery](https://minimal.gallery/)
