@@ -1,4 +1,6 @@
 export function ScrollInteractionsBad() {
+  // BAD: No scroll-triggered animations, no staggered reveals
+  // Everything loads at once - static and forgettable
   const features = [
     {
       title: 'Lightning Fast',
@@ -26,11 +28,14 @@ export function ScrollInteractionsBad() {
     <div className="w-full max-w-md p-6 bg-card rounded-lg">
       <h3 className="text-lg font-semibold mb-4">Features</h3>
 
+      {/* BAD: No IntersectionObserver, no scroll animations */}
+      {/* All items visible immediately - no progressive reveal */}
       <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="p-4 bg-muted rounded-lg border border-border"
+            // BAD: Static opacity and position - no entrance animation
+            className="p-4 bg-muted rounded-lg border border-border opacity-100"
           >
             <div className="flex items-start gap-3">
               <span className="text-2xl" role="img" aria-hidden="true">
@@ -48,7 +53,7 @@ export function ScrollInteractionsBad() {
       </div>
 
       <p className="text-xs text-destructive mt-4">
-        All cards visible immediately with no scroll response - static and forgettable
+        No scroll animations - all content dumps at once. No stagger, no delight.
       </p>
     </div>
   );
