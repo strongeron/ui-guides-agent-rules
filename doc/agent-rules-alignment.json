@@ -1,0 +1,271 @@
+{
+  "timestamp": "2026-01-25T19:50:52.177Z",
+  "summary": {
+    "totalRules": 205,
+    "aligned": 169,
+    "misaligned": 26,
+    "missing": 10
+  },
+  "issues": [
+    {
+      "principleId": "interactions-clear-focus",
+      "ruleId": "interactions-clear-focus",
+      "priority": "MUST",
+      "rule": "Visible focus rings (",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/ClearFocusBad.tsx"
+    },
+    {
+      "principleId": "interactions-manage-focus",
+      "ruleId": "interactions-manage-focus",
+      "priority": "MUST",
+      "rule": "Manage focus (trap, move, and return) per APG patterns",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/ManageFocusBad.tsx"
+    },
+    {
+      "principleId": "interactions-hydration-safe",
+      "ruleId": "interactions-hydration-safe",
+      "priority": "MUST",
+      "rule": "Hydration-safe inputs (no lost focus/value)",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/HydrationSafeBad.tsx"
+    },
+    {
+      "principleId": "interactions-loading-buttons",
+      "ruleId": "interactions-loading-buttons",
+      "priority": "MUST",
+      "rule": "Loading buttons show spinner and keep original label",
+      "issue": "Good example missing expected patterns for MUST rule",
+      "severity": "high",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/LoadingButtonsGood.tsx"
+    },
+    {
+      "principleId": "forms-enter-submits",
+      "ruleId": "forms-enter-submits",
+      "priority": "MUST",
+      "rule": "Enter submits focused text input",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/forms/EnterSubmitsBad.tsx"
+    },
+    {
+      "principleId": "forms-dont-pre-disable-submit",
+      "ruleId": "forms-dont-pre-disable-submit",
+      "priority": "MUST",
+      "rule": "Allow submitting incomplete forms to surface validation",
+      "issue": "Good example missing expected patterns for MUST rule",
+      "severity": "high",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/forms/DontPreDisableSubmitGood.tsx"
+    },
+    {
+      "principleId": "forms-error-placement",
+      "ruleId": "forms-error-placement",
+      "priority": "MUST",
+      "rule": "Errors inline next to fields; on submit, focus first error",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/forms/ErrorPlacementBad.tsx"
+    },
+    {
+      "principleId": "forms-label-activation",
+      "ruleId": "forms-label-activation",
+      "priority": "MUST",
+      "rule": "Clicking a <label> focuses the associated control",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/forms/LabelActivationBad.tsx"
+    },
+    {
+      "principleId": "interactions-autofocus",
+      "ruleId": "interactions-autofocus",
+      "priority": "SHOULD",
+      "rule": "Autofocus on desktop when there",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/AutofocusBad.tsx"
+    },
+    {
+      "principleId": "content-redundant-cues",
+      "ruleId": "content-redundant-cues",
+      "priority": "MUST",
+      "rule": "Redundant status cues (not color-only); icons have text labels",
+      "issue": "Good example missing expected patterns for MUST rule",
+      "severity": "high",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/content/RedundantCuesGood.tsx"
+    },
+    {
+      "principleId": "design-semantic-colors",
+      "ruleId": "design-semantic-colors",
+      "priority": "MUST",
+      "rule": "Use semantic tokens (bg-primary, text-destructive) instead of raw colors (bg-blue-500)",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/SemanticColorsBad.tsx"
+    },
+    {
+      "principleId": "design-complete-theme",
+      "ruleId": "design-complete-theme",
+      "priority": "SHOULD",
+      "rule": "Define complete token pairs: background + foreground, ring, border for each semantic color",
+      "issue": "Good example missing expected patterns for SHOULD rule",
+      "severity": "medium",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/CompleteThemeGood.tsx"
+    },
+    {
+      "principleId": "interactions-focus-visible-tw",
+      "ruleId": "interactions-focus-visible-tw",
+      "priority": "MUST",
+      "rule": "Use focus-visible: instead of focus: for focus rings (keyboard-only indicators)",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/FocusVisibleTwBad.tsx"
+    },
+    {
+      "principleId": "interactions-skip-link-tw",
+      "ruleId": "interactions-skip-link-tw",
+      "priority": "MUST",
+      "rule": "Implement skip links with sr-only focus:not-sr-only pattern",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/SkipLinkTwBad.tsx"
+    },
+    {
+      "principleId": "interactions-aria-variants",
+      "ruleId": "interactions-aria-variants",
+      "priority": "SHOULD",
+      "rule": "Use aria-* variants (aria-selected:, aria-expanded:) to tie styles to ARIA state",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/AriaVariantsBad.tsx"
+    },
+    {
+      "principleId": "content-intellisense",
+      "ruleId": "content-intellisense",
+      "priority": "SHOULD",
+      "rule": "Configure Tailwind CSS IntelliSense extension for autocomplete and invalid class linting",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/content/IntellisenseBad.tsx"
+    },
+    {
+      "principleId": "animations-view-transitions",
+      "ruleId": "animations-view-transitions",
+      "priority": "SHOULD",
+      "rule": "Use View Transitions API for page/state transitions. Add ",
+      "issue": "Good example missing expected patterns for SHOULD rule",
+      "severity": "medium",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/animations/ViewTransitionsGood.tsx"
+    },
+    {
+      "principleId": "aesthetics-distinctive-typography",
+      "ruleId": "aesthetics-distinctive-typography",
+      "priority": "SHOULD",
+      "rule": "Use distinctive, characterful fonts instead of generic defaults (Inter, Roboto, Arial). Pair a display font with a refined body font for memorable visual identity.",
+      "issue": "Good example missing expected patterns for SHOULD rule",
+      "severity": "medium",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/DistinctiveTypographyGood.tsx"
+    },
+    {
+      "principleId": "aesthetics-design-commitment",
+      "ruleId": "aesthetics-design-commitment",
+      "priority": "SHOULD",
+      "rule": "Commit fully to a cohesive aesthetic using CSS variables. Deploy dominant colors (deep black, vibrant brand color) with sharp accents. Avoid timid palettes with pale grays and washed-out colors. Half-measures are forgettable; conviction is memorable.",
+      "issue": "Good example missing expected patterns for SHOULD rule",
+      "severity": "medium",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/DesignCommitmentGood.tsx"
+    },
+    {
+      "principleId": "aesthetics-visual-first",
+      "ruleId": "aesthetics-visual-first",
+      "priority": "SHOULD",
+      "rule": "Aim for 90% visual, 10% essential text. Communicate through large icons, bold illustrations, color, and space—not paragraphs. Text should be rare and powerful: single words, short labels, essential context only. If you need a paragraph to explain something, the visual design has failed.",
+      "issue": "Good example missing expected patterns for SHOULD rule",
+      "severity": "medium",
+      "exampleType": "good",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/VisualFirstGood.tsx"
+    },
+    {
+      "principleId": "interactions-rams-focus-outline",
+      "ruleId": "interactions-rams-focus-outline",
+      "priority": "MUST",
+      "rule": "Interactive elements must have visible focus indicator. Never use outline-none without providing focus-visible replacement. Keyboard users must see where focus is.",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/RamsFocusOutlineBad.tsx"
+    },
+    {
+      "principleId": "interactions-rams-role-attributes",
+      "ruleId": "interactions-rams-role-attributes",
+      "priority": "MUST",
+      "rule": "Use semantic HTML elements (<button>, <a>, <nav>) before ARIA roles. If using role=",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/RamsRoleAttributesBad.tsx"
+    },
+    {
+      "principleId": "design-rams-semantic-colors",
+      "ruleId": "design-rams-semantic-colors",
+      "priority": "SHOULD",
+      "rule": "Use semantic color tokens consistently - red/destructive for errors, green/success for confirmation, yellow/warning for caution, blue/info for information.",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/RamsSemanticColorsBad.tsx"
+    },
+    {
+      "principleId": "animations-ibelick-reduced-motion",
+      "ruleId": "animations-ibelick-reduced-motion",
+      "priority": "SHOULD",
+      "rule": "Respect prefers-reduced-motion media query. Reduce or disable animations for users who experience motion sickness. Use motion-safe: and motion-reduce: variants.",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/animations/IbelickReducedMotionBad.tsx"
+    },
+    {
+      "principleId": "interactions-ibelick-accessible-primitives",
+      "ruleId": "interactions-ibelick-accessible-primitives",
+      "priority": "MUST",
+      "rule": "Use accessible component primitives (Base UI, React Aria, Radix) for keyboard/focus behavior. These handle ARIA, focus management, and keyboard navigation correctly.",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/IbelickAccessiblePrimitivesBad.tsx"
+    },
+    {
+      "principleId": "interactions-ibelick-alert-dialog",
+      "ruleId": "interactions-ibelick-alert-dialog",
+      "priority": "MUST",
+      "rule": "Use AlertDialog (not Dialog) for destructive or irreversible actions. AlertDialog traps focus and requires explicit confirmation, preventing accidents.",
+      "issue": "Bad example has correct patterns - not demonstrating anti-pattern",
+      "severity": "medium",
+      "exampleType": "bad",
+      "examplePath": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/interactions/IbelickAlertDialogBad.tsx"
+    }
+  ]
+}

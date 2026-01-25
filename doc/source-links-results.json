@@ -1,0 +1,2122 @@
+{
+  "timestamp": "2026-01-25T19:32:19.867Z",
+  "totalLinks": 262,
+  "summary": {
+    "ok": 248,
+    "redirects": 14,
+    "errors": 0,
+    "timeouts": 0
+  },
+  "results": [
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "text": "WAI-ARIA Authoring Practices",
+      "principleId": "interactions-keyboard-everywhere",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 178
+    },
+    {
+      "url": "https://webaim.org/techniques/keyboard/",
+      "text": "Keyboard Accessibility",
+      "principleId": "interactions-keyboard-everywhere",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 351
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible",
+      "text": ":focus-visible pseudo-class",
+      "principleId": "interactions-clear-focus",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 155
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
+      "text": "WCAG Focus Visible",
+      "principleId": "interactions-clear-focus",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 343
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/target-size.html",
+      "text": "WCAG Target Size",
+      "principleId": "interactions-match-hit-targets",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 320
+    },
+    {
+      "url": "https://www.nngroup.com/articles/touch-target-size/",
+      "text": "Touch Target Sizes",
+      "principleId": "interactions-match-hit-targets",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1047
+    },
+    {
+      "url": "https://www.nngroup.com/articles/progress-indicators/",
+      "text": "Button Loading States",
+      "principleId": "interactions-loading-buttons",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1044
+    },
+    {
+      "url": "https://www.apollographql.com/docs/react/performance/optimistic-ui",
+      "text": "Optimistic UI",
+      "principleId": "interactions-optimistic-updates",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 849
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ellipsis",
+      "text": "Ellipsis in UI",
+      "principleId": "interactions-ellipsis-for-input",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 99
+    },
+    {
+      "url": "https://www.nngroup.com/articles/slips/",
+      "text": "Preventing User Errors",
+      "principleId": "interactions-confirm-destructive",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1060
+    },
+    {
+      "url": "https://www.nngroup.com/articles/command-links/",
+      "text": "Links vs Buttons",
+      "principleId": "interactions-links-are-links",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1040
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "text": "WAI-ARIA Authoring Practices",
+      "principleId": "interactions-manage-focus",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 90
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/",
+      "text": "Focus Management",
+      "principleId": "interactions-manage-focus",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 279
+    },
+    {
+      "url": "https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone",
+      "text": "Preventing Mobile Zoom",
+      "principleId": "interactions-mobile-input-size",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 386
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html",
+      "text": "WCAG: Resize Text",
+      "principleId": "interactions-respect-zoom",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 184
+    },
+    {
+      "url": "https://react.dev/reference/react-dom/client/hydrateRoot",
+      "text": "React Hydration",
+      "principleId": "interactions-hydration-safe",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 130
+    },
+    {
+      "url": "https://www.nngroup.com/articles/stop-password-masking/",
+      "text": "Why Blocking Paste is Bad UX",
+      "principleId": "interactions-dont-block-paste",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1340
+    },
+    {
+      "url": "https://nuqs.dev",
+      "text": "nuqs",
+      "principleId": "interactions-url-state",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 188
+    },
+    {
+      "url": "https://www.nngroup.com/articles/url-as-ui/",
+      "text": "URL as UI",
+      "principleId": "interactions-url-state",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1340
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/History/scrollRestoration",
+      "text": "Scroll Restoration",
+      "principleId": "interactions-scroll-persistence",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 27
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions",
+      "text": "ARIA Live Regions",
+      "principleId": "interactions-announce-updates",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 267
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action",
+      "text": "touch-action",
+      "principleId": "interactions-touch-action",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://www.nngroup.com/articles/tooltip-guidelines/",
+      "text": "Tooltip Design",
+      "principleId": "interactions-tooltip-timing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1136
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior",
+      "text": "overscroll-behavior",
+      "principleId": "interactions-overscroll-behavior",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 30
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/autofocus",
+      "text": "Autofocus",
+      "principleId": "interactions-autofocus",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 30
+    },
+    {
+      "url": "https://www.nngroup.com/articles/clickable-elements/",
+      "text": "Making Clickable Elements Recognizable",
+      "principleId": "interactions-no-dead-zones",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1056
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API",
+      "text": "Drag and Drop",
+      "principleId": "interactions-clean-drag",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 54
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert",
+      "text": "inert attribute",
+      "principleId": "interactions-clean-drag",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 54
+    },
+    {
+      "url": "https://tailwindcss.com/docs/hover-focus-and-other-states#focus-visible",
+      "text": "Focus Visible",
+      "principleId": "interactions-focus-visible-tw",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 123
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible",
+      "text": ":focus-visible MDN",
+      "principleId": "interactions-focus-visible-tw",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 60
+    },
+    {
+      "url": "https://tailwindcss.com/docs/display#screen-reader-only",
+      "text": "Screen Reader Only",
+      "principleId": "interactions-skip-link-tw",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 91
+    },
+    {
+      "url": "https://webaim.org/techniques/skipnav/",
+      "text": "Skip Links",
+      "principleId": "interactions-skip-link-tw",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 423
+    },
+    {
+      "url": "https://tailwindcss.com/docs/hover-focus-and-other-states#aria-states",
+      "text": "ARIA States",
+      "principleId": "interactions-aria-variants",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 83
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "text": "WAI-ARIA",
+      "principleId": "interactions-aria-variants",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 56
+    },
+    {
+      "url": "https://tailwindcss.com/docs/display#screen-reader-only",
+      "text": "Screen Readers Utility",
+      "principleId": "interactions-sr-only",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 75
+    },
+    {
+      "url": "https://www.a11yproject.com/posts/how-to-hide-content/",
+      "text": "Visually Hidden",
+      "principleId": "interactions-sr-only",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 179
+    },
+    {
+      "url": "https://github.com/dcastil/tailwind-merge",
+      "text": "tailwind-merge",
+      "principleId": "interactions-class-precedence",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 579
+    },
+    {
+      "url": "https://github.com/lukeed/clsx",
+      "text": "clsx",
+      "principleId": "interactions-class-precedence",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 593
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html",
+      "text": "WCAG 4.1.2",
+      "principleId": "interactions-rams-aria-labels",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 400
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
+      "text": "WCAG 2.4.7",
+      "principleId": "interactions-rams-focus-outline",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 210
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
+      "text": "WCAG 2.1.1",
+      "principleId": "interactions-rams-keyboard-handlers",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 237
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html",
+      "text": "WCAG 4.1.2",
+      "principleId": "interactions-rams-role-attributes",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 456
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html",
+      "text": "WCAG 4.1.2",
+      "principleId": "interactions-rams-semantic-handlers",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 361
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
+      "text": "WCAG 2.4.3",
+      "principleId": "interactions-rams-tabindex",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 455
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/target-size.html",
+      "text": "WCAG 2.5.5",
+      "principleId": "interactions-rams-touch-targets",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 455
+    },
+    {
+      "url": "https://www.radix-ui.com/primitives",
+      "text": "Radix UI Primitives",
+      "principleId": "interactions-ibelick-accessible-primitives",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 135
+    },
+    {
+      "url": "https://ui.shadcn.com/",
+      "text": "shadcn/ui Components",
+      "principleId": "interactions-ibelick-existing-components",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 146
+    },
+    {
+      "url": "https://www.joshwcomeau.com/react/file-structure/",
+      "text": "React File Structure",
+      "principleId": "interactions-ibelick-no-primitive-mixing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 134
+    },
+    {
+      "url": "https://base-ui.com/",
+      "text": "Base UI Documentation",
+      "principleId": "interactions-ibelick-base-ui",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 213
+    },
+    {
+      "url": "https://www.sarasoueidan.com/blog/accessible-icon-buttons/",
+      "text": "Icon Button Accessibility",
+      "principleId": "interactions-ibelick-icon-buttons",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 148
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "text": "WAI-ARIA Authoring Practices",
+      "principleId": "interactions-ibelick-manual-behavior",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 78
+    },
+    {
+      "url": "https://www.radix-ui.com/primitives/docs/components/alert-dialog",
+      "text": "Radix AlertDialog",
+      "principleId": "interactions-ibelick-alert-dialog",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 108
+    },
+    {
+      "url": "https://www.lukew.com/ff/entry.asp?1797",
+      "text": "Skeleton Screens",
+      "principleId": "interactions-ibelick-loading-skeletons",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 397
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
+      "text": "prefers-reduced-motion",
+      "principleId": "animations-prefers-reduced-motion",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 36
+    },
+    {
+      "url": "https://www.a11yproject.com/posts/understanding-vestibular-disorders/",
+      "text": "Accessible Animations",
+      "principleId": "animations-prefers-reduced-motion",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 138
+    },
+    {
+      "url": "https://web.dev/articles/animations-guide",
+      "text": "High Performance Animations",
+      "principleId": "animations-compositor-friendly",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 600
+    },
+    {
+      "url": "https://csstriggers.com/",
+      "text": "CSS Triggers",
+      "principleId": "animations-compositor-friendly",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 305
+    },
+    {
+      "url": "https://www.nngroup.com/articles/animation-usability/",
+      "text": "Animation Best Practices",
+      "principleId": "animations-interruptible",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1119
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform-origin",
+      "text": "transform-origin",
+      "principleId": "animations-correct-transform-origin",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions/Using",
+      "text": "CSS Transitions",
+      "principleId": "animations-never-transition-all",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations",
+      "text": "CSS Animations",
+      "principleId": "animations-implementation-preference",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 35
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API",
+      "text": "Web Animations API",
+      "principleId": "animations-implementation-preference",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 34
+    },
+    {
+      "url": "https://www.nngroup.com/articles/animation-usability/",
+      "text": "Animation Principles",
+      "principleId": "animations-necessity-check",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 143
+    },
+    {
+      "url": "https://easings.net/",
+      "text": "Easing Functions",
+      "principleId": "animations-easing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 34
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function",
+      "text": "CSS Easing",
+      "principleId": "animations-easing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 33
+    },
+    {
+      "url": "https://motion.dev/docs/react",
+      "text": "Motion Documentation",
+      "principleId": "animations-ibelick-motion-library",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 221
+    },
+    {
+      "url": "https://github.com/Wombosvideo/tw-animate-css",
+      "text": "tw-animate-css",
+      "principleId": "animations-ibelick-tw-animate",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 571
+    },
+    {
+      "url": "https://web.dev/articles/animations-guide",
+      "text": "The Case Against Animation",
+      "principleId": "animations-ibelick-intentional-only",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 504
+    },
+    {
+      "url": "https://web.dev/articles/animations-guide",
+      "text": "High Performance Animations",
+      "principleId": "animations-ibelick-compositor-only",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 891
+    },
+    {
+      "url": "https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing",
+      "text": "Avoid Layout Thrashing",
+      "principleId": "animations-ibelick-no-layout",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 562
+    },
+    {
+      "url": "https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas",
+      "text": "Simplify Paint Complexity",
+      "principleId": "animations-ibelick-minimize-paint",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 495
+    },
+    {
+      "url": "https://m3.material.io/styles/motion/easing-and-duration/tokens-specs",
+      "text": "Material Design Motion",
+      "principleId": "animations-ibelick-timing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 230
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API",
+      "text": "IntersectionObserver API",
+      "principleId": "animations-ibelick-pause-offscreen",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
+      "text": "prefers-reduced-motion MDN",
+      "principleId": "animations-ibelick-reduced-motion",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html",
+      "text": "WCAG 2.2.2 Understanding",
+      "principleId": "animations-pause-stop-hide",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 216
+    },
+    {
+      "url": "https://www.digitala11y.com/understanding-sc-2-2-2-pause-stop-hide/",
+      "text": "Digital A11y Guide",
+      "principleId": "animations-pause-stop-hide",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 738
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/",
+      "text": "GPU Animation Best Practices",
+      "principleId": "animations-will-change-sparingly",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 229
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change",
+      "text": "MDN will-change",
+      "principleId": "animations-will-change-sparingly",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 34
+    },
+    {
+      "url": "https://www.viget.com/articles/animation-performance-101-browser-under-the-hood",
+      "text": "Animation Performance 101",
+      "principleId": "animations-frame-budget",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 58
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals",
+      "text": "MDN Performance Fundamentals",
+      "principleId": "animations-frame-budget",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 41
+    },
+    {
+      "url": "https://www.dhiwise.com/post/react-spring-vs-framer-motion-a-detailed-guide-to-react",
+      "text": "React Spring vs Framer Motion",
+      "principleId": "animations-spring-physics",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 191
+    },
+    {
+      "url": "https://react-spring-visualizer.com/",
+      "text": "React Spring Visualizer",
+      "principleId": "animations-spring-physics",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 273
+    },
+    {
+      "url": "https://motion.dev/docs/react-tailwind",
+      "text": "Motion + Tailwind Guide",
+      "principleId": "animations-motion-tailwind-conflict",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 189
+    },
+    {
+      "url": "https://dev.to/manukumar07/framer-motion-tailwind-the-2025-animation-stack-1801",
+      "text": "Framer Motion + Tailwind 2025",
+      "principleId": "animations-motion-tailwind-conflict",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 36
+    },
+    {
+      "url": "https://tailwindcss.com/docs/animation",
+      "text": "Tailwind Animation",
+      "principleId": "animations-tailwind-motion-variants",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 79
+    },
+    {
+      "url": "https://dev.to/hexshift/building-fluid-motion-safe-animations-in-tailwind-css-that-respect-user-preferences-3i6e",
+      "text": "Motion-Safe Animations Guide",
+      "principleId": "animations-tailwind-motion-variants",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 25
+    },
+    {
+      "url": "https://web.dev/articles/content-visibility",
+      "text": "web.dev content-visibility",
+      "principleId": "animations-pause-offscreen",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 774
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/content-visibility",
+      "text": "MDN content-visibility",
+      "principleId": "animations-pause-offscreen",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 30
+    },
+    {
+      "url": "https://marvelapp.com/blog/optical-adjustment-logic-vs-designers/",
+      "text": "Optical Alignment",
+      "principleId": "layout-optical-alignment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 40
+    },
+    {
+      "url": "https://www.nngroup.com/articles/gestalt-proximity/",
+      "text": "Visual Alignment",
+      "principleId": "layout-deliberate-alignment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1035
+    },
+    {
+      "url": "https://web.dev/articles/responsive-web-design-basics",
+      "text": "Responsive Design",
+      "principleId": "layout-responsive-coverage",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/responsive-web-design-basics?hl=ru",
+      "responseTime": 341
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow",
+      "text": "CSS Overflow",
+      "principleId": "layout-no-excessive-scrollbars",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 36
+    },
+    {
+      "url": "https://www.nngroup.com/articles/visual-hierarchy-ux-definition/",
+      "text": "Visual Balance",
+      "principleId": "layout-balance-contrast",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1255
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env",
+      "text": "Safe Area Insets",
+      "principleId": "layout-safe-areas",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 35
+    },
+    {
+      "url": "https://webkit.org/blog/7929/designing-websites-for-iphone-x/",
+      "text": "Designing for iPhone X",
+      "principleId": "layout-safe-areas",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 827
+    },
+    {
+      "url": "https://tailwindcss.com/docs/adding-custom-styles",
+      "text": "Adding Custom Styles",
+      "principleId": "layout-layer-directives",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 92
+    },
+    {
+      "url": "https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer",
+      "text": "Using @layer",
+      "principleId": "layout-layer-directives",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 88
+    },
+    {
+      "url": "https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities",
+      "text": "Adding Custom Utilities",
+      "principleId": "layout-custom-utilities",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 244
+    },
+    {
+      "url": "https://tailwindcss.com/docs/functions-and-directives",
+      "text": "Tailwind v4 @utility",
+      "principleId": "layout-custom-utilities",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 90
+    },
+    {
+      "url": "https://tailwindcss.com/docs/z-index",
+      "text": "Tailwind Z-Index",
+      "principleId": "layout-ibelick-z-index-scale",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 87
+    },
+    {
+      "url": "https://tailwindcss.com/docs/width#setting-both-width-and-height",
+      "text": "Tailwind Size Utility",
+      "principleId": "layout-ibelick-size-utility",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 76
+    },
+    {
+      "url": "https://web.dev/blog/viewport-units",
+      "text": "Dynamic Viewports",
+      "principleId": "layout-ibelick-viewport-height",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 525
+    },
+    {
+      "url": "https://webkit.org/blog/7929/designing-websites-for-iphone-x/",
+      "text": "Designing for Notches",
+      "principleId": "layout-ibelick-safe-areas",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 719
+    },
+    {
+      "url": "https://www.nngroup.com/articles/tooltip-guidelines/",
+      "text": "Tooltip Usability",
+      "principleId": "content-inline-help-first",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 142
+    },
+    {
+      "url": "https://www.nngroup.com/articles/skeleton-screens/",
+      "text": "Skeleton Screens",
+      "principleId": "content-stable-skeletons",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1058
+    },
+    {
+      "url": "https://web.dev/articles/cls",
+      "text": "Cumulative Layout Shift",
+      "principleId": "content-stable-skeletons",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/cls?hl=zh-cn",
+      "responseTime": 309
+    },
+    {
+      "url": "https://www.nngroup.com/articles/empty-state-interface-design/",
+      "text": "Empty States",
+      "principleId": "content-no-dead-ends",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1058
+    },
+    {
+      "url": "https://practicaltypography.com/straight-and-curly-quotes.html",
+      "text": "Smart Quotes",
+      "principleId": "content-typographic-quotes",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 513
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric",
+      "text": "font-variant-numeric",
+      "principleId": "content-tabular-numbers",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 35
+    },
+    {
+      "url": "https://www.sarasoueidan.com/blog/accessible-icon-buttons/",
+      "text": "Accessible Icon Buttons",
+      "principleId": "content-icons-have-labels",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 121
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Non-breaking_space",
+      "text": "Non-breaking space",
+      "principleId": "content-non-breaking-spaces",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 99
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/title",
+      "text": "Title element",
+      "principleId": "content-page-titles",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 29
+    },
+    {
+      "url": "https://www.nngroup.com/articles/empty-state-interface-design/",
+      "text": "Empty States",
+      "principleId": "content-all-states",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 145
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html",
+      "text": "Color Accessibility",
+      "principleId": "content-redundant-cues",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 382
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ellipsis",
+      "text": "Ellipsis",
+      "principleId": "content-ellipsis-character",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 104
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-margin-top",
+      "text": "scroll-margin-top",
+      "principleId": "content-anchored-headings",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 119
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-overflow",
+      "text": "Text Overflow",
+      "principleId": "content-resilient-ugc",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 124
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl",
+      "text": "Internationalization API",
+      "principleId": "content-locale-formats",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 123
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label",
+      "text": "ARIA Labels",
+      "principleId": "content-accessible-content",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 124
+    },
+    {
+      "url": "https://developer.chrome.com/docs/devtools/accessibility/reference/",
+      "text": "Accessibility Tree",
+      "principleId": "content-accessible-content",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/docs/devtools/accessibility/reference?hl=ko",
+      "responseTime": 548
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "text": "ARIA Authoring Practices",
+      "principleId": "content-semantics-first",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 142
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/",
+      "text": "No ARIA is Better Than Bad ARIA",
+      "principleId": "content-semantics-first",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 239
+    },
+    {
+      "url": "https://github.com/tailwindlabs/prettier-plugin-tailwindcss",
+      "text": "Prettier Plugin",
+      "principleId": "content-class-formatting",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 793
+    },
+    {
+      "url": "https://tailwindcss.com/blog/automatic-class-sorting-with-prettier",
+      "text": "Class Sorting",
+      "principleId": "content-class-formatting",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 166
+    },
+    {
+      "url": "https://github.com/tailwindlabs/tailwindcss-typography",
+      "text": "@tailwindcss/typography",
+      "principleId": "content-official-plugins",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 619
+    },
+    {
+      "url": "https://github.com/tailwindlabs/tailwindcss-forms",
+      "text": "@tailwindcss/forms",
+      "principleId": "content-official-plugins",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 594
+    },
+    {
+      "url": "https://github.com/tailwindlabs/tailwindcss-container-queries",
+      "text": "@tailwindcss/container-queries",
+      "principleId": "content-official-plugins",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 714
+    },
+    {
+      "url": "https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code",
+      "text": "IntelliSense Extension",
+      "principleId": "content-intellisense",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 79
+    },
+    {
+      "url": "https://github.com/tailwindlabs/tailwindcss-intellisense",
+      "text": "Tailwind CSS IntelliSense",
+      "principleId": "content-intellisense",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 629
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html",
+      "text": "WCAG 1.1.1",
+      "principleId": "content-rams-alt-text",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 402
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html",
+      "text": "WCAG 1.3.1",
+      "principleId": "content-rams-heading-levels",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 269
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html",
+      "text": "WCAG 2.4.4",
+      "principleId": "content-rams-link-text",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 364
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap",
+      "text": "CSS text-wrap",
+      "principleId": "content-ibelick-text-balance",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric",
+      "text": "font-variant-numeric MDN",
+      "principleId": "content-ibelick-tabular-nums",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 30
+    },
+    {
+      "url": "https://tailwindcss.com/docs/line-clamp",
+      "text": "Tailwind Line Clamp",
+      "principleId": "content-ibelick-text-overflow",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 159
+    },
+    {
+      "url": "https://fonts.google.com/knowledge/using_type",
+      "text": "Typography Best Practices",
+      "principleId": "content-ibelick-letter-spacing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 316
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/",
+      "text": "WAI-ARIA Authoring Patterns",
+      "principleId": "forms-enter-submits",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 55
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea",
+      "text": "HTML textarea element",
+      "principleId": "forms-textarea-behavior",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label",
+      "text": "MDN: Label element",
+      "principleId": "forms-labels-everywhere",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 28
+    },
+    {
+      "url": "https://webaim.org/techniques/forms/",
+      "text": "WebAIM: Creating Accessible Forms",
+      "principleId": "forms-labels-everywhere",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 428
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label",
+      "text": "MDN: Label element",
+      "principleId": "forms-label-activation",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 42
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Glossary/Idempotent",
+      "text": "Idempotency",
+      "principleId": "forms-submission-rule",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 41
+    },
+    {
+      "url": "https://www.nngroup.com/articles/errors-forms-design-guidelines/",
+      "text": "Form Validation UX",
+      "principleId": "forms-dont-block-typing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1052
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2022/09/inline-validation-web-forms-ux/",
+      "text": "Form validation UX",
+      "principleId": "forms-dont-pre-disable-submit",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 156
+    },
+    {
+      "url": "https://webaim.org/techniques/formvalidation/",
+      "text": "WebAIM: Accessible Form Validation",
+      "principleId": "forms-error-placement",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 412
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete",
+      "text": "HTML autocomplete attribute",
+      "principleId": "forms-autocomplete",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 40
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/spellcheck",
+      "text": "HTML spellcheck attribute",
+      "principleId": "forms-spellcheck",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 43
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+      "text": "HTML input types",
+      "principleId": "forms-correct-types",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 53
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inputmode",
+      "text": "inputmode attribute",
+      "principleId": "forms-correct-types",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 51
+    },
+    {
+      "url": "https://www.nngroup.com/articles/form-design-placeholders/",
+      "text": "Placeholder vs Label",
+      "principleId": "forms-placeholder-value",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1081
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event",
+      "text": "beforeunload event",
+      "principleId": "forms-unsaved-changes",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 28
+    },
+    {
+      "url": "https://www.w3.org/WAI/tutorials/forms/labels/",
+      "text": "Form Labels",
+      "principleId": "forms-no-dead-zones",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 64
+    },
+    {
+      "url": "https://web.dev/articles/sign-in-form-best-practices",
+      "text": "Autocomplete for Credentials",
+      "principleId": "forms-password-managers",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/sign-in-form-best-practices?hl=es-419",
+      "responseTime": 979
+    },
+    {
+      "url": "https://github.com/dcastil/tailwind-merge",
+      "text": "tailwind-merge",
+      "principleId": "forms-tailwind-merge",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 167
+    },
+    {
+      "url": "https://github.com/dcastil/tailwind-merge/blob/main/docs/what-is-it-for.md",
+      "text": "Why tailwind-merge",
+      "principleId": "forms-tailwind-merge",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 490
+    },
+    {
+      "url": "https://ui.shadcn.com/docs/installation/manual#add-a-cn-helper",
+      "text": "shadcn/ui cn()",
+      "principleId": "forms-cn-utility",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 122
+    },
+    {
+      "url": "https://github.com/lukeed/clsx",
+      "text": "clsx",
+      "principleId": "forms-cn-utility",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 144
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html",
+      "text": "WCAG 1.3.1",
+      "principleId": "forms-rams-form-labels",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 214
+    },
+    {
+      "url": "https://github.com/dcastil/tailwind-merge",
+      "text": "tailwind-merge",
+      "principleId": "forms-ibelick-cn-utility",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 139
+    },
+    {
+      "url": "https://www.nngroup.com/articles/errors-forms-design-guidelines/",
+      "text": "Form Error Handling",
+      "principleId": "forms-ibelick-error-placement",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 145
+    },
+    {
+      "url": "https://www.troyhunt.com/the-cobra-effect-that-is-disabling/",
+      "text": "Why Paste Blocking Hurts Security",
+      "principleId": "forms-ibelick-no-paste-blocking",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 110
+    },
+    {
+      "url": "https://react.dev/learn/render-and-commit",
+      "text": "React Performance",
+      "principleId": "performance-minimize-rerenders",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 112
+    },
+    {
+      "url": "https://react.dev/learn/react-developer-tools",
+      "text": "React DevTools",
+      "principleId": "performance-minimize-rerenders",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 109
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/content-visibility",
+      "text": "content-visibility",
+      "principleId": "performance-large-lists",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 28
+    },
+    {
+      "url": "https://web.dev/articles/virtualize-long-lists-react-window",
+      "text": "List Virtualization",
+      "principleId": "performance-large-lists",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/virtualize-long-lists-react-window?hl=pt-br",
+      "responseTime": 642
+    },
+    {
+      "url": "https://web.dev/articles/optimize-cls",
+      "text": "Image Aspect Ratio",
+      "principleId": "performance-no-image-cls",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/optimize-cls?hl=zh-tw",
+      "responseTime": 378
+    },
+    {
+      "url": "https://web.dev/articles/cls",
+      "text": "Cumulative Layout Shift",
+      "principleId": "performance-no-image-cls",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 656
+    },
+    {
+      "url": "https://web.dev/articles/optimize-webfont-loading",
+      "text": "Preloading Fonts",
+      "principleId": "performance-preload-fonts",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/optimize-webfont-loading?hl=hi",
+      "responseTime": 628
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Introduction",
+      "text": "Cross Browser Testing",
+      "principleId": "performance-device-matrix",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 122
+    },
+    {
+      "url": "https://developer.chrome.com/docs/devtools/device-mode/",
+      "text": "Chrome DevTools Throttling",
+      "principleId": "performance-throttle-profiling",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/docs/devtools/device-mode?hl=pt-br",
+      "responseTime": 327
+    },
+    {
+      "url": "https://www.nngroup.com/articles/response-times-3-important-limits/",
+      "text": "Response Time Guidelines",
+      "principleId": "performance-latency-budgets",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1050
+    },
+    {
+      "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files",
+      "text": "Tailwind Content Configuration",
+      "principleId": "performance-content-paths",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 182
+    },
+    {
+      "url": "https://web.dev/articles/animations-guide",
+      "text": "CSS GPU Animation",
+      "principleId": "performance-gpu-animations",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 650
+    },
+    {
+      "url": "https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count",
+      "text": "Compositor-only Properties",
+      "principleId": "performance-gpu-animations",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/stick-to-compositor-only-properties-and-manage-layer-count?hl=es-419",
+      "responseTime": 520
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-property",
+      "text": "CSS Transition Property",
+      "principleId": "performance-no-transition-all",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 37
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "text": "Tailwind Customization",
+      "principleId": "performance-avoid-arbitrary",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 81
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "text": "Tailwind Theme Configuration",
+      "principleId": "performance-avoid-arbitrary",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 78
+    },
+    {
+      "url": "https://v3.tailwindcss.com/docs/optimizing-for-production",
+      "text": "Optimizing for Production",
+      "principleId": "performance-purge-optimization",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 78
+    },
+    {
+      "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files",
+      "text": "Content Configuration",
+      "principleId": "performance-purge-optimization",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 96
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "text": "Tailwind Spacing Scale",
+      "principleId": "performance-ibelick-tailwind-defaults",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 92
+    },
+    {
+      "url": "https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas",
+      "text": "CSS Filter Performance",
+      "principleId": "performance-ibelick-no-blur-animation",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1477
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change",
+      "text": "will-change MDN",
+      "principleId": "performance-ibelick-will-change",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://react.dev/learn/you-might-not-need-an-effect",
+      "text": "You Might Not Need an Effect",
+      "principleId": "performance-ibelick-no-effect-render",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 115
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain",
+      "text": "MDN CSS contain",
+      "principleId": "performance-css-containment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 31
+    },
+    {
+      "url": "https://web.dev/articles/content-visibility",
+      "text": "web.dev content-visibility",
+      "principleId": "performance-css-containment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1031
+    },
+    {
+      "url": "https://web.dev/articles/optimize-lcp",
+      "text": "Optimize LCP",
+      "principleId": "performance-lcp-hero-optimization",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 573
+    },
+    {
+      "url": "https://web.dev/articles/preload-critical-assets",
+      "text": "Preload critical assets",
+      "principleId": "performance-lcp-hero-optimization",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/preload-critical-assets?hl=zh-cn",
+      "responseTime": 329
+    },
+    {
+      "url": "https://web.dev/articles/optimize-webfont-loading",
+      "text": "Optimize web fonts",
+      "principleId": "performance-font-display-strategy",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/optimize-webfont-loading?hl=zh-tw",
+      "responseTime": 493
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/font-display",
+      "text": "font-display MDN",
+      "principleId": "performance-font-display-strategy",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 28
+    },
+    {
+      "url": "https://web.dev/articles/serve-responsive-images",
+      "text": "Serve responsive images",
+      "principleId": "performance-responsive-images",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/serve-responsive-images?hl=fr",
+      "responseTime": 493
+    },
+    {
+      "url": "https://web.dev/articles/serve-images-webp",
+      "text": "Use WebP images",
+      "principleId": "performance-responsive-images",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/serve-images-webp?hl=fr",
+      "responseTime": 287
+    },
+    {
+      "url": "https://web.dev/articles/cls",
+      "text": "Cumulative Layout Shift",
+      "principleId": "performance-skeleton-dimensions",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 477
+    },
+    {
+      "url": "https://web.dev/articles/optimize-cls",
+      "text": "Optimize CLS",
+      "principleId": "performance-skeleton-dimensions",
+      "status": "redirect",
+      "statusCode": 302,
+      "redirectUrl": "/articles/optimize-cls?hl=tr",
+      "responseTime": 342
+    },
+    {
+      "url": "https://m2.material.io/design/environment/light-shadows.html",
+      "text": "Material Design Shadows",
+      "principleId": "design-layered-shadows",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 240
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border",
+      "text": "CSS Borders",
+      "principleId": "design-crisp-borders",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 35
+    },
+    {
+      "url": "https://cloudfour.com/thinks/the-math-behind-nesting-rounded-corners/",
+      "text": "Nested Border Radius",
+      "principleId": "design-nested-radii",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 84
+    },
+    {
+      "url": "https://git.apcacontrast.com/documentation/APCAeasyIntro.html",
+      "text": "APCA Introduction",
+      "principleId": "design-minimum-contrast",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 39
+    },
+    {
+      "url": "https://github.com/Myndex/SAPC-APCA",
+      "text": "APCA on GitHub",
+      "principleId": "design-minimum-contrast",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 586
+    },
+    {
+      "url": "https://www.nngroup.com/articles/clickable-elements/",
+      "text": "Interactive States",
+      "principleId": "design-interactions-increase-contrast",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 153
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2010/01/color-theory-for-designers-part-1-the-meaning-of-color/",
+      "text": "Color Theory",
+      "principleId": "design-hue-consistency",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 135
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2024/02/designing-for-colorblindness/",
+      "text": "Designing for Color Blindness",
+      "principleId": "design-accessible-charts",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 132
+    },
+    {
+      "url": "https://www.w3.org/WAI/tutorials/images/complex/",
+      "text": "Data Visualization Accessibility",
+      "principleId": "design-accessible-charts",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 63
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "text": "Theme Configuration",
+      "principleId": "design-theme-config",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 83
+    },
+    {
+      "url": "https://tailwindcss.com/docs/colors",
+      "text": "Customizing Colors",
+      "principleId": "design-theme-config",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 97
+    },
+    {
+      "url": "https://tailwindcss.com/docs/colors",
+      "text": "Using CSS Variables",
+      "principleId": "design-semantic-colors",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 85
+    },
+    {
+      "url": "https://ui.shadcn.com/docs/theming",
+      "text": "shadcn/ui Theming",
+      "principleId": "design-complete-theme",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 155
+    },
+    {
+      "url": "https://tailwindcss.com/docs/responsive-design",
+      "text": "Responsive Design",
+      "principleId": "design-mobile-first",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 81
+    },
+    {
+      "url": "https://tailwindcss.com/docs/responsive-design#mobile-first",
+      "text": "Mobile First",
+      "principleId": "design-mobile-first",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 88
+    },
+    {
+      "url": "https://tailwindcss.com/docs/responsive-design#using-custom-breakpoints",
+      "text": "Customizing Screens",
+      "principleId": "design-custom-breakpoints",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 161
+    },
+    {
+      "url": "https://tailwindcss.com/docs/dark-mode",
+      "text": "Dark Mode",
+      "principleId": "design-dark-mode-class",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 88
+    },
+    {
+      "url": "https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually",
+      "text": "Class Strategy",
+      "principleId": "design-dark-mode-class",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 229
+    },
+    {
+      "url": "https://css-tricks.com/flash-of-inaccurate-color-theme-fart/",
+      "text": "Avoiding FART",
+      "principleId": "design-dark-preferences",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 440
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme",
+      "text": "prefers-color-scheme",
+      "principleId": "design-dark-preferences",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 32
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html",
+      "text": "WCAG 1.4.1",
+      "principleId": "design-rams-color-only",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 223
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html",
+      "text": "WCAG 1.4.3",
+      "principleId": "design-rams-color-contrast",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 409
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html",
+      "text": "WCAG 1.4.3",
+      "principleId": "design-rams-text-contrast",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 222
+    },
+    {
+      "url": "https://tailwindcss.com/docs/theme",
+      "text": "Design System Spacing",
+      "principleId": "design-rams-inconsistent-spacing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 80
+    },
+    {
+      "url": "https://www.nngroup.com/articles/form-design-white-space/",
+      "text": "Visual Design Principles",
+      "principleId": "design-rams-crowded-elements",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1062
+    },
+    {
+      "url": "https://www.nngroup.com/articles/gestalt-proximity/",
+      "text": "Gestalt Principles",
+      "principleId": "design-rams-excessive-whitespace",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 220
+    },
+    {
+      "url": "https://tailwindcss.com/docs/font-family",
+      "text": "Typography Guidelines",
+      "principleId": "design-rams-font-consistency",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 79
+    },
+    {
+      "url": "https://tailwindcss.com/docs/font-size",
+      "text": "Type Scale",
+      "principleId": "design-rams-text-sizing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 80
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/",
+      "text": "Color Mechanics in UI",
+      "principleId": "design-rams-color-harmony",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 203
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/",
+      "text": "Psychology of Color in UX",
+      "principleId": "design-rams-semantic-colors",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 202
+    },
+    {
+      "url": "https://tailwindcss.com/docs/border-radius",
+      "text": "Border Radius",
+      "principleId": "design-rams-border-radius",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 79
+    },
+    {
+      "url": "https://tailwindcss.com/docs/box-shadow",
+      "text": "Box Shadow",
+      "principleId": "design-rams-shadow-consistency",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 87
+    },
+    {
+      "url": "https://tailwindcss.com/docs/flex",
+      "text": "Flexbox",
+      "principleId": "design-rams-alignment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 85
+    },
+    {
+      "url": "https://tailwindcss.com/docs/grid-template-columns",
+      "text": "Grid",
+      "principleId": "design-rams-alignment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 81
+    },
+    {
+      "url": "https://www.nngroup.com/articles/flat-design/",
+      "text": "Flat Design Guidelines",
+      "principleId": "design-ibelick-no-gradients",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1069
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/",
+      "text": "Design System Colors",
+      "principleId": "design-ibelick-no-purple",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 136
+    },
+    {
+      "url": "https://www.nngroup.com/articles/clickable-elements/",
+      "text": "Clickability Signifiers",
+      "principleId": "design-ibelick-no-glow",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 141
+    },
+    {
+      "url": "https://tailwindcss.com/docs/box-shadow",
+      "text": "Tailwind Box Shadow",
+      "principleId": "design-ibelick-default-shadows",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 85
+    },
+    {
+      "url": "https://www.nngroup.com/articles/empty-state-interface-design/",
+      "text": "Empty State Design",
+      "principleId": "design-ibelick-empty-states",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 144
+    },
+    {
+      "url": "https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/",
+      "text": "Psychology of Color in UX",
+      "principleId": "design-ibelick-color-restraint",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 144
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-distinctive-typography",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 506
+    },
+    {
+      "url": "https://fonts.google.com/",
+      "text": "Google Fonts",
+      "principleId": "aesthetics-distinctive-typography",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 556
+    },
+    {
+      "url": "https://www.fontshare.com/",
+      "text": "Fontshare",
+      "principleId": "aesthetics-distinctive-typography",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 164
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-color-dominance",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 144
+    },
+    {
+      "url": "https://www.refactoringui.com/",
+      "text": "Refactoring UI",
+      "principleId": "aesthetics-color-dominance",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 120
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-orchestrated-motion",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 144
+    },
+    {
+      "url": "https://motion.dev/",
+      "text": "Motion One",
+      "principleId": "aesthetics-orchestrated-motion",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 124
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-spatial-composition",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 141
+    },
+    {
+      "url": "https://www.refactoringui.com/",
+      "text": "Refactoring UI: Layout",
+      "principleId": "aesthetics-spatial-composition",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 84
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-atmospheric-backgrounds",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 132
+    },
+    {
+      "url": "https://meshgradient.in/",
+      "text": "Mesh Gradients",
+      "principleId": "aesthetics-atmospheric-backgrounds",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 427
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-bold-direction",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 146
+    },
+    {
+      "url": "https://www.awwwards.com/",
+      "text": "Awwwards",
+      "principleId": "aesthetics-bold-direction",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 77
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-anti-generic",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 147
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-css-first-animations",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 147
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions",
+      "text": "MDN: CSS Transitions",
+      "principleId": "aesthetics-css-first-animations",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 33
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations",
+      "text": "MDN: CSS Animations",
+      "principleId": "aesthetics-css-first-animations",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 34
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/canvas-design/SKILL.md",
+      "text": "Anthropic Canvas-Design Skill",
+      "principleId": "aesthetics-craftsmanship",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 509
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-design-commitment",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 133
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/canvas-design/SKILL.md",
+      "text": "Anthropic Canvas-Design Skill",
+      "principleId": "aesthetics-visual-first",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 507
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-negative-space",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 144
+    },
+    {
+      "url": "https://www.refactoringui.com/",
+      "text": "Refactoring UI",
+      "principleId": "aesthetics-negative-space",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 78
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-memorable-differentiation",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 145
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic frontend-design skill",
+      "principleId": "aesthetics-grid-breaking",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 147
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-scroll-interactions",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 141
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-font-pairing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 147
+    },
+    {
+      "url": "https://www.typewolf.com/",
+      "text": "Typewolf Font Pairing",
+      "principleId": "aesthetics-font-pairing",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 1426
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-design-variety",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 140
+    },
+    {
+      "url": "https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md",
+      "text": "Anthropic Frontend-Design Skill",
+      "principleId": "aesthetics-complexity-matching",
+      "status": "ok",
+      "statusCode": 200,
+      "responseTime": 137
+    }
+  ]
+}

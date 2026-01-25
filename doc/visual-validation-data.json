@@ -1,0 +1,3413 @@
+{
+  "timestamp": "2026-01-25T16:44:31.014Z",
+  "summary": {
+    "total": 425,
+    "critical": 0,
+    "high": 2,
+    "medium": 406,
+    "low": 17,
+    "fixed": 0
+  },
+  "issues": [
+    {
+      "principleId": "interactions-keyboard-everywhere",
+      "category": "interactions",
+      "title": "Keyboard Works Everywhere",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-keyboard-everywhere",
+      "category": "interactions",
+      "title": "Keyboard Works Everywhere",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-clear-focus",
+      "category": "interactions",
+      "title": "Clear Focus",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-clear-focus",
+      "category": "interactions",
+      "title": "Clear Focus",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-match-hit-targets",
+      "category": "interactions",
+      "title": "Match Visual & Hit Targets",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-match-hit-targets",
+      "category": "interactions",
+      "title": "Match Visual & Hit Targets",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-loading-buttons",
+      "category": "interactions",
+      "title": "Loading Buttons",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-loading-buttons",
+      "category": "interactions",
+      "title": "Loading Buttons",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-optimistic-updates",
+      "category": "interactions",
+      "title": "Optimistic Updates",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-optimistic-updates",
+      "category": "interactions",
+      "title": "Optimistic Updates",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ellipsis-for-input",
+      "category": "interactions",
+      "title": "Ellipsis for Further Input",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ellipsis-for-input",
+      "category": "interactions",
+      "title": "Ellipsis for Further Input",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-confirm-destructive",
+      "category": "interactions",
+      "title": "Confirm Destructive Actions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-confirm-destructive",
+      "category": "interactions",
+      "title": "Confirm Destructive Actions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-links-are-links",
+      "category": "interactions",
+      "title": "Links Are Links",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-links-are-links",
+      "category": "interactions",
+      "title": "Links Are Links",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-manage-focus",
+      "category": "interactions",
+      "title": "Manage Focus",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-manage-focus",
+      "category": "interactions",
+      "title": "Manage Focus",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-mobile-input-size",
+      "category": "interactions",
+      "title": "Mobile Input Size",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-mobile-input-size",
+      "category": "interactions",
+      "title": "Mobile Input Size",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-respect-zoom",
+      "category": "interactions",
+      "title": "Respect Zoom",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-respect-zoom",
+      "category": "interactions",
+      "title": "Respect Zoom",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-hydration-safe",
+      "category": "interactions",
+      "title": "Hydration-safe Inputs",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-hydration-safe",
+      "category": "interactions",
+      "title": "Hydration-safe Inputs",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-dont-block-paste",
+      "category": "interactions",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-dont-block-paste",
+      "category": "interactions",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-url-state",
+      "category": "interactions",
+      "title": "URL as State",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-url-state",
+      "category": "interactions",
+      "title": "URL as State",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-scroll-persistence",
+      "category": "interactions",
+      "title": "Scroll Positions Persist",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-scroll-persistence",
+      "category": "interactions",
+      "title": "Scroll Positions Persist",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-announce-updates",
+      "category": "interactions",
+      "title": "Announce Async Updates",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-announce-updates",
+      "category": "interactions",
+      "title": "Announce Async Updates",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-touch-action",
+      "category": "interactions",
+      "title": "Prevent Double-tap Zoom",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-touch-action",
+      "category": "interactions",
+      "title": "Prevent Double-tap Zoom",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-forgiving-design",
+      "category": "interactions",
+      "title": "Design Forgiving Interactions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-forgiving-design",
+      "category": "interactions",
+      "title": "Design Forgiving Interactions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-forgiving-design",
+      "category": "interactions",
+      "title": "Design Forgiving Interactions",
+      "issue": "Missing sourceLinks",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-tooltip-timing",
+      "category": "interactions",
+      "title": "Tooltip Timing",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-tooltip-timing",
+      "category": "interactions",
+      "title": "Tooltip Timing",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-overscroll-behavior",
+      "category": "interactions",
+      "title": "Overscroll Behavior",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-overscroll-behavior",
+      "category": "interactions",
+      "title": "Overscroll Behavior",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-autofocus",
+      "category": "interactions",
+      "title": "Autofocus for Speed",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-autofocus",
+      "category": "interactions",
+      "title": "Autofocus for Speed",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-no-dead-zones",
+      "category": "interactions",
+      "title": "No Dead Zones",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-no-dead-zones",
+      "category": "interactions",
+      "title": "No Dead Zones",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-clean-drag",
+      "category": "interactions",
+      "title": "Clean Drag Interactions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-clean-drag",
+      "category": "interactions",
+      "title": "Clean Drag Interactions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-focus-visible-tw",
+      "category": "interactions",
+      "title": "Focus-Visible Rings",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-focus-visible-tw",
+      "category": "interactions",
+      "title": "Focus-Visible Rings",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-skip-link-tw",
+      "category": "interactions",
+      "title": "Skip Link with Tailwind",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-skip-link-tw",
+      "category": "interactions",
+      "title": "Skip Link with Tailwind",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-aria-variants",
+      "category": "interactions",
+      "title": "ARIA State Variants",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-aria-variants",
+      "category": "interactions",
+      "title": "ARIA State Variants",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-sr-only",
+      "category": "interactions",
+      "title": "Screen Reader Only Content",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-sr-only",
+      "category": "interactions",
+      "title": "Screen Reader Only Content",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-class-precedence",
+      "category": "interactions",
+      "title": "Class Precedence",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-class-precedence",
+      "category": "interactions",
+      "title": "Class Precedence",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-aria-labels",
+      "category": "interactions",
+      "title": "Interactive Elements Missing ARIA Labels",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-aria-labels",
+      "category": "interactions",
+      "title": "Interactive Elements Missing ARIA Labels",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-focus-outline",
+      "category": "interactions",
+      "title": "Missing Focus Outline",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-focus-outline",
+      "category": "interactions",
+      "title": "Missing Focus Outline",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-keyboard-handlers",
+      "category": "interactions",
+      "title": "onClick Without Keyboard Handler",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-keyboard-handlers",
+      "category": "interactions",
+      "title": "onClick Without Keyboard Handler",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-role-attributes",
+      "category": "interactions",
+      "title": "Role Without Required Attributes",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-role-attributes",
+      "category": "interactions",
+      "title": "Role Without Required Attributes",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-semantic-handlers",
+      "category": "interactions",
+      "title": "Non-Interactive Element with Keyboard Handler",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-semantic-handlers",
+      "category": "interactions",
+      "title": "Non-Interactive Element with Keyboard Handler",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-tabindex",
+      "category": "interactions",
+      "title": "Positive tabindex Values",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-tabindex",
+      "category": "interactions",
+      "title": "Positive tabindex Values",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-touch-targets",
+      "category": "interactions",
+      "title": "Small Touch Targets",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-rams-touch-targets",
+      "category": "interactions",
+      "title": "Small Touch Targets",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-accessible-primitives",
+      "category": "interactions",
+      "title": "Use Accessible Primitives",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-accessible-primitives",
+      "category": "interactions",
+      "title": "Use Accessible Primitives",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-existing-components",
+      "category": "interactions",
+      "title": "Use Existing Components First",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-existing-components",
+      "category": "interactions",
+      "title": "Use Existing Components First",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-no-primitive-mixing",
+      "category": "interactions",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-no-primitive-mixing",
+      "category": "interactions",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-base-ui",
+      "category": "interactions",
+      "title": "Consider Base UI for New Components",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-base-ui",
+      "category": "interactions",
+      "title": "Consider Base UI for New Components",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-icon-buttons",
+      "category": "interactions",
+      "title": "Icon Buttons Need Labels",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-icon-buttons",
+      "category": "interactions",
+      "title": "Icon Buttons Need Labels",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-manual-behavior",
+      "category": "interactions",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-manual-behavior",
+      "category": "interactions",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-alert-dialog",
+      "category": "interactions",
+      "title": "Use AlertDialog for Destructive Actions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-alert-dialog",
+      "category": "interactions",
+      "title": "Use AlertDialog for Destructive Actions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-loading-skeletons",
+      "category": "interactions",
+      "title": "Prefer Skeletons Over Spinners",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "interactions-ibelick-loading-skeletons",
+      "category": "interactions",
+      "title": "Prefer Skeletons Over Spinners",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-prefers-reduced-motion",
+      "category": "animations",
+      "title": "Honor prefers-reduced-motion",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-prefers-reduced-motion",
+      "category": "animations",
+      "title": "Honor prefers-reduced-motion",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-compositor-friendly",
+      "category": "animations",
+      "title": "Compositor-friendly",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-compositor-friendly",
+      "category": "animations",
+      "title": "Compositor-friendly",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-interruptible",
+      "category": "animations",
+      "title": "Interruptible",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-interruptible",
+      "category": "animations",
+      "title": "Interruptible",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-correct-transform-origin",
+      "category": "animations",
+      "title": "Correct Transform Origin",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-correct-transform-origin",
+      "category": "animations",
+      "title": "Correct Transform Origin",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-never-transition-all",
+      "category": "animations",
+      "title": "Never transition: all",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-never-transition-all",
+      "category": "animations",
+      "title": "Never transition: all",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-implementation-preference",
+      "category": "animations",
+      "title": "Implementation Preference",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-implementation-preference",
+      "category": "animations",
+      "title": "Implementation Preference",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-necessity-check",
+      "category": "animations",
+      "title": "Necessity Check",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-necessity-check",
+      "category": "animations",
+      "title": "Necessity Check",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-easing",
+      "category": "animations",
+      "title": "Easing Fits Subject",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-easing",
+      "category": "animations",
+      "title": "Easing Fits Subject",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-motion-library",
+      "category": "animations",
+      "title": "Use motion/react for JS Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-motion-library",
+      "category": "animations",
+      "title": "Use motion/react for JS Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-tw-animate",
+      "category": "animations",
+      "title": "tw-animate-css for Micro Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-tw-animate",
+      "category": "animations",
+      "title": "tw-animate-css for Micro Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-intentional-only",
+      "category": "animations",
+      "title": "Animation Only When Requested",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-intentional-only",
+      "category": "animations",
+      "title": "Animation Only When Requested",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-compositor-only",
+      "category": "animations",
+      "title": "Animate Only Compositor Properties",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-compositor-only",
+      "category": "animations",
+      "title": "Animate Only Compositor Properties",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-no-layout",
+      "category": "animations",
+      "title": "Never Animate Layout Properties",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-no-layout",
+      "category": "animations",
+      "title": "Never Animate Layout Properties",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-minimize-paint",
+      "category": "animations",
+      "title": "Minimize Paint Animations",
+      "issue": "Bad example: Uses 9 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-minimize-paint",
+      "category": "animations",
+      "title": "Minimize Paint Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-minimize-paint",
+      "category": "animations",
+      "title": "Minimize Paint Animations",
+      "issue": "Good example: Uses 4 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-minimize-paint",
+      "category": "animations",
+      "title": "Minimize Paint Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-timing",
+      "category": "animations",
+      "title": "Proper Animation Timing",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-timing",
+      "category": "animations",
+      "title": "Proper Animation Timing",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-pause-offscreen",
+      "category": "animations",
+      "title": "Pause Offscreen Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-pause-offscreen",
+      "category": "animations",
+      "title": "Pause Offscreen Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-reduced-motion",
+      "category": "animations",
+      "title": "Respect Reduced Motion",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-ibelick-reduced-motion",
+      "category": "animations",
+      "title": "Respect Reduced Motion",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-pause-stop-hide",
+      "category": "animations",
+      "title": "Pause, Stop, Hide Controls (WCAG 2.2.2)",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-pause-stop-hide",
+      "category": "animations",
+      "title": "Pause, Stop, Hide Controls (WCAG 2.2.2)",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-will-change-sparingly",
+      "category": "animations",
+      "title": "Use will-change Sparingly",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-will-change-sparingly",
+      "category": "animations",
+      "title": "Use will-change Sparingly",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-frame-budget",
+      "category": "animations",
+      "title": "Animation Frame Budget (60fps)",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-frame-budget",
+      "category": "animations",
+      "title": "Animation Frame Budget (60fps)",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-view-transitions",
+      "category": "animations",
+      "title": "View Transitions API",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-view-transitions",
+      "category": "animations",
+      "title": "View Transitions API",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-spring-physics",
+      "category": "animations",
+      "title": "Spring Physics for Natural Motion",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-spring-physics",
+      "category": "animations",
+      "title": "Spring Physics for Natural Motion",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-motion-tailwind-conflict",
+      "category": "animations",
+      "title": "Motion Library + Tailwind Conflicts",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-motion-tailwind-conflict",
+      "category": "animations",
+      "title": "Motion Library + Tailwind Conflicts",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-tailwind-motion-variants",
+      "category": "animations",
+      "title": "Tailwind motion-safe/motion-reduce Variants",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-tailwind-motion-variants",
+      "category": "animations",
+      "title": "Tailwind motion-safe/motion-reduce Variants",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-pause-offscreen",
+      "category": "animations",
+      "title": "Pause Offscreen Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "animations-pause-offscreen",
+      "category": "animations",
+      "title": "Pause Offscreen Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-optical-alignment",
+      "category": "layout",
+      "title": "Optical Alignment",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-optical-alignment",
+      "category": "layout",
+      "title": "Optical Alignment",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-deliberate-alignment",
+      "category": "layout",
+      "title": "Deliberate Alignment",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-deliberate-alignment",
+      "category": "layout",
+      "title": "Deliberate Alignment",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-responsive-coverage",
+      "category": "layout",
+      "title": "Responsive Coverage",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-responsive-coverage",
+      "category": "layout",
+      "title": "Responsive Coverage",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-no-excessive-scrollbars",
+      "category": "layout",
+      "title": "No Excessive Scrollbars",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-no-excessive-scrollbars",
+      "category": "layout",
+      "title": "No Excessive Scrollbars",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-balance-contrast",
+      "category": "layout",
+      "title": "Balance Contrast in Lockups",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-balance-contrast",
+      "category": "layout",
+      "title": "Balance Contrast in Lockups",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-safe-areas",
+      "category": "layout",
+      "title": "Respect Safe Areas",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-safe-areas",
+      "category": "layout",
+      "title": "Respect Safe Areas",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-layer-directives",
+      "category": "layout",
+      "title": "@layer Directives",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-layer-directives",
+      "category": "layout",
+      "title": "@layer Directives",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-custom-utilities",
+      "category": "layout",
+      "title": "Create Custom Utilities",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-z-index-scale",
+      "category": "layout",
+      "title": "Use Fixed Z-Index Scale",
+      "issue": "Bad example not found: layout-ibelick-z-index-scale-bad",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-z-index-scale",
+      "category": "layout",
+      "title": "Use Fixed Z-Index Scale",
+      "issue": "Good example not found: layout-ibelick-z-index-scale-good",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-size-utility",
+      "category": "layout",
+      "title": "Use size-* Utility",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-size-utility",
+      "category": "layout",
+      "title": "Use size-* Utility",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-viewport-height",
+      "category": "layout",
+      "title": "Use dvh Instead of h-screen",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-viewport-height",
+      "category": "layout",
+      "title": "Use dvh Instead of h-screen",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-safe-areas",
+      "category": "layout",
+      "title": "Respect Safe Area Insets",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "layout-ibelick-safe-areas",
+      "category": "layout",
+      "title": "Respect Safe Area Insets",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-inline-help-first",
+      "category": "content",
+      "title": "Inline Help First",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-inline-help-first",
+      "category": "content",
+      "title": "Inline Help First",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-stable-skeletons",
+      "category": "content",
+      "title": "Stable Skeletons",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-stable-skeletons",
+      "category": "content",
+      "title": "Stable Skeletons",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-no-dead-ends",
+      "category": "content",
+      "title": "No Dead Ends",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-no-dead-ends",
+      "category": "content",
+      "title": "No Dead Ends",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-typographic-quotes",
+      "category": "content",
+      "title": "Typographic Quotes",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-typographic-quotes",
+      "category": "content",
+      "title": "Typographic Quotes",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-tabular-numbers",
+      "category": "content",
+      "title": "Tabular Numbers",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-tabular-numbers",
+      "category": "content",
+      "title": "Tabular Numbers",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-icons-have-labels",
+      "category": "content",
+      "title": "Icons Have Labels",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-icons-have-labels",
+      "category": "content",
+      "title": "Icons Have Labels",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-non-breaking-spaces",
+      "category": "content",
+      "title": "Non-breaking Spaces",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-non-breaking-spaces",
+      "category": "content",
+      "title": "Non-breaking Spaces",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-page-titles",
+      "category": "content",
+      "title": "Accurate Page Titles",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-page-titles",
+      "category": "content",
+      "title": "Accurate Page Titles",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-all-states",
+      "category": "content",
+      "title": "All States Designed",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-all-states",
+      "category": "content",
+      "title": "All States Designed",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-redundant-cues",
+      "category": "content",
+      "title": "Redundant Status Cues",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-redundant-cues",
+      "category": "content",
+      "title": "Redundant Status Cues",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ellipsis-character",
+      "category": "content",
+      "title": "Use Ellipsis Character",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ellipsis-character",
+      "category": "content",
+      "title": "Use Ellipsis Character",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-resilient-ugc",
+      "category": "content",
+      "title": "Resilient to User-generated Content",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-resilient-ugc",
+      "category": "content",
+      "title": "Resilient to User-generated Content",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-locale-formats",
+      "category": "content",
+      "title": "Locale-aware Formats",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-locale-formats",
+      "category": "content",
+      "title": "Locale-aware Formats",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-accessible-content",
+      "category": "content",
+      "title": "Accessible Content",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-accessible-content",
+      "category": "content",
+      "title": "Accessible Content",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-semantics-first",
+      "category": "content",
+      "title": "Semantics Before ARIA",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-semantics-first",
+      "category": "content",
+      "title": "Semantics Before ARIA",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-class-formatting",
+      "category": "content",
+      "title": "Class Formatting",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-class-formatting",
+      "category": "content",
+      "title": "Class Formatting",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-official-plugins",
+      "category": "content",
+      "title": "Official Plugins",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-intellisense",
+      "category": "content",
+      "title": "IDE IntelliSense",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-intellisense",
+      "category": "content",
+      "title": "IDE IntelliSense",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-rams-alt-text",
+      "category": "content",
+      "title": "Images Missing Alt Text",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-rams-alt-text",
+      "category": "content",
+      "title": "Images Missing Alt Text",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-rams-heading-levels",
+      "category": "content",
+      "title": "Skipped Heading Levels",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-rams-heading-levels",
+      "category": "content",
+      "title": "Skipped Heading Levels",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-rams-link-text",
+      "category": "content",
+      "title": "Links Without Descriptive Text",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-rams-link-text",
+      "category": "content",
+      "title": "Links Without Descriptive Text",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-text-balance",
+      "category": "content",
+      "title": "Use text-balance and text-pretty",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-text-balance",
+      "category": "content",
+      "title": "Use text-balance and text-pretty",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-tabular-nums",
+      "category": "content",
+      "title": "Use Tabular Numbers for Data",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-tabular-nums",
+      "category": "content",
+      "title": "Use Tabular Numbers for Data",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-text-overflow",
+      "category": "content",
+      "title": "Handle Text Overflow Properly",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-text-overflow",
+      "category": "content",
+      "title": "Handle Text Overflow Properly",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-letter-spacing",
+      "category": "content",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "content-ibelick-letter-spacing",
+      "category": "content",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-enter-submits",
+      "category": "forms",
+      "title": "Enter Submits",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-enter-submits",
+      "category": "forms",
+      "title": "Enter Submits",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-textarea-behavior",
+      "category": "forms",
+      "title": "Textarea Behavior",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-textarea-behavior",
+      "category": "forms",
+      "title": "Textarea Behavior",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-labels-everywhere",
+      "category": "forms",
+      "title": "Labels Everywhere",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-labels-everywhere",
+      "category": "forms",
+      "title": "Labels Everywhere",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-label-activation",
+      "category": "forms",
+      "title": "Label Activation",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-label-activation",
+      "category": "forms",
+      "title": "Label Activation",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-submission-rule",
+      "category": "forms",
+      "title": "Submission Rule",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-submission-rule",
+      "category": "forms",
+      "title": "Submission Rule",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-dont-block-typing",
+      "category": "forms",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-dont-block-typing",
+      "category": "forms",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-dont-pre-disable-submit",
+      "category": "forms",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-dont-pre-disable-submit",
+      "category": "forms",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-error-placement",
+      "category": "forms",
+      "title": "Error Placement",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-error-placement",
+      "category": "forms",
+      "title": "Error Placement",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-autocomplete",
+      "category": "forms",
+      "title": "Autocomplete & Names",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-autocomplete",
+      "category": "forms",
+      "title": "Autocomplete & Names",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-spellcheck",
+      "category": "forms",
+      "title": "Spellcheck Selectively",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-spellcheck",
+      "category": "forms",
+      "title": "Spellcheck Selectively",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-correct-types",
+      "category": "forms",
+      "title": "Correct Types & Input Modes",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-correct-types",
+      "category": "forms",
+      "title": "Correct Types & Input Modes",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-placeholder-value",
+      "category": "forms",
+      "title": "Placeholder Value",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-placeholder-value",
+      "category": "forms",
+      "title": "Placeholder Value",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-unsaved-changes",
+      "category": "forms",
+      "title": "Unsaved Changes",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-unsaved-changes",
+      "category": "forms",
+      "title": "Unsaved Changes",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-no-dead-zones",
+      "category": "forms",
+      "title": "No Dead Zones on Controls",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-no-dead-zones",
+      "category": "forms",
+      "title": "No Dead Zones on Controls",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-password-managers",
+      "category": "forms",
+      "title": "Password Managers & 2FA",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-password-managers",
+      "category": "forms",
+      "title": "Password Managers & 2FA",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-tailwind-merge",
+      "category": "forms",
+      "title": "Use tailwind-merge",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-tailwind-merge",
+      "category": "forms",
+      "title": "Use tailwind-merge",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-cn-utility",
+      "category": "forms",
+      "title": "cn() Utility Pattern",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-cn-utility",
+      "category": "forms",
+      "title": "cn() Utility Pattern",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-rams-form-labels",
+      "category": "forms",
+      "title": "Form Inputs Missing Labels",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-rams-form-labels",
+      "category": "forms",
+      "title": "Form Inputs Missing Labels",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-ibelick-cn-utility",
+      "category": "forms",
+      "title": "Use cn() Utility for Class Merging",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-ibelick-cn-utility",
+      "category": "forms",
+      "title": "Use cn() Utility for Class Merging",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-ibelick-error-placement",
+      "category": "forms",
+      "title": "Show Errors Near Actions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-ibelick-error-placement",
+      "category": "forms",
+      "title": "Show Errors Near Actions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-ibelick-no-paste-blocking",
+      "category": "forms",
+      "title": "Never Block Paste",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "forms-ibelick-no-paste-blocking",
+      "category": "forms",
+      "title": "Never Block Paste",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-minimize-rerenders",
+      "category": "performance",
+      "title": "Minimize Re-renders",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-minimize-rerenders",
+      "category": "performance",
+      "title": "Minimize Re-renders",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-large-lists",
+      "category": "performance",
+      "title": "Large Lists",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-large-lists",
+      "category": "performance",
+      "title": "Large Lists",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-no-image-cls",
+      "category": "performance",
+      "title": "No Image-caused CLS",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-no-image-cls",
+      "category": "performance",
+      "title": "No Image-caused CLS",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-preload-fonts",
+      "category": "performance",
+      "title": "Preload Fonts",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-preload-fonts",
+      "category": "performance",
+      "title": "Preload Fonts",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-device-matrix",
+      "category": "performance",
+      "title": "Device/Browser Matrix",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-device-matrix",
+      "category": "performance",
+      "title": "Device/Browser Matrix",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-throttle-profiling",
+      "category": "performance",
+      "title": "Throttle When Profiling",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-throttle-profiling",
+      "category": "performance",
+      "title": "Throttle When Profiling",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-latency-budgets",
+      "category": "performance",
+      "title": "Network Latency Budgets",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-latency-budgets",
+      "category": "performance",
+      "title": "Network Latency Budgets",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-content-paths",
+      "category": "performance",
+      "title": "Configure Content Paths",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-content-paths",
+      "category": "performance",
+      "title": "Configure Content Paths",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-gpu-animations",
+      "category": "performance",
+      "title": "GPU-Accelerated Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-gpu-animations",
+      "category": "performance",
+      "title": "GPU-Accelerated Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-no-transition-all",
+      "category": "performance",
+      "title": "Never transition-all",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-no-transition-all",
+      "category": "performance",
+      "title": "Never transition-all",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-avoid-arbitrary",
+      "category": "performance",
+      "title": "Avoid Arbitrary Values",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-dynamic-classes",
+      "category": "performance",
+      "title": "No Dynamic Class Construction",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-dynamic-classes",
+      "category": "performance",
+      "title": "No Dynamic Class Construction",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-purge-optimization",
+      "category": "performance",
+      "title": "Optimize Purge Configuration",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-purge-optimization",
+      "category": "performance",
+      "title": "Optimize Purge Configuration",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-tailwind-defaults",
+      "category": "performance",
+      "title": "Tailwind Defaults First",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-tailwind-defaults",
+      "category": "performance",
+      "title": "Tailwind Defaults First",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-no-blur-animation",
+      "category": "performance",
+      "title": "Never Animate Blur Effects",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-will-change",
+      "category": "performance",
+      "title": "Use will-change Sparingly",
+      "issue": "Bad example: Uses 4 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-will-change",
+      "category": "performance",
+      "title": "Use will-change Sparingly",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-will-change",
+      "category": "performance",
+      "title": "Use will-change Sparingly",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-no-effect-render",
+      "category": "performance",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-ibelick-no-effect-render",
+      "category": "performance",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-css-containment",
+      "category": "performance",
+      "title": "CSS Containment for Performance",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-css-containment",
+      "category": "performance",
+      "title": "CSS Containment for Performance",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-lcp-hero-optimization",
+      "category": "performance",
+      "title": "LCP Hero Optimization",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-lcp-hero-optimization",
+      "category": "performance",
+      "title": "LCP Hero Optimization",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-font-display-strategy",
+      "category": "performance",
+      "title": "Font Display Strategy",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-font-display-strategy",
+      "category": "performance",
+      "title": "Font Display Strategy",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-responsive-images",
+      "category": "performance",
+      "title": "Responsive Images",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-responsive-images",
+      "category": "performance",
+      "title": "Responsive Images",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-skeleton-dimensions",
+      "category": "performance",
+      "title": "Skeleton Placeholders with Matching Dimensions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "performance-skeleton-dimensions",
+      "category": "performance",
+      "title": "Skeleton Placeholders with Matching Dimensions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-layered-shadows",
+      "category": "design",
+      "title": "Layered Shadows",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-layered-shadows",
+      "category": "design",
+      "title": "Layered Shadows",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-crisp-borders",
+      "category": "design",
+      "title": "Crisp Borders",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-nested-radii",
+      "category": "design",
+      "title": "Nested Radii",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-nested-radii",
+      "category": "design",
+      "title": "Nested Radii",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-minimum-contrast",
+      "category": "design",
+      "title": "Minimum Contrast",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-minimum-contrast",
+      "category": "design",
+      "title": "Minimum Contrast",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-interactions-increase-contrast",
+      "category": "design",
+      "title": "Interactions Increase Contrast",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-interactions-increase-contrast",
+      "category": "design",
+      "title": "Interactions Increase Contrast",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-hue-consistency",
+      "category": "design",
+      "title": "Hue Consistency",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-hue-consistency",
+      "category": "design",
+      "title": "Hue Consistency",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-accessible-charts",
+      "category": "design",
+      "title": "Accessible Charts",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-accessible-charts",
+      "category": "design",
+      "title": "Accessible Charts",
+      "issue": "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "design-accessible-charts",
+      "category": "design",
+      "title": "Accessible Charts",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-accessible-charts",
+      "category": "design",
+      "title": "Accessible Charts",
+      "issue": "Good example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "design-theme-config",
+      "category": "design",
+      "title": "Extend Theme Properly",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-theme-config",
+      "category": "design",
+      "title": "Extend Theme Properly",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-semantic-colors",
+      "category": "design",
+      "title": "Use Semantic Color Tokens",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-complete-theme",
+      "category": "design",
+      "title": "Build Complete Theme",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-complete-theme",
+      "category": "design",
+      "title": "Build Complete Theme",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-mobile-first",
+      "category": "design",
+      "title": "Mobile-First Responsive",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-mobile-first",
+      "category": "design",
+      "title": "Mobile-First Responsive",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-custom-breakpoints",
+      "category": "design",
+      "title": "Custom Breakpoints When Needed",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-custom-breakpoints",
+      "category": "design",
+      "title": "Custom Breakpoints When Needed",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-dark-mode-class",
+      "category": "design",
+      "title": "Dark Mode Class Strategy",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-dark-mode-class",
+      "category": "design",
+      "title": "Dark Mode Class Strategy",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-dark-preferences",
+      "category": "design",
+      "title": "Respect Color Scheme Preference",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-dark-preferences",
+      "category": "design",
+      "title": "Respect Color Scheme Preference",
+      "issue": "Bad example: Potential contrast issues in dark/light modes",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "design-dark-preferences",
+      "category": "design",
+      "title": "Respect Color Scheme Preference",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-only",
+      "category": "design",
+      "title": "Color-Only Information",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-only",
+      "category": "design",
+      "title": "Color-Only Information",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-contrast",
+      "category": "design",
+      "title": "Insufficient Color Contrast",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-contrast",
+      "category": "design",
+      "title": "Insufficient Color Contrast",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-text-contrast",
+      "category": "design",
+      "title": "Poor Text-Background Contrast",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-text-contrast",
+      "category": "design",
+      "title": "Poor Text-Background Contrast",
+      "issue": "Bad example: Potential contrast issues in dark/light modes",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-text-contrast",
+      "category": "design",
+      "title": "Poor Text-Background Contrast",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-inconsistent-spacing",
+      "category": "design",
+      "title": "Inconsistent Spacing",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-inconsistent-spacing",
+      "category": "design",
+      "title": "Inconsistent Spacing",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-crowded-elements",
+      "category": "design",
+      "title": "Crowded Elements",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-crowded-elements",
+      "category": "design",
+      "title": "Crowded Elements",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-excessive-whitespace",
+      "category": "design",
+      "title": "Excessive Whitespace",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-excessive-whitespace",
+      "category": "design",
+      "title": "Excessive Whitespace",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-font-consistency",
+      "category": "design",
+      "title": "Inconsistent Font Usage",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-font-consistency",
+      "category": "design",
+      "title": "Inconsistent Font Usage",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-text-sizing",
+      "category": "design",
+      "title": "Inconsistent Text Sizing",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-text-sizing",
+      "category": "design",
+      "title": "Inconsistent Text Sizing",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-harmony",
+      "category": "design",
+      "title": "Colors That Clash",
+      "issue": "Bad example: Uses 5 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-harmony",
+      "category": "design",
+      "title": "Colors That Clash",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-color-harmony",
+      "category": "design",
+      "title": "Colors That Clash",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-semantic-colors",
+      "category": "design",
+      "title": "Inconsistent Semantic Colors",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-semantic-colors",
+      "category": "design",
+      "title": "Inconsistent Semantic Colors",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-border-radius",
+      "category": "design",
+      "title": "Inconsistent Border Radius",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-border-radius",
+      "category": "design",
+      "title": "Inconsistent Border Radius",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-shadow-consistency",
+      "category": "design",
+      "title": "Inconsistent Shadow Usage",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-shadow-consistency",
+      "category": "design",
+      "title": "Inconsistent Shadow Usage",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-alignment",
+      "category": "design",
+      "title": "Misaligned Elements",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-rams-alignment",
+      "category": "design",
+      "title": "Misaligned Elements",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-gradients",
+      "category": "design",
+      "title": "Avoid Gradients Unless Requested",
+      "issue": "Bad example: Uses 4 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-gradients",
+      "category": "design",
+      "title": "Avoid Gradients Unless Requested",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-gradients",
+      "category": "design",
+      "title": "Avoid Gradients Unless Requested",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-purple",
+      "category": "design",
+      "title": "Avoid Purple and Multicolor Gradients",
+      "issue": "Bad example: Uses 5 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-purple",
+      "category": "design",
+      "title": "Avoid Purple and Multicolor Gradients",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-purple",
+      "category": "design",
+      "title": "Avoid Purple and Multicolor Gradients",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-glow",
+      "category": "design",
+      "title": "Don\\",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-no-glow",
+      "category": "design",
+      "title": "Don\\",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-default-shadows",
+      "category": "design",
+      "title": "Use Tailwind Default Shadows",
+      "issue": "Bad example: Uses 4 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-default-shadows",
+      "category": "design",
+      "title": "Use Tailwind Default Shadows",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-default-shadows",
+      "category": "design",
+      "title": "Use Tailwind Default Shadows",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-empty-states",
+      "category": "design",
+      "title": "Empty States Need Clear Actions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-empty-states",
+      "category": "design",
+      "title": "Empty States Need Clear Actions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-color-restraint",
+      "category": "design",
+      "title": "Limit Accent Colors",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "design-ibelick-color-restraint",
+      "category": "design",
+      "title": "Limit Accent Colors",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-distinctive-typography",
+      "category": "aesthetics",
+      "title": "Distinctive Font Choices",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-distinctive-typography",
+      "category": "aesthetics",
+      "title": "Distinctive Font Choices",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-color-dominance",
+      "category": "aesthetics",
+      "title": "Dominant Colors with Sharp Accents",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-color-dominance",
+      "category": "aesthetics",
+      "title": "Dominant Colors with Sharp Accents",
+      "issue": "Good example: Uses 9 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-color-dominance",
+      "category": "aesthetics",
+      "title": "Dominant Colors with Sharp Accents",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-color-dominance",
+      "category": "aesthetics",
+      "title": "Dominant Colors with Sharp Accents",
+      "issue": "Good example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-orchestrated-motion",
+      "category": "aesthetics",
+      "title": "Orchestrated Page Load Reveals",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-orchestrated-motion",
+      "category": "aesthetics",
+      "title": "Orchestrated Page Load Reveals",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-spatial-composition",
+      "category": "aesthetics",
+      "title": "Unexpected Spatial Layouts",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-spatial-composition",
+      "category": "aesthetics",
+      "title": "Unexpected Spatial Layouts",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-atmospheric-backgrounds",
+      "category": "aesthetics",
+      "title": "Atmospheric Visual Details",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-atmospheric-backgrounds",
+      "category": "aesthetics",
+      "title": "Atmospheric Visual Details",
+      "issue": "Good example: Uses 4 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-atmospheric-backgrounds",
+      "category": "aesthetics",
+      "title": "Atmospheric Visual Details",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-atmospheric-backgrounds",
+      "category": "aesthetics",
+      "title": "Atmospheric Visual Details",
+      "issue": "Good example: Potential contrast issues in dark/light modes",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-bold-direction",
+      "category": "aesthetics",
+      "title": "Intentional Design Direction",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-bold-direction",
+      "category": "aesthetics",
+      "title": "Intentional Design Direction",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-anti-generic",
+      "category": "aesthetics",
+      "title": "Anti-Generic Design",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-anti-generic",
+      "category": "aesthetics",
+      "title": "Anti-Generic Design",
+      "issue": "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-anti-generic",
+      "category": "aesthetics",
+      "title": "Anti-Generic Design",
+      "issue": "Good example: Uses 7 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-anti-generic",
+      "category": "aesthetics",
+      "title": "Anti-Generic Design",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-anti-generic",
+      "category": "aesthetics",
+      "title": "Anti-Generic Design",
+      "issue": "Good example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-css-first-animations",
+      "category": "aesthetics",
+      "title": "CSS-First Animations",
+      "issue": "Bad example: Uses 5 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-css-first-animations",
+      "category": "aesthetics",
+      "title": "CSS-First Animations",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-css-first-animations",
+      "category": "aesthetics",
+      "title": "CSS-First Animations",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-craftsmanship",
+      "category": "aesthetics",
+      "title": "Meticulous Craftsmanship",
+      "issue": "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-craftsmanship",
+      "category": "aesthetics",
+      "title": "Meticulous Craftsmanship",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-commitment",
+      "category": "aesthetics",
+      "title": "Full Design Commitment",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-commitment",
+      "category": "aesthetics",
+      "title": "Full Design Commitment",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-commitment",
+      "category": "aesthetics",
+      "title": "Full Design Commitment",
+      "issue": "Good example: Potential contrast issues in dark/light modes",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-visual-first",
+      "category": "aesthetics",
+      "title": "Visual-First Communication",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-visual-first",
+      "category": "aesthetics",
+      "title": "Visual-First Communication",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-negative-space",
+      "category": "aesthetics",
+      "title": "Negative Space Mastery",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-negative-space",
+      "category": "aesthetics",
+      "title": "Negative Space Mastery",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-memorable-differentiation",
+      "category": "aesthetics",
+      "title": "Memorable Differentiation",
+      "issue": "Bad example: Uses 7 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-memorable-differentiation",
+      "category": "aesthetics",
+      "title": "Memorable Differentiation",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-memorable-differentiation",
+      "category": "aesthetics",
+      "title": "Memorable Differentiation",
+      "issue": "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-memorable-differentiation",
+      "category": "aesthetics",
+      "title": "Memorable Differentiation",
+      "issue": "Good example: Uses 16 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-memorable-differentiation",
+      "category": "aesthetics",
+      "title": "Memorable Differentiation",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-memorable-differentiation",
+      "category": "aesthetics",
+      "title": "Memorable Differentiation",
+      "issue": "Good example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-grid-breaking",
+      "category": "aesthetics",
+      "title": "Intentional Grid-Breaking",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-grid-breaking",
+      "category": "aesthetics",
+      "title": "Intentional Grid-Breaking",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-scroll-interactions",
+      "category": "aesthetics",
+      "title": "Surprising Scroll Interactions",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-scroll-interactions",
+      "category": "aesthetics",
+      "title": "Surprising Scroll Interactions",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-font-pairing",
+      "category": "aesthetics",
+      "title": "Intentional Font Pairing",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-font-pairing",
+      "category": "aesthetics",
+      "title": "Intentional Font Pairing",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-variety",
+      "category": "aesthetics",
+      "title": "Design Variety",
+      "issue": "Bad example: Uses 15 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-variety",
+      "category": "aesthetics",
+      "title": "Design Variety",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-variety",
+      "category": "aesthetics",
+      "title": "Design Variety",
+      "issue": "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-variety",
+      "category": "aesthetics",
+      "title": "Design Variety",
+      "issue": "Good example: Uses 22 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-variety",
+      "category": "aesthetics",
+      "title": "Design Variety",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-design-variety",
+      "category": "aesthetics",
+      "title": "Design Variety",
+      "issue": "Good example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-complexity-matching",
+      "category": "aesthetics",
+      "title": "Complexity Matching",
+      "issue": "Bad example: Uses 19 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-complexity-matching",
+      "category": "aesthetics",
+      "title": "Complexity Matching",
+      "issue": "Bad example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-complexity-matching",
+      "category": "aesthetics",
+      "title": "Complexity Matching",
+      "issue": "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-complexity-matching",
+      "category": "aesthetics",
+      "title": "Complexity Matching",
+      "issue": "Good example: Uses 8 hardcoded colors - may need theme tokens",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-complexity-matching",
+      "category": "aesthetics",
+      "title": "Complexity Matching",
+      "issue": "Good example: No dark mode support detected (missing dark: classes or CSS variables)",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "principleId": "aesthetics-complexity-matching",
+      "category": "aesthetics",
+      "title": "Complexity Matching",
+      "issue": "Good example: Multiple inline style colors - prefer Tailwind classes for theme support",
+      "severity": "low",
+      "status": "open"
+    }
+  ]
+}
