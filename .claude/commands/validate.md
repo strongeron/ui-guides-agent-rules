@@ -55,7 +55,31 @@ npx tsx scripts/validate-dark-mode-screenshots.ts --principle forms-enter-submit
 
 Screenshots are saved to `.playwright-mcp/dark-mode-validation/`.
 
-### 5. Visual Review (if needed)
+### 5. Visual Regression Testing
+
+Compare current rendering against baseline screenshots:
+
+```bash
+# Run visual regression tests (sample of 20 principles)
+npm run test:e2e:visual
+
+# Run all visual regression tests
+npm run test:e2e:visual:all
+
+# Update baselines after intentional changes
+npm run test:e2e:visual:update
+```
+
+Baselines are stored in `tests/visual-baselines/`:
+- `light-mode/` - Light theme baseline screenshots
+- `dark-mode/` - Dark theme baseline screenshots
+
+To update baselines after design changes:
+1. Review the diff in test output
+2. If changes are intentional, run `npm run test:e2e:visual:update`
+3. Commit updated baselines
+
+### 6. Manual Visual Review (if needed)
 
 Launch parallel agents to review examples:
 
@@ -70,7 +94,7 @@ For each category, launch a visual review agent:
 - aesthetics (18 principles)
 ```
 
-### 6. Fix Issues
+### 7. Fix Issues
 
 Priority order:
 1. **P1 Critical** - Broken functionality
@@ -78,7 +102,7 @@ Priority order:
 3. **P2 Medium** - Theme issues, rule misalignment
 4. **P3 Low** - Redirected links, minor issues
 
-### 7. Capture Before/After Screenshots
+### 8. Capture Before/After Screenshots
 
 ```bash
 # Before fixing
@@ -91,14 +115,14 @@ npx tsx scripts/capture-screenshots.ts comparison [principle-id] after
 npx tsx scripts/visual-validation.ts fix "[id]" "[fix description]"
 ```
 
-### 8. Generate Final Report
+### 9. Generate Final Report
 
 ```bash
 npm run validate:report
 npx tsx scripts/visual-validation.ts report
 ```
 
-### 9. Close Beads Tasks
+### 10. Close Beads Tasks
 
 ```bash
 bd close [task-id] --reason="Fixed X issues"
@@ -122,3 +146,5 @@ bd list --labels=validation
 | `scripts/visual-validation.ts` | Issue tracking |
 | `scripts/capture-screenshots.ts` | Screenshots |
 | `scripts/validate-all-comprehensive.ts` | Combined runner |
+| `tests/e2e/dark-mode-regression.spec.ts` | Visual regression tests |
+| `tests/visual-baselines/` | Baseline screenshots for comparison |
