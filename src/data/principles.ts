@@ -68,7 +68,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Clear focus. Every focusable element shows a visible focus ring. Prefer :focus-visible over :focus to avoid distracting pointer users.',
     additionalExplanation: 'Focus indicators are essential for keyboard navigation. Use :focus-visible to show focus rings only during keyboard navigation, not when clicking with a mouse. The focus ring should have sufficient contrast and be clearly visible against all backgrounds.',
     sourceLinks: [
-      { text: ':focus-visible pseudo-class', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible' },
+      { text: ':focus-visible pseudo-class', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible' },
       { text: 'WCAG Focus Visible', url: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html' }
     ],
     badExampleKey: 'interactions-clear-focus-bad',
@@ -112,7 +112,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Optimistic updates. Update the UI immediately when success is likely; reconcile on server response. On failure, show an error & roll back or provide Undo.',
     additionalExplanation: 'For actions that usually succeed (like liking a post or adding to cart), update the UI immediately rather than waiting for the server. This makes the interface feel instant. If the request fails, show an error and revert the change or offer an undo option.',
     sourceLinks: [
-      { text: 'Optimistic UI', url: 'https://www.apollographql.com/docs/react/performance/optimistic-ui/' }
+      { text: 'Optimistic UI', url: 'https://www.apollographql.com/docs/react/performance/optimistic-ui' }
     ],
     badExampleKey: 'interactions-optimistic-updates-bad',
     goodExampleKey: 'interactions-optimistic-updates-good'
@@ -268,7 +268,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Announce async updates. Use polite aria-live for toasts & inline validation.',
     additionalExplanation: 'Screen readers don\'t automatically announce dynamically added content. Use aria-live="polite" for non-urgent updates like toasts and validation messages. This ensures screen reader users are informed of changes without interrupting their current task.',
     sourceLinks: [
-      { text: 'ARIA Live Regions', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions' }
+      { text: 'ARIA Live Regions', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions' }
     ],
     badExampleKey: 'interactions-announce-updates-bad',
     goodExampleKey: 'interactions-announce-updates-good'
@@ -282,7 +282,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Prevent double-tap zoom on controls. Set touch-action: manipulation.',
     additionalExplanation: 'Mobile browsers delay click events by ~300ms to detect double-tap zoom. Setting touch-action: manipulation removes this delay for interactive elements, making the interface feel more responsive.',
     sourceLinks: [
-      { text: 'touch-action', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action' }
+      { text: 'touch-action', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/touch-action' }
     ],
     badExampleKey: 'interactions-touch-action-bad',
     goodExampleKey: 'interactions-touch-action-good'
@@ -324,7 +324,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Overscroll behavior. Set overscroll-behavior: contain intentionally e.g., in modals/drawers.',
     additionalExplanation: 'When scrolling reaches the end of a modal or drawer, prevent the scroll from continuing to the page behind it. Use overscroll-behavior: contain to keep scroll interactions contained within the current layer.',
     sourceLinks: [
-      { text: 'overscroll-behavior', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior' }
+      { text: 'overscroll-behavior', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior' }
     ],
     badExampleKey: 'interactions-overscroll-behavior-bad',
     goodExampleKey: 'interactions-overscroll-behavior-good'
@@ -338,7 +338,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Autofocus for speed. On desktop screens with a single primary input, autofocus. Rarely autofocus on mobile because the keyboard opening can cause layout shift.',
     additionalExplanation: 'For desktop interfaces with a clear primary action (like a search box), autofocus saves users a click. On mobile, avoid autofocus because the virtual keyboard opening causes jarring layout shifts and may scroll the page unexpectedly.',
     sourceLinks: [
-      { text: 'Autofocus', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus' }
+      { text: 'Autofocus', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/autofocus' }
     ],
     badExampleKey: 'interactions-autofocus-bad',
     goodExampleKey: 'interactions-autofocus-good'
@@ -367,7 +367,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'When dragging elements, prevent text selection and disable hover/interaction states on other elements using the inert attribute. This prevents confusing visual states where content appears selected or hovered while being dragged.',
     sourceLinks: [
       { text: 'Drag and Drop', url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API' },
-      { text: 'inert attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inert' }
+      { text: 'inert attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert' }
     ],
     badExampleKey: 'interactions-clean-drag-bad',
     goodExampleKey: 'interactions-clean-drag-good'
@@ -382,7 +382,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'The focus: variant shows focus rings on every focus, including mouse clicks. focus-visible: uses the browser\'s heuristic to only show focus rings when navigating with keyboard.',
     sourceLinks: [
       { text: 'Focus Visible', url: 'https://tailwindcss.com/docs/hover-focus-and-other-states#focus-visible' },
-      { text: ':focus-visible MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible' }
+      { text: ':focus-visible MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible' }
     ],
     badExampleKey: 'interactions-focus-visible-tw-bad',
     goodExampleKey: 'interactions-focus-visible-tw-good'
@@ -396,7 +396,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Implement skip links using sr-only combined with focus:not-sr-only to show the link only when focused via keyboard.',
     additionalExplanation: 'Skip links allow keyboard users to bypass repetitive navigation and jump to main content. They should be visually hidden until focused, then appear prominently.',
     sourceLinks: [
-      { text: 'Screen Reader Only', url: 'https://tailwindcss.com/docs/screen-readers' },
+      { text: 'Screen Reader Only', url: 'https://tailwindcss.com/docs/display#screen-reader-only' },
       { text: 'Skip Links', url: 'https://webaim.org/techniques/skipnav/' }
     ],
     badExampleKey: 'interactions-skip-link-tw-bad',
@@ -426,7 +426,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use the sr-only utility for content that should be read by screen readers but hidden visually. Never use display:none for accessible content.',
     additionalExplanation: 'Screen reader users need context that sighted users get visually. Icon-only buttons need labels, status indicators need descriptions. The sr-only class hides content visually while keeping it accessible.',
     sourceLinks: [
-      { text: 'Screen Readers Utility', url: 'https://tailwindcss.com/docs/screen-readers' },
+      { text: 'Screen Readers Utility', url: 'https://tailwindcss.com/docs/display#screen-reader-only' },
       { text: 'Visually Hidden', url: 'https://www.a11yproject.com/posts/how-to-hide-content/' }
     ],
     badExampleKey: 'interactions-sr-only-bad',
@@ -596,7 +596,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Consider Base UI for new accessible components. It provides unstyled, accessible primitives that work with any styling solution.',
     additionalExplanation: 'Base UI provides fully accessible primitives with no default styling, excellent TypeScript support, and works great with Tailwind CSS.',
     sourceLinks: [
-      { text: 'Base UI Documentation', url: 'https://mui.com/base-ui/' }
+      { text: 'Base UI Documentation', url: 'https://base-ui.com/' }
     ],
     badExampleKey: 'interactions-ibelick-base-ui-bad',
     goodExampleKey: 'interactions-ibelick-base-ui-good'
@@ -666,7 +666,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Honor prefers-reduced-motion. Provide a reduced-motion variant.',
     additionalExplanation: 'Some users experience motion sickness from animations. Respect the prefers-reduced-motion media query by disabling or significantly reducing animations for these users. Essential motion (like page transitions) can remain but should be much faster.',
     sourceLinks: [
-      { text: 'prefers-reduced-motion', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion' },
+      { text: 'prefers-reduced-motion', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion' },
       { text: 'Accessible Animations', url: 'https://www.a11yproject.com/posts/understanding-vestibular-disorders/' }
     ],
     badExampleKey: 'animations-prefers-reduced-motion-bad',
@@ -681,7 +681,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Compositor-friendly. Prioritize GPU-accelerated properties (transform, opacity) & avoid properties that trigger reflows/repaints (width, height, top, left).',
     additionalExplanation: 'Animating properties like width, height, top, or left causes the browser to recalculate layout and repaint, which is slow. Transform and opacity can be handled by the GPU compositor, making animations smooth at 60fps or higher.',
     sourceLinks: [
-      { text: 'High Performance Animations', url: 'https://web.dev/animations-guide/' },
+      { text: 'High Performance Animations', url: 'https://web.dev/articles/animations-guide' },
       { text: 'CSS Triggers', url: 'https://csstriggers.com/' }
     ],
     badExampleKey: 'animations-compositor-friendly-bad',
@@ -710,7 +710,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Correct transform origin. Anchor motion to where it "physically" starts.',
     additionalExplanation: 'When elements scale or rotate, the transform-origin should match where the motion naturally originates. For example, a dropdown opening from a button should scale from the button\'s position, not from the center of the dropdown.',
     sourceLinks: [
-      { text: 'transform-origin', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin' }
+      { text: 'transform-origin', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform-origin' }
     ],
     badExampleKey: 'animations-correct-transform-origin-bad',
     goodExampleKey: 'animations-correct-transform-origin-good'
@@ -724,7 +724,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Never transition: all. Explicitly list only the properties you intend to animate (typically opacity, transform). all can unintentionally animate layout-affecting properties causing jank.',
     additionalExplanation: 'Using transition: all is tempting but dangerous. It can accidentally animate properties you didn\'t intend to, causing performance issues and unexpected visual effects. Always explicitly list the properties you want to transition.',
     sourceLinks: [
-      { text: 'CSS Transitions', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions' }
+      { text: 'CSS Transitions', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions/Using' }
     ],
     badExampleKey: 'animations-never-transition-all-bad',
     goodExampleKey: 'animations-never-transition-all-good'
@@ -738,7 +738,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Implementation preference. Prefer CSS, avoid main-thread JS-driven animations when possible. Preference: CSS > Web Animations API > JavaScript libraries e.g., motion.',
     additionalExplanation: 'CSS animations run off the main thread and are most performant. Web Animations API provides more control when needed. JavaScript animation libraries should be a last resort as they run on the main thread and can block user interactions.',
     sourceLinks: [
-      { text: 'CSS Animations', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations' },
+      { text: 'CSS Animations', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations' },
       { text: 'Web Animations API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API' }
     ],
     badExampleKey: 'animations-implementation-preference-bad',
@@ -768,7 +768,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'Different animations feel right with different easing curves. Elements entering the screen often use ease-out. Elements leaving use ease-in. Interactive feedback uses ease-in-out. Match the easing to the physical metaphor the animation represents.',
     sourceLinks: [
       { text: 'Easing Functions', url: 'https://easings.net/' },
-      { text: 'CSS Easing', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function' }
+      { text: 'CSS Easing', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function' }
     ],
     badExampleKey: 'animations-easing-bad',
     goodExampleKey: 'animations-easing-good'
@@ -782,7 +782,7 @@ export const principles: Principle[] = [
     sourceQuote: 'MUST use motion/react for JavaScript animations. It handles interruption, spring physics, and gesture integration correctly.',
     additionalExplanation: 'Hand-rolling animations with requestAnimationFrame or direct DOM manipulation leads to buggy, interruptible animations. motion/react handles complex edge cases out of the box.',
     sourceLinks: [
-      { text: 'Motion Documentation', url: 'https://motion.dev/docs/react-quick-start' }
+      { text: 'Motion Documentation', url: 'https://motion.dev/docs/react' }
     ],
     badExampleKey: 'animations-ibelick-motion-library-bad',
     goodExampleKey: 'animations-ibelick-motion-library-good'
@@ -894,7 +894,7 @@ export const principles: Principle[] = [
     sourceQuote: 'SHOULD respect prefers-reduced-motion. Disable or simplify animations for users who have requested reduced motion in their OS settings.',
     additionalExplanation: 'Some users experience motion sickness or vestibular disorders. The prefers-reduced-motion media query lets you detect this preference and provide a calmer experience.',
     sourceLinks: [
-      { text: 'prefers-reduced-motion MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion' }
+      { text: 'prefers-reduced-motion MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion' }
     ],
     badExampleKey: 'animations-ibelick-reduced-motion-bad',
     goodExampleKey: 'animations-ibelick-reduced-motion-good'
@@ -924,7 +924,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'will-change creates a new compositor layer, consuming GPU memory. Overusing it degrades performance. Apply it just before animation starts and remove it after completion. Never apply it to many elements at once.',
     sourceLinks: [
       { text: 'GPU Animation Best Practices', url: 'https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/' },
-      { text: 'MDN will-change', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/will-change' }
+      { text: 'MDN will-change', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change' }
     ],
     badExampleKey: 'animations-will-change-sparingly-bad',
     goodExampleKey: 'animations-will-change-sparingly-good'
@@ -938,7 +938,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch DOM reads then writes to avoid layout thrashing in animation loops.',
     additionalExplanation: 'At 60fps, each frame has ~16.67ms. Heavy JavaScript, layout recalculation, or paint work can cause dropped frames. Batch DOM reads before writes, use requestAnimationFrame, and keep animation logic minimal.',
     sourceLinks: [
-      { text: 'Animation Performance 101', url: 'https://www.viget.com/articles/animation-performance-101-browser-under-the-hood/' },
+      { text: 'Animation Performance 101', url: 'https://www.viget.com/articles/animation-performance-101-browser-under-the-hood' },
       { text: 'MDN Performance Fundamentals', url: 'https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals' }
     ],
     badExampleKey: 'animations-frame-budget-bad',
@@ -1014,7 +1014,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'Running animations on elements outside the viewport wastes CPU and battery. IntersectionObserver can pause animations when elements scroll out of view. content-visibility: auto automatically handles this for render-heavy content.',
     sourceLinks: [
       { text: 'web.dev content-visibility', url: 'https://web.dev/articles/content-visibility' },
-      { text: 'MDN content-visibility', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility' }
+      { text: 'MDN content-visibility', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/content-visibility' }
     ],
     badExampleKey: 'animations-pause-offscreen-bad',
     goodExampleKey: 'animations-pause-offscreen-good'
@@ -1028,7 +1028,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Optical alignment. Adjust ±1px when perception beats geometry.',
     additionalExplanation: 'Mathematical centering doesn\'t always look centered to the human eye. Icons with more visual weight on one side may need to be shifted slightly to appear balanced. Trust your eye over the numbers, but limit adjustments to 1-2px.',
     sourceLinks: [
-      { text: 'Optical Alignment', url: 'https://blog.marvelapp.com/optical-adjustment-logic-vs-designers/' }
+      { text: 'Optical Alignment', url: 'https://marvelapp.com/blog/optical-adjustment-logic-vs-designers/' }
     ],
     badExampleKey: 'layout-optical-alignment-bad',
     goodExampleKey: 'layout-optical-alignment-good'
@@ -1056,7 +1056,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Responsive coverage. Verify on mobile, laptop, & ultra-wide. For ultra-wide, zoom out to 50% to simulate.',
     additionalExplanation: 'Test your layouts at 320px (small mobile), 768px (tablet), 1280px (laptop), and 2560px+ (ultra-wide). Content should reflow appropriately, never horizontally scroll unexpectedly, and use available space effectively at all sizes.',
     sourceLinks: [
-      { text: 'Responsive Design', url: 'https://web.dev/responsive-web-design-basics/' }
+      { text: 'Responsive Design', url: 'https://web.dev/articles/responsive-web-design-basics' }
     ],
     badExampleKey: 'layout-responsive-coverage-bad',
     goodExampleKey: 'layout-responsive-coverage-good'
@@ -1070,7 +1070,7 @@ export const principles: Principle[] = [
     sourceQuote: 'No excessive scrollbars. Only render useful scrollbars; fix overflow issues to prevent unwanted scrollbars.',
     additionalExplanation: 'Unexpected scrollbars indicate layout problems. Fix the root cause (usually overflow issues) rather than hiding scrollbars with CSS. On macOS, set "Show scroll bars" to "Always" during development to catch these issues.',
     sourceLinks: [
-      { text: 'CSS Overflow', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/overflow' }
+      { text: 'CSS Overflow', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow' }
     ],
     badExampleKey: 'layout-no-excessive-scrollbars-bad',
     goodExampleKey: 'layout-no-excessive-scrollbars-good'
@@ -1098,7 +1098,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Respect safe areas. Account for notches & insets with safe-area variables.',
     additionalExplanation: 'Mobile devices with notches and rounded corners have safe areas where content shouldn\'t be placed. Use CSS environment variables like env(safe-area-inset-top) to ensure your content isn\'t obscured by device UI elements.',
     sourceLinks: [
-      { text: 'Safe Area Insets', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/env' },
+      { text: 'Safe Area Insets', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env' },
       { text: 'Designing for iPhone X', url: 'https://webkit.org/blog/7929/designing-websites-for-iphone-x/' }
     ],
     badExampleKey: 'layout-safe-areas-bad',
@@ -1129,7 +1129,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'Some CSS properties aren\'t in Tailwind by default (text-wrap: balance, scrollbar styling). Adding them as utilities means they work with variants and get purged correctly.',
     sourceLinks: [
       { text: 'Adding Custom Utilities', url: 'https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities' },
-      { text: 'Tailwind v4 @utility', url: 'https://tailwindcss.com/docs/v4-beta#new-utility-directive' }
+      { text: 'Tailwind v4 @utility', url: 'https://tailwindcss.com/docs/functions-and-directives' }
     ],
     badExampleKey: 'layout-custom-utilities-bad',
     goodExampleKey: 'layout-custom-utilities-good'
@@ -1157,7 +1157,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use size-* instead of separate w-* h-* for square elements. It\'s more concise and clearly communicates intent.',
     additionalExplanation: 'When an element should be square (icons, avatars, buttons), using size-8 instead of w-8 h-8 is more concise and communicates intent clearly.',
     sourceLinks: [
-      { text: 'Tailwind Size Utility', url: 'https://tailwindcss.com/docs/size' }
+      { text: 'Tailwind Size Utility', url: 'https://tailwindcss.com/docs/width#setting-both-width-and-height' }
     ],
     badExampleKey: 'layout-ibelick-size-utility-bad',
     goodExampleKey: 'layout-ibelick-size-utility-good'
@@ -1214,7 +1214,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'Loading skeletons should match the dimensions and layout of the actual content. This prevents cumulative layout shift (CLS) when content loads. If content varies significantly, use the most common dimensions or a safe maximum.',
     sourceLinks: [
       { text: 'Skeleton Screens', url: 'https://www.nngroup.com/articles/skeleton-screens/' },
-      { text: 'Cumulative Layout Shift', url: 'https://web.dev/cls/' }
+      { text: 'Cumulative Layout Shift', url: 'https://web.dev/articles/cls' }
     ],
     badExampleKey: 'content-stable-skeletons-bad',
     goodExampleKey: 'content-stable-skeletons-good'
@@ -1256,7 +1256,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Tabular numbers for comparisons. Use font-variant-numeric: tabular-nums or a monospace like Geist Mono.',
     additionalExplanation: 'Proportional numbers have varying widths (1 is narrower than 8), making columns misalign. Tabular numbers have uniform width, so digits stack vertically in tables and make comparisons easier. Essential for prices, metrics, and data tables.',
     sourceLinks: [
-      { text: 'font-variant-numeric', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric' }
+      { text: 'font-variant-numeric', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric' }
     ],
     badExampleKey: 'content-tabular-numbers-bad',
     goodExampleKey: 'content-tabular-numbers-good'
@@ -1298,7 +1298,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Accurate page titles. <title> reflects the current context.',
     additionalExplanation: 'The page title appears in browser tabs, bookmarks, and search results. Update it dynamically to reflect the current view (e.g., "Edit Profile - Settings - MyApp"). This helps users navigate between tabs and understand their location.',
     sourceLinks: [
-      { text: 'Title element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title' }
+      { text: 'Title element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/title' }
     ],
     badExampleKey: 'content-page-titles-bad',
     goodExampleKey: 'content-page-titles-good'
@@ -1354,7 +1354,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Anchored headings. Set scroll-margin-top for headers when linking to sections.',
     additionalExplanation: 'When users click anchor links to jump to sections, fixed headers can cover the target heading. Use scroll-margin-top on headings to add offset so they appear below fixed headers. Also provide hierarchical h1-h6 structure and a "Skip to content" link.',
     sourceLinks: [
-      { text: 'scroll-margin-top', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-margin-top' }
+      { text: 'scroll-margin-top', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-margin-top' }
     ],
     badExampleKey: 'content-anchored-headings-bad',
     goodExampleKey: 'content-anchored-headings-good'
@@ -1368,7 +1368,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Resilient to user-generated content. Layouts handle short, average, & very long content.',
     additionalExplanation: 'User-generated content is unpredictable. Test your layouts with short text, average text, and extremely long text without spaces. Use text overflow strategies like ellipsis, word-wrap, or scrolling to handle edge cases gracefully.',
     sourceLinks: [
-      { text: 'Text Overflow', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow' }
+      { text: 'Text Overflow', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-overflow' }
     ],
     badExampleKey: 'content-resilient-ugc-bad',
     goodExampleKey: 'content-resilient-ugc-good'
@@ -1396,7 +1396,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Accessible content. Set accurate names (aria-label), hide decoration (aria-hidden) & verify in the accessibility tree.',
     additionalExplanation: 'Assistive technologies rely on proper ARIA attributes. Give interactive elements descriptive names with aria-label. Hide purely decorative elements with aria-hidden="true". Always test in the accessibility tree to ensure screen readers get meaningful information.',
     sourceLinks: [
-      { text: 'ARIA Labels', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label' },
+      { text: 'ARIA Labels', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label' },
       { text: 'Accessibility Tree', url: 'https://developer.chrome.com/docs/devtools/accessibility/reference/' }
     ],
     badExampleKey: 'content-accessible-content-bad',
@@ -1441,7 +1441,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use official plugins (@tailwindcss/typography, @tailwindcss/forms, @tailwindcss/container-queries) for comprehensive feature coverage.',
     additionalExplanation: 'Official plugins provide well-designed, tested utilities that integrate seamlessly with Tailwind. The typography plugin is essential for prose content, forms for consistent input styling.',
     sourceLinks: [
-      { text: '@tailwindcss/typography', url: 'https://tailwindcss.com/docs/typography-plugin' },
+      { text: '@tailwindcss/typography', url: 'https://github.com/tailwindlabs/tailwindcss-typography' },
       { text: '@tailwindcss/forms', url: 'https://github.com/tailwindlabs/tailwindcss-forms' },
       { text: '@tailwindcss/container-queries', url: 'https://github.com/tailwindlabs/tailwindcss-container-queries' }
     ],
@@ -1514,7 +1514,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use text-balance for headings and text-pretty for body text. These CSS properties improve line breaks and readability.',
     additionalExplanation: 'text-balance balances line lengths in headings. text-pretty prevents orphans (single words on last line) in paragraphs. Both improve readability without manual line break management.',
     sourceLinks: [
-      { text: 'CSS text-wrap', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap' }
+      { text: 'CSS text-wrap', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap' }
     ],
     badExampleKey: 'content-ibelick-text-balance-bad',
     goodExampleKey: 'content-ibelick-text-balance-good'
@@ -1528,7 +1528,7 @@ export const principles: Principle[] = [
     sourceQuote: 'MUST use tabular-nums (font-variant-numeric: tabular-nums) for data tables, prices, and numerical lists.',
     additionalExplanation: 'Proportional numbers have varying widths, causing columns to misalign. Tabular numbers have uniform widths, ensuring perfect alignment and professional appearance.',
     sourceLinks: [
-      { text: 'font-variant-numeric MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric' }
+      { text: 'font-variant-numeric MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric' }
     ],
     badExampleKey: 'content-ibelick-tabular-nums-bad',
     goodExampleKey: 'content-ibelick-tabular-nums-good'
@@ -1556,7 +1556,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Avoid modifying letter-spacing unless explicitly requested. Type designers carefully craft letter spacing for readability.',
     additionalExplanation: 'Professional typefaces are meticulously designed with optimal letter spacing. Modifying it reduces readability and often looks unprofessional. Consider different font weights instead.',
     sourceLinks: [
-      { text: 'Typography Best Practices', url: 'https://fonts.google.com/knowledge/using_type/best_practices_for_line_spacing' }
+      { text: 'Typography Best Practices', url: 'https://fonts.google.com/knowledge/using_type' }
     ],
     badExampleKey: 'content-ibelick-letter-spacing-bad',
     goodExampleKey: 'content-ibelick-letter-spacing-good'
@@ -1584,7 +1584,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Textarea behavior. In <textarea>, ⌘/⌃+Enter submits; Enter inserts a new line.',
     additionalExplanation: 'Textareas are for multi-line input, so Enter must create new lines. Users who want to submit can use the keyboard modifier (Cmd on Mac, Ctrl on Windows/Linux) plus Enter. This prevents accidental submission when writing paragraphs.',
     sourceLinks: [
-      { text: 'HTML textarea element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea' }
+      { text: 'HTML textarea element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea' }
     ],
     badExampleKey: 'forms-textarea-behavior-bad',
     goodExampleKey: 'forms-textarea-behavior-good'
@@ -1598,7 +1598,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Labels everywhere. Every control has a <label> or is associated with a label for assistive tech.',
     additionalExplanation: 'Labels are crucial for accessibility. Screen reader users need labels to understand what each form field is for. Sighted users benefit from clear labels too. Use the <label> element with the "for" attribute pointing to the input\'s id, or wrap the input inside the label.',
     sourceLinks: [
-      { text: 'MDN: Label element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label' },
+      { text: 'MDN: Label element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label' },
       { text: 'WebAIM: Creating Accessible Forms', url: 'https://webaim.org/techniques/forms/' }
     ],
     badExampleKey: 'forms-labels-everywhere-bad',
@@ -1613,7 +1613,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Label activation. Clicking a <label> focuses the associated control.',
     additionalExplanation: 'When labels are properly associated with their inputs, clicking the label text focuses the input. This increases the clickable area and improves usability, especially for checkboxes and radio buttons which have small hit targets.',
     sourceLinks: [
-      { text: 'MDN: Label element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label' }
+      { text: 'MDN: Label element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label' }
     ],
     badExampleKey: 'forms-label-activation-bad',
     goodExampleKey: 'forms-label-activation-good'
@@ -1683,7 +1683,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Autocomplete & names. Set autocomplete & meaningful name values to enable autofill.',
     additionalExplanation: 'Modern browsers can autofill form data, saving users time. Use the autocomplete attribute with standard values like "email", "tel", "street-address", etc. Also use semantic name attributes. This helps password managers and other assistive tools.',
     sourceLinks: [
-      { text: 'HTML autocomplete attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete' }
+      { text: 'HTML autocomplete attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete' }
     ],
     badExampleKey: 'forms-autocomplete-bad',
     goodExampleKey: 'forms-autocomplete-good'
@@ -1697,7 +1697,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Spellcheck selectively. Disable for emails, codes, usernames, etc.',
     additionalExplanation: 'Spellcheck is helpful for prose content but annoying for technical input. Email addresses, usernames, codes, and similar fields should have spellcheck="false" to prevent red squiggly underlines on valid input.',
     sourceLinks: [
-      { text: 'HTML spellcheck attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck' }
+      { text: 'HTML spellcheck attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/spellcheck' }
     ],
     badExampleKey: 'forms-spellcheck-bad',
     goodExampleKey: 'forms-spellcheck-good'
@@ -1711,8 +1711,8 @@ export const principles: Principle[] = [
     sourceQuote: 'Correct types & input modes. Use the right type & inputmode for better keyboards & validation.',
     additionalExplanation: 'Mobile devices show different keyboards based on the input type and inputmode. Use type="email" for emails, type="tel" for phones, inputmode="numeric" for numbers, etc. This provides users with the most relevant keyboard layout.',
     sourceLinks: [
-      { text: 'HTML input types', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input' },
-      { text: 'inputmode attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode' }
+      { text: 'HTML input types', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input' },
+      { text: 'inputmode attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inputmode' }
     ],
     badExampleKey: 'forms-correct-types-bad',
     goodExampleKey: 'forms-correct-types-good'
@@ -1768,7 +1768,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Password managers & 2FA. Ensure compatibility & allow pasting one-time codes.',
     additionalExplanation: 'Don\'t block password managers or prevent pasting in password/2FA code fields. Use appropriate autocomplete values (current-password, new-password, one-time-code) to help password managers function correctly.',
     sourceLinks: [
-      { text: 'Autocomplete for Credentials', url: 'https://web.dev/sign-in-form-best-practices/' }
+      { text: 'Autocomplete for Credentials', url: 'https://web.dev/articles/sign-in-form-best-practices' }
     ],
     badExampleKey: 'forms-password-managers-bad',
     goodExampleKey: 'forms-password-managers-good'
@@ -1854,7 +1854,7 @@ export const principles: Principle[] = [
     sourceQuote: 'NEVER block paste in form fields. It breaks password managers, accessibility tools, and frustrates users.',
     additionalExplanation: 'Blocking paste breaks password managers (the #1 security tool), prevents users with motor disabilities from using assistive tools, and forces users to type sensitive data.',
     sourceLinks: [
-      { text: 'NCSC: Let Users Paste Passwords', url: 'https://www.ncsc.gov.uk/blog-post/let-them-paste-passwords' }
+      { text: 'Why Paste Blocking Hurts Security', url: 'https://www.troyhunt.com/the-cobra-effect-that-is-disabling/' }
     ],
     badExampleKey: 'forms-ibelick-no-paste-blocking-bad',
     goodExampleKey: 'forms-ibelick-no-paste-blocking-good'
@@ -1883,8 +1883,8 @@ export const principles: Principle[] = [
     sourceQuote: 'Large lists. Virtualize large lists e.g., virtua or content-visibility: auto.',
     additionalExplanation: 'Rendering thousands of DOM nodes causes performance issues. Use virtualization libraries that only render visible items, or use CSS content-visibility: auto to let the browser skip rendering off-screen content.',
     sourceLinks: [
-      { text: 'content-visibility', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility' },
-      { text: 'List Virtualization', url: 'https://web.dev/virtualize-long-lists-react-window/' }
+      { text: 'content-visibility', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/content-visibility' },
+      { text: 'List Virtualization', url: 'https://web.dev/articles/virtualize-long-lists-react-window' }
     ],
     badExampleKey: 'performance-large-lists-bad',
     goodExampleKey: 'performance-large-lists-good'
@@ -1898,8 +1898,8 @@ export const principles: Principle[] = [
     sourceQuote: 'No image-caused CLS. Set explicit image dimensions & reserve space.',
     additionalExplanation: 'Images without dimensions cause layout shift when they load. Always set width and height attributes (or use aspect-ratio in CSS) so the browser can reserve the correct space before the image downloads.',
     sourceLinks: [
-      { text: 'Image Aspect Ratio', url: 'https://web.dev/optimize-cls/' },
-      { text: 'Cumulative Layout Shift', url: 'https://web.dev/cls/' }
+      { text: 'Image Aspect Ratio', url: 'https://web.dev/articles/optimize-cls' },
+      { text: 'Cumulative Layout Shift', url: 'https://web.dev/articles/cls' }
     ],
     badExampleKey: 'performance-no-image-cls-bad',
     goodExampleKey: 'performance-no-image-cls-good'
@@ -1913,7 +1913,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Preload fonts. For critical text to avoid flash & layout shift.',
     additionalExplanation: 'Font files take time to download, causing FOUT (flash of unstyled text) or FOIT (flash of invisible text). Preload critical fonts used for above-the-fold content using <link rel="preload"> to load them as early as possible.',
     sourceLinks: [
-      { text: 'Preloading Fonts', url: 'https://web.dev/optimize-webfont-loading/' }
+      { text: 'Preloading Fonts', url: 'https://web.dev/articles/optimize-webfont-loading' }
     ],
     badExampleKey: 'performance-preload-fonts-bad',
     goodExampleKey: 'performance-preload-fonts-good'
@@ -1969,7 +1969,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Always configure content paths to include all files that use Tailwind classes. Missing paths mean unused CSS in production or missing styles.',
     additionalExplanation: 'Tailwind CSS v4 uses @source directive (or v3\'s content config) to scan files for class names. If a file isn\'t included in these paths, its classes won\'t be included in the production build. Conversely, overly broad globs can slow down builds.',
     sourceLinks: [
-      { text: 'Tailwind Content Configuration', url: 'https://tailwindcss.com/docs/content-configuration' }
+      { text: 'Tailwind Content Configuration', url: 'https://tailwindcss.com/docs/detecting-classes-in-source-files' }
     ],
     badExampleKey: 'performance-content-paths-bad',
     goodExampleKey: 'performance-content-paths-good'
@@ -1983,8 +1983,8 @@ export const principles: Principle[] = [
     sourceQuote: 'Animate only transform and opacity properties. These run on the GPU compositor thread and won\'t cause layout recalculations.',
     additionalExplanation: 'Animating properties like width, height, top, left, or margin triggers expensive layout recalculations on every frame. GPU-accelerated properties (transform, opacity) run on a separate compositor thread, achieving smooth 60fps animations.',
     sourceLinks: [
-      { text: 'CSS GPU Animation', url: 'https://web.dev/animations-guide/' },
-      { text: 'Compositor-only Properties', url: 'https://web.dev/stick-to-compositor-only-properties-and-manage-layer-count/' }
+      { text: 'CSS GPU Animation', url: 'https://web.dev/articles/animations-guide' },
+      { text: 'Compositor-only Properties', url: 'https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count' }
     ],
     badExampleKey: 'performance-gpu-animations-bad',
     goodExampleKey: 'performance-gpu-animations-good'
@@ -1998,7 +1998,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Never use transition-all. Explicitly specify which properties to transition for better performance and predictable behavior.',
     additionalExplanation: 'transition-all animates every CSS property that changes, including layout-triggering properties you didn\'t intend to animate. This causes unexpected animations, performance issues, and harder debugging.',
     sourceLinks: [
-      { text: 'CSS Transition Property', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property' }
+      { text: 'CSS Transition Property', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-property' }
     ],
     badExampleKey: 'performance-no-transition-all-bad',
     goodExampleKey: 'performance-no-transition-all-good'
@@ -2012,7 +2012,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Avoid arbitrary values like p-[17px] or text-[#1a1a1a]. Use theme tokens for consistency and smaller CSS output.',
     additionalExplanation: 'Arbitrary values create one-off utility classes that bypass your design system\'s spacing/color scale, create inconsistencies, generate additional CSS, and make maintenance harder with magic numbers scattered throughout.',
     sourceLinks: [
-      { text: 'Tailwind Customization', url: 'https://tailwindcss.com/docs/customizing-spacing' },
+      { text: 'Tailwind Customization', url: 'https://tailwindcss.com/docs/theme' },
       { text: 'Tailwind Theme Configuration', url: 'https://tailwindcss.com/docs/theme' }
     ],
     badExampleKey: 'performance-avoid-arbitrary-bad',
@@ -2027,8 +2027,8 @@ export const principles: Principle[] = [
     sourceQuote: 'Never dynamically construct class names. Tailwind scans source files as strings and cannot detect computed class names.',
     additionalExplanation: 'Tailwind\'s build process scans your source files for complete class name strings. It cannot execute JavaScript or interpolate template literals. Dynamically constructed classes like bg-${color}-500 will be purged from production builds.',
     sourceLinks: [
-      { text: 'Dynamic Class Names', url: 'https://tailwindcss.com/docs/content-configuration#dynamic-class-names' },
-      { text: 'Safelist Configuration', url: 'https://tailwindcss.com/docs/content-configuration#safelisting-classes' }
+      { text: 'Dynamic Class Names', url: 'https://tailwindcss.com/docs/detecting-classes-in-source-files#dynamic-class-names' },
+      { text: 'Safelist Configuration', url: 'https://tailwindcss.com/docs/detecting-classes-in-source-files#safelisting-classes' }
     ],
     badExampleKey: 'performance-dynamic-classes-bad',
     goodExampleKey: 'performance-dynamic-classes-good'
@@ -2042,8 +2042,8 @@ export const principles: Principle[] = [
     sourceQuote: 'Keep content paths specific and safelist minimal. Overly broad configurations slow builds and bloat CSS output.',
     additionalExplanation: 'Tailwind\'s purge/content scanning determines what CSS ships to production. Overly broad globs scan unnecessary files (like node_modules), slowing builds. Overused safelists defeat tree-shaking and bloat CSS output.',
     sourceLinks: [
-      { text: 'Optimizing for Production', url: 'https://tailwindcss.com/docs/optimizing-for-production' },
-      { text: 'Content Configuration', url: 'https://tailwindcss.com/docs/content-configuration' }
+      { text: 'Optimizing for Production', url: 'https://v3.tailwindcss.com/docs/optimizing-for-production' },
+      { text: 'Content Configuration', url: 'https://tailwindcss.com/docs/detecting-classes-in-source-files' }
     ],
     badExampleKey: 'performance-purge-optimization-bad',
     goodExampleKey: 'performance-purge-optimization-good'
@@ -2057,7 +2057,7 @@ export const principles: Principle[] = [
     sourceQuote: 'MUST use Tailwind CSS defaults (spacing, colors, sizing) unless a custom design token exists in the config.',
     additionalExplanation: 'Tailwind\'s default scale is carefully designed for consistency. Using arbitrary values like p-[13px] creates visual inconsistency and makes CSS harder to maintain.',
     sourceLinks: [
-      { text: 'Tailwind Spacing Scale', url: 'https://tailwindcss.com/docs/customizing-spacing' }
+      { text: 'Tailwind Spacing Scale', url: 'https://tailwindcss.com/docs/theme' }
     ],
     badExampleKey: 'performance-ibelick-tailwind-defaults-bad',
     goodExampleKey: 'performance-ibelick-tailwind-defaults-good'
@@ -2085,7 +2085,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Only apply will-change during active animations. Permanent will-change wastes GPU memory and can hurt performance.',
     additionalExplanation: 'will-change tells the browser to create a GPU layer. Using it permanently on many elements wastes memory and can hurt performance through layer explosion.',
     sourceLinks: [
-      { text: 'will-change MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/will-change' }
+      { text: 'will-change MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change' }
     ],
     badExampleKey: 'performance-ibelick-will-change-bad',
     goodExampleKey: 'performance-ibelick-will-change-good'
@@ -2113,7 +2113,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use CSS `contain: layout paint` on reusable cards/list items to isolate layout/paint scope. Use `content-visibility: auto` with `contain-intrinsic-size` for offscreen content (up to 7x render improvement).',
     additionalExplanation: 'CSS containment tells the browser that an element\'s layout/paint is independent from the rest of the page. content-visibility: auto skips rendering offscreen content entirely, dramatically improving initial render for long lists.',
     sourceLinks: [
-      { text: 'MDN CSS contain', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/contain' },
+      { text: 'MDN CSS contain', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/contain' },
       { text: 'web.dev content-visibility', url: 'https://web.dev/articles/content-visibility' }
     ],
     badExampleKey: 'performance-css-containment-bad',
@@ -2144,7 +2144,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'Web fonts can cause Flash of Invisible Text (FOIT) affecting LCP, and layout shift when fonts swap. font-display: swap shows fallback text immediately. Metric matching with size-adjust minimizes CLS.',
     sourceLinks: [
       { text: 'Optimize web fonts', url: 'https://web.dev/articles/optimize-webfont-loading' },
-      { text: 'font-display MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display' }
+      { text: 'font-display MDN', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/font-display' }
     ],
     badExampleKey: 'performance-font-display-strategy-bad',
     goodExampleKey: 'performance-font-display-strategy-good'
@@ -2202,7 +2202,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Crisp borders. Combine borders & shadows; semi-transparent borders improve edge clarity.',
     additionalExplanation: 'Shadows alone can look muddy. A subtle border (often semi-transparent) makes edges crisp and clear. Use rgba() with low opacity for borders so they adapt to different backgrounds.',
     sourceLinks: [
-      { text: 'CSS Borders', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/border' }
+      { text: 'CSS Borders', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border' }
     ],
     badExampleKey: 'design-crisp-borders-bad',
     goodExampleKey: 'design-crisp-borders-good'
@@ -2289,7 +2289,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'When you define theme.colors directly, you replace all of Tailwind\'s default colors. Using theme.extend.colors adds your custom colors while keeping the defaults like slate, gray, red, etc.',
     sourceLinks: [
       { text: 'Theme Configuration', url: 'https://tailwindcss.com/docs/theme' },
-      { text: 'Customizing Colors', url: 'https://tailwindcss.com/docs/customizing-colors' }
+      { text: 'Customizing Colors', url: 'https://tailwindcss.com/docs/colors' }
     ],
     badExampleKey: 'design-theme-config-bad',
     goodExampleKey: 'design-theme-config-good'
@@ -2303,7 +2303,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use semantic color names (primary, destructive, muted) instead of raw colors (blue-500, red-600). This enables theming and dark mode.',
     additionalExplanation: 'Semantic tokens describe purpose, not appearance. bg-destructive means "danger/error background" regardless of the actual color. This separation allows themes to change without touching component code.',
     sourceLinks: [
-      { text: 'Using CSS Variables', url: 'https://tailwindcss.com/docs/customizing-colors#using-css-variables' }
+      { text: 'Using CSS Variables', url: 'https://tailwindcss.com/docs/colors' }
     ],
     badExampleKey: 'design-semantic-colors-bad',
     goodExampleKey: 'design-semantic-colors-good'
@@ -2346,7 +2346,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use Tailwind\'s default breakpoints unless your design requires specific values. Add custom breakpoints in theme.extend when needed.',
     additionalExplanation: 'Default breakpoints work for most projects, but some designs need specific widths. Custom breakpoints should be added via theme.extend.screens, not arbitrary values like min-[960px]:.',
     sourceLinks: [
-      { text: 'Customizing Screens', url: 'https://tailwindcss.com/docs/screens' }
+      { text: 'Customizing Screens', url: 'https://tailwindcss.com/docs/responsive-design#using-custom-breakpoints' }
     ],
     badExampleKey: 'design-custom-breakpoints-bad',
     goodExampleKey: 'design-custom-breakpoints-good'
@@ -2376,7 +2376,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'If you wait for JavaScript to run before checking the color scheme, users see a flash of the wrong theme (FART). Inline a script in <head> that runs synchronously before render.',
     sourceLinks: [
       { text: 'Avoiding FART', url: 'https://css-tricks.com/flash-of-inaccurate-color-theme-fart/' },
-      { text: 'prefers-color-scheme', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme' }
+      { text: 'prefers-color-scheme', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme' }
     ],
     badExampleKey: 'design-dark-preferences-bad',
     goodExampleKey: 'design-dark-preferences-good'
@@ -2432,7 +2432,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Inconsistent spacing creates visual noise and makes relationships between elements unclear. Use a spacing scale consistently.',
     additionalExplanation: 'Tailwind\'s spacing scale (4, 8, 12, 16, 24, 32...) provides consistent increments. Related elements should have consistent gaps.',
     sourceLinks: [
-      { text: 'Design System Spacing', url: 'https://tailwindcss.com/docs/customizing-spacing' }
+      { text: 'Design System Spacing', url: 'https://tailwindcss.com/docs/theme' }
     ],
     badExampleKey: 'design-rams-inconsistent-spacing-bad',
     goodExampleKey: 'design-rams-inconsistent-spacing-good'
@@ -2763,8 +2763,8 @@ export const principles: Principle[] = [
     additionalExplanation: 'CSS animations are more performant, requiring no JavaScript runtime overhead. They run on the compositor thread, avoiding main thread blocking. For simple effects like hover states, transitions, and reveals, CSS is cleaner, more maintainable, and declarative. Reserve JavaScript animations for complex interactions requiring physics or gesture responses.',
     sourceLinks: [
       { text: 'Anthropic Frontend-Design Skill', url: 'https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md' },
-      { text: 'MDN: CSS Transitions', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions' },
-      { text: 'MDN: CSS Animations', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations' }
+      { text: 'MDN: CSS Transitions', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions' },
+      { text: 'MDN: CSS Animations', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations' }
     ],
     badExampleKey: 'aesthetics-css-first-animations-bad',
     goodExampleKey: 'aesthetics-css-first-animations-good'
