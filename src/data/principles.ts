@@ -240,7 +240,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'Store filters, search queries, tabs, and other UI state in the URL. This allows users to share links, refresh without losing context, and use browser back/forward buttons naturally. Libraries like nuqs make this easier to implement.',
     sourceLinks: [
       { text: 'nuqs', url: 'https://nuqs.dev' },
-      { text: 'URL as State', url: 'https://www.nngroup.com/articles/url-design/' }
+      { text: 'URL as UI', url: 'https://www.nngroup.com/articles/url-as-ui/' }
     ],
     badExampleKey: 'interactions-url-state-bad',
     goodExampleKey: 'interactions-url-state-good'
@@ -352,7 +352,7 @@ export const principles: Principle[] = [
     sourceQuote: 'No dead zones. If part of a control looks interactive, it should be interactive. Don\'t leave users guessing where to interact.',
     additionalExplanation: 'When part of a component looks clickable (like a card with a button), make the entire component clickable, not just the button. This matches user expectations and reduces frustration from clicking "dead zones" that don\'t respond.',
     sourceLinks: [
-      { text: 'Affordances', url: 'https://www.nngroup.com/articles/affordances/' }
+      { text: 'Making Clickable Elements Recognizable', url: 'https://www.nngroup.com/articles/clickable-elements/' }
     ],
     badExampleKey: 'interactions-no-dead-zones-bad',
     goodExampleKey: 'interactions-no-dead-zones-good'
@@ -582,7 +582,7 @@ export const principles: Principle[] = [
     sourceQuote: 'NEVER mix primitive systems (e.g., Radix + Headless UI). Pick one and stick with it for consistency.',
     additionalExplanation: 'Mixing primitive libraries creates inconsistent keyboard navigation patterns, different focus behaviors, conflicting styling approaches, and larger bundle sizes.',
     sourceLinks: [
-      { text: 'Choosing a Component Library', url: 'https://www.joshwcomeau.com/react/component-library/' }
+      { text: 'React File Structure', url: 'https://www.joshwcomeau.com/react/file-structure/' }
     ],
     badExampleKey: 'interactions-ibelick-no-primitive-mixing-bad',
     goodExampleKey: 'interactions-ibelick-no-primitive-mixing-good'
@@ -796,7 +796,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Use tw-animate-css for entrance animations and micro-interactions. It provides consistent, performant CSS animations as Tailwind utilities.',
     additionalExplanation: 'The tw-animate-css plugin provides a comprehensive set of entrance, exit, and micro-interaction animations. Using a standardized library ensures consistency.',
     sourceLinks: [
-      { text: 'tw-animate-css', url: 'https://github.com/chrismlusk/tw-animate-css' }
+      { text: 'tw-animate-css', url: 'https://github.com/Wombosvideo/tw-animate-css' }
     ],
     badExampleKey: 'animations-ibelick-tw-animate-bad',
     goodExampleKey: 'animations-ibelick-tw-animate-good'
@@ -1028,7 +1028,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Optical alignment. Adjust ±1px when perception beats geometry.',
     additionalExplanation: 'Mathematical centering doesn\'t always look centered to the human eye. Icons with more visual weight on one side may need to be shifted slightly to appear balanced. Trust your eye over the numbers, but limit adjustments to 1-2px.',
     sourceLinks: [
-      { text: 'Optical Alignment', url: 'https://medium.com/@lukejones/optical-adjustment-b55492a1165c' }
+      { text: 'Optical Alignment', url: 'https://blog.marvelapp.com/optical-adjustment-logic-vs-designers/' }
     ],
     badExampleKey: 'layout-optical-alignment-bad',
     goodExampleKey: 'layout-optical-alignment-good'
@@ -1084,7 +1084,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Balance contrast in lockups. When text & icons sit side by side, adjust weight, size, spacing, or color so they don\'t clash. For example, a thin-stroke icon may need a bolder stroke next to medium-weight text.',
     additionalExplanation: 'Icons and text have different visual weights. A light icon next to bold text feels unbalanced. Either use heavier icons, lighter text, adjust sizing, or tweak color to create visual harmony in icon-text combinations.',
     sourceLinks: [
-      { text: 'Visual Balance', url: 'https://www.nngroup.com/articles/visual-hierarchy/' }
+      { text: 'Visual Balance', url: 'https://www.nngroup.com/articles/visual-hierarchy-ux-definition/' }
     ],
     badExampleKey: 'layout-balance-contrast-bad',
     goodExampleKey: 'layout-balance-contrast-good'
@@ -1458,7 +1458,7 @@ export const principles: Principle[] = [
     additionalExplanation: 'The official Tailwind CSS IntelliSense extension provides autocomplete, syntax highlighting, and linting. It catches errors like non-existent classes and suggests valid utilities.',
     sourceLinks: [
       { text: 'IntelliSense Extension', url: 'https://tailwindcss.com/docs/editor-setup#intelli-sense-for-vs-code' },
-      { text: 'VS Code Extension', url: 'https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss' }
+      { text: 'Tailwind CSS IntelliSense', url: 'https://github.com/tailwindlabs/tailwindcss-intellisense' }
     ],
     badExampleKey: 'content-intellisense-bad',
     goodExampleKey: 'content-intellisense-good'
@@ -1641,7 +1641,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Don\'t block typing. Even if a field only accepts numbers, allow any input & show validation feedback. Blocking keystrokes entirely is confusing because the user gets no explanation.',
     additionalExplanation: 'When you prevent users from typing certain characters, they don\'t understand why their keyboard isn\'t working. It\'s better to accept all input and provide clear validation messages that explain what format is expected.',
     sourceLinks: [
-      { text: 'Inline validation patterns', url: 'https://www.nngroup.com/articles/inline-validation-in-web-forms/' }
+      { text: 'Form Validation UX', url: 'https://www.nngroup.com/articles/errors-forms-design-guidelines/' }
     ],
     badExampleKey: 'forms-dont-block-typing-bad',
     goodExampleKey: 'forms-dont-block-typing-good'
@@ -1669,7 +1669,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Error placement. Show errors next to their fields; on submit, focus the first error.',
     additionalExplanation: 'Errors should appear immediately adjacent to the field they relate to. When a form is submitted with errors, automatically focus the first problematic field so users can start fixing issues immediately. This is especially important for long forms.',
     sourceLinks: [
-      { text: 'WebAIM: Usable and Accessible Form Validation', url: 'https://webaim.org/articles/formvalidation/' }
+      { text: 'WebAIM: Accessible Form Validation', url: 'https://webaim.org/techniques/formvalidation/' }
     ],
     badExampleKey: 'forms-error-placement-bad',
     goodExampleKey: 'forms-error-placement-good'
@@ -1927,7 +1927,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Device/browser matrix. Test iOS Low Power Mode & macOS Safari.',
     additionalExplanation: 'Performance varies dramatically across devices and browsers. iOS Low Power Mode throttles animations and JavaScript. Safari has different behavior than Chrome. Test on real devices, not just desktop browsers.',
     sourceLinks: [
-      { text: 'Browser Testing', url: 'https://web.dev/browser-compatibility/' }
+      { text: 'Cross Browser Testing', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Introduction' }
     ],
     badExampleKey: 'performance-device-matrix-bad',
     goodExampleKey: 'performance-device-matrix-good'
@@ -2230,8 +2230,8 @@ export const principles: Principle[] = [
     sourceQuote: 'Minimum contrast. Prefer APCA over WCAG 2 for more accurate perceptual contrast.',
     additionalExplanation: 'WCAG 2.x contrast ratios have known issues. APCA (Accessible Perceptual Contrast Algorithm) provides more accurate measurements of readability. Aim for APCA values appropriate to text size and weight. Generally, body text should have Lc 60+ and headings Lc 45+.',
     sourceLinks: [
-      { text: 'APCA', url: 'https://www.myndex.com/APCA/' },
-      { text: 'WCAG 3 Contrast', url: 'https://www.w3.org/WAI/WCAG3/working-examples/visual-contrast-of-text/' }
+      { text: 'APCA Introduction', url: 'https://git.apcacontrast.com/documentation/APCAeasyIntro.html' },
+      { text: 'APCA on GitHub', url: 'https://github.com/Myndex/SAPC-APCA' }
     ],
     badExampleKey: 'design-minimum-contrast-bad',
     goodExampleKey: 'design-minimum-contrast-good'
@@ -2273,7 +2273,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Accessible charts. Use color-blind-friendly palettes.',
     additionalExplanation: 'About 8% of men and 0.5% of women have color vision deficiencies. Use color palettes designed for color blindness (avoid red-green combinations), and supplement color with patterns, labels, or textures in data visualizations.',
     sourceLinks: [
-      { text: 'Color Blind Safe Palettes', url: 'https://www.color-blindness.com/color-blind-friendly-web-design/' },
+      { text: 'Designing for Color Blindness', url: 'https://www.smashingmagazine.com/2024/02/designing-for-colorblindness/' },
       { text: 'Data Visualization Accessibility', url: 'https://www.w3.org/WAI/tutorials/images/complex/' }
     ],
     badExampleKey: 'design-accessible-charts-bad',
@@ -2446,7 +2446,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Cramped layouts make content hard to scan and interactive elements hard to tap. Give elements room to breathe.',
     additionalExplanation: 'Whitespace is not wasted space. Adequate padding and margins improve scanability and make touch targets easier to hit.',
     sourceLinks: [
-      { text: 'Visual Design Principles', url: 'https://www.nngroup.com/articles/whitespace/' }
+      { text: 'Visual Design Principles', url: 'https://www.nngroup.com/articles/form-design-white-space/' }
     ],
     badExampleKey: 'design-rams-crowded-elements-bad',
     goodExampleKey: 'design-rams-crowded-elements-good'
@@ -2502,7 +2502,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Colors that clash create visual discomfort. Use complementary, analogous, or triadic color schemes from a defined palette.',
     additionalExplanation: 'Design systems provide color palettes for consistency. Don\'t pick arbitrary colors; use the palette\'s semantic colors.',
     sourceLinks: [
-      { text: 'Color Theory', url: 'https://www.smashingmagazine.com/2021/08/create-color-scheme-user-interfaces/' }
+      { text: 'Color Mechanics in UI', url: 'https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/' }
     ],
     badExampleKey: 'design-rams-color-harmony-bad',
     goodExampleKey: 'design-rams-color-harmony-good'
@@ -2516,7 +2516,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Semantic colors convey meaning. Using red for success or green for errors violates user expectations and causes confusion.',
     additionalExplanation: 'Establish and follow semantic color conventions: red/destructive for errors, green/success for positive, yellow/warning for caution.',
     sourceLinks: [
-      { text: 'Semantic Colors', url: 'https://www.smashingmagazine.com/2021/07/color-meaning-design/' }
+      { text: 'Psychology of Color in UX', url: 'https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/' }
     ],
     badExampleKey: 'design-rams-semantic-colors-bad',
     goodExampleKey: 'design-rams-semantic-colors-good'
@@ -2573,7 +2573,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Avoid gradients unless explicitly requested. Solid colors are cleaner, more accessible, and easier to maintain.',
     additionalExplanation: 'Gradients often signal "AI-generated design" and can reduce contrast, create visual noise, be harder to maintain across themes, and look dated quickly.',
     sourceLinks: [
-      { text: 'When to Use Gradients', url: 'https://www.nngroup.com/articles/gradients/' }
+      { text: 'Flat Design Guidelines', url: 'https://www.nngroup.com/articles/flat-design/' }
     ],
     badExampleKey: 'design-ibelick-no-gradients-bad',
     goodExampleKey: 'design-ibelick-no-gradients-good'
@@ -2587,7 +2587,7 @@ export const principles: Principle[] = [
     sourceQuote: 'No purple or multicolor gradients. These are telltale signs of AI-generated or generic SaaS design.',
     additionalExplanation: 'Purple-to-pink and rainbow gradients have become the default output of AI design tools. They signal "generic" rather than "thoughtful design."',
     sourceLinks: [
-      { text: 'Avoiding AI Design Clichés', url: 'https://www.nngroup.com/articles/ai-generated-imagery/' }
+      { text: 'Design System Colors', url: 'https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/' }
     ],
     badExampleKey: 'design-ibelick-no-purple-bad',
     goodExampleKey: 'design-ibelick-no-purple-good'
@@ -2601,7 +2601,7 @@ export const principles: Principle[] = [
     sourceQuote: 'NEVER use glow as primary affordance. Glows are decorative, not functional - they don\'t clearly indicate interactivity.',
     additionalExplanation: 'Glow effects are hard to see in bright environments, don\'t provide clear affordance, look inconsistent across displays, and can be expensive to render.',
     sourceLinks: [
-      { text: 'Affordance in UI Design', url: 'https://www.nngroup.com/articles/affordance-conventions/' }
+      { text: 'Clickability Signifiers', url: 'https://www.nngroup.com/articles/clickable-elements/' }
     ],
     badExampleKey: 'design-ibelick-no-glow-bad',
     goodExampleKey: 'design-ibelick-no-glow-good'
@@ -2643,7 +2643,7 @@ export const principles: Principle[] = [
     sourceQuote: 'Limit accent colors to one per view. Multiple bright colors compete for attention and create visual chaos.',
     additionalExplanation: 'When everything is highlighted, nothing is. Multiple accent colors dilute visual hierarchy, make it unclear what\'s important, and create cognitive overload.',
     sourceLinks: [
-      { text: 'Color in UI Design', url: 'https://www.nngroup.com/articles/color-in-interface-design/' }
+      { text: 'Psychology of Color in UX', url: 'https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/' }
     ],
     badExampleKey: 'design-ibelick-color-restraint-bad',
     goodExampleKey: 'design-ibelick-color-restraint-good'
