@@ -7,20 +7,25 @@ interface HeaderProps {
   currentIndex: number;
   totalCount: number;
   onMenuToggle: () => void;
+  /** Whether sidebar is always visible (desktop/tablet) */
+  isDesktop?: boolean;
 }
 
-export function Header({ currentIndex, totalCount, onMenuToggle }: HeaderProps) {
+export function Header({ currentIndex, totalCount, onMenuToggle, isDesktop = false }: HeaderProps) {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+    <header className={`fixed top-0 right-0 z-50 bg-background border-b border-border ${isDesktop ? 'left-80' : 'left-0'}`}>
       <div className="flex items-center justify-between px-4 py-3 max-w-screen-2xl mx-auto">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onMenuToggle}
-          aria-label="Toggle menu"
-        >
-          <HugeiconsIcon icon={Menu01Icon} size={20} />
-        </Button>
+        {/* Hamburger menu - mobile only */}
+        {!isDesktop && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onMenuToggle}
+            aria-label="Toggle menu"
+          >
+            <HugeiconsIcon icon={Menu01Icon} size={20} />
+          </Button>
+        )}
 
         <div className="text-sm font-medium text-muted-foreground">
           {currentIndex + 1} / {totalCount}

@@ -5,6 +5,7 @@ import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
 import { CodeHikeDemo } from './components/CodeHikeDemo';
 import { SkipLink } from './components/SkipLink';
+import { useMediaQuery } from './hooks/useMediaQuery';
 import { principles } from './data/principles';
 import type { PatternSource } from './types/principle';
 
@@ -14,6 +15,9 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSources, setSelectedSources] = useState<PatternSource[]>([]);
   const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(false);
+
+  // Desktop/tablet: sidebar always visible (md breakpoint = 768px)
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   // Compute available sources from principles data
   const availableSources = useMemo(() => {
@@ -126,6 +130,7 @@ function App() {
         currentIndex={currentIndex}
         totalCount={principles.length}
         onMenuToggle={() => setIsSidebarOpen(true)}
+        isDesktop={isDesktop}
       />
 
       <Sidebar
@@ -139,9 +144,10 @@ function App() {
         selectedSources={selectedSources}
         onSourcesChange={setSelectedSources}
         availableSources={availableSources}
+        isDesktop={isDesktop}
       />
 
-      <main id="main-content" className="min-h-screen">
+      <main id="main-content" className={`min-h-screen ${isDesktop ? 'ml-80' : ''}`}>
         {showCodeHikeDemo ? (
           <CodeHikeDemo />
         ) : (
@@ -155,6 +161,7 @@ function App() {
           onNext={handleNext}
           hasPrevious={currentIndex > 0}
           hasNext={currentIndex < principles.length - 1}
+          isDesktop={isDesktop}
         />
       )}
     </div>

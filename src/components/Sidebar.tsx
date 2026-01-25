@@ -23,6 +23,8 @@ interface SidebarProps {
   selectedSources: PatternSource[];
   onSourcesChange: (sources: PatternSource[]) => void;
   availableSources: PatternSource[];
+  /** Whether we're on a screen size where sidebar is always visible */
+  isDesktop?: boolean;
 }
 
 export function Sidebar({
@@ -36,6 +38,7 @@ export function Sidebar({
   selectedSources,
   onSourcesChange,
   availableSources,
+  isDesktop = false,
 }: SidebarProps) {
   const sidebarRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -75,13 +78,16 @@ export function Sidebar({
 
   const handlePrincipleClick = (principleId: string) => {
     onPrincipleSelect(principleId);
-    onClose();
+    // Only close on mobile
+    if (!isDesktop) {
+      onClose();
+    }
   };
 
-  // Focus trap implementation
+  // Focus trap implementation (mobile only)
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (!isOpen || !sidebarRef.current) return;
+      if (!isOpen || !sidebarRef.current || isDesktop) return;
 
       if (e.key === 'Escape') {
         onClose();
@@ -104,11 +110,14 @@ export function Sidebar({
         firstElement?.focus();
       }
     },
-    [isOpen, onClose]
+    [isOpen, onClose, isDesktop]
   );
 
-  // Manage focus when sidebar opens/closes
+  // Manage focus when sidebar opens/closes (mobile only)
   useEffect(() => {
+    // On desktop, sidebar is always visible - no focus management needed
+    if (isDesktop) return;
+
     if (isOpen) {
       previousActiveElement.current = document.activeElement as HTMLElement;
       // Focus search input when sidebar opens
@@ -127,13 +136,17 @@ export function Sidebar({
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [isOpen, handleKeyDown]);
+  }, [isOpen, handleKeyDown, isDesktop]);
+
+  // On desktop, sidebar is always visible
+  const isVisible = isDesktop || isOpen;
 
   return (
     <>
-      {isOpen && (
+      {/* Overlay - mobile only */}
+      {!isDesktop && isOpen && (
         <div
-          className="fixed inset-0 bg-overlay z-40 transition-opacity"
+          className="fixed inset-0 bg-overlay z-40 transition-opacity md:hidden"
           onClick={onClose}
           aria-hidden="true"
         />
@@ -141,26 +154,34 @@ export function Sidebar({
 
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background z-50 shadow-2xl transition-[left] duration-300 ease-in-out ${
-          isOpen ? 'left-0' : '-left-80'
-        }`}
+        className={`
+          fixed top-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background border-r border-border
+          transition-[left] duration-300 ease-in-out
+          ${isDesktop
+            ? 'left-0 z-30 shadow-none'
+            : `z-50 shadow-2xl ${isOpen ? 'left-0' : '-left-80'}`
+          }
+        `}
         aria-label="Navigation menu"
-        aria-hidden={!isOpen}
-        inert={!isOpen ? '' : undefined}
+        aria-hidden={!isVisible}
+        inert={!isVisible ? '' : undefined}
       >
         <div className="flex items-center justify-between p-4 border-b border-border">
           <h2 className="text-lg font-semibold text-foreground">
             Interface Guidelines
           </h2>
-          <Button
-            ref={closeButtonRef}
-            variant="ghost"
-            size="icon"
-            onClick={onClose}
-            aria-label="Close menu"
-          >
-            <HugeiconsIcon icon={Cancel01Icon} size={20} />
-          </Button>
+          {/* Close button - mobile only */}
+          {!isDesktop && (
+            <Button
+              ref={closeButtonRef}
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              aria-label="Close menu"
+            >
+              <HugeiconsIcon icon={Cancel01Icon} size={20} />
+            </Button>
+          )}
         </div>
 
         {/* Filters */}
