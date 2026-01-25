@@ -116,18 +116,13 @@ function App() {
     }
   }, [currentPrinciple.title, showCodeHikeDemo]);
 
-  // Clear search when sidebar closes
-  useEffect(() => {
-    if (!isSidebarOpen) {
-      setSearchQuery('');
-    }
-  }, [isSidebarOpen]);
-
   return (
     <div className="min-h-screen bg-muted">
       <SkipLink />
       <Header
         onMenuToggle={() => setIsSidebarOpen(true)}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
         isDesktop={isDesktop}
       />
 
@@ -138,14 +133,13 @@ function App() {
         currentPrincipleId={showCodeHikeDemo ? 'codehike-demo' : currentPrinciple.id}
         onPrincipleSelect={handlePrincipleSelect}
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
         selectedSources={selectedSources}
         onSourcesChange={setSelectedSources}
         availableSources={availableSources}
         isDesktop={isDesktop}
       />
 
-      <main id="main-content" className={`min-h-screen ${isDesktop ? 'ml-80' : ''}`}>
+      <main id="main-content" className={`min-h-screen pt-14 ${isDesktop ? 'ml-80' : ''}`}>
         {showCodeHikeDemo ? (
           <CodeHikeDemo />
         ) : (

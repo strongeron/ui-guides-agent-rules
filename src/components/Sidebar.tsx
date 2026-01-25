@@ -4,13 +4,8 @@ import { Cancel01Icon } from '@hugeicons/core-free-icons';
 import { categories } from '../data/principles';
 import { Principle, PrincipleCategory, PatternSource } from '../types/principle';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { SourceFilter } from './SourceFilter';
-import {
-  SIDEBAR_FOCUS_DELAY_MS,
-  SIDEBAR_WIDTH_CLASS,
-  SIDEBAR_HEADER_HEIGHT_PX,
-} from '@/constants/ui';
+import { SIDEBAR_FOCUS_DELAY_MS, SIDEBAR_WIDTH_CLASS } from '@/constants/ui';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -19,7 +14,6 @@ interface SidebarProps {
   currentPrincipleId: string;
   onPrincipleSelect: (principleId: string) => void;
   searchQuery: string;
-  onSearchChange: (query: string) => void;
   selectedSources: PatternSource[];
   onSourcesChange: (sources: PatternSource[]) => void;
   availableSources: PatternSource[];
@@ -34,7 +28,6 @@ export function Sidebar({
   currentPrincipleId,
   onPrincipleSelect,
   searchQuery,
-  onSearchChange,
   selectedSources,
   onSourcesChange,
   availableSources,
@@ -42,7 +35,6 @@ export function Sidebar({
 }: SidebarProps) {
   const sidebarRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
   // Filter principles based on search query and selected sources
@@ -120,8 +112,8 @@ export function Sidebar({
 
     if (isOpen) {
       previousActiveElement.current = document.activeElement as HTMLElement;
-      // Focus search input when sidebar opens
-      setTimeout(() => searchInputRef.current?.focus(), SIDEBAR_FOCUS_DELAY_MS);
+      // Focus close button when sidebar opens
+      setTimeout(() => closeButtonRef.current?.focus(), SIDEBAR_FOCUS_DELAY_MS);
       document.addEventListener('keydown', handleKeyDown);
       // Prevent body scroll when sidebar is open
       document.body.style.overflow = 'hidden';
@@ -155,7 +147,7 @@ export function Sidebar({
       <aside
         ref={sidebarRef}
         className={`
-          fixed top-0 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background border-r border-border
+          fixed top-14 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background border-r border-border
           transition-[left] duration-300 ease-in-out
           ${isDesktop
             ? 'left-0 z-30 shadow-none'
@@ -166,45 +158,33 @@ export function Sidebar({
         aria-hidden={!isVisible}
         inert={!isVisible ? '' : undefined}
       >
-        <div className="flex items-center justify-between p-4 border-b border-border">
-          <h2 className="text-lg font-semibold text-foreground">
-            Interface Guidelines
-          </h2>
-          {/* Close button - mobile only */}
-          {!isDesktop && (
+        {/* Mobile close button */}
+        {!isDesktop && (
+          <div className="flex items-center justify-between p-4 border-b border-border">
+            <span className="text-sm font-medium text-foreground">Navigation</span>
             <Button
               ref={closeButtonRef}
               variant="ghost"
               size="icon"
               onClick={onClose}
               aria-label="Close menu"
+              className="h-8 w-8"
             >
-              <HugeiconsIcon icon={Cancel01Icon} size={20} />
+              <HugeiconsIcon icon={Cancel01Icon} size={18} />
             </Button>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Filters */}
-        <div className="p-4 border-b border-border space-y-3">
+        {/* Source filter */}
+        <div className="p-4 border-b border-border">
           <SourceFilter
             selectedSources={selectedSources}
             onSourcesChange={onSourcesChange}
             availableSources={availableSources}
           />
-          <Input
-            ref={searchInputRef}
-            type="search"
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search principles..."
-            aria-label="Search principles"
-          />
         </div>
 
-        <nav
-          className="overflow-y-auto overscroll-contain"
-          style={{ height: `calc(100vh - ${SIDEBAR_HEADER_HEIGHT_PX}px)` }}
-        >
+        <nav className="overflow-y-auto overscroll-contain h-[calc(100%-65px)]">
           {filteredPrinciples.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">No principles found</p>
@@ -217,13 +197,10 @@ export function Sidebar({
 
               return (
                 <div key={category.id} className="border-b border-border">
-                  <div className="px-4 py-3 bg-muted">
+                  <div className="px-4 py-2 bg-muted/50">
                     <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
                       {category.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {category.description}
-                    </p>
                   </div>
                   <ul>
                     {categoryPrinciples.map((principle) => (
@@ -231,10 +208,10 @@ export function Sidebar({
                         <Button
                           variant="ghost"
                           onClick={() => handlePrincipleClick(principle.id)}
-                          className={`w-full justify-start rounded-none px-4 py-3 h-auto text-sm hover:bg-muted ${
+                          className={`w-full justify-start rounded-none px-4 py-2 h-auto text-sm hover:bg-muted ${
                             currentPrincipleId === principle.id
-                              ? 'bg-primary/10 text-primary font-medium border-l-4 border-primary'
-                              : 'text-foreground border-l-4 border-transparent'
+                              ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary'
+                              : 'text-foreground border-l-2 border-transparent'
                           }`}
                         >
                           {principle.title}
@@ -249,23 +226,20 @@ export function Sidebar({
 
           {/* Demos Section */}
           <div className="border-b border-border">
-            <div className="px-4 py-3 bg-muted">
+            <div className="px-4 py-2 bg-muted/50">
               <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
                 Demos
               </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                Interactive code examples
-              </p>
             </div>
             <ul>
               <li>
                 <Button
                   variant="ghost"
                   onClick={() => handlePrincipleClick('codehike-demo')}
-                  className={`w-full justify-start rounded-none px-4 py-3 h-auto text-sm hover:bg-muted ${
+                  className={`w-full justify-start rounded-none px-4 py-2 h-auto text-sm hover:bg-muted ${
                     currentPrincipleId === 'codehike-demo'
-                      ? 'bg-primary/10 text-primary font-medium border-l-4 border-primary'
-                      : 'text-foreground border-l-4 border-transparent'
+                      ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary'
+                      : 'text-foreground border-l-2 border-transparent'
                   }`}
                 >
                   CodeHike Demo
