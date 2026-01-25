@@ -1,0 +1,438 @@
+#!/usr/bin/env npx tsx
+/**
+ * Principle Validation Script
+ * Checks field completeness, example mapping, and theme support for all principles
+ */
+
+import { readFileSync, readdirSync, existsSync, writeFileSync } from 'fs';
+import { join, relative } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const rootDir = join(__dirname, '..');
+
+interface SourceLink {
+  text: string;
+  url: string;
+}
+
+interface Principle {
+  id: string;
+  category: string;
+  source?: string;
+  title: string;
+  description: string;
+  sourceQuote: string;
+  additionalExplanation: string;
+  sourceLinks: SourceLink[];
+  badExampleKey: string;
+  goodExampleKey: string;
+}
+
+interface ExampleAnalysis {
+  path: string;
+  key: string;
+  hasDarkModeSupport: boolean;
+  hasLightModeSupport: boolean;
+  usesHardcodedColors: boolean;
+  hardcodedColors: string[];
+  hasProperContrast: boolean;
+  hasTailwindDarkClasses: boolean;
+  issues: string[];
+}
+
+interface ValidationResult {
+  id: string;
+  category: string;
+  title: string;
+  hasSourceQuote: boolean;
+  hasSourceLinks: boolean;
+  hasAdditionalExplanation: boolean;
+  hasBadExample: boolean;
+  hasGoodExample: boolean;
+  badExampleExists: boolean;
+  goodExampleExists: boolean;
+  badExampleAnalysis?: ExampleAnalysis;
+  goodExampleAnalysis?: ExampleAnalysis;
+  sourceLinksCount: number;
+  issues: string[];
+}
+
+interface CategorySummary {
+  category: string;
+  total: number;
+  valid: number;
+  invalid: number;
+  themeIssues: number;
+  issues: { id: string; issues: string[] }[];
+}
+
+// Parse principles from the source file
+function parsePrinciples(): Principle[] {
+  const principlesPath = join(rootDir, 'src/data/principles.ts');
+  const content = readFileSync(principlesPath, 'utf-8');
+
+  // Extract the principles array using regex
+  const principlesMatch = content.match(/export const principles: Principle\[\] = \[([\s\S]*?)\];/);
+  if (!principlesMatch) {
+    throw new Error('Could not parse principles array');
+  }
+
+  // Parse each principle object
+  const principles: Principle[] = [];
+  const principlesText = principlesMatch[1];
+
+  // Match each principle block
+  const principleBlocks = principlesText.split(/\n  },\n  {/).map((block, i, arr) => {
+    if (i === 0) return block.replace(/^\s*{/, '');
+    if (i === arr.length - 1) return block.replace(/}\s*$/, '');
+    return block;
+  });
+
+  for (const block of principleBlocks) {
+    if (!block.trim()) continue;
+
+    const getId = (b: string) => b.match(/id:\s*['"]([^'"]+)['"]/)?.[1] || '';
+    const getCategory = (b: string) => b.match(/category:\s*['"]([^'"]+)['"]/)?.[1] || '';
+    const getSource = (b: string) => b.match(/source:\s*['"]([^'"]+)['"]/)?.[1];
+    const getTitle = (b: string) => b.match(/title:\s*['"]([^'"]+)['"]/)?.[1] || '';
+    const getDescription = (b: string) => b.match(/description:\s*['"]([^'"]+)['"]/)?.[1] || '';
+    const getSourceQuote = (b: string) => {
+      const match = b.match(/sourceQuote:\s*['"](.+?)['"]\s*,\s*\n/s);
+      return match?.[1] || '';
+    };
+    const getAdditionalExplanation = (b: string) => {
+      const match = b.match(/additionalExplanation:\s*['"](.+?)['"]\s*,\s*\n/s);
+      return match?.[1] || '';
+    };
+    const getBadExampleKey = (b: string) => b.match(/badExampleKey:\s*['"]([^'"]+)['"]/)?.[1] || '';
+    const getGoodExampleKey = (b: string) => b.match(/goodExampleKey:\s*['"]([^'"]+)['"]/)?.[1] || '';
+
+    // Parse sourceLinks array
+    const sourceLinksMatch = block.match(/sourceLinks:\s*\[([\s\S]*?)\]/);
+    const sourceLinks: SourceLink[] = [];
+    if (sourceLinksMatch) {
+      const linksText = sourceLinksMatch[1];
+      const linkMatches = linksText.matchAll(/{\s*text:\s*['"]([^'"]+)['"]\s*,\s*url:\s*['"]([^'"]+)['"]\s*}/g);
+      for (const match of linkMatches) {
+        sourceLinks.push({ text: match[1], url: match[2] });
+      }
+    }
+
+    const id = getId(block);
+    if (id) {
+      principles.push({
+        id,
+        category: getCategory(block),
+        source: getSource(block),
+        title: getTitle(block),
+        description: getDescription(block),
+        sourceQuote: getSourceQuote(block),
+        additionalExplanation: getAdditionalExplanation(block),
+        sourceLinks,
+        badExampleKey: getBadExampleKey(block),
+        goodExampleKey: getGoodExampleKey(block),
+      });
+    }
+  }
+
+  return principles;
+}
+
+// Find all example component files and map keys to paths
+function findExampleComponents(): Map<string, string> {
+  const examplesDir = join(rootDir, 'src/components/examples');
+  const components = new Map<string, string>();
+
+  function scanDir(dir: string) {
+    const entries = readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        scanDir(fullPath);
+      } else if (entry.name.endsWith('.tsx') && !entry.name.startsWith('index')) {
+        // Convert file path to example key format
+        const relativePath = relative(examplesDir, fullPath);
+        const key = relativePath
+          .replace('.tsx', '')
+          .replace(/\\/g, '/')
+          .split('/')
+          .map((part, i) => {
+            if (i === 0) return part.toLowerCase(); // category
+            // Convert PascalCase to kebab-case
+            return part.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+          })
+          .join('-');
+        components.set(key, fullPath);
+      }
+    }
+  }
+
+  if (existsSync(examplesDir)) {
+    scanDir(examplesDir);
+  }
+
+  return components;
+}
+
+// Semantic color tokens that are dark-mode compatible via CSS variables
+const SEMANTIC_COLOR_TOKENS = [
+  // Background tokens
+  'bg-background', 'bg-foreground', 'bg-card', 'bg-popover', 'bg-muted',
+  'bg-primary', 'bg-secondary', 'bg-accent', 'bg-destructive', 'bg-success',
+  // Foreground/text tokens
+  'text-foreground', 'text-card-foreground', 'text-popover-foreground',
+  'text-muted-foreground', 'text-primary-foreground', 'text-secondary-foreground',
+  'text-accent-foreground', 'text-destructive-foreground', 'text-destructive',
+  'text-success', 'text-success-foreground',
+  // Border tokens
+  'border-border', 'border-input', 'border-ring',
+  // Ring tokens
+  'ring-ring', 'ring-offset-background',
+  // Sidebar tokens (shadcn)
+  'bg-sidebar', 'text-sidebar-foreground', 'border-sidebar',
+];
+
+// Analyze an example component for theme support
+function analyzeExampleComponent(filePath: string, key: string): ExampleAnalysis {
+  const content = readFileSync(filePath, 'utf-8');
+  const issues: string[] = [];
+  const hardcodedColors: string[] = [];
+
+  // Check for Tailwind dark: classes
+  const hasTailwindDarkClasses = /dark:/i.test(content);
+
+  // Check for semantic color tokens (these use CSS variables internally)
+  const usesSemanticTokens = SEMANTIC_COLOR_TOKENS.some(token => content.includes(token));
+
+  // Check for hardcoded colors (hex, rgb, rgba)
+  const hexColorMatches = content.match(/#[0-9a-fA-F]{3,8}/g) || [];
+  const rgbMatches = content.match(/rgb\([^)]+\)/gi) || [];
+  const rgbaMatches = content.match(/rgba\([^)]+\)/gi) || [];
+  const inlineStyleColors = content.match(/(?:color|background|border-color)\s*:\s*['"]?[^'";,}]+/gi) || [];
+
+  hardcodedColors.push(...hexColorMatches, ...rgbMatches, ...rgbaMatches);
+
+  // Filter out common acceptable colors (fully transparent, etc.)
+  const problematicColors = hardcodedColors.filter(c => {
+    // Allow transparent
+    if (c.toLowerCase() === '#00000000' || c.toLowerCase() === 'rgba(0,0,0,0)') return false;
+    // Allow currentColor references
+    if (c.toLowerCase().includes('currentcolor')) return false;
+    return true;
+  });
+
+  const usesHardcodedColors = problematicColors.length > 0;
+
+  // Check for CSS variables (theme-aware)
+  const usesCSSVariables = /var\(--/.test(content);
+
+  // Determine theme support - semantic tokens are dark-mode compatible
+  const hasDarkModeSupport = hasTailwindDarkClasses || usesCSSVariables || usesSemanticTokens;
+  const hasLightModeSupport = true; // Default styles usually cover light mode
+
+  // Check for proper contrast concerns
+  const hasContrastConcerns = /text-(gray|zinc|slate|neutral)-(100|200|300|900|950)/.test(content) &&
+    !hasTailwindDarkClasses;
+
+  // Build issues list
+  if (usesHardcodedColors && problematicColors.length > 3) {
+    issues.push(`Uses ${problematicColors.length} hardcoded colors - may need theme tokens`);
+  }
+
+  if (!hasTailwindDarkClasses && !usesCSSVariables && !usesSemanticTokens) {
+    issues.push('No dark mode support detected (missing dark: classes, CSS variables, or semantic tokens)');
+  }
+
+  if (hasContrastConcerns) {
+    issues.push('Potential contrast issues in dark/light modes');
+  }
+
+  // Check for inline styles with colors
+  if (inlineStyleColors.length > 2) {
+    issues.push('Multiple inline style colors - prefer Tailwind classes for theme support');
+  }
+
+  return {
+    path: filePath,
+    key,
+    hasDarkModeSupport,
+    hasLightModeSupport,
+    usesHardcodedColors,
+    hardcodedColors: problematicColors.slice(0, 5), // Limit to first 5
+    hasProperContrast: !hasContrastConcerns,
+    hasTailwindDarkClasses,
+    issues,
+  };
+}
+
+// Validate a single principle
+function validatePrinciple(
+  principle: Principle,
+  exampleComponents: Map<string, string>
+): ValidationResult {
+  const issues: string[] = [];
+
+  const hasSourceQuote = Boolean(principle.sourceQuote?.trim());
+  const hasSourceLinks = principle.sourceLinks.length > 0;
+  const hasAdditionalExplanation = Boolean(principle.additionalExplanation?.trim());
+  const hasBadExample = Boolean(principle.badExampleKey);
+  const hasGoodExample = Boolean(principle.goodExampleKey);
+  const badExamplePath = exampleComponents.get(principle.badExampleKey);
+  const goodExamplePath = exampleComponents.get(principle.goodExampleKey);
+  const badExampleExists = Boolean(badExamplePath);
+  const goodExampleExists = Boolean(goodExamplePath);
+
+  // Analyze examples if they exist
+  let badExampleAnalysis: ExampleAnalysis | undefined;
+  let goodExampleAnalysis: ExampleAnalysis | undefined;
+
+  if (badExamplePath) {
+    badExampleAnalysis = analyzeExampleComponent(badExamplePath, principle.badExampleKey);
+    issues.push(...badExampleAnalysis.issues.map(i => `Bad example: ${i}`));
+  }
+
+  if (goodExamplePath) {
+    goodExampleAnalysis = analyzeExampleComponent(goodExamplePath, principle.goodExampleKey);
+    issues.push(...goodExampleAnalysis.issues.map(i => `Good example: ${i}`));
+  }
+
+  if (!hasSourceQuote) issues.push('Missing sourceQuote');
+  if (!hasSourceLinks) issues.push('Missing sourceLinks');
+  if (!hasAdditionalExplanation) issues.push('Missing additionalExplanation');
+  if (!hasBadExample) issues.push('Missing badExampleKey');
+  if (!hasGoodExample) issues.push('Missing goodExampleKey');
+  if (hasBadExample && !badExampleExists) issues.push(`Bad example not found: ${principle.badExampleKey}`);
+  if (hasGoodExample && !goodExampleExists) issues.push(`Good example not found: ${principle.goodExampleKey}`);
+
+  return {
+    id: principle.id,
+    category: principle.category,
+    title: principle.title,
+    hasSourceQuote,
+    hasSourceLinks,
+    hasAdditionalExplanation,
+    hasBadExample,
+    hasGoodExample,
+    badExampleExists,
+    goodExampleExists,
+    badExampleAnalysis,
+    goodExampleAnalysis,
+    sourceLinksCount: principle.sourceLinks.length,
+    issues,
+  };
+}
+
+// Main validation function
+function main() {
+  console.log('🔍 Validating Principles with Theme Support Analysis...\n');
+
+  const principles = parsePrinciples();
+  const exampleComponents = findExampleComponents();
+
+  console.log(`Found ${principles.length} principles`);
+  console.log(`Found ${exampleComponents.size} example components\n`);
+
+  // Validate all principles
+  const results: ValidationResult[] = principles.map(p => validatePrinciple(p, exampleComponents));
+
+  // Group by category
+  const byCategory = new Map<string, ValidationResult[]>();
+  for (const result of results) {
+    if (!byCategory.has(result.category)) {
+      byCategory.set(result.category, []);
+    }
+    byCategory.get(result.category)!.push(result);
+  }
+
+  // Generate summary
+  const summaries: CategorySummary[] = [];
+  for (const [category, categoryResults] of byCategory) {
+    const valid = categoryResults.filter(r => r.issues.length === 0);
+    const invalid = categoryResults.filter(r => r.issues.length > 0);
+    const themeIssues = categoryResults.filter(r =>
+      r.issues.some(i => i.includes('dark mode') || i.includes('hardcoded colors') || i.includes('contrast'))
+    );
+
+    summaries.push({
+      category,
+      total: categoryResults.length,
+      valid: valid.length,
+      invalid: invalid.length,
+      themeIssues: themeIssues.length,
+      issues: invalid.map(r => ({ id: r.id, issues: r.issues })),
+    });
+  }
+
+  // Print results
+  console.log('📊 Category Summary\n');
+  console.log('| Category | Total | Valid | Issues | Theme Issues |');
+  console.log('|----------|-------|-------|--------|--------------|');
+  for (const summary of summaries) {
+    const status = summary.invalid === 0 ? '✅' : '⚠️';
+    console.log(`| ${summary.category.padEnd(12)} | ${String(summary.total).padStart(5)} | ${String(summary.valid).padStart(5)} | ${String(summary.invalid).padStart(6)} ${status} | ${String(summary.themeIssues).padStart(12)} |`);
+  }
+
+  // Totals
+  const totalPrinciples = summaries.reduce((acc, s) => acc + s.total, 0);
+  const totalValid = summaries.reduce((acc, s) => acc + s.valid, 0);
+  const totalInvalid = summaries.reduce((acc, s) => acc + s.invalid, 0);
+  const totalThemeIssues = summaries.reduce((acc, s) => acc + s.themeIssues, 0);
+
+  console.log('|--------------|-------|-------|--------|--------------|');
+  console.log(`| **TOTAL**    | ${String(totalPrinciples).padStart(5)} | ${String(totalValid).padStart(5)} | ${String(totalInvalid).padStart(6)}   | ${String(totalThemeIssues).padStart(12)} |`);
+
+  // Print detailed issues
+  const allIssues = summaries.flatMap(s => s.issues);
+  if (allIssues.length > 0) {
+    console.log('\n\n⚠️ Issues Found\n');
+    for (const summary of summaries) {
+      if (summary.issues.length > 0) {
+        console.log(`\n### ${summary.category} (${summary.issues.length} issues)`);
+        for (const issue of summary.issues) {
+          console.log(`\n**${issue.id}**`);
+          for (const i of issue.issues) {
+            console.log(`  - ${i}`);
+          }
+        }
+      }
+    }
+  } else {
+    console.log('\n\n✅ All principles are valid!');
+  }
+
+  // Theme support summary
+  console.log('\n\n🎨 Theme Support Analysis\n');
+  let withDarkMode = 0;
+  let withoutDarkMode = 0;
+  for (const result of results) {
+    if (result.goodExampleAnalysis?.hasDarkModeSupport) withDarkMode++;
+    else if (result.goodExampleExists) withoutDarkMode++;
+  }
+  console.log(`Examples with dark mode support: ${withDarkMode}`);
+  console.log(`Examples without dark mode: ${withoutDarkMode}`);
+
+  // Output JSON for programmatic use
+  const outputPath = join(rootDir, 'doc/validation-results.json');
+  const jsonOutput = JSON.stringify({
+    timestamp: new Date().toISOString(),
+    principleCount: principles.length,
+    exampleCount: exampleComponents.size,
+    summaries,
+    results,
+    themeAnalysis: {
+      withDarkMode,
+      withoutDarkMode,
+    }
+  }, null, 2);
+
+  writeFileSync(outputPath, jsonOutput);
+  console.log(`\n📁 Results saved to ${relative(rootDir, outputPath)}`);
+
+  // Exit with error if issues found
+  process.exit(allIssues.length > 0 ? 1 : 0);
+}
+
+main();
