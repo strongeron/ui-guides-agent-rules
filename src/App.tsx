@@ -127,8 +127,6 @@ function App() {
     <div className="min-h-screen bg-muted">
       <SkipLink />
       <Header
-        currentIndex={currentIndex}
-        totalCount={principles.length}
         onMenuToggle={() => setIsSidebarOpen(true)}
         isDesktop={isDesktop}
       />
