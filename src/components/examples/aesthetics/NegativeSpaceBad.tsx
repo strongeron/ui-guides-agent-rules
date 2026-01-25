@@ -31,7 +31,7 @@ export function NegativeSpaceBad() {
           </div>
           <div className="flex items-center gap-0.5 mt-1">
             {[1, 2, 3, 4, 5].map((star) => (
-              <div key={star} className="size-2 rounded-full bg-yellow-400" />
+              <div key={star} className="size-2 rounded-full bg-yellow-500" />
             ))}
             <span className="text-[10px] text-muted-foreground">(128)</span>
           </div>

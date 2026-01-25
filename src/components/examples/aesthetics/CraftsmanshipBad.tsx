@@ -13,7 +13,7 @@ export function CraftsmanshipBad() {
         {/* Header with misalignment */}
         <div className="flex items-center justify-between" style={{ marginBottom: '11px' }}>
           <span
-            className="font-medium"
+            className="font-medium text-foreground"
             style={{ fontSize: '17px' }} // Arbitrary, not on type scale
           >
             Pro Plan
@@ -32,7 +32,7 @@ export function CraftsmanshipBad() {
         {/* Price with inconsistent spacing */}
         <div style={{ marginBottom: '14px' }}>
           <span
-            className="font-bold"
+            className="font-bold text-foreground"
             style={{ fontSize: '31px' }} // Arbitrary size
           >
             $29
@@ -48,21 +48,21 @@ export function CraftsmanshipBad() {
         {/* Feature list with inconsistent spacing */}
         <ul style={{ marginBottom: '15px' }}>
           <li
-            className="text-sm flex items-center gap-2"
+            className="text-sm text-foreground flex items-center gap-2"
             style={{ marginBottom: '9px' }}
           >
             <span style={{ color: 'var(--success)', fontSize: '14px' }}>&#10003;</span>
             Unlimited projects
           </li>
           <li
-            className="text-sm flex items-center gap-2"
+            className="text-sm text-foreground flex items-center gap-2"
             style={{ marginBottom: '7px' }} // Different than above
           >
             <span style={{ color: 'var(--success)', fontSize: '12px' }}>&#10003;</span> {/* Different size */}
             Priority support
           </li>
           <li
-            className="text-sm flex items-center"
+            className="text-sm text-foreground flex items-center"
             style={{ gap: '10px' }} // Different gap
           >
             <span style={{ color: 'var(--success)', fontSize: '14px' }}>&#10003;</span>

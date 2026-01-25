@@ -3,7 +3,7 @@ export function FontPairingGood() {
     <div className="w-full max-w-md p-6 bg-card rounded-lg">
       <div className="space-y-4">
         <h2
-          className="text-3xl font-bold"
+          className="text-3xl font-bold text-foreground"
           style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
         >
           Build faster with AI
@@ -23,7 +23,7 @@ export function FontPairingGood() {
             Get Started
           </button>
           <button
-            className="px-4 py-2 border border-border rounded-md text-sm"
+            className="px-4 py-2 border border-border rounded-md text-sm text-foreground"
             style={{ fontFamily: "'Source Sans 3', system-ui, sans-serif" }}
           >
             Learn More

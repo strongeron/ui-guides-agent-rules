@@ -7,6 +7,7 @@ export function CssFirstAnimationsBad() {
   const buttonStyle = {
     transform: isHovered ? 'scale(1.05)' : 'scale(1)',
     backgroundColor: isHovered ? '#6366f1' : '#4f46e5',
+    color: '#ffffff',
     boxShadow: isHovered
       ? '0 10px 15px -3px rgba(99, 102, 241, 0.4)'
       : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
@@ -19,7 +20,7 @@ export function CssFirstAnimationsBad() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={buttonStyle}
-        className="px-6 py-3 text-white rounded-lg font-medium"
+        className="px-6 py-3 rounded-lg font-medium"
       >
         Hover Me
       </button>

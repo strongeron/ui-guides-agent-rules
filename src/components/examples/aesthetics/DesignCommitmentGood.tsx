@@ -1,47 +1,20 @@
 export function DesignCommitmentGood() {
   return (
-    <div className="w-full max-w-md">
-      <div
-        className="p-8"
-        style={{
-          backgroundColor: '#0a0a0a',
-          border: '1px solid #1a1a1a',
-        }}
-      >
+    <div className="w-full max-w-md p-4 bg-neutral-950 rounded-lg">
+      {/* Intentionally dark background to show bold, committed design */}
+      <div className="p-8 bg-neutral-950 border border-neutral-800 rounded-lg">
         <div>
-          <span
-            className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: '#22c55e' }}
-          >
+          <span className="text-xs font-semibold tracking-widest uppercase text-green-500">
             Launch Ready
           </span>
-          <h2
-            className="text-2xl font-bold mt-2 mb-3"
-            style={{
-              color: '#fafafa',
-              letterSpacing: '-0.025em',
-            }}
-          >
+          <h2 className="text-2xl font-bold mt-2 mb-3 text-neutral-50 tracking-tight">
             Build Something Bold
           </h2>
-          <p
-            className="text-sm mb-6"
-            style={{
-              color: '#a1a1aa',
-              lineHeight: '1.6',
-            }}
-          >
+          <p className="text-sm mb-6 text-neutral-400 leading-relaxed">
             No half-measures. Commit to your vision and execute with precision.
             Your product deserves an interface as confident as your ambition.
           </p>
-          <button
-            className="px-6 py-2.5 text-sm font-semibold"
-            style={{
-              backgroundColor: '#22c55e',
-              color: '#0a0a0a',
-              border: 'none',
-            }}
-          >
+          <button className="px-6 py-2.5 text-sm font-semibold bg-green-500 text-neutral-950 rounded">
             Start Building
           </button>
         </div>

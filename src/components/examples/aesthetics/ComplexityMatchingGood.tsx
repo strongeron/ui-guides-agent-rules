@@ -1,6 +1,7 @@
 export function ComplexityMatchingGood() {
   return (
     <div className="w-full max-w-md">
+      {/* Intentionally light-themed card demonstrating minimal aesthetics */}
       <div
         className="p-6"
         style={{

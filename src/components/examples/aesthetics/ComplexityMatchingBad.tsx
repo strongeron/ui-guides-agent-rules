@@ -1,6 +1,7 @@
 export function ComplexityMatchingBad() {
   return (
     <div className="w-full max-w-md">
+      {/* Intentionally light-themed card demonstrating over-designed aesthetics */}
       <div
         className="p-6 rounded-xl relative overflow-hidden"
         style={{

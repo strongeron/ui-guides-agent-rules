@@ -2,7 +2,7 @@ export function FontPairingBad() {
   return (
     <div className="w-full max-w-md p-6 bg-card rounded-lg">
       <div className="space-y-4">
-        <h2 className="text-3xl font-semibold font-sans">
+        <h2 className="text-3xl font-semibold font-sans text-foreground">
           Build faster with AI
         </h2>
         <p className="text-lg font-sans text-muted-foreground">
@@ -13,7 +13,7 @@ export function FontPairingBad() {
           <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md font-sans text-sm">
             Get Started
           </button>
-          <button className="px-4 py-2 border border-border rounded-md font-sans text-sm">
+          <button className="px-4 py-2 border border-border rounded-md font-sans text-sm text-foreground">
             Learn More
           </button>
         </div>

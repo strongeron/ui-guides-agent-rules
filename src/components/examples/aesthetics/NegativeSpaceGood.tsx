@@ -36,7 +36,7 @@ export function NegativeSpaceGood() {
           </div>
           <div className="flex items-center gap-1.5 mt-4">
             {[1, 2, 3, 4, 5].map((star) => (
-              <div key={star} className="size-3 rounded-full bg-yellow-400" />
+              <div key={star} className="size-3 rounded-full bg-yellow-500" />
             ))}
             <span className="text-sm text-muted-foreground ml-1">(128 reviews)</span>
           </div>

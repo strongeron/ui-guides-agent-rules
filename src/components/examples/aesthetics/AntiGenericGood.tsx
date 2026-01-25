@@ -1,6 +1,7 @@
 export function AntiGenericGood() {
   return (
     <div className="w-full max-w-md">
+      {/* Intentionally dark-themed card demonstrating distinctive brand aesthetics */}
       <div
         className="p-6"
         style={{

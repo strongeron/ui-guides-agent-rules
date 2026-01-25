@@ -1,6 +1,6 @@
 export function DesignVarietyBad() {
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-lg p-4 bg-white rounded-lg">
       <div className="grid grid-cols-3 gap-4">
         {/* Project Card 1 */}
         <div

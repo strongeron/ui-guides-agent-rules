@@ -1,6 +1,7 @@
 export function AntiGenericBad() {
   return (
     <div className="w-full max-w-md">
+      {/* Intentionally styled card demonstrating generic SaaS aesthetics */}
       <div
         className="p-6 rounded-3xl"
         style={{

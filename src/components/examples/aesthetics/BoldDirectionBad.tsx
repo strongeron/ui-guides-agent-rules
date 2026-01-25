@@ -9,7 +9,7 @@ export function BoldDirectionBad() {
       >
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-            <span className="text-lg">✨</span>
+            <span className="text-lg" aria-hidden="true">&#x2728;</span>
           </div>
           <h3 className="text-lg font-semibold text-white">
             AI-Powered Platform
@@ -20,7 +20,7 @@ export function BoldDirectionBad() {
           Unlock your potential today!
         </p>
         <button className="px-4 py-2 bg-white/20 backdrop-blur text-white rounded-full text-sm font-medium">
-          Get Started Free →
+          Get Started Free
         </button>
       </div>
       <p className="text-xs text-destructive mt-4">

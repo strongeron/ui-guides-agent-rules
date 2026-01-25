@@ -4,10 +4,7 @@ export function VisualFirstGood() {
       <div className="grid grid-cols-3 gap-4">
         {/* Feature 1 - visual dominant */}
         <div className="flex flex-col items-center text-center">
-          <div
-            className="w-16 h-16 rounded-xl flex items-center justify-center mb-2"
-            style={{ backgroundColor: '#f97316' }}
-          >
+          <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-2 bg-orange-500">
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -23,17 +20,13 @@ export function VisualFirstGood() {
               />
             </svg>
           </div>
-          <span className="text-xs font-medium">Fast</span>
+          <span className="text-xs font-medium text-foreground">Fast</span>
         </div>
         {/* Feature 2 - visual dominant */}
         <div className="flex flex-col items-center text-center">
-          <div
-            className="w-16 h-16 rounded-xl flex items-center justify-center mb-2"
-            style={{ backgroundColor: '#0a0a0a', border: '2px solid #333' }}
-          >
+          <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-2 bg-neutral-950 border-2 border-neutral-700">
             <svg
-              className="w-8 h-8"
-              style={{ color: '#22c55e' }}
+              className="w-8 h-8 text-green-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -47,16 +40,11 @@ export function VisualFirstGood() {
               />
             </svg>
           </div>
-          <span className="text-xs font-medium">Secure</span>
+          <span className="text-xs font-medium text-foreground">Secure</span>
         </div>
         {/* Feature 3 - visual dominant */}
         <div className="flex flex-col items-center text-center">
-          <div
-            className="w-16 h-16 rounded-xl flex items-center justify-center mb-2"
-            style={{
-              background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-            }}
-          >
+          <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-2 bg-gradient-to-br from-blue-500 to-violet-500">
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -72,7 +60,7 @@ export function VisualFirstGood() {
               />
             </svg>
           </div>
-          <span className="text-xs font-medium">Integrated</span>
+          <span className="text-xs font-medium text-foreground">Integrated</span>
         </div>
       </div>
       <p className="text-xs text-success mt-4">
