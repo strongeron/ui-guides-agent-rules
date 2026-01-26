@@ -46,6 +46,15 @@
   }
 }
 
+@keyframes gradient-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 /* Utility classes for motion-safe animations */
 @utility motion-safe-fade-in-slide {
   animation: var(--animate-fade-in-slide);
