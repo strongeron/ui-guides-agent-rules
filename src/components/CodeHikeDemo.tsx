@@ -2,6 +2,26 @@ import { Pre, highlight, type AnnotationHandler, type HighlightedCode } from 'co
 import { useState, useEffect, useRef } from 'react';
 
 // ============================================
+// THEME SUPPORT
+// ============================================
+
+function useTheme() {
+  const [isDark, setIsDark] = useState(() =>
+    document.documentElement.classList.contains('dark')
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  return isDark ? 'github-dark' : 'github-light';
+}
+
+// ============================================
 // ANNOTATION HANDLERS
 // Each handler defines how an annotation renders
 // ============================================
@@ -46,16 +66,30 @@ const callout: AnnotationHandler = {
 const diff: AnnotationHandler = {
   name: 'diff',
   Line: ({ annotation, ...props }) => {
-    const isRemoval = annotation?.query === '-';
+    if (!annotation) {
+      return <div {...props} />;
+    }
+
+    const isRemoval = annotation.query === '-';
+
     return (
-      <div
-        {...props}
-        className={`-mx-4 px-4 ${
-          isRemoval
-            ? 'bg-error/20 border-l-4 border-error line-through decoration-error/50'
-            : 'bg-success/20 border-l-4 border-success'
-        }`}
-      />
+      <div className="flex">
+        <span
+          className={`w-6 shrink-0 text-center select-none font-mono text-sm ${
+            isRemoval ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'
+          }`}
+        >
+          {isRemoval ? '−' : '+'}
+        </span>
+        <div
+          {...props}
+          className={`flex-1 px-2 ${
+            isRemoval
+              ? 'bg-red-500/15 dark:bg-red-900/30'
+              : 'bg-green-500/15 dark:bg-green-900/30'
+          }`}
+        />
+      </div>
     );
   },
 };
@@ -215,6 +249,7 @@ function CodeBlock({
 }: CodeBlockProps) {
   const [highlighted, setHighlighted] = useState<HighlightedCode | null>(null);
   const [copied, setCopied] = useState(false);
+  const theme = useTheme();
 
   const activeHandlers = customHandlers || allHandlers;
   const finalHandlers = showLineNumbers
@@ -224,9 +259,9 @@ function CodeBlock({
   useEffect(() => {
     highlight(
       { value: code, lang, meta },
-      'github-dark'
+      theme
     ).then(setHighlighted);
-  }, [code, lang, meta]);
+  }, [code, lang, meta, theme]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
@@ -266,7 +301,8 @@ function CodeBlock({
       <Pre
         code={highlighted}
         handlers={finalHandlers}
-        className={`p-4 bg-[#0d1117] text-sm overflow-x-auto font-mono leading-relaxed ${title ? '' : 'pt-8'}`}
+        className={`p-4 text-sm overflow-x-auto font-mono leading-relaxed ${title ? '' : 'pt-8'}`}
+        style={{ background: highlighted.style?.background }}
       />
     </div>
   );
@@ -287,14 +323,15 @@ function TabbedCode({ tabs, handlers }: { tabs: CodeTab[]; handlers?: Annotation
   const [activeTab, setActiveTab] = useState(0);
   const [highlighted, setHighlighted] = useState<(HighlightedCode | null)[]>([]);
   const [copied, setCopied] = useState(false);
+  const theme = useTheme();
 
   useEffect(() => {
     Promise.all(
       tabs.map(tab =>
-        highlight({ value: tab.code, lang: tab.lang, meta: tab.meta || '' }, 'github-dark')
+        highlight({ value: tab.code, lang: tab.lang, meta: tab.meta || '' }, theme)
       )
     ).then(setHighlighted);
-  }, [tabs]);
+  }, [tabs, theme]);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(tabs[activeTab].code);
@@ -315,7 +352,7 @@ function TabbedCode({ tabs, handlers }: { tabs: CodeTab[]; handlers?: Annotation
             onClick={() => setActiveTab(i)}
             className={`px-4 py-2.5 text-sm font-medium transition-colors ${
               i === activeTab
-                ? 'bg-[#0d1117] text-foreground border-b-2 border-primary -mb-px'
+                ? 'bg-muted text-foreground border-b-2 border-primary -mb-px'
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -342,7 +379,8 @@ function TabbedCode({ tabs, handlers }: { tabs: CodeTab[]; handlers?: Annotation
         <Pre
           code={highlighted[activeTab]!}
           handlers={handlers || allHandlers}
-          className="p-4 bg-[#0d1117] text-sm overflow-x-auto font-mono leading-relaxed"
+          className="p-4 text-sm overflow-x-auto font-mono leading-relaxed"
+          style={{ background: highlighted[activeTab]!.style?.background }}
         />
       )}
     </div>
@@ -364,14 +402,15 @@ function Scrollycoding({ steps }: { steps: ScrollyStep[] }) {
   const [activeStep, setActiveStep] = useState(0);
   const [highlighted, setHighlighted] = useState<(HighlightedCode | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
   useEffect(() => {
     Promise.all(
       steps.map(step =>
-        highlight({ value: step.code, lang: step.lang || 'tsx', meta: step.meta || '' }, 'github-dark')
+        highlight({ value: step.code, lang: step.lang || 'tsx', meta: step.meta || '' }, theme)
       )
     ).then(setHighlighted);
-  }, [steps]);
+  }, [steps, theme]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -436,7 +475,8 @@ function Scrollycoding({ steps }: { steps: ScrollyStep[] }) {
             <Pre
               code={highlighted[activeStep]!}
               handlers={allHandlers}
-              className="p-4 bg-[#0d1117] text-sm overflow-x-auto font-mono leading-relaxed max-h-[400px]"
+              className="p-4 text-sm overflow-x-auto font-mono leading-relaxed max-h-[400px]"
+              style={{ background: highlighted[activeStep]!.style?.background }}
             />
           )}
         </div>
@@ -580,16 +620,12 @@ function MarkDemo() {
 }
 
 function DiffDemo() {
-  const code = `function Button({ children, onClick }) {
+  // Unified diff showing both additions and deletions
+  const diffCode = `function Button({ children, onClick }) {
   return (
     <div onClick={onClick} className="btn">
       {children}
     </div>
-  );
-}`;
-
-  const codeAfter = `function Button({ children, onClick }) {
-  return (
     <button type="button" onClick={onClick} className="btn">
       {children}
     </button>
@@ -603,23 +639,17 @@ function DiffDemo() {
           <span className="text-2xl">📝</span> Diff Annotation
         </h2>
         <p className="text-sm text-muted-foreground mt-1">
-          Show code changes with git-style added/removed highlighting.
+          Show code changes with git-style coloring.
+          <span className="text-red-400 font-medium"> Red = removed</span>,
+          <span className="text-green-400 font-medium"> Green = added</span>.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 gap-4">
-        <CodeBlock
-          code={code}
-          lang="tsx"
-          title="❌ Before (using div)"
-          meta="diff(3:5)[-]"
-        />
-        <CodeBlock
-          code={codeAfter}
-          lang="tsx"
-          title="✅ After (using button)"
-          meta="diff(3:5)[+]"
-        />
-      </div>
+      <CodeBlock
+        code={diffCode}
+        lang="tsx"
+        title="Button.tsx - Accessibility Fix"
+        meta="diff(3:5)[-] diff(6:8)[+]"
+      />
     </section>
   );
 }
