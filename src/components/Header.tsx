@@ -15,7 +15,7 @@ interface HeaderProps {
 export function Header({ onMenuToggle, searchQuery, onSearchChange, isDesktop = false }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="flex items-center h-14 px-4 gap-4">
+      <div className={`flex items-center h-14 px-4 gap-4 ${isDesktop ? 'pl-80' : ''}`}>
         {/* Left side: hamburger on mobile, logo always */}
         <div className="flex items-center gap-2">
           {!isDesktop && (
