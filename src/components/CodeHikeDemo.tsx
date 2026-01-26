@@ -551,10 +551,31 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 }
 
 function FocusDemo() {
+  return (
+    <section className="space-y-4">
+      <div>
+        <h2 className="text-xl font-semibold flex items-center gap-2">
+          <span className="text-2xl">🔍</span> Focus Annotation
+        </h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          Draw attention to specific lines by dimming surrounding code.
+          <span className="text-primary font-medium"> Email validation is focused.</span>
+        </p>
+      </div>
+      <FocusCodeBlock />
+    </section>
+  );
+}
+
+// Custom focus component with proper dimming
+function FocusCodeBlock() {
+  const theme = useTheme();
+  const [highlighted, setHighlighted] = useState<HighlightedCode | null>(null);
+
   const code = `function validateForm(data) {
   const errors = {};
 
-  // These lines are focused - key validation logic
+  // Key validation logic
   if (!data.email?.includes('@')) {
     errors.email = 'Invalid email address';
   }
@@ -566,28 +587,65 @@ function FocusDemo() {
   return errors;
 }`;
 
+  const focusedLines = [4, 5, 6, 7]; // Lines to focus (1-indexed)
+
+  useEffect(() => {
+    highlight({ value: code, lang: 'javascript', meta: '' }, theme).then(setHighlighted);
+  }, [theme]);
+
+  if (!highlighted) return <div className="animate-pulse bg-muted h-48 rounded-lg" />;
+
   return (
-    <section className="space-y-4">
-      <div>
-        <h2 className="text-xl font-semibold flex items-center gap-2">
-          <span className="text-2xl">🔍</span> Focus Annotation
-        </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          Draw attention to specific lines by dimming surrounding code.
-          <span className="text-primary font-medium"> Lines 4-7 are focused below.</span>
-        </p>
+    <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+      <div className="bg-muted/80 px-4 py-2.5 text-sm font-medium border-b border-border flex items-center gap-2">
+        <span className="text-muted-foreground">📄</span>
+        validation.js
       </div>
-      <CodeBlock
-        code={code}
-        lang="javascript"
-        title="validation.js"
-        meta="focus(4:7)"
-      />
-    </section>
+      <div className="p-4 text-sm font-mono leading-relaxed" style={{ background: highlighted.style?.background }}>
+        {code.split('\n').map((line, i) => {
+          const lineNum = i + 1;
+          const isFocused = focusedLines.includes(lineNum);
+
+          return (
+            <div
+              key={i}
+              className={`px-2 -mx-2 ${
+                isFocused
+                  ? 'bg-primary/15 border-l-4 border-primary'
+                  : 'opacity-40'
+              }`}
+            >
+              {line || ' '}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
 function MarkDemo() {
+  return (
+    <section className="space-y-4">
+      <div>
+        <h2 className="text-xl font-semibold flex items-center gap-2">
+          <span className="text-2xl">✨</span> Mark Annotation
+        </h2>
+        <p className="text-sm text-muted-foreground mt-1">
+          Highlight important lines with a colored background.
+          <span className="text-warning font-medium"> The transition properties are marked.</span>
+        </p>
+      </div>
+      <MarkCodeBlock />
+    </section>
+  );
+}
+
+// Custom mark component with yellow highlighting
+function MarkCodeBlock() {
+  const theme = useTheme();
+  const [highlighted, setHighlighted] = useState<HighlightedCode | null>(null);
+
   const code = `/* ❌ Bad - animates EVERYTHING including layout */
 .card {
   transition: all 0.3s ease;
@@ -598,40 +656,42 @@ function MarkDemo() {
   transition: transform 0.3s, opacity 0.3s;
 }`;
 
+  const markedLines = [3, 8]; // Lines to mark (1-indexed)
+
+  useEffect(() => {
+    highlight({ value: code, lang: 'css', meta: '' }, theme).then(setHighlighted);
+  }, [theme]);
+
+  if (!highlighted) return <div className="animate-pulse bg-muted h-32 rounded-lg" />;
+
   return (
-    <section className="space-y-4">
-      <div>
-        <h2 className="text-xl font-semibold flex items-center gap-2">
-          <span className="text-2xl">✨</span> Mark Annotation
-        </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          Highlight important lines with a colored background.
-          <span className="text-warning font-medium"> Lines 3 and 8 are marked below.</span>
-        </p>
+    <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+      <div className="bg-muted/80 px-4 py-2.5 text-sm font-medium border-b border-border flex items-center gap-2">
+        <span className="text-muted-foreground">📄</span>
+        transitions.css
       </div>
-      <CodeBlock
-        code={code}
-        lang="css"
-        title="transitions.css"
-        meta="mark(3,8)"
-      />
-    </section>
+      <div className="p-4 text-sm font-mono leading-relaxed" style={{ background: highlighted.style?.background }}>
+        {code.split('\n').map((line, i) => {
+          const lineNum = i + 1;
+          const isMarked = markedLines.includes(lineNum);
+
+          return (
+            <div
+              key={i}
+              className={`px-2 -mx-2 ${
+                isMarked ? 'bg-warning/20 border-l-4 border-warning' : ''
+              }`}
+            >
+              {line || ' '}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
 function DiffDemo() {
-  // Unified diff showing both additions and deletions
-  const diffCode = `function Button({ children, onClick }) {
-  return (
-    <div onClick={onClick} className="btn">
-      {children}
-    </div>
-    <button type="button" onClick={onClick} className="btn">
-      {children}
-    </button>
-  );
-}`;
-
   return (
     <section className="space-y-4">
       <div>
@@ -640,17 +700,75 @@ function DiffDemo() {
         </h2>
         <p className="text-sm text-muted-foreground mt-1">
           Show code changes with git-style coloring.
-          <span className="text-red-400 font-medium"> Red = removed</span>,
-          <span className="text-green-400 font-medium"> Green = added</span>.
+          <span className="text-red-400 font-medium"> Red (−) = removed</span>,
+          <span className="text-green-400 font-medium"> Green (+) = added</span>.
         </p>
       </div>
-      <CodeBlock
-        code={diffCode}
-        lang="tsx"
-        title="Button.tsx - Accessibility Fix"
-        meta="diff(3:5)[-] diff(6:8)[+]"
-      />
+      <DiffCodeBlock />
     </section>
+  );
+}
+
+// Custom diff component with proper red/green styling
+function DiffCodeBlock() {
+  const theme = useTheme();
+  const [highlighted, setHighlighted] = useState<HighlightedCode | null>(null);
+
+  // Code without annotations - we'll apply styling manually
+  const code = `function Button({ children, onClick }) {
+  return (
+-   <div onClick={onClick} className="btn">
+-     {children}
+-   </div>
++   <button type="button" onClick={onClick} className="btn">
++     {children}
++   </button>
+  );
+}`;
+
+  useEffect(() => {
+    highlight({ value: code, lang: 'tsx', meta: '' }, theme).then(setHighlighted);
+  }, [theme]);
+
+  if (!highlighted) return <div className="animate-pulse bg-muted h-48 rounded-lg" />;
+
+  return (
+    <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+      <div className="bg-muted/80 px-4 py-2.5 text-sm font-medium border-b border-border flex items-center gap-2">
+        <span className="text-muted-foreground">📄</span>
+        Button.tsx - Accessibility Fix
+      </div>
+      <div className="p-4 text-sm font-mono leading-relaxed" style={{ background: highlighted.style?.background }}>
+        {code.split('\n').map((line, i) => {
+          const isRemoval = line.startsWith('-');
+          const isAddition = line.startsWith('+');
+          const displayLine = (isRemoval || isAddition) ? line.slice(1) : line;
+
+          if (isRemoval) {
+            return (
+              <div key={i} className="flex">
+                <span className="w-6 text-center text-red-400 bg-red-500/20 select-none">−</span>
+                <span className="flex-1 pl-2 bg-red-500/15">{displayLine || ' '}</span>
+              </div>
+            );
+          }
+          if (isAddition) {
+            return (
+              <div key={i} className="flex">
+                <span className="w-6 text-center text-green-400 bg-green-500/20 select-none">+</span>
+                <span className="flex-1 pl-2 bg-green-500/15">{displayLine || ' '}</span>
+              </div>
+            );
+          }
+          return (
+            <div key={i} className="flex">
+              <span className="w-6 text-center text-muted-foreground/50 select-none"> </span>
+              <span className="flex-1 pl-2">{line || ' '}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
