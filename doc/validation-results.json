@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-25T19:54:22.853Z",
+  "timestamp": "2026-01-25T23:00:20.502Z",
   "principleCount": 200,
   "exampleCount": 401,
   "summaries": [
@@ -21,18 +21,10 @@
     {
       "category": "animations",
       "total": 25,
-      "valid": 24,
-      "invalid": 1,
-      "themeIssues": 1,
-      "issues": [
-        {
-          "id": "animations-ibelick-minimize-paint",
-          "issues": [
-            "Bad example: Uses 9 hardcoded colors - may need theme tokens",
-            "Good example: Uses 4 hardcoded colors - may need theme tokens"
-          ]
-        }
-      ]
+      "valid": 25,
+      "invalid": 0,
+      "themeIssues": 0,
+      "issues": []
     },
     {
       "category": "layout",
@@ -69,138 +61,26 @@
     {
       "category": "performance",
       "total": 22,
-      "valid": 21,
-      "invalid": 1,
-      "themeIssues": 1,
-      "issues": [
-        {
-          "id": "performance-ibelick-will-change",
-          "issues": [
-            "Bad example: Uses 4 hardcoded colors - may need theme tokens"
-          ]
-        }
-      ]
+      "valid": 22,
+      "invalid": 0,
+      "themeIssues": 0,
+      "issues": []
     },
     {
       "category": "design",
       "total": 33,
-      "valid": 26,
-      "invalid": 7,
-      "themeIssues": 6,
-      "issues": [
-        {
-          "id": "design-accessible-charts",
-          "issues": [
-            "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-            "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-          ]
-        },
-        {
-          "id": "design-dark-preferences",
-          "issues": [
-            "Bad example: Potential contrast issues in dark/light modes"
-          ]
-        },
-        {
-          "id": "design-rams-text-contrast",
-          "issues": [
-            "Bad example: Potential contrast issues in dark/light modes"
-          ]
-        },
-        {
-          "id": "design-rams-color-harmony",
-          "issues": [
-            "Bad example: Uses 5 hardcoded colors - may need theme tokens"
-          ]
-        },
-        {
-          "id": "design-ibelick-no-gradients",
-          "issues": [
-            "Bad example: Uses 4 hardcoded colors - may need theme tokens"
-          ]
-        },
-        {
-          "id": "design-ibelick-no-purple",
-          "issues": [
-            "Bad example: Uses 5 hardcoded colors - may need theme tokens"
-          ]
-        },
-        {
-          "id": "design-ibelick-default-shadows",
-          "issues": [
-            "Bad example: Uses 4 hardcoded colors - may need theme tokens"
-          ]
-        }
-      ]
+      "valid": 33,
+      "invalid": 0,
+      "themeIssues": 0,
+      "issues": []
     },
     {
       "category": "aesthetics",
       "total": 18,
-      "valid": 10,
-      "invalid": 8,
-      "themeIssues": 7,
-      "issues": [
-        {
-          "id": "aesthetics-atmospheric-backgrounds",
-          "issues": [
-            "Good example: Uses 4 hardcoded colors - may need theme tokens",
-            "Good example: Potential contrast issues in dark/light modes"
-          ]
-        },
-        {
-          "id": "aesthetics-anti-generic",
-          "issues": [
-            "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-            "Good example: Uses 7 hardcoded colors - may need theme tokens",
-            "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-          ]
-        },
-        {
-          "id": "aesthetics-css-first-animations",
-          "issues": [
-            "Bad example: Uses 5 hardcoded colors - may need theme tokens"
-          ]
-        },
-        {
-          "id": "aesthetics-craftsmanship",
-          "issues": [
-            "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support"
-          ]
-        },
-        {
-          "id": "aesthetics-design-commitment",
-          "issues": [
-            "Good example: Potential contrast issues in dark/light modes"
-          ]
-        },
-        {
-          "id": "aesthetics-memorable-differentiation",
-          "issues": [
-            "Bad example: Uses 7 hardcoded colors - may need theme tokens",
-            "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-            "Good example: Uses 16 hardcoded colors - may need theme tokens",
-            "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-          ]
-        },
-        {
-          "id": "aesthetics-design-variety",
-          "issues": [
-            "Bad example: Uses 15 hardcoded colors - may need theme tokens",
-            "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-            "Good example: Uses 22 hardcoded colors - may need theme tokens",
-            "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-          ]
-        },
-        {
-          "id": "aesthetics-complexity-matching",
-          "issues": [
-            "Bad example: Uses 19 hardcoded colors - may need theme tokens",
-            "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-            "Good example: Uses 8 hardcoded colors - may need theme tokens",
-            "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-          ]
-        }
-      ]
+      "valid": 18,
+      "invalid": 0,
+      "themeIssues": 0,
+      "issues": []
     }
   ],
   "results": [
@@ -2245,43 +2125,25 @@
         "key": "animations-ibelick-minimize-paint-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#3b82f6",
-          "#8b5cf6",
-          "#8b5cf6",
-          "#ec4899",
-          "#3b82f6"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 9 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/animations/IbelickMinimizePaintGood.tsx",
         "key": "animations-ibelick-minimize-paint-good",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#3b82f6",
-          "#8b5cf6",
-          "#8b5cf6",
-          "#ec4899"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 4 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 9 hardcoded colors - may need theme tokens",
-        "Good example: Uses 4 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "animations-ibelick-timing",
@@ -5352,18 +5214,11 @@
         "key": "performance-ibelick-will-change-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#123",
-          "#123",
-          "#125",
-          "#125"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 4 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/performance/IbelickWillChangeGood.tsx",
@@ -5377,9 +5232,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 4 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "performance-ibelick-no-effect-render",
@@ -5844,9 +5697,7 @@
         "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/AccessibleChartsGood.tsx",
@@ -5857,15 +5708,10 @@
         "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 2,
-      "issues": [
-        "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-        "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-      ]
+      "issues": []
     },
     {
       "id": "design-theme-config",
@@ -6105,11 +5951,9 @@
         "hasLightModeSupport": true,
         "usesHardcodedColors": false,
         "hardcodedColors": [],
-        "hasProperContrast": false,
+        "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Potential contrast issues in dark/light modes"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/DarkPreferencesGood.tsx",
@@ -6123,9 +5967,7 @@
         "issues": []
       },
       "sourceLinksCount": 2,
-      "issues": [
-        "Bad example: Potential contrast issues in dark/light modes"
-      ]
+      "issues": []
     },
     {
       "id": "design-rams-color-only",
@@ -6217,11 +6059,9 @@
         "hasLightModeSupport": true,
         "usesHardcodedColors": false,
         "hardcodedColors": [],
-        "hasProperContrast": false,
+        "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Potential contrast issues in dark/light modes"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/RamsTextContrastGood.tsx",
@@ -6235,9 +6075,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Potential contrast issues in dark/light modes"
-      ]
+      "issues": []
     },
     {
       "id": "design-rams-inconsistent-spacing",
@@ -6435,19 +6273,11 @@
         "key": "design-rams-color-harmony-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#ff6b35",
-          "#9b59b6",
-          "#2ecc71",
-          "#e91e63",
-          "#00bcd4"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 5 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/RamsColorHarmonyGood.tsx",
@@ -6461,9 +6291,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 5 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "design-rams-semantic-colors",
@@ -6627,18 +6455,11 @@
         "key": "design-ibelick-no-gradients-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#667eea",
-          "#764ba2",
-          "#f093fb",
-          "#f5576c"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 4 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/IbelickNoGradientsGood.tsx",
@@ -6652,9 +6473,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 4 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "design-ibelick-no-purple",
@@ -6672,19 +6491,11 @@
         "key": "design-ibelick-no-purple-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#a855f7",
-          "#ec4899",
-          "#f97316",
-          "#8b5cf6",
-          "#d946ef"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 5 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/IbelickNoPurpleGood.tsx",
@@ -6698,9 +6509,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 5 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "design-ibelick-no-glow",
@@ -6758,18 +6567,11 @@
         "key": "design-ibelick-default-shadows-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "rgba(0,0,0,0.15)",
-          "rgba(0,0,0,0.08)",
-          "rgba(0,0,0,0.12)",
-          "rgba(0,0,0,0.25)"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 4 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/design/IbelickDefaultShadowsGood.tsx",
@@ -6783,9 +6585,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 4 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "design-ibelick-empty-states",
@@ -7030,25 +6830,14 @@
         "key": "aesthetics-atmospheric-backgrounds-good",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "rgb(10 10 10)",
-          "rgba(120, 80, 200, 0.15)",
-          "rgba(80, 150, 200, 0.1)",
-          "rgba(200, 100, 80, 0.05)"
-        ],
-        "hasProperContrast": false,
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
+        "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 4 hardcoded colors - may need theme tokens",
-          "Potential contrast issues in dark/light modes"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 2,
-      "issues": [
-        "Good example: Uses 4 hardcoded colors - may need theme tokens",
-        "Good example: Potential contrast issues in dark/light modes"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-bold-direction",
@@ -7106,44 +6895,25 @@
         "key": "aesthetics-anti-generic-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#667eea",
-          "#764ba2",
-          "rgba(255, 255, 255, 0.2)"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/AntiGenericGood.tsx",
         "key": "aesthetics-anti-generic-good",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#0a0a0a",
-          "#262626",
-          "#dc2626",
-          "#fafafa",
-          "#a3a3a3"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 7 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-        "Good example: Uses 7 hardcoded colors - may need theme tokens",
-        "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-css-first-animations",
@@ -7161,19 +6931,11 @@
         "key": "aesthetics-css-first-animations-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#6366f1",
-          "#4f46e5",
-          "#ffffff",
-          "rgba(99, 102, 241, 0.4)",
-          "rgba(0, 0, 0, 0.1)"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 5 hardcoded colors - may need theme tokens"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/CssFirstAnimationsGood.tsx",
@@ -7187,9 +6949,7 @@
         "issues": []
       },
       "sourceLinksCount": 3,
-      "issues": [
-        "Bad example: Uses 5 hardcoded colors - may need theme tokens"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-craftsmanship",
@@ -7215,9 +6975,7 @@
         ],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/CraftsmanshipGood.tsx",
@@ -7235,9 +6993,7 @@
         "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-design-commitment",
@@ -7268,16 +7024,12 @@
         "hasLightModeSupport": true,
         "usesHardcodedColors": false,
         "hardcodedColors": [],
-        "hasProperContrast": false,
+        "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Potential contrast issues in dark/light modes"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Good example: Potential contrast issues in dark/light modes"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-visual-first",
@@ -7367,48 +7119,25 @@
         "key": "aesthetics-memorable-differentiation-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#18181b",
-          "#27272a",
-          "#fafafa",
-          "#a1a1aa",
-          "#3b82f6"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 7 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/MemorableDifferentiationGood.tsx",
         "key": "aesthetics-memorable-differentiation-good",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#18181b",
-          "#f97316",
-          "#ec4899",
-          "#8b5cf6",
-          "#3b82f6"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 16 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 7 hardcoded colors - may need theme tokens",
-        "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-        "Good example: Uses 16 hardcoded colors - may need theme tokens",
-        "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-grid-breaking",
@@ -7534,48 +7263,25 @@
         "key": "aesthetics-design-variety-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#ffffff",
-          "#e5e7eb",
-          "#3b82f6",
-          "#1f2937",
-          "#6b7280"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 15 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/DesignVarietyGood.tsx",
         "key": "aesthetics-design-variety-good",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#0a0a0a",
-          "#262626",
-          "#ef4444",
-          "#dc2626",
-          "#fafafa"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 22 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 15 hardcoded colors - may need theme tokens",
-        "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-        "Good example: Uses 22 hardcoded colors - may need theme tokens",
-        "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-      ]
+      "issues": []
     },
     {
       "id": "aesthetics-complexity-matching",
@@ -7593,48 +7299,25 @@
         "key": "aesthetics-complexity-matching-bad",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#ffffff",
-          "#f8f9fa",
-          "#f0f9ff",
-          "#ede9fe",
-          "#6366f1"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 19 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "goodExampleAnalysis": {
         "path": "/Users/strongeron/Evil Martians/Guides/web-ui_guide_react/src/components/examples/aesthetics/ComplexityMatchingGood.tsx",
         "key": "aesthetics-complexity-matching-good",
         "hasDarkModeSupport": true,
         "hasLightModeSupport": true,
-        "usesHardcodedColors": true,
-        "hardcodedColors": [
-          "#ffffff",
-          "#e5e7eb",
-          "#6b7280",
-          "#111827",
-          "#6b7280"
-        ],
+        "usesHardcodedColors": false,
+        "hardcodedColors": [],
         "hasProperContrast": true,
         "hasTailwindDarkClasses": false,
-        "issues": [
-          "Uses 8 hardcoded colors - may need theme tokens",
-          "Multiple inline style colors - prefer Tailwind classes for theme support"
-        ]
+        "issues": []
       },
       "sourceLinksCount": 1,
-      "issues": [
-        "Bad example: Uses 19 hardcoded colors - may need theme tokens",
-        "Bad example: Multiple inline style colors - prefer Tailwind classes for theme support",
-        "Good example: Uses 8 hardcoded colors - may need theme tokens",
-        "Good example: Multiple inline style colors - prefer Tailwind classes for theme support"
-      ]
+      "issues": []
     }
   ],
   "themeAnalysis": {

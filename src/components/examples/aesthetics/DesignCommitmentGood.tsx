@@ -1,20 +1,20 @@
 export function DesignCommitmentGood() {
   return (
-    <div className="w-full max-w-md p-4 bg-neutral-950 rounded-lg">
+    <div className="w-full max-w-md p-4 bg-[var(--ex-commitment-bg)] rounded-lg">
       {/* Intentionally dark background to show bold, committed design */}
-      <div className="p-8 bg-neutral-950 border border-neutral-800 rounded-lg">
+      <div className="p-8 bg-[var(--ex-commitment-bg)] border border-[var(--ex-commitment-border)] rounded-lg">
         <div>
-          <span className="text-xs font-semibold tracking-widest uppercase text-green-500">
+          <span className="text-xs font-semibold tracking-widest uppercase text-[var(--ex-commitment-accent)]">
             Launch Ready
           </span>
-          <h2 className="text-2xl font-bold mt-2 mb-3 text-neutral-50 tracking-tight">
+          <h2 className="text-2xl font-bold mt-2 mb-3 text-[var(--ex-commitment-title)] tracking-tight">
             Build Something Bold
           </h2>
-          <p className="text-sm mb-6 text-neutral-400 leading-relaxed">
+          <p className="text-sm mb-6 text-[var(--ex-commitment-body)] leading-relaxed">
             No half-measures. Commit to your vision and execute with precision.
             Your product deserves an interface as confident as your ambition.
           </p>
-          <button className="px-6 py-2.5 text-sm font-semibold bg-green-500 text-neutral-950 rounded">
+          <button className="px-6 py-2.5 text-sm font-semibold bg-[var(--ex-commitment-button-bg)] text-[var(--ex-commitment-button-text)] rounded">
             Start Building
           </button>
         </div>

@@ -244,6 +244,287 @@
   --overlay: oklch(0 0 0 / 60%);
 }
 
+/* Example-specific theme tokens */
+:root {
+  --ex-min-paint-bad-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  --ex-min-paint-bad-gradient-hover: linear-gradient(90deg, #8b5cf6, #ec4899);
+  --ex-min-paint-bad-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+  --ex-min-paint-bad-shadow-hover: 0 8px 30px rgba(139, 92, 246, 0.6);
+  --ex-min-paint-good-base: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  --ex-min-paint-good-hover: linear-gradient(90deg, #8b5cf6, #ec4899);
+
+  --ex-css-bad-bg: #4f46e5;
+  --ex-css-bad-bg-hover: #6366f1;
+  --ex-css-bad-text: #ffffff;
+  --ex-css-bad-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --ex-css-bad-shadow-hover: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+
+  --ex-dark-pref-light-bg: #ffffff;
+  --ex-dark-pref-light-border: #e5e7eb;
+  --ex-dark-pref-light-text: #111827;
+  --ex-dark-pref-light-subtext: #6b7280;
+  --ex-dark-pref-dark-bg: #111827;
+  --ex-dark-pref-dark-border: #374151;
+  --ex-dark-pref-dark-text: #ffffff;
+  --ex-dark-pref-dark-subtext: #9ca3af;
+
+  --ex-low-contrast-title: #9ca3af;
+  --ex-low-contrast-body: #9ca3af;
+  --ex-low-contrast-secondary: #d1d5db;
+
+  --ex-clash-orange: #ff6b35;
+  --ex-clash-purple: #9b59b6;
+  --ex-clash-green: #2ecc71;
+  --ex-clash-pink: #e91e63;
+  --ex-clash-cyan: #00bcd4;
+
+  --ex-no-gradients-card: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --ex-no-gradients-button: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+
+  --ex-no-purple-text: linear-gradient(90deg, #a855f7, #ec4899, #f97316);
+  --ex-no-purple-button: linear-gradient(90deg, #8b5cf6, #d946ef);
+
+  --ex-shadow-a: 0 4px 30px rgba(0, 0, 0, 0.15);
+  --ex-shadow-b: 0 2px 8px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.12);
+  --ex-shadow-c: 0 10px 40px -10px rgba(0, 0, 0, 0.25);
+
+  --ex-atmo-base: #0a0a0a;
+  --ex-atmo-gradients:
+    radial-gradient(ellipse at 20% 20%, rgba(120, 80, 200, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(80, 150, 200, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(200, 100, 80, 0.05) 0%, transparent 70%);
+  --ex-atmo-title: #ffffff;
+  --ex-atmo-body: #d4d4d8;
+
+  --ex-anti-generic-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --ex-anti-generic-icon-bg: rgba(255, 255, 255, 0.2);
+  --ex-anti-generic-title: #ffffff;
+  --ex-anti-generic-body: rgba(255, 255, 255, 0.8);
+  --ex-anti-generic-button-bg: rgba(255, 255, 255, 0.2);
+  --ex-anti-generic-button-text: #ffffff;
+
+  --ex-anti-good-bg: #0a0a0a;
+  --ex-anti-good-border: #262626;
+  --ex-anti-good-accent: #dc2626;
+  --ex-anti-good-title: #fafafa;
+  --ex-anti-good-body: #a3a3a3;
+  --ex-anti-good-button-bg: #fafafa;
+  --ex-anti-good-button-text: #0a0a0a;
+
+  --ex-commitment-bg: #0a0a0a;
+  --ex-commitment-border: #27272a;
+  --ex-commitment-accent: #22c55e;
+  --ex-commitment-title: #fafafa;
+  --ex-commitment-body: #a3a3a3;
+  --ex-commitment-button-bg: #22c55e;
+  --ex-commitment-button-text: #0a0a0a;
+
+  --ex-memorable-bg: #18181b;
+  --ex-memorable-border: #27272a;
+  --ex-memorable-title: #fafafa;
+  --ex-memorable-body: #a1a1aa;
+  --ex-memorable-button-bg: #3b82f6;
+  --ex-memorable-button-text: #ffffff;
+  --ex-memorable-subtext: #71717a;
+  --ex-memorable-border-gradient: conic-gradient(from 0deg, #f97316, #ec4899, #8b5cf6, #3b82f6, #10b981, #f97316);
+  --ex-memorable-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+  --ex-variety-bad-bg: #ffffff;
+  --ex-variety-bad-border: #e5e7eb;
+  --ex-variety-bad-accent: #3b82f6;
+  --ex-variety-bad-title: #1f2937;
+  --ex-variety-bad-body: #6b7280;
+
+  --ex-variety-good-1-bg: #0a0a0a;
+  --ex-variety-good-1-border: #262626;
+  --ex-variety-good-1-accent: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --ex-variety-good-1-title: #fafafa;
+  --ex-variety-good-1-body: #a3a3a3;
+
+  --ex-variety-good-2-bg: #faf7f5;
+  --ex-variety-good-2-border: #e7e2df;
+  --ex-variety-good-2-accent-bg: #f5f0eb;
+  --ex-variety-good-2-letter: #78716c;
+  --ex-variety-good-2-title: #44403c;
+  --ex-variety-good-2-body: #a8a29e;
+
+  --ex-variety-good-3-bg: linear-gradient(145deg, #fef3c7 0%, #fde68a 100%);
+  --ex-variety-good-3-border: #fbbf24;
+  --ex-variety-good-3-accent-bg: #ffffff;
+  --ex-variety-good-3-accent-shadow: 0 4px 6px rgba(251, 191, 36, 0.3);
+  --ex-variety-good-3-letter: linear-gradient(135deg, #f59e0b, #d97706);
+  --ex-variety-good-3-title: #92400e;
+  --ex-variety-good-3-body: #b45309;
+
+  --ex-complex-bad-bg: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  --ex-complex-bad-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 4px 8px rgba(0, 0, 0, 0.04),
+    0 8px 16px rgba(0, 0, 0, 0.05),
+    0 16px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --ex-complex-bad-border: rgba(0, 0, 0, 0.06);
+  --ex-complex-bad-blob-1: radial-gradient(circle, rgba(147, 197, 253, 0.4) 0%, transparent 70%);
+  --ex-complex-bad-blob-2: radial-gradient(circle, rgba(196, 181, 253, 0.3) 0%, transparent 70%);
+  --ex-complex-bad-tag-bg: linear-gradient(90deg, #f0f9ff, #ede9fe);
+  --ex-complex-bad-tag-text: #6366f1;
+  --ex-complex-bad-title: #1e293b;
+  --ex-complex-bad-title-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --ex-complex-bad-body: #64748b;
+  --ex-complex-bad-button-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --ex-complex-bad-button-text: #ffffff;
+  --ex-complex-bad-button-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+
+  --ex-complex-good-bg: #ffffff;
+  --ex-complex-good-border: #e5e7eb;
+  --ex-complex-good-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --ex-complex-good-tag: #6b7280;
+  --ex-complex-good-title: #111827;
+  --ex-complex-good-body: #6b7280;
+  --ex-complex-good-button-bg: #111827;
+  --ex-complex-good-button-text: #ffffff;
+}
+
+.dark {
+  --ex-min-paint-bad-gradient: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  --ex-min-paint-bad-gradient-hover: linear-gradient(90deg, #8b5cf6, #ec4899);
+  --ex-min-paint-bad-shadow: 0 6px 24px rgba(59, 130, 246, 0.45);
+  --ex-min-paint-bad-shadow-hover: 0 10px 34px rgba(139, 92, 246, 0.55);
+  --ex-min-paint-good-base: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  --ex-min-paint-good-hover: linear-gradient(90deg, #8b5cf6, #ec4899);
+
+  --ex-css-bad-bg: #4f46e5;
+  --ex-css-bad-bg-hover: #6366f1;
+  --ex-css-bad-text: #ffffff;
+  --ex-css-bad-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.5);
+  --ex-css-bad-shadow-hover: 0 12px 24px -4px rgba(99, 102, 241, 0.5);
+
+  --ex-dark-pref-light-bg: #ffffff;
+  --ex-dark-pref-light-border: #e5e7eb;
+  --ex-dark-pref-light-text: #111827;
+  --ex-dark-pref-light-subtext: #6b7280;
+  --ex-dark-pref-dark-bg: #0b1220;
+  --ex-dark-pref-dark-border: #1f2937;
+  --ex-dark-pref-dark-text: #f9fafb;
+  --ex-dark-pref-dark-subtext: #9ca3af;
+
+  --ex-low-contrast-title: #6b7280;
+  --ex-low-contrast-body: #6b7280;
+  --ex-low-contrast-secondary: #9ca3af;
+
+  --ex-clash-orange: #ff6b35;
+  --ex-clash-purple: #9b59b6;
+  --ex-clash-green: #2ecc71;
+  --ex-clash-pink: #e91e63;
+  --ex-clash-cyan: #00bcd4;
+
+  --ex-no-gradients-card: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --ex-no-gradients-button: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+
+  --ex-no-purple-text: linear-gradient(90deg, #a855f7, #ec4899, #f97316);
+  --ex-no-purple-button: linear-gradient(90deg, #8b5cf6, #d946ef);
+
+  --ex-shadow-a: 0 6px 30px rgba(0, 0, 0, 0.4);
+  --ex-shadow-b: 0 4px 10px rgba(0, 0, 0, 0.35), 0 10px 26px rgba(0, 0, 0, 0.4);
+  --ex-shadow-c: 0 12px 40px -12px rgba(0, 0, 0, 0.6);
+
+  --ex-atmo-base: #0a0a0a;
+  --ex-atmo-gradients:
+    radial-gradient(ellipse at 20% 20%, rgba(120, 80, 200, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(80, 150, 200, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(200, 100, 80, 0.08) 0%, transparent 70%);
+  --ex-atmo-title: #f8fafc;
+  --ex-atmo-body: #cbd5f5;
+
+  --ex-anti-generic-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --ex-anti-generic-icon-bg: rgba(255, 255, 255, 0.2);
+  --ex-anti-generic-title: #ffffff;
+  --ex-anti-generic-body: rgba(255, 255, 255, 0.8);
+  --ex-anti-generic-button-bg: rgba(255, 255, 255, 0.2);
+  --ex-anti-generic-button-text: #ffffff;
+
+  --ex-anti-good-bg: #0a0a0a;
+  --ex-anti-good-border: #262626;
+  --ex-anti-good-accent: #dc2626;
+  --ex-anti-good-title: #fafafa;
+  --ex-anti-good-body: #a3a3a3;
+  --ex-anti-good-button-bg: #fafafa;
+  --ex-anti-good-button-text: #0a0a0a;
+
+  --ex-commitment-bg: #0a0a0a;
+  --ex-commitment-border: #27272a;
+  --ex-commitment-accent: #22c55e;
+  --ex-commitment-title: #fafafa;
+  --ex-commitment-body: #a3a3a3;
+  --ex-commitment-button-bg: #22c55e;
+  --ex-commitment-button-text: #0a0a0a;
+
+  --ex-memorable-bg: #101014;
+  --ex-memorable-border: #2a2a32;
+  --ex-memorable-title: #f8fafc;
+  --ex-memorable-body: #cbd5e1;
+  --ex-memorable-button-bg: #3b82f6;
+  --ex-memorable-button-text: #ffffff;
+  --ex-memorable-subtext: #94a3b8;
+  --ex-memorable-border-gradient: conic-gradient(from 0deg, #f97316, #ec4899, #8b5cf6, #3b82f6, #10b981, #f97316);
+  --ex-memorable-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+
+  --ex-variety-bad-bg: #111827;
+  --ex-variety-bad-border: #1f2937;
+  --ex-variety-bad-accent: #60a5fa;
+  --ex-variety-bad-title: #e5e7eb;
+  --ex-variety-bad-body: #94a3b8;
+
+  --ex-variety-good-1-bg: #0a0a0a;
+  --ex-variety-good-1-border: #262626;
+  --ex-variety-good-1-accent: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --ex-variety-good-1-title: #fafafa;
+  --ex-variety-good-1-body: #a3a3a3;
+
+  --ex-variety-good-2-bg: #1f1b1a;
+  --ex-variety-good-2-border: #3a3432;
+  --ex-variety-good-2-accent-bg: #2a2524;
+  --ex-variety-good-2-letter: #d0c6c0;
+  --ex-variety-good-2-title: #f2e9e4;
+  --ex-variety-good-2-body: #c2b8b2;
+
+  --ex-variety-good-3-bg: linear-gradient(145deg, #3b2f1a 0%, #5a3d12 100%);
+  --ex-variety-good-3-border: #b45309;
+  --ex-variety-good-3-accent-bg: #1f1a12;
+  --ex-variety-good-3-accent-shadow: 0 4px 6px rgba(245, 158, 11, 0.2);
+  --ex-variety-good-3-letter: linear-gradient(135deg, #fbbf24, #f97316);
+  --ex-variety-good-3-title: #fbbf24;
+  --ex-variety-good-3-body: #f59e0b;
+
+  --ex-complex-bad-bg: linear-gradient(145deg, #0f172a 0%, #111827 100%);
+  --ex-complex-bad-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.35),
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    0 16px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --ex-complex-bad-border: rgba(255, 255, 255, 0.08);
+  --ex-complex-bad-blob-1: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%);
+  --ex-complex-bad-blob-2: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  --ex-complex-bad-tag-bg: linear-gradient(90deg, #0f172a, #1e1b4b);
+  --ex-complex-bad-tag-text: #a5b4fc;
+  --ex-complex-bad-title: #e2e8f0;
+  --ex-complex-bad-title-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ex-complex-bad-body: #94a3b8;
+  --ex-complex-bad-button-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --ex-complex-bad-button-text: #ffffff;
+  --ex-complex-bad-button-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+
+  --ex-complex-good-bg: #111827;
+  --ex-complex-good-border: #1f2937;
+  --ex-complex-good-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ex-complex-good-tag: #94a3b8;
+  --ex-complex-good-title: #f3f4f6;
+  --ex-complex-good-body: #cbd5e1;
+  --ex-complex-good-button-bg: #e5e7eb;
+  --ex-complex-good-button-text: #111827;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

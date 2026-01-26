@@ -13,7 +13,7 @@ export function IbelickWillChangeBad() {
         ))}
       </div>
       <code className="block text-xs p-2 bg-muted rounded">
-        style=&#123;&#123; willChange: 'transform, opacity, filter' &#125;&#125;
+        style={'{'}{'{'} willChange: 'transform, opacity, filter' {'}'}{'}'}
       </code>
       <p className="text-xs text-destructive">
         Permanent will-change on every item wastes GPU memory

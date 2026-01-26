@@ -43,7 +43,10 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+        data-testid="example-comparison"
+      >
         <Card className="bg-card shadow-sm overflow-hidden">
           <CardHeader className="py-3">
             <CardTitle className="flex items-center gap-2 text-base font-semibold text-error">

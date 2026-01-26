@@ -1,8 +1,8 @@
 export function AccessibleChartsBad() {
   const data = [
-    { label: 'Active', value: 45, color: 'bg-green-500' },
-    { label: 'Pending', value: 30, color: 'bg-red-500' },
-    { label: 'Inactive', value: 25, color: 'bg-yellow-500' },
+    { label: 'Active', value: 45, swatch: 'bg-green-500' },
+    { label: 'Pending', value: 30, swatch: 'bg-red-500' },
+    { label: 'Inactive', value: 25, swatch: 'bg-yellow-500' },
   ];
 
   return (
@@ -13,7 +13,7 @@ export function AccessibleChartsBad() {
           {data.map((item) => (
             <div
               key={item.label}
-              className={`${item.color}`}
+              className={item.swatch}
               style={{ width: `${item.value}%` }}
             />
           ))}
@@ -21,7 +21,7 @@ export function AccessibleChartsBad() {
         <div className="flex gap-4">
           {data.map((item) => (
             <div key={item.label} className="flex items-center gap-2">
-              <div className={`w-3 h-3 rounded-sm ${item.color}`} />
+              <div className={`w-3 h-3 rounded-sm ${item.swatch}`} />
               <span className="text-xs">{item.value}%</span>
             </div>
           ))}

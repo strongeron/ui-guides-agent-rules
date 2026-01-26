@@ -3,10 +3,7 @@ export function IbelickNoPurpleBad() {
     <div className="space-y-4">
       <div className="p-6 rounded-lg border">
         <div
-          className="text-2xl font-bold bg-clip-text text-transparent"
-          style={{
-            backgroundImage: 'linear-gradient(90deg, #a855f7, #ec4899, #f97316)',
-          }}
+          className="text-2xl font-bold bg-clip-text text-transparent bg-[image:var(--ex-no-purple-text)]"
         >
           AI-Powered Analytics
         </div>
@@ -14,10 +11,7 @@ export function IbelickNoPurpleBad() {
           Transform your data with machine learning
         </p>
         <button
-          className="mt-4 px-4 py-2 rounded-lg text-white text-sm"
-          style={{
-            background: 'linear-gradient(90deg, #8b5cf6, #d946ef)',
-          }}
+          className="mt-4 px-4 py-2 rounded-lg text-white text-sm bg-[image:var(--ex-no-purple-button)]"
         >
           Get Started Free
         </button>

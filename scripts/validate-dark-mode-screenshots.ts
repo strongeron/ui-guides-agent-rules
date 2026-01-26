@@ -42,12 +42,54 @@ interface ValidationReport {
   results: ScreenshotResult[];
 }
 
-// Get principle IDs from the data file
-function getPrincipleIds(): string[] {
+interface PrincipleInfo {
+  id: string;
+  title: string;
+}
+
+// Get principle IDs and titles from the data file
+function getPrinciples(): PrincipleInfo[] {
   const principlesPath = join(rootDir, 'src/data/principles.ts');
   const content = readFileSync(principlesPath, 'utf-8');
-  const idMatches = content.matchAll(/id:\s*['"]([^'"]+)['"]/g);
-  return Array.from(idMatches, m => m[1]);
+
+  const principles: PrincipleInfo[] = [];
+
+  const principlesMatch = content.match(/export const principles: Principle\[\] = \[([\s\S]*?)\];/);
+  if (!principlesMatch) {
+    throw new Error('Could not parse principles array');
+  }
+
+  const principlesText = principlesMatch[1];
+  const principleBlocks = principlesText.split(/\n  },\n  {/).map((block, i, arr) => {
+    if (i === 0) return block.replace(/^\s*{/, '');
+    if (i === arr.length - 1) return block.replace(/}\s*$/, '');
+    return block;
+  });
+
+  const unescapeValue = (value: string) =>
+    value.replace(/\\\\/g, '\\').replace(/\\'/g, "'").replace(/\\"/g, '"');
+
+  for (const block of principleBlocks) {
+    if (!block.trim()) continue;
+
+    const idMatch = block.match(/id:\s*['"]([^'"]+)['"]/);
+    const titleMatch =
+      block.match(/title:\s*'((?:\\'|[^'])*)'/) ??
+      block.match(/title:\s*"((?:\\"|[^"])*)"/);
+    if (idMatch && titleMatch) {
+      principles.push({
+        id: idMatch[1],
+        title: unescapeValue(titleMatch[1]),
+      });
+    }
+  }
+
+  return principles;
+}
+
+// Get principle IDs from the data file (for backwards compatibility)
+function getPrincipleIds(): string[] {
+  return getPrinciples().map(p => p.id);
 }
 
 // Sample principles evenly from each category
@@ -76,37 +118,65 @@ function samplePrinciples(ids: string[], sampleSize: number = 10): string[] {
 async function capturePrinciple(
   page: Page,
   principleId: string,
-  baseUrl: string
+  principleTitle: string,
+  baseUrl: string,
+  isFirstPrinciple: boolean
 ): Promise<ScreenshotResult> {
   const timestamp = new Date().toISOString();
   const lightPath = join(outputDir, `${principleId}-light.png`);
   const darkPath = join(outputDir, `${principleId}-dark.png`);
 
   try {
-    // Navigate to principle
-    await page.goto(`${baseUrl}/#${principleId}`, { waitUntil: 'networkidle' });
-    await page.waitForTimeout(500); // Wait for animations
-
-    // Capture in current mode (detect which mode we're in)
-    const darkModeSwitch = page.locator('[aria-label*="Switch to"]');
-    const switchLabel = await darkModeSwitch.getAttribute('aria-label') || '';
-    const isCurrentlyDark = switchLabel.includes('light');
-
-    // Capture dark mode
-    if (!isCurrentlyDark) {
-      await darkModeSwitch.click();
-      await page.waitForTimeout(300);
+    // On first principle, navigate to base URL
+    if (isFirstPrinciple) {
+      await page.goto(baseUrl, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(500);
     }
-    await page.screenshot({ path: darkPath, fullPage: false });
 
-    // Capture light mode
-    const lightSwitch = page.locator('[aria-label*="Switch to"]');
-    await lightSwitch.click();
-    await page.waitForTimeout(300);
-    await page.screenshot({ path: lightPath, fullPage: false });
+    // Click on the sidebar button with the matching title
+    // The sidebar uses button elements with the principle title as text
+    const sidebarButton = page.locator('aside button', { hasText: principleTitle }).first();
 
-    // Return to dark mode (preserve state)
-    await page.locator('[aria-label*="Switch to"]').click();
+    // Scroll the button into view and click it
+    await sidebarButton.scrollIntoViewIfNeeded();
+    await sidebarButton.click();
+
+    // Wait for the content to update
+    await page.waitForTimeout(500);
+
+    // Verify navigation worked by checking the heading matches the title
+    const heading = page.locator('main h1');
+    await heading.waitFor({ state: 'visible', timeout: 5000 });
+    const headingText = await heading.textContent();
+    if (!headingText?.includes(principleTitle.split(' ')[0])) {
+      throw new Error(`Navigation failed - heading shows "${headingText}" instead of "${principleTitle}"`);
+    }
+
+    const comparison = page.locator('[data-testid="example-comparison"]');
+    await comparison.waitFor({ state: 'visible', timeout: 5000 });
+
+    // Use JavaScript to control theme directly (more reliable than clicking)
+    // Set to LIGHT mode first
+    await page.evaluate(() => {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      localStorage.setItem('theme-preference', 'light');
+    });
+    await page.waitForTimeout(500);
+    await comparison.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(200);
+    await comparison.screenshot({ path: lightPath });
+
+    // Set to DARK mode
+    await page.evaluate(() => {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme-preference', 'dark');
+    });
+    await page.waitForTimeout(500);
+    await comparison.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(200);
+    await comparison.screenshot({ path: darkPath });
 
     return {
       principleId,
@@ -130,30 +200,47 @@ async function capturePrinciple(
 async function main() {
   const args = process.argv.slice(2);
   const mode = args[0] || '--sample';
-  const specificPrinciple = mode === '--principle' ? args[1] : null;
+  const specificPrincipleId = mode === '--principle' ? args[1] : null;
 
   // Ensure output directory exists
   if (!existsSync(outputDir)) {
     mkdirSync(outputDir, { recursive: true });
   }
 
-  const allIds = getPrincipleIds();
-  let targetIds: string[];
+  const allPrinciples = getPrinciples();
+  let targetPrinciples: PrincipleInfo[];
 
-  if (specificPrinciple) {
-    if (!allIds.includes(specificPrinciple)) {
-      console.error(`Principle "${specificPrinciple}" not found`);
+  if (specificPrincipleId) {
+    const found = allPrinciples.find(p => p.id === specificPrincipleId);
+    if (!found) {
+      console.error(`Principle "${specificPrincipleId}" not found`);
       process.exit(1);
     }
-    targetIds = [specificPrinciple];
+    targetPrinciples = [found];
   } else if (mode === '--all') {
-    targetIds = allIds;
+    targetPrinciples = allPrinciples;
   } else {
-    targetIds = samplePrinciples(allIds, 20);
+    // Sample principles evenly from each category
+    const sampleSize = 20;
+    const categories = new Map<string, PrincipleInfo[]>();
+    for (const p of allPrinciples) {
+      const category = p.id.split('-')[0];
+      if (!categories.has(category)) {
+        categories.set(category, []);
+      }
+      categories.get(category)!.push(p);
+    }
+    const sampled: PrincipleInfo[] = [];
+    const perCategory = Math.ceil(sampleSize / categories.size);
+    for (const [, categoryPrinciples] of categories) {
+      const shuffled = categoryPrinciples.sort(() => Math.random() - 0.5);
+      sampled.push(...shuffled.slice(0, perCategory));
+    }
+    targetPrinciples = sampled.slice(0, sampleSize);
   }
 
   console.log(`🎨 Dark Mode Visual Validation`);
-  console.log(`   Capturing ${targetIds.length} principles in light and dark modes\n`);
+  console.log(`   Capturing ${targetPrinciples.length} principles in light and dark modes\n`);
 
   const baseUrl = process.env.BASE_URL || 'http://localhost:5173';
 
@@ -170,11 +257,11 @@ async function main() {
     let captured = 0;
     let failed = 0;
 
-    for (let i = 0; i < targetIds.length; i++) {
-      const id = targetIds[i];
-      process.stdout.write(`[${i + 1}/${targetIds.length}] ${id}... `);
+    for (let i = 0; i < targetPrinciples.length; i++) {
+      const principle = targetPrinciples[i];
+      process.stdout.write(`[${i + 1}/${targetPrinciples.length}] ${principle.id}... `);
 
-      const result = await capturePrinciple(page, id, baseUrl);
+      const result = await capturePrinciple(page, principle.id, principle.title, baseUrl, i === 0);
       results.push(result);
 
       if (result.success) {
@@ -190,7 +277,7 @@ async function main() {
     const report: ValidationReport = {
       timestamp: new Date().toISOString(),
       baseUrl,
-      totalPrinciples: targetIds.length,
+      totalPrinciples: targetPrinciples.length,
       captured,
       failed,
       results,

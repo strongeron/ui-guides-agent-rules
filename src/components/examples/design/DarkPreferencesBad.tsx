@@ -18,14 +18,14 @@ useEffect(() => {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <div className="flex-1 p-3 bg-white border border-gray-200 rounded-lg text-center text-sm text-gray-900">
+        <div className="flex-1 p-3 bg-[var(--ex-dark-pref-light-bg)] border border-[var(--ex-dark-pref-light-border)] rounded-lg text-center text-sm text-[var(--ex-dark-pref-light-text)]">
           <div className="font-medium">Initial</div>
-          <div className="text-xs text-gray-500">Light theme</div>
+          <div className="text-xs text-[var(--ex-dark-pref-light-subtext)]">Light theme</div>
         </div>
         <div className="text-muted-foreground animate-pulse">...</div>
-        <div className="flex-1 p-3 bg-gray-900 border border-gray-700 rounded-lg text-center text-sm text-white">
+        <div className="flex-1 p-3 bg-[var(--ex-dark-pref-dark-bg)] border border-[var(--ex-dark-pref-dark-border)] rounded-lg text-center text-sm text-[var(--ex-dark-pref-dark-text)]">
           <div className="font-medium">After JS</div>
-          <div className="text-xs text-gray-400">Dark theme</div>
+          <div className="text-xs text-[var(--ex-dark-pref-dark-subtext)]">Dark theme</div>
         </div>
       </div>
       <p className="text-xs text-error">

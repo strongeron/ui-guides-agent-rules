@@ -29,12 +29,6 @@ export function CssFirstAnimationsBad() {
     transform: isHovered
       ? `scale(1.05) translate(${position.x}px, ${position.y}px)`
       : 'scale(1)',
-    backgroundColor: isHovered ? '#6366f1' : '#4f46e5',
-    color: '#ffffff',
-    boxShadow: isHovered
-      ? '0 10px 15px -3px rgba(99, 102, 241, 0.4)'
-      : '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    transition: 'all 200ms ease-out', // BAD: transition: all
   };
 
   return (
@@ -47,7 +41,11 @@ export function CssFirstAnimationsBad() {
           setPosition({ x: 0, y: 0 });
         }}
         style={buttonStyle}
-        className="px-6 py-3 rounded-lg font-medium"
+        className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ease-out text-[var(--ex-css-bad-text)] ${
+          isHovered
+            ? 'bg-[var(--ex-css-bad-bg-hover)] shadow-[var(--ex-css-bad-shadow-hover)]'
+            : 'bg-[var(--ex-css-bad-bg)] shadow-[var(--ex-css-bad-shadow)]'
+        }`}
       >
         Hover Me
       </button>

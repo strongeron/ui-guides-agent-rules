@@ -3,11 +3,10 @@ export function CraftsmanshipBad() {
     <div className="w-full max-w-sm">
       {/* Pricing card with inconsistent, sloppy styling */}
       <div
-        className="bg-card"
+        className="bg-card border border-border"
         style={{
           padding: '12px 8px 18px 14px', // Inconsistent padding on all sides
           borderRadius: '6px',
-          border: '1px solid var(--border)',
         }}
       >
         {/* Header with misalignment */}
@@ -19,9 +18,8 @@ export function CraftsmanshipBad() {
             Pro Plan
           </span>
           <span
-            className="text-xs text-muted-foreground px-2 py-0.5"
+            className="text-xs text-muted-foreground px-2 py-0.5 bg-muted"
             style={{
-              backgroundColor: 'var(--muted)',
               borderRadius: '12px', // Different radius than card
             }}
           >
@@ -51,21 +49,21 @@ export function CraftsmanshipBad() {
             className="text-sm text-foreground flex items-center gap-2"
             style={{ marginBottom: '9px' }}
           >
-            <span style={{ color: 'var(--success)', fontSize: '14px' }}>&#10003;</span>
+            <span className="text-success" style={{ fontSize: '14px' }}>&#10003;</span>
             Unlimited projects
           </li>
           <li
             className="text-sm text-foreground flex items-center gap-2"
             style={{ marginBottom: '7px' }} // Different than above
           >
-            <span style={{ color: 'var(--success)', fontSize: '12px' }}>&#10003;</span> {/* Different size */}
+            <span className="text-success" style={{ fontSize: '12px' }}>&#10003;</span> {/* Different size */}
             Priority support
           </li>
           <li
             className="text-sm text-foreground flex items-center"
             style={{ gap: '10px' }} // Different gap
           >
-            <span style={{ color: 'var(--success)', fontSize: '14px' }}>&#10003;</span>
+            <span className="text-success" style={{ fontSize: '14px' }}>&#10003;</span>
             Advanced analytics
           </li>
         </ul>
