@@ -60,9 +60,9 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
   },
   anthropic: {
     id: 'anthropic',
-    name: 'Anthropic',
-    description: 'Anthropic frontend-design skill guidelines',
-    url: 'https://github.com/anthropics/skills',
+    name: 'Skills',
+    description: 'Anthropic skills from skills.sh',
+    url: 'https://skills.sh/',
     color: 'bg-[#cc785c] text-white border-[#cc785c]',
   },
   custom: {

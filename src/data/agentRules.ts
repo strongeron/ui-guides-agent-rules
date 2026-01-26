@@ -593,8 +593,8 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
 
   // ============================================================================
-  // Aesthetics - Anthropic Frontend-Design Skill
-  // Source: https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md
+  // Aesthetics - Anthropic Skills
+  // Source: https://skills.sh/
   // ============================================================================
 
   'aesthetics-distinctive-typography': {
