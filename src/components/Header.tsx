@@ -68,11 +68,11 @@ export function Header({ onMenuToggle, searchQuery, onSearchChange, isDesktop = 
           <ThemeSwitcher />
           <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
             <a
-              href="https://vercel.com/blog/web-interface-guidelines"
+              href="https://skills.sh/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Source
+              Skills
             </a>
           </Button>
         </div>
