@@ -20,6 +20,7 @@ export type PatternSource =
   | 'ibelick'          // @Ibelick UI Skills - opinionated constraints
   | 'claude-code'      // Claude Code suggested rules from research
   | 'anthropic'        // Anthropic frontend-design skill guidelines
+  | 'rauno'            // Rauno Freiberg's interfaces.rauno.me
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

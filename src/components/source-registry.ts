@@ -65,6 +65,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://skills.sh/',
     color: 'bg-[#cc785c] text-white border-[#cc785c]',
   },
+  rauno: {
+    id: 'rauno',
+    name: 'Rauno',
+    description: 'Interface details from interfaces.rauno.me by Rauno Freiberg',
+    url: 'https://interfaces.rauno.me/',
+    color: 'bg-emerald-600 text-white border-emerald-600',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

@@ -2910,5 +2910,451 @@ export const principles: Principle[] = [
     ],
     badExampleKey: 'aesthetics-complexity-matching-bad',
     goodExampleKey: 'aesthetics-complexity-matching-good'
+  },
+
+  // ─── Rauno Freiberg — interfaces.rauno.me ───────────────────────────
+
+  // Interactivity
+  {
+    id: 'forms-input-decorations-positioning',
+    category: 'forms',
+    source: 'rauno',
+    title: 'Input Decorations Positioning',
+    description: 'Input prefix and suffix decorations should be absolutely positioned inside the input with padding, not next to it',
+    sourceQuote: 'Input prefix and suffix decorations, such as icons, should be absolutely positioned on top of the text input with padding, not next to it, and trigger focus on the input.',
+    additionalExplanation: 'When decorative elements like search icons or currency symbols are placed next to an input in a flex layout, clicking them doesn\'t focus the input. Position them absolutely inside the input container so the entire area is clickable and the input receives focus.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'forms-input-decorations-positioning-bad',
+    goodExampleKey: 'forms-input-decorations-positioning-good'
+  },
+  {
+    id: 'interactions-toggles-immediate-effect',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Toggles Take Immediate Effect',
+    description: 'Toggles should immediately take effect without requiring a confirmation or save button',
+    sourceQuote: 'Toggles should immediately take effect, not require confirmation.',
+    additionalExplanation: 'Toggle switches communicate instant on/off state. Requiring a separate save button breaks this mental model and adds unnecessary friction. If a toggle needs confirmation due to destructive consequences, use a different control pattern like a checkbox with a submit button.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-toggles-immediate-effect-bad',
+    goodExampleKey: 'interactions-toggles-immediate-effect-good'
+  },
+  {
+    id: 'interactions-user-select-interactive',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Disable User Select on Interactive Elements',
+    description: 'Interactive elements should disable user-select for inner content to prevent accidental text selection',
+    sourceQuote: 'Interactive elements should disable user-select for inner content.',
+    additionalExplanation: 'When users click and drag on buttons, tabs, or other interactive controls, they may accidentally select the text inside. Apply user-select: none to prevent this and create a more polished interaction feel.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-user-select-interactive-bad',
+    goodExampleKey: 'interactions-user-select-interactive-good'
+  },
+  {
+    id: 'interactions-decorative-pointer-events',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Decorative Elements Disable Pointer Events',
+    description: 'Decorative elements like glows and gradients should disable pointer-events to not hijack events',
+    sourceQuote: 'Decorative elements (glows, gradients) should disable pointer-events to not hijack events.',
+    additionalExplanation: 'Decorative overlays like gradient backgrounds, glow effects, and visual embellishments can intercept clicks meant for interactive elements underneath. Always set pointer-events: none on purely decorative elements.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-decorative-pointer-events-bad',
+    goodExampleKey: 'interactions-decorative-pointer-events-good'
+  },
+
+  // Typography
+  {
+    id: 'content-font-smoothing',
+    category: 'content',
+    source: 'rauno',
+    title: 'Font Smoothing',
+    description: 'Apply -webkit-font-smoothing: antialiased for better text legibility',
+    sourceQuote: 'Fonts should have -webkit-font-smoothing: antialiased applied for better legibility.',
+    additionalExplanation: 'Subpixel antialiasing can make text appear heavier than designed, especially on macOS. Applying antialiased rendering produces text that more closely matches the intended font weight and appears crisper on high-DPI displays.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN font-smooth', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/font-smooth' }
+    ],
+    badExampleKey: 'content-font-smoothing-bad',
+    goodExampleKey: 'content-font-smoothing-good'
+  },
+  {
+    id: 'content-text-rendering',
+    category: 'content',
+    source: 'rauno',
+    title: 'Text Rendering Legibility',
+    description: 'Apply text-rendering: optimizeLegibility for proper kerning and ligatures',
+    sourceQuote: 'Fonts should have text-rendering: optimizeLegibility applied for better legibility.',
+    additionalExplanation: 'The optimizeLegibility value enables kerning and optional ligatures, improving the visual quality of text, especially at larger font sizes. This is particularly noticeable in letter pairs like AV, WA, and Ty where default spacing can look uneven.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN text-rendering', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-rendering' }
+    ],
+    badExampleKey: 'content-text-rendering-bad',
+    goodExampleKey: 'content-text-rendering-good'
+  },
+  {
+    id: 'content-font-subsetting',
+    category: 'content',
+    source: 'rauno',
+    title: 'Font Subsetting',
+    description: 'Subset fonts based on content, alphabet, or relevant languages to reduce file size',
+    sourceQuote: 'Fonts should be subset based on the content, alphabet or relevant language(s).',
+    additionalExplanation: 'Full font files include glyphs for many languages and scripts you may not need. Subsetting to only the character ranges used on your site can reduce font file sizes by 80-90%, improving load times significantly.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'Google Fonts CSS2 API', url: 'https://developers.google.com/fonts/docs/css2' }
+    ],
+    badExampleKey: 'content-font-subsetting-bad',
+    goodExampleKey: 'content-font-subsetting-good'
+  },
+  {
+    id: 'content-font-weight-hover-stable',
+    category: 'content',
+    source: 'rauno',
+    title: 'Stable Font Weight on Hover',
+    description: 'Font weight should not change on hover or selected state to prevent layout shift',
+    sourceQuote: 'Font weight should not change on hover or selected state to prevent layout shift.',
+    additionalExplanation: 'Changing font weight on hover causes text to take up different amounts of space, which shifts surrounding content. Use color, background, or opacity changes instead to indicate hover and selected states.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'content-font-weight-hover-stable-bad',
+    goodExampleKey: 'content-font-weight-hover-stable-good'
+  },
+  {
+    id: 'content-min-font-weight',
+    category: 'content',
+    source: 'rauno',
+    title: 'Minimum Font Weight 400',
+    description: 'Font weights below 400 should not be used — they reduce readability',
+    sourceQuote: 'Font weights below 400 should not be used.',
+    additionalExplanation: 'Thin and light font weights (100-300) can be difficult to read, especially on low-resolution screens, small sizes, or for users with visual impairments. Stick to regular (400) and above for body text and UI elements.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'content-min-font-weight-bad',
+    goodExampleKey: 'content-min-font-weight-good'
+  },
+  {
+    id: 'content-heading-weight',
+    category: 'content',
+    source: 'rauno',
+    title: 'Medium Heading Weight',
+    description: 'Medium-sized headings look best with font weight between 500-600',
+    sourceQuote: 'Medium sized headings generally look best with a font weight between 500-600.',
+    additionalExplanation: 'Very bold weights (800-900) on medium-sized headings can feel heavy and disconnected from body text. Weights of 500-600 create clear hierarchy while maintaining visual balance with surrounding content.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'content-heading-weight-bad',
+    goodExampleKey: 'content-heading-weight-good'
+  },
+  {
+    id: 'content-fluid-clamp',
+    category: 'content',
+    source: 'rauno',
+    title: 'Fluid Typography with clamp()',
+    description: 'Use CSS clamp() for fluid font sizes that scale between viewport sizes without breakpoints',
+    sourceQuote: 'Adjust values fluidly by using CSS clamp(), e.g. clamp(48px, 5vw, 72px) for the font-size of a heading.',
+    additionalExplanation: 'Fixed font sizes require multiple breakpoints to look good across devices. CSS clamp() provides a minimum, preferred, and maximum value that scales smoothly with the viewport, creating responsive typography without media queries.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN clamp()', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/clamp' }
+    ],
+    badExampleKey: 'content-fluid-clamp-bad',
+    goodExampleKey: 'content-fluid-clamp-good'
+  },
+  {
+    id: 'content-text-size-adjust',
+    category: 'content',
+    source: 'rauno',
+    title: 'Text Size Adjust for iOS',
+    description: 'Prevent unexpected text resizing in landscape mode on iOS with -webkit-text-size-adjust: 100%',
+    sourceQuote: 'Prevent text resizing unexpectedly in landscape mode on iOS with -webkit-text-size-adjust: 100%.',
+    additionalExplanation: 'iOS Safari inflates text when rotating to landscape to improve readability. While well-intentioned, this can break carefully designed layouts. Setting text-size-adjust to 100% prevents this behavior while still allowing user zoom.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN text-size-adjust', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust' }
+    ],
+    badExampleKey: 'content-text-size-adjust-bad',
+    goodExampleKey: 'content-text-size-adjust-good'
+  },
+
+  // Motion
+  {
+    id: 'animations-theme-switch-no-transitions',
+    category: 'animations',
+    source: 'rauno',
+    title: 'No Transitions on Theme Switch',
+    description: 'Switching themes should not trigger transitions and animations on elements',
+    sourceQuote: 'Switching themes should not trigger transitions and animations on elements.',
+    additionalExplanation: 'When toggling between light and dark mode, elements with CSS transitions will visibly animate their color changes, creating a distracting ripple effect across the page. Temporarily disable transitions during theme switches for an instant, clean change.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'next-themes', url: 'https://github.com/pacocoursey/next-themes' }
+    ],
+    badExampleKey: 'animations-theme-switch-no-transitions-bad',
+    goodExampleKey: 'animations-theme-switch-no-transitions-good'
+  },
+  {
+    id: 'animations-proportional-values',
+    category: 'animations',
+    source: 'rauno',
+    title: 'Proportional Animation Values',
+    description: 'Animation values should be proportional to the trigger size — don\'t scale from 0, use subtle values',
+    sourceQuote: 'Animation values should be proportional to the trigger size: Don\'t animate dialog scale in from 0 → 1, fade opacity and scale from ~0.8. Don\'t scale buttons on press from 1 → 0.8, but ~0.96, ~0.9, or so.',
+    additionalExplanation: 'Exaggerated animations feel cartoonish and disproportionate. A dialog appearing should scale from 0.95, not 0. A button press should compress to 0.97, not 0.5. Match the animation magnitude to the element\'s visual size and the interaction\'s importance.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'animations-proportional-animation-bad',
+    goodExampleKey: 'animations-proportional-animation-good'
+  },
+  {
+    id: 'animations-smooth-scroll-anchors',
+    category: 'animations',
+    source: 'rauno',
+    title: 'Smooth Scroll for Anchors',
+    description: 'Use scroll-behavior: smooth for navigating to in-page anchors with appropriate offset',
+    sourceQuote: 'Use scroll-behavior: smooth for navigating to in-page anchors, with an appropriate offset.',
+    additionalExplanation: 'Instant jumps to anchor links are disorienting — users lose context of where they are on the page. Smooth scrolling maintains spatial awareness and creates a more polished navigation experience.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN scroll-behavior', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior' }
+    ],
+    badExampleKey: 'animations-smooth-scroll-anchors-bad',
+    goodExampleKey: 'animations-smooth-scroll-anchors-good'
+  },
+
+  // Touch
+  {
+    id: 'interactions-hover-media-query',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Hover States with Media Query',
+    description: 'Hover states should not be visible on touch press — use @media (hover: hover)',
+    sourceQuote: 'Hover states should not be visible on touch press, use @media (hover: hover).',
+    additionalExplanation: 'On touch devices, pressing an element briefly triggers its hover state, causing a flash of the hover style. Wrapping hover declarations in @media (hover: hover) ensures they only apply on devices with a true pointer, like a mouse.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN hover media feature', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover' }
+    ],
+    badExampleKey: 'interactions-hover-media-query-bad',
+    goodExampleKey: 'interactions-hover-media-query-good'
+  },
+  {
+    id: 'interactions-video-autoplay-ios',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Video Autoplay on iOS',
+    description: 'Apply muted and playsInline to video tags to enable autoplay on iOS',
+    sourceQuote: 'Apply muted and playsinline to <video /> tags to auto play on iOS.',
+    additionalExplanation: 'iOS Safari blocks video autoplay unless the video is muted and has the playsinline attribute. Without these, the video won\'t play automatically and may open in fullscreen instead.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'WebKit Video Policies', url: 'https://webkit.org/blog/6784/new-video-policies-for-ios/' }
+    ],
+    badExampleKey: 'interactions-video-autoplay-ios-bad',
+    goodExampleKey: 'interactions-video-autoplay-ios-good'
+  },
+  {
+    id: 'interactions-tap-highlight-replacement',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Replace Tap Highlight',
+    description: 'Disable the default iOS tap highlight but always replace it with an appropriate alternative',
+    sourceQuote: 'Disable the default iOS tap highlight with -webkit-tap-highlight-color: rgba(0,0,0,0), but always replace it with an appropriate alternative.',
+    additionalExplanation: 'The default iOS tap highlight is often too prominent and doesn\'t match your design. Disabling it is fine, but you must provide an alternative touch feedback — typically a custom :active state — otherwise users get no visual confirmation of their tap.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-tap-highlight-replacement-bad',
+    goodExampleKey: 'interactions-tap-highlight-replacement-good'
+  },
+
+  // Optimizations
+  {
+    id: 'performance-gradient-banding',
+    category: 'performance',
+    source: 'rauno',
+    title: 'Avoid Gradient Banding',
+    description: 'Scaling and blurring filled rectangles causes banding — use radial gradients instead',
+    sourceQuote: 'Scaling and blurring filled rectangles will cause banding, use radial gradients instead.',
+    additionalExplanation: 'Applying blur() and scale() to solid-colored elements produces visible color banding artifacts. Radial gradients create smooth color transitions natively without needing blur filters, resulting in better visual quality and performance.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'performance-gradient-banding-bad',
+    goodExampleKey: 'performance-gradient-banding-good'
+  },
+  {
+    id: 'performance-gpu-translatez',
+    category: 'performance',
+    source: 'rauno',
+    title: 'Sparingly Use GPU Rendering',
+    description: 'Only enable GPU rendering with translateZ(0) on elements that need it',
+    sourceQuote: 'Sparingly enable GPU rendering with transform: translateZ(0) for unperformant animations.',
+    additionalExplanation: 'Promoting elements to their own GPU layer with translateZ(0) can improve animation performance, but applying it broadly wastes GPU memory and can actually degrade performance. Only use it on specific elements with known performance issues.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'performance-gpu-translatez-bad',
+    goodExampleKey: 'performance-gpu-translatez-good'
+  },
+  {
+    id: 'performance-video-autoplay-performance',
+    category: 'performance',
+    source: 'rauno',
+    title: 'Pause Off-Screen Videos',
+    description: 'Auto-playing too many videos chokes the device — pause or unmount off-screen videos',
+    sourceQuote: 'Auto-playing too many videos on iOS will choke the device, pause or even unmount off-screen videos.',
+    additionalExplanation: 'Each playing video consumes CPU and GPU resources. On mobile devices especially, having multiple videos playing simultaneously can cause the device to lag, overheat, and drain battery. Use IntersectionObserver to only play videos visible in the viewport.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'performance-video-autoplay-performance-bad',
+    goodExampleKey: 'performance-video-autoplay-performance-good'
+  },
+  {
+    id: 'performance-refs-bypass-render',
+    category: 'performance',
+    source: 'rauno',
+    title: 'Bypass React Render with Refs',
+    description: 'Use refs for real-time values that update the DOM directly to avoid unnecessary re-renders',
+    sourceQuote: 'Bypass React\'s render lifecycle with refs for real-time values that can commit to the DOM directly.',
+    additionalExplanation: 'For high-frequency updates like mouse position tracking, scroll values, or animation frames, using useState causes a full component re-render on every update. Using refs and updating the DOM directly bypasses the React render cycle entirely, achieving the same visual result with zero re-renders.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'performance-refs-bypass-render-bad',
+    goodExampleKey: 'performance-refs-bypass-render-good'
+  },
+
+  // Accessibility
+  {
+    id: 'interactions-disabled-no-tooltips',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'No Tooltips on Disabled Buttons',
+    description: 'Disabled buttons should not have tooltips — they are not accessible to keyboard users',
+    sourceQuote: 'Disabled buttons should not have tooltips, they are not accessible.',
+    additionalExplanation: 'Disabled buttons cannot receive focus in the DOM, so keyboard users will never see the tooltip. Instead of hiding the reason behind an inaccessible tooltip, use aria-disabled with a visible explanation text so everyone can understand why the action is unavailable.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-disabled-no-tooltips-bad',
+    goodExampleKey: 'interactions-disabled-no-tooltips-good'
+  },
+  {
+    id: 'interactions-list-delete-shortcut',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'List Delete Keyboard Shortcut',
+    description: 'Focusable elements in a sequential list should be navigable with arrows and deletable with Cmd+Backspace',
+    sourceQuote: 'Focusable elements in a sequential list should be navigable with ↑ ↓. Focusable elements in a sequential list should be deletable with ⌘ Backspace.',
+    additionalExplanation: 'Lists of focusable items should support arrow key navigation between items and a keyboard shortcut for deletion. This follows the pattern established by native applications and gives keyboard users full control without reaching for the mouse.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-list-delete-shortcut-bad',
+    goodExampleKey: 'interactions-list-delete-shortcut-good'
+  },
+  {
+    id: 'interactions-mousedown-dropdown',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Dropdown Menus on Mousedown',
+    description: 'Dropdown menus should trigger on mousedown for immediate response, not on click',
+    sourceQuote: 'To open immediately on press, dropdown menus should trigger on mousedown, not click.',
+    additionalExplanation: 'The click event fires on mouseup — after the button is released. For dropdown menus that should feel instant, triggering on mousedown removes the perceived delay between pressing and seeing the menu appear.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-mousedown-dropdown-bad',
+    goodExampleKey: 'interactions-mousedown-dropdown-good'
+  },
+  {
+    id: 'interactions-svg-favicon-theme',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'SVG Favicon with Theme Support',
+    description: 'Use an SVG favicon with a style tag that adapts to light/dark mode via prefers-color-scheme',
+    sourceQuote: 'Use a svg favicon with a style tag that adheres to the system theme based on prefers-color-scheme.',
+    additionalExplanation: 'PNG favicons are static and can become invisible against a dark browser tab bar. SVG favicons can include a <style> block with prefers-color-scheme media queries, automatically adapting to the user\'s system theme.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-svg-favicon-theme-bad',
+    goodExampleKey: 'interactions-svg-favicon-theme-good'
+  },
+  {
+    id: 'interactions-gradient-text-selection',
+    category: 'interactions',
+    source: 'rauno',
+    title: 'Gradient Text Selection',
+    description: 'Gradient text should unset the gradient on ::selection state for readability',
+    sourceQuote: 'Gradient text should unset the gradient on ::selection state.',
+    additionalExplanation: 'When users select gradient text, the gradient effect combined with the selection highlight makes the text unreadable. Override ::selection to use a solid color and unset -webkit-text-fill-color so selected text remains legible.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'interactions-gradient-text-selection-bad',
+    goodExampleKey: 'interactions-gradient-text-selection-good'
+  },
+
+  // Design
+  {
+    id: 'design-selection-styling',
+    category: 'design',
+    source: 'rauno',
+    title: 'Custom Selection Styling',
+    description: 'Style the document selection state with ::selection to match the brand',
+    sourceQuote: 'Style the document selection state with ::selection.',
+    additionalExplanation: 'The default browser selection color is a generic blue that rarely matches your design. Customizing ::selection with your brand colors creates a more cohesive and polished experience. It\'s a small detail that shows attention to craft.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' },
+      { text: 'MDN ::selection', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/::selection' }
+    ],
+    badExampleKey: 'design-selection-styling-bad',
+    goodExampleKey: 'design-selection-styling-good'
+  },
+  {
+    id: 'design-feedback-near-trigger',
+    category: 'design',
+    source: 'rauno',
+    title: 'Feedback Near Trigger',
+    description: 'Display feedback relative to its trigger — show inline confirmation, not distant notifications',
+    sourceQuote: 'Display feedback relative to its trigger: Show a temporary inline checkmark on a successful copy, not a notification. Highlight the relevant input(s) on form error(s).',
+    additionalExplanation: 'When feedback appears far from the action that triggered it, users may miss it entirely. Showing confirmation inline — like a checkmark replacing a copy button or highlighting the specific input with an error — keeps attention where it belongs.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'design-feedback-near-trigger-bad',
+    goodExampleKey: 'design-feedback-near-trigger-good'
+  },
+  {
+    id: 'design-server-auth-redirect',
+    category: 'design',
+    source: 'rauno',
+    title: 'Server-Side Auth Redirects',
+    description: 'Authentication redirects should happen on the server to avoid janky client-side URL changes',
+    sourceQuote: 'Authentication redirects should happen on the server before the client loads to avoid janky URL changes.',
+    additionalExplanation: 'Client-side auth checks load the protected page first, then redirect to login after JavaScript executes — causing a visible flash of the wrong page and a jarring URL change. Server-side redirects (302) send users directly to the login page before any content loads.',
+    sourceLinks: [
+      { text: 'interfaces.rauno.me', url: 'https://interfaces.rauno.me/' }
+    ],
+    badExampleKey: 'design-server-auth-redirect-bad',
+    goodExampleKey: 'design-server-auth-redirect-good'
   }
 ];
