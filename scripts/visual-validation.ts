@@ -264,7 +264,7 @@ function main() {
         console.error('Usage: add <principleId> <category> <title> <issue> <severity>');
         process.exit(1);
       }
-      addIssue(report, principleId, category, title, issue, severity as any);
+      addIssue(report, principleId, category, title, issue, severity as 'critical' | 'high' | 'medium' | 'low');
       saveReport(report);
       console.log(`Added issue for ${principleId}`);
       break;

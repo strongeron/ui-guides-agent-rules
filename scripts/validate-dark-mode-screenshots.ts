@@ -60,7 +60,7 @@ function getPrinciples(): PrincipleInfo[] {
   }
 
   const principlesText = principlesMatch[1];
-  const principleBlocks = principlesText.split(/\n  },\n  {/).map((block, i, arr) => {
+  const principleBlocks = principlesText.split(/\n {2}},\n {2}{/).map((block, i, arr) => {
     if (i === 0) return block.replace(/^\s*{/, '');
     if (i === arr.length - 1) return block.replace(/}\s*$/, '');
     return block;
@@ -85,34 +85,6 @@ function getPrinciples(): PrincipleInfo[] {
   }
 
   return principles;
-}
-
-// Get principle IDs from the data file (for backwards compatibility)
-function getPrincipleIds(): string[] {
-  return getPrinciples().map(p => p.id);
-}
-
-// Sample principles evenly from each category
-function samplePrinciples(ids: string[], sampleSize: number = 10): string[] {
-  const categories = new Map<string, string[]>();
-
-  for (const id of ids) {
-    const category = id.split('-')[0];
-    if (!categories.has(category)) {
-      categories.set(category, []);
-    }
-    categories.get(category)!.push(id);
-  }
-
-  const sampled: string[] = [];
-  const perCategory = Math.ceil(sampleSize / categories.size);
-
-  for (const [, categoryIds] of categories) {
-    const shuffled = categoryIds.sort(() => Math.random() - 0.5);
-    sampled.push(...shuffled.slice(0, perCategory));
-  }
-
-  return sampled.slice(0, sampleSize);
 }
 
 async function capturePrinciple(

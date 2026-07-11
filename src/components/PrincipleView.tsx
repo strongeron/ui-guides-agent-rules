@@ -54,7 +54,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
               Bad Example
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 min-h-[300px] flex items-center justify-center">
+          <CardContent className="p-6 min-h-[200px] flex items-center justify-center">
             <ExampleRenderer exampleKey={principle.badExampleKey} />
           </CardContent>
         </Card>
@@ -66,7 +66,7 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
               Good Example
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 min-h-[300px] flex items-center justify-center">
+          <CardContent className="p-6 min-h-[200px] flex items-center justify-center">
             <ExampleRenderer exampleKey={principle.goodExampleKey} />
           </CardContent>
         </Card>

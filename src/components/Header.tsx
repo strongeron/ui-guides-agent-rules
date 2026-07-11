@@ -29,8 +29,8 @@ export function Header({ onMenuToggle, searchQuery, onSearchChange, isDesktop = 
               <HugeiconsIcon icon={Menu01Icon} size={18} />
             </Button>
           )}
-          <a href="#" className="font-semibold text-foreground whitespace-nowrap">
-            Web UI Guide
+          <a href="/" className="font-semibold text-foreground whitespace-nowrap">
+            UI Guides
           </a>
         </div>
 
@@ -57,7 +57,7 @@ export function Header({ onMenuToggle, searchQuery, onSearchChange, isDesktop = 
         <div className="flex items-center gap-1 flex-shrink-0 ml-auto">
           <Button variant="ghost" size="icon" asChild className="h-9 w-9">
             <a
-              href="https://github.com/strongeron/web-ui_guide_react"
+              href="https://github.com/strongeron/ui-guides"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub repository"

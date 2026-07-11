@@ -75,16 +75,3 @@ export async function Code({ codeblock }: CodeProps) {
     />
   );
 }
-
-// Sync version for client-side rendering (Vite SPA)
-export function CodeSync({ codeblock }: CodeProps) {
-  // For client-side, we'll use a simpler approach
-  // The actual highlighting happens via the MDX transform
-  return (
-    <Pre
-      code={codeblock as any}
-      handlers={handlers}
-      className="p-4 rounded-lg bg-[#0d1117] text-sm overflow-x-auto font-mono"
-    />
-  );
-}

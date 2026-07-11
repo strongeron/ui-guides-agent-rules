@@ -85,7 +85,7 @@ function parsePrinciples(): Principle[] {
   const principlesText = principlesMatch[1];
 
   // Match each principle block
-  const principleBlocks = principlesText.split(/\n  },\n  {/).map((block, i, arr) => {
+  const principleBlocks = principlesText.split(/\n {2}},\n {2}{/).map((block, i, arr) => {
     if (i === 0) return block.replace(/^\s*{/, '');
     if (i === arr.length - 1) return block.replace(/}\s*$/, '');
     return block;

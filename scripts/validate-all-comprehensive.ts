@@ -114,7 +114,8 @@ function loadResults(): Partial<ComprehensiveReport['summary']> {
     summary.theme = data.themeAnalysis;
 
     // Count issues from summaries
-    let total = 0, critical = 0, high = 0, medium = 0, low = 0;
+    let total = 0, medium = 0;
+    const critical = 0, high = 0, low = 0;
     for (const s of data.summaries) {
       total += s.invalid;
       medium += s.themeIssues; // Theme issues are medium

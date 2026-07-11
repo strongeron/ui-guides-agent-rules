@@ -591,7 +591,7 @@ function FocusCodeBlock() {
 
   useEffect(() => {
     highlight({ value: code, lang: 'javascript', meta: '' }, theme).then(setHighlighted);
-  }, [theme]);
+  }, [code, theme]);
 
   if (!highlighted) return <div className="animate-pulse bg-muted h-48 rounded-lg" />;
 
@@ -660,7 +660,7 @@ function MarkCodeBlock() {
 
   useEffect(() => {
     highlight({ value: code, lang: 'css', meta: '' }, theme).then(setHighlighted);
-  }, [theme]);
+  }, [code, theme]);
 
   if (!highlighted) return <div className="animate-pulse bg-muted h-32 rounded-lg" />;
 
@@ -728,7 +728,7 @@ function DiffCodeBlock() {
 
   useEffect(() => {
     highlight({ value: code, lang: 'tsx', meta: '' }, theme).then(setHighlighted);
-  }, [theme]);
+  }, [code, theme]);
 
   if (!highlighted) return <div className="animate-pulse bg-muted h-48 rounded-lg" />;
 

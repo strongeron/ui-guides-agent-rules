@@ -4,8 +4,8 @@
  * Uses Playwright to capture screenshots of examples in light/dark mode
  */
 
-import { chromium, Browser, Page } from '@playwright/test';
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { chromium } from '@playwright/test';
+import { readFileSync, mkdirSync, existsSync } from 'fs';
 import { join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -16,6 +16,12 @@ const rootDir = join(__dirname, '..');
 
 const BASE_URL = 'http://localhost:5173';
 const SCREENSHOTS_DIR = join(rootDir, 'doc/screenshots');
+
+interface ValidationResultRow {
+  id: string;
+  category: string;
+  issues: unknown[];
+}
 
 interface CaptureOptions {
   principleId: string;
@@ -228,13 +234,13 @@ async function main() {
       }
 
       const validation = JSON.parse(readFileSync(validationPath, 'utf-8'));
-      let principles = validation.results.filter((r: any) => r.issues.length > 0);
+      let principles = (validation.results as ValidationResultRow[]).filter((r) => r.issues.length > 0);
 
       if (category) {
-        principles = principles.filter((r: any) => r.category === category);
+        principles = principles.filter((r) => r.category === category);
       }
 
-      const ids = principles.map((r: any) => r.id).slice(0, 20); // Limit to 20 at a time
+      const ids = principles.map((r) => r.id).slice(0, 20); // Limit to 20 at a time
       console.log(`Capturing ${ids.length} principles...`);
       await captureBatchScreenshots(ids, prefix);
       break;
@@ -252,10 +258,10 @@ async function main() {
 
       const validationPath = join(rootDir, 'doc/validation-results.json');
       const validation = JSON.parse(readFileSync(validationPath, 'utf-8'));
-      const principles = validation.results.filter((r: any) => r.category === categoryName);
+      const principles = (validation.results as ValidationResultRow[]).filter((r) => r.category === categoryName);
 
       console.log(`Capturing ${principles.length} principles in ${categoryName}...`);
-      const ids = principles.map((r: any) => r.id);
+      const ids = principles.map((r) => r.id);
       await captureBatchScreenshots(ids, prefix);
       break;
     }

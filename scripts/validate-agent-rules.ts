@@ -119,7 +119,10 @@ function getExamplePaths(principleId: string): { good?: string; bad?: string } {
   if (!existsSync(validationPath)) return {};
 
   const validation = JSON.parse(readFileSync(validationPath, 'utf-8'));
-  const result = validation.results.find((r: any) => r.id === principleId);
+  const result = validation.results.find(
+    (r: { id: string; goodExampleAnalysis?: { path?: string }; badExampleAnalysis?: { path?: string } }) =>
+      r.id === principleId
+  );
 
   if (!result) return {};
 
