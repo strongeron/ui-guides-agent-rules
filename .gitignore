@@ -38,3 +38,15 @@ playwright-report/
 test-results/
 .playwright/
 .playwright-mcp/
+
+# Local task tracking (untracked, kept out of the repo)
+.beads/
+
+# Generated validation artifacts + screenshots
+screenshots/
+doc/*-results.json
+doc/comprehensive-validation.*
+doc/validation-report.md
+doc/validation-results.json
+doc/visual-validation-*
+doc/agent-rules-alignment.json

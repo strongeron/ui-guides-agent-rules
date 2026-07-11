@@ -80,8 +80,15 @@ export function AgentRuleCard({
   };
 
   return (
-    <Card className={cn('overflow-hidden', className)}>
-      <CardHeader className="pb-2">
+    <Card
+      className={cn(
+        'group overflow-hidden gap-0 py-5 cursor-pointer transition-colors hover:border-foreground/15 hover:bg-foreground/[0.03] dark:hover:bg-foreground/[0.06]',
+        className
+      )}
+      onClick={handleCopy}
+      title="Click to copy this rule"
+    >
+      <CardHeader className="pb-3 gap-0">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Badge variant="outline" className={cn('font-semibold', config.className)}>
@@ -113,13 +120,16 @@ export function AgentRuleCard({
         )}
       </CardContent>
 
-      <CardFooter className="pt-0">
+      <CardFooter className="pt-4">
         <Button
           variant="outline"
           size="sm"
-          onClick={handleCopy}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleCopy();
+          }}
           aria-label="Copy agent rule"
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto transition-colors hover:bg-foreground/10 hover:text-foreground group-hover:border-foreground/25"
         >
           {copied ? (
             <>

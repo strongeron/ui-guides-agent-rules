@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
 import { CodeHikeDemo } from './components/CodeHikeDemo';
+import { CommandPalette } from './components/CommandPalette';
 import { SkipLink } from './components/SkipLink';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { principles } from './data/principles';
@@ -12,7 +13,7 @@ import type { PatternSource } from './types/principle';
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [selectedSources, setSelectedSources] = useState<PatternSource[]>([]);
   const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(false);
 
@@ -59,6 +60,18 @@ function App() {
       setCurrentIndex(index);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }, []);
+
+  // ⌘K / Ctrl+K toggles the command palette
+  useEffect(() => {
+    const handlePaletteKey = (e: KeyboardEvent) => {
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsPaletteOpen((open) => !open);
+      }
+    };
+    window.addEventListener('keydown', handlePaletteKey);
+    return () => window.removeEventListener('keydown', handlePaletteKey);
   }, []);
 
   // Keyboard navigation
@@ -117,13 +130,18 @@ function App() {
   }, [currentPrinciple.title, showCodeHikeDemo]);
 
   return (
-    <div className="min-h-screen bg-muted">
+    <div className="min-h-screen bg-background">
       <SkipLink />
       <Header
         onMenuToggle={() => setIsSidebarOpen(true)}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchClick={() => setIsPaletteOpen(true)}
         isDesktop={isDesktop}
+      />
+
+      <CommandPalette
+        open={isPaletteOpen}
+        onOpenChange={setIsPaletteOpen}
+        onSelect={handlePrincipleSelect}
       />
 
       <Sidebar
@@ -132,7 +150,6 @@ function App() {
         principles={principles}
         currentPrincipleId={showCodeHikeDemo ? 'codehike-demo' : currentPrinciple.id}
         onPrincipleSelect={handlePrincipleSelect}
-        searchQuery={searchQuery}
         selectedSources={selectedSources}
         onSourcesChange={setSelectedSources}
         availableSources={availableSources}

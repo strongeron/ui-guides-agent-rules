@@ -1,11 +1,12 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Cancel01Icon } from '@hugeicons/core-free-icons';
+import { Cancel01Icon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
 import { categories } from '../data/principles';
 import { Principle, PrincipleCategory, PatternSource } from '../types/principle';
 import { Button } from '@/components/ui/button';
 import { SourceFilter } from './SourceFilter';
 import { SIDEBAR_FOCUS_DELAY_MS, SIDEBAR_WIDTH_CLASS } from '@/constants/ui';
+import { categoryIcons, fallbackCategoryIcon } from '@/constants/categories';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -13,7 +14,6 @@ interface SidebarProps {
   principles: Principle[];
   currentPrincipleId: string;
   onPrincipleSelect: (principleId: string) => void;
-  searchQuery: string;
   selectedSources: PatternSource[];
   onSourcesChange: (sources: PatternSource[]) => void;
   availableSources: PatternSource[];
@@ -27,7 +27,6 @@ export function Sidebar({
   principles,
   currentPrincipleId,
   onPrincipleSelect,
-  searchQuery,
   selectedSources,
   onSourcesChange,
   availableSources,
@@ -36,27 +35,23 @@ export function Sidebar({
   const sidebarRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
+  const [collapsedCategories, setCollapsedCategories] = useState<Set<string>>(new Set());
 
-  // Filter principles based on search query and selected sources
-  const filteredPrinciples = principles.filter((p) => {
-    // Source filter (empty selection means show all)
-    const matchesSource =
+  const toggleCategory = (categoryId: string) => {
+    setCollapsedCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(categoryId)) next.delete(categoryId);
+      else next.add(categoryId);
+      return next;
+    });
+  };
+
+  // Filter principles by selected sources (empty selection = show all)
+  const filteredPrinciples = principles.filter(
+    (p) =>
       selectedSources.length === 0 ||
-      (p.source && selectedSources.includes(p.source));
-
-    // Search filter
-    const matchesSearch = (() => {
-      if (!searchQuery.trim()) return true;
-      const query = searchQuery.toLowerCase();
-      return (
-        p.title.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query)
-      );
-    })();
-
-    return matchesSource && matchesSearch;
-  });
+      (p.source && selectedSources.includes(p.source))
+  );
 
   const groupedPrinciples = categories.reduce(
     (acc, category) => {
@@ -150,7 +145,7 @@ export function Sidebar({
           fixed top-14 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background border-r border-border
           transition-[left] duration-300 ease-in-out
           ${isDesktop
-            ? 'left-0 z-30 shadow-none'
+            ? 'left-0 z-30'
             : `z-50 shadow-2xl ${isOpen ? 'left-0' : '-left-80'}`
           }
         `}
@@ -184,69 +179,68 @@ export function Sidebar({
           />
         </div>
 
-        <nav className="overflow-y-auto overscroll-contain h-[calc(100%-65px)]">
+        <nav className="overflow-y-auto overflow-x-hidden overscroll-contain h-[calc(100%-65px)]">
           {filteredPrinciples.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
-              <p className="text-sm">No principles found</p>
-              <p className="text-xs mt-1">Try a different search term</p>
+              <p className="text-sm">No rules for this source</p>
+              <p className="text-xs mt-1">Clear the source filter to see all</p>
             </div>
           ) : (
             categories.map((category) => {
               const categoryPrinciples = groupedPrinciples[category.id];
               if (!categoryPrinciples?.length) return null;
 
+              const isCollapsed = collapsedCategories.has(category.id);
+              const CategoryIcon = categoryIcons[category.id] ?? fallbackCategoryIcon;
+
               return (
                 <div key={category.id} className="border-b border-border">
-                  <div className="px-4 py-2 bg-muted/50">
-                    <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
-                      {category.title}
-                    </h3>
-                  </div>
-                  <ul>
-                    {categoryPrinciples.map((principle) => (
-                      <li key={principle.id}>
-                        <Button
-                          variant="ghost"
-                          onClick={() => handlePrincipleClick(principle.id)}
-                          className={`w-full justify-start rounded-none px-4 py-2 h-auto text-sm hover:bg-muted ${
-                            currentPrincipleId === principle.id
-                              ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary'
-                              : 'text-foreground border-l-2 border-transparent'
-                          }`}
-                        >
-                          {principle.title}
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
+                  <button
+                    type="button"
+                    onClick={() => toggleCategory(category.id)}
+                    aria-expanded={!isCollapsed}
+                    className="sticky top-0 z-10 w-full flex items-center justify-between gap-2 px-4 py-3 bg-background hover:bg-foreground/[0.04] transition-colors"
+                  >
+                    <span className="flex items-center gap-2 min-w-0">
+                      <HugeiconsIcon
+                        icon={ArrowDown01Icon}
+                        size={12}
+                        className={`text-muted-foreground shrink-0 transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}`}
+                        aria-hidden="true"
+                      />
+                      <CategoryIcon className="size-4 shrink-0 text-foreground" aria-hidden="true" />
+                      <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider truncate">
+                        {category.title}
+                      </h3>
+                    </span>
+                    <span className="text-[11px] font-medium tabular-nums rounded px-1.5 py-0.5 bg-muted text-muted-foreground">
+                      {categoryPrinciples.length}
+                    </span>
+                  </button>
+                  {!isCollapsed && (
+                    <ul>
+                      {categoryPrinciples.map((principle) => (
+                        <li key={principle.id}>
+                          <Button
+                            variant="ghost"
+                            onClick={() => handlePrincipleClick(principle.id)}
+                            className={`w-full justify-start rounded-none pl-15 pr-4 py-2 h-auto text-sm text-left whitespace-normal leading-snug transition-colors hover:bg-foreground/[0.06] dark:hover:bg-foreground/[0.06] hover:text-foreground focus-visible:border-transparent focus-visible:ring-inset focus-visible:ring-foreground/25 ${
+                              currentPrincipleId === principle.id
+                                ? 'bg-foreground/10 text-foreground font-medium'
+                                : 'text-foreground'
+                            }`}
+                          >
+                            {principle.title}
+                          </Button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               );
             })
           )}
 
-          {/* Demos Section */}
-          <div className="border-b border-border">
-            <div className="px-4 py-2 bg-muted/50">
-              <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider">
-                Demos
-              </h3>
-            </div>
-            <ul>
-              <li>
-                <Button
-                  variant="ghost"
-                  onClick={() => handlePrincipleClick('codehike-demo')}
-                  className={`w-full justify-start rounded-none px-4 py-2 h-auto text-sm hover:bg-muted ${
-                    currentPrincipleId === 'codehike-demo'
-                      ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary'
-                      : 'text-foreground border-l-2 border-transparent'
-                  }`}
-                >
-                  CodeHike Demo
-                </Button>
-              </li>
-            </ul>
-          </div>
         </nav>
       </aside>
     </>

@@ -40,6 +40,25 @@
       content="200 web interface principles, each with a good and bad example you can tab through. Accessibility, performance, forms, motion — agent-ready."
     />
     <meta name="twitter:image" content="https://ui-guides.netlify.app/og-image.png" />
+
+    <!-- Resolve theme before first paint (OS preference by default) to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme-preference');
+          var theme = stored || 'system';
+          var isDark =
+            theme === 'dark' ||
+            (theme === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var cls = isDark ? 'dark' : 'light';
+          document.documentElement.classList.add(cls);
+          document.documentElement.style.colorScheme = cls;
+        } catch (e) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
