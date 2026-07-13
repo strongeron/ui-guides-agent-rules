@@ -1,54 +1,30 @@
-import { useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 export function IbelickAccessiblePrimitivesGood() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Note: In production, use Radix DropdownMenu:
-  // import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-  // <DropdownMenu.Root>
-  //   <DropdownMenu.Trigger>Open Menu</DropdownMenu.Trigger>
-  //   <DropdownMenu.Portal>
-  //     <DropdownMenu.Content>
-  //       <DropdownMenu.Item>Option 1</DropdownMenu.Item>
-  //     </DropdownMenu.Content>
-  //   </DropdownMenu.Portal>
-  // </DropdownMenu.Root>
-
   return (
     <div className="space-y-4">
-      <div className="relative">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-haspopup="menu"
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg"
-        >
-          Open Menu (Radix)
-        </button>
-        {isOpen && (
-          <div
-            role="menu"
-            className="absolute top-full mt-2 w-48 bg-popover border rounded-lg shadow-lg p-2"
-          >
-            <button
-              role="menuitem"
-              className="w-full text-left px-3 py-2 hover:bg-muted rounded"
-              onClick={() => setIsOpen(false)}
-            >
-              Option 1
-            </button>
-            <button
-              role="menuitem"
-              className="w-full text-left px-3 py-2 hover:bg-muted rounded"
-              onClick={() => setIsOpen(false)}
-            >
-              Option 2
-            </button>
-          </div>
-        )}
-      </div>
+      <p className="text-sm text-muted-foreground">
+        Open it, then press Escape, Tab, or click outside. It all works, and none of it is hand-written.
+      </p>
+      {/* A real Radix primitive: focus management, Escape, click-outside and ARIA come with it. */}
+      <Popover>
+        <PopoverTrigger className="px-4 py-2 bg-primary text-primary-foreground rounded-lg transition-colors duration-150 ease-out hover:bg-primary/90">
+          Open menu
+        </PopoverTrigger>
+        <PopoverContent align="start" className="w-48 p-2">
+          <button className="w-full text-left px-3 py-2 rounded text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            Rename
+          </button>
+          <button className="w-full text-left px-3 py-2 rounded text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            Duplicate
+          </button>
+          <button className="w-full text-left px-3 py-2 rounded text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            Delete
+          </button>
+        </PopoverContent>
+      </Popover>
       <p className="text-xs text-success">
-        Radix handles keyboard nav, focus trap, ARIA, and Escape to close
+        A real Radix primitive gives focus management, Escape to close, click-outside dismissal and the right ARIA for free
       </p>
     </div>
   );

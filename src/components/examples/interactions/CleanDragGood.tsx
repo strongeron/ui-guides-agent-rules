@@ -30,24 +30,30 @@ export function CleanDragGood() {
           Drag items to reorder. Clean drag - no text selection:
         </p>
         <div className="space-y-2">
-          {items.map((item, index) => (
-            <div
-              key={item}
-              draggable
-              onDragStart={() => handleDragStart(index)}
-              onDragOver={(e) => handleDragOver(e, index)}
-              onDragEnd={handleDragEnd}
-              className={`p-3 bg-muted border border-border rounded-lg cursor-grab select-none ${
-                draggedIndex === index ? 'opacity-50' : ''
-              } ${draggedIndex !== null && draggedIndex !== index ? 'pointer-events-none' : ''}`}
-            >
-              {item} - Text won't select during drag
-            </div>
-          ))}
+          {items.map((item, index) => {
+            const isOtherItem = draggedIndex !== null && draggedIndex !== index;
+            return (
+              <div
+                key={item}
+                draggable
+                onDragStart={() => handleDragStart(index)}
+                onDragOver={(e) => handleDragOver(e, index)}
+                onDragEnd={handleDragEnd}
+                // inert takes the other items out of the focus and accessibility tree
+                // while a drag is in flight, which pointer-events-none alone does not do.
+                inert={isOtherItem ? '' : undefined}
+                className={`p-3 bg-muted border border-border rounded-lg cursor-grab select-none ${
+                  draggedIndex === index ? 'opacity-50' : ''
+                }`}
+              >
+                {item} - Text won't select during drag
+              </div>
+            );
+          })}
         </div>
       </div>
       <p className="text-xs text-success mt-4">
-        select-none and pointer-events-none during drag
+        <code>select-none</code> stops text selection, and <code>inert</code> removes the other items from the focus and accessibility tree while dragging
       </p>
     </div>
   );

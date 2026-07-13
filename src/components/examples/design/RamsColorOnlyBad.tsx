@@ -1,28 +1,26 @@
+const rows = [
+  { name: 'Payment', tone: 'bg-success' },
+  { name: 'Connection', tone: 'bg-destructive' },
+  { name: 'Disk space', tone: 'bg-warning' },
+];
+
 export function RamsColorOnlyBad() {
   return (
     <div className="w-full max-w-sm space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-3">Color Only Status</h4>
-        <div className="space-y-3 p-3 bg-muted rounded-lg">
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-success" />
-            <span>Online</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-destructive" />
-            <span>Offline</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-warning" />
-            <span>Away</span>
-          </div>
-        </div>
-        <div className="mt-3 bg-muted rounded p-2 font-mono text-xs">
-          <code className="text-error">Only colored dots - no pattern or icon</code>
-        </div>
+        <h4 className="font-medium mb-3">Status</h4>
+        <ul className="space-y-3 p-3 bg-muted rounded-lg">
+          {rows.map((r) => (
+            <li key={r.name} className="flex items-center justify-between text-sm">
+              <span>{r.name}</span>
+              <span className={`size-3 rounded-full ${r.tone}`} />
+            </li>
+          ))}
+        </ul>
       </div>
-      <p className="text-xs text-error">
-        Colorblind users see three identical gray dots
+      <p className="text-xs text-destructive">
+        The status is carried by the dot colour alone. In greyscale, or to a colourblind user, all three rows look
+        identical
       </p>
     </div>
   );
