@@ -103,9 +103,24 @@ function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target instanceof HTMLElement ? e.target : null;
+
       if (
         e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement
+        e.target instanceof HTMLTextAreaElement ||
+        e.target instanceof HTMLSelectElement ||
+        target?.isContentEditable
+      ) {
+        return;
+      }
+
+      // Don't hijack the arrow keys from widgets that own them (menus, listboxes,
+      // dialogs, popovers, tabs). Otherwise navigating inside an example would
+      // jump to the next rule instead.
+      if (
+        target?.closest(
+          '[role="menu"],[role="listbox"],[role="dialog"],[role="radiogroup"],[role="tablist"],[data-slot="popover-content"],[data-radix-popper-content-wrapper]'
+        )
       ) {
         return;
       }
