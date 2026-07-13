@@ -20,6 +20,10 @@ npm run preview      # Preview production build
 npm run lint         # ESLint check
 npm run typecheck    # TypeScript type checking
 
+# Data / Sources
+npm run validate       # Field completeness + example mapping + theme checks
+npm run check:sources  # Check upstream skill sources for new/uncovered rules
+
 # Testing
 npm test             # Run tests once
 npm run test:watch   # Run tests in watch mode
@@ -36,7 +40,7 @@ npm run test:e2e:principle # Run principle visual tests only
 
 ### Data Flow
 
-1. **Principles Data** (`src/data/principles.ts`): Array of `Principle` objects containing metadata, descriptions, and example keys
+1. **Principles Data** (`src/data/principles/`): The single source of truth, split into one module per category (`interactions.ts`, `animations.ts`, `layout.ts`, `content.ts`, `forms.ts`, `performance.ts`, `design.ts`, `aesthetics.ts`). `index.ts` is the barrel that re-exports `categories` (from `categories.ts`) and a flat, category-grouped `principles` array. Import from `@/data/principles` — never a category file directly.
 2. **Agent Rules** (`src/data/agentRules.ts`): Companion rules for AI agents, keyed by principle ID with type-safe linking
 3. **Example Renderer** (`src/components/ExampleRenderer.tsx`): Auto-discovers example components via `import.meta.glob`
 
@@ -60,9 +64,10 @@ Examples are **automatically discovered** - no manual registration needed. Just:
 3. The file path is converted to a key: `forms/EnterSubmitsBad.tsx` → `forms-enter-submits-bad`
 
 To add a new principle:
-1. Add the `Principle` object to `src/data/principles.ts` with matching example keys
-2. Create Good/Bad example components in the appropriate category folder
+1. Add the `Principle` object to the matching category module in `src/data/principles/{category}.ts` with example keys
+2. Create Good/Bad example components in the appropriate category folder (the derived key must match `badExampleKey`/`goodExampleKey` exactly — beware acronym casing, e.g. `ZIndex` → `zindex`, not `z-index`)
 3. Optionally add an agent rule to `src/data/agentRules.ts`
+4. Verify: `npm run typecheck && npm run validate`
 
 ### Types
 
@@ -98,14 +103,24 @@ interface AgentRule {
 
 Rules are keyed by principle ID with type-safe linking to ensure every rule maps to a valid principle.
 
-### MDX Content Structure
+### Source Sync System
 
-Principles are stored as MDX files in `content/principles/{category}/` (animations, content, design, forms, interactions, layout, performance).
+Rules are hand-transcribed from upstream "skill" sources, so a small sync system keeps us aligned. The authority is the **source catalog** `src/data/sources.ts` (`sourceCatalog`), which mirrors the Obsidian provenance report *"UI · Animation · Design Skills — Source Directory 2026"*. It's decoupled from the app's `PatternSource`/badge system: a source can be catalogued (for coverage) before any of its rules are onboarded. Each entry has a `check` mode:
+- **`github`** — rules live as raw markdown bullet/numbered lists (`rawUrls`). Verified auto-diffable: Vercel `command.md`, Rauno `README.md`, Emil Kowalski `review-animations/SKILL.md`.
+- **`manual`** — no diffable rule file; reminded on a `reviewEveryDays` cadence.
 
-Each MDX file has frontmatter (id, category, source, title, description, example keys) and uses custom components:
-- `<Callout type="quote|info|warning|tip">` - Highlighted boxes
-- `<ExampleComparison badKey="..." goodKey="..." />` - Side-by-side examples
-- `<CodeBlock title="..." language="tsx">` - Syntax-highlighted code
+Scripts (shared extraction in `scripts/lib/rules.ts` — tokenize/extract/classify/fetch):
+- `npm run check:sources` — freshness. Fetches github sources, extracts rules, fuzzy-diffs against the whole corpus, writes uncovered ones to `doc/pending-rules.json` (flagged `needs-examples`, with auto-classified category + tags). `-- --mark-reviewed=<id>` stamps a manual source (`doc/source-review-state.json`).
+- `npm run sources:build -- <id> [--limit=N]` — onboard a source: fetch → extract → classify category + tags → scaffold `status:'draft'` Principle entries into `src/data/principles/drafts.ts`. Requires the source to have `check.mode:'github'` + a `patternSource` (add to the `PatternSource` union + a `source-registry.ts` badge first).
+- `npm run sources:catalog` — diffs `sourceCatalog` against the Obsidian report → flags report repos not yet catalogued. `-- --report="/path"` to override.
+
+**Drafts** (`draftPrinciples` in `src/data/principles/drafts.ts`) are NOT in the `principles` array, so they're hidden from the app until promoted: author their Good/Bad examples, move the entry into its category module, drop `status`. Never auto-mutates published data.
+
+**Tags** — `src/data/tags.ts` derives cross-cutting filter tags (motion, a11y, typography, forms, color…) at runtime from category + keywords, merged with explicit `tags`. Applied in the barrel via `withTags()`, surfaced by the sidebar `TagFilter` (alongside `SourceFilter`).
+
+See `doc/specs/2026-07-12-source-freshness-sync.md`.
+
+> Note: the MDX content layer under `content/principles/` was removed — it duplicated `principles.ts` and was never rendered by the app. `principles/**` is now the sole source of truth.
 
 ### UI Components (shadcn/ui + Radix)
 
