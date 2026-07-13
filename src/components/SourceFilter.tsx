@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import type { PatternSource } from '@/types/principle';
-import { sourceRegistry } from './source-registry';
+import { SourceBadge } from './SourceBadge';
 
 interface SourceFilterProps {
   selectedSources: PatternSource[];
@@ -39,14 +39,21 @@ export function SourceFilter({
     onSourcesChange([]);
   };
 
-  const getButtonLabel = () => {
+  /** Show the real source badges once a subset is selected, so the trigger matches the list. */
+  const renderButtonLabel = () => {
     if (selectedSources.length === 0 || selectedSources.length === availableSources.length) {
-      return 'All sources';
+      return <span className="text-sm">All sources</span>;
     }
-    if (selectedSources.length === 1) {
-      return sourceRegistry[selectedSources[0]].name;
-    }
-    return `${selectedSources.length} sources`;
+    const shown = selectedSources.slice(0, 2);
+    const rest = selectedSources.length - shown.length;
+    return (
+      <span className="flex items-center gap-1 min-w-0">
+        {shown.map((s) => (
+          <SourceBadge key={s} source={s} size="sm" />
+        ))}
+        {rest > 0 && <span className="text-xs text-muted-foreground">+{rest}</span>}
+      </span>
+    );
   };
 
   const isAllSelected = selectedSources.length === availableSources.length;
@@ -86,9 +93,9 @@ export function SourceFilter({
         onClick={() => setOpen(!open)}
         className={cn('w-full justify-between', className)}
       >
-        <span className="flex items-center gap-2">
-          <HugeiconsIcon icon={FilterIcon} size={16} className="text-muted-foreground" />
-          {getButtonLabel()}
+        <span className="flex items-center gap-2 min-w-0">
+          <HugeiconsIcon icon={FilterIcon} size={16} className="text-muted-foreground shrink-0" />
+          {renderButtonLabel()}
         </span>
         <HugeiconsIcon
           icon={ArrowDown01Icon}
@@ -109,7 +116,7 @@ export function SourceFilter({
           <button
             type="button"
             onClick={isAllSelected || isNoneSelected ? selectAll : clearAll}
-            className="w-full px-3 py-2 text-left text-xs text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-t-md"
+            className="w-full px-3 py-2 text-left text-xs text-muted-foreground hover:bg-muted hover:text-foreground rounded-t-md"
           >
             {isAllSelected || isNoneSelected ? 'Select all' : 'Clear all'}
           </button>
@@ -119,7 +126,6 @@ export function SourceFilter({
               Sources
             </div>
             {availableSources.map((source) => {
-              const info = sourceRegistry[source];
               const isSelected = selectedSources.includes(source);
 
               return (
@@ -127,21 +133,14 @@ export function SourceFilter({
                   key={source}
                   type="button"
                   onClick={() => toggleSource(source)}
-                  className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
+                  className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-muted"
                 >
                   <Checkbox
                     checked={isSelected || isNoneSelected}
                     className="pointer-events-none"
                     aria-hidden="true"
                   />
-                  <span
-                    className={cn(
-                      'size-2 rounded-full',
-                      info.color.split(' ')[0]
-                    )}
-                    aria-hidden="true"
-                  />
-                  <span>{info.name}</span>
+                  <SourceBadge source={source} size="sm" />
                 </button>
               );
             })}

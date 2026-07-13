@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
+import { SourcesPage } from './components/SourcesPage';
 import { CodeHikeDemo } from './components/CodeHikeDemo';
 import { CommandPalette } from './components/CommandPalette';
 import { SkipLink } from './components/SkipLink';
@@ -11,11 +12,21 @@ import { principles } from './data/principles';
 import type { PatternSource } from './types/principle';
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Resolve the principle from the URL hash synchronously, so a deep link isn't
+  // clobbered by the hash-sync effect on first commit.
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    if (typeof window === 'undefined') return 0;
+    const hash = window.location.hash.slice(1);
+    const i = principles.findIndex((p) => p.id === hash);
+    return i === -1 ? 0 : i;
+  });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [selectedSources, setSelectedSources] = useState<PatternSource[]>([]);
-  const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const initialHash = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
+  const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(initialHash === 'codehike-demo');
+  const [showSources, setShowSources] = useState(initialHash === 'sources');
 
   // Desktop/tablet: sidebar always visible (md breakpoint = 768px)
   const isDesktop = useMediaQuery('(min-width: 768px)');
@@ -27,6 +38,13 @@ function App() {
       if (p.source) sources.add(p.source);
     });
     return Array.from(sources);
+  }, []);
+
+  // Compute available tags from principles data (sorted)
+  const availableTags = useMemo(() => {
+    const tags = new Set<string>();
+    principles.forEach((p) => p.tags?.forEach((t) => tags.add(t)));
+    return Array.from(tags).sort();
   }, []);
 
   const currentPrinciple = principles[currentIndex];
@@ -55,11 +73,19 @@ function App() {
     }
 
     setShowCodeHikeDemo(false);
+    setShowSources(false);
     const index = principles.findIndex((p) => p.id === principleId);
     if (index !== -1) {
       setCurrentIndex(index);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }, []);
+
+  const handleShowSources = useCallback(() => {
+    setShowSources(true);
+    setShowCodeHikeDemo(false);
+    window.history.replaceState(null, '', '#sources');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   // ⌘K / Ctrl+K toggles the command palette
@@ -104,6 +130,8 @@ function App() {
     const hash = window.location.hash.slice(1);
     if (hash === 'codehike-demo') {
       setShowCodeHikeDemo(true);
+    } else if (hash === 'sources') {
+      setShowSources(true);
     } else if (hash) {
       setShowCodeHikeDemo(false);
       const index = principles.findIndex((p) => p.id === hash);
@@ -115,19 +143,21 @@ function App() {
 
   // Update URL hash when principle changes
   useEffect(() => {
-    if (!showCodeHikeDemo) {
+    if (!showCodeHikeDemo && !showSources) {
       window.history.replaceState(null, '', `#${currentPrinciple.id}`);
     }
-  }, [currentPrinciple.id, showCodeHikeDemo]);
+  }, [currentPrinciple.id, showCodeHikeDemo, showSources]);
 
   // Dynamic page title
   useEffect(() => {
-    if (showCodeHikeDemo) {
+    if (showSources) {
+      document.title = 'Sources - Web Interface Guidelines';
+    } else if (showCodeHikeDemo) {
       document.title = 'CodeHike Demo - Web Interface Guidelines';
     } else {
       document.title = `${currentPrinciple.title} - Web Interface Guidelines`;
     }
-  }, [currentPrinciple.title, showCodeHikeDemo]);
+  }, [currentPrinciple.title, showCodeHikeDemo, showSources]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -135,6 +165,7 @@ function App() {
       <Header
         onMenuToggle={() => setIsSidebarOpen(true)}
         onSearchClick={() => setIsPaletteOpen(true)}
+        onSourcesClick={handleShowSources}
         isDesktop={isDesktop}
       />
 
@@ -148,23 +179,28 @@ function App() {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
         principles={principles}
-        currentPrincipleId={showCodeHikeDemo ? 'codehike-demo' : currentPrinciple.id}
+        currentPrincipleId={showSources ? 'sources' : showCodeHikeDemo ? 'codehike-demo' : currentPrinciple.id}
         onPrincipleSelect={handlePrincipleSelect}
         selectedSources={selectedSources}
         onSourcesChange={setSelectedSources}
         availableSources={availableSources}
+        selectedTags={selectedTags}
+        onTagsChange={setSelectedTags}
+        availableTags={availableTags}
         isDesktop={isDesktop}
       />
 
       <main id="main-content" className={`min-h-screen pt-14 ${isDesktop ? 'ml-80' : ''}`}>
-        {showCodeHikeDemo ? (
+        {showSources ? (
+          <SourcesPage />
+        ) : showCodeHikeDemo ? (
           <CodeHikeDemo />
         ) : (
           <PrincipleView principle={currentPrinciple} />
         )}
       </main>
 
-      {!showCodeHikeDemo && (
+      {!showCodeHikeDemo && !showSources && (
         <Navigation
           onPrevious={handlePrevious}
           onNext={handleNext}

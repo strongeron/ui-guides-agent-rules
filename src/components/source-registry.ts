@@ -49,14 +49,14 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     name: '@Ibelick',
     description: 'UI Skills - opinionated constraints for better interfaces',
     url: 'https://www.ui-skills.com/',
-    color: 'bg-amber-500 text-white border-amber-500',
+    color: 'bg-amber-700 text-white border-amber-700',
   },
   'claude-code': {
     id: 'claude-code',
     name: 'Claude Code',
     description: 'Rules from Claude Code research on animation, performance & accessibility',
     url: 'https://claude.ai/code',
-    color: 'bg-[#d97706] text-white border-[#d97706]',
+    color: 'bg-[#c2410c] text-white border-[#c2410c]',
   },
   anthropic: {
     id: 'anthropic',
@@ -71,6 +71,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     description: 'Interface details from interfaces.rauno.me by Rauno Freiberg',
     url: 'https://interfaces.rauno.me/',
     color: 'bg-emerald-600 text-white border-emerald-600',
+  },
+  emilkowalski: {
+    id: 'emilkowalski',
+    name: 'Emil Kowalski',
+    description: 'Animation and motion standards from Emil Kowalski',
+    url: 'https://emilkowalski.com/',
+    color: 'bg-violet-700 text-white border-violet-700',
   },
   custom: {
     id: 'custom',

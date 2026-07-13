@@ -5,6 +5,7 @@ import { categories } from '../data/principles';
 import { Principle, PrincipleCategory, PatternSource } from '../types/principle';
 import { Button } from '@/components/ui/button';
 import { SourceFilter } from './SourceFilter';
+import { TagFilter } from './TagFilter';
 import { SIDEBAR_FOCUS_DELAY_MS, SIDEBAR_WIDTH_CLASS } from '@/constants/ui';
 import { categoryIcons, fallbackCategoryIcon } from '@/constants/categories';
 
@@ -17,6 +18,9 @@ interface SidebarProps {
   selectedSources: PatternSource[];
   onSourcesChange: (sources: PatternSource[]) => void;
   availableSources: PatternSource[];
+  selectedTags: string[];
+  onTagsChange: (tags: string[]) => void;
+  availableTags: string[];
   /** Whether we're on a screen size where sidebar is always visible */
   isDesktop?: boolean;
 }
@@ -30,6 +34,9 @@ export function Sidebar({
   selectedSources,
   onSourcesChange,
   availableSources,
+  selectedTags,
+  onTagsChange,
+  availableTags,
   isDesktop = false,
 }: SidebarProps) {
   const sidebarRef = useRef<HTMLElement>(null);
@@ -46,12 +53,12 @@ export function Sidebar({
     });
   };
 
-  // Filter principles by selected sources (empty selection = show all)
-  const filteredPrinciples = principles.filter(
-    (p) =>
-      selectedSources.length === 0 ||
-      (p.source && selectedSources.includes(p.source))
-  );
+  // Filter principles by selected sources AND tags (empty selection = show all)
+  const filteredPrinciples = principles.filter((p) => {
+    const sourceOk = selectedSources.length === 0 || (p.source && selectedSources.includes(p.source));
+    const tagOk = selectedTags.length === 0 || (p.tags?.some((t) => selectedTags.includes(t)) ?? false);
+    return sourceOk && tagOk;
+  });
 
   const groupedPrinciples = categories.reduce(
     (acc, category) => {
@@ -170,20 +177,25 @@ export function Sidebar({
           </div>
         )}
 
-        {/* Source filter */}
-        <div className="p-4 border-b border-border">
+        {/* Source + tag filters */}
+        <div className="p-4 border-b border-border space-y-2">
           <SourceFilter
             selectedSources={selectedSources}
             onSourcesChange={onSourcesChange}
             availableSources={availableSources}
           />
+          <TagFilter
+            selectedTags={selectedTags}
+            onTagsChange={onTagsChange}
+            availableTags={availableTags}
+          />
         </div>
 
-        <nav className="overflow-y-auto overflow-x-hidden overscroll-contain h-[calc(100%-65px)]">
+        <nav className="overflow-y-auto overflow-x-hidden overscroll-contain h-[calc(100%-113px)]">
           {filteredPrinciples.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
-              <p className="text-sm">No rules for this source</p>
-              <p className="text-xs mt-1">Clear the source filter to see all</p>
+              <p className="text-sm">No rules match these filters</p>
+              <p className="text-xs mt-1">Clear the source or tag filter to see all</p>
             </div>
           ) : (
             categories.map((category) => {

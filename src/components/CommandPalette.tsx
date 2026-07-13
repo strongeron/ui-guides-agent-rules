@@ -81,7 +81,12 @@ export function CommandPalette({ open, onOpenChange, onSelect }: CommandPaletteP
                 <CommandItem
                   key={principle.id}
                   value={principle.title}
-                  keywords={[category.title, principle.source ?? '', principle.description]}
+                  keywords={[
+                    category.title,
+                    principle.source ?? '',
+                    principle.description,
+                    ...(principle.tags ?? []),
+                  ]}
                   onSelect={() => handleSelect(principle.id)}
                   className="gap-3"
                 >
