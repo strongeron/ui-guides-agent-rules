@@ -1,18 +1,33 @@
+const rows = Array.from({ length: 20 }, (_, i) => i);
+
 export function GpuTranslateZGood() {
   return (
     <div className="w-full max-w-sm space-y-4">
-      <div className="bg-card border border-border rounded-lg p-4 space-y-3">
-        <div className="space-y-2">
-          <div className="p-2 bg-muted rounded text-sm text-foreground">Static text element</div>
-          <div className="p-2 bg-muted rounded text-sm text-foreground">Another static element</div>
-          <div className="p-2 bg-primary/10 rounded text-sm text-foreground" style={{ transform: 'translateZ(0)' }}>
-            ✨ Animated element (GPU accelerated)
-          </div>
-          <div className="p-2 bg-muted rounded text-sm text-foreground">No animation here</div>
+      <style>{`
+        @keyframes gpuSlide { from { transform: translateX(0); } to { transform: translateX(140px); } }
+      `}</style>
+
+      <div className="bg-card border border-border rounded-lg p-3">
+        <div className="relative h-8 mb-2 rounded bg-muted/50 overflow-hidden">
+          {/* Only the element that actually animates is promoted. */}
+          <div
+            className="absolute top-1 size-6 rounded bg-primary"
+            style={{ animation: 'gpuSlide 1.4s ease-in-out infinite alternate', willChange: 'transform' }}
+          />
         </div>
-        <code className="text-xs bg-muted px-2 py-1 rounded text-foreground block">.animated {'{'} transform: translateZ(0) {'}'}</code>
+        <div className="max-h-28 overflow-y-auto space-y-1 pr-1">
+          {rows.map((i) => (
+            <div key={i} className="p-1.5 bg-muted rounded text-xs">
+              Static row {i + 1}
+            </div>
+          ))}
+        </div>
       </div>
-      <p className="text-xs text-success">translateZ(0) only on elements that need GPU acceleration</p>
+
+      <p className="text-xs text-success">
+        The same motion, but only the moving square is promoted. The 20 static rows stay on the normal paint path and
+        cost no GPU memory
+      </p>
     </div>
   );
 }

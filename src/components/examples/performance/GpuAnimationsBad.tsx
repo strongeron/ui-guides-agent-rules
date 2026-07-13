@@ -1,25 +1,25 @@
+import { blockMainThread } from '@/lib/demo';
+
 export function GpuAnimationsBad() {
   return (
     <div className="w-full max-w-sm space-y-4">
-      <div className="flex gap-4 justify-center">
-        <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:mt-[-4px] hover:mb-[4px] transition-all duration-200">
-          Hover me
-        </button>
-        <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:w-[120px] transition-all duration-200">
-          Expand
-        </button>
+      <p className="text-sm text-muted-foreground">Click "Run heavy task" and watch the box.</p>
+      <div className="relative h-12 rounded-lg bg-muted/50 overflow-hidden">
+        <div
+          className="absolute top-2 size-8 rounded-md bg-primary"
+          style={{ animation: 'gpuBadMargin 1.6s ease-in-out infinite alternate' }}
+        />
       </div>
-      <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-2">Layout-Triggering Properties</h4>
-        <ul className="text-sm text-muted-foreground space-y-1">
-          <li><code className="text-xs bg-muted px-1 rounded">margin</code> - triggers layout</li>
-          <li><code className="text-xs bg-muted px-1 rounded">width/height</code> - triggers layout</li>
-          <li><code className="text-xs bg-muted px-1 rounded">top/left</code> - triggers layout</li>
-          <li><code className="text-xs bg-muted px-1 rounded">padding</code> - triggers layout</li>
-        </ul>
-      </div>
-      <p className="text-xs text-error">
-        Layout properties cause expensive recalculations, dropping below 60fps
+      <button
+        onClick={() => blockMainThread(800)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+      >
+        Run heavy task (0.8s)
+      </button>
+      <style>{`@keyframes gpuBadMargin { from { margin-left: 8px; } to { margin-left: 176px; } }`}</style>
+      <p className="text-xs text-destructive">
+        Animating <code>margin</code> (a layout property) runs on the main thread, so the box freezes the moment the
+        thread is busy
       </p>
     </div>
   );

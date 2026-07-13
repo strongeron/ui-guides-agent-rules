@@ -1,32 +1,21 @@
 import { useState } from 'react';
+import { Switch } from '@/components/ui/switch';
 
 export function IbelickExistingComponentsGood() {
   const [isOn, setIsOn] = useState(false);
 
-  // Uses the existing Switch component from shadcn/ui
-  // which is built on Radix UI Switch primitive
-
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <span className="text-sm">shadcn/ui Switch:</span>
-        <button
-          role="switch"
-          aria-checked={isOn}
-          onClick={() => setIsOn(!isOn)}
-          className={`relative w-12 h-6 rounded-full cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-            isOn ? 'bg-primary' : 'bg-muted'
-          }`}
-        >
-          <div
-            className={`absolute top-1 size-4 bg-white rounded-full transition-transform ${
-              isOn ? 'translate-x-7' : 'translate-x-1'
-            }`}
-          />
-        </button>
+        <label htmlFor="notifications" className="text-sm">
+          Email notifications
+        </label>
+        {/* The actual Switch from the design system, built on Radix. */}
+        <Switch id="notifications" checked={isOn} onCheckedChange={setIsOn} />
       </div>
       <p className="text-xs text-success">
-        Existing Switch component: keyboard, ARIA, focus ring built-in
+        The existing <code>Switch</code> is imported from the design system, so keyboard support, ARIA state and the
+        focus ring come with it rather than being reimplemented
       </p>
     </div>
   );

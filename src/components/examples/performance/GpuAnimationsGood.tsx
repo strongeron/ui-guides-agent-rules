@@ -1,25 +1,25 @@
+import { blockMainThread } from '@/lib/demo';
+
 export function GpuAnimationsGood() {
   return (
     <div className="w-full max-w-sm space-y-4">
-      <div className="flex gap-4 justify-center">
-        <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:-translate-y-1 hover:shadow-lg transition-transform duration-200">
-          Hover me
-        </button>
-        <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:scale-105 transition-transform duration-200">
-          Scale up
-        </button>
+      <p className="text-sm text-muted-foreground">Click "Run heavy task" and watch the box.</p>
+      <div className="relative h-12 rounded-lg bg-muted/50 overflow-hidden">
+        <div
+          className="absolute top-2 left-2 size-8 rounded-md bg-primary"
+          style={{ animation: 'gpuGoodTransform 1.6s ease-in-out infinite alternate' }}
+        />
       </div>
-      <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-2">GPU-Accelerated Properties</h4>
-        <ul className="text-sm text-muted-foreground space-y-1">
-          <li><code className="text-xs bg-muted px-1 rounded">translate-y</code> - vertical movement</li>
-          <li><code className="text-xs bg-muted px-1 rounded">scale</code> - size changes</li>
-          <li><code className="text-xs bg-muted px-1 rounded">rotate</code> - rotation</li>
-          <li><code className="text-xs bg-muted px-1 rounded">opacity</code> - fading</li>
-        </ul>
-      </div>
+      <button
+        onClick={() => blockMainThread(800)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+      >
+        Run heavy task (0.8s)
+      </button>
+      <style>{`@keyframes gpuGoodTransform { from { transform: translateX(0); } to { transform: translateX(168px); } }`}</style>
       <p className="text-xs text-success">
-        Transform animations run at 60fps on the GPU compositor thread
+        The same motion via <code>transform</code> is handed to the compositor, so it keeps gliding even while the main
+        thread is blocked
       </p>
     </div>
   );
