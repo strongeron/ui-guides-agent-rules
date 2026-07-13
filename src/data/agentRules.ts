@@ -958,6 +958,24 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'aesthetics-font-pairing': {
     priority: 'SHOULD',
     rule: 'Pair a distinctive display font (serif or geometric sans) for headlines with a refined body font for content. Same font everywhere creates flat hierarchy. Limit to 2 font families; use font-display: swap.'
+  },
+
+  // Animations - Emil Kowalski: match motion to frequency
+  'animations-emil-frequency': {
+    priority: 'SHOULD',
+    rule: 'Match motion to how often an action happens. Keyboard-initiated and 100+/day actions get no animation; reserve delight for rare or first-time moments.'
+  },
+
+  // Animations - Emil Kowalski: asymmetric enter/exit
+  'animations-emil-asymmetric': {
+    priority: 'SHOULD',
+    rule: 'Use asymmetric timing: deliberate user actions animate slower, system responses and exits snap. Symmetric enter/exit timing makes dismissals feel sluggish.'
+  },
+
+  // Animations - Emil Kowalski: stagger group entrances
+  'animations-emil-stagger': {
+    priority: 'SHOULD',
+    rule: 'Stagger entrance animations for groups of items by 30–80ms. A whole list animating at once reads as a single flash.'
   }
 };
 

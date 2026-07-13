@@ -8,28 +8,12 @@ import { readFileSync, readdirSync, existsSync, writeFileSync } from 'fs';
 import { join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { principles } from '../src/data/principles';
+import type { Principle } from '../src/types/principle';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
-
-interface SourceLink {
-  text: string;
-  url: string;
-}
-
-interface Principle {
-  id: string;
-  category: string;
-  source?: string;
-  title: string;
-  description: string;
-  sourceQuote: string;
-  additionalExplanation: string;
-  sourceLinks: SourceLink[];
-  badExampleKey: string;
-  goodExampleKey: string;
-}
 
 interface ExampleAnalysis {
   path: string;
@@ -67,78 +51,6 @@ interface CategorySummary {
   invalid: number;
   themeIssues: number;
   issues: { id: string; issues: string[] }[];
-}
-
-// Parse principles from the source file
-function parsePrinciples(): Principle[] {
-  const principlesPath = join(rootDir, 'src/data/principles.ts');
-  const content = readFileSync(principlesPath, 'utf-8');
-
-  // Extract the principles array using regex
-  const principlesMatch = content.match(/export const principles: Principle\[\] = \[([\s\S]*?)\];/);
-  if (!principlesMatch) {
-    throw new Error('Could not parse principles array');
-  }
-
-  // Parse each principle object
-  const principles: Principle[] = [];
-  const principlesText = principlesMatch[1];
-
-  // Match each principle block
-  const principleBlocks = principlesText.split(/\n {2}},\n {2}{/).map((block, i, arr) => {
-    if (i === 0) return block.replace(/^\s*{/, '');
-    if (i === arr.length - 1) return block.replace(/}\s*$/, '');
-    return block;
-  });
-
-  for (const block of principleBlocks) {
-    if (!block.trim()) continue;
-
-    const getId = (b: string) => b.match(/id:\s*['"]([^'"]+)['"]/)?.[1] || '';
-    const getCategory = (b: string) => b.match(/category:\s*['"]([^'"]+)['"]/)?.[1] || '';
-    const getSource = (b: string) => b.match(/source:\s*['"]([^'"]+)['"]/)?.[1];
-    const getTitle = (b: string) => b.match(/title:\s*['"]([^'"]+)['"]/)?.[1] || '';
-    const getDescription = (b: string) => b.match(/description:\s*['"]([^'"]+)['"]/)?.[1] || '';
-    const getSourceQuote = (b: string) => {
-      const match = b.match(/sourceQuote:\s*['"](.+?)['"]\s*,\s*\n/s);
-      return match?.[1] || '';
-    };
-    const getAdditionalExplanation = (b: string) => {
-      const match = b.match(/additionalExplanation:\s*['"](.+?)['"]\s*,\s*\n/s);
-      return match?.[1] || '';
-    };
-    const getBadExampleKey = (b: string) => b.match(/badExampleKey:\s*['"]([^'"]+)['"]/)?.[1] || '';
-    const getGoodExampleKey = (b: string) => b.match(/goodExampleKey:\s*['"]([^'"]+)['"]/)?.[1] || '';
-
-    // Parse sourceLinks array
-    const sourceLinksMatch = block.match(/sourceLinks:\s*\[([\s\S]*?)\]/);
-    const sourceLinks: SourceLink[] = [];
-    if (sourceLinksMatch) {
-      const linksText = sourceLinksMatch[1];
-      const linkMatches = linksText.matchAll(/{\s*text:\s*['"]([^'"]+)['"]\s*,\s*url:\s*['"]([^'"]+)['"]\s*}/g);
-      for (const match of linkMatches) {
-        sourceLinks.push({ text: match[1], url: match[2] });
-      }
-    }
-
-    const id = getId(block);
-    if (id) {
-      principles.push({
-        id,
-        category: getCategory(block),
-        source: getSource(block),
-        title: getTitle(block),
-        description: getDescription(block),
-        sourceQuote: getSourceQuote(block),
-        additionalExplanation: getAdditionalExplanation(block),
-        sourceLinks,
-        badExampleKey: getBadExampleKey(block),
-        goodExampleKey: getGoodExampleKey(block),
-      });
-    }
-  }
-
-  return principles;
 }
 
 // Find all example component files and map keys to paths
@@ -329,7 +241,6 @@ function validatePrinciple(
 function main() {
   console.log('🔍 Validating Principles with Theme Support Analysis...\n');
 
-  const principles = parsePrinciples();
   const exampleComponents = findExampleComponents();
 
   console.log(`Found ${principles.length} principles`);

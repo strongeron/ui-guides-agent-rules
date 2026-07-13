@@ -15,9 +15,10 @@
  */
 
 import { chromium, Browser, Page } from 'playwright';
-import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { principles as principlesData } from '../src/data/principles';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -47,44 +48,9 @@ interface PrincipleInfo {
   title: string;
 }
 
-// Get principle IDs and titles from the data file
+// Get principle IDs and titles directly from the typed data modules.
 function getPrinciples(): PrincipleInfo[] {
-  const principlesPath = join(rootDir, 'src/data/principles.ts');
-  const content = readFileSync(principlesPath, 'utf-8');
-
-  const principles: PrincipleInfo[] = [];
-
-  const principlesMatch = content.match(/export const principles: Principle\[\] = \[([\s\S]*?)\];/);
-  if (!principlesMatch) {
-    throw new Error('Could not parse principles array');
-  }
-
-  const principlesText = principlesMatch[1];
-  const principleBlocks = principlesText.split(/\n {2}},\n {2}{/).map((block, i, arr) => {
-    if (i === 0) return block.replace(/^\s*{/, '');
-    if (i === arr.length - 1) return block.replace(/}\s*$/, '');
-    return block;
-  });
-
-  const unescapeValue = (value: string) =>
-    value.replace(/\\\\/g, '\\').replace(/\\'/g, "'").replace(/\\"/g, '"');
-
-  for (const block of principleBlocks) {
-    if (!block.trim()) continue;
-
-    const idMatch = block.match(/id:\s*['"]([^'"]+)['"]/);
-    const titleMatch =
-      block.match(/title:\s*'((?:\\'|[^'])*)'/) ??
-      block.match(/title:\s*"((?:\\"|[^"])*)"/);
-    if (idMatch && titleMatch) {
-      principles.push({
-        id: idMatch[1],
-        title: unescapeValue(titleMatch[1]),
-      });
-    }
-  }
-
-  return principles;
+  return principlesData.map((p) => ({ id: p.id, title: p.title }));
 }
 
 async function capturePrinciple(

@@ -4,10 +4,11 @@
  * Validates all sourceLink URLs in principles are accessible
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { principles as principlesData } from '../src/data/principles';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -36,29 +37,13 @@ interface PrincipleLinks {
   sourceLinks: SourceLink[];
 }
 
-// Parse principles to extract source links
 function extractSourceLinks(): PrincipleLinks[] {
-  const principlesPath = join(rootDir, 'src/data/principles.ts');
-  const content = readFileSync(principlesPath, 'utf-8');
-  const results: PrincipleLinks[] = [];
-
-  // Match each principle block
-  const principleRegex = /{[^}]*?id:\s*['"]([^'"]+)['"][^}]*?category:\s*['"]([^'"]+)['"][^}]*?title:\s*['"]([^'"]+)['"][^}]*?sourceLinks:\s*\[([\s\S]*?)\][^}]*?}/g;
-
-  let match;
-  while ((match = principleRegex.exec(content)) !== null) {
-    const [, id, category, title, linksText] = match;
-    const sourceLinks: SourceLink[] = [];
-
-    const linkMatches = linksText.matchAll(/{\s*text:\s*['"]([^'"]+)['"]\s*,\s*url:\s*['"]([^'"]+)['"]\s*}/g);
-    for (const linkMatch of linkMatches) {
-      sourceLinks.push({ text: linkMatch[1], url: linkMatch[2] });
-    }
-
-    results.push({ id, category, title, sourceLinks });
-  }
-
-  return results;
+  return principlesData.map((p) => ({
+    id: p.id,
+    category: p.category,
+    title: p.title,
+    sourceLinks: p.sourceLinks,
+  }));
 }
 
 // Check a single URL using native fetch

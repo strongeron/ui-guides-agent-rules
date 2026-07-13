@@ -21,6 +21,7 @@ export type PatternSource =
   | 'claude-code'      // Claude Code suggested rules from research
   | 'anthropic'        // Anthropic frontend-design skill guidelines
   | 'rauno'            // Rauno Freiberg's interfaces.rauno.me
+  | 'emilkowalski'     // Emil Kowalski's animation skills
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {
@@ -31,6 +32,9 @@ export interface PatternSourceInfo {
   rulesUrl?: string;    // Direct URL to raw rules content
   color: string;        // Badge color class
 }
+
+/** A published principle renders normally; a draft is hidden in the app until its examples are authored. */
+export type PrincipleStatus = 'published' | 'draft';
 
 export interface Principle {
   id: string;
@@ -43,6 +47,10 @@ export interface Principle {
   sourceLinks: SourceLink[];
   badExampleKey: string;
   goodExampleKey: string;
+  /** Freeform filter tags (e.g. 'motion', 'a11y', 'typography'). */
+  tags?: string[];
+  /** Defaults to 'published' when omitted. Drafts are hidden from the app. */
+  status?: PrincipleStatus;
 }
 
 export interface SourceLink {
