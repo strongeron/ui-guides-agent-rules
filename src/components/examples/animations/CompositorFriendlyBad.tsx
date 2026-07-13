@@ -1,31 +1,28 @@
 import { useState } from 'react';
 
 export function CompositorFriendlyBad() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [big, setBig] = useState(false);
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="space-y-4">
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        onClick={() => setBig((v) => !v)}
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg transition-colors duration-150 ease-out hover:bg-primary/90"
       >
-        Toggle Panel
+        Toggle size
       </button>
-      <div
-        className={`mt-4 bg-muted rounded-lg overflow-hidden transition-height ${
-          isExpanded ? 'h-[200px]' : 'h-0'
-        }`}
-      >
-        <div className="p-4">
-          <h3 className="font-medium mb-2">Panel Content</h3>
-          <p className="text-sm text-muted-foreground">
-            This panel animates using height, which triggers layout recalculation
-            and can cause jank.
-          </p>
-        </div>
+      <div className="grid place-items-center h-40">
+        <div
+          className="rounded-xl bg-primary"
+          style={{
+            width: big ? 128 : 64,
+            height: big ? 128 : 64,
+            transition: 'width 400ms ease, height 400ms ease',
+          }}
+        />
       </div>
-      <p className="text-xs text-error mt-4">
-        Animating height causes reflows and poor performance
+      <p className="text-xs text-destructive">
+        Growing with <code>width</code>/<code>height</code> runs a layout pass on the main thread every frame
       </p>
     </div>
   );

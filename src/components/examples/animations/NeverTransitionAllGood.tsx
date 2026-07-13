@@ -1,25 +1,16 @@
-import { useState } from 'react';
-
 export function NeverTransitionAllGood() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div className="w-full max-w-sm">
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={`transition-transform-shadow p-4 bg-card border border-border rounded-lg cursor-pointer ${
-          isHovered ? 'scale-105 shadow-xl' : 'scale-100 shadow-sm'
-        }`}
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">Hover the card — only the lift animates.</p>
+      <button
+        type="button"
+        className="block w-48 p-6 rounded-2xl bg-muted text-left text-sm font-medium text-foreground hover:-translate-y-1 hover:rounded-md hover:bg-primary hover:text-primary-foreground"
+        style={{ transition: 'transform 200ms cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
-        <h3 className="font-semibold text-foreground">Hover Me</h3>
-        <p className="text-sm text-muted-foreground mt-1">
-          Only specified properties animate
-        </p>
-      </div>
-
-      <p className="text-xs text-success mt-4">
-        Explicit transitions: transform, box-shadow
+        Hover me
+      </button>
+      <p className="text-xs text-success">
+        Only <code>transform</code> transitions; the color and corners snap instantly — crisp and intentional
       </p>
     </div>
   );

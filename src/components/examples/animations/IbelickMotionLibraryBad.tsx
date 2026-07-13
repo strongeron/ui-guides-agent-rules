@@ -1,45 +1,35 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 export function IbelickMotionLibraryBad() {
-  const [isVisible, setIsVisible] = useState(false);
-  const boxRef = useRef<HTMLDivElement>(null);
-
-  // Manual animation implementation - prone to bugs
-  useEffect(() => {
-    if (!boxRef.current) return;
-    const box = boxRef.current;
-
-    if (isVisible) {
-      box.style.opacity = '0';
-      box.style.transform = 'translateY(20px)';
-      // Force reflow
-      void box.offsetHeight;
-      box.style.transition = 'opacity 0.3s, transform 0.3s';
-      box.style.opacity = '1';
-      box.style.transform = 'translateY(0)';
-    } else {
-      box.style.opacity = '0';
-      box.style.transform = 'translateY(20px)';
-    }
-  }, [isVisible]);
+  const [x, setX] = useState(0);
 
   return (
     <div className="space-y-4">
-      <button
-        onClick={() => setIsVisible(!isVisible)}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg"
-      >
-        Toggle Box
-      </button>
-      <div
-        ref={boxRef}
-        className="p-4 bg-muted rounded-lg opacity-0"
-        style={{ transform: 'translateY(20px)' }}
-      >
-        Animated with manual DOM manipulation
+      <div className="flex gap-2">
+        <button
+          onClick={() => setX((v) => (v ? 0 : 150))}
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Toggle
+        </button>
+        <button
+          onClick={() => setX(Math.random() * 150)}
+          className="px-4 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors text-sm"
+        >
+          Random (interrupt!)
+        </button>
       </div>
-      <p className="text-xs text-destructive mt-4">
-        Manual animation code is error-prone and hard to maintain
+      <div className="h-16 bg-muted/50 rounded-lg relative overflow-hidden">
+        <div
+          className="absolute top-2 size-12 bg-primary rounded-lg flex items-center justify-center text-primary-foreground text-xs font-medium"
+          // BAD: fixed-duration CSS transition, no velocity awareness
+          style={{ transform: `translateX(${x}px)`, transition: 'transform 500ms ease' }}
+        >
+          CSS
+        </div>
+      </div>
+      <p className="text-xs text-destructive">
+        Click "Random" rapidly — a fixed 500ms CSS ease lags behind and re-eases from a standstill instead of responding to velocity
       </p>
     </div>
   );

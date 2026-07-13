@@ -1,30 +1,27 @@
 import { useState } from 'react';
 
 export function IbelickNoLayoutBad() {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="space-y-4">
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg"
+        onClick={() => setOpen((v) => !v)}
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg transition-colors duration-150 ease-out hover:bg-primary/90"
       >
-        {isExpanded ? 'Collapse' : 'Expand'}
+        {open ? 'Collapse' : 'Expand'}
       </button>
       <div
-        className="bg-muted rounded-lg overflow-hidden transition-all duration-300"
-        style={{
-          height: isExpanded ? '120px' : '48px',
-          width: isExpanded ? '100%' : '200px',
-        }}
+        className="overflow-hidden rounded-lg bg-muted"
+        style={{ height: open ? 120 : 0, transition: 'height 300ms ease' }}
       >
         <div className="p-3">
           <p className="font-medium">Panel Content</p>
-          {isExpanded && <p className="text-sm text-muted-foreground mt-2">Additional details here...</p>}
+          <p className="text-sm text-muted-foreground mt-2">The browser recalculates layout on every frame.</p>
         </div>
       </div>
       <p className="text-xs text-destructive">
-        Animating width/height triggers layout recalculation every frame
+        Animating <code>height</code> triggers a layout pass every frame — janky on complex pages
       </p>
     </div>
   );

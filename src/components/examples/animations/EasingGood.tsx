@@ -1,52 +1,26 @@
 import { useState } from 'react';
 
 export function EasingGood() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [replay, setReplay] = useState(0);
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="bg-card border border-border rounded-lg p-4">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="mb-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 flex items-center gap-2"
-        >
-          <span>Toggle Menu</span>
-          <svg
-            className="w-4 h-4"
-            style={{
-              transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-              transition: 'transform 200ms ease-out',
-            }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+    <div className="space-y-4">
+      <button
+        onClick={() => setReplay((v) => v + 1)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+      >
+        Replay
+      </button>
+      <div className="relative h-8 w-64 max-w-full rounded-full bg-muted/50">
         <div
-          className="overflow-hidden"
-          style={{
-            maxHeight: isOpen ? '200px' : '0',
-            transition: isOpen
-              ? 'max-height 250ms ease-out'
-              : 'max-height 200ms ease-in',
-          }}
-        >
-          <div className="p-3 bg-muted rounded-lg">
-            <div className="space-y-2">
-              <div className="p-2 hover:bg-muted rounded">Option 1</div>
-              <div className="p-2 hover:bg-muted rounded">Option 2</div>
-              <div className="p-2 hover:bg-muted rounded">Option 3</div>
-            </div>
-          </div>
-        </div>
-        <p className="mt-3 text-xs text-muted-foreground">
-          ease-out for entering (decelerates), ease-in for leaving (accelerates away). Matches physical expectations.
-        </p>
+          key={replay}
+          className="absolute top-1 left-1 size-6 rounded-full bg-primary"
+          style={{ animation: 'easeRace 1200ms cubic-bezier(0.16, 1, 0.3, 1) both' }}
+        />
       </div>
-      <p className="text-xs text-success mt-4">
-        Contextual easing - ease-out enter, ease-in exit
+      <style>{`@keyframes easeRace { from { transform: translateX(0); } to { transform: translateX(224px); } }`}</style>
+      <p className="text-xs text-success">
+        <code>ease-out</code> — the dot starts fast and eases into place, matching how real objects decelerate and settle
       </p>
     </div>
   );

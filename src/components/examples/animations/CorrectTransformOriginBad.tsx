@@ -1,28 +1,38 @@
 import { useState } from 'react';
 
 export function CorrectTransformOriginBad() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="space-y-4">
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        onClick={() => setOpen((v) => !v)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground transition-colors duration-150 ease-out hover:bg-primary/90"
       >
-        Open Menu
+        {open ? 'Close menu' : 'Open menu'}
       </button>
-      {isOpen && (
-        <div className="animate-scale-in mt-2 bg-card border border-border rounded-lg shadow-lg p-2 space-y-1 origin-center">
-          <button className="w-full text-left px-3 py-2 text-sm hover:bg-muted rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-            Edit
-          </button>
-          <button className="w-full text-left px-3 py-2 text-sm hover:bg-muted rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-            Delete
-          </button>
-        </div>
-      )}
-      <p className="text-xs text-error mt-4">
-        Menu scales from center, disconnected from the button
+      <div className="relative h-44">
+        {open && (
+          <div
+            className="absolute left-0 top-0 w-44 rounded-lg bg-card border border-border shadow-lg p-2 space-y-1"
+            style={{ transformOrigin: 'center', animation: 'originGrow 500ms cubic-bezier(0.16, 1, 0.3, 1)' }}
+          >
+            {['Edit', 'Duplicate', 'Delete'].map((x) => (
+              <div key={x} className="px-3 py-2 text-sm rounded hover:bg-muted">
+                {x}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <style>{`
+        @keyframes originGrow {
+          from { opacity: 0; transform: scale(0.4); }
+          to { opacity: 1; transform: scale(1); }
+        }
+      `}</style>
+      <p className="text-xs text-destructive">
+        <code>transform-origin: center</code> — the menu balloons out of its own middle, floating free of the button
       </p>
     </div>
   );

@@ -1,44 +1,39 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function PauseOffscreenGood() {
-  const [isVisible, setIsVisible] = useState(true);
-  const ref = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
+    const root = rootRef.current;
+    const target = targetRef.current;
+    if (!root || !target) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {
+      root,
+      threshold: 0.5,
+    });
+    io.observe(target);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <div className="space-y-4" ref={ref}>
-      <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
-        <div
-          className="size-8 border-4 border-primary border-t-transparent rounded-full"
-          style={{
-            animation: 'spin 1s linear infinite',
-            // GOOD: Pause animation when not visible
-            animationPlayState: isVisible ? 'running' : 'paused',
-          }}
-        />
-        <span className="text-sm">
-          Loading data... {isVisible ? '(visible)' : '(paused)'}
-        </span>
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">Scroll inside the box — the spinner pauses when hidden.</p>
+      <div ref={rootRef} className="h-32 overflow-y-auto rounded-lg border border-border p-3">
+        <div className="h-28" />
+        <div ref={targetRef} className="flex items-center gap-2 py-2">
+          <span
+            className="inline-block size-6 rounded-full border-4 border-primary border-t-transparent"
+            style={{ animation: 'pauseSpin 1s linear infinite', animationPlayState: visible ? 'running' : 'paused' }}
+          />
+          <span className="text-xs">{visible ? 'running' : 'paused (off-screen)'}</span>
+        </div>
+        <div className="h-28" />
       </div>
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+      <style>{`@keyframes pauseSpin { to { transform: rotate(360deg); } }`}</style>
       <p className="text-xs text-success">
-        ✓ IntersectionObserver pauses animation when off screen - saves CPU/battery
+        An IntersectionObserver pauses the spinner (<code>animation-play-state: paused</code>) once it scrolls out of view
       </p>
     </div>
   );

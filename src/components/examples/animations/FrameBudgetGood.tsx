@@ -1,35 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useFrameRate } from '@/hooks/useFrameRate';
+import { FpsMeter } from '@/components/demo-kit/FpsMeter';
 
 export function FrameBudgetGood() {
-  const [position, setPosition] = useState(0);
+  const [running, setRunning] = useState(false);
+  const fps = useFrameRate(running);
+  const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let animationId: number;
-
-    const animate = () => {
-      // GOOD: Only update React state, let React batch DOM writes
-      // Using transform instead of margin for GPU acceleration
-      setPosition((prev) => (prev + 2) % 200);
-      animationId = requestAnimationFrame(animate);
+    if (!running) return;
+    let raf = 0;
+    let x = 0;
+    let dir = 1;
+    const loop = () => {
+      x += dir * 3;
+      if (x > 160 || x < 0) dir *= -1;
+      // GOOD: one cheap compositor-friendly write per frame, well under budget.
+      if (boxRef.current) boxRef.current.style.transform = `translateX(${x}px)`;
+      raf = requestAnimationFrame(loop);
     };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, []);
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [running]);
 
   return (
     <div className="space-y-4">
-      <div className="h-16 bg-muted rounded-lg overflow-hidden relative">
-        <div
-          className="absolute top-2 left-0 w-12 h-12 bg-success rounded"
-          style={{
-            // GOOD: Using transform (compositor-only property)
-            transform: `translateX(${position}px)`,
-          }}
-        />
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setRunning((v) => !v)}
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+        >
+          {running ? 'Stop' : 'Start'}
+        </button>
+        <FpsMeter fps={running ? fps : 60} />
+      </div>
+      <div className="relative h-12 rounded-lg bg-muted/50 overflow-hidden">
+        <div ref={boxRef} className="absolute top-2 left-0 size-8 rounded-md bg-primary" />
       </div>
       <p className="text-xs text-success">
-        ✓ Uses transform + requestAnimationFrame, stays within 16ms frame budget
+        Only a cheap <code>transform</code> write per frame — the counter holds at 60fps, comfortably inside the 16ms budget
       </p>
     </div>
   );

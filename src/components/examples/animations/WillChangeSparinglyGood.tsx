@@ -1,29 +1,28 @@
 import { useState } from 'react';
 
 export function WillChangeSparinglyGood() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
   const items = Array.from({ length: 6 }, (_, i) => i);
 
   return (
     <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">Hover any card. Same motion, no idle cost.</p>
       <div className="grid grid-cols-3 gap-2">
         {items.map((i) => (
           <div
             key={i}
-            className="h-12 bg-primary rounded flex items-center justify-center text-primary-foreground text-xs font-medium transition-transform duration-200 hover:scale-105"
-            style={{
-              // GOOD: will-change only applied on hover (when animation is imminent)
-              willChange: hoveredCard === i ? 'transform' : 'auto',
-            }}
-            onMouseEnter={() => setHoveredCard(i)}
-            onMouseLeave={() => setHoveredCard(null)}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+            className="h-14 bg-primary rounded flex items-center justify-center text-primary-foreground text-xs font-medium transition-transform duration-200 ease-out hover:scale-105"
+            // GOOD: will-change only while a hover is actually imminent
+            style={{ willChange: hovered === i ? 'transform' : 'auto' }}
           >
             Card {i + 1}
           </div>
         ))}
       </div>
       <p className="text-xs text-success">
-        ✓ will-change applied only during hover - removes after animation, saves GPU memory
+        Same hover scale, but <code>will-change</code> is set only on the card being hovered — no GPU memory reserved while idle
       </p>
     </div>
   );

@@ -1,25 +1,16 @@
-import { useState } from 'react';
-
 export function NeverTransitionAllBad() {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div className="w-full max-w-sm">
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className={`transition-all-bad p-4 bg-card border border-border rounded-lg cursor-pointer ${
-          isHovered ? 'scale-105 shadow-xl' : 'scale-100 shadow-sm'
-        }`}
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">Hover the card — watch the color and corners crawl.</p>
+      <button
+        type="button"
+        className="block w-48 p-6 rounded-2xl bg-muted text-left text-sm font-medium text-foreground hover:-translate-y-1 hover:rounded-md hover:bg-primary hover:text-primary-foreground"
+        style={{ transition: 'all 500ms ease' }}
       >
-        <h3 className="font-semibold text-foreground">Hover Me</h3>
-        <p className="text-sm text-muted-foreground mt-1">
-          Using transition: all can cause jank
-        </p>
-      </div>
-
-      <p className="text-xs text-muted-foreground mt-4">
-        transition: all animates unintended properties
+        Hover me
+      </button>
+      <p className="text-xs text-destructive">
+        <code>transition: all</code> animates every changed property — the color fade and corner morph crawl along and look unintended
       </p>
     </div>
   );

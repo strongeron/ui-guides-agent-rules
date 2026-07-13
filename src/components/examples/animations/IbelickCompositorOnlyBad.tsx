@@ -1,25 +1,24 @@
+import { blockMainThread } from '@/lib/demo';
+
 export function IbelickCompositorOnlyBad() {
   return (
     <div className="space-y-4">
-      <div className="relative h-20 bg-muted rounded-lg overflow-hidden">
+      <p className="text-sm text-muted-foreground">Click "Run heavy task" and watch the box.</p>
+      <div className="relative h-12 rounded-lg bg-muted/50 overflow-hidden">
         <div
-          className="absolute bg-primary text-primary-foreground px-4 py-2 rounded"
-          style={{
-            animation: 'slideLeftBad 2s infinite',
-          }}
-        >
-          Moving Box
-        </div>
+          className="absolute top-2 size-8 rounded-md bg-primary"
+          style={{ animation: 'compLeft 1.6s ease-in-out infinite alternate' }}
+        />
       </div>
-      <style>{`
-        @keyframes slideLeftBad {
-          0% { left: 0; top: 20px; }
-          50% { left: calc(100% - 120px); top: 40px; }
-          100% { left: 0; top: 20px; }
-        }
-      `}</style>
+      <button
+        onClick={() => blockMainThread(800)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+      >
+        Run heavy task (0.8s)
+      </button>
+      <style>{`@keyframes compLeft { from { left: 8px; } to { left: 176px; } }`}</style>
       <p className="text-xs text-destructive">
-        Animating left/top triggers layout on every frame - causes jank
+        Animating <code>left</code> runs on the main thread — the box freezes while it's busy
       </p>
     </div>
   );

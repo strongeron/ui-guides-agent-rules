@@ -1,27 +1,33 @@
+import { useState } from 'react';
+import { ReducedMotionSwitch } from '@/components/demo-kit/ReducedMotionSwitch';
+import { useSimulatedReducedMotion } from '@/hooks/useSimulatedReducedMotion';
+
 export function TailwindMotionVariantsGood() {
+  const reduced = useSimulatedReducedMotion();
+  const [replay, setReplay] = useState(0);
+
   return (
     <div className="space-y-4">
-      {/* GOOD: motion-safe: applies animations only when user allows motion */}
-      <div className="flex gap-3">
-        <div
-          className="size-12 bg-primary rounded-lg motion-safe:animate-bounce motion-reduce:opacity-80"
-          // Only bounces if motion is allowed
-        />
-        <div
-          className="size-12 bg-primary rounded-lg motion-safe:animate-pulse motion-reduce:opacity-80"
-          // Only pulses if motion is allowed
-        />
-        <div
-          className="size-12 bg-primary rounded-lg motion-safe:animate-spin motion-reduce:opacity-80"
-          // Only spins if motion is allowed
-        />
+      <ReducedMotionSwitch />
+      <button
+        onClick={() => setReplay((v) => v + 1)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+      >
+        Replay
+      </button>
+      <div
+        key={replay}
+        className="rounded-lg bg-muted p-3 text-sm"
+        style={{ animation: reduced ? 'tmFade 200ms ease-out' : 'tmSlide 400ms ease-out' }}
+      >
+        {reduced ? 'Fades in (motion-reduce)' : 'Slides in (motion-safe)'}
       </div>
-
+      <style>{`
+        @keyframes tmSlide { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes tmFade { from { opacity: 0; } to { opacity: 1; } }
+      `}</style>
       <p className="text-xs text-success">
-        ✓ motion-safe:animate-* respects prefers-reduced-motion
-      </p>
-      <p className="text-xs text-muted-foreground">
-        motion-reduce: provides alternative styling for reduced motion preference
+        <code>motion-safe:</code> slides, <code>motion-reduce:</code> just fades — toggle to see it swap (this simulates the OS setting)
       </p>
     </div>
   );

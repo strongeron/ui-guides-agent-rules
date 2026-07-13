@@ -1,21 +1,21 @@
 export function PauseOffscreenBad() {
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
-        <div
-          className="size-8 border-4 border-primary border-t-transparent rounded-full"
-          style={{ animation: 'spin 1s linear infinite' }}
-          // BAD: Animation runs forever even when scrolled off screen
-        />
-        <span className="text-sm">Loading data...</span>
+      <p className="text-sm text-muted-foreground">Scroll inside the box — the spinner keeps running when hidden.</p>
+      <div className="h-32 overflow-y-auto rounded-lg border border-border p-3">
+        <div className="h-28" />
+        <div className="flex items-center gap-2 py-2">
+          <span
+            className="inline-block size-6 rounded-full border-4 border-primary border-t-transparent"
+            style={{ animation: 'pauseSpin 1s linear infinite' }}
+          />
+          <span className="text-xs">always running</span>
+        </div>
+        <div className="h-28" />
       </div>
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+      <style>{`@keyframes pauseSpin { to { transform: rotate(360deg); } }`}</style>
       <p className="text-xs text-destructive">
-        ✗ Spinner animates forever even when scrolled off screen - wastes CPU/battery
+        The spinner keeps animating even when scrolled out of view — wasted CPU and battery
       </p>
     </div>
   );

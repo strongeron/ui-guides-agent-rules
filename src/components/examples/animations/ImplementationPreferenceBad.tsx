@@ -1,58 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { blockMainThread } from '@/lib/demo';
 
 export function ImplementationPreferenceBad() {
-  const [position, setPosition] = useState(0);
-  const animationRef = useRef<number>();
-  const startTimeRef = useRef<number>();
-
-  const animate = (timestamp: number) => {
-    if (!startTimeRef.current) startTimeRef.current = timestamp;
-    const progress = (timestamp - startTimeRef.current) / 2000;
-
-    if (progress < 1) {
-      setPosition(Math.sin(progress * Math.PI * 4) * 50 + 50);
-      animationRef.current = requestAnimationFrame(animate);
-    } else {
-      startTimeRef.current = undefined;
-      setPosition(50);
-    }
-  };
-
-  const startAnimation = () => {
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
-    startTimeRef.current = undefined;
-    animationRef.current = requestAnimationFrame(animate);
-  };
+  const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    let raf = 0;
+    let start = 0;
+    const period = 1600;
+    const loop = (t: number) => {
+      if (!start) start = t;
+      const p = ((t - start) % period) / period;
+      const tri = p < 0.5 ? p * 2 : 2 - p * 2; // 0→1→0 triangle wave
+      if (boxRef.current) boxRef.current.style.transform = `translateX(${tri * 160}px)`;
+      raf = requestAnimationFrame(loop);
     };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="bg-card border border-border rounded-lg p-4">
-        <button
-          onClick={startAnimation}
-          className="mb-4 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
-        >
-          Animate
-        </button>
-        <div className="h-16 bg-muted rounded-lg relative">
-          <div
-            className="absolute top-1/2 -translate-y-1/2 w-12 h-12 bg-primary rounded-lg"
-            style={{ left: `${position}%`, transform: `translateX(-50%) translateY(-50%)` }}
-          />
-        </div>
-        <div className="mt-3 bg-error/10 border border-error/20 rounded-lg p-2">
-          <code className="text-xs text-error-foreground font-mono">
-            requestAnimationFrame + setState
-          </code>
-        </div>
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">Click "Run heavy task" and watch the box.</p>
+      <div className="relative h-12 rounded-lg bg-muted/50 overflow-hidden">
+        <div ref={boxRef} className="absolute top-2 left-0 size-8 rounded-md bg-primary" />
       </div>
-      <p className="text-xs text-error mt-4">
-        JS-driven animation blocks main thread, causes jank
+      <button
+        onClick={() => blockMainThread(800)}
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
+      >
+        Run heavy task (0.8s)
+      </button>
+      <p className="text-xs text-destructive">
+        JavaScript drives the transform via <code>requestAnimationFrame</code> on the main thread — it freezes while the thread is busy
       </p>
     </div>
   );

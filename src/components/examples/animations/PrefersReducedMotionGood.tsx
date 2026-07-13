@@ -1,27 +1,24 @@
-import { useState } from 'react';
+import { ReducedMotionSwitch } from '@/components/demo-kit/ReducedMotionSwitch';
+import { useSimulatedReducedMotion } from '@/hooks/useSimulatedReducedMotion';
 
 export function PrefersReducedMotionGood() {
-  const [show, setShow] = useState(false);
+  const reduced = useSimulatedReducedMotion();
 
   return (
-    <div className="w-full max-w-sm">
-      <button
-        onClick={() => setShow(!show)}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        Toggle Card
-      </button>
-
-      {show && (
-        <div className="motion-safe-fade-in-slide mt-4 p-4 bg-card border border-border rounded-lg shadow-lg">
-          <p className="text-sm text-foreground">
-            This card respects your motion preferences.
-          </p>
-        </div>
-      )}
-
-      <p className="text-xs text-success mt-4">
-        Respects prefers-reduced-motion setting
+    <div className="space-y-4">
+      <ReducedMotionSwitch />
+      <div className="h-16 flex items-center rounded-lg bg-muted/50 px-3 overflow-hidden">
+        <div
+          className="size-8 rounded-md bg-primary"
+          style={{
+            animation: reduced ? 'none' : 'rmSlide 1.2s ease-in-out infinite alternate',
+            transform: reduced ? 'translateX(86px)' : undefined,
+          }}
+        />
+      </div>
+      <style>{`@keyframes rmSlide { from { transform: translateX(0); } to { transform: translateX(180px); } }`}</style>
+      <p className="text-xs text-success">
+        Toggle "reduce motion" on and the movement stops — the box simply rests. The content stays, just calm
       </p>
     </div>
   );

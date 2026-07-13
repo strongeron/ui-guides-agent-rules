@@ -1,71 +1,35 @@
 import { useState } from 'react';
+import { ReducedMotionSwitch } from '@/components/demo-kit/ReducedMotionSwitch';
 
 export function IbelickReducedMotionBad() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSpinning, setIsSpinning] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="space-y-4">
-      <div className="flex gap-2">
+      <ReducedMotionSwitch />
+      <div className="flex items-center gap-4">
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg"
+          onClick={() => setOpen((v) => !v)}
+          className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-colors duration-150 ease-out hover:bg-primary/90"
         >
-          Toggle Menu
+          {open ? 'Hide menu' : 'Show menu'}
         </button>
-        <button
-          onClick={() => setIsSpinning(!isSpinning)}
-          className="px-4 py-2 bg-muted rounded-lg"
-        >
-          Toggle Spinner
-        </button>
+        <span
+          className="inline-block size-6 rounded-full border-4 border-primary border-t-transparent"
+          style={{ animation: 'rmSpin 0.8s linear infinite' }}
+        />
       </div>
-
-      {/* BAD: Animation always plays regardless of prefers-reduced-motion */}
-      {isOpen && (
-        <div
-          className="p-4 bg-muted rounded-lg"
-          style={{
-            // BAD: No motion-safe: prefix, no @media query check
-            animation: 'bounceIn 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-          }}
-        >
-          <p className="font-medium">Menu Content</p>
-          <ul className="mt-2 space-y-1 text-sm">
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
-          </ul>
+      {open && (
+        <div className="rounded-lg bg-muted p-3 text-sm" style={{ animation: 'rmBounce 500ms cubic-bezier(0.34, 1.56, 0.64, 1)' }}>
+          Bouncy menu
         </div>
       )}
-
-      {/* BAD: Continuous spinning animation ignores reduced motion preference */}
-      {isSpinning && (
-        <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
-          <div
-            className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full"
-            style={{
-              // BAD: Infinite animation without reduced-motion check
-              animation: 'spin 1s linear infinite',
-            }}
-          />
-          <span className="text-sm">Loading forever...</span>
-        </div>
-      )}
-
       <style>{`
-        @keyframes bounceIn {
-          0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
-          50% { transform: scale(1.1) rotate(5deg); }
-          100% { opacity: 1; transform: scale(1) rotate(0); }
-        }
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        /* BAD: No @media (prefers-reduced-motion: reduce) check! */
+        @keyframes rmSpin { to { transform: rotate(360deg); } }
+        @keyframes rmBounce { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
       `}</style>
       <p className="text-xs text-destructive">
-        Animations ignore prefers-reduced-motion - can trigger vestibular issues
+        The bounce-in menu and the spinner both ignore reduce-motion — jarring for vestibular-sensitive users
       </p>
     </div>
   );
