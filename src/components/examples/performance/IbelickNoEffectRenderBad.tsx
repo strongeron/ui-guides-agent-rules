@@ -36,8 +36,9 @@ export function IbelickNoEffectRenderBad() {
         ))}
       </ul>
       <p className="text-xs text-destructive">
-        The counter jumps by two per keystroke: input sets state, React renders, the effect sets state again, React
-        renders again
+        This counter climbs twice as fast as the Good one: the input sets state, React renders, then the effect sets
+        state again and React renders a second time. (React double-renders in development, so both numbers are
+        doubled. The ratio is the point.)
       </p>
     </div>
   );

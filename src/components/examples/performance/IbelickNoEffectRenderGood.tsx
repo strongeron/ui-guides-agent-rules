@@ -36,7 +36,8 @@ export function IbelickNoEffectRenderGood() {
         ))}
       </ul>
       <p className="text-xs text-success">
-        The counter moves once per keystroke. The filtered list is computed during render, so there is no second pass
+        This counter climbs half as fast. The filtered list is computed during render, so a keystroke costs one render
+        pass instead of two
       </p>
     </div>
   );
