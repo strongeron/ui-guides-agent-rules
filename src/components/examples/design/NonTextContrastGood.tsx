@@ -106,7 +106,7 @@ export function NonTextContrastGood() {
             id="ntc-good-card"
             name="cc-number"
             defaultValue="4242 4242 4242 4242"
-            className="w-full px-3 py-2 rounded-lg border border-foreground/60 bg-card text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 rounded-lg border border-foreground/60 bg-card text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           <div className="flex items-center justify-between gap-2">
             <span className="text-xs text-muted-foreground">Input border vs. card</span>
@@ -119,7 +119,7 @@ export function NonTextContrastGood() {
             type="button"
             role="switch"
             aria-checked={false}
-            className="flex w-full items-center justify-between gap-3 rounded-lg py-1 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex w-full items-center justify-between gap-3 rounded-lg py-1 text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             Email me receipts
             <span ref={trackRef} className="relative h-6 w-11 shrink-0 rounded-full bg-foreground/60">
@@ -136,7 +136,7 @@ export function NonTextContrastGood() {
           <button
             type="button"
             aria-label="Delete card"
-            className="flex h-11 w-11 items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex h-11 w-11 items-center justify-center rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <svg
               ref={iconRef}

@@ -26,7 +26,7 @@ export function IbelickNoEffectRenderBad() {
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
         placeholder="Filter items..."
-        className="w-full px-3 py-2 bg-background border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="w-full px-3 py-2 bg-background border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       />
       <ul className="space-y-1">
         {filteredItems.map((item) => (

@@ -57,7 +57,7 @@ export function DragAlternativeGood() {
                 e.stopPropagation();
                 moveAndKeepFocus(index, index + (e.key === 'ArrowDown' ? 1 : -1));
               }}
-              className="flex size-6 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex size-6 cursor-grab items-center justify-center rounded text-muted-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span aria-hidden="true">⠿</span>
             </button>
@@ -70,7 +70,7 @@ export function DragAlternativeGood() {
               aria-label={`Move ${item} up`}
               disabled={index === 0}
               onClick={() => moveAndKeepFocus(index, index - 1)}
-              className="flex size-6 items-center justify-center rounded text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
+              className="flex size-6 items-center justify-center rounded text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
             >
               <span aria-hidden="true">↑</span>
             </button>
@@ -79,7 +79,7 @@ export function DragAlternativeGood() {
               aria-label={`Move ${item} down`}
               disabled={index === items.length - 1}
               onClick={() => moveAndKeepFocus(index, index + 1)}
-              className="flex size-6 items-center justify-center rounded text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
+              className="flex size-6 items-center justify-center rounded text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
             >
               <span aria-hidden="true">↓</span>
             </button>

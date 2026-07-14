@@ -11,7 +11,7 @@ export function FocusRingShadowGood() {
           <button
             // ring-* compiles to box-shadow, so the ring inherits rounded-full.
             // ring-offset-background paints the gap so the ring reads on any surface.
-            className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-medium outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Rounded button
           </button>

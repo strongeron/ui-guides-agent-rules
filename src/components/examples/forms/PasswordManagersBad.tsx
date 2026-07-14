@@ -26,7 +26,7 @@ export function PasswordManagersBad() {
           onChange={(e) => setPassword(e.target.value)}
           onPaste={blockPaste}
           autoComplete="off"
-          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
         />
         <p className="text-xs text-muted-foreground">Try pasting a password. It is blocked.</p>
       </div>
@@ -43,7 +43,7 @@ export function PasswordManagersBad() {
               value={digit}
               onChange={(e) => handleChange(i, e.target.value)}
               onPaste={blockPaste}
-              className="w-10 h-12 text-center text-lg font-mono bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+              className="w-10 h-12 text-center text-lg font-mono bg-background border border-border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
             />
           ))}
         </div>

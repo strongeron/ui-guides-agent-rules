@@ -25,7 +25,7 @@ export function PointerCancellationBad() {
                 setFiles((prev) => prev.filter((f) => f !== file));
                 setLog(`Deleted "${file}" on pointerdown`);
               }}
-              className="rounded bg-destructive px-2 py-1 text-xs text-destructive-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="rounded bg-destructive px-2 py-1 text-xs text-destructive-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Delete
             </button>
@@ -44,7 +44,7 @@ export function PointerCancellationBad() {
             setFiles(INITIAL);
             setLog(null);
           }}
-          className="shrink-0 rounded border border-border px-2 py-1 text-xs text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="shrink-0 rounded border border-border px-2 py-1 text-xs text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Reset
         </button>

@@ -20,7 +20,7 @@ export function TextReplacementsGood() {
           // Trim on blur, not on change — trimming mid-typing would eat the space
           // the moment a user types it, which fights anyone entering a display name.
           onBlur={(e) => setValue(e.target.value.trim())}
-          className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
 
         <div className="flex gap-2">
@@ -30,7 +30,7 @@ export function TextReplacementsGood() {
               setValue('ada@example.com ');
               setStatus('');
             }}
-            className="px-2.5 py-1.5 text-xs bg-muted text-foreground rounded-md hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="px-2.5 py-1.5 text-xs bg-muted text-foreground rounded-md hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             Autocomplete the address
           </button>
@@ -41,7 +41,7 @@ export function TextReplacementsGood() {
               setValue(clean);
               setStatus(EMAIL.test(clean) ? 'Address accepted' : 'Enter a valid email address');
             }}
-            className="px-2.5 py-1.5 text-xs bg-primary text-primary-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="px-2.5 py-1.5 text-xs bg-primary text-primary-foreground rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             Submit
           </button>

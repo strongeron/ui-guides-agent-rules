@@ -34,7 +34,7 @@ export function ListDeleteShortcutGood() {
             role="option"
             aria-selected={false}
             onKeyDown={(e) => handleKeyDown(e, i)}
-            className="flex items-center justify-between px-3 py-2 rounded text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex items-center justify-between px-3 py-2 rounded text-sm text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <span>{item}</span>
             <span className="text-xs text-muted-foreground">⌘⌫</span>

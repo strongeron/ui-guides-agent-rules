@@ -1,6 +1,8 @@
+// The v4 scale: 2xs, xs, sm, md, lg, xl, 2xl. There is no bare `shadow` class —
+// and v4's `shadow-sm` renders what v3's bare `shadow` used to.
 const cards = [
-  { name: 'Card A', token: 'shadow-sm', cls: 'shadow-sm' },
-  { name: 'Card B', token: 'shadow', cls: 'shadow' },
+  { name: 'Card A', token: 'shadow-xs', cls: 'shadow-xs' },
+  { name: 'Card B', token: 'shadow-sm', cls: 'shadow-sm' },
   { name: 'Card C', token: 'shadow-md', cls: 'shadow-md' },
 ];
 

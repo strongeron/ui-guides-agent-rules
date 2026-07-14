@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 342 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 340 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -35,25 +35,25 @@ https://ui-guides.netlify.app for the corpus.
 Rules are transcribed and attributed to:
 
 - **Vercel** (118 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
-- **Tailwind** (25 rules) — https://tailwindcss.com/docs
+- **Tailwind** (31 rules) — https://tailwindcss.com/docs
 - **RAMS** (24 rules) — https://www.rams.ai/
 - **@Ibelick** (38 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
 - **Emil Kowalski** (18 rules) — https://emilkowalski.com/
-- **WCAG** (8 rules) — https://www.w3.org/WAI/WCAG21/quickref/
+- **WCAG** (9 rules) — https://www.w3.org/WAI/WCAG21/quickref/
 - **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
-- **Claude Code** (13 rules) — https://claude.ai/code
+- **Custom** (5 rules)
+- **Web Platform** (5 rules) — https://web.dev/
 - **impeccable** (26 rules) — https://impeccable.style/
 - **LottieFiles** (5 rules) — https://github.com/lottiefiles/motion-design-skill
-- **Custom** (2 rules)
 - **interface-design** (4 rules) — https://github.com/Dammyjay93/interface-design
-- **Skills** (18 rules) — https://skills.sh/
+- **Skills** (14 rules) — https://skills.sh/
 
 ---
 
 ## Interactions
 
-Keyboard accessibility, focus management, and user interaction patterns. 72 rules.
+Keyboard accessibility, focus management, and user interaction patterns. 73 rules.
 
 ### Keyboard Works Everywhere
 
@@ -402,6 +402,29 @@ The focus: variant shows focus rings on every focus, including mouse clicks. foc
 - [Focus Visible](https://tailwindcss.com/docs/hover-focus-and-other-states#focus-visible)
 - [:focus-visible MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible)
 
+### Use outline-hidden, Not outline-hidden
+
+**ID:** `interactions-outline-hidden`
+**Agent rule (MUST):** In Tailwind v4, `outline-hidden` sets a real `outline-style: none` and KILLS the focus ring in Windows forced-colors / high-contrast mode, where custom `ring-*` shadows are stripped away — leaving those users with no focus indicator at all. v3's `outline-hidden` emitted an invisible outline that still showed up in forced colors; that behavior was renamed `outline-hidden`. So the ubiquitous `focus:outline-hidden` + custom ring pattern silently regresses on upgrade: use `focus-visible:outline-hidden` PLUS a visible replacement ring. (Distinct from `interactions-clear-focus` — having a ring — and `interactions-focus-ring-shadow` — box-shadow vs outline for radius.)
+**Source:** Tailwind (https://tailwindcss.com/docs)
+
+In v4 outline-hidden really removes the outline and kills the focus ring in forced-colors mode — outline-hidden is the utility that used to be safe
+
+> The `outline-hidden` utility previously didn't actually set `outline-style: none`, and instead set an invisible outline that would still show up in forced colors mode for accessibility reasons. To make this more clear we've renamed this utility to `outline-hidden` and added a new `outline-hidden` utility that actually sets `outline-style: none`.
+
+This is a real accessibility regression introduced purely by a rename. `focus:outline-hidden` + a custom `ring-*` is the single most common focus pattern on the web, and in v3 it was safe: `outline-hidden` did not remove the outline, it emitted a *transparent* one, which Windows forced-colors / high-contrast mode repaints as a visible system outline. In v4 that same class name now sets a literal `outline-style: none`. Forced-colors mode also overrides your colors and drops `box-shadow`, so the `ring` you replaced the outline with is not there to save you — the user is left with a focused control and no indicator at all, on the exact configuration that most depends on one. Nothing errors, nothing changes in your browser, and the upgrade ships. The fix is the rename Tailwind documents: `focus-visible:outline-hidden` (the old, transparent-outline behaviour) **plus** the visible replacement ring, `focus-visible:ring-2 focus-visible:ring-ring`. Reserve the new `outline-hidden` for the rare case where you genuinely want no outline in any mode. This is a different rule from `interactions-clear-focus`, which is about having a visible ring at all, and from `interactions-focus-ring-shadow`, which is about drawing that ring with box-shadow so it follows the border radius; both assume the forced-colors fallback you are about to delete here.
+
+```tsx
+// v4: strips the forced-colors fallback outline
+<button class="focus:outline-hidden focus:ring-2 focus:ring-ring" />
+// keeps it
+<button class="focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring" />
+```
+
+- [Tailwind v4: Upgrade guide (renamed outline utility)](https://tailwindcss.com/docs/upgrade-guide)
+- [Tailwind v4: outline-style](https://tailwindcss.com/docs/outline-style)
+- [MDN: forced-colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)
+
 ### Skip Link with Tailwind
 
 **ID:** `interactions-skip-link-tw`
@@ -479,7 +502,7 @@ Screen readers announce the accessible name of interactive elements. Without it,
 ### Missing Focus Outline
 
 **ID:** `interactions-rams-focus-outline`
-**Agent rule (MUST):** Interactive elements must have visible focus indicator. Never use outline-none without providing focus-visible replacement. Keyboard users must see where focus is.
+**Agent rule (MUST):** Interactive elements must have visible focus indicator. Never use outline-hidden without providing focus-visible replacement. Keyboard users must see where focus is.
 **Source:** RAMS (https://www.rams.ai/)
 
 Interactive elements must have visible focus indicators
@@ -1182,7 +1205,7 @@ The two spellings of "unavailable" behave completely differently, and picking th
 
 ## Animations
 
-Motion design principles and animation best practices. 51 rules.
+Motion design principles and animation best practices. 49 rules.
 
 ### Honor prefers-reduced-motion
 
@@ -1430,7 +1453,7 @@ Some users experience motion sickness or vestibular disorders. The prefers-reduc
 
 **ID:** `animations-pause-stop-hide`
 **Agent rule (MUST):** Auto-playing animations >5s MUST have pause/stop/hide controls; OR auto-stop after 5s. Applies to carousels, video backgrounds, infinite loops. Essential animations (loading spinners, progress) are exempt.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
 
 Auto-playing animations over 5 seconds must have pause/stop/hide controls
 
@@ -1441,71 +1464,56 @@ WCAG 2.2.2 Level A requires that users can pause, stop, or hide moving content. 
 - [WCAG 2.2.2 Understanding](https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide.html)
 - [Digital A11y Guide](https://www.digitala11y.com/understanding-sc-2-2-2-pause-stop-hide/)
 
-### Use will-change Sparingly
-
-**ID:** `animations-will-change-sparingly`
-**Agent rule (SHOULD):** Use `will-change` sparingly—only on frequently animated elements. Apply via JS before animation starts, remove after completion. Never blanket-apply; each layer consumes GPU memory.
-**Source:** Claude Code (https://claude.ai/code)
-
-Apply will-change only to frequently animated elements, and remove after animation
-
-> Use `will-change` sparingly—only on frequently animated elements. Apply via JS before animation starts, remove after completion. Never blanket-apply; each layer consumes GPU memory.
-
-will-change creates a new compositor layer, consuming GPU memory. Overusing it degrades performance. Apply it just before animation starts and remove it after completion. Never apply it to many elements at once.
-
-- [GPU Animation Best Practices](https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/)
-- [MDN will-change](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change)
-
 ### Animation Frame Budget (60fps)
 
 **ID:** `animations-frame-budget`
 **Agent rule (SHOULD):** Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch layout reads then writes — never interleave them — so a frame does not thrash between reflows and repaints.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Custom
 
-Animation work should complete within 16ms frame budget for smooth 60fps
+Keep per-frame animation work under ~10ms — the textbook 16ms is not all yours
 
-> Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch DOM reads then writes to avoid layout thrashing in animation loops.
+> Animation work SHOULD fit the frame budget (60fps). Use requestAnimationFrame for JS animations. Batch DOM reads then writes to avoid layout thrashing in animation loops.
 
-At 60fps, each frame has ~16.67ms. Heavy JavaScript, layout recalculation, or paint work can cause dropped frames. Batch DOM reads before writes, use requestAnimationFrame, and keep animation logic minimal.
+At 60fps a frame is 16.67ms, and that number is quoted everywhere as "the budget". It is not your budget. The browser needs part of every frame for its own housekeeping — style, layout, paint, compositing, plus whatever else the main thread is already queued to do — so the work you can actually spend is closer to 10ms, and less on a mid-range phone. Treat ~10ms as the target and 16ms as the cliff you are already falling off. Practically: do the work in requestAnimationFrame, batch every DOM read before every DOM write (interleaving them forces a synchronous layout per iteration), write only compositor-friendly properties (transform, opacity), and move anything genuinely expensive off the main thread entirely.
 
-- [Animation Performance 101](https://www.viget.com/articles/animation-performance-101-browser-under-the-hood)
-- [MDN Performance Fundamentals](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals)
+- [web.dev — Rendering performance](https://web.dev/articles/rendering-performance)
+- [MDN — Performance fundamentals](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals)
 
 ### View Transitions API
 
 **ID:** `animations-view-transitions`
 **Agent rule (SHOULD):** Use View Transitions API for page/state transitions. Add `@view-transition { navigation: auto; }` for MPA. Use `view-transition-name` for morphing elements. Progressive enhancement—works without JS.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Web Platform (https://web.dev/)
 
-Use View Transitions API for smooth page/state transitions
+Use View Transitions for navigation-level changes — not for gestures or rapid toggles
 
-> Use View Transitions API for page/state transitions. Add `@view-transition { navigation: auto; }` for MPA. Use `view-transition-name` for morphing elements. Progressive enhancement—works without JS.
+> Use the View Transitions API for page/state transitions. Use `view-transition-name` for morphing elements. Same-document transitions are Baseline newly available; cross-document (`@view-transition { navigation: auto; }`) is still limited availability.
 
-The View Transitions API enables smooth animated transitions between DOM states or pages. It works for both SPAs and MPAs, morphs elements across states, and degrades gracefully in unsupported browsers.
+The View Transitions API snapshots the old DOM, lets you mutate it, and crossfades or morphs between the two states — a real fix for the "the page just popped" problem, and it degrades to an instant change where unsupported (feature-detect `document.startViewTransition`). Two guardrails. BROWSER SUPPORT: same-document transitions ship in Chromium and Safari, but cross-document navigation (`@view-transition { navigation: auto; }`) is NOT Baseline — treat it as limited availability and a progressive enhancement, never as the thing that makes the navigation work. SCOPE: a view transition cannot be interrupted or reversed once it starts. That makes it right for navigation-level changes (route change, page change, opening a detail view) and wrong for anything the user drives continuously or fires in quick succession — drag-to-reorder, rapid tab switching, a slider. Wrap those and you get a queue of uninterruptible crossfades that lag behind the input, which is exactly what animations-interruptible forbids.
 
-- [View Transitions in 2025](https://developer.chrome.com/blog/view-transitions-in-2025)
-- [MDN View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+- [MDN — View Transition API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+- [Chrome — View Transitions in 2025](https://developer.chrome.com/blog/view-transitions-in-2025)
 
 ### Spring Physics for Natural Motion
 
 **ID:** `animations-spring-physics`
 **Agent rule (SHOULD):** Prefer spring-based animations for interactive elements (buttons, modals, drag). Configure mass/tension/friction instead of duration/easing for natural feel and interruptible motion.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Custom
 
-Prefer spring-based animations for interactive elements like buttons and modals
+Prefer spring-based animations for interactive elements like buttons, modals, and drag
 
-> Prefer spring-based animations for interactive elements (buttons, modals, drag). Configure mass/tension/friction instead of duration/easing for natural feel and interruptible motion.
+> Prefer spring-based animations for interactive elements (buttons, modals, drag). Configure the spring instead of duration/easing so motion carries velocity through an interruption.
 
-Spring physics produce more natural-feeling motion than CSS easing. They respond to velocity changes, can be interrupted mid-animation, and settle naturally. Libraries like react-spring make this easy.
+A duration-and-easing tween is a script: it always takes 300ms and always follows the same curve, whatever the element was doing a moment ago. Interrupt it — flick a drawer back while it is still closing — and it restarts from wherever it is with zero velocity, which reads as a stutter. A spring is a simulation: it carries the element's current velocity into the new target, so a reversal continues the gesture instead of contradicting it. That is the reason to reach for one, not "it feels bouncier". Configure it in Motion's modern terms — `{ type: "spring", duration: 0.5, bounce: 0.2 }` — rather than hand-tuning mass/stiffness/damping, and keep bounce low (see animations-emil-subtle-bounce): a spring with zero bounce is still a spring, and still interruptible.
 
-- [React Spring vs Framer Motion](https://www.dhiwise.com/post/react-spring-vs-framer-motion-a-detailed-guide-to-react)
-- [React Spring Visualizer](https://react-spring-visualizer.com/)
+- [Motion — spring transitions](https://motion.dev/docs/react-transitions#spring)
+- [MDN — linear() easing (approximating springs in CSS)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function/linear)
 
 ### Motion Library + Tailwind Conflicts
 
 **ID:** `animations-motion-tailwind-conflict`
 **Agent rule (SHOULD):** When using Framer Motion/Motion with Tailwind, remove conflicting `transition-*` classes from animated elements. Let Motion handle transitions to prevent stuttery/weird motion.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Custom
 
 Remove Tailwind transition classes from elements animated by Framer Motion
 
@@ -1520,7 +1528,7 @@ Tailwind's transition-* classes apply CSS transitions. When combined with Framer
 
 **ID:** `animations-tailwind-motion-variants`
 **Agent rule (MUST):** Use Tailwind `motion-safe:` and `motion-reduce:` variants to conditionally apply animations. Default pattern: `motion-safe:animate-*` ensures animations only run when user allows motion.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Tailwind (https://tailwindcss.com/docs)
 
 Use Tailwind motion-safe: and motion-reduce: variants for accessible animations
 
@@ -1530,21 +1538,6 @@ These variants respect the user's prefers-reduced-motion setting. motion-safe: a
 
 - [Tailwind Animation](https://tailwindcss.com/docs/animation)
 - [Motion-Safe Animations Guide](https://dev.to/hexshift/building-fluid-motion-safe-animations-in-tailwind-css-that-respect-user-preferences-3i6e)
-
-### Pause Offscreen Animations
-
-**ID:** `animations-pause-offscreen`
-**Agent rule (SHOULD):** Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.
-**Source:** Claude Code (https://claude.ai/code)
-
-Use IntersectionObserver or content-visibility to pause animations when not visible
-
-> Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.
-
-Running animations on elements outside the viewport wastes CPU and battery. IntersectionObserver can pause animations when elements scroll out of view. content-visibility: auto automatically handles this for render-heavy content.
-
-- [web.dev content-visibility](https://web.dev/articles/content-visibility)
-- [MDN content-visibility](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/content-visibility)
 
 ### No Transitions on Theme Switch
 
@@ -2009,7 +2002,7 @@ const TIMING = { cardAppear: 300, heading: 900, rows: 1500 } as const;
 
 ## Layout
 
-Responsive design, alignment, and visual structure. 21 rules.
+Responsive design, alignment, and visual structure. 23 rules.
 
 ### Optical Alignment
 
@@ -2096,35 +2089,36 @@ Mobile devices with notches and rounded corners have safe areas where content sh
 - [Safe Area Insets](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env)
 - [Designing for iPhone X](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
 
-### @layer Directives
+### @layer Is Native CSS, Not a Tailwind Directive
 
 **ID:** `layout-layer-directives`
 **Agent rule (MUST):** Use @layer (base/components/utilities) for custom CSS to integrate with Tailwind specificity
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Use @layer directives to control CSS specificity
+Use @layer base for element defaults, but never define a utility inside @layer utilities — that no longer produces a real utility
 
-> Use @layer base, @layer components, and @layer utilities to add custom CSS that integrates with Tailwind's specificity cascade.
+> In v4, `@layer` is a native CSS cascade layer, not a Tailwind directive. Use `@layer base` for base styles. To add a custom utility, use the `@utility` directive instead — utilities defined this way work with variants and are sorted by property count.
 
-The @layer directive ensures your custom CSS works within Tailwind's specificity system. Base for resets, components for reusable patterns, utilities for single-purpose helpers.
+The three-layer habit from v3 — `@layer base`, `@layer components`, `@layer utilities` — reads identically in v4 but means something else. Tailwind no longer intercepts these blocks; they are the browser's own cascade layers (`@layer` is real CSS now, and Tailwind registers `theme`, `base`, `components`, and `utilities` as native layers). One of the three still works exactly as you expect: `@layer base { h1 { ... } }` for element defaults and resets is correct v4. The other two changed. A class you write inside `@layer utilities` is no longer registered as a Tailwind utility — it is just a rule that happens to sit in a low-priority layer. So `hover:` and `md:` cannot be applied to it (the compiler has never heard of the name and will not generate the variant), and it has no place in Tailwind's property-count sort order, so its precedence against real utilities is whatever the layer position gives it. It looks like a utility, it is styled like a utility, and it fails the moment anyone tries to use it like a utility. The v4 answer is `@utility`, which registers the name with the compiler. See layout-custom-utilities.
 
-- [Adding Custom Styles](https://tailwindcss.com/docs/adding-custom-styles)
-- [Using @layer](https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer)
+- [Tailwind v4: Adding custom styles](https://tailwindcss.com/docs/adding-custom-styles)
+- [Tailwind v4: Functions and directives](https://tailwindcss.com/docs/functions-and-directives)
+- [MDN: @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer)
 
-### Create Custom Utilities
+### Create Custom Utilities with @utility
 
 **ID:** `layout-custom-utilities`
 **Agent rule (SHOULD):** Create custom utilities in @layer utilities for missing CSS properties (text-wrap, scrollbar)
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Add project-specific utilities in the utilities layer
+Register project-specific utilities with the @utility directive, the only form that supports variants
 
-> Create custom utilities in @layer utilities (or @utility in v4) for reusable single-purpose classes that Tailwind doesn't provide.
+> Use the `@utility` directive to add custom utilities to your project that work with variants like `hover`, `focus`, and `lg`: `@utility scrollbar-hide { scrollbar-width: none; }`
 
-Some CSS properties aren't in Tailwind by default (text-wrap: balance, scrollbar styling). Adding them as utilities means they work with variants and get purged correctly.
+Tailwind does not ship every CSS property — `scrollbar-width`, `text-wrap: balance` on an older target, `mask-type` — so you will need to add your own. In v4 there is exactly one correct way, and it is `@utility name { … }`. This is not a stylistic preference over the old `@layer utilities { .name { … } }` form: that form no longer registers anything with the compiler, so `md:scrollbar-hide` and `hover:scrollbar-hide` simply do not exist and quietly do nothing at the call site. `@utility` puts the name in Tailwind's registry, which buys three things a plain class cannot have: every variant works, the utility is sorted by property count alongside the built-ins so overriding it behaves predictably, and it is only emitted when actually used. Two details worth knowing: `@utility` requires a top-level, unnested rule (no `&` selectors, no nesting — that is what makes it variant-composable), and a trailing `-*` makes it take a value, so `@utility tab-*` plus `--tab-size-*` theme tokens gives you `tab-2`, `tab-4`, and `tab-[13]`.
 
-- [Adding Custom Utilities](https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities)
-- [Tailwind v4 @utility](https://tailwindcss.com/docs/functions-and-directives)
+- [Tailwind v4: Adding custom utilities](https://tailwindcss.com/docs/adding-custom-styles)
+- [Tailwind v4: @utility directive](https://tailwindcss.com/docs/functions-and-directives)
 
 ### Use Fixed Z-Index Scale
 
@@ -2334,6 +2328,48 @@ Landmarks are the structural layer of a page, and nothing else in this corpus co
 - [APG: Landmark Regions](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/)
 - [MDN: <nav>](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav)
 
+### Reusable Components Query Their Container
+
+**ID:** `layout-container-queries`
+**Agent rule (SHOULD):** A reusable component must respond to ITS OWN width, not the viewport: `md:flex-row` asks about the browser window, so the card that reads right in the main column goes horizontal inside a 300px sidebar. Put `@container` on the wrapper and `@md:` on the children — now it asks "is my container ≥28rem", with no `isCompact` prop threaded through three layers. Container queries are core in v4; installing `@tailwindcss/container-queries` is a mistake, not a dependency. The `@` variants read the nearest `@container` ANCESTOR, so the wrapper must not be the element you are sizing.
+**Source:** Tailwind (https://tailwindcss.com/docs)
+
+Size a reusable component against its own container with @container and @md:, not against the viewport
+
+> Container queries are now built into the framework in v4 — the `@tailwindcss/container-queries` plugin is no longer needed. Use the `@container` class to mark an element as a container, then style its children based on the container's size with variants like `@sm:` and `@md:`.
+
+A breakpoint variant like `md:flex-row` asks a question about the browser window, but a reusable `<Card>` does not live in the browser window — it lives in whatever box you dropped it into. So the card that looks right in the main column goes horizontal inside a 300px sidebar, because the *viewport* is 1400px wide and the card has no idea it is not. The component is not broken; the question it is asking is. Container queries let it ask the right one: put `@container` on the card's wrapper and the `@md:flex-row` on its child now means "when my container is at least 28rem", which is true in the main column and false in the sidebar, with no props, no context, and no `isCompact` boolean threaded through three layers. This is core in v4 — installing `@tailwindcss/container-queries` is now a mistake, not a dependency. Two things to keep straight: the `@` variants read the nearest `@container` ancestor, so the wrapper must be a different element from the one you are sizing; and named containers (`@container/sidebar` with `@md/sidebar:`) exist for when containers nest and you need to skip past the nearest one.
+
+```tsx
+<div class="@container">
+  <div class="flex flex-col @md:flex-row">…</div>
+</div>
+```
+
+- [Tailwind v4: Responsive design](https://tailwindcss.com/docs/responsive-design)
+- [Tailwind CSS v4.0 announcement](https://tailwindcss.com/blog/tailwindcss-v4)
+- [MDN: @container](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container)
+
+### @apply Is Not How You Share Styles
+
+**ID:** `layout-no-apply-abstraction`
+**Agent rule (NEVER):** Collapse repeated markup into a `.btn { @apply … }` class to make it look "cleaner" — it reintroduces exactly what utilities removed: you invent a name, you jump between files to read the button's appearance, and one edit silently repaints every button. It also collapses at the first variant (`.btn-primary`, `.btn-sm`, disabled), where you start hand-rolling the variant system you already have. Extract a COMPONENT instead — a React component with CVA — which encapsulates behaviour too, not just the class string. `@apply` is legitimate only for markup you do not control (a `.prose` subtree, a third-party widget).
+**Source:** Tailwind (https://tailwindcss.com/docs)
+
+Extract a component when markup repeats, instead of collapsing utilities into a .btn class with @apply
+
+> Whatever you do, don't use `@apply` just to make things look "cleaner". Using `@apply` to extract a class like `.btn` reintroduces all the problems utility classes were meant to solve: you have to invent a name, you have to jump between files, and you have to think about how to override it.
+
+The instinct is understandable: a long `class="inline-flex items-center rounded-md px-4 py-2 …"` looks like duplication, and `.btn { @apply … }` makes it go away. But the duplication was never the problem utility classes had — it was the naming, the indirection, and the coupling. `.btn` brings all three back. You now maintain a name that means nothing to the browser, you cannot read the button's appearance from the button's markup, and any change to `.btn` silently repaints every button in the product, which is exactly the cascade problem Tailwind exists to remove. It also collapses the moment you need a variant: a `.btn-primary`, a `.btn-sm`, a disabled state, and you are hand-rolling the variant system Tailwind already ships. Tailwind's own guidance is a ladder, and `@apply` is not on it: if the repetition is in a list, use a loop; if it is a real UI element, extract a *component* — a React component, with CVA for the variants — because a component encapsulates the markup and the behaviour too, not just the class string. `@apply` earns its place in one narrow case: styling markup you do not control (a `.prose` subtree, a third-party widget) or an unavoidable single element, where a component is not an option. Reach for it there, not to tidy up.
+
+```tsx
+/* no */ .btn { @apply inline-flex rounded-md px-4 py-2 …; }
+// yes: const button = cva("inline-flex rounded-md", { variants: { size: { sm: "px-2 py-1", md: "px-4 py-2" } } });
+```
+
+- [Tailwind v4: Managing duplication](https://tailwindcss.com/docs/styling-with-utility-classes)
+- [Tailwind v4: Functions and directives](https://tailwindcss.com/docs/functions-and-directives)
+
 ---
 
 ## Content
@@ -2364,10 +2400,11 @@ Skeletons mirror final content exactly to avoid layout shift
 
 > Stable skeletons. Skeletons mirror final content exactly to avoid layout shift.
 
-Loading skeletons should match the dimensions and layout of the actual content. This prevents cumulative layout shift (CLS) when content loads. If content varies significantly, use the most common dimensions or a safe maximum.
+Loading skeletons should match the dimensions and layout of the actual content. This prevents cumulative layout shift (CLS) when content loads. If content varies significantly, use the most common dimensions or a safe maximum. Two checks catch most of what "matches the dimensions" actually means. First, an image placeholder needs the correct **aspect ratio**, not merely some height: a 200px-tall grey box standing in for a 16:9 photo still reflows the column the moment the real image arrives, so reserve the box with `aspect-ratio` (or explicit `width`/`height`) taken from the asset. Second, a text skeleton bar must match the typography's **line-box height**, not its font-size: `text-sm` is 14px of glyph inside a 20px line box, so a 14px bar is 6px short per line and a three-line paragraph shifts everything below it by 18px. Size the bars from the computed `line-height` and keep the same gaps the real lines will have.
 
 - [Skeleton Screens](https://www.nngroup.com/articles/skeleton-screens/)
 - [Cumulative Layout Shift](https://web.dev/articles/cls)
+- [Optimize CLS](https://web.dev/articles/optimize-cls)
 
 ### No Dead Ends
 
@@ -2588,15 +2625,15 @@ Consistent class ordering makes code scannable and maintainable. The Prettier pl
 **Agent rule (SHOULD):** Use official plugins (@tailwindcss/typography for prose, @tailwindcss/forms for inputs)
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Use official Tailwind plugins for specialized content styling
+Load the plugins you actually still need with @plugin in CSS, and drop the ones v4 absorbed into core
 
-> Use official plugins (@tailwindcss/typography, @tailwindcss/forms, @tailwindcss/container-queries) for comprehensive feature coverage.
+> Load a plugin from your CSS with the `@plugin` directive: `@plugin "@tailwindcss/typography";`. Note that container queries are now included in the framework by default — the `@tailwindcss/container-queries` plugin is no longer needed.
 
-Official plugins provide well-designed, tested utilities that integrate seamlessly with Tailwind. The typography plugin is essential for prose content, forms for consistent input styling.
+Two things changed in v4 and stale advice gets both wrong. First, how plugins load: there is no `plugins: []` array, because there is no config file. A plugin is imported from your stylesheet with `@plugin "@tailwindcss/typography";` next to the `@import "tailwindcss"` at the top. Second, and more important, *which* plugins are still plugins. `@tailwindcss/container-queries` is deprecated — container queries are core now, so `@container` and `@md:` work out of the box. Installing that package today does not add a feature; it adds a dead dependency that shadows a built-in and tells the next reader this codebase has not been upgraded. What survives is the stuff that is genuinely opinionated content styling rather than a CSS primitive: `@tailwindcss/typography` for the `prose` classes, which is still the right answer for markdown and CMS output you do not control, and `@tailwindcss/forms` for normalizing native control appearance. Before adding any plugin to a v4 project, check whether core already does it — the same absorption happened to several utilities that used to require a package.
 
-- [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography)
-- [@tailwindcss/forms](https://github.com/tailwindlabs/tailwindcss-forms)
-- [@tailwindcss/container-queries](https://github.com/tailwindlabs/tailwindcss-container-queries)
+- [Tailwind v4: Functions and directives (@plugin)](https://tailwindcss.com/docs/functions-and-directives)
+- [Tailwind v4: Typography plugin](https://tailwindcss.com/docs/typography-plugin)
+- [Tailwind CSS v4.0 announcement](https://tailwindcss.com/blog/tailwindcss-v4)
 
 ### IDE IntelliSense
 
@@ -3747,7 +3784,7 @@ SC 3.3.7 Redundant Entry (Level A, WCAG 2.2) is about a single process — one c
 
 ## Performance
 
-Optimization techniques and rendering efficiency. 35 rules.
+Optimization techniques and rendering efficiency. 34 rules.
 
 ### Minimize Re-renders
 
@@ -3850,19 +3887,21 @@ Users expect mutations (create, update, delete) to feel instant. Target 500ms or
 
 - [Response Time Guidelines](https://www.nngroup.com/articles/response-times-3-important-limits/)
 
-### Configure Content Paths
+### Register Sources Only Where Detection Cannot Reach
 
 **ID:** `performance-content-paths`
 **Agent rule (MUST):** Configure Tailwind content paths to include all files using utility classes
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Specify all files using Tailwind classes in the content config
+Tailwind v4 auto-detects sources — add @source only for files outside that sweep
 
-> Always configure content paths to include all files that use Tailwind classes. Missing paths mean unused CSS in production or missing styles.
+> Tailwind automatically scans your project for source files. Use `@source` to register sources that automatic detection misses, and `@import "tailwindcss" source(none)` to opt out of detection entirely.
 
-Tailwind CSS v4 uses @source directive (or v3's content config) to scan files for class names. If a file isn't included in these paths, its classes won't be included in the production build. Conversely, overly broad globs can slow down builds.
+There is no `content` array in Tailwind v4. It was removed. Tailwind now walks the project itself, starting from where the CSS is imported, skipping anything in .gitignore and every binary/asset extension — so in a normal app the correct configuration is none at all, and pasting a v3 `content: [...]` block does nothing but mislead the next reader. Reach for `@source "…"` in exactly one situation: a file that holds class names but that the sweep cannot see — a component library inside node_modules (which is gitignored), or a template directory outside the project root. `@source "../node_modules/@acme/ui/dist"`. Two escape hatches complete the picture: `@source not "…"` excludes a path the sweep found but should not scan (a huge generated fixture directory), and `@import "tailwindcss" source(none)` disables auto-detection entirely so you can list every source explicitly — worth it only when you genuinely need that control.
 
-- [Tailwind Content Configuration](https://tailwindcss.com/docs/detecting-classes-in-source-files)
+- [Tailwind — Detecting classes in source files](https://tailwindcss.com/docs/detecting-classes-in-source-files)
+- [Tailwind — Functions and directives (@source)](https://tailwindcss.com/docs/functions-and-directives)
+- [Tailwind — v4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
 
 ### GPU-Accelerated Animations
 
@@ -3923,20 +3962,21 @@ Tailwind's build process scans your source files for complete class name strings
 - [Dynamic Class Names](https://tailwindcss.com/docs/detecting-classes-in-source-files#dynamic-class-names)
 - [Safelist Configuration](https://tailwindcss.com/docs/detecting-classes-in-source-files#safelisting-classes)
 
-### Optimize Purge Configuration
+### Force-Include Classes with @source inline(), Not safelist
 
 **ID:** `performance-purge-optimization`
 **Agent rule (SHOULD):** Keep content paths specific; minimize safelist to only CMS-driven classes
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Use specific globs and safelist only when necessary
+The safelist config option is gone in v4 — force-generate classes from CSS, and keep the set tiny
 
-> Keep content paths specific and safelist minimal. Overly broad configurations slow builds and bloat CSS output.
+> Use `@source inline("…")` to force-generate utilities that never appear literally in your source. It supports brace expansion: `@source inline("{hover:,}bg-red-{50,{100..900..100},950}")`. Exclude paths with `@source not "…"`.
 
-Tailwind's purge/content scanning determines what CSS ships to production. Overly broad globs scan unnecessary files (like node_modules), slowing builds. Overused safelists defeat tree-shaking and bloat CSS output.
+v4 removed `safelist` along with the rest of the JS config. The replacement lives in CSS: `@source inline("bg-red-500")` tells Tailwind to emit that utility even though it appears nowhere in the scanned source — the case that actually needs it being class names that arrive at runtime from a CMS, an API, or a database. Brace expansion keeps it from becoming a wall of strings: `@source inline("{hover:,}bg-red-{50,{100..900..100},950}")` generates the whole red scale plus every hover: variant of it. That is also the trap. That one line is ~22 utilities; do it for six colors and you have quietly force-shipped every one of them whether the CMS uses them or not, which is exactly the bloat the scanner exists to prevent. Inline the smallest set the data can actually produce, not the design system's full range. And note what this is NOT for: a class you build with string interpolation in your own code (`bg-${color}-500`) is not a safelist problem, it is a bug — write the complete class names out (see performance-dynamic-classes) instead of force-generating around it.
 
-- [Optimizing for Production](https://v3.tailwindcss.com/docs/optimizing-for-production)
-- [Content Configuration](https://tailwindcss.com/docs/detecting-classes-in-source-files)
+- [Tailwind — Safelisting classes (@source inline)](https://tailwindcss.com/docs/detecting-classes-in-source-files)
+- [Tailwind — Functions and directives (@source)](https://tailwindcss.com/docs/functions-and-directives)
+- [Tailwind — v4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
 
 ### Tailwind Defaults First
 
@@ -3998,7 +4038,7 @@ Using useEffect to set state based on other state causes extra re-renders and po
 
 **ID:** `performance-css-containment`
 **Agent rule (SHOULD):** Use CSS `contain: layout paint` on reusable cards/list items to isolate layout/paint scope. Use `content-visibility: auto` with `contain-intrinsic-size` for offscreen content (up to 7x render improvement).
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Web Platform (https://web.dev/)
 
 Use CSS contain and content-visibility to isolate layout/paint scope
 
@@ -4013,7 +4053,7 @@ CSS containment tells the browser that an element's layout/paint is independent 
 
 **ID:** `performance-lcp-hero-optimization`
 **Agent rule (MUST):** LCP images (hero, banner): Use `loading="eager"` + `fetchpriority="high"` + `decoding="async"`. Add `<link rel="preload" as="image">` in head. NEVER lazy-load above-the-fold content.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Web Platform (https://web.dev/)
 
 Preload above-the-fold images and prioritize LCP elements for fast perceived loading
 
@@ -4028,7 +4068,7 @@ Largest Contentful Paint (LCP) is a Core Web Vital measuring when the largest co
 
 **ID:** `performance-font-display-strategy`
 **Agent rule (MUST):** Use `font-display: swap` to prevent FOIT (invisible text). Preconnect to font CDNs. Preload critical fonts. Match fallback font metrics with `size-adjust` to minimize CLS during font swap.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Web Platform (https://web.dev/)
 
 Prevent invisible text (FOIT) and layout shift from web fonts with proper loading strategies
 
@@ -4043,7 +4083,7 @@ Web fonts can cause Flash of Invisible Text (FOIT) affecting LCP, and layout shi
 
 **ID:** `performance-responsive-images`
 **Agent rule (MUST):** Use `srcset` + `sizes` for responsive images. Serve WebP/AVIF with `<picture>` fallback. Always set explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent CLS.
-**Source:** Claude Code (https://claude.ai/code)
+**Source:** Web Platform (https://web.dev/)
 
 Serve optimally-sized images for each device with srcset, sizes, and modern formats
 
@@ -4053,21 +4093,6 @@ Without responsive images, mobile users download desktop-sized images, wasting b
 
 - [Serve responsive images](https://web.dev/articles/serve-responsive-images)
 - [Use WebP images](https://web.dev/articles/serve-images-webp)
-
-### Skeleton Placeholders with Matching Dimensions
-
-**ID:** `performance-skeleton-dimensions`
-**Agent rule (MUST):** Skeleton placeholders MUST match final content dimensions exactly. Include image placeholders with correct aspect ratios. Text skeleton heights should match typography line heights. Poor skeletons cause CLS.
-**Source:** Claude Code (https://claude.ai/code)
-
-Loading skeletons must match final content dimensions to prevent CLS
-
-> Skeleton placeholders MUST match final content dimensions exactly. Include image placeholders with correct aspect ratios. Text skeleton heights should match typography line heights. Poor skeletons cause CLS.
-
-Skeleton screens show page structure before content loads. If skeleton dimensions don't match final content, users experience jarring shifts (CLS). Match image aspect ratios, text line heights, and overall container sizes.
-
-- [Cumulative Layout Shift](https://web.dev/articles/cls)
-- [Optimize CLS](https://web.dev/articles/optimize-cls)
 
 ### Avoid Gradient Banding
 
@@ -4300,7 +4325,7 @@ This is the false floor under every "animate transform and opacity" rule you hav
 
 ## Design
 
-Visual design principles and aesthetics. 49 rules.
+Visual design principles and aesthetics. 51 rules.
 
 ### Layered Shadows
 
@@ -4402,20 +4427,20 @@ About 8% of men and 0.5% of women have color vision deficiencies. Use color pale
 - [Designing for Color Blindness](https://www.smashingmagazine.com/2024/02/designing-for-colorblindness/)
 - [Data Visualization Accessibility](https://www.w3.org/WAI/tutorials/images/complex/)
 
-### Extend Theme Properly
+### Extend the Theme with @theme
 
 **ID:** `design-theme-config`
 **Agent rule (MUST):** Use theme.extend to add custom values; never overwrite top-level theme keys
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Use theme.extend to add values without losing defaults
+Declare design tokens in a CSS @theme block, which extends the defaults instead of replacing them
 
-> Always use theme.extend to add custom values. Overwriting top-level theme keys removes all default values.
+> Use the `@theme` directive to define your project's custom design tokens. Tokens you declare are added to the defaults. To replace an entire namespace instead of adding to it, reset it first: `--color-*: initial;`
 
-When you define theme.colors directly, you replace all of Tailwind's default colors. Using theme.extend.colors adds your custom colors while keeping the defaults like slate, gray, red, etc.
+This is the single largest v4 breaking change and the one most stale advice still gets wrong. There is no `tailwind.config.js` by default, and `theme.extend` does not exist — the JS config object is gone. Tokens are plain CSS custom properties declared inside `@theme { --color-brand: oklch(0.62 0.19 259); }`, and that block extends by default: your brand color lands next to slate, red, and every other built-in. Which means the entire v3 failure mode this principle used to be about — "you wrote `theme.colors` instead of `theme.extend.colors` and nuked the palette" — is structurally impossible now. Clobbering is opt-in, not accidental: to drop the defaults you must explicitly reset the namespace with `--color-*: initial;` before declaring your own, which is the escape hatch for teams that want a closed palette where `bg-red-500` should not silently work. Every token you declare doubles as a real CSS variable, so `var(--color-brand)` resolves anywhere, including inside a third-party stylesheet.
 
-- [Theme Configuration](https://tailwindcss.com/docs/theme)
-- [Customizing Colors](https://tailwindcss.com/docs/colors)
+- [Tailwind v4: Theme variables](https://tailwindcss.com/docs/theme)
+- [Tailwind v4: Upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
 
 ### Use Semantic Color Tokens
 
@@ -4466,28 +4491,29 @@ Tailwind breakpoints are mobile-first (min-width). md:flex means "flex at medium
 **Agent rule (SHOULD):** Add custom breakpoints via theme.extend.screens; avoid arbitrary min-[Xpx]: values
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Add project-specific breakpoints for unique layout requirements
+Add project-specific breakpoints as --breakpoint-* theme tokens, not as scattered arbitrary min-[…] values
 
-> Use Tailwind's default breakpoints unless your design requires specific values. Add custom breakpoints in theme.extend when needed.
+> Use the `--breakpoint-*` theme variables to customize your breakpoints: `@theme { --breakpoint-3xl: 120rem; }` — this creates a new `3xl` variant you can use in your markup.
 
-Default breakpoints work for most projects, but some designs need specific widths. Custom breakpoints should be added via theme.extend.screens, not arbitrary values like min-[960px]:.
+The v3 answer, `theme.extend.screens`, no longer exists — there is no config object to extend. A breakpoint in v4 is just another theme token: declare `--breakpoint-3xl: 120rem;` inside `@theme` and you get `3xl:` (plus `max-3xl:` and every other variant that keys off it) for free. The rule underneath is unchanged and is the reason this principle exists: a raw `min-[960px]:` is a magic number with no name, so the second person who needs that breakpoint guesses 961 or 959 and the layout now breaks in a one-pixel band. Name it once, use the name everywhere. Two v4 specifics worth knowing: because breakpoints are ordinary custom properties, they are sorted by value rather than by declaration order, so a new token slots into the right place in the cascade automatically; and `--breakpoint-*: initial;` wipes the built-in scale if you want only your own names.
 
-- [Customizing Screens](https://tailwindcss.com/docs/responsive-design#using-custom-breakpoints)
+- [Tailwind v4: Responsive design](https://tailwindcss.com/docs/responsive-design)
+- [Tailwind v4: Theme variables](https://tailwindcss.com/docs/theme)
 
-### Dark Mode Class Strategy
+### Override the dark Variant, Don't Configure It
 
 **ID:** `design-dark-mode-class`
 **Agent rule (SHOULD):** Use darkMode: "class" for user-controllable themes with light/dark/system options
 **Source:** Tailwind (https://tailwindcss.com/docs)
 
-Use class-based dark mode for user preference control
+Redefine the dark variant with @custom-variant so a class can drive the theme, because the darkMode option no longer exists
 
-> Use class-based dark mode (darkMode: 'class') for user-controllable themes. This allows toggling between light/dark/system preferences.
+> By default the `dark` variant uses the `prefers-color-scheme` media feature. To use a class instead, override the `dark` variant: `@custom-variant dark (&:where(.dark, .dark *));`
 
-The media strategy only responds to OS settings. The class strategy lets you add/remove the dark class on <html>, enabling theme toggles and respecting user choice over system preference.
+The `darkMode: 'class'` config option is gone — there is no config file to put it in. In v4 the `dark` variant is just a variant, and you change its behaviour by redefining it with `@custom-variant`. This repository is its own reference implementation: `src/index.css` line 7 reads `@custom-variant dark (&:is(.dark *));`, which is why toggling `.dark` on `<html>` themes this entire app. The reason to override at all is unchanged: the default media-query variant reads the OS setting and nothing else, so a user who wants dark on a machine set to light has no way to ask for it and no way to persist the choice. Driving the variant from a class puts the decision in your hands — read `prefers-color-scheme` as the initial default, then let a toggle write `.dark` and store the preference. Note the selector shape: it must match both the `.dark` element itself and its descendants, otherwise `dark:` utilities on `<html>` never fire.
 
-- [Dark Mode](https://tailwindcss.com/docs/dark-mode)
-- [Class Strategy](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually)
+- [Tailwind v4: Dark mode](https://tailwindcss.com/docs/dark-mode)
+- [Tailwind v4: @custom-variant](https://tailwindcss.com/docs/functions-and-directives)
 
 ### Respect Color Scheme Preference
 
@@ -4737,11 +4763,12 @@ Glow effects are hard to see in bright environments, don't provide clear afforda
 
 Stick with Tailwind's default shadow scale instead of custom values
 
-> Stick with Tailwind default shadows (shadow-sm, shadow, shadow-md, shadow-lg). Custom shadows create inconsistency.
+> Stick with the Tailwind default shadow scale. Custom shadows create inconsistency.
 
-Tailwind's shadow scale is carefully designed for visual consistency, proper elevation hierarchy, good performance, and easy maintenance.
+The scale is designed as one ramp lit from a single source, so elevation reads as depth rather than as noise; hand-rolled shadows with different blur, offset, and direction give you three cards that no longer sit in the same room. Get the names right, because they moved in v4: the scale runs `shadow-2xs`, `shadow-xs`, `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`, and there is no bare `shadow` class any more. Worse than missing, the old names silently changed meaning — v4's `shadow-sm` renders what v3's bare `shadow` did, and v3's `shadow-sm` is now `shadow-xs`. So a v3 codebase that upgrades without a codemod does not break loudly; every `shadow-sm` in it just quietly gets one step heavier.
 
-- [Tailwind Box Shadow](https://tailwindcss.com/docs/box-shadow)
+- [Tailwind v4: box-shadow](https://tailwindcss.com/docs/box-shadow)
+- [Tailwind v4: Upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
 
 ### Empty States Need Clear Actions
 
@@ -5036,274 +5063,259 @@ Every other contrast rule here is about text: design-rams-color-contrast and des
 - [Understanding SC 1.4.11: Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)
 - [Understanding SC 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
 
+### Tokens Go in @theme, Not :root
+
+**ID:** `design-theme-not-root`
+**Agent rule (MUST):** Declare design tokens in `@theme`, not `:root` — a variable in `:root` is a working custom property but Tailwind never sees it, so it generates NO utilities and the codebase fills with `bg-[var(--brand)]` arbitrary values. `@theme { --color-brand: … }` generates `bg-brand`/`text-brand`/`border-brand`/`ring-brand` AND still emits the custom property for `var()`. The namespace prefix does the work: `--color-*` feeds color utilities, `--spacing-*` spacing, `--font-*` families, `--breakpoint-*` breakpoints. Nothing errors when you get it wrong.
+**Source:** Tailwind (https://tailwindcss.com/docs)
+
+Declare design tokens inside @theme so they generate utilities, instead of in :root where they only ever produce arbitrary values
+
+> Theme variables are not just CSS variables — they instruct Tailwind to create new utility classes that you can use in your markup. Variables defined in `:root` do not generate any utilities.
+
+This is the most common v4 onboarding mistake, and it is invisible: nothing errors, nothing warns. You write `:root { --brand: #06c; }` because that is how CSS custom properties have always worked, and it does define a working variable — but Tailwind never sees it, so no `bg-brand` exists. The codebase then fills with `bg-[var(--brand)] text-[var(--brand)] border-[var(--brand)]`, arbitrary values that carry no variant ergonomics and no autocomplete, and every reviewer reads them as noise. Move the same declaration into `@theme` under the right namespace — `@theme { --color-brand: oklch(0.62 0.19 259); }` — and Tailwind generates `bg-brand`, `text-brand`, `border-brand`, `ring-brand`, and the rest, while still emitting `--color-brand` as a real custom property that `var()` resolves anywhere. The namespace prefix is what does the work: `--color-*` feeds color utilities, `--spacing-*` spacing, `--font-*` families, `--breakpoint-*` breakpoints. A token in the wrong namespace, or in none at all, generates nothing.
+
+```tsx
+/* generates nothing */ :root { --brand: oklch(0.62 0.19 259); }
+/* generates bg-brand, text-brand, … */ @theme { --color-brand: oklch(0.62 0.19 259); }
+```
+
+- [Tailwind v4: Theme variables](https://tailwindcss.com/docs/theme)
+- [Tailwind CSS v4.0 announcement](https://tailwindcss.com/blog/tailwindcss-v4)
+
+### Borders Default to currentColor
+
+**ID:** `design-border-currentcolor`
+**Agent rule (MUST):** Never write a border width without a border color in the same breath. In v4 `border-color` defaults to `currentColor`, NOT `gray-200` as in v3 — so a bare `border` inherits the text color, a near-black paragraph gets a near-black box, `text-destructive` turns the outline red, and it can never be a surface-relative hairline in dark mode. Pair the width with a semantic token: `border border-border`. A base-layer rule resetting `border-color` is a migration crutch, not the destination.
+**Source:** Tailwind (https://tailwindcss.com/docs)
+
+Always pair a border width with an explicit border color, because v4 no longer defaults borders to gray-200
+
+> In v3, the `border` and `divide` utilities used your configured `gray-200` color by default. We've changed this to `currentColor` in v4 to make Tailwind less opinionated and match browser defaults.
+
+This is the classic "we upgraded to v4 and every card grew an ugly black outline" bug. `<div class="border p-4">` used to give you a soft gray hairline; now `border-color` resolves to `currentColor`, so the border inherits the element's text color and a near-black paragraph produces a near-black box. It is not a crash, so it survives code review and ships. Two things make it worse than a one-time visual regression. First, the border now moves whenever the text color moves: put `text-destructive` on that card and the outline turns red with it. Second, it silently defeats dark mode, because a border that tracks the foreground can never be a surface-relative hairline. The fix is a habit, not a config change: never write a border width without a border color in the same breath — `border border-border` — and reach for a semantic token so the hairline flips with the theme. If you are migrating a large v3 codebase and cannot audit every call site at once, the documented stopgap is a base-layer rule setting `border-color` back to your gray token, but treat that as a migration crutch, not the destination.
+
+```tsx
+<div class="border p-4" />              <!-- v3: gray hairline. v4: currentColor -->
+<div class="border border-border p-4" /> <!-- theme-aware in both -->
+```
+
+- [Tailwind v4: Upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
+- [Tailwind v4: border-color](https://tailwindcss.com/docs/border-color)
+- [MDN: border-color](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-color)
+
 ---
 
 ## Aesthetics
 
-Creative visual design principles for distinctive, production-grade interfaces. 23 rules.
+Creative visual design principles for distinctive, production-grade interfaces. 19 rules.
 
-### Distinctive Font Choices
+### Type Is Not a Delivery Vehicle
 
 **ID:** `aesthetics-distinctive-typography`
 **Agent rule (SHOULD):** Use distinctive, characterful fonts instead of generic defaults (Inter, Roboto, Arial). Pair a display font with a refined body font for memorable visual identity.
 **Source:** Skills (https://skills.sh/)
 
-Choose unique, characterful fonts over generic defaults like Inter and Roboto
+Choose typefaces with character instead of the current default families, and make the type treatment itself memorable
 
-> Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics.
+> Make the type treatment itself a memorable part of the design, not a neutral delivery vehicle for the content.
 
-Typography carries singular voice. Generic fonts are everywhere—they're safe but forgettable. Distinctive font pairings create immediate visual identity. Pair a characterful display font for headlines with a refined body font for memorable experiences. Note that the monoculture moves: the tell is no longer just Arial/Inter/Roboto but the newer default wave — Geist, Plus Jakarta Sans, Space Grotesk, Instrument Sans/Serif, Mona Sans, Fraunces, Recoleta. Reaching for one of those because it is the current "tasteful" pick is the same reflex, one cycle later.
+Generic fonts are everywhere — safe, and forgettable. The monoculture also moves: the tell is no longer just Arial/Inter/Roboto but the newer default wave — Geist, Plus Jakarta Sans, Space Grotesk, Instrument Sans/Serif, Mona Sans, Fraunces, Recoleta. Reaching for one of those because it is the current "tasteful" pick is the same reflex, one cycle later. Upstream frames the test as subject-derived: the typeface should come from the product's own world, not from whatever is trending in the training distribution.
 
-- [Anthropic Skills](https://skills.sh/)
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 - [Google Fonts](https://fonts.google.com/)
 - [Fontshare](https://www.fontshare.com/)
 
-### Dominant Colors with Sharp Accents
-
-**ID:** `aesthetics-color-dominance`
-**Agent rule (SHOULD):** Use bold dominant colors with 1-2 sharp accent highlights. Avoid timid, evenly-distributed palettes. The 60-30-10 rule works, but pushing to 90% dominant with surgical accent placement is often better.
-**Source:** Skills (https://skills.sh/)
-
-Use bold primary colors with 1-2 sharp accent highlights instead of evenly-distributed palettes
-
-> Employ dominant colors as the primary visual element, with sharp accent colors used sparingly for highlights. Don't be timid with color—be bold and intentional.
-
-Timid, evenly-distributed palettes create visual confusion. When every color competes for attention, nothing stands out. A dominant color establishes hierarchy, while sharp accents draw the eye to key actions.
-
-- [Anthropic Skills](https://skills.sh/)
-- [Refactoring UI](https://www.refactoringui.com/)
-
-### Orchestrated Page Load Reveals
-
-**ID:** `aesthetics-orchestrated-motion`
-**Agent rule (SHOULD):** Orchestrate page load reveals with staggered animation-delay (100-150ms intervals). Reveal in reading order: hero first, then navigation, then content. Random micro-interactions feel chaotic.
-**Source:** Skills (https://skills.sh/)
-
-Use staggered reveal sequences with animation-delay instead of scattered micro-interactions
-
-> Orchestrate page load reveals. Staggered reveal sequences with animation-delay create intentional, polished experiences. Random micro-interactions scattered throughout feel chaotic.
-
-Motion is choreography. When animations fire randomly, the interface feels broken. Orchestrated reveals—elements appearing in sequence with consistent timing—communicate intentionality and craftsmanship.
-
-- [Anthropic Skills](https://skills.sh/)
-- [Motion One](https://motion.dev/)
-
-### Unexpected Spatial Layouts
-
-**ID:** `aesthetics-spatial-composition`
-**Agent rule (SHOULD):** Break predictable symmetric grids with asymmetry, overlap, negative margins, and varied scale. Feature one dominant element at unexpected scale. Use whitespace asymmetrically to create tension.
-**Source:** Skills (https://skills.sh/)
-
-Break predictable symmetric grids with asymmetry, overlap, and varied scale
-
-> Design unexpected spatial layouts. Break out of predictable symmetric grids with asymmetry, overlap, negative margins, and diagonal flow. Grid-breaking creates visual interest.
-
-Symmetric grids are the default. Every SaaS landing page reaches for the same 3-column grid. Breaking these expectations with asymmetry, overlap, and varied scale creates memorable, distinctive experiences.
-
-- [Anthropic Skills](https://skills.sh/)
-- [Refactoring UI: Layout](https://www.refactoringui.com/)
-
-### Atmospheric Visual Details
-
-**ID:** `aesthetics-atmospheric-backgrounds`
-**Agent rule (SHOULD):** Add depth with gradient meshes (layered radial-gradient), subtle noise textures (2-5% opacity), and backdrop-filter effects. Plain solid backgrounds feel flat and lifeless.
-**Source:** Skills (https://skills.sh/)
-
-Add depth with gradient meshes, noise textures, and layered transparencies
-
-> Add atmospheric visual details. Gradient meshes, noise textures, and layered transparencies create depth and richness. Plain solid backgrounds feel flat and lifeless.
-
-Flat, solid backgrounds are the absence of design. Even minimal interfaces benefit from atmospheric depth: subtle gradients, grain, or texture that gives content a place to live rather than floating in a void.
-
-- [Anthropic Skills](https://skills.sh/)
-- [Mesh Gradients](https://meshgradient.in/)
-
-### Intentional Design Direction
-
-**ID:** `aesthetics-bold-direction`
-**Agent rule (SHOULD):** Commit to a design direction (brutalist, editorial, organic) and execute with precision. Avoid generic AI aesthetics: purple gradients, sparkles, excessive border-radius. Polarizing is better than forgettable.
-**Source:** Skills (https://skills.sh/)
-
-Commit to a design direction and execute with precision over generic AI aesthetics
-
-> Commit to a design direction and execute with precision. Generic AI aesthetics (purple gradients, sparkles, rounded everything) are forgettable. Intentionality matters more than intensity.
-
-Every AI-generated landing page looks the same: purple gradients, floating orbs, excessive border-radius. Real design is choosing a direction—brutalist, editorial, organic—and executing it with conviction. A committed direction is more memorable than safe median aesthetics.
-
-- [Anthropic Skills](https://skills.sh/)
-- [Awwwards](https://www.awwwards.com/)
-
-### Anti-Generic Design
-
-**ID:** `aesthetics-anti-generic`
-**Agent rule (NEVER):** Use generic fonts (Inter, Roboto, Arial, system-ui), purple gradients, perfectly centered layouts, excessive border-radius, or sparkle emojis. These are hallmarks of AI-generated slop. Choose distinctive typography, intentional colors, and layouts with asymmetry.
-**Source:** Skills (https://skills.sh/)
-
-Avoid generic fonts like Inter/Arial, clichéd purple gradients, and cookie-cutter component patterns
-
-> Anti-Patterns (Never Use): Generic fonts (Inter, Roboto, Arial, system fonts). Clichéd schemes like purple gradients on white backgrounds. Predictable layouts or cookie-cutter component patterns.
-
-Generic design is the result of following defaults instead of making intentional choices. Inter, system fonts, and Arial are everywhere—they say nothing about your product. Purple-to-blue gradients, centered layouts, excessive border-radius, and sparkle emojis are hallmarks of AI-generated slop. Distinctive design requires actively rejecting these patterns in favor of fonts with character, intentional color choices, and layouts that break from the predictable grid.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### CSS-First Animations
-
-**ID:** `aesthetics-css-first-animations`
-**Agent rule (SHOULD):** Use CSS transitions and animations for hover effects, reveals, and simple state changes. Reserve JavaScript animations for physics-based motion, gestures, or complex orchestration. CSS runs on compositor thread; JS blocks main thread.
-**Source:** Skills (https://skills.sh/)
-
-Prioritize CSS-only animation solutions for HTML implementations over JavaScript
-
-> Prioritize CSS-only solutions for HTML implementations. Focus on high-impact moments like orchestrated page loads with staggered reveals.
-
-CSS animations are more performant, requiring no JavaScript runtime overhead. They run on the compositor thread, avoiding main thread blocking. For simple effects like hover states, transitions, and reveals, CSS is cleaner, more maintainable, and declarative. Reserve JavaScript animations for complex interactions requiring physics or gesture responses.
-
-- [Anthropic Skills](https://skills.sh/)
-- [MDN: CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions)
-- [MDN: CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations)
-
-### Meticulous Craftsmanship
-
-**ID:** `aesthetics-craftsmanship`
-**Agent rule (SHOULD):** Demonstrate meticulous craftsmanship: consistent spacing scale (4/8/12/16/24px), pixel-perfect alignment, harmonious proportions. No arbitrary values, misaligned elements, or inconsistent padding. Every detail should feel intentional.
-**Source:** Skills (https://skills.sh/)
-
-Work must appear meticulously crafted with painstaking attention to detail
-
-> Work must appear meticulously crafted, labored over with countless hours of care. Should demonstrate master-level execution from someone at the absolute top of their field.
-
-Craftsmanship is in the details users feel but rarely consciously notice: consistent spacing rhythms, pixel-perfect alignment, harmonious proportions. Sloppy execution—misaligned elements, inconsistent padding, arbitrary values—destroys trust and perceived quality. Every pixel is intentional in master-level work.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### Full Design Commitment
-
-**ID:** `aesthetics-design-commitment`
-**Agent rule (SHOULD):** Commit fully to a cohesive aesthetic using CSS variables. Deploy dominant colors (deep black, vibrant brand color) with sharp accents. Avoid timid palettes with pale grays and washed-out colors. Half-measures are forgettable; conviction is memorable.
-**Source:** Skills (https://skills.sh/)
-
-Commit fully to a cohesive aesthetic direction rather than timid half-measures
-
-> Commit to cohesive aesthetic using CSS variables. Deploy dominant colors with sharp accents over timid palettes.
-
-Timid design choices—pale grays, washed-out colors, safe neutral tones—communicate uncertainty and lack of confidence. When you commit fully to an aesthetic direction, every element reinforces the identity. Bold dominants with sharp accents create memorable, distinctive experiences. Half-measures are forgettable; conviction is memorable.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### Visual-First Communication
-
-**ID:** `aesthetics-visual-first`
-**Agent rule (SHOULD):** Aim for 90% visual, 10% essential text. Communicate through large icons, bold illustrations, color, and space—not paragraphs. Text should be rare and powerful: single words, short labels, essential context only. If you need a paragraph to explain something, the visual design has failed.
-**Source:** Skills (https://skills.sh/)
-
-Ideas communicate through space, form, and color - text should be rare and powerful
-
-> 90% visual design, 10% essential text. Ideas communicate through space, form, color, and composition—not paragraphs. Text should appear as rare, powerful gestures integrated into visual architecture.
-
-Most interfaces rely too heavily on text to communicate. Walls of paragraphs explaining features, long descriptions under icons, copy-heavy layouts. Great visual design lets form, color, and space tell the story. Text becomes a rare, powerful punctuation—short labels, single words, essential context only. When visuals lead, the experience becomes immediate and memorable.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### Negative Space Mastery
-
-**ID:** `aesthetics-negative-space`
-**Agent rule (SHOULD):** Use generous or controlled negative space intentionally as a design element. Avoid cramped layouts with tight padding. Apply comfortable line-height (1.5-1.75), generous padding (16-24px), and meaningful space between sections. Whitespace creates hierarchy and lets content breathe.
-**Source:** Skills (https://skills.sh/)
-
-Use generous or controlled negative space intentionally as a design element
-
-> Break grid patterns intentionally with generous or controlled negative space.
-
-Negative space is not empty space—it is active design. Cramped layouts with no breathing room feel claustrophobic and unprofessional. Generous whitespace creates visual hierarchy, improves readability, and gives content room to breathe. Master designers use negative space as deliberately as positive elements.
-
-- [Anthropic Skills](https://skills.sh/)
-- [Refactoring UI](https://www.refactoringui.com/)
-
-### Memorable Differentiation
-
-**ID:** `aesthetics-memorable-differentiation`
-**Agent rule (SHOULD):** Include one memorable, unforgettable element per design (animated border, distinctive illustration, dramatic typography, unexpected shadow). Ask: "What will someone remember?" If you cannot answer, add a signature element. One bold detail beats a dozen safe flourishes.
-**Source:** Skills (https://skills.sh/)
-
-Every design needs one unforgettable element that makes it memorable
-
-> What makes this UNFORGETTABLE? What's the one thing someone will remember?
-
-The most memorable designs have a signature element that lodges in the viewer's mind. It might be an animated border, a distinctive illustration, dramatic typography, or an unexpected shadow. Without this differentiator, designs blur into the endless sea of similar interfaces. One bold, unforgettable detail is worth more than a dozen safe, forgettable flourishes.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### Intentional Grid-Breaking
-
-**ID:** `aesthetics-grid-breaking`
-**Agent rule (SHOULD):** Break rigid grids intentionally with varied card sizes, diagonal flow, and overlapping elements. One dominant element, asymmetric spacing, and depth through z-index create visual hierarchy over predictable symmetry.
-**Source:** Skills (https://skills.sh/)
-
-Break grid patterns intentionally with asymmetry, overlap, and diagonal flow
-
-> Employ unexpected layouts, asymmetry, overlap, and diagonal flow. Break grid patterns intentionally.
-
-Rigid, perfectly symmetrical grids feel predictable and forgettable. By intentionally breaking the grid with varied card sizes, slight offsets, overlapping elements, or diagonal arrangements, you create visual hierarchy and movement that guides the eye and makes the layout memorable.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### Surprising Scroll Interactions
-
-**ID:** `aesthetics-scroll-interactions`
-**Agent rule (SHOULD):** Use IntersectionObserver for scroll-triggered reveals. Stagger animations with animation-delay (100-150ms intervals). Keep animations subtle (translate 10-20px, fade 0 to 1). Use motion-safe: to respect reduced motion preferences. Transform passive browsing into active discovery.
-**Source:** Skills (https://skills.sh/)
-
-Use scroll-triggering and hover states that surprise and delight users
-
-> Use scroll-triggering and hover states that surprise.
-
-Scroll-triggered animations transform passive browsing into active discovery. When elements reveal themselves as users scroll, each section becomes a moment of anticipation. Staggered reveals create rhythm, static content creates monotony. The best interfaces reward exploration with delightful surprises.
-
-- [Anthropic Skills](https://skills.sh/)
-
-### Intentional Font Pairing
+### Pair Display and Body Deliberately
 
 **ID:** `aesthetics-font-pairing`
 **Agent rule (SHOULD):** Pair a distinctive display font (serif or geometric sans) for headlines with a refined body font for content. Same font everywhere creates flat hierarchy. Limit to 2 font families; use font-display: swap.
 **Source:** Skills (https://skills.sh/)
 
-Pair a distinctive display font with a refined body font for visual hierarchy
+Pair a characterful display face with a complementary body face and set an intentional type scale
 
-> Pair a distinctive display font with a refined body font.
+> Pair the display and body faces deliberately, not the same families you would reach for on any other project, and set a clear type scale with intentional weights, widths, and spacing.
 
-Typography hierarchy is the foundation of visual communication. When headlines and body text share the same generic font, the page becomes flat. A distinctive display font for headlines commands attention, while a refined body font ensures comfortable reading. The contrast between them guides users through content naturally.
+Typography hierarchy is the foundation of visual communication. When headlines and body text share the same neutral face at three sizes, the page has no voice. A display face used with restraint commands attention; a complementary body face carries the reading. The scale between them — weights, widths, spacing — is the part most generated designs skip, and it is what makes a page feel set rather than assembled.
 
-- [Anthropic Skills](https://skills.sh/)
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 - [Typewolf Font Pairing](https://www.typewolf.com/)
 
-### Design Variety
+### Spend Your Boldness in One Place
+
+**ID:** `aesthetics-color-dominance`
+**Agent rule (SHOULD):** Use bold dominant colors with 1-2 sharp accent highlights. Avoid timid, evenly-distributed palettes. The 60-30-10 rule works, but pushing to 90% dominant with surgical accent placement is often better.
+**Source:** Skills (https://skills.sh/)
+
+Commit to one dominant color with a single sharp accent and keep everything around it quiet, instead of an evenly-distributed timid palette
+
+> Spend your boldness in one place. Let the signature element be the one memorable thing, keep everything around it quiet and disciplined, and cut any decoration that does not serve the brief. Not taking a risk can be a risk itself!
+
+A palette where every color competes is not bold, it is undecided — and a palette of washed-out neutrals is not restraint, it is a refusal to choose. Both fail the same way. Spend the boldness once: one dominant color that carries the surface, one sharp accent reserved for the thing you want the eye to land on, and disciplined quiet everywhere else. This is a merge of the former `aesthetics-design-commitment`, whose quote simply restated this one.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Refactoring UI](https://www.refactoringui.com/)
+
+### One Orchestrated Moment, Not Scattered Effects
+
+**ID:** `aesthetics-orchestrated-motion`
+**Agent rule (SHOULD):** Orchestrate page load reveals with staggered animation-delay (100-150ms intervals). Reveal in reading order: hero first, then navigation, then content. Random micro-interactions feel chaotic.
+**Source:** Skills (https://skills.sh/)
+
+Concentrate motion into a single choreographed sequence rather than sprinkling unrelated micro-interactions across the page
+
+> Leverage motion deliberately. Think about where and if animation can serve the subject: a page-load sequence, a scroll-triggered reveal, hover micro-interactions, ambient atmosphere. An orchestrated moment usually lands harder than scattered effects; choose what the direction calls for.
+
+Motion is choreography. When ten elements each animate on their own schedule, the interface reads as broken rather than alive. Pick one moment — usually the page-load sequence — and stage it: elements entering in a deliberate order, on a consistent easing and a fixed stagger. Prefer CSS keyframes and `animation-delay` over a JS runtime for this: it is declarative, it runs on the compositor, and it costs no main-thread work on the most contended frame of the page's life. Reserve JS for motion that needs physics or gesture input. Restraint applies here too: see `aesthetics-scroll-interactions`.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [MDN: CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations)
+- [Motion](https://motion.dev/)
+
+### Extra Animation Is an AI Tell
+
+**ID:** `aesthetics-scroll-interactions`
+**Agent rule (SHOULD):** Use IntersectionObserver for scroll-triggered reveals. Stagger animations with animation-delay (100-150ms intervals). Keep animations subtle (translate 10-20px, fade 0 to 1). Use motion-safe: to respect reduced motion preferences. Transform passive browsing into active discovery.
+**Source:** Skills (https://skills.sh/)
+
+Reveal-on-scroll everything and the page reads as generated — animate only where motion carries meaning
+
+> However, sometimes less is more, and extra animation contributes to the feeling that the design is AI-generated.
+
+This principle used to say the opposite — that scroll-triggering should "surprise and delight." Upstream now names delight-maximalism as the tell: when every section fades up, every card lifts on hover, every number counts itself in, the motion stops meaning anything and starts reading as a generator's default. Reserve the reveal for content that genuinely benefits from being staged, and let the rest of the page simply be there when the reader arrives. A page that animates one thing is read as confident; a page that animates everything is read as machine-made.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [MDN: prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+
+### Numbers Must Mean Sequence
+
+**ID:** `aesthetics-decorative-numbering`
+**Agent rule (NEVER):** Stamp numbered markers (01 / 02 / 03) on a set whose order carries no information. The test takes a second: reorder the items — if nothing breaks, if Security could just as well be 01 and Analytics 03, the numerals are decoration wearing the costume of structure, and they lie to a reader who reads "01" as a promise that something follows. A real process (Push → Build → Promote) or a typed timeline earns them, because there the order IS the information. Same bar for eyebrows, dividers and labels: encode something true, or drop them.
+**Source:** Skills (https://skills.sh/)
+
+Stamp 01 / 02 / 03 on a set only when the order actually carries information the reader needs
+
+> Structural devices, numbering, eyebrows, dividers, labels, should encode something true about the content, not decorate it. Many generic designs use numbered markers (01 / 02 / 03), but that's only appropriate if the content actually is a sequence - like a real process or a typed timeline where order carries information the reader needs.
+
+There is a one-second test: reorder the items. If nothing breaks — if Security could just as well be 01 and Analytics 03 — then the numerals are decoration wearing the costume of structure, and they are actively lying to the reader, who reads "01" as a promise that something comes next. A real process (Push → Build → Promote) or a typed timeline earns its numbers, because there the order IS the information. Same rule governs the eyebrow chip (`aesthetics-impeccable-hero-eyebrow`): structure or nothing.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [MDN: The Ordered List element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol)
+
+### Layout Must Be a Choice, Not the Default
+
+**ID:** `aesthetics-spatial-composition`
+**Agent rule (SHOULD):** Break predictable symmetric grids with asymmetry, overlap, negative margins, and varied scale. Feature one dominant element at unexpected scale. Use whitespace asymmetrically to create tension.
+**Source:** Skills (https://skills.sh/)
+
+Test the layout against the brief — if it is the grid you would produce for any similar page, revise it
+
+> Then review that plan against the brief before building: if any part of it reads like the generic default you would produce for any similar page (work through a similar prompt to see if you arrive somewhere similar) rather than a choice made for this specific brief — revise that part, say what you changed and why.
+
+The symmetric three-column grid is the layout every generator arrives at, for every brief, which is exactly the test upstream proposes: run a similar prompt and see whether you land in the same place. If you do, the layout was not chosen, it was defaulted into. Asymmetry, overlap, varied scale, and diagonal flow are the usual escapes — but they are means, not the point. The point is that the composition should be traceable to something true about this subject. This principle absorbs the former `aesthetics-grid-breaking`, which said the same thing in the same words.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Refactoring UI: Layout](https://www.refactoringui.com/)
+
+### Commit to a Direction
+
+**ID:** `aesthetics-bold-direction`
+**Agent rule (SHOULD):** Commit to a design direction (brutalist, editorial, organic) and execute with precision. Avoid generic AI aesthetics: purple gradients, sparkles, excessive border-radius. Polarizing is better than forgettable.
+**Source:** Skills (https://skills.sh/)
+
+Pick one aesthetic direction and execute it fully instead of hedging toward the safe median
+
+> This client has already rejected proposals that felt templated, and is paying for a distinctive point of view: make deliberate, opinionated choices about palette, typography, and layout that are specific to this brief, and take one real aesthetic risk you can justify.
+
+The failure this catches is not ugliness, it is hedging: a page that borrows a little brutalism, a little soft-pastel SaaS, and a little editorial serif, so that no choice can be blamed and none can be remembered. Choose a direction — brutalist, editorial, organic, technical — and let every element pay into it, including the ones it costs you. Specific anti-patterns (purple, gradients, glass, glow) are not this principle's inventory: they are owned with real detector thresholds by `design-ibelick-no-purple`, `design-ibelick-no-gradients`, `design-impeccable-no-glassmorphism` and `design-impeccable-dark-glow`.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [Awwwards](https://www.awwwards.com/)
+
+### Defaults Are Not Choices
+
+**ID:** `aesthetics-anti-generic`
+**Agent rule (NEVER):** Use generic fonts (Inter, Roboto, Arial, system-ui), purple gradients, perfectly centered layouts, excessive border-radius, or sparkle emojis. These are hallmarks of AI-generated slop. Choose distinctive typography, intentional colors, and layouts with asymmetry.
+**Source:** Skills (https://skills.sh/)
+
+The reflexive AI looks are legitimate only when the brief asks for them — never spend a free axis on one
+
+> All three are legitimate for some briefs, but they are defaults rather than choices, and they appear regardless of subject. Where the brief pins down a visual direction, follow it exactly — the brief's own words always win, including when it asks for one of these looks. Where it leaves an axis free, don't spend that freedom on one of these defaults.
+
+The diagnostic is not "is this look bad" — cream, near-black-and-acid, and broadsheet are all fine designs for the right subject. The diagnostic is "did the subject produce this, or did the model?" If the same palette and layout would have arrived for a fintech dashboard, a wellness app, and a dev tool alike, it came from the training distribution. Our corpus pins the individual looks: `aesthetics-impeccable-cream-palette` (1), `aesthetics-dark-acid-default` (2).
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+
+### Near-Black + Acid Accent Is a Default
+
+**ID:** `aesthetics-dark-acid-default`
+**Agent rule (SHOULD):** Treat near-black + one bright acid-green/vermilion accent as a reflex, not a choice — it is one of the looks AI-generated design clusters around, and its tell is interchangeability: the same surface and accent look equally plausible on a fintech dashboard, a wellness app and a dev tool, which means it was derived from none of them. Derive the dark surface instead: take the product's own hue, hold the hue angle and drop chroma, and pull the accent from the subject's material world rather than a neon swatch. (Distinct from `design-impeccable-dark-glow`, which is about glow SHADOWS, not the palette.)
+**Source:** Skills (https://skills.sh/)
+
+The dark canvas with one bright acid-green or vermilion accent arrives regardless of subject — derive the dark surface instead
+
+> AI-generated design right now clusters around three looks: (1) a warm cream background (near #F4F1EA) with a high-contrast serif display and a terracotta accent; (2) a near-black background with a single bright acid-green or vermilion accent; (3) a broadsheet-style layout with hairline rules, zero border-radius, and dense newspaper-like columns.
+
+Look (2) is the "technical, serious, a bit dangerous" reflex, and its tell is interchangeability: paste the same near-black surface and the same acid-green accent onto a fintech dashboard, a wellness app, and a dev tool, and all three still look plausible — which is precisely the problem, because a palette that fits every subject was derived from none of them. Distinct from `design-impeccable-dark-glow`, which is about glow SHADOWS on dark surfaces, not the palette itself. The fix is derivation: take the product's own hue, hold the hue angle and drop chroma for the surface (see `design-impeccable-tinted-neutrals`), and pull the accent from the subject's material world rather than from a neon swatch.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [OKLCH color picker](https://oklch.com/)
+
+### Build to a Quality Floor
+
+**ID:** `aesthetics-craftsmanship`
+**Agent rule (SHOULD):** Demonstrate meticulous craftsmanship: consistent spacing scale (4/8/12/16/24px), pixel-perfect alignment, harmonious proportions. No arbitrary values, misaligned elements, or inconsistent padding. Every detail should feel intentional.
+**Source:** Skills (https://skills.sh/)
+
+Hold a non-negotiable baseline of responsiveness, focus, and reduced motion, and critique your own work as you build
+
+> Build to a quality floor without announcing it: responsive down to mobile, visible keyboard focus, reduced motion respected. Critique your own work as you build, taking screenshots if your environment supports it – a picture is worth 1000 tokens.
+
+The floor is invisible when present and unmistakable when missing: consistent spacing rhythm, honest alignment, a focus ring you can actually see, a layout that survives 375px, motion that stands down when asked. It is not a feature to advertise — it is the price of entry. The self-critique half matters as much: look at the rendered thing, not the code. Upstream adds Chanel's rule — before leaving the house, take one accessory off.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+
+### One Signature Element
+
+**ID:** `aesthetics-memorable-differentiation`
+**Agent rule (SHOULD):** Include one memorable, unforgettable element per design (animated border, distinctive illustration, dramatic typography, unexpected shadow). Ask: "What will someone remember?" If you cannot answer, add a signature element. One bold detail beats a dozen safe flourishes.
+**Source:** Skills (https://skills.sh/)
+
+Give the page a single element it will be remembered by, and make it embody the brief
+
+> Signature: the single unique element this page will be remembered by that embodies the brief in an appropriate way.
+
+A signature is not an effect you sprinkle on at the end — it is the one thing the page is for, formally. It might be a piece of dramatic typography, an interactive instrument drawn from the subject's own world, a hand-drawn diagram, an unexpected structural move. What disqualifies a signature is genericity: if it could belong to any other product, it is decoration. And it must be alone — a page with three signatures has none, which is why this pairs with spending boldness once.
+
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+
+### Do Not Converge Across Generations
 
 **ID:** `aesthetics-design-variety`
 **Agent rule (SHOULD):** Never converge on common choices. Vary themes (light/dark), fonts (serif/sans/mono), and aesthetics across designs. Avoid using Space Grotesk, Inter, or blue accents on every project. Each design should have a distinct personality.
 **Source:** Skills (https://skills.sh/)
 
-Never converge on common choices - vary themes, fonts, and aesthetics across designs
+Vary theme, type, and direction between projects instead of re-running the one look you happen to be good at
 
-> No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
+> Just like a human designer who's hired, there's often a careful balance between doing what you're good at and taking each project as a chance to experiment and learn.
 
-When every design looks the same, nothing stands out. Templates using identical fonts, colors, and layouts create visual monotony. Variety is memorable - each aesthetic direction creates its own emotional resonance and brand identity. Intentional differentiation makes work distinctive.
+A model with no memory reproduces its best-rehearsed look every time, which is how ten different briefs end up with the same dark canvas and the same grotesk. Upstream's counter-move is memory: "Human creators have memory and always try to do something new, so if you have a space to quickly jot down notes about what you've tried, it can help you in future passes." Keep that note file, read it before you start, and deliberately spend this project on the axis you did not spend last time.
 
-- [Anthropic Skills](https://skills.sh/)
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 
-### Complexity Matching
+### Match Complexity to the Vision
 
 **ID:** `aesthetics-complexity-matching`
 **Agent rule (SHOULD):** Match implementation complexity to aesthetic vision. Minimalist designs need restrained styling (single shadows, solid colors, clean borders). Maximalist designs can layer effects, gradients, and animations. Mismatch creates cognitive dissonance—a simple note card with layered shadows, blurs, and glowing buttons signals importance the content does not warrant.
 **Source:** Skills (https://skills.sh/)
 
-Match implementation complexity to aesthetic vision - maximalist designs need elaborate code, minimalist designs need restraint
+Maximalist directions need elaborate execution; minimal directions need precision — the failure is mismatch, not amount
 
-> Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations. Minimalist designs need restraint, precision, and careful spacing attention.
+> Match complexity to the vision. Maximalist directions need elaborate execution; minimal directions need precision in spacing, type, and detail. Elegance is executing the chosen vision well.
 
-There is no universal "right amount" of visual complexity. The problem is mismatch: applying maximalist techniques to minimalist content creates cognitive dissonance. A simple note card with layered shadows, gradient backgrounds, blur effects, and glowing buttons signals importance that the content does not warrant.
+There is no universal "right amount" of visual complexity. The problem is mismatch: applying maximalist techniques to minimal content creates cognitive dissonance. A simple note card with layered shadows, a gradient background, blur, and a glowing button is claiming an importance the content does not have. Conversely, a maximalist direction executed with half-effort just looks broken. Elegance is not minimalism — it is executing whichever vision you chose, all the way.
 
-- [Anthropic Skills](https://skills.sh/)
+- [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 
 ### Kill the Icon-Tile Feature Card
 

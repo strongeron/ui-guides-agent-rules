@@ -5,7 +5,7 @@ export function DisabledNoTooltipsGood() {
         <div>
           <button
             aria-disabled="true"
-            className="px-4 py-2 bg-muted text-muted-foreground rounded-lg text-sm cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="px-4 py-2 bg-muted text-muted-foreground rounded-lg text-sm cursor-not-allowed focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             onClick={(e) => e.preventDefault()}
           >
             Delete Project

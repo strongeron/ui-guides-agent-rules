@@ -44,7 +44,7 @@ export function ErrorPlacementGood() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring ${
               errors.name ? 'border-error/50' : 'border-border'
             }`}
           />
@@ -62,7 +62,7 @@ export function ErrorPlacementGood() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring ${
               errors.email ? 'border-error/50' : 'border-border'
             }`}
           />

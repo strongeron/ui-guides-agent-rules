@@ -16,7 +16,7 @@ export function ConfirmDestructiveBad() {
             <span className="text-sm">{item}</span>
             <button
               onClick={() => handleDelete(index)}
-              className="p-1 text-destructive hover:text-destructive/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive rounded"
+              className="p-1 text-destructive hover:text-destructive/80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-destructive rounded"
               aria-label="Delete"
             >
               <Trash2 className="w-4 h-4" />

@@ -11,7 +11,7 @@ export function SpellcheckGood() {
             type="email"
             spellCheck={false}
             defaultValue="john.doe@exmple.com"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -23,7 +23,7 @@ export function SpellcheckGood() {
             type="text"
             spellCheck={false}
             defaultValue="sk_test_abc123xyz"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -34,7 +34,7 @@ export function SpellcheckGood() {
             id="good-spell-message"
             spellCheck={true}
             rows={3}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             placeholder="Write your message here..."
           />
         </div>

@@ -68,7 +68,7 @@ export function AriaDisabledVsDisabledGood() {
               }
               setLog(`Ran “${item.label}”`);
             }}
-            className={`block w-full rounded px-2 py-1 text-left text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`block w-full rounded px-2 py-1 text-left text-sm focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring ${
               item.unavailable
                 ? 'cursor-default text-muted-foreground'
                 : 'text-foreground hover:bg-accent'

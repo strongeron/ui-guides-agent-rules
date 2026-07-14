@@ -18,7 +18,7 @@ export function LanguageDetectionGood() {
           <select
             id="lang-good"
             defaultValue="en"
-            className="mt-1 w-full px-2 py-1.5 text-sm bg-background text-foreground border border-border rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="mt-1 w-full px-2 py-1.5 text-sm bg-background text-foreground border border-border rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <option value="en">English</option>
             <option value="de">Deutsch</option>

@@ -46,7 +46,7 @@ export function InputDrivenGood() {
       <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={() => setInView(false)}
-          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Reset scroll reveal
         </button>
@@ -66,7 +66,7 @@ export function InputDrivenGood() {
           onMouseLeave={() => setHovered(false)}
           onFocus={() => setHovered(true)}
           onBlur={() => setHovered(false)}
-          className="mt-3 inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-3 inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Get started
           <span aria-hidden="true" className="inline-block" style={arrowMotion}>

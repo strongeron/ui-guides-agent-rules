@@ -40,7 +40,7 @@ export function AriaCompositeTabStopGood() {
     <div className="w-full max-w-sm">
       <button
         type="button"
-        className="mb-3 rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="mb-3 rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         Start here, then press Tab
       </button>
@@ -82,7 +82,7 @@ export function AriaCompositeTabStopGood() {
                 setSelected(filter);
               }
             }}
-            className={`cursor-pointer rounded px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`cursor-pointer rounded px-2 py-1 text-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring ${
               selected === filter
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-muted text-foreground'

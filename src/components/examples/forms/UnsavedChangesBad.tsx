@@ -15,7 +15,7 @@ export function UnsavedChangesBad() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={4}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             placeholder="Write something..."
           />
         </div>

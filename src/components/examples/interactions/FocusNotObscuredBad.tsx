@@ -33,7 +33,7 @@ export function FocusNotObscuredBad() {
                 type="button"
                 onFocus={() => setFocused(name)}
                 onBlur={() => setFocused(null)}
-                className="w-full rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {name}
               </button>

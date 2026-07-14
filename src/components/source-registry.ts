@@ -51,12 +51,12 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://www.ui-skills.com/',
     color: 'bg-amber-700 text-white border-amber-700',
   },
-  'claude-code': {
-    id: 'claude-code',
-    name: 'Claude Code',
-    description: 'Rules from Claude Code research on animation, performance & accessibility',
-    url: 'https://claude.ai/code',
-    color: 'bg-[#c2410c] text-white border-[#c2410c]',
+  'web-platform': {
+    id: 'web-platform',
+    name: 'Web Platform',
+    description: 'Guidance from web.dev and MDN (Google / Mozilla)',
+    url: 'https://web.dev/',
+    color: 'bg-sky-800 text-white border-sky-800',
   },
   anthropic: {
     id: 'anthropic',

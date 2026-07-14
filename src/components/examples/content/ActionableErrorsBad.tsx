@@ -9,7 +9,7 @@ export function ActionableErrorsBad() {
           id="err-key-bad"
           defaultValue="pk_live_8fj2..."
           aria-invalid="true"
-          className="w-full px-3 py-2 text-sm bg-background border border-error rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full px-3 py-2 text-sm bg-background border border-error rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
         <p className="text-sm text-error">Error: invalid input.</p>
       </div>

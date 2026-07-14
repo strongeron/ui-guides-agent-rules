@@ -10,7 +10,7 @@ export function ListDeleteShortcutBad() {
           <div
             key={item}
             tabIndex={0}
-            className="flex items-center justify-between px-3 py-2 rounded text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex items-center justify-between px-3 py-2 rounded text-sm text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <span>{item}</span>
           </div>

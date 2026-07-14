@@ -61,7 +61,7 @@ export function AdaptiveCapabilitiesBad() {
             type="checkbox"
             checked={simulateLowEnd}
             onChange={(e) => setSimulateLowEnd(e.target.checked)}
-            className="size-4 accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="size-4 accent-primary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           Simulate a low-end device / Save-Data
         </label>

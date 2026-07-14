@@ -35,7 +35,7 @@ export function TooltipInteractiveContentGood() {
               onFocus={() => setHint(true)}
               onBlur={() => setHint(false)}
               aria-describedby={hint ? 'plan-hint' : undefined}
-              className="inline-flex items-center px-2.5 py-1 rounded-md bg-muted text-sm text-foreground border border-border outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex items-center px-2.5 py-1 rounded-md bg-muted text-sm text-foreground border border-border outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Free plan
             </span>
@@ -57,7 +57,7 @@ export function TooltipInteractiveContentGood() {
               aria-haspopup="dialog"
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
-              className="px-2.5 py-1 rounded-md border border-border bg-card text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="px-2.5 py-1 rounded-md border border-border bg-card text-sm text-foreground outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Details
             </button>
@@ -76,13 +76,13 @@ export function TooltipInteractiveContentGood() {
                       setClicks((c) => c + 1);
                       close();
                     }}
-                    className="px-2 py-1 rounded bg-primary text-primary-foreground text-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="px-2 py-1 rounded bg-primary text-primary-foreground text-xs outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Upgrade
                   </button>
                   <button
                     onClick={close}
-                    className="px-2 py-1 rounded bg-muted text-foreground text-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="px-2 py-1 rounded bg-muted text-foreground text-xs outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Close
                   </button>

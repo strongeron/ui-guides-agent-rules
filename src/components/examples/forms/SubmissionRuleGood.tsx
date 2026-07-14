@@ -41,7 +41,7 @@ export function SubmissionRuleGood() {
               setEmail(e.target.value);
               if (errors.email) setErrors({ ...errors, email: undefined });
             }}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           {errors.email && (
             <p className="text-xs text-error mt-1">{errors.email}</p>
@@ -59,7 +59,7 @@ export function SubmissionRuleGood() {
               setPassword(e.target.value);
               if (errors.password) setErrors({ ...errors, password: undefined });
             }}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           {errors.password && (
             <p className="text-xs text-error mt-1">{errors.password}</p>

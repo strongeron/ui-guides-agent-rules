@@ -8,7 +8,7 @@ export function MobileInputSizeGood() {
         <input
           type="email"
           placeholder="name@example.com"
-          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-hidden focus:ring-2 focus:ring-ring"
         />
         <p className="mt-2 text-xs text-muted-foreground">
           Font size is 16px (text-base), so iOS Safari won't auto-zoom when this input is focused.

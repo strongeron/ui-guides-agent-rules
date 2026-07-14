@@ -3,7 +3,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 function ConcatInput({ className, ...props }: InputProps) {
-  const baseClasses = 'w-full px-3 py-2 border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring';
+  const baseClasses = 'w-full px-3 py-2 border border-border rounded-md bg-background focus:outline-hidden focus:ring-2 focus:ring-ring';
 
   return (
     <input

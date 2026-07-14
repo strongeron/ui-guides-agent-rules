@@ -14,7 +14,7 @@ export function InterruptibleGood() {
     <div className="w-full max-w-sm">
       <button
         onClick={moveBox}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         {isMoving ? 'Moving…' : 'Move Box'}
       </button>

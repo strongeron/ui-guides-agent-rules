@@ -20,7 +20,7 @@ export function AnnounceUpdatesBad() {
       <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={handleSave}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Save changes
         </button>
@@ -43,7 +43,7 @@ export function AnnounceUpdatesBad() {
           onChange={(e) => setEmail(e.target.value)}
           onBlur={validate}
           placeholder="Type something invalid, then tab away"
-          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
         />
         <div className="min-h-5">{error && <p className="text-xs text-destructive">{error}</p>}</div>
       </div>

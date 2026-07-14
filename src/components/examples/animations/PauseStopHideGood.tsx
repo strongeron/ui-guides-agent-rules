@@ -40,7 +40,7 @@ export function PauseStopHideGood() {
         {/* Pause/Play control */}
         <button
           onClick={() => setIsPaused(!isPaused)}
-          className="absolute bottom-2 right-2 px-2 py-1 bg-background/90 rounded text-xs font-medium hover:bg-background focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="absolute bottom-2 right-2 px-2 py-1 bg-background/90 rounded text-xs font-medium hover:bg-background focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={isPaused ? 'Play carousel' : 'Pause carousel'}
         >
           {isPaused ? '▶ Play' : '⏸ Pause'}

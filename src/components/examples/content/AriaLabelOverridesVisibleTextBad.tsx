@@ -66,7 +66,7 @@ export function AriaLabelOverridesVisibleTextBad() {
           type="button"
           aria-label="Submit form"
           onClick={() => setStatus('Draft saved')}
-          className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Save
         </button>
@@ -74,7 +74,7 @@ export function AriaLabelOverridesVisibleTextBad() {
           type="button"
           aria-label="Discard all changes and close"
           onClick={() => setStatus('Changes discarded')}
-          className="rounded-lg border border-border px-4 py-2 text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="rounded-lg border border-border px-4 py-2 text-sm text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Cancel
         </button>
@@ -104,12 +104,12 @@ export function AriaLabelOverridesVisibleTextBad() {
             onKeyDown={(e) => {
               if (e.key === 'Enter') run();
             }}
-            className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           <button
             type="button"
             onClick={run}
-            className="shrink-0 rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="shrink-0 rounded-lg border border-border px-3 py-2 text-sm text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             Speak
           </button>

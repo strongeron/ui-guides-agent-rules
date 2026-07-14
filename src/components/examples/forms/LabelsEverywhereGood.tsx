@@ -8,7 +8,7 @@ export function LabelsEverywhereGood() {
         <input
           id="full-name"
           type="text"
-          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="John Doe"
         />
       </div>
@@ -19,7 +19,7 @@ export function LabelsEverywhereGood() {
         <input
           id="email-address"
           type="email"
-          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="john@example.com"
         />
       </div>
@@ -30,7 +30,7 @@ export function LabelsEverywhereGood() {
         <input
           id="phone-number"
           type="tel"
-          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="+1 (555) 000-0000"
         />
       </div>

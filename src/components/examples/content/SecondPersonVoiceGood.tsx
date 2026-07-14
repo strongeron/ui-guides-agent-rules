@@ -7,7 +7,7 @@ export function SecondPersonVoiceGood() {
           Your build stopped at the install step. Check the logs to see which
           package failed, then retry. Your changes are saved.
         </p>
-        <button className="px-3 py-2 bg-primary text-primary-foreground text-sm rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <button className="px-3 py-2 bg-primary text-primary-foreground text-sm rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring">
           View Build Logs
         </button>
       </div>

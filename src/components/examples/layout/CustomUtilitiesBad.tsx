@@ -2,48 +2,48 @@ export function CustomUtilitiesBad() {
   return (
     <div className="w-full max-w-md space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-3">Inline Styles Instead</h4>
-        <div className="space-y-4">
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium mb-2">Inline Approach</h5>
-            <div className="font-mono text-xs bg-background rounded p-2">
-              <pre className="text-error">{`<h1 style={{ textWrap: 'balance' }}>
-  Title
-</h1>
-
-<div style={{ scrollbarWidth: 'none' }}>
-  Content
-</div>`}</pre>
-            </div>
-          </div>
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium mb-2">Problems</h5>
-            <ul className="text-xs space-y-2">
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>Can't use with variants</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>Not reusable</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>Breaks Tailwind patterns</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>Higher specificity</span>
-              </li>
-            </ul>
-          </div>
-          <div className="font-mono text-xs bg-background rounded p-2">
-            <code className="text-error">{"md:style={{ ... }} // Doesn't work!"}</code>
-          </div>
+        <h4 className="font-medium mb-1">Defining it in @layer utilities</h4>
+        <p className="text-xs text-muted-foreground mb-3">
+          The v3 shape. In v4 this registers nothing with the compiler.
+        </p>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto">
+          <pre className="text-error">{`@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}`}</pre>
         </div>
       </div>
+
+      <div className="bg-card border border-border rounded-lg p-4">
+        <h5 className="text-sm font-medium mb-1">Then using it like a utility</h5>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto mt-3">
+          <pre className="text-error">{`<div class="animate-spin hover:paused">
+<!-- hover:paused was never generated -->
+
+<div class="motion-reduce:paused">
+<!-- neither was this -->`}</pre>
+        </div>
+        <ul className="mt-3 text-xs space-y-2">
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-error" />
+            <span>
+              Bare <code className="font-mono">paused</code> works, so the bug hides: it looks like the utility exists.
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-error" />
+            <span>The variants are silently dropped. The spinner never stops on hover.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-error" />
+            <span>You debug the animation for an hour before suspecting the class.</span>
+          </li>
+        </ul>
+      </div>
+
       <p className="text-xs text-error">
-        Inline styles don't support variants or Tailwind patterns
+        In v4, @layer utilities is not an alternative to @utility. It is the wrong answer.
       </p>
     </div>
   );

@@ -27,7 +27,7 @@ export function BrandResourcesGood() {
             e.preventDefault();
             setOpen(true);
           }}
-          className="flex items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="flex items-center gap-3 rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           <Triangle className="w-5 h-5 fill-current text-foreground" />
           <span className="text-sm font-semibold text-foreground">Acme</span>
@@ -49,7 +49,7 @@ export function BrandResourcesGood() {
                 key={label}
                 role="menuitem"
                 onClick={() => setOpen(false)}
-                className="flex w-full items-center gap-2 px-2 py-1.5 text-xs text-foreground rounded-md hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex w-full items-center gap-2 px-2 py-1.5 text-xs text-foreground rounded-md hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <Icon className="w-3.5 h-3.5" aria-hidden="true" />
                 {label}

@@ -2,31 +2,35 @@ export function PurgeOptimizationBad() {
   return (
     <div className="w-full max-w-md space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-3">Problematic Configuration</h4>
+        <h4 className="text-sm font-medium mb-1">tailwind.config.js</h4>
+        <p className="text-xs text-muted-foreground mb-3">Tailwind v4 — <code>safelist</code> no longer exists</p>
         <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto">
-          <pre className="text-foreground">{`content: [
-  './**/*.{js,ts,jsx,tsx}',
-  // Scans node_modules!
-],
-safelist: [
-  'bg-red-500', 'bg-blue-500',
-  'text-red-500', 'text-blue-500',
-  // 100+ more classes...
-]`}</pre>
+          <pre className="text-foreground">{`export default {
+  content: ['./**/*.{js,ts,jsx,tsx}'],
+  safelist: [
+    'bg-red-500', 'bg-blue-500',
+    'text-red-500', 'text-blue-500',
+    // ...100 more, "just in case"
+  ],
+}`}</pre>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 text-sm">
-        <div className="bg-error/10 border border-error/30 rounded-lg p-3">
-          <div className="font-medium text-error mb-1">Build Time</div>
-          <div className="text-2xl font-bold">~45s</div>
+      <div className="space-y-2">
+        <div className="flex items-start gap-2">
+          <span className="mt-1.5 size-2 shrink-0 rounded-full bg-error" />
+          <span className="text-sm">
+            <code>safelist</code> is silently ignored — the CMS colors never ship
+          </span>
         </div>
-        <div className="bg-error/10 border border-error/30 rounded-lg p-3">
-          <div className="font-medium text-error mb-1">CSS Size</div>
-          <div className="text-2xl font-bold">~150KB</div>
+        <div className="flex items-start gap-2">
+          <span className="mt-1.5 size-2 shrink-0 rounded-full bg-error" />
+          <span className="text-sm">
+            The bug surfaces in production, as unstyled badges
+          </span>
         </div>
       </div>
-      <p className="text-xs text-error">
-        Broad globs and large safelists cause slow builds and bloated CSS
+      <p className="text-xs text-destructive">
+        A dead config that reads as a fix. Worse than no safelist at all, because it looks like the problem was handled
       </p>
     </div>
   );

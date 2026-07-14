@@ -8,7 +8,7 @@ export function SecondPersonVoiceBad() {
           the logs together. We have saved our progress, and we will notify our
           team if we detect the issue again.
         </p>
-        <button className="px-3 py-2 bg-muted text-foreground text-sm rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+        <button className="px-3 py-2 bg-muted text-foreground text-sm rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring">
           Let Us Retry
         </button>
       </div>

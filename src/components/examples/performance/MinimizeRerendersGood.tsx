@@ -27,7 +27,7 @@ export function MinimizeRerendersGood() {
       <div className="bg-card border border-border rounded-lg p-4">
         <button
           onClick={() => setCount(count + 1)}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 mb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 mb-2 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Count: {count}
         </button>
@@ -35,7 +35,7 @@ export function MinimizeRerendersGood() {
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="Type here..."
         />
         <ExpensiveChild data={text} />

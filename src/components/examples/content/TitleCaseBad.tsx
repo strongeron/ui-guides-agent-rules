@@ -9,10 +9,10 @@ export function TitleCaseBad() {
           Restrict who can view your preview deployments.
         </p>
         <div className="flex gap-2">
-          <button className="px-3 py-2 bg-primary text-primary-foreground text-sm rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <button className="px-3 py-2 bg-primary text-primary-foreground text-sm rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring">
             save changes
           </button>
-          <button className="px-3 py-2 bg-muted text-foreground text-sm rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <button className="px-3 py-2 bg-muted text-foreground text-sm rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring">
             Learn More about protection
           </button>
         </div>

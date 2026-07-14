@@ -9,7 +9,7 @@ export function InlineHelpFirstGood() {
           <input
             id="good-inline-api"
             type="text"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           <p className="text-xs text-muted-foreground mt-1">
             Your API key is used to authenticate requests. Find it in your account settings.

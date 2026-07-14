@@ -42,7 +42,7 @@ export function PrincipleReferencesCard({
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-medium text-primary underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+                      className="text-sm font-medium text-primary underline-offset-2 hover:underline focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
                     >
                       {link.text}
                       <HugeiconsIcon

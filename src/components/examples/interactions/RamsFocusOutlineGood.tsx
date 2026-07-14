@@ -5,10 +5,10 @@ export function RamsFocusOutlineGood() {
         <h4 className="font-medium mb-3">Visible Focus Indicators</h4>
         <div className="space-y-3">
           <div className="flex gap-2 p-3 bg-muted rounded-lg">
-            <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+            <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               Button 1
             </button>
-            <button className="px-4 py-2 border border-border rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+            <button className="px-4 py-2 border border-border rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               Button 2
             </button>
           </div>

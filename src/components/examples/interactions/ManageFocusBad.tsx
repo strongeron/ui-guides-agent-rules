@@ -7,7 +7,7 @@ export function ManageFocusBad() {
     <div className="w-full max-w-sm">
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         Open Modal
       </button>
@@ -22,7 +22,7 @@ export function ManageFocusBad() {
             <input
               type="text"
               placeholder="Type here..."
-              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-ring"
+              className="w-full px-3 py-2 border border-border rounded-lg mb-4 focus:outline-hidden focus:ring-2 focus:ring-ring"
             />
             <div className="flex justify-end gap-2">
               <button

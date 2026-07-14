@@ -8,7 +8,7 @@ export function MobileInputSizeBad() {
         <input
           type="email"
           placeholder="name@example.com"
-          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full px-3 py-2 border border-border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
           style={{ fontSize: '14px' }}
         />
         <p className="mt-2 text-xs text-muted-foreground">

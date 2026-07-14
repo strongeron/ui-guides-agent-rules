@@ -46,14 +46,14 @@ export function RedundantEntryBad() {
                   name={f.key}
                   autoComplete={f.autoComplete}
                   defaultValue={SHIPPING[f.key]}
-                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
             ))}
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="w-full px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Continue to billing
             </button>
@@ -70,7 +70,7 @@ export function RedundantEntryBad() {
                   name={`billing-${f.key}`}
                   value={billing[f.key]}
                   onChange={(e) => setBilling((b) => ({ ...b, [f.key]: e.target.value }))}
-                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
             ))}
@@ -83,7 +83,7 @@ export function RedundantEntryBad() {
                 name="email-confirm"
                 value={emailConfirm}
                 onChange={(e) => setEmailConfirm(e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
             <p className="text-xs font-mono text-muted-foreground">
@@ -96,7 +96,7 @@ export function RedundantEntryBad() {
                 setBilling(EMPTY);
                 setEmailConfirm('');
               }}
-              className="w-full px-4 py-2 text-sm border border-border rounded-lg text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full px-4 py-2 text-sm border border-border rounded-lg text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Back to shipping
             </button>

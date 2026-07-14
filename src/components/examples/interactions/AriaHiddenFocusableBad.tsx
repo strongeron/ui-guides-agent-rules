@@ -19,7 +19,7 @@ export function AriaHiddenFocusableBad() {
           <button
             type="button"
             onFocus={trackFocus('“Before” button', true)}
-            className="rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             Before
           </button>
@@ -27,14 +27,14 @@ export function AriaHiddenFocusableBad() {
             type="button"
             onFocus={trackFocus('“Toggle menu” button', true)}
             onClick={() => setOpen((v) => !v)}
-            className="rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             {open ? 'Close menu' : 'Toggle menu'}
           </button>
           <button
             type="button"
             onFocus={trackFocus('“After” button', true)}
-            className="rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded border border-border px-2 py-1 text-xs text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             After
           </button>
@@ -56,7 +56,7 @@ export function AriaHiddenFocusableBad() {
                 <button
                   type="button"
                   onFocus={trackFocus(`“${item}” (inside the aria-hidden menu)`, open)}
-                  className="w-full rounded px-2 py-1 text-left text-xs text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full rounded px-2 py-1 text-left text-xs text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {item}
                 </button>

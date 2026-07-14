@@ -46,7 +46,8 @@ export function ViewTransitionsBad() {
         </div>
       </div>
       <p className="text-xs text-destructive">
-        Plain state changes — both the view switch and the page changes pop instantly, with no visual continuity
+        Plain state changes — the page changes pop instantly, with no visual continuity between one page of results and the
+        next, so nothing tells the user whether the content was replaced or merely reflowed
       </p>
     </div>
   );

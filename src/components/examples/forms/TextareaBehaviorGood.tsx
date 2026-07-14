@@ -30,7 +30,7 @@ export function TextareaBehaviorGood() {
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
             rows={4}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring resize-none"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring resize-none"
             placeholder="Write your message..."
           />
         </div>

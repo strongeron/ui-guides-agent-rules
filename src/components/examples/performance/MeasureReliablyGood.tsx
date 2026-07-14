@@ -30,7 +30,7 @@ export function MeasureReliablyGood() {
         </p>
         <button
           onClick={measure}
-          className="px-3 py-1.5 text-xs bg-primary text-primary-foreground rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-3 py-1.5 text-xs bg-primary text-primary-foreground rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Run benchmark ×5
         </button>

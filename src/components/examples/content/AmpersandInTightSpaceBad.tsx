@@ -8,7 +8,7 @@ export function AmpersandInTightSpaceBad() {
           <a
             key={item}
             href="#nav-bad"
-            className="block px-2 py-1.5 text-sm text-muted-foreground rounded whitespace-nowrap overflow-hidden text-ellipsis hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="block px-2 py-1.5 text-sm text-muted-foreground rounded whitespace-nowrap overflow-hidden text-ellipsis hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             {item}
           </a>

@@ -29,7 +29,7 @@ export function ImpeccableNoBounceEasingBad() {
     <div className="w-full max-w-sm space-y-4">
       <button
         onClick={replay}
-        className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="rounded-lg bg-primary px-4 py-2 text-sm text-primary-foreground transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         Replay
       </button>

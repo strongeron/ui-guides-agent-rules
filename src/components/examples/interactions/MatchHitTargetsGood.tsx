@@ -7,7 +7,7 @@ export function MatchHitTargetsGood() {
         <span className="text-sm">Notification message</span>
         <button
           onClick={() => alert('Dismissed')}
-          className="p-2 -m-2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+          className="p-2 -m-2 text-muted-foreground hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring rounded"
           aria-label="Dismiss"
         >
           <X className="w-4 h-4" />

@@ -37,7 +37,7 @@ export function ImpeccableClippedOverflowBad() {
                 type="button"
                 aria-expanded={i === rows.length - 1 ? open : false}
                 onClick={() => i === rows.length - 1 && setOpen((v) => !v)}
-                className="rounded-md px-2 py-1 text-sm text-muted-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="rounded-md px-2 py-1 text-sm text-muted-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
               >
                 &hellip;
               </button>

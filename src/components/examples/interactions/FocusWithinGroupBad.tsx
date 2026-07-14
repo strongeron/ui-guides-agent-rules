@@ -20,7 +20,7 @@ export function FocusWithinGroupBad() {
             inputMode="decimal"
             defaultValue="1,250.00"
             // The ring is on the inner input only, so it hugs the text box, not the control.
-            className="min-w-0 flex-1 bg-transparent text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring rounded"
+            className="min-w-0 flex-1 bg-transparent text-sm text-foreground focus:outline-hidden focus:ring-2 focus:ring-ring rounded"
           />
           <button
             type="button"

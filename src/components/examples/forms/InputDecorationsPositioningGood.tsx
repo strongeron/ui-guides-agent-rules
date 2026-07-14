@@ -8,7 +8,7 @@ export function InputDecorationsPositioningGood() {
         <input
           type="text"
           placeholder="Search..."
-          className="w-full pl-9 pr-3 py-2 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full pl-9 pr-3 py-2 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
       <div className="relative">
@@ -18,7 +18,7 @@ export function InputDecorationsPositioningGood() {
         <input
           type="text"
           placeholder="0.00"
-          className="w-full pl-8 pr-3 py-2 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full pl-8 pr-3 py-2 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
       <p className="text-xs text-success">

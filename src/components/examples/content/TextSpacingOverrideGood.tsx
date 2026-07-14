@@ -19,7 +19,7 @@ export function TextSpacingOverrideGood() {
         type="button"
         aria-pressed={overridden}
         onClick={() => setOverridden((v) => !v)}
-        className="w-full mb-4 px-3 py-2 text-sm font-medium rounded-lg border border-border bg-muted text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="w-full mb-4 px-3 py-2 text-sm font-medium rounded-lg border border-border bg-muted text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         {overridden ? 'Remove user text spacing' : 'Apply user text spacing (SC 1.4.12)'}
       </button>

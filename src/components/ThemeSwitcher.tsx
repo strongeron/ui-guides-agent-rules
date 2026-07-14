@@ -13,7 +13,7 @@ export function ThemeSwitcher() {
       aria-checked={isDark}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       onClick={toggleTheme}
-      className="relative inline-flex h-7 w-[52px] shrink-0 items-center rounded-full border border-border bg-muted/60 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="relative inline-flex h-7 w-[52px] shrink-0 items-center rounded-full border border-border bg-muted/60 transition-colors hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       {/* Target icon shown on the empty side of the track */}
       <span

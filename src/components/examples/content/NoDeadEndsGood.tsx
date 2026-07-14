@@ -10,10 +10,10 @@ export function NoDeadEndsGood() {
           Try adjusting your search or browse our categories
         </p>
         <div className="flex gap-2 justify-center">
-          <button className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <button className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-lg hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring">
             Clear Search
           </button>
-          <button className="px-4 py-2 bg-muted text-foreground text-sm rounded-lg hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <button className="px-4 py-2 bg-muted text-foreground text-sm rounded-lg hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring">
             Browse All
           </button>
         </div>

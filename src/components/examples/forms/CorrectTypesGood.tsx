@@ -10,7 +10,7 @@ export function CorrectTypesGood() {
             id="good-types-email"
             type="email"
             inputMode="email"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -21,7 +21,7 @@ export function CorrectTypesGood() {
             id="good-types-phone"
             type="tel"
             inputMode="tel"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -32,7 +32,7 @@ export function CorrectTypesGood() {
             id="good-types-amount"
             type="text"
             inputMode="decimal"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
       </form>

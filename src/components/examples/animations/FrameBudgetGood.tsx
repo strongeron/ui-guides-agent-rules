@@ -38,7 +38,8 @@ export function FrameBudgetGood() {
         <div ref={boxRef} className="absolute top-2 left-0 size-8 rounded-md bg-primary" />
       </div>
       <p className="text-xs text-success">
-        Only a cheap <code>transform</code> write per frame — the counter holds at 60fps, comfortably inside the 16ms budget
+        Only a cheap <code>transform</code> write per frame — the counter holds at 60fps. A frame is 16.7ms, but the browser
+        needs part of it for style, layout, paint and compositing: aim for ~10ms of your own work, not 16
       </p>
     </div>
   );

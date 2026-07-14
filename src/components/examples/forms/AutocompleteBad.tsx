@@ -10,7 +10,7 @@ export function AutocompleteBad() {
             id="bad-auto-email"
             type="text"
             name="user_email"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -21,7 +21,7 @@ export function AutocompleteBad() {
             id="bad-auto-phone"
             type="text"
             name="phone_number"
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <button

@@ -20,11 +20,11 @@ export function FocusWithinGroupGood() {
             inputMode="decimal"
             defaultValue="1,250.00"
             // Children suppress their own rings; the group owns the focus affordance.
-            className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none"
+            className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-hidden"
           />
           <button
             type="button"
-            className="shrink-0 rounded px-2 py-0.5 text-xs font-medium text-muted-foreground outline-none hover:bg-muted focus-visible:bg-muted focus-visible:text-foreground"
+            className="shrink-0 rounded px-2 py-0.5 text-xs font-medium text-muted-foreground outline-hidden hover:bg-muted focus-visible:bg-muted focus-visible:text-foreground"
           >
             Max
           </button>

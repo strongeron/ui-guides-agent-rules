@@ -46,14 +46,14 @@ export function RedundantEntryGood() {
                   autoComplete={f.autoComplete}
                   value={shipping[f.key]}
                   onChange={(e) => setShipping((s) => ({ ...s, [f.key]: e.target.value }))}
-                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
             ))}
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="w-full px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Continue to billing
             </button>
@@ -70,7 +70,7 @@ export function RedundantEntryGood() {
                   // Keep whatever was on screen as the starting point for editing.
                   if (!next) setBilling(shipping);
                 }}
-                className="h-4 w-4 accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="h-4 w-4 accent-primary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
               />
               Same as shipping address
             </label>
@@ -94,7 +94,7 @@ export function RedundantEntryGood() {
                       setBilling((b) => ({ ...b, [f.key]: value }));
                     }
                   }}
-                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-card text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                 />
               </div>
             ))}
@@ -104,7 +104,7 @@ export function RedundantEntryGood() {
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="w-full px-4 py-2 text-sm border border-border rounded-lg text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full px-4 py-2 text-sm border border-border rounded-lg text-foreground hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               Back to shipping
             </button>

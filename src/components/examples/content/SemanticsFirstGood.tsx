@@ -5,13 +5,13 @@ export function SemanticsFirstGood() {
         <div className="space-y-3">
           <button
             type="submit"
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             Submit Form
           </button>
           <a
             href="#docs"
-            className="inline-block text-primary underline hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-block text-primary underline hover:text-primary/80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             View Documentation
           </a>

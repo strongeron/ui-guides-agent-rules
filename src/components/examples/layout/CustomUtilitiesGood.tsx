@@ -2,44 +2,52 @@ export function CustomUtilitiesGood() {
   return (
     <div className="w-full max-w-md space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-3">Custom Utilities</h4>
-        <div className="space-y-4">
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium mb-2">Definition</h5>
-            <div className="font-mono text-xs bg-background rounded p-2">
-              <pre className="text-foreground">{`@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .scrollbar-hide {
-    scrollbar-width: none;
-  }
+        <h4 className="font-medium mb-1">Defining it with @utility</h4>
+        <p className="text-xs text-muted-foreground mb-3">
+          Top-level, unnested — that is what makes it variant-composable.
+        </p>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto">
+          <pre className="text-foreground">{`@utility paused {
+  animation-play-state: paused;
 }`}</pre>
-            </div>
-          </div>
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium mb-2">Usage with Variants</h5>
-            <div className="font-mono text-xs bg-background rounded p-2 space-y-1">
-              <code className="block">md:text-balance</code>
-              <code className="block">hover:scrollbar-hide</code>
-              <code className="block">dark:text-balance</code>
-            </div>
-            <p className="text-xs text-success mt-2">
-              Works with all Tailwind variants!
-            </p>
-          </div>
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium mb-2">Benefits</h5>
-            <ul className="text-xs text-muted-foreground space-y-1">
-              <li>Purged when unused</li>
-              <li>Works with variants</li>
-              <li>Follows Tailwind conventions</li>
-            </ul>
-          </div>
         </div>
       </div>
+
+      <div className="bg-card border border-border rounded-lg p-4">
+        <h5 className="text-sm font-medium mb-1">Every variant now works</h5>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto mt-3">
+          <pre className="text-foreground">{`<div class="animate-spin hover:paused">
+<div class="animate-spin motion-reduce:paused">`}</pre>
+        </div>
+        <ul className="mt-3 text-xs space-y-2">
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-success" />
+            <span>The name is in Tailwind&rsquo;s registry, so every variant is generated on demand.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-success" />
+            <span>Sorted by property count alongside the built-ins, so overriding it is predictable.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-success" />
+            <span>Only emitted when actually used.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="bg-card border border-border rounded-lg p-4">
+        <h5 className="text-sm font-medium mb-1">A trailing -* makes it take a value</h5>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto mt-3">
+          <pre className="text-foreground">{`@utility tab-* {
+  tab-size: --value(integer);
+}
+
+<pre class="tab-4 md:tab-2">`}</pre>
+        </div>
+      </div>
+
       <p className="text-xs text-success">
-        Custom utilities integrate fully with Tailwind's system
+        @utility is the only form that registers a name. Everything else is a class that looks like one.
       </p>
     </div>
   );

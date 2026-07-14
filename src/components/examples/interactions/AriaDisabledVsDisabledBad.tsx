@@ -63,7 +63,7 @@ export function AriaDisabledVsDisabledBad() {
                 prev.includes(item.label) ? prev : [...prev, item.label]
               )
             }
-            className="block w-full rounded px-2 py-1 text-left text-sm text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-40"
+            className="block w-full rounded px-2 py-1 text-left text-sm text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-40"
           >
             {item.label}
           </button>

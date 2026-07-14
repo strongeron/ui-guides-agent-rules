@@ -482,14 +482,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     rule: 'Use CSS `contain: layout paint` on reusable cards/list items to isolate layout/paint scope. Use `content-visibility: auto` with `contain-intrinsic-size` for offscreen content (up to 7x render improvement).'
   },
 
-  // will-change Usage Guidelines
-  // Ref: https://www.smashingmagazine.com/2016/12/gpu-animation-doing-it-right/
-  // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
-  'animations-will-change-sparingly': {
-    priority: 'SHOULD',
-    rule: 'Use `will-change` sparingly—only on frequently animated elements. Apply via JS before animation starts, remove after completion. Never blanket-apply; each layer consumes GPU memory.'
-  },
-
   // Animation Frame Budget (60fps)
   // Ref: https://www.viget.com/articles/animation-performance-101-browser-under-the-hood/
   // Ref: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals
@@ -530,16 +522,8 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     rule: 'Use Tailwind `motion-safe:` and `motion-reduce:` variants to conditionally apply animations. Default pattern: `motion-safe:animate-*` ensures animations only run when user allows motion.'
   },
 
-  // Pause Offscreen Animations
-  // Ref: https://web.dev/articles/content-visibility
-  // Ref: https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
-  'animations-pause-offscreen': {
-    priority: 'SHOULD',
-    rule: 'Pause or disable animations for offscreen elements using IntersectionObserver or `content-visibility: auto`. Saves CPU/battery on mobile. Resume when element enters viewport.'
-  },
-
   // ============================================================================
-  // Claude Code - Core Web Vitals Performance Rules
+  // Core Web Vitals Performance Rules
   // Research: LCP, CLS, INP optimization strategies for modern web performance
   // Ref: https://web.dev/articles/vitals
   // ============================================================================
@@ -568,14 +552,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     rule: 'Use `srcset` + `sizes` for responsive images. Serve WebP/AVIF with `<picture>` fallback. Always set explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent CLS.'
   },
 
-  // Skeleton Dimensions
-  // Ref: https://web.dev/articles/cls
-  // Ref: https://web.dev/articles/optimize-cls
-  'performance-skeleton-dimensions': {
-    priority: 'MUST',
-    rule: 'Skeleton placeholders MUST match final content dimensions exactly. Include image placeholders with correct aspect ratios. Text skeleton heights should match typography line heights. Poor skeletons cause CLS.'
-  },
-
   // ============================================================================
   // Aesthetics - Anthropic Skills
   // Source: https://skills.sh/
@@ -597,10 +573,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Break predictable symmetric grids with asymmetry, overlap, negative margins, and varied scale. Feature one dominant element at unexpected scale. Use whitespace asymmetrically to create tension.'
   },
-  'aesthetics-atmospheric-backgrounds': {
-    priority: 'SHOULD',
-    rule: 'Add depth with gradient meshes (layered radial-gradient), subtle noise textures (2-5% opacity), and backdrop-filter effects. Plain solid backgrounds feel flat and lifeless.'
-  },
   'aesthetics-bold-direction': {
     priority: 'SHOULD',
     rule: 'Commit to a design direction (brutalist, editorial, organic) and execute with precision. Avoid generic AI aesthetics: purple gradients, sparkles, excessive border-radius. Polarizing is better than forgettable.'
@@ -609,25 +581,9 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'NEVER',
     rule: 'Use generic fonts (Inter, Roboto, Arial, system-ui), purple gradients, perfectly centered layouts, excessive border-radius, or sparkle emojis. These are hallmarks of AI-generated slop. Choose distinctive typography, intentional colors, and layouts with asymmetry.'
   },
-  'aesthetics-css-first-animations': {
-    priority: 'SHOULD',
-    rule: 'Use CSS transitions and animations for hover effects, reveals, and simple state changes. Reserve JavaScript animations for physics-based motion, gestures, or complex orchestration. CSS runs on compositor thread; JS blocks main thread.'
-  },
   'aesthetics-craftsmanship': {
     priority: 'SHOULD',
     rule: 'Demonstrate meticulous craftsmanship: consistent spacing scale (4/8/12/16/24px), pixel-perfect alignment, harmonious proportions. No arbitrary values, misaligned elements, or inconsistent padding. Every detail should feel intentional.'
-  },
-  'aesthetics-design-commitment': {
-    priority: 'SHOULD',
-    rule: 'Commit fully to a cohesive aesthetic using CSS variables. Deploy dominant colors (deep black, vibrant brand color) with sharp accents. Avoid timid palettes with pale grays and washed-out colors. Half-measures are forgettable; conviction is memorable.'
-  },
-  'aesthetics-visual-first': {
-    priority: 'SHOULD',
-    rule: 'Aim for 90% visual, 10% essential text. Communicate through large icons, bold illustrations, color, and space—not paragraphs. Text should be rare and powerful: single words, short labels, essential context only. If you need a paragraph to explain something, the visual design has failed.'
-  },
-  'aesthetics-negative-space': {
-    priority: 'SHOULD',
-    rule: 'Use generous or controlled negative space intentionally as a design element. Avoid cramped layouts with tight padding. Apply comfortable line-height (1.5-1.75), generous padding (16-24px), and meaningful space between sections. Whitespace creates hierarchy and lets content breathe.'
   },
   'aesthetics-scroll-interactions': {
     priority: 'SHOULD',
@@ -675,7 +631,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'interactions-rams-focus-outline': {
     priority: 'MUST',
-    rule: 'Interactive elements must have visible focus indicator. Never use outline-none without providing focus-visible replacement. Keyboard users must see where focus is.'
+    rule: 'Interactive elements must have visible focus indicator. Never use outline-hidden without providing focus-visible replacement. Keyboard users must see where focus is.'
   },
   'interactions-rams-keyboard-handlers': {
     priority: 'MUST',
@@ -930,12 +886,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'content-ibelick-letter-spacing': {
     priority: 'NEVER',
     rule: 'Modify letter-spacing (tracking-*) unless explicitly requested. Default tracking is optimized for readability. Custom tracking often hurts legibility.'
-  },
-
-  // Aesthetics - Grid Breaking
-  'aesthetics-grid-breaking': {
-    priority: 'SHOULD',
-    rule: 'Break rigid grids intentionally with varied card sizes, diagonal flow, and overlapping elements. One dominant element, asymmetric spacing, and depth through z-index create visual hierarchy over predictable symmetry.'
   },
 
   // Aesthetics - Font Pairing
@@ -1602,6 +1552,39 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'content-aria-label-overrides-visible-text': {
     priority: 'NEVER',
     rule: 'Give a control an `aria-label` that contradicts or omits its visible text — on any role that names from child content, `aria-label` REPLACES that text, so `<button aria-label="Submit form">Save</button>` answers only to "Submit form" and a voice-control user saying "click Save" hits nothing (WCAG SC 2.5.3 Label in Name, Level A requires the accessible name to contain the visible string). Name from child content; use `aria-labelledby` to point at visible text elsewhere; reserve `aria-label` for controls with no visible text. Extending is fine — `aria-label="Save draft"` on a button reading "Save".'
+  },
+  'design-theme-not-root': {
+    priority: 'MUST',
+    rule: 'Declare design tokens in `@theme`, not `:root` — a variable in `:root` is a working custom property but Tailwind never sees it, so it generates NO utilities and the codebase fills with `bg-[var(--brand)]` arbitrary values. `@theme { --color-brand: … }` generates `bg-brand`/`text-brand`/`border-brand`/`ring-brand` AND still emits the custom property for `var()`. The namespace prefix does the work: `--color-*` feeds color utilities, `--spacing-*` spacing, `--font-*` families, `--breakpoint-*` breakpoints. Nothing errors when you get it wrong.',
+    codeExample: '/* generates nothing */ :root { --brand: oklch(0.62 0.19 259); }\n/* generates bg-brand, text-brand, … */ @theme { --color-brand: oklch(0.62 0.19 259); }'
+  },
+  'design-border-currentcolor': {
+    priority: 'MUST',
+    rule: 'Never write a border width without a border color in the same breath. In v4 `border-color` defaults to `currentColor`, NOT `gray-200` as in v3 — so a bare `border` inherits the text color, a near-black paragraph gets a near-black box, `text-destructive` turns the outline red, and it can never be a surface-relative hairline in dark mode. Pair the width with a semantic token: `border border-border`. A base-layer rule resetting `border-color` is a migration crutch, not the destination.',
+    codeExample: '<div class="border p-4" />              <!-- v3: gray hairline. v4: currentColor -->\n<div class="border border-border p-4" /> <!-- theme-aware in both -->'
+  },
+  'layout-container-queries': {
+    priority: 'SHOULD',
+    rule: 'A reusable component must respond to ITS OWN width, not the viewport: `md:flex-row` asks about the browser window, so the card that reads right in the main column goes horizontal inside a 300px sidebar. Put `@container` on the wrapper and `@md:` on the children — now it asks "is my container ≥28rem", with no `isCompact` prop threaded through three layers. Container queries are core in v4; installing `@tailwindcss/container-queries` is a mistake, not a dependency. The `@` variants read the nearest `@container` ANCESTOR, so the wrapper must not be the element you are sizing.',
+    codeExample: '<div class="@container">\n  <div class="flex flex-col @md:flex-row">…</div>\n</div>'
+  },
+  'layout-no-apply-abstraction': {
+    priority: 'NEVER',
+    rule: 'Collapse repeated markup into a `.btn { @apply … }` class to make it look "cleaner" — it reintroduces exactly what utilities removed: you invent a name, you jump between files to read the button\'s appearance, and one edit silently repaints every button. It also collapses at the first variant (`.btn-primary`, `.btn-sm`, disabled), where you start hand-rolling the variant system you already have. Extract a COMPONENT instead — a React component with CVA — which encapsulates behaviour too, not just the class string. `@apply` is legitimate only for markup you do not control (a `.prose` subtree, a third-party widget).',
+    codeExample: '/* no */ .btn { @apply inline-flex rounded-md px-4 py-2 …; }\n// yes: const button = cva("inline-flex rounded-md", { variants: { size: { sm: "px-2 py-1", md: "px-4 py-2" } } });'
+  },
+  'aesthetics-decorative-numbering': {
+    priority: 'NEVER',
+    rule: 'Stamp numbered markers (01 / 02 / 03) on a set whose order carries no information. The test takes a second: reorder the items — if nothing breaks, if Security could just as well be 01 and Analytics 03, the numerals are decoration wearing the costume of structure, and they lie to a reader who reads "01" as a promise that something follows. A real process (Push → Build → Promote) or a typed timeline earns them, because there the order IS the information. Same bar for eyebrows, dividers and labels: encode something true, or drop them.'
+  },
+  'aesthetics-dark-acid-default': {
+    priority: 'SHOULD',
+    rule: 'Treat near-black + one bright acid-green/vermilion accent as a reflex, not a choice — it is one of the looks AI-generated design clusters around, and its tell is interchangeability: the same surface and accent look equally plausible on a fintech dashboard, a wellness app and a dev tool, which means it was derived from none of them. Derive the dark surface instead: take the product\'s own hue, hold the hue angle and drop chroma, and pull the accent from the subject\'s material world rather than a neon swatch. (Distinct from `design-impeccable-dark-glow`, which is about glow SHADOWS, not the palette.)'
+  },
+  'interactions-outline-hidden': {
+    priority: 'MUST',
+    rule: 'In Tailwind v4, `outline-hidden` sets a real `outline-style: none` and KILLS the focus ring in Windows forced-colors / high-contrast mode, where custom `ring-*` shadows are stripped away — leaving those users with no focus indicator at all. v3\'s `outline-hidden` emitted an invisible outline that still showed up in forced colors; that behavior was renamed `outline-hidden`. So the ubiquitous `focus:outline-hidden` + custom ring pattern silently regresses on upgrade: use `focus-visible:outline-hidden` PLUS a visible replacement ring. (Distinct from `interactions-clear-focus` — having a ring — and `interactions-focus-ring-shadow` — box-shadow vs outline for radius.)',
+    codeExample: '// v4: strips the forced-colors fallback outline\n<button class="focus:outline-hidden focus:ring-2 focus:ring-ring" />\n// keeps it\n<button class="focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring" />'
   }
 };
 

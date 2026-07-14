@@ -2,45 +2,51 @@ export function LayerDirectivesBad() {
   return (
     <div className="w-full max-w-md space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">
-        <h4 className="font-medium mb-3">Without @layer</h4>
-        <div className="space-y-4">
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium mb-2">Plain CSS</h5>
-            <div className="font-mono text-xs bg-background rounded p-2">
-              <pre className="text-error">{`.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+        <h4 className="font-medium mb-1">The v3 three-layer habit</h4>
+        <p className="text-xs text-muted-foreground mb-3">
+          Reads the same in v4. Two of the three no longer mean what you think.
+        </p>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto">
+          <pre className="text-error">{`@layer components {
+  .card { padding: 1rem; border-radius: 0.5rem; }
 }
 
-/* Can't override with px-6! */`}</pre>
-            </div>
-          </div>
-          <div className="bg-muted rounded-lg p-3">
-            <h5 className="text-sm font-medium">Problem</h5>
-            <div className="mt-2 space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>Higher specificity than utilities</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>Can't override with Tailwind classes</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-error" />
-                <span>May not be purged correctly</span>
-              </div>
-            </div>
-          </div>
-          <div className="font-mono text-xs bg-background rounded p-2">
-            <pre>{`<button class="btn px-6">
-  /* px-6 has no effect! */
-</button>`}</pre>
-          </div>
+@layer utilities {
+  .scrollbar-hide { scrollbar-width: none; }
+}`}</pre>
         </div>
       </div>
+
+      <div className="bg-card border border-border rounded-lg p-4">
+        <h5 className="text-sm font-medium mb-1">At the call site</h5>
+        <div className="bg-muted rounded-md p-3 font-mono text-xs overflow-x-auto mt-3">
+          <pre className="text-error">{`<div class="hover:scrollbar-hide md:scrollbar-hide">
+<!-- neither variant exists. both are dropped. -->`}</pre>
+        </div>
+        <ul className="mt-3 text-xs space-y-2">
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-error" />
+            <span>
+              In v4 <code className="font-mono">@layer</code> is a native CSS cascade layer. Tailwind does not read
+              these blocks.
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-error" />
+            <span>
+              <code className="font-mono">.scrollbar-hide</code> is a plain class, not a registered utility — so the
+              compiler cannot generate a variant of a name it has never heard of.
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-error" />
+            <span>It has no place in the property-count sort order, so overriding it is a coin toss.</span>
+          </li>
+        </ul>
+      </div>
+
       <p className="text-xs text-error">
-        Plain CSS can't be overridden by Tailwind utilities
+        It looks like a utility and fails the moment anyone uses it like one.
       </p>
     </div>
   );

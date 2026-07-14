@@ -16,7 +16,8 @@ export function FrameBudgetBad() {
     const loop = () => {
       x += dir * 3;
       if (x > 160 || x < 0) dir *= -1;
-      // BAD: ~20ms of synchronous work every frame — blows the 16ms budget.
+      // BAD: ~20ms of synchronous work every frame. The frame itself is 16.7ms, and the
+      // browser needs part of that for style/layout/paint — so ~10ms is the real ceiling.
       blockMainThread(20);
       if (boxRef.current) boxRef.current.style.transform = `translateX(${x}px)`;
       raf = requestAnimationFrame(loop);
@@ -40,7 +41,8 @@ export function FrameBudgetBad() {
         <div ref={boxRef} className="absolute top-2 left-0 size-8 rounded-md bg-primary" />
       </div>
       <p className="text-xs text-destructive">
-        ~20ms of JS work every frame blows the 16ms budget — the counter drops well below 60fps and the box stutters
+        ~20ms of JS work every frame — the counter drops well below 60fps and the box stutters. Note the cliff is not at
+        16.7ms: the browser needs part of every frame for its own rendering, so anything past ~10ms of your work already costs frames
       </p>
     </div>
   );

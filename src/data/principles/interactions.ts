@@ -346,6 +346,23 @@ export const interactionsPrinciples: Principle[] = [
     goodExampleKey: 'interactions-focus-visible-tw-good',
   },
   {
+    id: 'interactions-outline-hidden',
+    category: 'interactions',
+    source: 'tailwind',
+    title: 'Use outline-hidden, Not outline-hidden',
+    description: 'In v4 outline-hidden really removes the outline and kills the focus ring in forced-colors mode — outline-hidden is the utility that used to be safe',
+    sourceQuote: 'The `outline-hidden` utility previously didn\'t actually set `outline-style: none`, and instead set an invisible outline that would still show up in forced colors mode for accessibility reasons. To make this more clear we\'ve renamed this utility to `outline-hidden` and added a new `outline-hidden` utility that actually sets `outline-style: none`.',
+    additionalExplanation: 'This is a real accessibility regression introduced purely by a rename. `focus:outline-hidden` + a custom `ring-*` is the single most common focus pattern on the web, and in v3 it was safe: `outline-hidden` did not remove the outline, it emitted a *transparent* one, which Windows forced-colors / high-contrast mode repaints as a visible system outline. In v4 that same class name now sets a literal `outline-style: none`. Forced-colors mode also overrides your colors and drops `box-shadow`, so the `ring` you replaced the outline with is not there to save you — the user is left with a focused control and no indicator at all, on the exact configuration that most depends on one. Nothing errors, nothing changes in your browser, and the upgrade ships. The fix is the rename Tailwind documents: `focus-visible:outline-hidden` (the old, transparent-outline behaviour) **plus** the visible replacement ring, `focus-visible:ring-2 focus-visible:ring-ring`. Reserve the new `outline-hidden` for the rare case where you genuinely want no outline in any mode. This is a different rule from `interactions-clear-focus`, which is about having a visible ring at all, and from `interactions-focus-ring-shadow`, which is about drawing that ring with box-shadow so it follows the border radius; both assume the forced-colors fallback you are about to delete here.',
+    sourceLinks: [
+      { text: 'Tailwind v4: Upgrade guide (renamed outline utility)', url: 'https://tailwindcss.com/docs/upgrade-guide' },
+      { text: 'Tailwind v4: outline-style', url: 'https://tailwindcss.com/docs/outline-style' },
+      { text: 'MDN: forced-colors', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors' },
+    ],
+    tags: ['a11y'],
+    badExampleKey: 'interactions-outline-hidden-bad',
+    goodExampleKey: 'interactions-outline-hidden-good',
+  },
+  {
     id: 'interactions-skip-link-tw',
     category: 'interactions',
     source: 'tailwind',

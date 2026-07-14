@@ -63,7 +63,7 @@ export function AriaActivedescendantGood() {
             const next = activeIndex + (e.key === 'ArrowDown' ? 1 : -1);
             setActive(Math.min(Math.max(next, 0), matches.length - 1));
           }}
-          className="w-full rounded border border-input bg-background px-2 py-1 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded border border-input bg-background px-2 py-1 text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
 
         <div

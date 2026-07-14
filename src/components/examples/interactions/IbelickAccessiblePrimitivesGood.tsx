@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog';
 
 const triggerClass =
-  'px-4 py-2 rounded-lg text-sm transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+  'px-4 py-2 rounded-lg text-sm transition-colors duration-150 ease-out focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring';
 
 export function IbelickAccessiblePrimitivesGood() {
   return (
@@ -28,7 +28,7 @@ export function IbelickAccessiblePrimitivesGood() {
           {['Rename', 'Duplicate', 'Delete'].map((item) => (
             <button
               key={item}
-              className="w-full text-left px-3 py-2 rounded text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full text-left px-3 py-2 rounded text-sm hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               {item}
             </button>
@@ -49,7 +49,7 @@ export function IbelickAccessiblePrimitivesGood() {
           <input
             type="text"
             placeholder="Type here..."
-            className="w-full px-3 py-2 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full px-3 py-2 bg-background border border-border rounded focus:outline-hidden focus:ring-2 focus:ring-ring"
           />
           <DialogClose className={`${triggerClass} bg-primary text-primary-foreground hover:bg-primary/90`}>
             Close

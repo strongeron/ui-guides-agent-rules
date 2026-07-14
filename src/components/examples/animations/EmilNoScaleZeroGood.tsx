@@ -41,7 +41,7 @@ export function EmilNoScaleZeroGood() {
       <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={replay}
-          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Replay
         </button>

@@ -31,7 +31,7 @@ export function HoverContentPersistenceGood() {
             <button
               type="button"
               onFocus={() => setOpen(true)}
-              className="font-medium text-primary underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="font-medium text-primary underline underline-offset-2 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               @dana
             </button>
@@ -48,7 +48,7 @@ export function HoverContentPersistenceGood() {
                   </span>
                   <button
                     type="button"
-                    className="mt-2 block text-primary underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="mt-2 block text-primary underline focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     View profile
                   </button>

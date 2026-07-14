@@ -33,7 +33,7 @@ export function GestureAlternativeGood() {
           e.stopPropagation();
           go(index + (e.key === 'ArrowRight' ? 1 : -1));
         }}
-        className="flex h-32 touch-pan-y select-none items-center justify-center rounded-lg border border-border bg-card text-lg font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="flex h-32 touch-pan-y select-none items-center justify-center rounded-lg border border-border bg-card text-lg font-medium text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         {SLIDES[index]}
       </div>
@@ -44,7 +44,7 @@ export function GestureAlternativeGood() {
           type="button"
           onClick={() => go(index - 1)}
           disabled={index === 0}
-          className="flex size-8 items-center justify-center rounded border border-border text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
+          className="flex size-8 items-center justify-center rounded border border-border text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
         >
           <span aria-hidden="true">←</span>
           <span className="sr-only">Previous slide</span>
@@ -58,7 +58,7 @@ export function GestureAlternativeGood() {
               onClick={() => go(i)}
               aria-label={`Go to ${slide}`}
               aria-current={i === index ? 'true' : undefined}
-              className="flex size-6 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex size-6 items-center justify-center rounded-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               <span
                 aria-hidden="true"
@@ -72,7 +72,7 @@ export function GestureAlternativeGood() {
           type="button"
           onClick={() => go(index + 1)}
           disabled={index === SLIDES.length - 1}
-          className="flex size-8 items-center justify-center rounded border border-border text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
+          className="flex size-8 items-center justify-center rounded border border-border text-foreground hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30"
         >
           <span aria-hidden="true">→</span>
           <span className="sr-only">Next slide</span>

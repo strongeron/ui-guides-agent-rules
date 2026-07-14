@@ -18,7 +18,7 @@ export type PatternSource =
   | 'tailwind'         // Tailwind CSS golden rules
   | 'rams'             // RAMS accessibility and visual design review
   | 'ibelick'          // @Ibelick UI Skills - opinionated constraints
-  | 'claude-code'      // Claude Code suggested rules from research
+  | 'web-platform'     // web.dev + MDN (Google / Mozilla)
   | 'anthropic'        // Anthropic frontend-design skill guidelines
   | 'rauno'            // Rauno Freiberg's interfaces.rauno.me
   | 'emilkowalski'     // Emil Kowalski's animation skills

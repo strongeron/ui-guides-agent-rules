@@ -37,7 +37,7 @@ export function PasswordManagersGood() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
-          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full px-3 py-2 bg-background border border-border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
         />
         <p className="text-xs text-muted-foreground">
           Paste works, and a password manager can fill it (use <code>new-password</code> on signup).
@@ -60,7 +60,7 @@ export function PasswordManagersGood() {
               value={digit}
               onChange={(e) => handleChange(i, e.target.value)}
               onPaste={handleCodePaste}
-              className="w-10 h-12 text-center text-lg font-mono bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+              className="w-10 h-12 text-center text-lg font-mono bg-background border border-border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring"
             />
           ))}
         </div>

@@ -52,14 +52,14 @@ export function KeystrokeCostGood() {
             }
           }}
           placeholder="Type quickly here..."
-          className="w-full rounded-lg border border-border bg-background px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded-lg border border-border bg-background px-3 py-2 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
         <div ref={keystrokeDisplayRef} className="mt-2 text-xs tabular-nums text-muted-foreground">
           keystrokes: 0
         </div>
         <button
           type="submit"
-          className="mt-2 rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="mt-2 rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Preview
         </button>

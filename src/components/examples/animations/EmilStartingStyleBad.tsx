@@ -13,7 +13,7 @@ export function EmilStartingStyleBad() {
     <div className="w-full max-w-sm space-y-4">
       <button
         onClick={() => setShown((v) => !v)}
-        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         {shown ? 'Hide toast' : 'Show toast'}
       </button>

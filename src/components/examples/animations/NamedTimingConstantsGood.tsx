@@ -55,7 +55,7 @@ export function NamedTimingConstantsGood() {
       <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={() => setRun((r) => r + 1)}
-          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Replay sequence
         </button>
@@ -64,7 +64,7 @@ export function NamedTimingConstantsGood() {
           <select
             value={tempo}
             onChange={(e) => setTempo(Number(e.target.value))}
-            className="rounded-md border border-border bg-card px-2 py-1 text-xs text-card-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-md border border-border bg-card px-2 py-1 text-xs text-card-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <option value={1}>1×</option>
             <option value={0.5}>0.5×</option>

@@ -23,13 +23,13 @@ export function LottieDistanceDurationBad() {
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => setTooltipOpen((v) => !v)}
-          className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Toggle tooltip
         </button>
         <button
           onClick={() => setSheetOpen((v) => !v)}
-          className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         >
           Toggle sheet
         </button>

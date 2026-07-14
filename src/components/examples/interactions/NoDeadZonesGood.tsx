@@ -7,7 +7,7 @@ export function NoDeadZonesGood() {
     <div className="w-full max-w-sm">
       <button
         onClick={handleCardClick}
-        className="w-full text-left bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="w-full text-left bg-card border border-border rounded-lg overflow-hidden hover:border-primary/30 hover:shadow-md transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
       >
         <div className="p-4">
           <div className="flex items-start gap-3">

@@ -54,7 +54,7 @@ export function AriaActivedescendantBad() {
             // longer the active element, so it no longer receives keystrokes.
             optionRefs.current[0]?.focus();
           }}
-          className="w-full rounded border border-input bg-background px-2 py-1 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="w-full rounded border border-input bg-background px-2 py-1 text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
         />
 
         <div
@@ -79,7 +79,7 @@ export function AriaActivedescendantBad() {
                 const next = index + (e.key === 'ArrowDown' ? 1 : -1);
                 optionRefs.current[Math.min(Math.max(next, 0), matches.length - 1)]?.focus();
               }}
-              className="cursor-pointer rounded px-2 py-1 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="cursor-pointer rounded px-2 py-1 text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
             >
               {city}
             </div>

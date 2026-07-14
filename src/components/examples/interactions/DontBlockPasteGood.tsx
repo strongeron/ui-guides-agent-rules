@@ -15,7 +15,7 @@ export function DontBlockPasteGood() {
           onChange={(e) => setValue(e.target.value)}
           autoComplete="new-password"
           placeholder="Re-enter your password"
-          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full px-3 py-2 border border-border rounded-lg text-base focus:outline-hidden focus:ring-2 focus:ring-ring"
         />
         <p className="mt-2 text-xs text-muted-foreground">
           Paste works normally. Password managers can fill this field, improving security.

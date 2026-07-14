@@ -12,23 +12,23 @@ export function DontShipSchemaGood() {
           <input
             id="q"
             placeholder="Search projects"
-            className="flex-1 min-w-0 px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex-1 min-w-0 px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
           <button
             aria-label="Search"
-            className="p-2 bg-muted rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="p-2 bg-muted rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Search className="w-4 h-4 text-foreground" aria-hidden="true" />
           </button>
           <button
             aria-label="Add to favorites"
-            className="p-2 bg-muted rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="p-2 bg-muted rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Star className="w-4 h-4 text-foreground" aria-hidden="true" />
           </button>
           <button
             aria-label="Delete project"
-            className="p-2 bg-muted rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="p-2 bg-muted rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Trash2 className="w-4 h-4 text-foreground" aria-hidden="true" />
           </button>

@@ -61,7 +61,7 @@ export function Header({ onMenuToggle, onSearchClick, onSourcesClick, isDesktop 
             onClick={onSearchClick}
             aria-label={`Search rules (${isMac ? 'Command' : 'Control'} K)`}
             aria-keyshortcuts={isMac ? 'Meta+K' : 'Control+K'}
-            className="group flex w-full items-center gap-2 h-9 rounded-lg border border-border bg-muted/60 pl-3 pr-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background"
+            className="group flex w-full items-center gap-2 h-9 rounded-lg border border-border bg-muted/60 pl-3 pr-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:border-primary/40 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background"
           >
             <HugeiconsIcon icon={Search01Icon} size={16} aria-hidden="true" />
             <span className="flex-1 text-left truncate">Search rules…</span>

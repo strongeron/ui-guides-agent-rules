@@ -34,7 +34,7 @@ export function NativeValidationBad() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full px-3 py-2 border border-border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div>
@@ -47,7 +47,7 @@ export function NativeValidationBad() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyUp={(e) => validateOnKeyUp(e.currentTarget.value)}
-            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring ${
               error ? 'border-error/50' : 'border-border'
             }`}
           />

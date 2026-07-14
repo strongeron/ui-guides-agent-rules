@@ -7,10 +7,10 @@ export function FocusVisibleTwBad() {
           Click with mouse - notice the ring appears even on click.
         </p>
         <div className="flex gap-3">
-          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+          <button className="px-4 py-2 bg-primary text-primary-foreground rounded-lg outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2">
             Button 1
           </button>
-          <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+          <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2">
             Button 2
           </button>
         </div>

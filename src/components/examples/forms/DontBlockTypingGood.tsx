@@ -26,7 +26,7 @@ export function DontBlockTypingGood() {
           type="text"
           value={phoneNumber}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-none focus-visible:ring-2 ${
+          className={`w-full px-3 py-2 border rounded-lg focus-visible:outline-hidden focus-visible:ring-2 ${
             error
               ? 'border-error/50 focus-visible:ring-error'
               : 'border-border focus-visible:ring-ring'

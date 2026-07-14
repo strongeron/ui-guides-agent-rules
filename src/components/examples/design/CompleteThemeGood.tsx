@@ -35,7 +35,7 @@ export function CompleteThemeGood() {
           <input
             type="text"
             placeholder="Focus to see the ring"
-            className="mt-2 w-full px-3 py-2 bg-background border border-border rounded focus:outline-none focus:ring-2 focus:ring-ring"
+            className="mt-2 w-full px-3 py-2 bg-background border border-border rounded focus:outline-hidden focus:ring-2 focus:ring-ring"
           />
         </div>
       </div>

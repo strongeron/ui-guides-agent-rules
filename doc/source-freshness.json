@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T11:24:40.749Z",
+  "generatedAt": "2026-07-14T15:22:53.972Z",
   "reports": [
     {
       "source": "vercel",
@@ -7,7 +7,7 @@
       "mode": "github",
       "status": "checked",
       "upstreamRules": 230,
-      "ourRules": 112,
+      "ourRules": 118,
       "newRules": [
         {
           "source": "vercel",
@@ -128,45 +128,6 @@
         },
         {
           "source": "vercel",
-          "text": "Minimum loading-state duration. If you show a spinner/skeleton, add a short show-delay (~150–300 ms) & a minimum visible time (~300–500 ms) to avoid flicker on fast responses. The <Suspense> component in React does this automatically.",
-          "suggestedId": "vercel-minimum-loading-state-duration-if-you",
-          "category": "animations",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "animations"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "vercel",
-          "text": "Locale-aware keyboard shortcuts. Internationalize keyboard shortcuts for non-QWERTY layouts. Show platform-specific symbols.",
-          "suggestedId": "vercel-locale-aware-keyboard-shortcuts-internationalize-keyboard",
-          "category": "interactions",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "interactions"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "vercel",
-          "text": "Text anti-aliasing & transforms. Scaling text can change smoothing. Prefer animating a wrapper instead of the text node. If artifacts persist set translateZ(0) or will-change: transform to promote to its own layer.",
-          "suggestedId": "vercel-text-anti-aliasing-transforms-scaling-text",
-          "category": "content",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "content"
-          ],
-          "bestMatch": 0.18
-        },
-        {
-          "source": "vercel",
           "text": "Instead of “Your deployment failed,” say “Something went wrong—try again or contact support.”",
           "suggestedId": "vercel-instead-of-your-deployment-failed-say",
           "category": "design",
@@ -177,18 +138,6 @@
             "design"
           ],
           "bestMatch": 0.18
-        },
-        {
-          "source": "vercel",
-          "text": "Don’t trigger password managers for non-auth fields. For inputs like “Search” avoid reserved names (e.g., password), use autocomplete=\"off\" or a specific token like autocomplete=\"one-time-code\" for OTP fields.",
-          "suggestedId": "vercel-don-t-trigger-password-managers-for",
-          "category": "forms",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.19
         },
         {
           "source": "vercel",
@@ -281,19 +230,6 @@
         },
         {
           "source": "vercel",
-          "text": "Don’t use the main thread for expensive work. Move especially long tasks to Web Workers to avoid blocking interaction with the page.",
-          "suggestedId": "vercel-don-t-use-the-main-thread",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.27
-        },
-        {
-          "source": "vercel",
           "text": "Headings hierarchical `<h1>`–`<h6>`; include skip link for main content",
           "suggestedId": "vercel-headings-hierarchical-include-skip-link-for",
           "category": "content",
@@ -302,31 +238,6 @@
             "forms",
             "performance",
             "content"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "vercel",
-          "text": "`autocomplete=\"off\"` on non-auth fields to avoid password manager triggers",
-          "suggestedId": "vercel-on-non-auth-fields-to-avoid",
-          "category": "forms",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "vercel",
-          "text": "Input-driven. Avoid autoplay; animate in response to actions.",
-          "suggestedId": "vercel-input-driven-avoid-autoplay-animate-in",
-          "category": "animations",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "animations"
           ],
           "bestMatch": 0.29
         },
@@ -584,18 +495,6 @@
         },
         {
           "source": "rauno",
-          "text": "Inputs should disable `spellcheck` and `autocomplete` attributes most of the time",
-          "suggestedId": "rauno-inputs-should-disable-and-attributes-most",
-          "category": "forms",
-          "tags": [
-            "interaction",
-            "motion",
-            "forms"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "rauno",
           "text": "Buttons should be disabled after submission to avoid duplicate network requests",
           "suggestedId": "rauno-buttons-should-be-disabled-after-submission",
           "category": "design",
@@ -713,6 +612,18 @@
             "forms"
           ],
           "bestMatch": 0.4
+        },
+        {
+          "source": "rauno",
+          "text": "Inputs should disable `spellcheck` and `autocomplete` attributes most of the time",
+          "suggestedId": "rauno-inputs-should-disable-and-attributes-most",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "motion",
+            "forms"
+          ],
+          "bestMatch": 0.4
         }
       ]
     },
@@ -722,19 +633,8 @@
       "mode": "github",
       "status": "checked",
       "upstreamRules": 69,
-      "ourRules": 13,
+      "ourRules": 18,
       "newRules": [
-        {
-          "source": "emilkowalski",
-          "text": "`clip-path: inset(t r b l)` is a powerful animation tool: each value eats in from that side. Uses: reveal-on-scroll (`inset(0 0 100% 0)` → `inset(0 0 0 0)`), hold-to-delete overlay, seamless tab color transitions (duplicate + clip the active copy), comparison sliders.",
-          "suggestedId": "emilkowalski-is-a-powerful-animation-tool-each",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.09
-        },
         {
           "source": "emilkowalski",
           "text": "Accessibility. `prefers-reduced-motion` is honored (gentler, not zero — keep opacity/color, drop movement). Hover animations are gated behind `@media (hover: hover) and (pointer: fine)`.",
@@ -770,28 +670,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Never `scale(0)`. Start from `scale(0.9–0.97)` + `opacity: 0`. Nothing in the real world appears from nothing.",
-          "suggestedId": "emilkowalski-never-start-from-nothing-in-the",
-          "category": "design",
-          "tags": [
-            "motion",
-            "design"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "emilkowalski",
-          "text": "`translate` percentages are relative to the element's own size — `translateY(100%)` moves by the element's height regardless of dimensions (how Sonner/Vaul position toasts/drawers). Prefer over hardcoded px.",
-          "suggestedId": "emilkowalski-percentages-are-relative-to-the-element",
-          "category": "design",
-          "tags": [
-            "motion",
-            "design"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "emilkowalski",
           "text": "Approve — no feel-breaking regressions, no obvious motion that should be deleted, durations and easing within bounds, interruptibility handled where needed, reduced-motion respected.",
           "suggestedId": "emilkowalski-approve-no-feel-breaking-regressions-no",
           "category": "animations",
@@ -811,28 +689,6 @@
             "animations"
           ],
           "bestMatch": 0.18
-        },
-        {
-          "source": "emilkowalski",
-          "text": "`scale(0)` or pure-fade entrances with no initial transform",
-          "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
-          "category": "forms",
-          "tags": [
-            "motion",
-            "forms"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Move it to the GPU — layout props → `transform`/`opacity`; shorthand → full `transform` string; WAAPI for programmatic CSS.",
-          "suggestedId": "emilkowalski-move-it-to-the-gpu-layout",
-          "category": "forms",
-          "tags": [
-            "motion",
-            "forms"
-          ],
-          "bestMatch": 0.2
         },
         {
           "source": "emilkowalski",
@@ -902,17 +758,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "CSS animations beat JS under load — they run off the main thread; rAF-based animations stutter while the browser loads/scripts/paints. Use CSS for predetermined motion, JS for dynamic/interruptible.",
-          "suggestedId": "emilkowalski-css-animations-beat-js-under-load",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.24
-        },
-        {
-          "source": "emilkowalski",
           "text": "Reduce it — shorter duration, smaller transform, fewer animated properties.",
           "suggestedId": "emilkowalski-reduce-it-shorter-duration-smaller-transform",
           "category": "animations",
@@ -959,17 +804,6 @@
           "source": "emilkowalski",
           "text": "Constant motion (marquee, progress) → `linear`",
           "suggestedId": "emilkowalski-constant-motion-marquee-progress",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Framer Motion shorthands are NOT hardware-accelerated. `x`/`y`/`scale` run on the main thread via rAF and drop frames under load. Use the full transform string:",
-          "suggestedId": "emilkowalski-framer-motion-shorthands-are-not-hardware",
           "category": "animations",
           "tags": [
             "motion",
@@ -1034,6 +868,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Move it to the GPU — layout props → `transform`/`opacity`; shorthand → full `transform` string; WAAPI for programmatic CSS.",
+          "suggestedId": "emilkowalski-move-it-to-the-gpu-layout",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
+          ],
+          "bestMatch": 0.3
+        },
+        {
+          "source": "emilkowalski",
           "text": "Polish — blur to mask crossfades, stagger for groups, `@starting-style` for entry, spring for \"alive\" elements.",
           "suggestedId": "emilkowalski-polish-blur-to-mask-crossfades-stagger",
           "category": "animations",
@@ -1042,17 +887,6 @@
             "animations"
           ],
           "bestMatch": 0.3
-        },
-        {
-          "source": "emilkowalski",
-          "text": "GPU-only properties. Animate `transform` and `opacity` only. Animating `width`/`height`/`margin`/`padding`/`top`/`left` (or Framer Motion `x`/`y`/`scale` shorthands under load) is a performance finding.",
-          "suggestedId": "emilkowalski-gpu-only-properties-animate-and-only",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.33
         },
         {
           "source": "emilkowalski",
@@ -1144,6 +978,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "CSS animations beat JS under load — they run off the main thread; rAF-based animations stutter while the browser loads/scripts/paints. Use CSS for predetermined motion, JS for dynamic/interruptible.",
+          "suggestedId": "emilkowalski-css-animations-beat-js-under-load",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "emilkowalski",
           "text": "Prefer CSS transitions/`@starting-style`/WAAPI for predetermined motion; JS/springs for dynamic, interruptible, gesture-driven motion.",
           "suggestedId": "emilkowalski-prefer-css-transitions-waapi-for-predetermined",
           "category": "animations",
@@ -1161,6 +1006,17 @@
           "tags": [
             "motion",
             "animations"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "emilkowalski",
+          "text": "`scale(0)` or pure-fade entrances with no initial transform",
+          "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
           ],
           "bestMatch": 0.4
         },
@@ -1282,7 +1138,7 @@
       "name": "WCAG",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 0,
+      "ourRules": 8,
       "reviewEveryDays": 90,
       "note": "https://www.w3.org/WAI/WCAG21/quickref/"
     },
@@ -1291,7 +1147,7 @@
       "name": "ARIA",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 0,
+      "ourRules": 6,
       "reviewEveryDays": 90,
       "note": "https://www.w3.org/WAI/ARIA/apg/"
     },
@@ -1308,7 +1164,7 @@
       "name": "LottieFiles",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 0,
+      "ourRules": 5,
       "reviewEveryDays": 60
     },
     {
@@ -1364,7 +1220,7 @@
       "name": "interface-design",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 0,
+      "ourRules": 4,
       "reviewEveryDays": 60,
       "note": "https://github.com/Dammyjay93/interface-design"
     },
@@ -1382,7 +1238,7 @@
       "name": "impeccable",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 25,
+      "ourRules": 26,
       "reviewEveryDays": 60,
       "note": "https://impeccable.style/"
     },
