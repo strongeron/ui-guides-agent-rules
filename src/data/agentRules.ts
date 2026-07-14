@@ -164,7 +164,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'animations-prefers-reduced-motion': {
     priority: 'MUST',
-    rule: 'Honor `prefers-reduced-motion` (provide reduced variant)'
+    rule: 'Honor `prefers-reduced-motion` (provide reduced variant); in Tailwind use the `motion-safe:`/`motion-reduce:` variants'
   },
   'animations-implementation-preference': {
     priority: 'SHOULD',
@@ -172,7 +172,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'animations-compositor-friendly': {
     priority: 'MUST',
-    rule: 'Animate compositor-friendly props (`transform`, `opacity`); avoid layout/repaint props (`top/left/width/height`)'
+    rule: 'Animate compositor-friendly props (`transform`, `opacity`) — they run on the GPU without layout or paint; avoid layout/repaint props (`top/left/width/height`, `margin`). 60fps leaves <16ms per frame'
   },
   'animations-necessity-check': {
     priority: 'SHOULD',
@@ -248,7 +248,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'content-redundant-cues': {
     priority: 'MUST',
-    rule: 'Redundant status cues (not color-only); icons have text labels'
+    rule: 'Redundant status cues (never color alone) — add a text label, icon, or pattern as a second indicator; icons have text labels. ~8% of males cannot distinguish certain colors'
   },
   'content-dont-ship-schema': {
     priority: 'MUST',
@@ -358,10 +358,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'performance-content-paths': {
     priority: 'MUST',
     rule: 'Configure Tailwind content paths to include all files using utility classes'
-  },
-  'performance-gpu-animations': {
-    priority: 'MUST',
-    rule: 'Use transform/opacity for animations (GPU-accelerated), not margin/width/height'
   },
   'performance-no-transition-all': {
     priority: 'NEVER',
@@ -661,10 +657,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
 
   // Design Accessibility
-  'design-rams-color-only': {
-    priority: 'NEVER',
-    rule: 'Convey information using color alone. Add text labels, icons, or patterns as secondary indicators. Color-blind users (8% of males) cannot distinguish certain colors.'
-  },
   'design-rams-color-contrast': {
     priority: 'MUST',
     rule: 'Text needs >= 4.5:1 against its background (WCAG 1.4.3); large text (>= 24px, or >= 19px bold) may use 3:1. Secondary text, captions and disabled states are where this fails. For UI component boundaries and states, `design-non-text-contrast` sets the separate 3:1 bar (WCAG 1.4.11). Test in both themes.'
@@ -683,11 +675,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'design-rams-font-consistency': {
     priority: 'SHOULD',
-    rule: 'Use consistent font families and weights throughout the interface. Limit to 2-3 font families maximum. Too many fonts create visual chaos.'
-  },
-  'design-rams-text-sizing': {
-    priority: 'SHOULD',
-    rule: 'Use a consistent typographic scale for text sizes. Body text should be minimum 16px on web, never below 12px. Small text causes readability issues.'
+    rule: 'Use consistent font families, weights, and sizes throughout the interface. Limit to 2-3 font families maximum; take sizes from one typographic scale, with body text >= 16px on web and nothing below 12px.'
   },
   'design-rams-color-harmony': {
     priority: 'SHOULD',
@@ -749,10 +737,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'NEVER',
     rule: 'Add animation unless it is explicitly requested. Gratuitous animation slows perceived performance and can cause motion sickness. Animation should serve purpose.'
   },
-  'animations-ibelick-compositor-only': {
-    priority: 'MUST',
-    rule: 'Animate only compositor properties (transform, opacity). These run on GPU without triggering layout or paint. 60fps requires < 16ms per frame.'
-  },
   'animations-ibelick-no-layout': {
     priority: 'NEVER',
     rule: 'Animate layout properties (width, height, top, left, margin, padding). Use transform: scale() and translate() instead. Layout triggers are expensive.'
@@ -768,10 +752,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'animations-ibelick-pause-offscreen': {
     priority: 'MUST',
     rule: 'Pause looping animations when off-screen using IntersectionObserver. Saves CPU/battery on mobile. Resume when element enters viewport.'
-  },
-  'animations-ibelick-reduced-motion': {
-    priority: 'SHOULD',
-    rule: 'Respect prefers-reduced-motion media query. Reduce or disable animations for users who experience motion sickness. Use motion-safe: and motion-reduce: variants.'
   },
 
   // Forms
@@ -1470,7 +1450,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'performance-motion-shorthand-not-gpu': {
     priority: 'MUST',
-    rule: 'In Motion/Framer Motion, animate the full `transform` string, not the `x`/`y`/`scale` shorthands: the shorthands are interpolated per `requestAnimationFrame` on the MAIN THREAD and drop frames under load, while `transform` as a whole string (along with `opacity`, `filter`, `clipPath`) is handed to the Web Animations API and ticked by the compositor. This is the false floor under `animations-compositor-friendly` and `performance-gpu-animations` — `animate={{ x: 100 }}` looks compliant and is not.',
+    rule: 'In Motion/Framer Motion, animate the full `transform` string, not the `x`/`y`/`scale` shorthands: the shorthands are interpolated per `requestAnimationFrame` on the MAIN THREAD and drop frames under load, while `transform` as a whole string (along with `opacity`, `filter`, `clipPath`) is handed to the Web Animations API and ticked by the compositor. This is the false floor under `animations-compositor-friendly` — `animate={{ x: 100 }}` looks compliant and is not.',
     codeExample: '// main-thread rAF:  animate={{ x: 100 }}\n// compositor/WAAPI: animate={{ transform: "translateX(100px)" }}'
   },
   'design-interface-text-hierarchy-levels': {
@@ -1581,6 +1561,129 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'MUST',
     rule: 'In Tailwind v4, `outline-hidden` sets a real `outline-style: none` and KILLS the focus ring in Windows forced-colors / high-contrast mode, where custom `ring-*` shadows are stripped away — leaving those users with no focus indicator at all. v3\'s `outline-hidden` emitted an invisible outline that still showed up in forced colors; that behavior was renamed `outline-hidden`. So the ubiquitous `focus:outline-hidden` + custom ring pattern silently regresses on upgrade: use `focus-visible:outline-hidden` PLUS a visible replacement ring. (Distinct from `interactions-clear-focus` — having a ring — and `interactions-focus-ring-shadow` — box-shadow vs outline for radius.)',
     codeExample: '// v4: strips the forced-colors fallback outline\n<button class="focus:outline-hidden focus:ring-2 focus:ring-ring" />\n// keeps it\n<button class="focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring" />'
+  },
+
+  // ibelick — fixing-accessibility
+  'interactions-escape-dismiss': {
+    priority: 'MUST',
+    rule: 'Escape closes dialogs and overlays, and closes exactly ONE layer — the topmost open one. A nested popover and its parent dialog both listening for Escape on `window` means one keypress closes both and the user loses the form they were filling; the open layer handles the key and calls `stopPropagation()`. Native `<dialog>` and Radix-style primitives keep that stack for you. (Dismissal, not focus — `interactions-manage-focus` covers trap/return.)',
+    codeExample: 'function onKeyDown(e: React.KeyboardEvent) {\n  if (e.key !== "Escape") return;\n  e.stopPropagation(); // do not let the parent layer close too\n  close();\n}'
+  },
+  'interactions-hover-revealed-actions': {
+    priority: 'MUST',
+    rule: 'Any action revealed on hover needs the same keyboard reveal: pair `group-hover:opacity-100` with `group-focus-within:opacity-100` (and `focus-visible:opacity-100` on the control). Row actions left at `opacity-0` stay in the tab order but render invisible, so a keyboard user focuses a button they cannot see. Do NOT "fix" it by dropping them from the tab order or setting `pointer-events-none` — that trades a broken affordance for none.',
+    codeExample: '<tr class="group">\n  <td><button class="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100">Edit</button></td>\n</tr>'
+  },
+  'interactions-anchor-without-href': {
+    priority: 'NEVER',
+    rule: 'Render an `<a>` without `href` and drive it from `onClick` alone. `href` is what MAKES it a link: without it the browser exposes the element as `generic` — no link role, not focusable, not in the tab order, absent from the screen reader\'s links list, and mouse-only. Two branches: if it NAVIGATES, give it a real `href` (you get focus, the link role, Enter, middle-click, Cmd-click, "Copy link address" for free); if it performs an ACTION, it was never a link — use `<button>`.',
+    codeExample: '// no: role-less, unfocusable, mouse-only\n<a onClick={() => navigate("/profile")}>View profile</a>\n// yes\n<a href="/profile">View profile</a>'
+  },
+  'layout-dialog-scroll-lock': {
+    priority: 'SHOULD',
+    rule: 'Opening a dialog must not shift the page behind it. `document.body.style.overflow = "hidden"` removes the scrollbar track, so the viewport grows ~15px and everything behind the scrim jumps sideways (and back on close). Reserve the track with `scrollbar-gutter: stable` (or pad by `window.innerWidth - document.documentElement.clientWidth` on legacy targets), and put `overscroll-behavior: contain` on the dialog\'s own scroll area so a flick inside it does not chain out.',
+    codeExample: 'html { scrollbar-gutter: stable; }\n.dialog-body { overscroll-behavior: contain; }'
+  },
+  'content-list-and-table-semantics': {
+    priority: 'MUST',
+    rule: 'Lists are `<ul>`/`<ol>` + `<li>`; tables are `<table>` with `<th scope="col|row">` for headers. A `<div className="space-y-2">` of divs announces nothing — no "list, 5 items", no way to skip it — and a div grid with a bold header row reads a cell as a naked "42" instead of "Revenue, Q3, 42". Bold is not a header. Tailwind\'s `list-none` drops the marker without dropping the semantics, so there is no styling reason to use divs.'
+  },
+  'forms-error-programmatic-association': {
+    priority: 'MUST',
+    rule: 'An invalid field must set `aria-invalid="true"` and point `aria-describedby` at its message. `aria-describedby` takes a space-separated LIST of ids — keep BOTH the persistent hint id and the error id; overwriting the hint with the error on validation is the common bug, and it makes the field stop explaining itself the moment it goes wrong. Orthogonal to `forms-ibelick-error-placement` (which governs WHERE the message sits): a well-placed error that is not associated still fails.',
+    codeExample: '<input id="email" aria-invalid={!!err} aria-describedby={err ? "email-err email-hint" : "email-hint"} />\n<p id="email-err">Enter a valid email address</p>\n<p id="email-hint">We only email you about your account</p>'
+  },
+
+  // ibelick — fixing-motion-performance
+  'animations-no-scroll-event-animation': {
+    priority: 'NEVER',
+    rule: 'Drive animation from `scroll` events, `scrollY`, or `scrollTop`. Scroll is composited off the main thread, so a scroll listener is a notification that scrolling ALREADY happened — the animation is permanently one frame late and freezes outright during any long task while the page keeps scrolling under it. Throttling or rAF-wrapping the handler only makes the lag cheaper; move the timeline off the main thread instead (`animations-scroll-driven-css`).'
+  },
+  'animations-scroll-driven-css': {
+    priority: 'SHOULD',
+    rule: 'Use a CSS Scroll or View Timeline (`animation-timeline: view()`/`scroll()`) for scroll-linked motion — the compositor advances it, so it stays locked to the scrollbar even while the main thread is busy. This is still input-driven motion (`animations-input-driven`): the scroll IS the input. IntersectionObserver is a one-shot trigger, not a timeline — it cannot scrub, ignores scroll speed, and snaps on scroll-up; keep it for visibility and pausing. Chromium + Firefox 144+ only (Safari flagged), so treat it as an enhancement and make the un-animated state readable.',
+    codeExample: '.reveal { animation: fade-up linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }'
+  },
+  'animations-surface-size-budget': {
+    priority: 'MUST',
+    rule: 'Budget by property TIMES area, not property alone: paint- or layout-triggering animation is acceptable only on small, isolated surfaces. Repainting a 32px icon is ~1,024px of raster work per frame; the same property on a full-bleed hero band is ~102,400px — roughly 100x — and it will miss frames. So the rule is not "never transition `filter`/`box-shadow`" — small and isolated, go ahead; large surface, move to `transform`/`opacity` on a promoted layer or do not animate it. Never blur a large surface. Duration is the second axis: one-shot effects are affordable far more often than continuous motion.'
+  },
+  'animations-flip-technique': {
+    priority: 'SHOULD',
+    rule: 'When a layout change genuinely must animate (list reorder, card expanding into a detail view), use FLIP — First, Last, Invert, Play: read the start rect, apply the final layout, read the end rect, apply the inverse `transform`, then release it in one rAF and let the compositor interpolate back to zero. Layout runs twice instead of 60x/sec. Measure ONCE and batch all DOM reads before writes — a `getBoundingClientRect()` inside the loop forces a synchronous layout every tick. (Does not contradict `layout-flex-over-measurement`: that bans JS measurement to BUILD a static layout; FLIP is the sanctioned way to ANIMATE a layout change.)'
+  },
+  'performance-raf-stop-condition': {
+    priority: 'NEVER',
+    rule: 'Ship a `requestAnimationFrame` loop with no terminal condition. `const tick = () => { draw(); requestAnimationFrame(tick); }` never ends: once the value has converged and the user has moved on, it still wakes 60x/sec to compute a delta of zero, burning a core and measurable battery even while the element is visible and idle — the usual cause of an idle tab at 10-15% CPU. Give every loop two exits: stop re-scheduling on convergence (or gesture end / `AbortSignal`), and call `cancelAnimationFrame` on teardown so an unmount cannot orphan the loop. (Distinct from `animations-ibelick-pause-offscreen`, which stops work the user cannot see.)',
+    codeExample: 'const tick = () => {\n  if (settled()) return;               // terminal condition\n  id = requestAnimationFrame(tick);\n};\nreturn () => cancelAnimationFrame(id); // teardown'
+  },
+
+  // ibelick — fixing-metadata
+  'design-og-image-absolute-url': {
+    priority: 'MUST',
+    rule: '`og:image` and `twitter:image` must be ABSOLUTE URLs. A relative `/og.png` resolves fine in your browser (it has a current document) and ships a blank grey card on Slack, iMessage and LinkedIn, which fetch the HTML and have no origin to resolve against — and nothing in your build, typecheck, or local preview complains. Build the URL from one site-wide base constant. Ship a stable 1200x630 image and set `twitter:card` to `summary_large_image`, or the artwork renders at favicon size.',
+    codeExample: '<meta property="og:image" content={`${SITE_URL}/og.png`} />\n<meta name="twitter:card" content="summary_large_image" />'
+  },
+  'design-canonical-og-agreement': {
+    priority: 'MUST',
+    rule: '`canonical` must point at the page\'s preferred URL and `og:url` must be that same string. When they disagree (`/blog/post` vs `/blog/post?utm_source=x`) the page identifies itself differently depending on who asks: every share links to the tracked variant, so the authority accrues to a URL the page itself disowns, and the crawler gets a duplicate to reconcile. Compute the canonical once and feed the same variable to both tags. Campaign params belong in the link you hand out, never in the tags a page declares about itself.'
+  },
+  'design-meta-title-and-description': {
+    priority: 'MUST',
+    rule: 'Every page needs a `<title>` in one site-wide format (`${page} — ${SITE_NAME}`), with the distinctive word FIRST — results truncate around 60 characters, so a stuffed title loses the product name, the one word a human was scanning for. Shareable or searchable pages SHOULD also ship a hand-written `<meta name="description">` of ~150-160 plain-text characters; skip it and the engine writes one from whatever body copy came first, usually a cookie banner or a skip link. (Distinct from `content-page-titles`, which is the title tracking in-app context.)'
+  },
+  'design-robots-intent': {
+    priority: 'MUST',
+    rule: 'The `robots` meta must match actual access intent, so DERIVE it from the environment instead of hardcoding: default to `noindex` and let exactly one environment opt in (`process.env.VERCEL_ENV === "production"`). Preview and staging deploys are public URLs nobody thinks of as public, and an indexed staging copy competes with production for your own brand name. The symmetric failure is the overcorrection: a hardcoded `noindex` merges and production silently deindexes itself — deindexing is quiet, traffic just stops. Reserve `noindex` for private, duplicate, or non-public pages.',
+    codeExample: 'const isProd = process.env.VERCEL_ENV === "production";\n<meta name="robots" content={isProd ? "index,follow" : "noindex,nofollow"} />'
+  },
+
+  // LottieFiles — motion design
+  'animations-lottie-disney-scope': {
+    priority: 'SHOULD',
+    rule: 'Ask "character or control" before reaching for Disney motion. Anticipation, squash-and-stretch, follow-through and overshoot belong to CHARACTERS — a mascot, an illustration, an empty-state figure, a confetti burst, a once-per-session celebration — where implied mass and personality are the point. They do NOT belong to CHROME: a dropdown, toast, menu or button is a control the user operates, and overshoot there reads as dated (that is `animations-impeccable-no-bounce-easing`, and it is not in conflict — it describes a different object). LottieFiles scopes it the same way: skip anticipation for micro-feedback (<150ms), skip squash-and-stretch for premium/luxury, and its exaggeration budget is 15-25% Playful but 0-5% Corporate and 0% Premium. Controls: ease-out, no overshoot.'
+  },
+
+  // impeccable
+  'interactions-impeccable-modal-last-resort': {
+    priority: 'NEVER',
+    rule: 'Reach for a modal as the first thought. A modal steals focus, blocks the page, and destroys the context the user was acting on — they must now hold the row they clicked in working memory. Exhaust the cheaper alternatives that keep context on screen: edit in place, use a side panel or a dedicated route, and replace a confirmation dialog with an undo toast wherever the action is reversible (compose with `interactions-confirm-destructive`). What survives is the narrow case a modal is actually for: one action, destructive, and irreversible — nothing to undo it with.'
+  },
+  'interactions-impeccable-four-option-limit': {
+    priority: 'SHOULD',
+    rule: 'Cap any decision point at <=4 simultaneously visible options (Miller\'s Law as revised by Cowan, 2001: working memory holds ~4 items). 5-7 is the boundary — group them or reveal progressively; 8+ is overload, and an overloaded user does not choose slowly, they skip, misclick, or abandon. Carried into surfaces: <=5 top-level nav items, <=4 form fields before a visual break, 1 primary + 1-2 secondary buttons (rest in a menu), <=4 key metrics above the fold, <=3 pricing tiers. Grouping does not remove capability — a 4-item nav with a "More" group still reaches nine destinations — it removes them from the decision.'
+  },
+  'layout-impeccable-monotonous-spacing': {
+    priority: 'SHOULD',
+    rule: 'Vary spacing to encode grouping: ~8-12px BETWEEN siblings, ~48-96px BETWEEN sections. Uniform padding everywhere does not just look boring, it does not parse — when a label sits as far from its input as from the next section, nothing groups and every element floats at equal weight. The detector rounds every padding/margin/gap to 4px and, given >=10 samples, fires when ONE value exceeds 60% of them AND there are <=3 unique values. The opposite ditch is `design-rams-inconsistent-spacing` (arbitrary, unrepeatable values); the target is a small scale, applied to mean something.'
+  },
+  'content-impeccable-fluid-type-bounds': {
+    priority: 'SHOULD',
+    rule: 'Bound every `clamp()`: max-size <= ~2.5x min-size. `clamp(1rem, 5vw, 6rem)` is a 6x span that renders the heading at body size on a phone and shouts at 1400px, and a bare `vw` middle term ignores the reader\'s font-size preference — add a rem offset (`clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem)`, a 1.7x range) to put zoom and reflow back in the calculation. Second half of the rule: do NOT use fluid type in product UI at all — Material, Polaris, Primer and Carbon all ship fixed rem scales, because dense container-based layouts need spatial predictability. Fluid type is for headings and display text on marketing/content pages; body copy stays fixed even there.'
+  },
+  'content-impeccable-broken-image': {
+    priority: 'NEVER',
+    rule: 'Ship an `<img>` with an empty, missing, or placeholder `src` — it renders the browser\'s broken-image box. The value is rarely a literal; it is `user.avatar` and the CMS returned null, so `<img src={undefined} />` compiles, type-checks, passes review, and breaks for every record missing the field. Two failure modes, two guards: MISSING URL — guard the RENDER, do not emit an `<img>` at all, ship a real fallback (initials avatar, skeleton, neutral box); URL THAT 404s — guard the NETWORK with `onError` and swap in the same fallback. Reserve identical dimensions for both, or the swap adds a layout shift on top of the bug you just fixed.'
+  },
+  'design-impeccable-hairline-plus-shadow': {
+    priority: 'NEVER',
+    rule: 'Pair a visible hairline border with a wide, diffuse shadow — it is a generated-UI signature. The two make contradictory claims: the hairline says the surface has a crisp edge in the plane, the soft shadow says it is floating above the plane with light wrapping its edge, so the border kills the lift and the shadow kills the line. Commit to one — a defined EDGE (crisp hairline, no shadow) or a soft ELEVATION (shadow, no border). The detector fires on >=2 sides at <=1.5px with border alpha >=0.28 while a shadow layer of alpha >=0.12 has blur >=16px: `border shadow-lg` fires, `border shadow-xs` does not. A single layered shadow that INCLUDES its ring (`0 0 0 1px …`, 0 blur) is not this pattern — see `design-layered-shadows`.'
+  },
+
+  // Rams
+  'design-icon-size-scale': {
+    priority: 'SHOULD',
+    rule: 'Bind icon sizes to ONE scale (16 / 20 / 24, matched to the type scale — `size-4` next to `text-sm`, `size-5` next to `text-base`) and hold the whole set to ONE stroke width, which in practice means taking every glyph from a single icon family. A toolbar sized by eye (`w-4`, `w-5`, `size-[18px]`, `h-6`) reads as ragged even when every box is aligned, because the eye compares the drawn marks and not the boxes; and a 1.5px stroke beside a 2px stroke gives two apparent weights at the same nominal size. Sizes come from tokens — a lone `size-[18px]` is a magic number.'
+  },
+
+  // interface-design (Damola Akinleye)
+  'design-interface-desaturate-on-dark': {
+    priority: 'SHOULD',
+    rule: 'Give each semantic color (success, error, warning) a SEPARATE dark-theme value: hold the hue angle, raise lightness a little, and pull chroma DOWN. A swatch picked to fight a white surface has nothing to fight on near-black — it vibrates and the glyph edges shimmer. It is not a contrast failure (the ratio may pass), it is a saturation failure. On dark, also lean on borders rather than shadows, which barely read. This moves the OPPOSITE way from `design-impeccable-tinted-neutrals` (which pushes a little brand chroma INTO the neutrals); a palette should do both.'
+  },
+  'design-interface-control-tokens': {
+    priority: 'SHOULD',
+    rule: 'Declare `--control-bg`, `--control-border` and `--control-focus` as their own trio — do not bind inputs, selects and checkboxes to the surface/card tokens. A card is a surface that RECEIVES the eye and should recede; an input must announce itself as a place where something goes, and if it shares the card\'s background and the divider\'s border its boundary lands near 1.2:1 and the field becomes a rumour. Separable tokens are what let you meet `design-non-text-contrast` (WCAG 1.4.11, 3:1 for the boundary that identifies a control) without shouting every divider on the page. On dark, inputs read best slightly DARKER than their surroundings — an inset well says "type here" without chrome.'
   }
 };
 

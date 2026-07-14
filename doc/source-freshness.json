@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T15:22:53.972Z",
+  "generatedAt": "2026-07-14T16:58:18.407Z",
   "reports": [
     {
       "source": "vercel",
@@ -76,19 +76,6 @@
         },
         {
           "source": "vercel",
-          "text": "These preferences reflect Vercel’s brand & product choices. They aren’t universal guidelines.",
-          "suggestedId": "vercel-these-preferences-reflect-vercel-s-brand",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.1
-        },
-        {
-          "source": "vercel",
           "text": "source: https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
           "suggestedId": "vercel-source-https-github-com-vercel-labs",
           "category": "design",
@@ -102,8 +89,8 @@
         },
         {
           "source": "vercel",
-          "text": "An AGENTS.md file provides guidance for agents. Use this AGENTS.md with your agents to ensure your interfaces follow these guidelines. We recommend auditing all generated interfaces.",
-          "suggestedId": "vercel-an-agents-md-file-provides-guidance",
+          "text": "Avoid widows/orphans. Tidy rag & line breaks.",
+          "suggestedId": "vercel-avoid-widows-orphans-tidy-rag-line",
           "category": "design",
           "tags": [
             "a11y",
@@ -111,7 +98,7 @@
             "performance",
             "design"
           ],
-          "bestMatch": 0.15
+          "bestMatch": 0.14
         },
         {
           "source": "vercel",
@@ -180,6 +167,32 @@
         },
         {
           "source": "vercel",
+          "text": "Full-bleed layouts need `env(safe-area-inset-*)` for notches",
+          "suggestedId": "vercel-full-bleed-layouts-need-for-notches",
+          "category": "layout",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "layout"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "vercel",
+          "text": "These preferences reflect Vercel’s brand & product choices. They aren’t universal guidelines.",
+          "suggestedId": "vercel-these-preferences-reflect-vercel-s-brand",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "vercel",
           "text": "Instead of “Invalid API key,” say “Your API key is incorrect or expired. Generate a new key in your account settings.” The copy & buttons/links should educate & give a clear action.",
           "suggestedId": "vercel-instead-of-invalid-api-key-say",
           "category": "content",
@@ -190,6 +203,31 @@
             "content"
           ],
           "bestMatch": 0.22
+        },
+        {
+          "source": "vercel",
+          "text": "An AGENTS.md file provides guidance for agents. Use this AGENTS.md with your agents to ensure your interfaces follow these guidelines. We recommend auditing all generated interfaces.",
+          "suggestedId": "vercel-an-agents-md-file-provides-guidance",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.23
+        },
+        {
+          "source": "vercel",
+          "text": "Handle empty states—don't render broken UI for empty strings/arrays",
+          "suggestedId": "vercel-handle-empty-states-don-t-render",
+          "category": "performance",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance"
+          ],
+          "bestMatch": 0.25
         },
         {
           "source": "vercel",
@@ -243,32 +281,6 @@
         },
         {
           "source": "vercel",
-          "text": "Avoid widows/orphans. Tidy rag & line breaks.",
-          "suggestedId": "vercel-avoid-widows-orphans-tidy-rag-line",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "vercel",
-          "text": "Images need `alt` (or `alt=\"\"` if decorative)",
-          "suggestedId": "vercel-images-need-or-if-decorative",
-          "category": "content",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "content"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "vercel",
           "text": "Inputs need `autocomplete` and meaningful `name`",
           "suggestedId": "vercel-inputs-need-and-meaningful",
           "category": "forms",
@@ -309,6 +321,19 @@
           "source": "vercel",
           "text": "Buttons/links need `hover:` state (visual feedback)",
           "suggestedId": "vercel-buttons-links-need-state-visual-feedback",
+          "category": "interactions",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "interactions"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "vercel",
+          "text": "Inline `onClick` navigation without `<a>`",
+          "suggestedId": "vercel-inline-navigation-without",
           "category": "interactions",
           "tags": [
             "a11y",
@@ -369,31 +394,6 @@
             "design"
           ],
           "bestMatch": 0.36
-        },
-        {
-          "source": "vercel",
-          "text": "Handle empty states—don't render broken UI for empty strings/arrays",
-          "suggestedId": "vercel-handle-empty-states-don-t-render",
-          "category": "performance",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.38
-        },
-        {
-          "source": "vercel",
-          "text": "Full-bleed layouts need `env(safe-area-inset-*)` for notches",
-          "suggestedId": "vercel-full-bleed-layouts-need-for-notches",
-          "category": "layout",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "layout"
-          ],
-          "bestMatch": 0.4
         },
         {
           "source": "vercel",
@@ -637,17 +637,6 @@
       "newRules": [
         {
           "source": "emilkowalski",
-          "text": "Accessibility. `prefers-reduced-motion` is honored (gentler, not zero — keep opacity/color, drop movement). Hover animations are gated behind `@media (hover: hover) and (pointer: fine)`.",
-          "suggestedId": "emilkowalski-accessibility-is-honored-gentler-not-zero",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.15
-        },
-        {
-          "source": "emilkowalski",
           "text": "Real devices for gestures (drawers, swipe) — connect a phone, hit the dev server by IP, use Safari remote devtools.",
           "suggestedId": "emilkowalski-real-devices-for-gestures-drawers-swipe",
           "category": "design",
@@ -665,6 +654,17 @@
           "tags": [
             "motion",
             "animations"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Friction over hard stops — allow over-drag with rising resistance rather than an invisible wall.",
+          "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
           ],
           "bestMatch": 0.17
         },
@@ -758,6 +758,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Accessibility. `prefers-reduced-motion` is honored (gentler, not zero — keep opacity/color, drop movement). Hover animations are gated behind `@media (hover: hover) and (pointer: fine)`.",
+          "suggestedId": "emilkowalski-accessibility-is-honored-gentler-not-zero",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.23
+        },
+        {
+          "source": "emilkowalski",
           "text": "Reduce it — shorter duration, smaller transform, fewer animated properties.",
           "suggestedId": "emilkowalski-reduce-it-shorter-duration-smaller-transform",
           "category": "animations",
@@ -819,17 +830,6 @@
           "tags": [
             "motion",
             "forms"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Friction over hard stops — allow over-drag with rising resistance rather than an invisible wall.",
-          "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
-          "category": "interactions",
-          "tags": [
-            "motion",
-            "interactions"
           ],
           "bestMatch": 0.25
         },
@@ -978,6 +978,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Only animate `transform` and `opacity` — they skip layout/paint and run on the GPU. `padding`/`margin`/`height`/`width`/`top`/`left` trigger all three rendering steps.",
+          "suggestedId": "emilkowalski-only-animate-and-they-skip-layout",
+          "category": "performance",
+          "tags": [
+            "motion",
+            "performance"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "emilkowalski",
           "text": "CSS animations beat JS under load — they run off the main thread; rAF-based animations stutter while the browser loads/scripts/paints. Use CSS for predetermined motion, JS for dynamic/interruptible.",
           "suggestedId": "emilkowalski-css-animations-beat-js-under-load",
           "category": "animations",
@@ -997,6 +1008,17 @@
             "animations"
           ],
           "bestMatch": 0.36
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Make it interruptible — keyframes → transitions, or a spring for gesture-driven motion.",
+          "suggestedId": "emilkowalski-make-it-interruptible-keyframes-transitions-or",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.38
         },
         {
           "source": "emilkowalski",
@@ -1022,6 +1044,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "`transform-origin: center` on a trigger-anchored popover/dropdown/tooltip",
+          "suggestedId": "emilkowalski-on-a-trigger-anchored-popover-dropdown",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "emilkowalski",
           "text": "Responsive easing. Entering/exiting elements use `ease-out` or a strong custom curve. `ease-in` on UI is a block — it delays the moment the user watches most. Built-in CSS easings are too weak; expect custom cubic-beziers.",
           "suggestedId": "emilkowalski-responsive-easing-entering-exiting-elements-use",
           "category": "animations",
@@ -1041,17 +1074,6 @@
             "animations"
           ],
           "bestMatch": 0.41
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Only animate `transform` and `opacity` — they skip layout/paint and run on the GPU. `padding`/`margin`/`height`/`width`/`top`/`left` trigger all three rendering steps.",
-          "suggestedId": "emilkowalski-only-animate-and-they-skip-layout",
-          "category": "performance",
-          "tags": [
-            "motion",
-            "performance"
-          ],
-          "bestMatch": 0.42
         },
         {
           "source": "emilkowalski",
@@ -1093,7 +1115,7 @@
       "name": "@Ibelick",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 38,
+      "ourRules": 50,
       "reviewEveryDays": 30,
       "note": "https://www.ui-skills.com/"
     },
@@ -1102,7 +1124,7 @@
       "name": "Tailwind",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 25,
+      "ourRules": 30,
       "reviewEveryDays": 30,
       "note": "https://tailwindcss.com/docs"
     },
@@ -1111,7 +1133,7 @@
       "name": "RAMS",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 24,
+      "ourRules": 17,
       "reviewEveryDays": 30,
       "note": "https://www.rams.ai/"
     },
@@ -1120,25 +1142,25 @@
       "name": "Anthropic Skills",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 18,
+      "ourRules": 14,
       "reviewEveryDays": 90,
       "note": "https://skills.sh/"
     },
     {
-      "source": "claude-code",
-      "name": "Claude Code",
+      "source": "web-platform",
+      "name": "Web Platform",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 13,
+      "ourRules": 5,
       "reviewEveryDays": 90,
-      "note": "https://claude.ai/code"
+      "note": "https://web.dev/"
     },
     {
       "source": "wcag",
       "name": "WCAG",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 8,
+      "ourRules": 10,
       "reviewEveryDays": 90,
       "note": "https://www.w3.org/WAI/WCAG21/quickref/"
     },
@@ -1152,67 +1174,11 @@
       "note": "https://www.w3.org/WAI/ARIA/apg/"
     },
     {
-      "source": "heygen-hyperframes",
-      "name": "HeyGen Hyperframes",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
       "source": "lottiefiles",
       "name": "LottieFiles",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 5,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "remotion",
-      "name": "Remotion",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "threejs",
-      "name": "Three.js",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "ihlamury-design-skills",
-      "name": "Design Skills",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "mattpocock",
-      "name": "design-an-interface",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "wshobson",
-      "name": "Agents",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "extract-design-system",
-      "name": "extract-design-system",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
+      "ourRules": 6,
       "reviewEveryDays": 60
     },
     {
@@ -1220,7 +1186,7 @@
       "name": "interface-design",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 4,
+      "ourRules": 6,
       "reviewEveryDays": 60,
       "note": "https://github.com/Dammyjay93/interface-design"
     },
@@ -1238,7 +1204,7 @@
       "name": "impeccable",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 26,
+      "ourRules": 27,
       "reviewEveryDays": 60,
       "note": "https://impeccable.style/"
     },

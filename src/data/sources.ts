@@ -28,10 +28,43 @@ export interface CatalogSource {
   defaultTags?: string[];
   /** App source this catalog entry maps to, once its rules are onboarded. */
   patternSource?: PatternSource;
+  /**
+   * Set when a source contributed rules that ship under ANOTHER source's badge — so the
+   * /#sources page can credit it instead of showing a misleading rule count of zero.
+   * `clarify` is a sub-command of impeccable; Interface Craft yielded two rules not
+   * numerous enough to earn their own badge.
+   */
+  creditedUnder?: PatternSource;
   check:
     | { mode: 'github'; rawUrls: string[] }
     | { mode: 'manual'; reviewEveryDays: number };
 }
+
+/**
+ * Reviewed and DECLINED — deliberately not in the catalog. Recorded so the decision is
+ * not re-litigated, and so nobody re-adds them assuming they were merely overlooked.
+ *
+ * - heygen-com/hyperframes  — a video-composition framework. Its "css-animations" file is
+ *   about making keyframes deterministically seekable by a renderer, which is the inverse
+ *   of interface motion. The generic residue duplicated the corpus.
+ * - remotion-dev/skills     — React-video framework API (interpolate, Sequence, ffmpeg).
+ * - cloudai-x/threejs-skills— WebGL library API. Orthogonal, not additive.
+ * - ihlamury/design-skills  — auto-scraped per-brand hex/font dumps. Not portable, and the
+ *   scrape is wrong: one skill asserts a 4.5:1 contrast floor and then specifies ~2.6:1.
+ * - mattpocock/skills       — "design-an-interface" is about SOFTWARE MODULE interfaces
+ *   (A Philosophy of Software Design), not UI. Also deprecated upstream. Name collision only.
+ * - wshobson/agents         — generic textbook primers; ~95% already covered.
+ * - arvindrk/extract-design-system — a tool driver. Contains zero rules.
+ */
+export const declinedSources = [
+  'heygen-com/hyperframes',
+  'remotion-dev/skills',
+  'cloudai-x/threejs-skills',
+  'ihlamury/design-skills',
+  'mattpocock/skills',
+  'wshobson/agents',
+  'arvindrk/extract-design-system',
+] as const;
 
 export const sourceCatalog: CatalogSource[] = [
   {
@@ -169,17 +202,6 @@ export const sourceCatalog: CatalogSource[] = [
     check: { mode: 'manual', reviewEveryDays: 90 },
   },
   {
-    id: 'heygen-hyperframes',
-    name: 'HeyGen Hyperframes',
-    author: 'HeyGen',
-    repo: 'heygen-com/hyperframes',
-    originKind: 'github',
-    installCmd: 'npx skills add heygen-com/hyperframes@css-animations -g -y',
-    color: 'bg-teal-700 text-white border-teal-700',
-    defaultTags: ['motion'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
     id: 'lottiefiles',
     name: 'LottieFiles',
     repo: 'lottiefiles/motion-design-skill',
@@ -188,66 +210,6 @@ export const sourceCatalog: CatalogSource[] = [
     color: 'bg-green-700 text-white border-green-700',
     patternSource: 'lottiefiles',
     defaultTags: ['motion'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'remotion',
-    name: 'Remotion',
-    repo: 'remotion-dev/skills',
-    originKind: 'github',
-    installCmd: 'npx skills add remotion-dev/skills@remotion-best-practices -g -y',
-    color: 'bg-blue-700 text-white border-blue-700',
-    defaultTags: ['motion', 'video'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'threejs',
-    name: 'Three.js',
-    author: 'cloudai-x',
-    repo: 'cloudai-x/threejs-skills',
-    originKind: 'github',
-    color: 'bg-zinc-700 text-white border-zinc-700',
-    defaultTags: ['3d', 'motion'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'ihlamury-design-skills',
-    name: 'Design Skills',
-    author: 'ihlamury',
-    repo: 'ihlamury/design-skills',
-    originKind: 'github',
-    color: 'bg-pink-700 text-white border-pink-700',
-    defaultTags: ['design-system'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'mattpocock',
-    name: 'design-an-interface',
-    author: 'Matt Pocock',
-    repo: 'mattpocock/skills',
-    originKind: 'github',
-    color: 'bg-sky-800 text-white border-sky-800',
-    defaultTags: ['design'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'wshobson',
-    name: 'Agents',
-    author: 'wshobson',
-    repo: 'wshobson/agents',
-    originKind: 'github',
-    color: 'bg-indigo-700 text-white border-indigo-700',
-    defaultTags: ['design-system'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'extract-design-system',
-    name: 'extract-design-system',
-    author: 'arvindrk',
-    repo: 'arvindrk/extract-design-system',
-    originKind: 'github',
-    color: 'bg-orange-800 text-white border-orange-800',
-    defaultTags: ['design-system'],
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {
@@ -268,6 +230,8 @@ export const sourceCatalog: CatalogSource[] = [
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {
+    // Two rules onboarded (`content-progress-as-milestones`, `animations-named-timing-constants`).
+    // Two rules do not earn a badge, so they ship under `custom` and are credited here.
     id: 'interface-craft',
     name: 'Interface Craft',
     author: 'Josh Puckett',
@@ -275,6 +239,7 @@ export const sourceCatalog: CatalogSource[] = [
     originKind: 'install-endpoint',
     installCmd: 'curl -sL interfacecraft.dev/api/install-skills | bash',
     color: 'bg-fuchsia-800 text-white border-fuchsia-800',
+    creditedUnder: 'custom',
     defaultTags: ['motion', 'craft'],
     check: { mode: 'manual', reviewEveryDays: 90 },
   },
@@ -292,7 +257,8 @@ export const sourceCatalog: CatalogSource[] = [
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {
-    // `clarify` is one of impeccable's sub-commands, not a standalone skill.
+    // `clarify` is one of impeccable's sub-commands, not a standalone skill, so its rule
+    // (`content-impeccable-loading-copy-expectation`) ships under the impeccable badge.
     id: 'clarify',
     name: 'clarify',
     author: 'Paul Bakaus',
@@ -300,16 +266,31 @@ export const sourceCatalog: CatalogSource[] = [
     repo: 'pbakaus/impeccable',
     originKind: 'github',
     color: 'bg-cyan-800 text-white border-cyan-800',
+    creditedUnder: 'impeccable',
     defaultTags: ['typography'],
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {
+    // Rules with no single upstream to cite: derived from several sources, or from a source
+    // that yielded too few rules to earn a badge (Interface Craft). Listed so the page's rule
+    // count reconciles with the corpus instead of silently undercounting.
+    id: 'custom',
+    name: 'Custom',
+    originKind: 'landing',
+    color: 'bg-muted-foreground text-background border-muted-foreground',
+    patternSource: 'custom',
+    check: { mode: 'manual', reviewEveryDays: 180 },
+  },
+  {
+    // Its card-necessity test ("if removing the card styling would not hurt comprehension,
+    // it should not be a card") is folded into `layout-impeccable-nested-cards`.
     id: 'ce-frontend-design',
     name: 'ce-frontend-design',
     author: 'Every Inc',
     repo: 'EveryInc/compound-engineering-plugin',
     originKind: 'plugin',
     color: 'bg-slate-700 text-white border-slate-700',
+    creditedUnder: 'impeccable',
     defaultTags: ['design'],
     check: { mode: 'manual', reviewEveryDays: 60 },
   },

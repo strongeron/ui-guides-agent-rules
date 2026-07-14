@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 339 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 359 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -35,25 +35,25 @@ https://ui-guides.netlify.app for the corpus.
 Rules are transcribed and attributed to:
 
 - **Vercel** (118 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
-- **Tailwind** (31 rules) — https://tailwindcss.com/docs
+- **Tailwind** (30 rules) — https://tailwindcss.com/docs
 - **RAMS** (18 rules) — https://www.rams.ai/
-- **@Ibelick** (38 rules) — https://www.ui-skills.com/
+- **@Ibelick** (50 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
 - **Emil Kowalski** (18 rules) — https://emilkowalski.com/
 - **WCAG** (10 rules) — https://www.w3.org/WAI/WCAG21/quickref/
 - **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
+- **impeccable** (32 rules) — https://impeccable.style/
 - **Custom** (9 rules)
 - **Web Platform** (5 rules) — https://web.dev/
-- **impeccable** (26 rules) — https://impeccable.style/
-- **LottieFiles** (5 rules) — https://github.com/lottiefiles/motion-design-skill
-- **interface-design** (4 rules) — https://github.com/Dammyjay93/interface-design
+- **LottieFiles** (6 rules) — https://github.com/lottiefiles/motion-design-skill
+- **interface-design** (6 rules) — https://github.com/Dammyjay93/interface-design
 - **Skills** (14 rules) — https://skills.sh/
 
 ---
 
 ## Interactions
 
-Keyboard accessibility, focus management, and user interaction patterns. 73 rules.
+Keyboard accessibility, focus management, and user interaction patterns. 78 rules.
 
 ### Keyboard Works Everywhere
 
@@ -1218,40 +1218,142 @@ The two spellings of "unavailable" behave completely differently, and picking th
 - [APG: Developing a Keyboard Interface — Focusability of disabled controls](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/)
 - [APG: Menu and Menubar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/)
 
+### Escape Closes the Topmost Layer
+
+**ID:** `interactions-escape-dismiss`
+**Agent rule (MUST):** Escape closes dialogs and overlays, and closes exactly ONE layer — the topmost open one. A nested popover and its parent dialog both listening for Escape on `window` means one keypress closes both and the user loses the form they were filling; the open layer handles the key and calls `stopPropagation()`. Native `<dialog>` and Radix-style primitives keep that stack for you. (Dismissal, not focus — `interactions-manage-focus` covers trap/return.)
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+Escape must dismiss a dialog or overlay, and it must dismiss exactly one layer — the one on top
+
+> Escape must close dialogs or overlays when applicable
+
+Escape is the universal "get me out of here" key, and a dialog that only closes via an X button strands anyone who is not holding a mouse — a keyboard user has to Tab around a trapped focus ring hunting for the exit. But the interesting half of this rule is the nested case, which almost every hand-rolled implementation gets wrong. Put a select or a popover inside a dialog, attach `keydown` for Escape on `window` in both, and one keypress closes both: the child dismisses, and the same event keeps bubbling to the dialog's listener. The user tried to close a dropdown and lost their whole form. The fix is layer discipline — the topmost open layer handles Escape and calls `stopPropagation()` so it does not reach anything beneath it. Native `<dialog>` and Radix-style primitives maintain that stack for you, which is why the a11y skill closes with "for complex widgets (menu, dialog, combobox), prefer established accessible primitives over custom behavior". This is distinct from interactions-manage-focus, which covers trapping focus and returning it — dismissal is a separate obligation.
+
+```tsx
+function onKeyDown(e: React.KeyboardEvent) {
+  if (e.key !== "Escape") return;
+  e.stopPropagation(); // do not let the parent layer close too
+  close();
+}
+```
+
+- [ibelick — fixing-accessibility SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md)
+- [W3C — ARIA APG, Modal Dialog Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+
+### Hover-Revealed Actions Need Focus Parity
+
+**ID:** `interactions-hover-revealed-actions`
+**Agent rule (MUST):** Any action revealed on hover needs the same keyboard reveal: pair `group-hover:opacity-100` with `group-focus-within:opacity-100` (and `focus-visible:opacity-100` on the control). Row actions left at `opacity-0` stay in the tab order but render invisible, so a keyboard user focuses a button they cannot see. Do NOT "fix" it by dropping them from the tab order or setting `pointer-events-none` — that trades a broken affordance for none.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+Row actions hidden behind opacity-0 group-hover are invisible and unreachable for anyone using a keyboard
+
+> hover-only interactions must have keyboard equivalents
+
+The pattern is everywhere: a table row or list item whose Edit and Delete buttons live behind `opacity-0 group-hover:opacity-100`, so the row stays quiet until you point at it. It is a good instinct and a broken implementation, because hover is a pointer-only state. A keyboard user Tabs into that button and sees nothing — the element is still in the tab order, still focused, but rendered at zero opacity, so the focus ring is invisible and the page appears to swallow their focus. There is no way to discover, aim, or confirm the action. The fix is one utility: `focus-within:opacity-100` on the row (plus `focus-visible:opacity-100` on the button itself), so keyboard focus reveals exactly what hover reveals. What you must not do is "fix" it by making the buttons `pointer-events-none` or removing them from the tab order — that trades a broken affordance for no affordance. Note this is the specific, most-shipped instance of interactions-keyboard-everywhere; the general rule is easy to nod at and this is where it actually breaks.
+
+```tsx
+<tr class="group">
+  <td><button class="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100">Edit</button></td>
+</tr>
+```
+
+- [ibelick — fixing-accessibility SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md)
+- [W3C — Understanding WCAG 2.1.1 Keyboard](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html)
+
+### An Anchor Without href Is Not a Link
+
+**ID:** `interactions-anchor-without-href`
+**Agent rule (NEVER):** Render an `<a>` without `href` and drive it from `onClick` alone. `href` is what MAKES it a link: without it the browser exposes the element as `generic` — no link role, not focusable, not in the tab order, absent from the screen reader's links list, and mouse-only. Two branches: if it NAVIGATES, give it a real `href` (you get focus, the link role, Enter, middle-click, Cmd-click, "Copy link address" for free); if it performs an ACTION, it was never a link — use `<button>`.
+**Source:** RAMS (https://www.rams.ai/)
+
+An <a> with only an onClick has no link role, no focus, and no place in the tab order
+
+> Missing link destination (WCAG 2.1.1) — <a> without href using only onClick
+
+Rams files this Critical, and the reason is that it does not look like a bug. `<a onClick={() => navigate("/profile")}>View profile</a>` reads as correct semantic HTML and passes a naive "did you use the right element?" check — you did reach for the native element. But `href` is not decoration; it is what makes the element a link. Without it the browser exposes an `<a>` as a `generic`: no link role, not focusable, not in the tab order, and absent from the screen reader's list of links, so a keyboard user tabs straight past it and a screen-reader user never learns it exists. It is mouse-only, and it is extremely common in React. Note this is the INVERSE of three principles already in this corpus, not a duplicate of any of them: `interactions-rams-semantic-handlers` covers a non-interactive element pretending to be interactive (`<div onClick>`), `content-semantics-first` says do not reach for `role="button"` when a button exists, and `interactions-rams-keyboard-handlers` covers onClick with no onKeyDown. Here you reached for the native element, and it still fails. The fix depends on intent, and there are exactly two branches. If it navigates, give it a real `href` — the browser then hands you focus, the link role, Enter activation, middle-click and Cmd-click to open in a new tab, and "Copy link address", none of which an onClick handler can synthesise. If it performs an action, it was never a link: use `<button>`.
+
+```tsx
+// no: role-less, unfocusable, mouse-only
+<a onClick={() => navigate("/profile")}>View profile</a>
+// yes
+<a href="/profile">View profile</a>
+```
+
+- [Rams review checklist](https://rams.ai/rams.md)
+- [WCAG 2.1.1 Keyboard](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html)
+- [MDN — <a>: The Anchor element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a)
+
+### The Modal Is the Last Resort
+
+**ID:** `interactions-impeccable-modal-last-resort`
+**Agent rule (NEVER):** Reach for a modal as the first thought. A modal steals focus, blocks the page, and destroys the context the user was acting on — they must now hold the row they clicked in working memory. Exhaust the cheaper alternatives that keep context on screen: edit in place, use a side panel or a dedicated route, and replace a confirmation dialog with an undo toast wherever the action is reversible (compose with `interactions-confirm-destructive`). What survives is the narrow case a modal is actually for: one action, destructive, and irreversible — nothing to undo it with.
+**Source:** impeccable (https://impeccable.style/)
+
+Exhaust inline editing, side panels, and dedicated routes before you reach for a modal
+
+> Modal as first thought. Modals are usually laziness. Exhaust inline / progressive alternatives first.
+
+impeccable ships this under "Absolute bans" — match-and-refuse, alongside gradient text and glassmorphism. The reason it is banned rather than merely discouraged is that a modal is expensive in a way that is invisible to the person adding it: it steals focus, blocks the page behind it, and destroys the context you were acting on, so the user must now hold the row they clicked in working memory while they read the dialog. Stack two and the original context is gone entirely. Nearly every modal has a cheaper alternative that keeps the context on screen: rename edits in place, a destructive-but-reversible action wants an undo toast rather than a confirmation, and supporting information belongs in a side panel or on its own route. Cross-reference `interactions-confirm-destructive`, which is about WHETHER to confirm at all — this principle is about modal OVERUSE, and the two answers compose: most deletes should be undoable rather than confirmed, which removes the modal entirely. What survives is the narrow case where a modal is genuinely right: one action, destructive, and irreversible — nothing to undo it with.
+
+- [impeccable.style](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+- [W3C — ARIA APG, Modal Dialog Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+
+### Four Options at Any Decision Point
+
+**ID:** `interactions-impeccable-four-option-limit`
+**Agent rule (SHOULD):** Cap any decision point at <=4 simultaneously visible options (Miller's Law as revised by Cowan, 2001: working memory holds ~4 items). 5-7 is the boundary — group them or reveal progressively; 8+ is overload, and an overloaded user does not choose slowly, they skip, misclick, or abandon. Carried into surfaces: <=5 top-level nav items, <=4 form fields before a visual break, 1 primary + 1-2 secondary buttons (rest in a menu), <=4 key metrics above the fold, <=3 pricing tiers. Grouping does not remove capability — a 4-item nav with a "More" group still reaches nine destinations — it removes them from the decision.
+**Source:** impeccable (https://impeccable.style/)
+
+Working memory holds about four items — cap visible choices, nav items, and pricing tiers accordingly
+
+> Humans can hold ≤4 items in working memory at once (Miller's Law revised by Cowan, 2001). ≤4 items: Within working memory limits — manageable. 5–7 items: Pushing the boundary — consider grouping or progressive disclosure. 8+ items: Overloaded — users will skip, misclick, or abandon.
+
+The thresholds are explicit and they are not aesthetic: at any decision point, count the distinct options a user must simultaneously consider. Four or fewer sits inside working memory. Five to seven is the boundary — group them or reveal them progressively. Eight or more is overload, and an overloaded user does not choose slowly, they skip, misclick, or abandon. impeccable carries the rule into specific surfaces: navigation menus get at most 5 top-level items (group the rest under clear categories), form sections at most 4 fields before a visual break, action buttons get 1 primary and 1–2 secondary with the rest in a menu, dashboards at most 4 key metrics above the fold, and pricing at most 3 tiers, because more causes analysis paralysis. The counter-intuitive part is that grouping does not remove capability — a nav with 4 items plus a "More" group still reaches nine destinations. It removes them from the decision, which is the only place they were doing harm. Pair a capped tier list with a highlighted recommendation and you collapse the choice further still: the question stops being "compare three" and becomes "accept this one, or look at the other two".
+
+- [impeccable.style](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+- [Laws of UX — Miller's Law](https://lawsofux.com/millers-law/)
+
 ---
 
 ## Animations
 
-Motion design principles and animation best practices. 49 rules.
+Motion design principles and animation best practices. 52 rules.
 
 ### Honor prefers-reduced-motion
 
 **ID:** `animations-prefers-reduced-motion`
-**Agent rule (MUST):** Honor `prefers-reduced-motion` (provide reduced variant)
+**Agent rule (MUST):** Honor `prefers-reduced-motion` (provide reduced variant); in Tailwind use the `motion-safe:`/`motion-reduce:` variants
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Provide a reduced-motion variant for all animations
 
 > Honor prefers-reduced-motion. Provide a reduced-motion variant.
 
-Some users experience motion sickness from animations. Respect the prefers-reduced-motion media query by disabling or significantly reducing animations for these users. Essential motion (like page transitions) can remain but should be much faster.
+Some users experience motion sickness or vestibular symptoms from movement they did not initiate. The media query surfaces an OS-level preference they have already expressed, so honouring it costs one @media block. The load-bearing detail: "reduced" is not "none". Strip the spatial travel and the spring, but KEEP the opacity crossfades and the instant state changes, so the interface still says what happened — a state change that was only ever communicated by motion becomes invisible the moment the motion is dropped (animations-lottie-never-opacity-only is the corollary). ibelick's baseline-ui converges on the same rule from the agent-guidelines side ("SHOULD respect `prefers-reduced-motion`"), which is why this corpus states it once here rather than twice.
 
 - [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Accessible Animations](https://www.a11yproject.com/posts/understanding-vestibular-disorders/)
 
 ### Compositor-friendly
 
 **ID:** `animations-compositor-friendly`
-**Agent rule (MUST):** Animate compositor-friendly props (`transform`, `opacity`); avoid layout/repaint props (`top/left/width/height`)
+**Agent rule (MUST):** Animate compositor-friendly props (`transform`, `opacity`) — they run on the GPU without layout or paint; avoid layout/repaint props (`top/left/width/height`, `margin`). 60fps leaves <16ms per frame
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Prioritize GPU-accelerated properties like transform and opacity
 
 > Compositor-friendly. Prioritize GPU-accelerated properties (transform, opacity) & avoid properties that trigger reflows/repaints (width, height, top, left).
 
-Animating properties like width, height, top, or left causes the browser to recalculate layout and repaint, which is slow. Transform and opacity can be handled by the GPU compositor, making animations smooth at 60fps or higher.
+transform and opacity are the only two properties the browser can change without redoing style, layout or paint — the compositor already holds the layer and just re-places or re-blends it, on its own thread. That is why they keep moving at 60fps even while the main thread is blocked, and why width, height, top or left stutter the moment it is not. This is one of the most independently rediscovered rules in the field, and this entry is where the corpus records it once: ibelick's baseline-ui states it as "MUST animate only compositor props (`transform`, `opacity`)", and Tailwind performance guidance as "animate only transform and opacity" — three sources, one rule, so read the convergence as confirmation rather than as three things to learn. Read it as the DEFAULT, not an absolute: the carve-outs are priced elsewhere and are part of the rule. Paint animations are acceptable on small, isolated surfaces (a button label, an icon — animations-ibelick-minimize-paint), one-shot effects are cheaper than continuous motion, and a layout-like change can be faked with a measured transform (FLIP — animations-flip-technique). And note the false floor: in Motion, `animate={{ x: 100 }}` looks compliant but is interpolated on the main thread — see performance-motion-shorthand-not-gpu.
 
 - [High Performance Animations](https://web.dev/articles/animations-guide)
+- [Compositor-only Properties](https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count)
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [CSS Triggers](https://csstriggers.com/)
 
 ### Interruptible
@@ -1385,22 +1487,6 @@ Read this as what it is: agent-facing guidance. It is a default for the party th
 - [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [The Case Against Animation](https://web.dev/articles/animations-guide)
 
-### Animate Only Compositor Properties
-
-**ID:** `animations-ibelick-compositor-only`
-**Agent rule (MUST):** Animate only compositor properties (transform, opacity). These run on GPU without triggering layout or paint. 60fps requires < 16ms per frame.
-**Source:** @Ibelick (https://www.ui-skills.com/)
-
-Only animate transform and opacity for smooth 60fps animations
-
-> MUST animate only compositor props (`transform`, `opacity`)
-
-transform and opacity are the only two properties the browser can change without redoing style, layout or paint — the compositor already holds the layer and just re-places or re-blends it, on its own thread. That is why they keep moving at 60fps even while the main thread is blocked, and why everything else stutters the moment it is not. ibelick's own fixing-motion-performance skill states the same rule with its exceptions attached: "paint or layout animation is acceptable only on small, isolated surfaces" and "one-shot effects are acceptable more often than continuous motion" — so read this MUST as the default, and the size/duration carve-outs (animations-ibelick-minimize-paint, performance-ibelick-no-blur-animation) as the priced exits from it.
-
-- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
-- [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
-- [High Performance Animations](https://web.dev/articles/animations-guide)
-
 ### Never Animate Layout Properties
 
 **ID:** `animations-ibelick-no-layout`
@@ -1462,21 +1548,6 @@ An off-screen loop is pure waste: it keeps the compositor awake, burns CPU and b
 - [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
 - [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
-
-### Respect Reduced Motion
-
-**ID:** `animations-ibelick-reduced-motion`
-**Agent rule (SHOULD):** Respect prefers-reduced-motion media query. Reduce or disable animations for users who experience motion sickness. Use motion-safe: and motion-reduce: variants.
-**Source:** @Ibelick (https://www.ui-skills.com/)
-
-Honor prefers-reduced-motion for users who are sensitive to animation
-
-> SHOULD respect `prefers-reduced-motion`
-
-Some users experience motion sickness or vestibular symptoms from movement they did not initiate. The media query surfaces an OS-level preference they have already expressed, so honouring it costs one @media block. "Reduced" is not "none": keep opacity crossfades and instant state changes so the interface still communicates what happened — see animations-lottie-never-opacity-only for the corollary, that a state change reinforced by motion must still be legible once the motion is dropped.
-
-- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
-- [prefers-reduced-motion MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
 
 ### Pause, Stop, Hide Controls (WCAG 2.2.2)
 
@@ -2006,6 +2077,22 @@ Peripheral vision is poor at absolute luminance and very good at movement. A "Sa
 - [MDN — ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions)
 - [WCAG 2.2 — Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
 
+### Disney Principles Are For Character Motion, Not For Chrome
+
+**ID:** `animations-lottie-disney-scope`
+**Agent rule (SHOULD):** Ask "character or control" before reaching for Disney motion. Anticipation, squash-and-stretch, follow-through and overshoot belong to CHARACTERS — a mascot, an illustration, an empty-state figure, a confetti burst, a once-per-session celebration — where implied mass and personality are the point. They do NOT belong to CHROME: a dropdown, toast, menu or button is a control the user operates, and overshoot there reads as dated (that is `animations-impeccable-no-bounce-easing`, and it is not in conflict — it describes a different object). LottieFiles scopes it the same way: skip anticipation for micro-feedback (<150ms), skip squash-and-stretch for premium/luxury, and its exaggeration budget is 15-25% Playful but 0-5% Corporate and 0% Premium. Controls: ease-out, no overshoot.
+**Source:** LottieFiles (https://github.com/lottiefiles/motion-design-skill)
+
+Anticipation, squash-and-stretch and overshoot belong to a mascot, an illustration or a celebration — not to a dropdown, a toast or a menu
+
+> Anticipation: Small motion opposite to main direction before action. Duration: 100-200ms, magnitude: 10-20% of main action. Skip for micro-feedback (<150ms). Squash and Stretch: Skip for premium/luxury brands. Exaggeration: Playful 15-25% | Energetic 20-30% | Corporate 0-5% | Premium 0%.
+
+This is a REAL and deliberately preserved tension in the corpus, and the resolution is scope, not a winner. animations-impeccable-no-bounce-easing bans overshoot outright — any cubic-bezier whose control points leave the [-0.1, 1.1] band — and it is right about the surface it is talking about: a dropdown that wobbles, a toast that springs past its mark, a menu that squashes on open reads as dated on first sight and as broken by the fiftieth, because those elements are chrome the user operates, not characters the user watches. LottieFiles is not contradicting that; it is talking about a different object. Disney's vocabulary was built for CHARACTERS — things with implied mass, personality and intent — and it survives on the web wherever that is still true: a mascot, an illustration, an empty-state figure, a confetti burst, a success celebration, an onboarding moment seen once. And LottieFiles scopes it itself, which is the tell: squash-and-stretch says "Skip for premium/luxury brands", anticipation says "Skip for micro-feedback (<150ms)" — which is nearly every button and hover in a product — and its own exaggeration budget drops to 0-5% for Corporate and 0% for Premium, i.e. to exactly the flat, no-overshoot motion the impeccable rule demands. So the operative question is never "is bounce allowed" but "is this thing a character or a control". Controls: ease-out, no overshoot, done. Characters, once per session: anticipate, overshoot, follow through — that is where the charm lives, and refusing it there buys you nothing. animations-emil-subtle-bounce marks the one genuine middle ground (bounce 0.1–0.3, reserved for drag-to-dismiss, where the user's own thrown gesture has already established momentum, so the mass is real rather than asserted).
+
+- [LottieFiles — Disney principles, UI adapted](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/director/disney-principles.md)
+- [LottieFiles — motion personality archetypes](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/director/motion-personality.md)
+- [MDN — easing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function)
+
 ### Name Every Timing Value
 
 **ID:** `animations-named-timing-constants`
@@ -2027,11 +2114,75 @@ const TIMING = { cardAppear: 300, heading: 900, rows: 1500 } as const;
 - [joshpuckett.me](https://joshpuckett.me/)
 - [MDN — Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties)
 
+### Never Drive Animation From Scroll Events
+
+**ID:** `animations-no-scroll-event-animation`
+**Agent rule (NEVER):** Drive animation from `scroll` events, `scrollY`, or `scrollTop`. Scroll is composited off the main thread, so a scroll listener is a notification that scrolling ALREADY happened — the animation is permanently one frame late and freezes outright during any long task while the page keeps scrolling under it. Throttling or rAF-wrapping the handler only makes the lag cheaper; move the timeline off the main thread instead (`animations-scroll-driven-css`).
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+A scroll listener that writes styles always renders one frame late and couples the effect to main-thread health
+
+> do not drive animation from scrollTop, scrollY, or scroll events
+
+Scroll is composited off the main thread; a `scroll` listener is a notification that scrolling already happened. By the time the handler reads `scrollY` and writes a style, the browser has painted that scroll position — so the animation is permanently one frame behind, and it drifts further under load. Worse, the effect now inherits the health of the main thread: any long task (hydration, a JSON parse, a third-party script) freezes the animation while the page keeps scrolling underneath it. ibelick states the same ban twice, once as a never-pattern and once under scroll: "do not poll scroll position for animation". The fix is not to throttle or rAF-wrap the handler — that just makes the lag cheaper. It is to move the timeline itself off the main thread (see animations-scroll-driven-css).
+
+- [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
+- [MDN — CSS scroll-driven animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations)
+
+### Prefer Scroll and View Timelines
+
+**ID:** `animations-scroll-driven-css`
+**Agent rule (SHOULD):** Use a CSS Scroll or View Timeline (`animation-timeline: view()`/`scroll()`) for scroll-linked motion — the compositor advances it, so it stays locked to the scrollbar even while the main thread is busy. This is still input-driven motion (`animations-input-driven`): the scroll IS the input. IntersectionObserver is a one-shot trigger, not a timeline — it cannot scrub, ignores scroll speed, and snaps on scroll-up; keep it for visibility and pausing. Chromium + Firefox 144+ only (Safari flagged), so treat it as an enhancement and make the un-animated state readable.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+Scroll-linked motion belongs on a CSS timeline, not on an observer that toggles a class once and cannot scrub
+
+> prefer Scroll or View Timelines for scroll-linked motion when available
+
+This is the constructive half of the ban on scroll listeners. `animation-timeline: view()` binds an animation's progress to an element's position in the scrollport instead of to time, and the compositor advances it — so it stays locked to the scrollbar even while the main thread is busy. The common alternative, IntersectionObserver plus a class toggle, is not the same thing: it is a one-shot trigger. It fires at a single threshold, it cannot scrub, it plays at its own duration regardless of how fast you scrolled, and on scroll-up it either does nothing or snaps back. ibelick keeps IntersectionObserver for what it is actually good at — "use IntersectionObserver for visibility and pausing". Support is Chromium and Firefox 144+; Safari is still behind a flag, so treat the animation as an enhancement and make the un-animated state the readable one.
+
+```tsx
+.reveal { animation: fade-up linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+```
+
+- [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
+- [MDN — animation-timeline](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline)
+
+### Budget Animation by Surface Size
+
+**ID:** `animations-surface-size-budget`
+**Agent rule (MUST):** Budget by property TIMES area, not property alone: paint- or layout-triggering animation is acceptable only on small, isolated surfaces. Repainting a 32px icon is ~1,024px of raster work per frame; the same property on a full-bleed hero band is ~102,400px — roughly 100x — and it will miss frames. So the rule is not "never transition `filter`/`box-shadow`" — small and isolated, go ahead; large surface, move to `transform`/`opacity` on a promoted layer or do not animate it. Never blur a large surface. Duration is the second axis: one-shot effects are affordable far more often than continuous motion.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+The cost of a paint or layout animation scales with the pixels it touches, so surface area decides what is affordable
+
+> paint or layout animation is acceptable only on small, isolated surfaces
+
+This is the idea ibelick repeats more than any other, and it is the one that turns the property bans from dogma into engineering. The skill says it five ways: "do not animate layout continuously on large or meaningful surfaces", "do not animate paint-heavy properties on large containers", "paint-triggering animation is allowed only on small, isolated elements", "never animate blur on large surfaces", and the quote above. Read together they say something the flat bans do not: the property is not the whole cost — the property times the area is. Repainting a 32px icon is a few thousand pixels of raster work the GPU will not even notice; repainting a full-bleed hero is a million-plus pixels of raster work every frame, on the main thread, and it will miss frames. So the rule is not "never transition filter" — it is: on a small, isolated element, go ahead; on a large surface, move to transform and opacity on a promoted layer, or do not animate it at all. Duration is the second axis: "one-shot effects are acceptable more often than continuous motion".
+
+- [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
+- [web.dev — Animations guide](https://web.dev/articles/animations-guide)
+
+### Use FLIP for Layout-Like Motion
+
+**ID:** `animations-flip-technique`
+**Agent rule (SHOULD):** When a layout change genuinely must animate (list reorder, card expanding into a detail view), use FLIP — First, Last, Invert, Play: read the start rect, apply the final layout, read the end rect, apply the inverse `transform`, then release it in one rAF and let the compositor interpolate back to zero. Layout runs twice instead of 60x/sec. Measure ONCE and batch all DOM reads before writes — a `getBoundingClientRect()` inside the loop forces a synchronous layout every tick. (Does not contradict `layout-flex-over-measurement`: that bans JS measurement to BUILD a static layout; FLIP is the sanctioned way to ANIMATE a layout change.)
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+When a layout change genuinely must animate, measure once and play it back as a transform instead of animating geometry
+
+> prefer FLIP-style transitions for layout-like effects
+
+Sometimes the thing that changes really is layout: a list reorders, a card expands into a detail view. FLIP — First, Last, Invert, Play — lets you animate that without ever animating a layout property. Read the start rect, apply the final layout in one go, read the end rect, apply the inverse transform so the element still *looks* like it is at the start, then release it in a single rAF and let the compositor interpolate the transform back to zero. The result is pixel-identical to animating `top`/`left`/`width`, but the browser does layout exactly twice instead of sixty times a second. The two supporting rules are the ones people break: "measure once, then animate via transform or opacity" and "batch all DOM reads before writes" — a `getBoundingClientRect()` inside the animation loop forces a synchronous layout on every tick, which is layout thrashing with extra steps. Note this does not contradict layout-flex-over-measurement: that rule says do not use JS measurement to *build* a static layout. FLIP is the sanctioned technique for the case where a layout change must be *animated*.
+
+- [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
+- [Paul Lewis — FLIP Your Animations](https://aerotwist.com/blog/flip-your-animations/)
+
 ---
 
 ## Layout
 
-Responsive design, alignment, and visual structure. 23 rules.
+Responsive design, alignment, and visual structure. 25 rules.
 
 ### Optical Alignment
 
@@ -2404,11 +2555,47 @@ The instinct is understandable: a long `class="inline-flex items-center rounded-
 - [Tailwind v4: Managing duplication](https://tailwindcss.com/docs/styling-with-utility-classes)
 - [Tailwind v4: Functions and directives](https://tailwindcss.com/docs/functions-and-directives)
 
+### Locking Body Scroll Must Not Shift the Page
+
+**ID:** `layout-dialog-scroll-lock`
+**Agent rule (SHOULD):** Opening a dialog must not shift the page behind it. `document.body.style.overflow = "hidden"` removes the scrollbar track, so the viewport grows ~15px and everything behind the scrim jumps sideways (and back on close). Reserve the track with `scrollbar-gutter: stable` (or pad by `window.innerWidth - document.documentElement.clientWidth` on legacy targets), and put `overscroll-behavior: contain` on the dialog's own scroll area so a flick inside it does not chain out.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+The usual overflow:hidden scroll lock removes the scrollbar, which reflows the whole page ~15px wider behind the scrim
+
+> opening a dialog should not scroll the page unexpectedly
+
+Locking background scroll while a dialog is open is correct. The one-line way everyone does it — `document.body.style.overflow = "hidden"` — is what causes the lurch. On any platform with classic overlay-less scrollbars, hiding overflow removes the scrollbar track, the viewport gets roughly 15px wider, and every centered or full-width element behind the scrim jumps sideways at the exact moment the user's attention moves to the dialog. Then it jumps back on close. It reads as a bug even to people who cannot name it. Two fixes, use both: `scrollbar-gutter: stable` on the scroll container reserves the track permanently so removing the scrollbar changes nothing (or, on legacy targets, pad by `window.innerWidth - documentElement.clientWidth`), and `overscroll-behavior: contain` on the dialog's own scroll area stops a flick inside it from chaining out to the page. That second half is interactions-overscroll-behavior and it is a genuinely different failure — chaining is about where a scroll *goes*, this is about the layout *shifting* when scrolling is taken away.
+
+```tsx
+html { scrollbar-gutter: stable; }
+.dialog-body { overscroll-behavior: contain; }
+```
+
+- [ibelick — fixing-accessibility SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md)
+- [MDN — scrollbar-gutter](https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter)
+- [MDN — overscroll-behavior](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior)
+
+### Same Padding Everywhere Is Monotony
+
+**ID:** `layout-impeccable-monotonous-spacing`
+**Agent rule (SHOULD):** Vary spacing to encode grouping: ~8-12px BETWEEN siblings, ~48-96px BETWEEN sections. Uniform padding everywhere does not just look boring, it does not parse — when a label sits as far from its input as from the next section, nothing groups and every element floats at equal weight. The detector rounds every padding/margin/gap to 4px and, given >=10 samples, fires when ONE value exceeds 60% of them AND there are <=3 unique values. The opposite ditch is `design-rams-inconsistent-spacing` (arbitrary, unrepeatable values); the target is a small scale, applied to mean something.
+**Source:** impeccable (https://impeccable.style/)
+
+Vary spacing for rhythm — tight inside a group, generous between sections, because spacing is what encodes grouping
+
+> Vary spacing for rhythm. Same padding everywhere is monotony.
+
+The detector is precise about what "everywhere" means: it collects every padding, margin, and gap value on the page, rounds each to the nearest 4px, and — once it has at least 10 of them — flags the page when ONE value accounts for more than 60% of the total AND there are 3 or fewer unique values. A page where every gap is 16px scores 100% dominance across a single unique value. The failure is not that it looks boring, it is that it does not parse. Spacing is the primary encoder of grouping: when a label sits as far from its own input as it does from the next section, nothing groups, and every element floats at equal weight. impeccable gives the rhythm as ranges — tight groupings of 8-12px BETWEEN siblings, generous separations of 48-96px BETWEEN distinct sections — so that proximity alone makes the structure legible, without a single border or divider doing the work. Note that `design-rams-inconsistent-spacing` is the opposite ditch: that one fires when spacing is arbitrary and unrepeatable, this one when it is uniform and meaningless. The target is neither — a small scale, applied to mean something.
+
+- [impeccable.style](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+
 ---
 
 ## Content
 
-Typography, accessibility, and content presentation. 65 rules.
+Typography, accessibility, and content presentation. 68 rules.
 
 ### Inline Help First
 
@@ -2541,16 +2728,17 @@ Every interface has multiple states beyond the ideal happy path. Design and impl
 ### Redundant Status Cues
 
 **ID:** `content-redundant-cues`
-**Agent rule (MUST):** Redundant status cues (not color-only); icons have text labels
+**Agent rule (MUST):** Redundant status cues (never color alone) — add a text label, icon, or pattern as a second indicator; icons have text labels. ~8% of males cannot distinguish certain colors
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Don't rely on color alone; include text labels
 
 > Redundant status cues. Don't rely on color alone; include text labels.
 
-Color blind users and users in bright sunlight may not be able to distinguish colors. Always pair color coding with text labels, icons, or patterns. For example, success shouldn't be just green; it should be green with a checkmark and "Success" text.
+This is WCAG SC 1.4.1 Use of Color, and the Rams review files it as a Serious accessibility failure. Roughly 8% of men have some colour vision deficiency — but colour-only status also fails on monochrome displays, in bright sun, and on a printout, so the audience is far wider than the one people picture. Always carry the meaning on a second channel: an icon or glyph beside the status colour, a text label on the badge, an underline on the link, a pattern or a direct label on a chart series. Green alone is not success; green with a checkmark and the word "Success" is.
 
-- [Color Accessibility](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html)
+- [WCAG 1.4.1: Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html)
+- [Rams design review skill](https://rams.ai/rams.md)
 
 ### Use Ellipsis Character
 
@@ -3430,11 +3618,59 @@ This is the mismatch case, and it is distinct from every neighbouring rule in th
 - [APG: Providing Accessible Names and Descriptions](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/)
 - [Understanding SC 2.5.3: Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)
 
+### Lists Are ul/li, Tables Are th/td
+
+**ID:** `content-list-and-table-semantics`
+**Agent rule (MUST):** Lists are `<ul>`/`<ol>` + `<li>`; tables are `<table>` with `<th scope="col|row">` for headers. A `<div className="space-y-2">` of divs announces nothing — no "list, 5 items", no way to skip it — and a div grid with a bold header row reads a cell as a naked "42" instead of "Revenue, Q3, 42". Bold is not a header. Tailwind's `list-none` drops the marker without dropping the semantics, so there is no styling reason to use divs.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+A stack of divs looks like a list and a grid of divs looks like a table, but neither announces any structure to a screen reader
+
+> lists must use ul or ol with li
+
+These are the two most common div-soup offences in generated markup, because a `<div className="space-y-2">` of `<div>`s and a flexbox grid with a bold header row *look* exactly right. What they lose is everything a non-visual user navigates by. A real `<ul>` announces "list, 5 items" and gives the reader a way to jump to the next item or skip the list entirely; a stack of divs announces nothing, and the reader has no idea how much is left. The table case is worse, because the loss is per-cell: ibelick's companion rule is "tables must use th for headers when applicable", and a `<th scope="col">` is what makes a screen reader read a cell in the middle of the grid as "Revenue, Q3, 42" instead of a naked "42" with no idea which column or row it belongs to. That association cannot be recovered from visual weight — bold is not a header. content-semantics-first states the principle in general; this is what it actually costs in the two places it is most often ignored. Note that Tailwind's `list-none` removes the marker without removing the semantics, so there is no styling reason to reach for divs.
+
+- [ibelick — fixing-accessibility SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md)
+- [MDN — <th> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/th)
+- [W3C — Web Accessibility Tutorials: Tables](https://www.w3.org/WAI/tutorials/tables/)
+
+### Bound Your clamp()
+
+**ID:** `content-impeccable-fluid-type-bounds`
+**Agent rule (SHOULD):** Bound every `clamp()`: max-size <= ~2.5x min-size. `clamp(1rem, 5vw, 6rem)` is a 6x span that renders the heading at body size on a phone and shouts at 1400px, and a bare `vw` middle term ignores the reader's font-size preference — add a rem offset (`clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem)`, a 1.7x range) to put zoom and reflow back in the calculation. Second half of the rule: do NOT use fluid type in product UI at all — Material, Polaris, Primer and Carbon all ship fixed rem scales, because dense container-based layouts need spatial predictability. Fluid type is for headings and display text on marketing/content pages; body copy stays fixed even there.
+**Source:** impeccable (https://impeccable.style/)
+
+Keep the max at most ~2.5x the min — and keep fluid type out of product UI entirely
+
+> Bound your clamp(): keep max-size ≤ ~2.5 × min-size. Wider ratios break the browser's zoom and reflow behaviour and make large viewports feel like the page is shouting.
+
+This extends `content-fluid-clamp`, which teaches the clamp() technique but sets no bounds on it. The bound is the whole rule: max-size <= ~2.5 x min-size. `clamp(1rem, 5vw, 6rem)` spans 16px to 96px — a 6x ratio — and it is absurd at both ends: at 320px the heading renders at its 16px floor, identical to the body text it is supposed to outrank, and at 1400px it is shouting. A ratio that wide also breaks zoom and reflow, because the viewport unit in the middle term ignores the reader's font-size preference; adding a rem offset (`clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem)` — a 1.7x range) puts that preference back into the calculation. The second half of the rule is the one people miss: do not use fluid type in product UI at all. No major app design system does — Material, Polaris, Primer and Carbon all ship fixed rem scales with optional breakpoint adjustments — because a dense, container-based layout needs spatial predictability, and an h1 that shrinks when the sidebar opens looks worse, not better. Fluid type belongs to headings and display text on marketing and content pages where text dominates the layout. Body copy stays fixed even there, since the size difference across viewports is too small to be worth it.
+
+- [impeccable.style](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+- [MDN — clamp()](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp)
+
+### Never Ship a Broken Image
+
+**ID:** `content-impeccable-broken-image`
+**Agent rule (NEVER):** Ship an `<img>` with an empty, missing, or placeholder `src` — it renders the browser's broken-image box. The value is rarely a literal; it is `user.avatar` and the CMS returned null, so `<img src={undefined} />` compiles, type-checks, passes review, and breaks for every record missing the field. Two failure modes, two guards: MISSING URL — guard the RENDER, do not emit an `<img>` at all, ship a real fallback (initials avatar, skeleton, neutral box); URL THAT 404s — guard the NETWORK with `onError` and swap in the same fallback. Reserve identical dimensions for both, or the swap adds a layout shift on top of the bug you just fixed.
+**Source:** impeccable (https://impeccable.style/)
+
+Guard the render and guard the network — an <img> with no resolvable src ships as a broken-image box
+
+> <img> tags with empty src, missing src, or placeholder values ship as broken-image boxes. Use real images, generated assets, or remove the tag.
+
+The detector catches three shapes: `<img src="">` (also `src=" "` and `src="#"`), an `<img>` with no `src` attribute at all, and a src that is a placeholder rather than a real asset. It is the most trivial rule in impeccable's registry and it reaches production constantly, because the value is usually not a literal — it is `user.avatar` or `post.cover`, and the CMS returned null. React then omits the attribute entirely, so `<img src={undefined} />` compiles, type-checks, passes review, and renders the browser's broken-image chrome to every user whose record happens to be missing that field. There are two distinct failure modes and each needs its own guard. Missing URL: guard the RENDER — if there is no src, do not emit an `<img>`; ship a real fallback instead (an initials avatar, a skeleton, a neutral placeholder box) so the layout is intact and the meaning still reads. URL that fails to load: guard the NETWORK — a remote src can be present and still 404, so attach `onError` and swap in the same fallback the moment the browser gives up. Reserve identical dimensions for image and fallback, or the swap introduces a layout shift on top of the broken image you just fixed.
+
+- [impeccable.style](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+- [MDN — <img>: The Image Embed element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img)
+
 ---
 
 ## Forms
 
-Form controls, validation, and user input handling. 26 rules.
+Form controls, validation, and user input handling. 27 rules.
 
 ### Enter Submits
 
@@ -3825,6 +4061,29 @@ SC 3.3.7 Redundant Entry (Level A, WCAG 2.2) is about a single process — one c
 - [Understanding SC 3.3.7: Redundant Entry](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html)
 - [Understanding SC 1.3.5: Identify Input Purpose](https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html)
 
+### Link Errors to Fields Programmatically
+
+**ID:** `forms-error-programmatic-association`
+**Agent rule (MUST):** An invalid field must set `aria-invalid="true"` and point `aria-describedby` at its message. `aria-describedby` takes a space-separated LIST of ids — keep BOTH the persistent hint id and the error id; overwriting the hint with the error on validation is the common bug, and it makes the field stop explaining itself the moment it goes wrong. Orthogonal to `forms-ibelick-error-placement` (which governs WHERE the message sits): a well-placed error that is not associated still fails.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+An error is not an error until the field points at it: set aria-invalid on the input and list the error and helper text ids in aria-describedby
+
+> errors must be linked to fields using aria-describedby; invalid fields must set aria-invalid; helper text must be associated with inputs
+
+From the forms and errors rules in ibelick's fixing-accessibility skill. This is the rule that red text alone cannot satisfy. `<input id="email" /><span>Invalid email</span>` renders a perfectly visible error and communicates nothing to the accessibility tree: the input still computes as valid, its accessible description is empty, and a screen-reader user who tabs back to the field to fix it hears the label and nothing else. Two attributes close the gap. `aria-invalid="true"` flips the field's computed state, so the error is announced as a property of the control rather than as loose text somewhere on the page. `aria-describedby` attaches the message — and it takes a space-separated LIST of ids, which is the detail people get wrong. A field usually has two things to say: a persistent hint ("We only email you about your account") and a transient error. The common bug is to overwrite the hint id with the error id on validation, so the moment the field goes invalid the user stops hearing why it exists. Keep both: `aria-describedby="email-err email-hint"`. This is orthogonal to forms-ibelick-error-placement, which governs WHERE the message sits visually ("where the action happens"); this one governs whether the message is LINKED to the control at all, wherever it sits. A correctly placed error that is not associated still fails, and an associated error still needs to be placed well.
+
+```tsx
+<input id="email" aria-invalid={!!err} aria-describedby={err ? "email-err email-hint" : "email-hint"} />
+<p id="email-err">Enter a valid email address</p>
+<p id="email-hint">We only email you about your account</p>
+```
+
+- [fixing-accessibility (skill source)](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md)
+- [MDN: aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby)
+- [MDN: aria-invalid](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid)
+- [Understanding SC 3.3.1: Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)
+
 ---
 
 ## Performance
@@ -3947,21 +4206,6 @@ There is no `content` array in Tailwind v4. It was removed. Tailwind now walks t
 - [Tailwind — Detecting classes in source files](https://tailwindcss.com/docs/detecting-classes-in-source-files)
 - [Tailwind — Functions and directives (@source)](https://tailwindcss.com/docs/functions-and-directives)
 - [Tailwind — v4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
-
-### GPU-Accelerated Animations
-
-**ID:** `performance-gpu-animations`
-**Agent rule (MUST):** Use transform/opacity for animations (GPU-accelerated), not margin/width/height
-**Source:** Tailwind (https://tailwindcss.com/docs)
-
-Use transform and opacity for smooth 60fps animations
-
-> Animate only transform and opacity properties. These run on the GPU compositor thread and won't cause layout recalculations.
-
-Animating properties like width, height, top, left, or margin triggers expensive layout recalculations on every frame. GPU-accelerated properties (transform, opacity) run on a separate compositor thread, achieving smooth 60fps animations.
-
-- [CSS GPU Animation](https://web.dev/articles/animations-guide)
-- [Compositor-only Properties](https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count)
 
 ### Never transition-all
 
@@ -4355,7 +4599,7 @@ worker.onmessage = (e) => setResult(e.data);
 ### Motion Transform Shorthands Are Not GPU-Accelerated
 
 **ID:** `performance-motion-shorthand-not-gpu`
-**Agent rule (MUST):** In Motion/Framer Motion, animate the full `transform` string, not the `x`/`y`/`scale` shorthands: the shorthands are interpolated per `requestAnimationFrame` on the MAIN THREAD and drop frames under load, while `transform` as a whole string (along with `opacity`, `filter`, `clipPath`) is handed to the Web Animations API and ticked by the compositor. This is the false floor under `animations-compositor-friendly` and `performance-gpu-animations` — `animate={{ x: 100 }}` looks compliant and is not.
+**Agent rule (MUST):** In Motion/Framer Motion, animate the full `transform` string, not the `x`/`y`/`scale` shorthands: the shorthands are interpolated per `requestAnimationFrame` on the MAIN THREAD and drop frames under load, while `transform` as a whole string (along with `opacity`, `filter`, `clipPath`) is handed to the Web Animations API and ticked by the compositor. This is the false floor under `animations-compositor-friendly` — `animate={{ x: 100 }}` looks compliant and is not.
 **Source:** Emil Kowalski (https://emilkowalski.com/)
 
 Animate the full transform string in Motion, because x, y, and scale are ticked on the main thread
@@ -4373,11 +4617,34 @@ This is the false floor under every "animate transform and opacity" rule you hav
 - [MDN: CSS and JavaScript animation performance](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance)
 - [web.dev: Animations guide](https://web.dev/articles/animations-guide)
 
+### Every rAF Loop Needs a Stop Condition
+
+**ID:** `performance-raf-stop-condition`
+**Agent rule (NEVER):** Ship a `requestAnimationFrame` loop with no terminal condition. `const tick = () => { draw(); requestAnimationFrame(tick); }` never ends: once the value has converged and the user has moved on, it still wakes 60x/sec to compute a delta of zero, burning a core and measurable battery even while the element is visible and idle — the usual cause of an idle tab at 10-15% CPU. Give every loop two exits: stop re-scheduling on convergence (or gesture end / `AbortSignal`), and call `cancelAnimationFrame` on teardown so an unmount cannot orphan the loop. (Distinct from `animations-ibelick-pause-offscreen`, which stops work the user cannot see.)
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+A requestAnimationFrame loop that re-schedules itself unconditionally never ends, and burns a core for as long as the tab lives
+
+> no requestAnimationFrame loops without a stop condition
+
+The shape is always the same: `const tick = () => { draw(); requestAnimationFrame(tick); }`. It is correct while the animation is running and wrong for every second after — the value has converged, the spring has settled, the user has moved on, and the loop is still waking up sixty times a second to compute a delta of zero. That is the usual explanation for an idle tab sitting at 10-15% CPU, and on a laptop it is measurable battery drain for no pixels. Every loop needs two exits: a terminal condition (the value converged, the gesture ended, an AbortSignal fired) that stops re-scheduling, and a `cancelAnimationFrame` in the teardown so a component that unmounts mid-animation does not leave an orphan loop holding a reference to a dead tree. This is a different failure from animations-ibelick-pause-offscreen: that rule stops work the user cannot see, this one stops work nobody needs even when the element is in full view.
+
+```tsx
+const tick = () => {
+  if (settled()) return;               // terminal condition
+  id = requestAnimationFrame(tick);
+};
+return () => cancelAnimationFrame(id); // teardown
+```
+
+- [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
+- [MDN — requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
+
 ---
 
 ## Design
 
-Visual design principles and aesthetics. 50 rules.
+Visual design principles and aesthetics. 56 rules.
 
 ### Layered Shadows
 
@@ -4582,21 +4849,6 @@ If you wait for JavaScript to run before checking the color scheme, users see a 
 - [Avoiding FART](https://css-tricks.com/flash-of-inaccurate-color-theme-fart/)
 - [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme)
 
-### Color-Only Information
-
-**ID:** `design-rams-color-only`
-**Agent rule (NEVER):** Convey information using color alone. Add text labels, icons, or patterns as secondary indicators. Color-blind users (8% of males) cannot distinguish certain colors.
-**Source:** RAMS (https://www.rams.ai/)
-
-Don't rely on color alone to convey information
-
-> Status/error indicated only by color (no icon/text)
-
-That line is the "what to look for" cell of the Rams review's Serious a11y check "Color-only information", mapped to WCAG 1.4.1. The rule itself is one row in a table; the reasoning is ours. Information conveyed only through color is unavailable to colourblind users — about 8% of men have some colour vision deficiency — and it is equally unavailable to anyone on a monochrome display, in bright sun, or reading a printout. Carry every colour-coded meaning on a second channel: an icon or glyph next to the status colour, a text label on the badge, an underline on the link, a pattern or direct label on the chart series.
-
-- [Rams design review skill](https://rams.ai/rams.md)
-- [WCAG 1.4.1](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html)
-
 ### Insufficient Text Contrast
 
 **ID:** `design-rams-color-contrast`
@@ -4655,35 +4907,22 @@ This is our own rule, not an upstream citation — the Rams review has no bullet
 
 - [NN/g — The Principle of Proximity](https://www.nngroup.com/articles/gestalt-proximity/)
 
-### Inconsistent Font Usage
+### Mixed Font Families, Weights, and Sizes
 
 **ID:** `design-rams-font-consistency`
-**Agent rule (SHOULD):** Use consistent font families and weights throughout the interface. Limit to 2-3 font families maximum. Too many fonts create visual chaos.
+**Agent rule (SHOULD):** Use consistent font families, weights, and sizes throughout the interface. Limit to 2-3 font families maximum; take sizes from one typographic scale, with body text >= 16px on web and nothing below 12px.
 **Source:** RAMS (https://www.rams.ai/)
 
-Limit font families and use them consistently
+Hold the whole type system to one decision: a small set of families, a named weight per role, and a single scale for sizes
 
 > Mixed font families, weights, or sizes
 
-The upstream rule is that single bullet under "Typography"; this entry covers the FAMILIES half of it (design-rams-text-sizing covers the sizes half). The explanation is ours. Every extra family is a new voice in the room, and readers do not hear "variety", they hear "assembled from parts". Two families is a system — one for display, one for text; three is a stretch that needs a reason (usually a mono for code). Get the range you need out of weight and size within one family before reaching for a second, and always ship a fallback stack so the substitute font is one you chose.
+That six-word bullet under "Typography" is the entire upstream rule, and it names all three axes at once — families, weights, sizes — so this principle does too. (It was previously split across two entries; the split invented a distinction the source never made.) The explanation is ours. FAMILIES: every extra family is a new voice in the room, and readers do not hear "variety", they hear "assembled from parts". Two is a system — one display, one text; a third needs a reason, usually a mono for code. WEIGHTS: give each weight a job (regular for body, medium for labels, semibold for headings) instead of nudging one paragraph to 500 because it looked thin. SIZES: a type scale is the index of the page — a reader who meets 15px, 16px, and 17px body copy on one screen cannot tell whether the difference means anything, so they stop trusting size as a signal at all. Pick the scale (Tailwind's xs → 2xl is one), give each step a job, and never introduce a size to solve a one-off fitting problem; fix the layout instead. The common thread across all three: reach for weight and size WITHIN one family before you reach for a second family, and take every value from a named token rather than from a style attribute.
 
 - [Rams design review skill](https://rams.ai/rams.md)
-- [Typography Guidelines](https://tailwindcss.com/docs/font-family)
-
-### Inconsistent Text Sizing
-
-**ID:** `design-rams-text-sizing`
-**Agent rule (SHOULD):** Use a consistent typographic scale for text sizes. Body text should be minimum 16px on web, never below 12px. Small text causes readability issues.
-**Source:** RAMS (https://www.rams.ai/)
-
-Use a consistent type scale for text sizes
-
-> Mixed font families, weights, or sizes
-
-Same upstream bullet as design-rams-font-consistency — one line under "Typography" — but this entry is about the SIZES half of it. The explanation is ours. A type scale is not decoration, it is the index of the page: a reader who meets 15px, 16px, and 17px body copy on the same screen cannot tell whether the difference means anything, so they stop trusting size as a signal at all. Pick a scale (Tailwind's xs → 2xl is one), give each step a job — page title, section title, body, caption — and never introduce a size to solve a one-off fitting problem; fix the layout instead.
-
-- [Rams design review skill](https://rams.ai/rams.md)
-- [Type Scale](https://tailwindcss.com/docs/font-size)
+- [Tailwind: font-family](https://tailwindcss.com/docs/font-family)
+- [Tailwind: font-size](https://tailwindcss.com/docs/font-size)
+- [Tailwind: font-weight](https://tailwindcss.com/docs/font-weight)
 
 ### Colors That Clash
 
@@ -4709,7 +4948,7 @@ Use semantic colors consistently (error=red, success=green)
 
 > Our rule: once a colour carries a meaning in your product, it carries only that meaning — never ship a green Delete or a red Success.
 
-This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is NOT the same rule as design-semantic-colors, which is about token naming (write `bg-destructive`, not `bg-red-600`, so themes can move). You can obey that one perfectly and still hand `bg-destructive` to the Save button. This rule is about the meaning a colour has already acquired: users read red as stop/danger and green as go/safe before they read the label, so an inverted pair does not merely confuse, it gets the destructive action clicked. Fix the semantics of the mapping, then remember that colour is only ever the second signal — the label and the icon must say it too (see design-rams-color-only).
+This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is NOT the same rule as design-semantic-colors, which is about token naming (write `bg-destructive`, not `bg-red-600`, so themes can move). You can obey that one perfectly and still hand `bg-destructive` to the Save button. This rule is about the meaning a colour has already acquired: users read red as stop/danger and green as go/safe before they read the label, so an inverted pair does not merely confuse, it gets the destructive action clicked. Fix the semantics of the mapping, then remember that colour is only ever the second signal — the label and the icon must say it too (see content-redundant-cues).
 
 - [Psychology of Color in UX](https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/)
 
@@ -4742,6 +4981,22 @@ Same upstream bullet as design-rams-border-radius — one line under "Components
 
 - [Rams design review skill](https://rams.ai/rams.md)
 - [Box Shadow](https://tailwindcss.com/docs/box-shadow)
+
+### One Icon Scale, One Stroke Width
+
+**ID:** `design-icon-size-scale`
+**Agent rule (SHOULD):** Bind icon sizes to ONE scale (16 / 20 / 24, matched to the type scale — `size-4` next to `text-sm`, `size-5` next to `text-base`) and hold the whole set to ONE stroke width, which in practice means taking every glyph from a single icon family. A toolbar sized by eye (`w-4`, `w-5`, `size-[18px]`, `h-6`) reads as ragged even when every box is aligned, because the eye compares the drawn marks and not the boxes; and a 1.5px stroke beside a 2px stroke gives two apparent weights at the same nominal size. Sizes come from tokens — a lone `size-[18px]` is a magic number.
+**Source:** RAMS (https://www.rams.ai/)
+
+Bind icon sizes to the type scale and hold every icon to a single stroke width, instead of sizing each one by eye
+
+> Inconsistent borders, shadows, or icon sizing
+
+The third clause of that bullet — the one this corpus kept dropping. design-rams-border-radius covers "borders" and design-rams-shadow-consistency covers "shadows"; this is "icon sizing", and the explanation is ours. Icons are the one element people size by eye, so a toolbar ends up at w-4, w-5, size-[18px], h-6 — every glyph centered, every box aligned, and the row still reads as ragged, because the eye compares the drawn marks and not the boxes around them. Stroke width is the half nobody checks: a 1.5px stroke next to a 2px stroke at the same nominal size gives you two apparent weights, so one icon looks bolder than its neighbour for no reason anyone can name. Fix both with two decisions. One SIZE scale — 16 / 20 / 24, bound to the type scale so an icon matches the text it sits beside (size-4 next to text-sm, size-5 next to text-base) — and one STROKE width across the whole set, which in practice means taking every glyph from a single icon family rather than mixing libraries. Sizes come from tokens, not from arbitrary values: a lone size-[18px] is a magic number that the next person will guess wrong.
+
+- [Rams design review skill](https://rams.ai/rams.md)
+- [MDN: stroke-width](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/stroke-width)
+- [Tailwind: width](https://tailwindcss.com/docs/width)
 
 ### Misaligned Elements
 
@@ -5047,6 +5302,53 @@ A translucent color has no fixed value: the browser flattens it against whatever
 - [impeccable.style](https://impeccable.style/)
 - [WCAG 2.1: Contrast (Minimum)](https://www.w3.org/TR/WCAG21/#contrast-minimum)
 
+### Hairline Border or Soft Shadow, Not Both
+
+**ID:** `design-impeccable-hairline-plus-shadow`
+**Agent rule (NEVER):** Pair a visible hairline border with a wide, diffuse shadow — it is a generated-UI signature. The two make contradictory claims: the hairline says the surface has a crisp edge in the plane, the soft shadow says it is floating above the plane with light wrapping its edge, so the border kills the lift and the shadow kills the line. Commit to one — a defined EDGE (crisp hairline, no shadow) or a soft ELEVATION (shadow, no border). The detector fires on >=2 sides at <=1.5px with border alpha >=0.28 while a shadow layer of alpha >=0.12 has blur >=16px: `border shadow-lg` fires, `border shadow-xs` does not. A single layered shadow that INCLUDES its ring (`0 0 0 1px …`, 0 blur) is not this pattern — see `design-layered-shadows`.
+**Source:** impeccable (https://impeccable.style/)
+
+Commit a card to a defined edge or to a soft elevation — pairing a 1px border with a wide diffuse shadow is the "every card style I know" tell
+
+> A hairline border paired with a wide, diffuse shadow is a recurring generated-UI signature. Commit to one — a defined edge or a soft elevation — rather than both at once.
+
+The detector is precise about what counts: at least two sides carrying a VISIBLE hairline (width <= 1.5px with border-color alpha >= 0.28) while the element also has a box-shadow whose largest blur radius is >= 16px, measured only across shadow layers with alpha >= 0.12. So `border shadow-lg` on a card fires it; `border shadow-xs` does not, and neither does a shadow built entirely from near-invisible layers. The reason it reads as cheap is that the two devices make contradictory claims. A hairline says "this surface has a crisp, defined boundary and sits in the plane." A wide diffuse shadow says "this surface is floating above the plane, and its edge is soft because light wraps around it." Ship both and the edge fights the lift: the border stops the shadow from selling elevation, and the shadow stops the border from reading as a deliberate line. Pick one and mean it — a crisp hairline with no shadow (flat, precise, editorial), or a soft shadow with no border (lifted, tactile). Note the one legitimate exception, which is not this pattern: a shadow that INCLUDES its hairline as a 0-blur ring layer (`0 0 0 1px …`) is a single layered shadow, not a border plus a shadow — see design-layered-shadows.
+
+- [impeccable](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+- [MDN: box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-shadow)
+
+### Desaturate Status Colors on Dark
+
+**ID:** `design-interface-desaturate-on-dark`
+**Agent rule (SHOULD):** Give each semantic color (success, error, warning) a SEPARATE dark-theme value: hold the hue angle, raise lightness a little, and pull chroma DOWN. A swatch picked to fight a white surface has nothing to fight on near-black — it vibrates and the glyph edges shimmer. It is not a contrast failure (the ratio may pass), it is a saturation failure. On dark, also lean on borders rather than shadows, which barely read. This moves the OPPOSITE way from `design-impeccable-tinted-neutrals` (which pushes a little brand chroma INTO the neutrals); a palette should do both.
+**Source:** interface-design (https://github.com/Dammyjay93/interface-design)
+
+Keep the hue and drop the chroma when a semantic color moves to a dark surface, because the swatch tuned for white vibrates on near-black
+
+> Dark mode. Shadows are weak on dark — lean on borders. Desaturate semantic colors slightly. Same hierarchy system, inverted values. Keep one hue; shift only lightness across surfaces.
+
+A success green and an error red are picked against white, where a high-chroma swatch has to fight a bright surface to be seen. Move the identical token to a near-black panel and the fight is over: the same chroma now sits against almost no lightness, the edges of the glyphs shimmer, and the badge buzzes rather than reads. It is not a contrast failure — the ratio may pass — it is a saturation failure, and the fix is the third sentence of the quote: same hue, less chroma. In OKLCH that is one number: hold the hue angle, raise lightness a little so the badge stays legible, and pull chroma down until the swatch sits still. This is NOT design-impeccable-tinted-neutrals, which pushes the NEUTRALS a tiny amount of chroma TOWARD the brand hue so surfaces feel like one system. This rule moves in the opposite direction on the opposite tokens: it takes chroma AWAY from an already-saturated SEMANTIC color so it survives a dark surface. A palette can and should do both. Express the pair as two theme values per semantic role rather than one, and let the dark token be a deliberate value, not the light one reused.
+
+- [interface-design (Damola Akinleye)](https://github.com/Dammyjay93/interface-design)
+- [OKLCH color picker](https://oklch.com/)
+- [Material Design: Dark theme](https://m2.material.io/design/color/dark-theme.html)
+
+### Controls Get Their Own Tokens
+
+**ID:** `design-interface-control-tokens`
+**Agent rule (SHOULD):** Declare `--control-bg`, `--control-border` and `--control-focus` as their own trio — do not bind inputs, selects and checkboxes to the surface/card tokens. A card is a surface that RECEIVES the eye and should recede; an input must announce itself as a place where something goes, and if it shares the card's background and the divider's border its boundary lands near 1.2:1 and the field becomes a rumour. Separable tokens are what let you meet `design-non-text-contrast` (WCAG 1.4.11, 3:1 for the boundary that identifies a control) without shouting every divider on the page. On dark, inputs read best slightly DARKER than their surroundings — an inset well says "type here" without chrome.
+**Source:** interface-design (https://github.com/Dammyjay93/interface-design)
+
+Give inputs, checkboxes and selects dedicated background, border and focus tokens instead of reusing the card and background tokens
+
+> Control tokens. Inputs/selects/checkboxes get dedicated background, border, and focus tokens — don't reuse surface tokens, so you can tune controls independently.
+
+This is why form fields disappear into the page. A card token and a control token are asked to do opposite jobs: a card is a surface that RECEIVES the eye and should recede, while an input is a surface that INVITES input and must announce itself as a place where something goes. Bind `--control-bg` to `--card` and the field is exactly as bright as the panel it sits in, so the only thing left marking it as a field is its border — and if that border is also the card's `--border`, tuned to be a quiet divider, the boundary lands near 1.2:1 and the input becomes a rumour. Upstream's own advice sharpens the point: on dark, inputs should be slightly DARKER than their surroundings, not lighter, because an inset well reads as "type here" without heavy chrome — a move you simply cannot make while the control shares the surface token. Declare `--control-bg`, `--control-border` and `--control-focus` as their own trio, and tune them against one hard floor: design-non-text-contrast (WCAG 1.4.11) requires 3:1 for the visual boundary that identifies a control, measured against the surface actually behind it. That floor is the reason the tokens must be separable — you cannot raise the input border to 3:1 without also shouting every divider on the page, unless the two are different tokens.
+
+- [interface-design (Damola Akinleye)](https://github.com/Dammyjay93/interface-design)
+- [Understanding SC 1.4.11: Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)
+
 ### Four Text Levels, Not Two
 
 **ID:** `design-interface-text-hierarchy-levels`
@@ -5156,6 +5458,79 @@ This is the classic "we upgraded to v4 and every card grew an ugly black outline
 - [Tailwind v4: border-color](https://tailwindcss.com/docs/border-color)
 - [MDN: border-color](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-color)
 
+### Social Images Need Absolute URLs
+
+**ID:** `design-og-image-absolute-url`
+**Agent rule (MUST):** `og:image` and `twitter:image` must be ABSOLUTE URLs. A relative `/og.png` resolves fine in your browser (it has a current document) and ships a blank grey card on Slack, iMessage and LinkedIn, which fetch the HTML and have no origin to resolve against — and nothing in your build, typecheck, or local preview complains. Build the URL from one site-wide base constant. Ship a stable 1200x630 image and set `twitter:card` to `summary_large_image`, or the artwork renders at favicon size.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+og:image and twitter:image must be absolute URLs, because a relative path renders a blank card everywhere the link is actually shared
+
+> Open Graph and Twitter images must use absolute URLs; prefer correct image dimensions and stable aspect ratios; set twitter:card appropriately, summary_large_image by default
+
+From the social cards rules in ibelick's fixing-metadata skill. This is the single most common social-preview bug, and its defining property is that it is invisible during development. `<meta property="og:image" content="/og.png">` resolves fine in your browser, because your browser has a current document to resolve it against. Slack, iMessage, LinkedIn, and every other unfurler do not: they fetch your HTML, read the tag, and get a path with no origin to attach it to. Some drop it, some guess, all of them are entitled to give up — so the link ships as a blank grey card, and nothing in your build, your typecheck, or your local preview ever complains. The rule is to emit the full origin, which in practice means building the URL from one site-wide base constant (`${SITE_URL}/og.png`) rather than trusting each page to remember. Two neighbours in the same rule group matter as much: the image wants a stable, correct aspect (1200 x 630 is the safe default that survives every crop), and `twitter:card` wants `summary_large_image`, without which the card renders as a thumbnail and the artwork you commissioned appears the size of a favicon.
+
+```tsx
+<meta property="og:image" content={`${SITE_URL}/og.png`} />
+<meta name="twitter:card" content="summary_large_image" />
+```
+
+- [fixing-metadata (skill source)](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md)
+- [The Open Graph protocol](https://ogp.me/)
+- [X: Summary card with large image](https://developer.x.com/en/docs/x-for-websites/cards/overview/summary-card-with-large-image)
+
+### canonical and og:url Must Agree
+
+**ID:** `design-canonical-og-agreement`
+**Agent rule (MUST):** `canonical` must point at the page's preferred URL and `og:url` must be that same string. When they disagree (`/blog/post` vs `/blog/post?utm_source=x`) the page identifies itself differently depending on who asks: every share links to the tracked variant, so the authority accrues to a URL the page itself disowns, and the crawler gets a duplicate to reconcile. Compute the canonical once and feed the same variable to both tags. Campaign params belong in the link you hand out, never in the tags a page declares about itself.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+The URL a page declares as canonical and the URL it hands to social crawlers must be the same string, or one page becomes two
+
+> canonical must point to the preferred URL for the page; og:url must match the canonical URL
+
+From the canonical/indexing and social cards rules in ibelick's fixing-metadata skill. These are two tags in different sections of the head, usually written by different people at different times, and they quietly answer the same question: which URL IS this page? When they disagree — canonical says `/blog/post`, og:url says `/blog/post?ref=twitter&utm_source=x` — you have shipped a page that identifies itself differently depending on who is asking. Everyone who shares it links to the tracked variant, so the authority those shares earn accrues to a URL that the page itself disowns, and the crawler is handed a duplicate to reconcile that it did not need. The failure is not loud: both URLs work, both render, and the split only shows up later as a page that never quite ranks. The fix is mechanical — compute the canonical once and feed the same variable to both tags, so drift becomes impossible rather than merely unlikely. Campaign parameters belong in the link you hand out, never in the tags a page declares about itself.
+
+- [fixing-metadata (skill source)](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md)
+- [Google: Consolidate duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
+- [The Open Graph protocol](https://ogp.me/)
+
+### Consistent Title Format and a Written Description
+
+**ID:** `design-meta-title-and-description`
+**Agent rule (MUST):** Every page needs a `<title>` in one site-wide format (`${page} — ${SITE_NAME}`), with the distinctive word FIRST — results truncate around 60 characters, so a stuffed title loses the product name, the one word a human was scanning for. Shareable or searchable pages SHOULD also ship a hand-written `<meta name="description">` of ~150-160 plain-text characters; skip it and the engine writes one from whatever body copy came first, usually a cookie banner or a skip link. (Distinct from `content-page-titles`, which is the title tracking in-app context.)
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+Every page needs a title in one site-wide format, short enough to survive truncation, plus a description you wrote instead of one the crawler invents
+
+> every page must have a title; use a consistent title format across the site; keep titles short and readable, avoid stuffing; shareable or searchable pages should have a meta description
+
+From the title and description rules in ibelick's fixing-metadata skill. Distinct from content-page-titles, which is about the title tracking in-app context as the user navigates; this is the site-wide template and the description that ships with the document. Three things go wrong together. Titles get stuffed — `Home | Best Free AI Tools 2026 | Fast | Cheap | MyApp` — and the search result truncates at roughly 60 characters, so the keywords survive and the product name, the one word a human was scanning for, is the part that gets cut. Titles drift, because each page invents its own separator and word order, and a site whose results do not look like they came from the same site reads as untrustworthy. And the description is skipped, which does not mean no description: it means the engine writes one for you, scraped from whatever body copy came first, which is usually a cookie banner or a skip link. The rule reduces to one template (`${page} — ${SITE_NAME}`), the distinctive word first, and a plain-text description of about 150-160 characters written on purpose.
+
+- [fixing-metadata (skill source)](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md)
+- [Google: Influencing your title links](https://developers.google.com/search/docs/appearance/title-link)
+- [Google: Control your snippets](https://developers.google.com/search/docs/appearance/snippet)
+
+### robots Must Match Access Intent
+
+**ID:** `design-robots-intent`
+**Agent rule (MUST):** The `robots` meta must match actual access intent, so DERIVE it from the environment instead of hardcoding: default to `noindex` and let exactly one environment opt in (`process.env.VERCEL_ENV === "production"`). Preview and staging deploys are public URLs nobody thinks of as public, and an indexed staging copy competes with production for your own brand name. The symmetric failure is the overcorrection: a hardcoded `noindex` merges and production silently deindexes itself — deindexing is quiet, traffic just stops. Reserve `noindex` for private, duplicate, or non-public pages.
+**Source:** @Ibelick (https://www.ui-skills.com/)
+
+Derive the robots tag from the deploy environment: noindex by default on previews and staging, index only where the page is genuinely public
+
+> previews or staging pages should be noindex by default when possible; robots meta must match actual access intent; use noindex only for private, duplicate, or non-public pages
+
+From the canonical and indexing rules in ibelick's fixing-metadata skill. Preview deploys are public URLs that nobody thinks of as public. Leave them indexable and a crawler will eventually find one, at which point a half-finished staging copy of your site is competing with production for your own brand name — and because it is thinner, newer, and often a near-duplicate, the outcome is unpredictable in exactly the way you cannot afford. That is the expensive, common failure. The symmetric failure is what people ship when they overcorrect: someone hardcodes `<meta name="robots" content="noindex">` to fix staging, it merges, and production quietly deindexes itself. Nobody notices for weeks, because deindexing is silent — traffic just stops. Both failures come from treating robots as a static tag rather than a function of the environment. Derive it: default to noindex and let exactly one environment opt in (`process.env.VERCEL_ENV === 'production'`). Defaulting to noindex means every new preview surface is safe on the day it ships, and the single env that opts in is the one place you can actually check.
+
+```tsx
+const isProd = process.env.VERCEL_ENV === "production";
+<meta name="robots" content={isProd ? "index,follow" : "noindex,nofollow"} />
+```
+
+- [fixing-metadata (skill source)](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md)
+- [Google: Block search indexing with noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
+
 ---
 
 ## Aesthetics
@@ -5249,9 +5624,11 @@ Stamp 01 / 02 / 03 on a set only when the order actually carries information the
 
 > Structural devices, numbering, eyebrows, dividers, labels, should encode something true about the content, not decorate it. Many generic designs use numbered markers (01 / 02 / 03), but that's only appropriate if the content actually is a sequence - like a real process or a typed timeline where order carries information the reader needs.
 
-There is a one-second test: reorder the items. If nothing breaks — if Security could just as well be 01 and Analytics 03 — then the numerals are decoration wearing the costume of structure, and they are actively lying to the reader, who reads "01" as a promise that something comes next. A real process (Push → Build → Promote) or a typed timeline earns its numbers, because there the order IS the information. Same rule governs the eyebrow chip (`aesthetics-impeccable-hero-eyebrow`): structure or nothing.
+There is a one-second test: reorder the items. If nothing breaks — if Security could just as well be 01 and Analytics 03 — then the numerals are decoration wearing the costume of structure, and they are actively lying to the reader, who reads "01" as a promise that something comes next. A real process (Push → Build → Promote) or a typed timeline earns its numbers, because there the order IS the information. Same rule governs the eyebrow chip (`aesthetics-impeccable-hero-eyebrow`): structure or nothing. impeccable ships a mechanical threshold for the same tell (`numbered-section-markers`), and it is worth knowing where the line falls: it scans the page's text for zero-padded markers in the 01–12 range and fires only when 3 or more DISTINCT markers appear AND at least 2 of them are consecutive (01, 02, 03 → two sequential pairs). One stray "01" is not the pattern; a run of three is, because a run is what turns numerals into the page's section cadence. It classifies the result as the AI editorial scaffold one tier deeper than the tracked eyebrow chip — the same reflex, spent on a bigger typographic gesture.
 
 - [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
+- [impeccable](https://impeccable.style/)
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 - [MDN: The Ordered List element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol)
 
 ### Layout Must Be a Choice, Not the Default

@@ -379,4 +379,22 @@ export const formsPrinciples: Principle[] = [
     badExampleKey: 'forms-redundant-entry-bad',
     goodExampleKey: 'forms-redundant-entry-good',
   },
+  {
+    id: 'forms-error-programmatic-association',
+    category: 'forms',
+    source: 'ibelick',
+    title: 'Link Errors to Fields Programmatically',
+    description: 'An error is not an error until the field points at it: set aria-invalid on the input and list the error and helper text ids in aria-describedby',
+    sourceQuote: 'errors must be linked to fields using aria-describedby; invalid fields must set aria-invalid; helper text must be associated with inputs',
+    additionalExplanation: 'From the forms and errors rules in ibelick\'s fixing-accessibility skill. This is the rule that red text alone cannot satisfy. `<input id="email" /><span>Invalid email</span>` renders a perfectly visible error and communicates nothing to the accessibility tree: the input still computes as valid, its accessible description is empty, and a screen-reader user who tabs back to the field to fix it hears the label and nothing else. Two attributes close the gap. `aria-invalid="true"` flips the field\'s computed state, so the error is announced as a property of the control rather than as loose text somewhere on the page. `aria-describedby` attaches the message — and it takes a space-separated LIST of ids, which is the detail people get wrong. A field usually has two things to say: a persistent hint ("We only email you about your account") and a transient error. The common bug is to overwrite the hint id with the error id on validation, so the moment the field goes invalid the user stops hearing why it exists. Keep both: `aria-describedby="email-err email-hint"`. This is orthogonal to forms-ibelick-error-placement, which governs WHERE the message sits visually ("where the action happens"); this one governs whether the message is LINKED to the control at all, wherever it sits. A correctly placed error that is not associated still fails, and an associated error still needs to be placed well.',
+    sourceLinks: [
+      { text: 'fixing-accessibility (skill source)', url: 'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md' },
+      { text: 'MDN: aria-describedby', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby' },
+      { text: 'MDN: aria-invalid', url: 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid' },
+      { text: 'Understanding SC 3.3.1: Error Identification', url: 'https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html' },
+    ],
+    tags: ['a11y', 'forms'],
+    badExampleKey: 'forms-error-programmatic-association-bad',
+    goodExampleKey: 'forms-error-programmatic-association-good',
+  },
 ];

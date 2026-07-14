@@ -120,21 +120,6 @@ export const performancePrinciples: Principle[] = [
     goodExampleKey: 'performance-content-paths-good',
   },
   {
-    id: 'performance-gpu-animations',
-    category: 'performance',
-    source: 'tailwind',
-    title: 'GPU-Accelerated Animations',
-    description: 'Use transform and opacity for smooth 60fps animations',
-    sourceQuote: 'Animate only transform and opacity properties. These run on the GPU compositor thread and won\'t cause layout recalculations.',
-    additionalExplanation: 'Animating properties like width, height, top, left, or margin triggers expensive layout recalculations on every frame. GPU-accelerated properties (transform, opacity) run on a separate compositor thread, achieving smooth 60fps animations.',
-    sourceLinks: [
-      { text: 'CSS GPU Animation', url: 'https://web.dev/articles/animations-guide' },
-      { text: 'Compositor-only Properties', url: 'https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count' },
-    ],
-    badExampleKey: 'performance-gpu-animations-bad',
-    goodExampleKey: 'performance-gpu-animations-good',
-  },
-  {
     id: 'performance-no-transition-all',
     category: 'performance',
     source: 'tailwind',
@@ -512,5 +497,20 @@ export const performancePrinciples: Principle[] = [
     ],
     badExampleKey: 'performance-motion-shorthand-not-gpu-bad',
     goodExampleKey: 'performance-motion-shorthand-not-gpu-good',
+  },
+  {
+    id: 'performance-raf-stop-condition',
+    category: 'performance',
+    source: 'ibelick',
+    title: 'Every rAF Loop Needs a Stop Condition',
+    description: 'A requestAnimationFrame loop that re-schedules itself unconditionally never ends, and burns a core for as long as the tab lives',
+    sourceQuote: 'no requestAnimationFrame loops without a stop condition',
+    additionalExplanation: 'The shape is always the same: `const tick = () => { draw(); requestAnimationFrame(tick); }`. It is correct while the animation is running and wrong for every second after — the value has converged, the spring has settled, the user has moved on, and the loop is still waking up sixty times a second to compute a delta of zero. That is the usual explanation for an idle tab sitting at 10-15% CPU, and on a laptop it is measurable battery drain for no pixels. Every loop needs two exits: a terminal condition (the value converged, the gesture ended, an AbortSignal fired) that stops re-scheduling, and a `cancelAnimationFrame` in the teardown so a component that unmounts mid-animation does not leave an orphan loop holding a reference to a dead tree. This is a different failure from animations-ibelick-pause-offscreen: that rule stops work the user cannot see, this one stops work nobody needs even when the element is in full view.',
+    sourceLinks: [
+      { text: 'ibelick — fixing-motion-performance SKILL.md', url: 'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md' },
+      { text: 'MDN — requestAnimationFrame', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame' },
+    ],
+    badExampleKey: 'performance-raf-stop-condition-bad',
+    goodExampleKey: 'performance-raf-stop-condition-good',
   },
 ];
