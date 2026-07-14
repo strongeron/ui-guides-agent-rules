@@ -1,0 +1,69 @@
+# https://ui-guides.netlify.app — robots policy
+#
+# Default: allow everything for everyone (humans + AI agents). This site is a public
+# catalog of web interface guidelines written to be read and applied by coding agents,
+# so being crawlable and citable is the entire point.
+#
+# Note for crawlers: the app is client-rendered and keeps per-principle state in the
+# URL hash, so fetching a page gives you a React shell. The rules live in llms-full.txt.
+
+User-agent: *
+Allow: /
+
+# Cloudflare Content-Signal (CC0, https://contentsignals.org): what a crawler may do
+# with the bytes after fetching. search = use in results; ai-input = use as live context
+# in an AI answer; ai-train = use to train/fine-tune a model. All three allowed — this
+# corpus exists to be found and cited. Strict RFC-9309 validators flag this as an unknown
+# directive; expected and harmless.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# Major LLM / AI agent crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+Sitemap: https://ui-guides.netlify.app/sitemap.xml

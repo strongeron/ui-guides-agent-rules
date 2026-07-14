@@ -108,6 +108,40 @@ const SEMANTIC_COLOR_TOKENS = [
 ];
 
 // Analyze an example component for theme support
+/**
+ * Examples where a raw, non-tokenized color IS the subject matter. Suppressing the
+ * theme heuristics here is a declared, reviewed decision — not a blanket mute. The
+ * report prints these so they stay visible.
+ *
+ * Rewriting these to use semantic tokens would destroy the thing they teach: you
+ * cannot demonstrate a theme-flip, a brand gradient, or gradient-text selection
+ * using only tokens that already adapt to the theme.
+ */
+const THEME_SUBJECT_EXEMPT: Record<string, string> = {
+  'animations-theme-switch-no-transitions':
+    'Builds its own light/dark palette to demonstrate suppressing transitions during a theme flip.',
+  'aesthetics-memorable-differentiation':
+    'The multi-stop brand gradient is the content being demonstrated.',
+  'interactions-gradient-text-selection':
+    'Gradient text and its ::selection behaviour are the subject.',
+};
+
+/**
+ * Is a light (or dark) surface pinned somewhere in this example?
+ *
+ * The old contrast check flagged any `text-neutral-900` that lacked a `dark:` variant,
+ * without ever looking at what it sits on. Several examples deliberately pin a light
+ * plate — shadows and hairline borders are only legible on one — so dark text there is
+ * correct, not a contrast bug. Only flag text whose surface is not pinned to match.
+ */
+function pinsLightSurface(content: string): boolean {
+  return /bg-(white|neutral-(50|100|200)|gray-(50|100|200)|zinc-(50|100|200)|slate-(50|100|200))\b/.test(content);
+}
+
+function pinsDarkSurface(content: string): boolean {
+  return /bg-(black|neutral-(800|900|950)|gray-(800|900|950)|zinc-(800|900|950)|slate-(800|900|950))\b/.test(content);
+}
+
 function analyzeExampleComponent(filePath: string, key: string): ExampleAnalysis {
   const content = readFileSync(filePath, 'utf-8');
   const issues: string[] = [];
@@ -145,26 +179,35 @@ function analyzeExampleComponent(filePath: string, key: string): ExampleAnalysis
   const hasDarkModeSupport = hasTailwindDarkClasses || usesCSSVariables || usesSemanticTokens;
   const hasLightModeSupport = true; // Default styles usually cover light mode
 
-  // Check for proper contrast concerns
-  const hasContrastConcerns = /text-(gray|zinc|slate|neutral)-(100|200|300|900|950)/.test(content) &&
-    !hasTailwindDarkClasses;
+  // Dark text is only a contrast risk if the surface it sits on is NOT pinned light
+  // (and vice versa). An example that pins `bg-white` and writes `text-neutral-900`
+  // on it is correct in both themes, because the surface does not move either.
+  const usesDarkText = /text-(gray|zinc|slate|neutral)-(900|950)/.test(content);
+  const usesLightText = /text-(gray|zinc|slate|neutral)-(100|200|300)/.test(content);
+  const hasContrastConcerns =
+    !hasTailwindDarkClasses &&
+    ((usesDarkText && !pinsLightSurface(content)) || (usesLightText && !pinsDarkSurface(content)));
 
-  // Build issues list
-  if (usesHardcodedColors && problematicColors.length > 3) {
-    issues.push(`Uses ${problematicColors.length} hardcoded colors - may need theme tokens`);
-  }
+  const exemptReason = THEME_SUBJECT_EXEMPT[key.replace(/-(good|bad)$/, '')];
 
-  if (!hasTailwindDarkClasses && !usesCSSVariables && !usesSemanticTokens) {
-    issues.push('No dark mode support detected (missing dark: classes, CSS variables, or semantic tokens)');
+  // Build issues list. Exempt examples still get analyzed — we just don't
+  // report color findings against a demo whose whole point is the raw color.
+  if (!exemptReason) {
+    if (usesHardcodedColors && problematicColors.length > 3) {
+      issues.push(`Uses ${problematicColors.length} hardcoded colors - may need theme tokens`);
+    }
+
+    if (!hasTailwindDarkClasses && !usesCSSVariables && !usesSemanticTokens) {
+      issues.push('No dark mode support detected (missing dark: classes, CSS variables, or semantic tokens)');
+    }
+
+    if (inlineStyleColors.length > 2) {
+      issues.push('Multiple inline style colors - prefer Tailwind classes for theme support');
+    }
   }
 
   if (hasContrastConcerns) {
     issues.push('Potential contrast issues in dark/light modes');
-  }
-
-  // Check for inline styles with colors
-  if (inlineStyleColors.length > 2) {
-    issues.push('Multiple inline style colors - prefer Tailwind classes for theme support');
   }
 
   return {

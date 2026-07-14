@@ -7,6 +7,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "generate:llms": "npx tsx scripts/generate-llms.ts",
+    "prebuild": "npm run generate:llms",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",

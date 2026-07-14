@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T10:08:16.581Z",
+  "generatedAt": "2026-07-14T11:16:10.843Z",
   "reports": [
     {
       "source": "vercel",
@@ -7,7 +7,7 @@
       "mode": "github",
       "status": "checked",
       "upstreamRules": 93,
-      "ourRules": 103,
+      "ourRules": 107,
       "newRules": [
         {
           "source": "vercel",

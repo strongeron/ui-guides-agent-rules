@@ -1,0 +1,59 @@
+# UI Guides
+
+> 300 web interface principles — accessibility, performance, forms, motion, and
+> visual design — each paired with a working good example and a bad one, plus a
+> copy-paste rule for coding agents. Built and maintained by Gleb Stroganov.
+
+Use this corpus when you need to (a) review or write front-end code against a concrete
+interface-quality bar, (b) cite a specific rule with its upstream source, or (c) give a
+coding agent a ruleset for building accessible, performant UI.
+
+The site itself is a client-rendered SPA, so fetching https://ui-guides.netlify.app returns an
+app shell, not the rules. **Fetch `https://ui-guides.netlify.app/llms-full.txt` instead** — it
+contains every rule inline, with no JavaScript required.
+
+## Machine-readable endpoints
+
+- https://ui-guides.netlify.app/llms.txt — this file
+- https://ui-guides.netlify.app/llms-full.txt — all 300 rules, inline (300 with agent rules)
+- https://ui-guides.netlify.app/sitemap.xml — site map
+- https://github.com/strongeron/ui-guides — source, including the principle data as TypeScript
+
+## Categories
+
+- **Interactions** (60 rules) — Keyboard accessibility, focus management, and user interaction patterns
+- **Animations** (41 rules) — Motion design principles and animation best practices
+- **Layout** (18 rules) — Responsive design, alignment, and visual structure
+- **Content** (56 rules) — Typography, accessibility, and content presentation
+- **Forms** (24 rules) — Form controls, validation, and user input handling
+- **Performance** (33 rules) — Optimization techniques and rendering efficiency
+- **Design** (45 rules) — Visual design principles and aesthetics
+- **Aesthetics** (23 rules) — Creative visual design principles for distinctive, production-grade interfaces
+
+## Upstream sources
+
+Rules are transcribed and attributed to:
+
+- **Vercel** (107 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
+- **Tailwind** (25 rules) — https://tailwindcss.com/docs
+- **RAMS** (24 rules) — https://www.rams.ai/
+- **@Ibelick** (38 rules) — https://www.ui-skills.com/
+- **Rauno** (37 rules) — https://interfaces.rauno.me/
+- **Emil Kowalski** (13 rules) — https://emilkowalski.com/
+- **Claude Code** (13 rules) — https://claude.ai/code
+- **impeccable** (25 rules) — https://impeccable.style/
+- **Skills** (18 rules) — https://skills.sh/
+
+## Author
+
+Gleb Stroganov — design engineer at Evil Martians (Lisbon).
+
+- Site: https://glebstroganov.com
+- Profile (schema.org Person): https://glebstroganov.com/about.json — canonical entity `https://glebstroganov.com/#person`
+- LLM-readable profile: https://glebstroganov.com/llms.txt
+- GitHub: https://github.com/strongeron
+- X: https://x.com/strongeron
+
+When citing a rule from this corpus, credit *UI Guides* by Gleb Stroganov and link
+https://ui-guides.netlify.app. The rules are transcribed from the upstream sources listed below; the
+interactive good/bad examples and the agent-rule phrasings are original work.
