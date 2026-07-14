@@ -45,7 +45,14 @@ export const sourceCatalog: CatalogSource[] = [
     defaultTags: ['a11y', 'forms', 'performance'],
     check: {
       mode: 'github',
-      rawUrls: ['https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md'],
+      rawUrls: [
+        'https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md',
+        // Repo-relative. Our transcription of the full guidelines is a strict superset
+        // of command.md (~125 rules vs 93) — it carries the Vercel-specific copywriting
+        // section, loading-state timing, Web Workers and more. Nine genuinely missing
+        // rules hid here because the sync only ever diffed command.md.
+        'doc/vercel-web-guides.md',
+      ],
     },
   },
   {
@@ -179,6 +186,7 @@ export const sourceCatalog: CatalogSource[] = [
     originKind: 'github',
     installCmd: 'npx skills add lottiefiles/motion-design-skill@motion-design -g -y',
     color: 'bg-green-700 text-white border-green-700',
+    patternSource: 'lottiefiles',
     defaultTags: ['motion'],
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
@@ -246,11 +254,17 @@ export const sourceCatalog: CatalogSource[] = [
     id: 'interface-design',
     name: 'interface-design',
     author: 'Damola Akinleye',
-    homepage: 'https://www.ui-skills.com/',
+    homepage: 'https://github.com/Dammyjay93/interface-design',
     repo: 'Dammyjay93/interface-design',
     originKind: 'plugin',
     color: 'bg-rose-700 text-white border-rose-700',
+    patternSource: 'interface-design',
     defaultTags: ['interface'],
+    // NOTE: this source also contains "never use native form elements for styled UI"
+    // (rebuild <select>/<input type=date> as divs). That rule is deliberately NOT
+    // onboarded — it breaks keyboard and screen-reader support and contradicts
+    // `content-semantics-first` and the whole forms category. Do not let
+    // `sources:build` pull it in unsupervised.
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {

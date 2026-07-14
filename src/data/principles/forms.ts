@@ -344,4 +344,19 @@ export const formsPrinciples: Principle[] = [
     badExampleKey: 'forms-text-replacements-bad',
     goodExampleKey: 'forms-text-replacements-good',
   },
+  {
+    id: 'forms-no-password-manager-nonauth',
+    category: 'forms',
+    source: 'vercel',
+    title: 'Do Not Summon Password Managers on Non-Auth Fields',
+    description: 'Keep reserved names off search and filter inputs, and claim a specific autocomplete token for OTP',
+    sourceQuote: 'Don\'t trigger password managers for non-auth fields. For inputs like "Search" avoid reserved names (e.g., password), use autocomplete="off" or a specific token like autocomplete="one-time-code" for OTP fields.',
+    additionalExplanation: 'This is the narrow inverse of the autofill rules, not a contradiction of them: on a real credential or address field you want the manager to fire, with meaningful autocomplete tokens and no paste blocking. This rule is about the fields that are not auth. Password managers do not read your intent — they run heuristics over type, name, and id, so a filter box that happens to be called "password" or an OTP input masked as type="password" gets a credential dropdown parked on top of the results the user was trying to read, plus a "save this login?" prompt for a code that expires in 30 seconds. Give non-auth fields boring names (q, filter, search), set type="search", and add autocomplete="off"; give OTP fields autocomplete="one-time-code" and inputmode="numeric" so the OS offers the SMS code instead of a stored password.',
+    sourceLinks: [
+      { text: 'Vercel Web Interface Guidelines', url: 'https://github.com/vercel-labs/web-interface-guidelines' },
+      { text: 'MDN: The autocomplete attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete' },
+    ],
+    badExampleKey: 'forms-no-password-manager-nonauth-bad',
+    goodExampleKey: 'forms-no-password-manager-nonauth-good',
+  },
 ];

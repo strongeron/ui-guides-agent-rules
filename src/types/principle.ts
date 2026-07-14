@@ -23,6 +23,8 @@ export type PatternSource =
   | 'rauno'            // Rauno Freiberg's interfaces.rauno.me
   | 'emilkowalski'     // Emil Kowalski's animation skills
   | 'impeccable'       // Paul Bakaus' impeccable design language (impeccable.style)
+  | 'interface-design' // Damola Akinleye's interface-design craft principles
+  | 'lottiefiles'      // LottieFiles motion-design skill (runtime-agnostic motion direction)
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

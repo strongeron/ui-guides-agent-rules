@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 305 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 328 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -26,21 +26,24 @@ good/bad examples and the agent-rule phrasings are original work.
 
 Rules are transcribed and attributed to:
 
-- **Vercel** (112 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
+- **Vercel** (118 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
 - **Tailwind** (25 rules) — https://tailwindcss.com/docs
 - **RAMS** (24 rules) — https://www.rams.ai/
 - **@Ibelick** (38 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
-- **Emil Kowalski** (13 rules) — https://emilkowalski.com/
+- **Emil Kowalski** (18 rules) — https://emilkowalski.com/
 - **Claude Code** (13 rules) — https://claude.ai/code
-- **impeccable** (25 rules) — https://impeccable.style/
+- **impeccable** (26 rules) — https://impeccable.style/
+- **LottieFiles** (5 rules) — https://github.com/lottiefiles/motion-design-skill
+- **Custom** (2 rules)
+- **interface-design** (4 rules) — https://github.com/Dammyjay93/interface-design
 - **Skills** (18 rules) — https://skills.sh/
 
 ---
 
 ## Interactions
 
-Keyboard accessibility, focus management, and user interaction patterns. 60 rules.
+Keyboard accessibility, focus management, and user interaction patterns. 63 rules.
 
 ### Keyboard Works Everywhere
 
@@ -951,11 +954,68 @@ Four mechanics turn a drag from a hit-test into something that feels like an obj
 - [Emil Kowalski: review-animations STANDARDS.md](https://github.com/emilkowalski/skills/blob/main/skills/review-animations/STANDARDS.md)
 - [MDN: Element.setPointerCapture()](https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture)
 
+### Give Loading States a Show-Delay and a Floor
+
+**ID:** `interactions-loading-state-duration`
+**Agent rule (MUST):** Gate every spinner/skeleton with two timers: a show-delay of ~150–300ms (fast responses show nothing) and a minimum visible time of ~300–500ms once it appears, so it never flashes. React `<Suspense>` already does this.
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Delay the spinner by ~150–300ms and keep it up for ~300–500ms once it appears
+
+> Minimum loading-state duration. If you show a spinner/skeleton, add a short show-delay (~150–300 ms) & a minimum visible time (~300–500 ms) to avoid flicker on fast responses. The <Suspense> component in React does this automatically.
+
+Other loading rules cover what to render; this one covers when. Mount the spinner on the same tick the request starts and a 60ms response paints it for 60ms — below the ~100ms threshold at which people perceive a state at all, so it reads as a flash of damage rather than progress. Repeat that on every keystroke or every click and the panel strobes. Two timers fix it: a show-delay of roughly 150–300ms, so anything that finishes fast shows no spinner whatsoever, and a minimum visible time of roughly 300–500ms once it does appear, so a response landing 20ms later does not yank it away. React's <Suspense> applies the same shape internally.
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [React: <Suspense>](https://react.dev/reference/react/Suspense)
+- [Nielsen Norman: Response Time Limits](https://www.nngroup.com/articles/response-times-3-important-limits/)
+
+### Internationalize Keyboard Shortcuts
+
+**ID:** `interactions-locale-keyboard-shortcuts`
+**Agent rule (MUST):** Bind mnemonic shortcuts to `event.key` (the character the layout produced), not `event.code` (a QWERTY key position — breaks on Dvorak/AZERTY); reserve `event.code` for positional bindings like WASD, and render `⌘/⌥/⇧` on macOS vs `Ctrl/Alt/Shift` elsewhere.
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Bind shortcuts to the character the layout produces and render platform-specific modifier symbols
+
+> Locale-aware keyboard shortcuts. Internationalize keyboard shortcuts for non-QWERTY layouts. Show platform-specific symbols.
+
+Two independent bugs hide behind a hardcoded "Ctrl+K" chip. The label: on macOS every other application says ⌘, so showing Ctrl tells the user your app is not theirs — read the platform and render ⌘ / ⌥ / ⇧ or Ctrl / Alt / Shift accordingly. The binding: event.code names a physical key position on a QWERTY board, so matching event.code === "KeyK" on a Dvorak layout fires from the key that prints "t", while the key printing "k" does nothing at all. For a mnemonic shortcut, match the character the layout actually produced (event.key) so the chip and the keyboard agree; reserve event.code for genuinely positional bindings like WASD, and use navigator.keyboard.getLayoutMap() to label the key with what it really prints.
+
+```tsx
+if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") openPalette();
+// NOT: e.code === "KeyK"
+```
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [MDN: KeyboardEvent.code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
+- [MDN: Keyboard.getLayoutMap()](https://developer.mozilla.org/en-US/docs/Web/API/Keyboard/getLayoutMap)
+
+### Scale Pressable Elements on :active
+
+**ID:** `interactions-press-feedback-scale`
+**Agent rule (SHOULD):** Answer every press instantly with `transform: scale(0.97)` on `:active` and `transition: transform 160ms ease-out`. Stay inside 0.95–0.98 (0.85 reads as broken), and apply it to any pressable element — cards, icon buttons, list rows — not only `<button>`.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Confirm a press with transform: scale(0.97) and a 160ms ease-out transition
+
+> Button press feedback. `transform: scale(0.97)` on `:active`, `transition: transform 160ms ease-out`. Subtle (0.95–0.98). Applies to any pressable element.
+
+A press is the one moment the interface can answer instantly, before any network call resolves. Without it the user has no evidence the pointer-down landed, so on a slow action they press again — the classic double-submit. `transform: scale(0.97)` with `transition: transform 160ms ease-out` is the whole fix: compositor-only, cheap, and the range that reads as pressed is narrow (0.95–0.98) — 0.85 collapses the control and reads as broken. It is also why `scale()` is the right property rather than a size change: `scale()` scales children too, so the icon and the label go down with the surface, which is exactly the physical model of a button being pushed. This applies to any pressable element — cards, icon buttons, list rows — not just things tagged `<button>`.
+
+```tsx
+.pressable { transition: transform 160ms ease-out; }
+.pressable:active { transform: scale(0.97); } /* Tailwind: active:scale-[0.97] */
+```
+
+- [Emil Kowalski: review-animations STANDARDS.md](https://github.com/emilkowalski/skills/blob/main/skills/review-animations/STANDARDS.md)
+- [MDN: scale()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale)
+
 ---
 
 ## Animations
 
-Motion design principles and animation best practices. 41 rules.
+Motion design principles and animation best practices. 51 rules.
 
 ### Honor prefers-reduced-motion
 
@@ -1068,7 +1128,7 @@ Choose easing functions based on what changes
 
 > Easing fits the subject. Choose easing based on what changes (size, distance, trigger).
 
-Different animations feel right with different easing curves. Elements entering the screen often use ease-out. Elements leaving use ease-in. Interactive feedback uses ease-in-out. Match the easing to the physical metaphor the animation represents.
+Pick the curve from what is changing, in this order: elements entering or exiting the screen → ease-out (and, on this reading, ease-in is also permitted for exits, on the argument that a departing element may accelerate away); an element morphing or moving between two on-screen states → ease-in-out; hover and other pointer feedback → ease; anything constant or continuous, like a marquee or a spinner → linear. Then match the magnitude to the distance travelled: a 4px hover nudge and a full-screen sheet should not share a curve. Note the field disagrees about exits — "Never ease-in on UI" (animations-emil-no-ease-in) rejects ease-in outright, on the grounds that it stalls the first ~100ms, which is exactly the window in which the user judges speed. Both entries are kept deliberately: read them together and decide, rather than inheriting one by default.
 
 - [Easing Functions](https://easings.net/)
 - [CSS Easing](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function)
@@ -1588,11 +1648,201 @@ The detector flags any animation-name matching bounce|elastic|wobble|jiggle|spri
 - [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 - [MDN — easing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function)
 
+### Never scale(0)
+
+**ID:** `animations-emil-no-scale-zero`
+**Agent rule (NEVER):** Enter from `scale(0)` — nothing in the real world appears from a point. Start from `scale(0.9–0.97)` (0.96 is a safe popover/menu default) plus `opacity: 0`. Equally never enter on opacity alone: without a transform the element materializes instead of arriving.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Enter from scale(0.9–0.97) with opacity, never from scale(0) and never from opacity alone
+
+> Never `scale(0)`. Start from `scale(0.9–0.97)` + `opacity: 0`. Nothing in the real world appears from nothing.
+
+scale(0) claims the element had no size a moment ago — it grows out of a mathematical point, which no physical object does. Start somewhere between 0.9 and 0.97 (0.96 is a safe default for popovers and menus) and let opacity carry the rest of the appearance. The opposite failure is just as common: a pure opacity fade with no transform at all, which gives the element no body and no origin, so it materializes rather than arrives. This is about HOW SMALL the motion starts; animations-correct-transform-origin is about WHERE it starts — a popover can have a perfect trigger-anchored origin and still be wrong because it scales up from 0.
+
+```tsx
+@keyframes enter { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+```
+
+- [Emil Kowalski — review-animations STANDARDS](https://github.com/emilkowalski/skills/tree/main/skills/review-animations)
+- [MDN — scale](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scale)
+- [MDN — transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform-origin)
+
+### clip-path: inset() as an Animation Primitive
+
+**ID:** `animations-clip-path-reveal`
+**Agent rule (SHOULD):** Reach for `clip-path: inset(t r b l)` for reveals, wipes, hold-to-delete overlays, seamless tab-color swaps, and comparison sliders — each value eats in from that side, the element keeps its box, so nothing below it moves and no layout is recalculated (unlike animating `height`).
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Reach for clip-path: inset() to reveal, wipe, and mask without touching layout
+
+> `clip-path: inset(t r b l)` is a powerful animation tool: each value eats in from that side. Uses: reveal-on-scroll (`inset(0 0 100% 0)` → `inset(0 0 0 0)`), hold-to-delete overlay, seamless tab color transitions (duplicate + clip the active copy), comparison sliders.
+
+Read inset(top right bottom left) as "how far the clip eats in from each side": inset(0 0 100% 0) removes the element entirely from the bottom up, and animating to inset(0 0 0 0) wipes it back open. The element keeps its box the whole time, so unlike a height animation nothing below it moves and no layout is recalculated. The same primitive gives you a hold-to-delete overlay (fill left-to-right while the button is held), a seamless tab color change (duplicate the label and clip the active copy, so there is no crossfade), and a comparison slider. A hold-to-delete overlay is also the canonical place to spend asymmetric timing — clip-path 2s linear on press, 200ms ease-out on release; see animations-emil-asymmetric.
+
+```tsx
+.reveal { clip-path: inset(0 0 100% 0); transition: clip-path 400ms ease-out; }
+.reveal.is-visible { clip-path: inset(0 0 0 0); }
+```
+
+- [Emil Kowalski — review-animations STANDARDS](https://github.com/emilkowalski/skills/tree/main/skills/review-animations)
+- [MDN — clip-path](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clip-path)
+- [MDN — basic-shape (inset)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/basic-shape)
+
+### Translate by Percentage, Not Pixels
+
+**ID:** `animations-percentage-translate`
+**Agent rule (SHOULD):** Park off-screen elements with translate percentages, not hardcoded px: `translateY(100%)` resolves against the element's own height, so it stays correct when a toast wraps or a drawer gains a row. Add edge gaps with `calc(100% + 12px)` rather than a magic number.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Offset off-screen elements with translate percentages so the value stays correct at any size
+
+> `translate` percentages are relative to the element's own size — `translateY(100%)` moves by the element's height regardless of dimensions (how Sonner/Vaul position toasts/drawers). Prefer over hardcoded px.
+
+A translate percentage resolves against the element itself, not its parent: translateY(100%) always moves it by exactly its own height, and translateX(-100%) by its own width. That is why a hardcoded translateY(300px) is a latent bug — it was measured against the content that existed the day it was written, and the moment a toast wraps to a second line or a drawer gains a row, the offset is wrong. Too small and the "hidden" element peeks into view; too large and it flies in from further away than it should, stretching the perceived duration. Percentages are self-correcting, which is exactly how Sonner parks toasts and Vaul parks drawers. Add the gap to the edge with calc(100% + 12px) rather than baking it into a magic number.
+
+```tsx
+.toast { transform: translateY(calc(100% + 12px)); } /* not translateY(300px) */
+.toast[data-open] { transform: translateY(0); }
+```
+
+- [Emil Kowalski — review-animations STANDARDS](https://github.com/emilkowalski/skills/tree/main/skills/review-animations)
+- [MDN — translateY()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/transform-function/translateY)
+- [Sonner](https://github.com/emilkowalski/sonner)
+- [Vaul](https://github.com/emilkowalski/vaul)
+
+### Input-driven
+
+**ID:** `animations-input-driven`
+**Agent rule (NEVER):** Autoplay motion just because a component mounted — the only thing that happened is that the user arrived. Animate in response to an input: hover, press, drag, scroll-into-view, or a request completing. Autoplay loops also keep the compositor awake and become a WCAG 2.2.2 problem past 5s.
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Avoid autoplay — animate in response to a user action, not on arrival
+
+> Input-driven. Avoid autoplay; animate in response to actions.
+
+An animation that plays because the component mounted is asserting that something happened, when the only thing that happened is that the user arrived. Motion should be the answer to an input — a hover, a press, a drag, a scroll bringing the element into view, a request completing. Autoplay loops are the worst offender: they never stop competing for attention, they keep the compositor awake and drain battery, and past 5 seconds they also become a WCAG 2.2.2 problem. This is not the same rule as animations-interruptible (which is about a running animation yielding to input) or animations-pause-stop-hide (which accepts autoplay and demands controls for it). This one asks the prior question: should it have started by itself at all?
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [NN/g — Animation for Attention and Comprehension](https://www.nngroup.com/articles/animation-usability/)
+- [MDN — Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+
+### Three Motion Layers
+
+**ID:** `animations-lottie-motion-layers`
+**Agent rule (SHOULD):** Build a hero moment in three layers — primary (the action the eye follows), secondary (shadow trailing ~50ms, contents arriving ~100ms after the card lands), ambient (background drift) — instead of pushing one flat sprite. SCOPE: three layers is three times the motion, so spend it only on rare first-run/hero surfaces (empty-state illustration, onboarding card, marketing hero). On anything repeated — a row rendered 400 times, a menu opened fifty times a day — `animations-necessity-check` and `animations-emil-frequency` win and the correct layer count is one, or zero.
+**Source:** LottieFiles (https://github.com/lottiefiles/motion-design-skill)
+
+Build a hero moment in three layers — primary, secondary, ambient — instead of moving one flat sprite
+
+> Three motion layers (flat animation = missing layers): Primary: Main action the viewer follows. Secondary: Supporting richness (shadows, icons shifting). Ambient: Background life (gradients, subtle pulses).
+
+A card that only translates and fades is one layer: the shadow rides along at a fixed depth, the contents are fully legible before the card has landed, and nothing lives behind it, so the eye reads a single flat sprite being pushed into place. Adding the missing layers is cheap — the shadow becomes its own opacity-animated element that trails the card by ~50ms so it settles onto the surface, the row content arrives ~100ms after the card lands, and a few pixels of background drift keep the scene from being dead. HONEST TENSION: this rule pulls directly against animations-necessity-check and animations-emil-frequency. Three layers is three times the motion, and motion you have to justify. Spend it on the rare first-run or hero moment — an empty-state illustration, an onboarding card, a marketing surface — and never on a table row that renders 400 times or a menu opened fifty times a day, where the correct number of layers is one, or zero. This entry is kept alongside the necessity rule the same way animations-emil-no-ease-in is kept alongside animations-easing: the disagreement is the point, and you should read both before choosing.
+
+- [LottieFiles — motion-design skill](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/SKILL.md)
+- [LottieFiles — quality checklist](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/reference/quality-checklist.md)
+- [MDN — box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-shadow)
+
+### Cap Simultaneous Motion
+
+**ID:** `animations-lottie-concurrency-cap`
+**Agent rule (SHOULD):** With 3+ elements, keep at most ~1/3 in active motion at any instant so the eye keeps an anchor: land a hero element first, then bring the rest in waves. This is NOT stagger — stagger sets when items START, this caps how many are MOVING. A 30ms stagger over 9 cards with a 220ms duration still has all 9 in flight; you need both rules.
+**Source:** LottieFiles (https://github.com/lottiefiles/motion-design-skill)
+
+Keep no more than a third of a group in active motion at any instant so the eye keeps an anchor
+
+> 1/3 Rule (elements): With 3+ elements, no more than 1/3 in active motion simultaneously.
+
+Nine cards that all scale, fade and slide on mount give the eye nothing to hold on to: the grid is perceived as a burst of noise that resolves, not as a reveal you can follow. Land a hero element first so there is an anchor, then bring the rest in waves — with a 220ms per-card duration and waves at 0/200/340/480ms, at most 3 of 9 are ever in flight and the cascade still finishes inside the 500ms stagger budget. DISTINCT FROM animations-emil-stagger, which prescribes a per-item DELAY (30–80ms) and says nothing about how many items overlap: a 30ms stagger across 9 cards with a 220ms duration still has all 9 moving at the same time, because item 9 starts at 240ms while item 1 is still animating. Stagger controls when things start; the 1/3 rule controls how many are moving at once. You need both, and satisfying one does not satisfy the other.
+
+- [LottieFiles — motion-design skill](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/SKILL.md)
+- [LottieFiles — quality checklist](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/reference/quality-checklist.md)
+- [MDN — transition-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transition-delay)
+
+### Cap the Total Stagger
+
+**ID:** `animations-lottie-stagger-budget`
+**Agent rule (MUST):** Treat a cascade as a TOTAL budget, not a per-item constant: keep total stagger under 500ms (micro 20–40ms/item under 200ms; standard 50–100ms under 400ms; dramatic 100–200ms under 600ms for theatre only). Take the per-item value from `animations-emil-stagger` (30–80ms), take the CEILING from here — and on long lists the ceiling wins, because `i * 60ms` on 30 rows delays the last row 1740ms and pops content in below the scroll position. Clamp, or stagger only the rows in view.
+**Source:** LottieFiles (https://github.com/lottiefiles/motion-design-skill)
+
+Clamp a cascade to a total budget under 500ms instead of multiplying a per-item delay by the list length
+
+> Critical: Total stagger must stay under 500ms.
+
+A stagger is a budget, not a per-item constant. The budgets: micro cascade 20–40ms per item, total under 200ms; standard 50–100ms, under 400ms; dramatic 100–200ms, under 600ms — and the hard ceiling is 500ms of total stagger for anything that is interface rather than theatre. Write animationDelay: i * 60ms on a 30-row list and the last row does not begin moving until 1740ms after the first: the user has already scrolled past it, so the animation is still introducing content they have finished reading, and rows visibly pop in beneath the scroll position. Fix it by clamping — delay = Math.min(i * step, MAX_TOTAL) — or by only staggering the rows currently in view. COLLISION: animations-emil-stagger prescribes 30–80ms per item and states no cap, which ACTIVELY CAUSES this bug the moment the list is long. At 60ms per item the rule is safe up to about 8 rows and broken by 30. Take the per-item value from Emil, take the ceiling from here, and let the ceiling win.
+
+```tsx
+const MAX_TOTAL = 400;
+const delay = Math.min(i * 60, MAX_TOTAL);
+```
+
+- [LottieFiles — motion-design skill](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/SKILL.md)
+- [LottieFiles — quality checklist](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/reference/quality-checklist.md)
+- [MDN — animation-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-delay)
+
+### Scale Duration With Travel Distance
+
+**ID:** `animations-lottie-distance-duration`
+**Agent rule (SHOULD):** Derive duration from travel distance, sublinearly — 100px = base, 200px = 1.3x, 400px = 1.6x — then clamp to a ~140ms floor and ~400ms ceiling. One `--duration-md` cannot serve an 8px tooltip nudge and a full-height sheet. This is a third axis, not a duplicate: `animations-proportional-values` scales transform AMPLITUDE, `animations-emil-duration-budget` assigns duration by element TYPE, and distance is what reconciles them (it is why drawers are the one type allowed past 300ms — a drawer is not special, it is far).
+**Source:** LottieFiles (https://github.com/lottiefiles/motion-design-skill)
+
+Derive duration from how far the element actually travels, sublinearly — one token cannot serve 8px and 200px
+
+> Distance scales duration: 100px = base. 200px = 1.3x. 400px = 1.6x.
+
+Spend a single --duration-md: 200ms on both an 8px tooltip nudge and a full-height bottom sheet and the same number is wrong in both directions at once: the tooltip crawls the last few pixels of a journey the eye finished instantly, and the sheet covers 200px faster than the eye can track, so it reads as a teleport. Derive it instead: factor = 1 + 0.3 * log2(px / 100), giving 100px = 1×, 200px = 1.3×, 400px = 1.6× — sublinear, because doubling the distance must not double the duration or long journeys feel like wading — then clamp to a floor (~140ms) and a ceiling (~400ms). On a 250ms base that puts the sheet at ~325ms and the tooltip at 140ms. THIS IS A THIRD AXIS, not a duplicate: animations-proportional-values (Rauno) scales the AMPLITUDE of a transform to the trigger SIZE — how far to move — and animations-emil-duration-budget assigns duration by element TYPE (press 100–160ms, tooltip 125–200ms, dropdown 150–250ms, drawer 200–500ms). Distance is what reconciles them, and it is precisely why that budget lists drawers as the one type allowed past the 300ms ceiling: a drawer is not special, it is simply far.
+
+```tsx
+const factor = 1 + 0.3 * Math.log2(px / 100); // 100px=1x, 200px=1.3x, 400px=1.6x
+const duration = Math.min(400, Math.max(140, 250 * factor));
+```
+
+- [LottieFiles — motion-design skill](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/SKILL.md)
+- [NN/g — Executing UX Animations: Duration and Motion](https://www.nngroup.com/articles/animation-duration/)
+- [MDN — Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties)
+
+### Don't Signal State With Opacity Alone
+
+**ID:** `animations-lottie-never-opacity-only`
+**Agent rule (NEVER):** Signal an important state change with opacity alone — peripheral vision reads movement, not luminance, so a "Saved" pill that fades in place off-axis is frequently never seen. Pair the fade with position or scale (a 6px rise is enough). Motion is the REINFORCEMENT channel only: the state still needs `role="status"` / `aria-live="polite"`, and since the transform is dropped under `prefers-reduced-motion`, the opacity change must remain sufficient on its own.
+**Source:** LottieFiles (https://github.com/lottiefiles/motion-design-skill)
+
+Pair any important state change with position or scale — a pure fade is nearly invisible off-axis
+
+> Never opacity-only for important state changes — combine with position or scale.
+
+Peripheral vision is poor at absolute luminance and very good at movement. A "Saved" confirmation that fades 0 → 1 in place, in a corner the user is not looking at because they are still looking at the button they just pressed, frequently never registers at all — so they press Save again. Add a 6px rise and the same pill is caught off-axis without a glance. ACCESSIBILITY: motion is the REINFORCEMENT channel here, never the accessible one. The confirmation still needs to be a real live region (role="status" / aria-live="polite"), because a screen-reader user gets nothing from either the fade or the rise, and WCAG 1.4.1 has the same shape — no important state may depend on a single perceptual channel. And under prefers-reduced-motion the transform is dropped, which means the opacity change alone must remain sufficient on its own: the rise makes a good signal better, it is not allowed to be the only thing carrying the state.
+
+- [LottieFiles — motion-design skill](https://github.com/lottiefiles/motion-design-skill/blob/main/skills/motion-design/SKILL.md)
+- [MDN — ARIA live regions](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions)
+- [WCAG 2.2 — Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
+
+### Name Every Timing Value
+
+**ID:** `animations-named-timing-constants`
+**Agent rule (SHOULD):** Hoist every delay, duration and easing into one named block and drive a multi-stage sequence with a single integer stage, not scattered magic numbers and boolean flags (`isCardVisible` / `isHeadingVisible` / `areRowsVisible`) — otherwise retuning the tempo means hunting five call sites and the heading silently starts arriving after the rows it introduces.
+**Source:** Custom
+
+Hoist every delay, duration and easing into one named block and drive the sequence with a single integer
+
+> Every value that affects timing or appearance should be a named constant, trivially adjustable. A single integer state drives the entire sequence; no scattered boolean flags.
+
+From Josh Puckett's Interface Craft. A multi-stage reveal wired as delay: 0.3 here, delay: 0.9 there, stagger: 0.2 inline in the JSX, sequenced by isCardVisible / isHeadingVisible / areRowsVisible, has no readable choreography: the order exists only in the author's head, and retuning it means hunting magic numbers across five call sites. The failure is concrete — change the tempo, miss one of those sites, and the heading now arrives after the rows it was supposed to introduce, a bug that survives code review precisely because no number is named. The fix is two moves: hoist the values into one block (const TIMING = { cardAppear: 300, heading: 900, rows: 1500 }) and collapse the flags into one integer stage, so the JSX reads stage >= 2 ? ... : ... and the sequence is legible top to bottom. ADJACENT TO BUT DISTINCT FROM animations-emil-motion-cohesion: cohesion is about one shared motion vocabulary ACROSS the product, so that a dropdown here and a toast there feel like the same hand made them. This is about one sequence, inside one component, being readable and tunable at all. You can be perfectly cohesive and still have an unmaintainable timeline; and a single well-named TIMING block does not, by itself, make the product coherent.
+
+```tsx
+const TIMING = { cardAppear: 300, heading: 900, rows: 1500 } as const;
+// then: stage >= 2 ? ... : ...
+```
+
+- [Interface Craft — Josh Puckett](https://interfacecraft.dev/)
+- [joshpuckett.me](https://joshpuckett.me/)
+- [MDN — Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascading_variables/Using_CSS_custom_properties)
+
 ---
 
 ## Layout
 
-Responsive design, alignment, and visual structure. 18 rules.
+Responsive design, alignment, and visual structure. 20 rules.
 
 ### Optical Alignment
 
@@ -1812,10 +2062,11 @@ Never put a card inside a card — use padding, dividers, and type weight for in
 
 > Nested cards are always wrong. Cards inside cards create visual noise and excessive depth.
 
-impeccable defines "card-like" structurally — an element is a card when it has (a shadow OR a border) AND (a radius OR a background). The detector walks an element's ancestors and, when it finds a second card-like box inside a first, reports the innermost offender. The damage is twofold: the border and shadow noise doubles, and the depth hierarchy dies, because you now have two elevation levels that mean nothing relative to each other — the inner card is not "further forward" than its parent, it is just louder. Internal hierarchy inside a card is a job for padding, a single hairline divider, and type weight, not for a second chrome layer.
+impeccable defines "card-like" structurally — an element is a card when it has (a shadow OR a border) AND (a radius OR a background). The detector walks an element's ancestors and, when it finds a second card-like box inside a first, reports the innermost offender. The damage is twofold: the border and shadow noise doubles, and the depth hierarchy dies, because you now have two elevation levels that mean nothing relative to each other — the inner card is not "further forward" than its parent, it is just louder. Internal hierarchy inside a card is a job for padding, a single hairline divider, and type weight, not for a second chrome layer. Before the nesting question, though, comes the one nobody asks: should this be a card at all? Every Inc's ce-frontend-design skill supplies the missing test — default to cardless layouts, and allow a card only when it is the container for a user interaction (a clickable item, a draggable unit, a selectable option). If removing the card styling would not hurt comprehension, it should not be a card. That test dissolves most nesting violations at the root: the inner box was never earning its border and shadow, it was just grouping content that padding and a heading already grouped.
 
 - [impeccable.style](https://impeccable.style/)
 - [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+- [ce-frontend-design (EveryInc/compound-engineering-plugin)](https://github.com/EveryInc/compound-engineering-plugin)
 
 ### Padding Must Scale With Type
 
@@ -1865,11 +2116,42 @@ The detector walks up from every absolutely-positioned layer looking for an ance
 - [MDN — Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)
 - [MDN — top layer](https://developer.mozilla.org/en-US/docs/Glossary/Top_layer)
 
+### Symmetrical Padding
+
+**ID:** `layout-interface-symmetrical-padding`
+**Agent rule (NEVER):** Give a box four different padding values (`padding: 24px 16px 12px 16px`) — that is residue from nudging one side, not a decision, and it de-centres the content so a stack of cards loses its rhythm. Use one uniform value (`padding: 16px`) or at most a single horizontal/vertical pair (`padding: 12px 16px`).
+**Source:** interface-design (https://github.com/Dammyjay93/interface-design)
+
+Give a box one padding value on all four sides, or at most a single horizontal/vertical pair — never four different numbers
+
+> TLBR must match. If top padding is 16px, left/bottom/right must also be 16px. Exception: when content naturally creates visual balance.
+
+The rule is narrow and mechanical, which is what makes it enforceable: padding is uniform (padding: 16px), or a single axis pair (padding: 12px 16px) when the horizontal side genuinely needs more room than the vertical. Four distinct values — padding: 24px 16px 12px 16px — is almost never a decision; it is the residue of someone nudging the top once and the bottom once and never reconciling them. The cost is visible: the content is no longer centred inside its own box, so a stack of such cards has no shared rhythm, and the eye reads the drift as sloppiness even when it cannot name it. This is a high-frequency tell in AI-generated UI, because a model emits each side independently and has no reason to make them agree. Distinct from the padding-scale rule (layout-impeccable-cramped-padding), which asks whether there is enough padding; this one asks whether the four values agree.
+
+- [interface-design (Damola Akinleye)](https://github.com/Dammyjay93/interface-design)
+- [MDN: padding](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding)
+
+### Screens Need Grounding
+
+**ID:** `layout-interface-screen-grounding`
+**Agent rule (MUST):** Ground every screen with three anchors: navigation (where you can go), a location indicator (breadcrumbs / page title / active nav state — where you are), and user context (who is signed in, which workspace). A data table with none of them is a component demo, not a product. Give the sidebar the same background as the canvas and separate it with a border, not a different fill.
+**Source:** interface-design (https://github.com/Dammyjay93/interface-design)
+
+Surround a screen with navigation, a location indicator, and user context so it reads as part of an app, not as a floating widget
+
+> Screens need grounding. A data table floating in space feels like a component demo, not a product.
+
+Three anchors ground a screen: navigation (a sidebar or top nav showing where you can go), a location indicator (breadcrumbs, a page title, or an active nav state showing where you are), and user context (who is signed in, and which workspace or org). Strip them and a perfectly good data table becomes an artifact with no address — the user cannot tell what surrounds it, what they can leave it for, or whose data they are even looking at. This is the single most reliable structural tell of LLM-authored UI: the model renders the widget it was asked for and forgets that widgets live inside applications. The corpus already covers alignment and spacing within a screen, but nothing else in layout covers wayfinding — where the screen sits in the product. When you build the sidebar, give it the same background as the canvas and separate it with a border; a different fill fragments the page into a "sidebar world" and a "content world".
+
+- [interface-design (Damola Akinleye)](https://github.com/Dammyjay93/interface-design)
+- [NN/g: Breadcrumbs](https://www.nngroup.com/articles/breadcrumbs/)
+- [MDN: <nav>](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav)
+
 ---
 
 ## Content
 
-Typography, accessibility, and content presentation. 61 rules.
+Typography, accessibility, and content presentation. 63 rules.
 
 ### Inline Help First
 
@@ -2740,6 +3022,7 @@ People who need your logo — press, partners, conference organizers, someone bu
 ### Be Clear and Concise
 
 **ID:** `content-be-concise`
+**Agent rule (MUST):** Write the sentence, then delete words until deleting one more would change the meaning. Cut padding phrases ("in order to", "please note that", "at this time"); keep the nouns and the verb, drop the ceremony.
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Cut every word that does not change the meaning, then ship the shortest version that still says it
@@ -2755,6 +3038,7 @@ Nobody reads interface copy — they scan it, and every extra word is another th
 ### Keep Nouns Consistent
 
 **ID:** `content-consistent-nouns`
+**Agent rule (MUST):** Name each object once and reuse that exact noun in every label, heading, toast, and error — project/app/site/deployment for one concept reads as four things. Introduce as few unique terms as possible and keep a glossary.
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Name each object once and reuse that exact noun everywhere it appears in the product
@@ -2770,6 +3054,7 @@ When one screen calls the same object a project, an app, a site, and a deploymen
 ### Consistent Placeholders in Samples
 
 **ID:** `content-consistent-placeholders`
+**Agent rule (MUST):** Use one loud, obviously-fake placeholder convention across all code samples — `YOUR_API_TOKEN_HERE` for strings, `0123456789` for numbers — never a mix of `<your-token>` / `xxx` / `abc123` / `[INSERT KEY]`. (This is about fill-me-in tokens in docs, not the HTML `placeholder` attribute.)
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Use one placeholder convention across every code sample: YOUR_API_TOKEN_HERE for strings, 0123456789 for numbers
@@ -2784,6 +3069,7 @@ This is about the fill-me-in tokens inside documentation and code samples, not t
 ### Consistent Currency Formatting
 
 **ID:** `content-currency-formatting`
+**Agent rule (MUST):** Pick 0 or 2 decimal places per context and format every amount that way, including round ones — never mix `$12` with `$8.50` in one column. Pair with tabular figures and right alignment so decimal separators stack.
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Pick 0 or 2 decimal places for a given context and apply it to every amount, never mixing the two
@@ -2799,6 +3085,7 @@ A column that reads $12, $8.50, $1,204, $99.00 forces the eye to re-parse each r
 ### Default to Positive Language
 
 **ID:** `content-positive-language`
+**Agent rule (SHOULD):** Frame messages around what can be done next, not what the person did wrong — drop "you failed to", "invalid", "aborted". Stay specific about the cause and the limit; positive framing is a change of frame, not a loss of detail.
 **Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
 
 Frame messages around what can be done next rather than what the person did wrong
@@ -2811,11 +3098,43 @@ This is about framing and tone, not content: the separate rule on actionable err
 - [Google Style: Tone and Voice](https://developers.google.com/style/tone)
 - [NN/g: Error Message Guidelines](https://www.nngroup.com/articles/error-message-guidelines/)
 
+### Loading Copy Sets an Expectation
+
+**ID:** `content-impeccable-loading-copy-expectation`
+**Agent rule (SHOULD):** Name the work and its expected duration inside a loading state ("Analyzing your data… this usually takes 30–60 seconds") instead of a bare "Loading…", which says the same thing at 1s and at 90s so the user cannot tell working from hung. Show a signal that advances, and give anything past ~10s an escape hatch.
+**Source:** impeccable (https://impeccable.style/)
+
+Name the work being done and how long it usually takes, instead of shipping a bare "Loading…"
+
+> Bad: 'Loading…' (for 30+ seconds). Good: 'Analyzing your data… this usually takes 30-60 seconds.'
+
+The corpus already governs how a loading state looks — stable skeletons, matched dimensions, a minimum display duration — but nothing until now governed the words inside it, and the words are what carry the expectation. "Loading…" is a dead end: it says the same thing at one second and at ninety, so on a long job the user cannot distinguish "still working" from "hung", and the rational move becomes reloading the page and losing the work. Name the work ("Importing 1,240 rows"), state the expected duration ("this usually takes about a minute"), and show a signal that advances. Anything past ten seconds also needs an escape hatch, because a bounded wait the user chose to abandon is far better than an unbounded one they had to guess about.
+
+- [impeccable — clarify](https://impeccable.style/)
+- [NN/g: Progress Indicators](https://www.nngroup.com/articles/progress-indicators/)
+- [NN/g: Response Times — The 3 Important Limits](https://www.nngroup.com/articles/response-times-3-important-limits/)
+
+### Frame Progress as Milestones, Not Remaining Work
+
+**ID:** `content-progress-as-milestones`
+**Agent rule (SHOULD):** Chunk long task lists into a handful of named phases and show the current one ("Complete Phase 1 of 4") rather than leading with remaining work ("10 / 47 tasks complete"), which makes the 37 unfinished items the salient fact. Collapse finished phases into a done marker; keep the honest total reachable, just do not lead with it.
+**Source:** Custom
+
+Group a long task list into named phases so progress reads as ground gained rather than debt outstanding
+
+> Showing '10 / 47 tasks complete' immediately communicates that 37 tasks remain… 'Complete Phase 1 of 4' is psychologically very different — it frames the same progress as achievable milestones rather than an endless checklist.
+
+This one comes from Josh Puckett's Interface Craft, and it is purely about framing: the underlying progress is identical, only the sentence changes. "10 / 47 complete" is mathematically accurate and motivationally hostile — it makes the 37 unfinished items the salient fact, and each completed task moves the bar by two percent, which reads as futility. Chunk the same work into a handful of named phases, show only the current one, and collapse finished phases into a done marker so the remaining work visibly shrinks as the user advances. Keep the honest total reachable for anyone who wants it, but do not lead with it.
+
+- [Josh Puckett — Interface Craft](https://interfacecraft.dev/)
+- [Laws of UX: Goal-Gradient Effect](https://lawsofux.com/goal-gradient-effect/)
+- [NN/g: Progress Indicators](https://www.nngroup.com/articles/progress-indicators/)
+
 ---
 
 ## Forms
 
-Form controls, validation, and user input handling. 24 rules.
+Form controls, validation, and user input handling. 25 rules.
 
 ### Enter Submits
 
@@ -3167,11 +3486,31 @@ Autocorrect, keyboard text-expansion snippets, password managers, and copy-paste
 - [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
 - [MDN: String.prototype.trim()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim)
 
+### Do Not Summon Password Managers on Non-Auth Fields
+
+**ID:** `forms-no-password-manager-nonauth`
+**Agent rule (MUST):** Keep reserved names (`password`) and `type="password"` off non-auth fields — password managers run heuristics over `type`/`name`/`id` and will park a credential dropdown over your search results. Give filters boring names (`q`, `filter`, `search`) with `type="search"` and `autocomplete="off"`; give OTP fields `autocomplete="one-time-code"` and `inputmode="numeric"`. This is the narrow inverse of the autofill rules, which still apply to real credential and address fields.
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Keep reserved names off search and filter inputs, and claim a specific autocomplete token for OTP
+
+> Don't trigger password managers for non-auth fields. For inputs like "Search" avoid reserved names (e.g., password), use autocomplete="off" or a specific token like autocomplete="one-time-code" for OTP fields.
+
+This is the narrow inverse of the autofill rules, not a contradiction of them: on a real credential or address field you want the manager to fire, with meaningful autocomplete tokens and no paste blocking. This rule is about the fields that are not auth. Password managers do not read your intent — they run heuristics over type, name, and id, so a filter box that happens to be called "password" or an OTP input masked as type="password" gets a credential dropdown parked on top of the results the user was trying to read, plus a "save this login?" prompt for a code that expires in 30 seconds. Give non-auth fields boring names (q, filter, search), set type="search", and add autocomplete="off"; give OTP fields autocomplete="one-time-code" and inputmode="numeric" so the OS offers the SMS code instead of a stored password.
+
+```tsx
+<input type="search" name="q" autocomplete="off" />
+<input name="otp" autocomplete="one-time-code" inputMode="numeric" />
+```
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [MDN: The autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete)
+
 ---
 
 ## Performance
 
-Optimization techniques and rendering efficiency. 33 rules.
+Optimization techniques and rendering efficiency. 35 rules.
 
 ### Minimize Re-renders
 
@@ -3677,11 +4016,54 @@ Extensions run content scripts on your page, on your main thread, inside your me
 - [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
 - [Chrome DevTools: Performance features reference](https://developer.chrome.com/docs/devtools/performance/reference)
 
+### Keep Long Tasks Off the Main Thread
+
+**ID:** `performance-offload-main-thread`
+**Agent rule (MUST):** Move expensive computation off the main thread — anything past ~50ms is a long task by Core Web Vitals and eats INP; an 800ms sync loop paints no frames and queues every click, while the CSS spinner keeps turning on the compositor and disguises the freeze as progress. Post it to a Web Worker, or chunk it and yield with `scheduler.yield()` if it must touch the DOM.
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Move long-running computation into a Web Worker so the page stays interactive
+
+> Don't use the main thread for expensive work. Move especially long tasks to Web Workers to avoid blocking interaction with the page.
+
+The main thread renders every frame, runs every event handler, and executes your JavaScript — one queue, one worker. A synchronous computation that runs for 800ms does not make the page slow, it makes it dead: no frames paint, clicks and keystrokes sit in the queue, and a CSS spinner is the only thing still moving (because it is on the compositor) which makes the freeze look like a working loading state. Anything past roughly 50ms is already a "long task" by Core Web Vitals' definition and eats directly into INP. Post the work to a Web Worker — it runs on its own thread and messages the result back — or, if it genuinely must touch the DOM, chunk it and yield with scheduler.yield() between slices.
+
+```tsx
+const worker = new Worker(new URL("./crunch.worker.ts", import.meta.url), { type: "module" });
+worker.postMessage(rows);
+worker.onmessage = (e) => setResult(e.data);
+```
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [MDN: Using Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+- [web.dev: Off the main thread](https://web.dev/articles/off-main-thread)
+
+### Motion Transform Shorthands Are Not GPU-Accelerated
+
+**ID:** `performance-motion-shorthand-not-gpu`
+**Agent rule (MUST):** In Motion/Framer Motion, animate the full `transform` string, not the `x`/`y`/`scale` shorthands: the shorthands are interpolated per `requestAnimationFrame` on the MAIN THREAD and drop frames under load, while `transform` as a whole string (along with `opacity`, `filter`, `clipPath`) is handed to the Web Animations API and ticked by the compositor. This is the false floor under `animations-compositor-friendly` and `performance-gpu-animations` — `animate={{ x: 100 }}` looks compliant and is not.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Animate the full transform string in Motion, because x, y, and scale are ticked on the main thread
+
+> Framer Motion shorthands are NOT hardware-accelerated. `x`/`y`/`scale` run on the main thread via rAF and drop frames under load. Use the full transform string: `animate={{ transform: 'translateX(100px)' }}`.
+
+This is the false floor under every "animate transform and opacity" rule you have already read. Writing animate={{ x: 100 }} looks like you obeyed them — it does compile down to a transform — but the value is interpolated by the library on each requestAnimationFrame tick and written to style, so it lives and dies on the main thread and drops frames the moment anything else is busy. Motion only hands an animation to the Web Animations API when the animated property is on its accelerated list — opacity, filter, clipPath, and transform as a whole string — and the x / y / scale shorthands are not on it. Animate transform: "translateX(100px)" instead and the compositor ticks it, so it keeps moving even while the main thread is blocked. Distinct from setting transform on the element rather than a parent CSS variable: that rule is about a style-recalc storm across descendants, this one is about which thread owns the tween.
+
+```tsx
+// main-thread rAF:  animate={{ x: 100 }}
+// compositor/WAAPI: animate={{ transform: "translateX(100px)" }}
+```
+
+- [Emil Kowalski: review-animations STANDARDS.md](https://github.com/emilkowalski/skills/blob/main/skills/review-animations/STANDARDS.md)
+- [MDN: CSS and JavaScript animation performance](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance)
+- [web.dev: Animations guide](https://web.dev/articles/animations-guide)
+
 ---
 
 ## Design
 
-Visual design principles and aesthetics. 45 rules.
+Visual design principles and aesthetics. 48 rules.
 
 ### Layered Shadows
 
@@ -4348,6 +4730,59 @@ A translucent color has no fixed value: the browser flattens it against whatever
 
 - [impeccable.style](https://impeccable.style/)
 - [WCAG 2.1: Contrast (Minimum)](https://www.w3.org/TR/WCAG21/#contrast-minimum)
+
+### Four Text Levels, Not Two
+
+**ID:** `design-interface-text-hierarchy-levels`
+**Agent rule (SHOULD):** Define four text levels as tokens and use all four — primary (body, highest contrast), secondary (supporting copy), tertiary (metadata: timestamps, field labels, counts), muted (disabled/placeholder, lowest contrast). Two levels ("text" and "gray text") collapse every secondary role onto one step, so nothing recedes. Weight and colour carry more hierarchy than size — a single 14px size can hold three tiers.
+**Source:** interface-design (https://github.com/Dammyjay93/interface-design)
+
+Build four text levels — primary, secondary, tertiary, muted — and use all four, instead of shipping "text" and "gray text"
+
+> Don't just have "text" and "gray text." Build four levels... Use all four consistently. If you're only using two, your hierarchy is too flat.
+
+The four levels have fixed jobs: primary is default body text at the highest contrast; secondary is supporting copy, slightly muted; tertiary is metadata — timestamps, field labels, counts; muted is disabled and placeholder text, the lowest contrast in the system. Ship only two and every secondary role collapses onto one step: the field label, the supporting sentence, the timestamp and the greyed-out placeholder all shout at the same volume, so nothing recedes and the eye has nowhere to go. The fix is not a new font size — the Apple/Linear move is that weight and colour carry more hierarchy than size, so a single 14px size can hold three tiers cleanly. Define the four as tokens once and bind every text role to one of them, rather than reaching for whichever grey is nearest.
+
+- [interface-design (Damola Akinleye)](https://github.com/Dammyjay93/interface-design)
+- [NN/g: Visual Hierarchy](https://www.nngroup.com/articles/visual-hierarchy-ux-definition/)
+
+### On Dark, Borders Beat Shadows
+
+**ID:** `design-interface-dark-borders-over-shadows`
+**Agent rule (SHOULD):** On dark surfaces define elevation with a hairline low-opacity border plus one small step of surface lightness, not a drop shadow — a shadow works by darkening pixels behind the element and near-black has no luminance left to remove, so `shadow-lg` exists in the computed style and nowhere on screen.
+**Source:** interface-design (https://github.com/Dammyjay93/interface-design)
+
+Define elevation on dark surfaces with a hairline border and a surface lightness step, because a drop shadow has nothing left to darken
+
+> Borders over shadows — Shadows are less visible on dark backgrounds. Lean more on borders for definition.
+
+A drop shadow works by darkening the pixels behind an element. On a near-black background there is almost no luminance left to remove, so shadow-lg on a dark card produces an elevation that exists in the computed style and nowhere on the screen — and if the card fill matches the panel behind it, the edges disappear entirely. Definition on dark comes from two cheaper, more reliable levers: a hairline border (a low-opacity light stroke reads as a crisp edge at any ambient brightness) and one small step of surface lightness — each jump only a few percentage points, barely visible in isolation but unmistakable once stacked. This is distinct from two neighbours in this corpus. design-impeccable-dark-glow is about the opposite failure — a saturated chroma glow spilling off a dark card, which is loud but meaningless. content-impeccable-dark-mode-text-compensation is about the type on dark (weight and colour compensation), not the box around it. This principle is only about where the edge of the box comes from.
+
+- [interface-design (Damola Akinleye)](https://github.com/Dammyjay93/interface-design)
+- [Material Design: Dark theme](https://m2.material.io/design/color/dark-theme.html)
+- [MDN: box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-shadow)
+
+### Text Anti-Aliasing and Transforms
+
+**ID:** `design-text-antialiasing-transforms`
+**Agent rule (SHOULD):** Animate a wrapper rather than the text node when scaling — re-rasterizing glyphs at fractional sizes makes strokes crawl and can flip sub-pixel anti-aliasing to grayscale mid-flight, and one wrapper transform keeps the lockup scaling as a single object. If artifacts persist, promote the wrapper with `translateZ(0)` or `will-change: transform` and release it when the transition ends (blanket promotion is still wrong — see `performance-gpu-translatez`).
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Animate a wrapper rather than the text node itself, and promote it to its own layer when scaling artifacts persist
+
+> Text anti-aliasing & transforms. Scaling text can change smoothing. Prefer animating a wrapper instead of the text node. If artifacts persist set `translateZ(0)` or `will-change: transform` to promote to its own layer.
+
+Glyphs are hinted and anti-aliased for the size they are rendered at. Put a scale transform directly on a text node and the browser may re-rasterize it at every intermediate fractional size, so the strokes visibly crawl and thicken through the animation, and sub-pixel anti-aliasing can switch to grayscale mid-flight. Moving the transform up to a wrapper fixes the composition too: one transform and one origin means the lockup scales as a single object instead of each line scaling about its own centre and drifting apart. If artifacts survive that, promote the wrapper — translateZ(0) or will-change: transform gives it its own compositor layer, so the text is rasterized once and merely re-composited per frame. Distinct from performance-gpu-translatez, which is about when promotion is worth its memory cost at all (and warns against blanket promotion) — here promotion is a targeted, transient fix for a rendering artifact, applied to the animating wrapper and released when the transition ends. Also distinct from content-font-smoothing, which concerns static -webkit-font-smoothing choices, not the smoothing change a transform induces.
+
+```tsx
+.title-wrap { will-change: transform; transform: scale(0.96); }
+.title-wrap.is-in { transform: scale(1); } /* drop will-change on transitionend */
+```
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [MDN: will-change](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change)
+- [MDN: transform](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform)
+- [MDN: font-smooth](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-smooth)
 
 ---
 

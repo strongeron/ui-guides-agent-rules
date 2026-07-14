@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-14T11:16:10.843Z",
+  "generatedAt": "2026-07-14T11:24:40.749Z",
   "reports": [
     {
       "source": "vercel",
       "name": "Vercel",
       "mode": "github",
       "status": "checked",
-      "upstreamRules": 93,
-      "ourRules": 107,
+      "upstreamRules": 230,
+      "ourRules": 112,
       "newRules": [
         {
           "source": "vercel",
@@ -50,6 +50,161 @@
         },
         {
           "source": "vercel",
+          "text": "Deep-link everything. Filters, tabs, pagination, expanded panels, anytime useState is used.",
+          "suggestedId": "vercel-deep-link-everything-filters-tabs-pagination",
+          "category": "interactions",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "interactions"
+          ],
+          "bestMatch": 0.09
+        },
+        {
+          "source": "vercel",
+          "text": "Interfaces succeed because of hundreds of choices. This is a living, non-exhaustive list of those decisions. Most guidelines are framework-agnostic, some specific to React/Next.js. Feedback is welcome.",
+          "suggestedId": "vercel-interfaces-succeed-because-of-hundreds-of",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.1
+        },
+        {
+          "source": "vercel",
+          "text": "These preferences reflect Vercel’s brand & product choices. They aren’t universal guidelines.",
+          "suggestedId": "vercel-these-preferences-reflect-vercel-s-brand",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.1
+        },
+        {
+          "source": "vercel",
+          "text": "source: https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
+          "suggestedId": "vercel-source-https-github-com-vercel-labs",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.14
+        },
+        {
+          "source": "vercel",
+          "text": "An AGENTS.md file provides guidance for agents. Use this AGENTS.md with your agents to ensure your interfaces follow these guidelines. We recommend auditing all generated interfaces.",
+          "suggestedId": "vercel-an-agents-md-file-provides-guidance",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.15
+        },
+        {
+          "source": "vercel",
+          "text": "rules: https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md",
+          "suggestedId": "vercel-rules-https-raw-githubusercontent-com-vercel",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "vercel",
+          "text": "Minimum loading-state duration. If you show a spinner/skeleton, add a short show-delay (~150–300 ms) & a minimum visible time (~300–500 ms) to avoid flicker on fast responses. The <Suspense> component in React does this automatically.",
+          "suggestedId": "vercel-minimum-loading-state-duration-if-you",
+          "category": "animations",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "animations"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "vercel",
+          "text": "Locale-aware keyboard shortcuts. Internationalize keyboard shortcuts for non-QWERTY layouts. Show platform-specific symbols.",
+          "suggestedId": "vercel-locale-aware-keyboard-shortcuts-internationalize-keyboard",
+          "category": "interactions",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "interactions"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "vercel",
+          "text": "Text anti-aliasing & transforms. Scaling text can change smoothing. Prefer animating a wrapper instead of the text node. If artifacts persist set translateZ(0) or will-change: transform to promote to its own layer.",
+          "suggestedId": "vercel-text-anti-aliasing-transforms-scaling-text",
+          "category": "content",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "content"
+          ],
+          "bestMatch": 0.18
+        },
+        {
+          "source": "vercel",
+          "text": "Instead of “Your deployment failed,” say “Something went wrong—try again or contact support.”",
+          "suggestedId": "vercel-instead-of-your-deployment-failed-say",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.18
+        },
+        {
+          "source": "vercel",
+          "text": "Don’t trigger password managers for non-auth fields. For inputs like “Search” avoid reserved names (e.g., password), use autocomplete=\"off\" or a specific token like autocomplete=\"one-time-code\" for OTP fields.",
+          "suggestedId": "vercel-don-t-trigger-password-managers-for",
+          "category": "forms",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance"
+          ],
+          "bestMatch": 0.19
+        },
+        {
+          "source": "vercel",
+          "text": "Subset fonts. Ship only the code points/scripts you use via unicode-range (limit variable axes to what you need) to shrink size.",
+          "suggestedId": "vercel-subset-fonts-ship-only-the-code",
+          "category": "content",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "content"
+          ],
+          "bestMatch": 0.19
+        },
+        {
+          "source": "vercel",
           "text": "URL reflects state—filters, tabs, pagination, expanded panels in query params",
           "suggestedId": "vercel-url-reflects-state-filters-tabs-pagination",
           "category": "interactions",
@@ -73,6 +228,19 @@
             "design"
           ],
           "bestMatch": 0.2
+        },
+        {
+          "source": "vercel",
+          "text": "Instead of “Invalid API key,” say “Your API key is incorrect or expired. Generate a new key in your account settings.” The copy & buttons/links should educate & give a clear action.",
+          "suggestedId": "vercel-instead-of-invalid-api-key-say",
+          "category": "content",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "content"
+          ],
+          "bestMatch": 0.22
         },
         {
           "source": "vercel",
@@ -100,6 +268,32 @@
         },
         {
           "source": "vercel",
+          "text": "Let the browser size things. Prefer flex/grid/intrinsic layout over measuring in JS. Avoid layout thrash by letting CSS handle flow, wrapping, & alignment.",
+          "suggestedId": "vercel-let-the-browser-size-things-prefer",
+          "category": "layout",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "layout"
+          ],
+          "bestMatch": 0.26
+        },
+        {
+          "source": "vercel",
+          "text": "Don’t use the main thread for expensive work. Move especially long tasks to Web Workers to avoid blocking interaction with the page.",
+          "suggestedId": "vercel-don-t-use-the-main-thread",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.27
+        },
+        {
+          "source": "vercel",
           "text": "Headings hierarchical `<h1>`–`<h6>`; include skip link for main content",
           "suggestedId": "vercel-headings-hierarchical-include-skip-link-for",
           "category": "content",
@@ -120,6 +314,32 @@
             "a11y",
             "forms",
             "performance"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "vercel",
+          "text": "Input-driven. Avoid autoplay; animate in response to actions.",
+          "suggestedId": "vercel-input-driven-avoid-autoplay-animate-in",
+          "category": "animations",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "animations"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "vercel",
+          "text": "Avoid widows/orphans. Tidy rag & line breaks.",
+          "suggestedId": "vercel-avoid-widows-orphans-tidy-rag-line",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
           ],
           "bestMatch": 0.29
         },
@@ -202,6 +422,45 @@
         },
         {
           "source": "vercel",
+          "text": "Action-oriented language.",
+          "suggestedId": "vercel-action-oriented-language",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "vercel",
+          "text": "Instead of 10MB say 10 MB.",
+          "suggestedId": "vercel-instead-of-10mb-say-10-mb",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "vercel",
+          "text": "Avoid gradient banding. Some colors & display types will have color banding. Masks can be used instead.",
+          "suggestedId": "vercel-avoid-gradient-banding-some-colors-display",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.36
+        },
+        {
+          "source": "vercel",
           "text": "Handle empty states—don't render broken UI for empty strings/arrays",
           "suggestedId": "vercel-handle-empty-states-don-t-render",
           "category": "performance",
@@ -224,6 +483,82 @@
             "layout"
           ],
           "bestMatch": 0.4
+        },
+        {
+          "source": "vercel",
+          "text": "Headings & skip link. Hierarchical <h1–h6> & a “Skip to content” link.",
+          "suggestedId": "vercel-headings-skip-link-hierarchical-h1-h6",
+          "category": "content",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "content"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "vercel",
+          "text": "Set the appropriate color-scheme. Style the <html> tag with color-scheme: dark in dark themes so that scrollbars and other device UI have proper contrast.",
+          "suggestedId": "vercel-set-the-appropriate-color-scheme-style",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "vercel",
+          "text": "Avoid ambiguity. Labels are clear & specific.",
+          "suggestedId": "vercel-avoid-ambiguity-labels-are-clear-specific",
+          "category": "forms",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "vercel",
+          "text": "Cross-browser SVG transforms. Apply CSS transforms/animations to <g> wrappers & set transform-box: fill-box; transform-origin: center;. Safari historically had bugs with transform-origin on SVG & grouping avoids origin miscalculation.",
+          "suggestedId": "vercel-cross-browser-svg-transforms-apply-css",
+          "category": "animations",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "animations"
+          ],
+          "bestMatch": 0.43
+        },
+        {
+          "source": "vercel",
+          "text": "No excessive scrollbars. Only render useful scrollbars; fix overflow issues to prevent unwanted scrollbars. On macOS set \"Show scroll bars\" to \"Always\" to test what Windows users would see.",
+          "suggestedId": "vercel-no-excessive-scrollbars-only-render-useful",
+          "category": "layout",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "layout"
+          ],
+          "bestMatch": 0.45
+        },
+        {
+          "source": "vercel",
+          "text": "Preconnect to origins. Use <link rel=\"preconnect\"> for asset/CDN domains (with crossorigin when needed) to reduce DNS/TLS latency.",
+          "suggestedId": "vercel-preconnect-to-origins-use-link-rel",
+          "category": "performance",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance"
+          ],
+          "bestMatch": 0.46
         }
       ]
     },
@@ -479,17 +814,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "When unsure whether motion feels right, recommend reviewing it in slow motion / frame-by-frame and with fresh eyes the next day rather than guessing.",
-          "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.19
-        },
-        {
-          "source": "emilkowalski",
           "text": "`scale(0)` or pure-fade entrances with no initial transform",
           "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
           "category": "forms",
@@ -617,6 +941,17 @@
           "tags": [
             "motion",
             "aesthetics"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "emilkowalski",
+          "text": "When unsure whether motion feels right, recommend reviewing it in slow motion / frame-by-frame and with fresh eyes the next day rather than guessing.",
+          "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
           ],
           "bestMatch": 0.25
         },
@@ -1031,7 +1366,7 @@
       "status": "manual-due",
       "ourRules": 0,
       "reviewEveryDays": 60,
-      "note": "https://www.ui-skills.com/"
+      "note": "https://github.com/Dammyjay93/interface-design"
     },
     {
       "source": "interface-craft",

@@ -86,6 +86,20 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://impeccable.style/',
     color: 'bg-stone-700 text-white border-stone-700',
   },
+  'interface-design': {
+    id: 'interface-design',
+    name: 'interface-design',
+    description: 'Interface craft principles by Damola Akinleye',
+    url: 'https://github.com/Dammyjay93/interface-design',
+    color: 'bg-rose-700 text-white border-rose-700',
+  },
+  lottiefiles: {
+    id: 'lottiefiles',
+    name: 'LottieFiles',
+    description: 'Runtime-agnostic motion direction from the LottieFiles motion-design skill',
+    url: 'https://github.com/lottiefiles/motion-design-skill',
+    color: 'bg-green-700 text-white border-green-700',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

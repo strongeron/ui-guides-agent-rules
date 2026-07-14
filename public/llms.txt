@@ -1,6 +1,6 @@
 # UI Guides
 
-> 305 web interface principles — accessibility, performance, forms, motion, and
+> 328 web interface principles — accessibility, performance, forms, motion, and
 > visual design — each paired with a working good example and a bad one, plus a
 > copy-paste rule for coding agents. Built and maintained by Gleb Stroganov.
 
@@ -15,33 +15,36 @@ contains every rule inline, with no JavaScript required.
 ## Machine-readable endpoints
 
 - https://ui-guides.netlify.app/llms.txt — this file
-- https://ui-guides.netlify.app/llms-full.txt — all 305 rules, inline, each with its agent rule and source
+- https://ui-guides.netlify.app/llms-full.txt — all 328 rules, inline, each with its agent rule and source
 - https://ui-guides.netlify.app/sitemap.xml — site map
 - https://github.com/strongeron/ui-guides — source, including the principle data as TypeScript
 
 ## Categories
 
-- **Interactions** (60 rules) — Keyboard accessibility, focus management, and user interaction patterns
-- **Animations** (41 rules) — Motion design principles and animation best practices
-- **Layout** (18 rules) — Responsive design, alignment, and visual structure
-- **Content** (61 rules) — Typography, accessibility, and content presentation
-- **Forms** (24 rules) — Form controls, validation, and user input handling
-- **Performance** (33 rules) — Optimization techniques and rendering efficiency
-- **Design** (45 rules) — Visual design principles and aesthetics
+- **Interactions** (63 rules) — Keyboard accessibility, focus management, and user interaction patterns
+- **Animations** (51 rules) — Motion design principles and animation best practices
+- **Layout** (20 rules) — Responsive design, alignment, and visual structure
+- **Content** (63 rules) — Typography, accessibility, and content presentation
+- **Forms** (25 rules) — Form controls, validation, and user input handling
+- **Performance** (35 rules) — Optimization techniques and rendering efficiency
+- **Design** (48 rules) — Visual design principles and aesthetics
 - **Aesthetics** (23 rules) — Creative visual design principles for distinctive, production-grade interfaces
 
 ## Upstream sources
 
 Rules are transcribed and attributed to:
 
-- **Vercel** (112 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
+- **Vercel** (118 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
 - **Tailwind** (25 rules) — https://tailwindcss.com/docs
 - **RAMS** (24 rules) — https://www.rams.ai/
 - **@Ibelick** (38 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
-- **Emil Kowalski** (13 rules) — https://emilkowalski.com/
+- **Emil Kowalski** (18 rules) — https://emilkowalski.com/
 - **Claude Code** (13 rules) — https://claude.ai/code
-- **impeccable** (25 rules) — https://impeccable.style/
+- **impeccable** (26 rules) — https://impeccable.style/
+- **LottieFiles** (5 rules) — https://github.com/lottiefiles/motion-design-skill
+- **Custom** (2 rules)
+- **interface-design** (4 rules) — https://github.com/Dammyjay93/interface-design
 - **Skills** (18 rules) — https://skills.sh/
 
 ## Author

@@ -1415,6 +1415,130 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'aesthetics-impeccable-hero-metric-template': {
     priority: 'NEVER',
     rule: 'Ship a decorative hero metric — a round, unsourced "10x faster" / "99.99%" / "500M+" with no denominator, no window, and no source, dressed in a gradient accent. A prominent number is allowed on exactly one condition: it shows actual user data (this account, this window, live, timestamped). Otherwise replace the stat row with one concrete product screenshot.'
+  },
+  'interactions-loading-state-duration': {
+    priority: 'MUST',
+    rule: 'Gate every spinner/skeleton with two timers: a show-delay of ~150–300ms (fast responses show nothing) and a minimum visible time of ~300–500ms once it appears, so it never flashes. React `<Suspense>` already does this.'
+  },
+  'interactions-locale-keyboard-shortcuts': {
+    priority: 'MUST',
+    rule: 'Bind mnemonic shortcuts to `event.key` (the character the layout produced), not `event.code` (a QWERTY key position — breaks on Dvorak/AZERTY); reserve `event.code` for positional bindings like WASD, and render `⌘/⌥/⇧` on macOS vs `Ctrl/Alt/Shift` elsewhere.',
+    codeExample: 'if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") openPalette();\n// NOT: e.code === "KeyK"'
+  },
+  'interactions-press-feedback-scale': {
+    priority: 'SHOULD',
+    rule: 'Answer every press instantly with `transform: scale(0.97)` on `:active` and `transition: transform 160ms ease-out`. Stay inside 0.95–0.98 (0.85 reads as broken), and apply it to any pressable element — cards, icon buttons, list rows — not only `<button>`.',
+    codeExample: '.pressable { transition: transform 160ms ease-out; }\n.pressable:active { transform: scale(0.97); } /* Tailwind: active:scale-[0.97] */'
+  },
+  'animations-emil-no-scale-zero': {
+    priority: 'NEVER',
+    rule: 'Enter from `scale(0)` — nothing in the real world appears from a point. Start from `scale(0.9–0.97)` (0.96 is a safe popover/menu default) plus `opacity: 0`. Equally never enter on opacity alone: without a transform the element materializes instead of arriving.',
+    codeExample: '@keyframes enter { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }'
+  },
+  'animations-clip-path-reveal': {
+    priority: 'SHOULD',
+    rule: 'Reach for `clip-path: inset(t r b l)` for reveals, wipes, hold-to-delete overlays, seamless tab-color swaps, and comparison sliders — each value eats in from that side, the element keeps its box, so nothing below it moves and no layout is recalculated (unlike animating `height`).',
+    codeExample: '.reveal { clip-path: inset(0 0 100% 0); transition: clip-path 400ms ease-out; }\n.reveal.is-visible { clip-path: inset(0 0 0 0); }'
+  },
+  'animations-percentage-translate': {
+    priority: 'SHOULD',
+    rule: 'Park off-screen elements with translate percentages, not hardcoded px: `translateY(100%)` resolves against the element\'s own height, so it stays correct when a toast wraps or a drawer gains a row. Add edge gaps with `calc(100% + 12px)` rather than a magic number.',
+    codeExample: '.toast { transform: translateY(calc(100% + 12px)); } /* not translateY(300px) */\n.toast[data-open] { transform: translateY(0); }'
+  },
+  'animations-input-driven': {
+    priority: 'NEVER',
+    rule: 'Autoplay motion just because a component mounted — the only thing that happened is that the user arrived. Animate in response to an input: hover, press, drag, scroll-into-view, or a request completing. Autoplay loops also keep the compositor awake and become a WCAG 2.2.2 problem past 5s.'
+  },
+  'animations-lottie-motion-layers': {
+    priority: 'SHOULD',
+    rule: 'Build a hero moment in three layers — primary (the action the eye follows), secondary (shadow trailing ~50ms, contents arriving ~100ms after the card lands), ambient (background drift) — instead of pushing one flat sprite. SCOPE: three layers is three times the motion, so spend it only on rare first-run/hero surfaces (empty-state illustration, onboarding card, marketing hero). On anything repeated — a row rendered 400 times, a menu opened fifty times a day — `animations-necessity-check` and `animations-emil-frequency` win and the correct layer count is one, or zero.'
+  },
+  'animations-lottie-concurrency-cap': {
+    priority: 'SHOULD',
+    rule: 'With 3+ elements, keep at most ~1/3 in active motion at any instant so the eye keeps an anchor: land a hero element first, then bring the rest in waves. This is NOT stagger — stagger sets when items START, this caps how many are MOVING. A 30ms stagger over 9 cards with a 220ms duration still has all 9 in flight; you need both rules.'
+  },
+  'animations-lottie-stagger-budget': {
+    priority: 'MUST',
+    rule: 'Treat a cascade as a TOTAL budget, not a per-item constant: keep total stagger under 500ms (micro 20–40ms/item under 200ms; standard 50–100ms under 400ms; dramatic 100–200ms under 600ms for theatre only). Take the per-item value from `animations-emil-stagger` (30–80ms), take the CEILING from here — and on long lists the ceiling wins, because `i * 60ms` on 30 rows delays the last row 1740ms and pops content in below the scroll position. Clamp, or stagger only the rows in view.',
+    codeExample: 'const MAX_TOTAL = 400;\nconst delay = Math.min(i * 60, MAX_TOTAL);'
+  },
+  'animations-lottie-distance-duration': {
+    priority: 'SHOULD',
+    rule: 'Derive duration from travel distance, sublinearly — 100px = base, 200px = 1.3x, 400px = 1.6x — then clamp to a ~140ms floor and ~400ms ceiling. One `--duration-md` cannot serve an 8px tooltip nudge and a full-height sheet. This is a third axis, not a duplicate: `animations-proportional-values` scales transform AMPLITUDE, `animations-emil-duration-budget` assigns duration by element TYPE, and distance is what reconciles them (it is why drawers are the one type allowed past 300ms — a drawer is not special, it is far).',
+    codeExample: 'const factor = 1 + 0.3 * Math.log2(px / 100); // 100px=1x, 200px=1.3x, 400px=1.6x\nconst duration = Math.min(400, Math.max(140, 250 * factor));'
+  },
+  'animations-lottie-never-opacity-only': {
+    priority: 'NEVER',
+    rule: 'Signal an important state change with opacity alone — peripheral vision reads movement, not luminance, so a "Saved" pill that fades in place off-axis is frequently never seen. Pair the fade with position or scale (a 6px rise is enough). Motion is the REINFORCEMENT channel only: the state still needs `role="status"` / `aria-live="polite"`, and since the transform is dropped under `prefers-reduced-motion`, the opacity change must remain sufficient on its own.'
+  },
+  'animations-named-timing-constants': {
+    priority: 'SHOULD',
+    rule: 'Hoist every delay, duration and easing into one named block and drive a multi-stage sequence with a single integer stage, not scattered magic numbers and boolean flags (`isCardVisible` / `isHeadingVisible` / `areRowsVisible`) — otherwise retuning the tempo means hunting five call sites and the heading silently starts arriving after the rows it introduces.',
+    codeExample: 'const TIMING = { cardAppear: 300, heading: 900, rows: 1500 } as const;\n// then: stage >= 2 ? ... : ...'
+  },
+  'layout-interface-symmetrical-padding': {
+    priority: 'NEVER',
+    rule: 'Give a box four different padding values (`padding: 24px 16px 12px 16px`) — that is residue from nudging one side, not a decision, and it de-centres the content so a stack of cards loses its rhythm. Use one uniform value (`padding: 16px`) or at most a single horizontal/vertical pair (`padding: 12px 16px`).'
+  },
+  'layout-interface-screen-grounding': {
+    priority: 'MUST',
+    rule: 'Ground every screen with three anchors: navigation (where you can go), a location indicator (breadcrumbs / page title / active nav state — where you are), and user context (who is signed in, which workspace). A data table with none of them is a component demo, not a product. Give the sidebar the same background as the canvas and separate it with a border, not a different fill.'
+  },
+  'content-be-concise': {
+    priority: 'MUST',
+    rule: 'Write the sentence, then delete words until deleting one more would change the meaning. Cut padding phrases ("in order to", "please note that", "at this time"); keep the nouns and the verb, drop the ceremony.'
+  },
+  'content-consistent-nouns': {
+    priority: 'MUST',
+    rule: 'Name each object once and reuse that exact noun in every label, heading, toast, and error — project/app/site/deployment for one concept reads as four things. Introduce as few unique terms as possible and keep a glossary.'
+  },
+  'content-consistent-placeholders': {
+    priority: 'MUST',
+    rule: 'Use one loud, obviously-fake placeholder convention across all code samples — `YOUR_API_TOKEN_HERE` for strings, `0123456789` for numbers — never a mix of `<your-token>` / `xxx` / `abc123` / `[INSERT KEY]`. (This is about fill-me-in tokens in docs, not the HTML `placeholder` attribute.)'
+  },
+  'content-currency-formatting': {
+    priority: 'MUST',
+    rule: 'Pick 0 or 2 decimal places per context and format every amount that way, including round ones — never mix `$12` with `$8.50` in one column. Pair with tabular figures and right alignment so decimal separators stack.'
+  },
+  'content-positive-language': {
+    priority: 'SHOULD',
+    rule: 'Frame messages around what can be done next, not what the person did wrong — drop "you failed to", "invalid", "aborted". Stay specific about the cause and the limit; positive framing is a change of frame, not a loss of detail.'
+  },
+  'content-impeccable-loading-copy-expectation': {
+    priority: 'SHOULD',
+    rule: 'Name the work and its expected duration inside a loading state ("Analyzing your data… this usually takes 30–60 seconds") instead of a bare "Loading…", which says the same thing at 1s and at 90s so the user cannot tell working from hung. Show a signal that advances, and give anything past ~10s an escape hatch.'
+  },
+  'content-progress-as-milestones': {
+    priority: 'SHOULD',
+    rule: 'Chunk long task lists into a handful of named phases and show the current one ("Complete Phase 1 of 4") rather than leading with remaining work ("10 / 47 tasks complete"), which makes the 37 unfinished items the salient fact. Collapse finished phases into a done marker; keep the honest total reachable, just do not lead with it.'
+  },
+  'forms-no-password-manager-nonauth': {
+    priority: 'MUST',
+    rule: 'Keep reserved names (`password`) and `type="password"` off non-auth fields — password managers run heuristics over `type`/`name`/`id` and will park a credential dropdown over your search results. Give filters boring names (`q`, `filter`, `search`) with `type="search"` and `autocomplete="off"`; give OTP fields `autocomplete="one-time-code"` and `inputmode="numeric"`. This is the narrow inverse of the autofill rules, which still apply to real credential and address fields.',
+    codeExample: '<input type="search" name="q" autocomplete="off" />\n<input name="otp" autocomplete="one-time-code" inputMode="numeric" />'
+  },
+  'performance-offload-main-thread': {
+    priority: 'MUST',
+    rule: 'Move expensive computation off the main thread — anything past ~50ms is a long task by Core Web Vitals and eats INP; an 800ms sync loop paints no frames and queues every click, while the CSS spinner keeps turning on the compositor and disguises the freeze as progress. Post it to a Web Worker, or chunk it and yield with `scheduler.yield()` if it must touch the DOM.',
+    codeExample: 'const worker = new Worker(new URL("./crunch.worker.ts", import.meta.url), { type: "module" });\nworker.postMessage(rows);\nworker.onmessage = (e) => setResult(e.data);'
+  },
+  'performance-motion-shorthand-not-gpu': {
+    priority: 'MUST',
+    rule: 'In Motion/Framer Motion, animate the full `transform` string, not the `x`/`y`/`scale` shorthands: the shorthands are interpolated per `requestAnimationFrame` on the MAIN THREAD and drop frames under load, while `transform` as a whole string (along with `opacity`, `filter`, `clipPath`) is handed to the Web Animations API and ticked by the compositor. This is the false floor under `animations-compositor-friendly` and `performance-gpu-animations` — `animate={{ x: 100 }}` looks compliant and is not.',
+    codeExample: '// main-thread rAF:  animate={{ x: 100 }}\n// compositor/WAAPI: animate={{ transform: "translateX(100px)" }}'
+  },
+  'design-interface-text-hierarchy-levels': {
+    priority: 'SHOULD',
+    rule: 'Define four text levels as tokens and use all four — primary (body, highest contrast), secondary (supporting copy), tertiary (metadata: timestamps, field labels, counts), muted (disabled/placeholder, lowest contrast). Two levels ("text" and "gray text") collapse every secondary role onto one step, so nothing recedes. Weight and colour carry more hierarchy than size — a single 14px size can hold three tiers.'
+  },
+  'design-interface-dark-borders-over-shadows': {
+    priority: 'SHOULD',
+    rule: 'On dark surfaces define elevation with a hairline low-opacity border plus one small step of surface lightness, not a drop shadow — a shadow works by darkening pixels behind the element and near-black has no luminance left to remove, so `shadow-lg` exists in the computed style and nowhere on screen.'
+  },
+  'design-text-antialiasing-transforms': {
+    priority: 'SHOULD',
+    rule: 'Animate a wrapper rather than the text node when scaling — re-rasterizing glyphs at fractional sizes makes strokes crawl and can flip sub-pixel anti-aliasing to grayscale mid-flight, and one wrapper transform keeps the lockup scaling as a single object. If artifacts persist, promote the wrapper with `translateZ(0)` or `will-change: transform` and release it when the transition ends (blanket promotion is still wrong — see `performance-gpu-translatez`).',
+    codeExample: '.title-wrap { will-change: transform; transform: scale(0.96); }\n.title-wrap.is-in { transform: scale(1); } /* drop will-change on transitionend */'
   }
 };
 
