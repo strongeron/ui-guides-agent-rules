@@ -7,10 +7,28 @@
     <title>UI Guides — Interactive Web Interface Guidelines</title>
     <meta
       name="description"
-      content="Vercel's Web Interface Guidelines, made interactive. 200 accessibility, performance, and interaction principles — each paired with a good and bad example you can tab through, plus copy-paste rules for coding agents."
+      content="Web interface guidelines, made interactive. 300 accessibility, performance, and interaction principles — each paired with a good and bad example you can tab through, plus copy-paste rules for coding agents. By Gleb Stroganov."
     />
     <meta name="author" content="Gleb Stroganov" />
     <link rel="canonical" href="https://ui-guides.netlify.app/" />
+
+    <!--
+      Authorship. `rel="author me"` points at the same identity the JSON-LD below claims
+      via @id, so this project and its author resolve to one entity rather than two
+      unrelated pages. The visible credit lives in src/components/Footer.tsx.
+    -->
+    <link rel="author" href="https://glebstroganov.com" />
+    <link rel="me" href="https://glebstroganov.com" />
+
+    <!--
+      Agent discovery. This app is client-rendered and keeps per-principle state in the
+      URL hash, so a crawler that fetches this page gets a React shell and none of the
+      rules. llms-full.txt carries the whole corpus as plain text. Both files are
+      generated from src/data/principles/* by scripts/generate-llms.ts at build time.
+    -->
+    <link rel="alternate" type="text/plain" title="LLM-readable rules (index)" href="/llms.txt" />
+    <link rel="alternate" type="text/plain" title="LLM-readable rules (full corpus)" href="/llms-full.txt" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -24,7 +42,7 @@
     <meta property="og:title" content="UI Guides — Interactive Web Interface Guidelines" />
     <meta
       property="og:description"
-      content="200 web interface principles, each with a good and bad example you can tab through. Accessibility, performance, forms, motion — agent-ready."
+      content="300 web interface principles, each with a good and bad example you can tab through. Accessibility, performance, forms, motion — agent-ready."
     />
     <meta property="og:url" content="https://ui-guides.netlify.app/" />
     <meta property="og:image" content="https://ui-guides.netlify.app/og-image.png" />
@@ -37,9 +55,67 @@
     <meta name="twitter:title" content="UI Guides — Interactive Web Interface Guidelines" />
     <meta
       name="twitter:description"
-      content="200 web interface principles, each with a good and bad example you can tab through. Accessibility, performance, forms, motion — agent-ready."
+      content="300 web interface principles, each with a good and bad example you can tab through. Accessibility, performance, forms, motion — agent-ready."
     />
     <meta name="twitter:image" content="https://ui-guides.netlify.app/og-image.png" />
+    <meta name="twitter:creator" content="@strongeron" />
+    <meta name="twitter:site" content="@strongeron" />
+
+    <!--
+      Structured data. The author is referenced by @id — the same node glebstroganov.com
+      publishes in /about.json — so consumers merge this project into that Person's works
+      graph instead of inventing a second, unlinked "Gleb Stroganov". The inline Person is
+      a stub carrying only enough to resolve; the full profile lives on the portfolio.
+      Keep `sameAs` in sync with glebstroganov.com/about.json.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://glebstroganov.com/#person",
+            "name": "Gleb Stroganov",
+            "url": "https://glebstroganov.com",
+            "jobTitle": "Design Engineer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Evil Martians",
+              "url": "https://evilmartians.com"
+            },
+            "sameAs": [
+              "https://github.com/strongeron",
+              "https://x.com/strongeron",
+              "https://evilmartians.com/martians/gleb-stroganov"
+            ]
+          },
+          {
+            "@type": ["WebSite", "WebApplication"],
+            "@id": "https://ui-guides.netlify.app/#website",
+            "name": "UI Guides",
+            "alternateName": "Web UI Guide",
+            "url": "https://ui-guides.netlify.app/",
+            "description": "300 web interface principles — accessibility, performance, forms, motion, and visual design — each paired with an interactive good and bad example, plus a copy-paste rule for coding agents.",
+            "inLanguage": "en",
+            "applicationCategory": "DeveloperApplication",
+            "browserRequirements": "Requires JavaScript.",
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "author": { "@id": "https://glebstroganov.com/#person" },
+            "creator": { "@id": "https://glebstroganov.com/#person" },
+            "maintainer": { "@id": "https://glebstroganov.com/#person" },
+            "license": "https://github.com/strongeron/ui-guides",
+            "codeRepository": "https://github.com/strongeron/ui-guides",
+            "keywords": "web interface guidelines, accessibility, WCAG, ARIA, design system, coding agents, AI agent rules, frontend performance, motion design",
+            "about": [
+              { "@type": "Thing", "name": "Web accessibility" },
+              { "@type": "Thing", "name": "User interface design" },
+              { "@type": "Thing", "name": "Frontend performance" }
+            ]
+          }
+        ]
+      }
+    </script>
 
     <!-- Resolve theme before first paint (OS preference by default) to avoid a flash of the wrong theme -->
     <script>

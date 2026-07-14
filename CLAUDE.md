@@ -13,8 +13,9 @@ This is a React application showcasing Vercel's Web Interface Guidelines. It dis
 npm run dev          # Start Vite dev server
 
 # Build & Preview
-npm run build        # Build for production
+npm run build        # Build for production (runs generate:llms first via prebuild)
 npm run preview      # Preview production build
+npm run generate:llms # Regenerate public/llms.txt, llms-full.txt, sitemap.xml
 
 # Code Quality
 npm run lint         # ESLint check
@@ -121,6 +122,15 @@ Scripts (shared extraction in `scripts/lib/rules.ts` — tokenize/extract/classi
 See `doc/specs/2026-07-12-source-freshness-sync.md`.
 
 > Note: the MDX content layer under `content/principles/` was removed — it duplicated `principles.ts` and was never rendered by the app. `principles/**` is now the sole source of truth.
+
+### Discoverability & Attribution
+
+The app is a client-rendered SPA whose per-principle state lives in the **URL hash**, so a crawler or coding agent that fetches the site gets a React shell and none of the rules. Two consequences shape this layer:
+
+- **`scripts/generate-llms.ts`** (run by `prebuild`, so `npm run build` always refreshes it) emits `public/llms.txt`, `public/llms-full.txt`, and `public/sitemap.xml` from the principle data. `llms-full.txt` is the **only** machine-readable copy of the corpus — it's what agents actually fetch and cite. Never hand-edit those three files; edit `src/data/principles/*` and regenerate. `public/robots.txt` is hand-written and allows all AI crawlers.
+- **Authorship is expressed by a shared `@id`.** The JSON-LD in `index.html` names the author as `{"@id": "https://glebstroganov.com/#person"}` — the same node glebstroganov.com publishes in its `/about.json`. That is what merges the project into its author's works graph instead of creating a second, unlinked "Gleb Stroganov". `src/components/Footer.tsx` carries the visible credit with `rel="author me"` to the same URL. Keep the footer href, the JSON-LD `@id`/`sameAs`, and the generator's attribution block in sync.
+
+**Known ceiling:** hash fragments are not indexable as separate URLs, so all 300 principles collapse into one indexable page, and `sitemap.xml` honestly lists only what is fetchable. Converting to real routes (`/principles/:id`) plus a prerender step is the unlock — it would turn 1 indexable page into 300, each with its own title, OG card, and author credit. Not done.
 
 ### UI Components (shadcn/ui + Radix)
 

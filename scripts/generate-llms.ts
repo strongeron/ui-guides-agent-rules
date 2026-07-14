@@ -1,23 +1,18 @@
+#!/usr/bin/env npx tsx
 /**
- * Generates the machine-readable surface of the site into `public/`:
+ * Generate llms.txt, llms-full.txt, and sitemap.xml into public/
  *
- *   llms.txt       — overview + how to consume this corpus (the llmstxt.org index)
- *   llms-full.txt  — every published principle and agent rule, inline
- *   sitemap.xml    — the indexable URLs (see the honesty note below)
+ * The app is a client-rendered SPA whose per-principle state lives in the URL hash, so
+ * a crawler or coding agent that fetches the site gets a React shell and nothing else.
+ * llms-full.txt is the only machine-readable copy of the corpus.
  *
- * Why this exists: the app is a client-rendered SPA whose per-principle state lives
- * in the URL hash, so a crawler or coding agent that fetches the site gets a React
- * shell and nothing else. These files are the only way the 200 rules are actually
- * readable by the agents this project is written for.
- *
- * Sitemap honesty: hash fragments are not distinct URLs to a search engine, so the
- * sitemap lists only what is genuinely fetchable. It will stay this short until the
- * app moves to real routes.
+ * The sitemap lists only genuinely fetchable URLs — hash fragments are not distinct URLs
+ * to a search engine, so it stays this short until the app moves to real routes.
  */
-import { writeFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
+import { writeFileSync } from 'fs';
+import { join } from 'path';
+import { fileURLToPath } from 'url';
 import { categories, principles } from '../src/data/principles';
 import { agentRules } from '../src/data/agentRules';
 import { sourceRegistry } from '../src/components/source-registry';
@@ -62,7 +57,6 @@ const sourcesSection = () => {
   return lines.join('\n');
 };
 
-/* ── llms.txt — the index ────────────────────────────────────────────────────── */
 
 const llms = `# UI Guides
 
@@ -96,7 +90,6 @@ ${sourcesSection()}
 ${attribution}
 `;
 
-/* ── llms-full.txt — the corpus ──────────────────────────────────────────────── */
 
 const renderPrinciple = (p: Principle) => {
   const rule = agentRules[p.id];
@@ -155,7 +148,6 @@ ${categories
   .join('\n\n---\n\n')}
 `;
 
-/* ── sitemap.xml ─────────────────────────────────────────────────────────────── */
 
 const today = new Date().toISOString().slice(0, 10);
 const urls = [
@@ -175,7 +167,6 @@ ${urls
 </urlset>
 `;
 
-/* ── write ───────────────────────────────────────────────────────────────────── */
 
 const files: Array<[string, string]> = [
   ['llms.txt', llms],

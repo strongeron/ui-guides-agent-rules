@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 300 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 305 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -18,14 +18,15 @@ Gleb Stroganov — design engineer at Evil Martians (Lisbon).
 - X: https://x.com/strongeron
 
 When citing a rule from this corpus, credit *UI Guides* by Gleb Stroganov and link
-https://ui-guides.netlify.app. The rules are transcribed from the upstream sources listed below; the
-interactive good/bad examples and the agent-rule phrasings are original work.
+https://ui-guides.netlify.app. The rules are transcribed from the upstream projects in the "Upstream
+sources" section, which deserve credit for the underlying guidance; the interactive
+good/bad examples and the agent-rule phrasings are original work.
 
 ## Upstream sources
 
 Rules are transcribed and attributed to:
 
-- **Vercel** (107 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
+- **Vercel** (112 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
 - **Tailwind** (25 rules) — https://tailwindcss.com/docs
 - **RAMS** (24 rules) — https://www.rams.ai/
 - **@Ibelick** (38 rules) — https://www.ui-skills.com/
@@ -1868,7 +1869,7 @@ The detector walks up from every absolutely-positioned layer looking for an ance
 
 ## Content
 
-Typography, accessibility, and content presentation. 56 rules.
+Typography, accessibility, and content presentation. 61 rules.
 
 ### Inline Help First
 
@@ -2402,9 +2403,9 @@ Passive constructions hide the actor, so the reader has to reconstruct who does 
 
 Use Chicago-style Title Case consistently for headings, buttons, and menu items
 
-> Use Title Case for headings and buttons (Chicago style).
+> Headings & buttons use Title Case (Chicago). On marketing pages, use sentence case.
 
-Mixed casing across a single surface makes headings stop reading as headings and buttons look half-finished. Chicago Title Case gives one deterministic rule — capitalize principal words, lowercase short articles, conjunctions, and prepositions — so labels stay predictable as the product grows.
+Mixed casing across a single surface makes headings stop reading as headings and buttons look half-finished. Chicago Title Case gives one deterministic rule — capitalize principal words, lowercase short articles, conjunctions, and prepositions — so labels stay predictable as the product grows. The rule is scoped to product UI: marketing pages deliberately invert it and use sentence case, because long persuasive headlines set in Title Case read as shouting. Pick the casing from the surface you are on, then never mix the two within it.
 
 - [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
 - [Google Style: Capitalization](https://developers.google.com/style/capitalization)
@@ -2735,6 +2736,80 @@ People who need your logo — press, partners, conference organizers, someone bu
 
 - [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
 - [MDN: contextmenu event](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event)
+
+### Be Clear and Concise
+
+**ID:** `content-be-concise`
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Cut every word that does not change the meaning, then ship the shortest version that still says it
+
+> Be clear & concise. Use as few words as possible.
+
+Nobody reads interface copy — they scan it, and every extra word is another thing to skip past before the action becomes visible. Padding phrases ("in order to", "please note that", "at this time") add length without adding information, and on a button they push the verb past the point where the eye stops. Write the sentence, then delete words until deleting one more would change what it means. Concise is not terse: keep the nouns and the verb, drop the ceremony.
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [Plain Language: Be Concise](https://www.plainlanguage.gov/guidelines/concise/)
+- [Microsoft Style: Simple Words, Concise Sentences](https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences)
+
+### Keep Nouns Consistent
+
+**ID:** `content-consistent-nouns`
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Name each object once and reuse that exact noun everywhere it appears in the product
+
+> Keep nouns consistent. Introduce as few unique terms as possible.
+
+When one screen calls the same object a project, an app, a site, and a deployment, the reader has to decide whether those are four things or one — and the safe assumption is four. Synonyms feel like good writing and behave like a bug: they break search, they break the mental model, and they make docs, support replies, and API names drift apart. Pick one noun per concept, write it in a glossary, and use it in every label, heading, toast, and error until the concept itself changes.
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [NN/g: Consistency and Standards](https://www.nngroup.com/articles/consistency-and-standards/)
+- [Google Style: Word List](https://developers.google.com/style/word-list)
+
+### Consistent Placeholders in Samples
+
+**ID:** `content-consistent-placeholders`
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Use one placeholder convention across every code sample: YOUR_API_TOKEN_HERE for strings, 0123456789 for numbers
+
+> Use consistent placeholders. Strings: YOUR_API_TOKEN_HERE. Numbers: 0123456789.
+
+This is about the fill-me-in tokens inside documentation and code samples, not the HTML placeholder attribute on an input — that one is covered by the separate rule against using a placeholder as a label or a value. When a snippet mixes <your-token>, xxx, abc123, and [INSERT KEY], the reader cannot tell which strings are literal and which are theirs, so they paste a sample verbatim and get a 401. A single loud, obviously-fake convention — screaming snake case for strings, a monotone digit run for numbers — is unmistakably a slot, greppable, and safe to search-and-replace across a whole page.
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [Google Style: Placeholders](https://developers.google.com/style/placeholders)
+
+### Consistent Currency Formatting
+
+**ID:** `content-currency-formatting`
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Pick 0 or 2 decimal places for a given context and apply it to every amount, never mixing the two
+
+> Consistent currency formatting. In any given context, display currency with either 0 or 2 decimal places, never mix both.
+
+A column that reads $12, $8.50, $1,204, $99.00 forces the eye to re-parse each row: the decimal point lands in a different place every time, so the digits no longer line up and the magnitudes stop being comparable at a glance. Choose the precision the context needs — whole dollars for a pricing page, cents for an invoice — and format every amount that way, including the round ones. Pair the choice with tabular figures and right alignment so the decimal separators stack into a single vertical line.
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [Microsoft Style: Numbers](https://learn.microsoft.com/en-us/style-guide/numbers)
+- [Google Style: Numbers](https://developers.google.com/style/numbers)
+
+### Default to Positive Language
+
+**ID:** `content-positive-language`
+**Source:** Vercel (https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md)
+
+Frame messages around what can be done next rather than what the person did wrong
+
+> Default to positive language. Frame messages in an encouraging, problem-solving way, even for errors.
+
+This is about framing and tone, not content: the separate rule on actionable errors says the message must include the fix, while this one says the sentence around that fix must not read as an accusation. "You failed to upload" and "Operation aborted" blame the reader and describe a dead end, which is both unpleasant and useless. Same facts, constructive frame: name what happened without a culprit, then point forward. Positive framing is not vagueness — stay specific about the cause and the limit, just drop the "you failed", the "invalid", and the "aborted".
+
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
+- [Google Style: Tone and Voice](https://developers.google.com/style/tone)
+- [NN/g: Error Message Guidelines](https://www.nngroup.com/articles/error-message-guidelines/)
 
 ---
 

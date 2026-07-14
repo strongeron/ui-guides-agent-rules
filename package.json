@@ -2,7 +2,7 @@
   "name": "ui-guides",
   "private": true,
   "version": "1.0.0",
-  "description": "Vercel's Web Interface Guidelines, made interactive — 200 principles with good/bad examples and agent-ready rules.",
+  "description": "Web interface guidelines, made interactive — 300 principles with good/bad examples and agent-ready rules.",
   "homepage": "https://ui-guides.netlify.app",
   "type": "module",
   "scripts": {
@@ -88,5 +88,10 @@
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2",
     "vitest": "^4.0.17"
+  },
+  "author": "Gleb Stroganov <strongeron@evilmartians.com> (https://glebstroganov.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strongeron/ui-guides.git"
   }
 }

@@ -7,6 +7,7 @@ import { SourcesPage } from './components/SourcesPage';
 import { CodeHikeDemo } from './components/CodeHikeDemo';
 import { CommandPalette } from './components/CommandPalette';
 import { SkipLink } from './components/SkipLink';
+import { Footer } from './components/Footer';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { principles } from './data/principles';
 import type { PatternSource } from './types/principle';
@@ -213,6 +214,7 @@ function App() {
         ) : (
           <PrincipleView principle={currentPrinciple} />
         )}
+        <Footer />
       </main>
 
       {!showCodeHikeDemo && !showSources && (
