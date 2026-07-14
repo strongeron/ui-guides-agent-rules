@@ -1539,6 +1539,69 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Animate a wrapper rather than the text node when scaling — re-rasterizing glyphs at fractional sizes makes strokes crawl and can flip sub-pixel anti-aliasing to grayscale mid-flight, and one wrapper transform keeps the lockup scaling as a single object. If artifacts persist, promote the wrapper with `translateZ(0)` or `will-change: transform` and release it when the transition ends (blanket promotion is still wrong — see `performance-gpu-translatez`).',
     codeExample: '.title-wrap { will-change: transform; transform: scale(0.96); }\n.title-wrap.is-in { transform: scale(1); } /* drop will-change on transitionend */'
+  },
+  'interactions-focus-not-obscured': {
+    priority: 'MUST',
+    rule: 'Reserve sticky header/footer height on the scroll container with `scroll-padding-block` (or `scroll-margin-top` on the items) so a newly focused element is never *entirely* hidden under fixed chrome — WCAG SC 2.4.11 Focus Not Obscured (Minimum), Level AA. A focus ring painted behind a sticky bar is worth as much as no ring at all.',
+    codeExample: '.scroller { scroll-padding-block: 4rem 3rem; } /* sticky header 4rem, footer 3rem */'
+  },
+  'interactions-drag-alternative': {
+    priority: 'MUST',
+    rule: 'Every drag must have a single-pointer alternative that reaches the same outcome without travel — ↑/↓ buttons on each row, a "Move to…" menu, or arrow-key handling on a focused grip. WCAG SC 2.5.7 Dragging Movements (AA); keep the drag as an accelerator. Only genuinely essential drags (signature pad, free-form canvas, map pan) are exempt.'
+  },
+  'interactions-gesture-alternative': {
+    priority: 'MUST',
+    rule: 'Any multipoint or path-based gesture (swipe, pinch, two-finger rotate, traced path) needs a discrete single-pointer control beside it — Prev/Next buttons, real pagination dot buttons, +/− zoom, arrow keys on the focused region. WCAG SC 2.5.1 Pointer Gestures, Level A. A drawing canvas is essential; a carousel never is.'
+  },
+  'interactions-pointer-cancellation': {
+    priority: 'MUST',
+    rule: 'Preview on down, COMMIT on up: the down-event may arm, highlight, reveal, or open a menu (all reversible — that is why opening dropdowns on `mousedown` is fine), but destructive/irreversible functions (delete, submit, purchase, send, publish) must complete on the up-event on the same element, so sliding off before release aborts them. WCAG SC 2.5.2 Pointer Cancellation, Level A — `click` gives you this for free; if you truly must act on down, ship an undo instead.'
+  },
+  'interactions-hover-content-persistence': {
+    priority: 'MUST',
+    rule: 'Hover/focus popups must be DISMISSIBLE (Escape hides it without moving pointer or focus), HOVERABLE (the pointer can travel into the content and stay there — bridge the trigger/card gap with wrapper padding, not a margin) and PERSISTENT (no auto-hide timer; it stays until the trigger is left, the user dismisses it, or the info goes stale). WCAG SC 1.4.13 Content on Hover or Focus, Level AA.'
+  },
+  'content-text-spacing-override': {
+    priority: 'MUST',
+    rule: 'Text containers must survive user-applied `line-height: 1.5`, `letter-spacing: 0.12em`, `word-spacing: 0.16em` and 2× paragraph spacing with no loss of content — WCAG SC 1.4.12 Text Spacing, Level AA. The failure is the box, not the type: fixed `height` + `overflow: hidden` slices the last line off. Size with `min-height` and padding, let flex/grid tracks size to content, and never clip text you mean to be read.',
+    codeExample: '/* clips at 1.5 line-height */ .card { height: 96px; overflow: hidden; }\n/* grows with the user\'s spacing */ .card { min-height: 96px; padding-block: 12px; }'
+  },
+  'forms-redundant-entry': {
+    priority: 'MUST',
+    rule: 'Within one process (checkout, signup, application), never ask for information the user already entered: auto-populate it, or make it selectable — a "same as shipping" checkbox, a dropdown of addresses already given, or the value shown next to the field. WCAG SC 3.3.7 Redundant Entry, Level A. Browser autofill does NOT satisfy it (that is SC 1.3.5); "re-enter your email to confirm" is the classic violation. Exceptions are narrow: essential re-entry, security, or stale data.'
+  },
+  'design-non-text-contrast': {
+    priority: 'MUST',
+    rule: 'Anything non-text that identifies a component or its state — input outlines, unchecked checkboxes, an off toggle, an icon-only glyph, focus indicators — and any part of a graphic needed to understand the content must hit **3:1** against adjacent colors (the text bar of 4.5:1 does not apply here). WCAG SC 1.4.11 Non-text Contrast, Level AA. A 1.2:1 hairline border on a white card is the common fail. Disabled components and unrestyled browser chrome are exempt; re-measure in dark mode, where alpha borders collapse.'
+  },
+  'interactions-aria-composite-tab-stop': {
+    priority: 'MUST',
+    rule: 'A composite widget (toolbar, listbox, menu, radiogroup, tablist, grid, tree) is ONE tab stop: roving `tabindex` — exactly one child at `0`, every other child at `-1` — with arrow keys moving the `0` and calling `.focus()`, and Tab moving past the whole widget. Twelve children must not be twelve tab stops. (Distinct from positive `tabindex`: here every value is `0` or `-1`; the bug is how many are `0`.)',
+    codeExample: '<button tabIndex={i === activeIndex ? 0 : -1} onKeyDown={onArrows} />\n// ArrowRight: setActiveIndex(i + 1); itemRefs[i + 1].current.focus();'
+  },
+  'interactions-aria-activedescendant': {
+    priority: 'SHOULD',
+    rule: 'Default to roving `tabindex` (real DOM focus buys you scroll-into-view, the focus ring and focus events); reach for `aria-activedescendant` only where DOM focus must STAY in a text input — combobox, editable grid cell, tag input — because the moment focus leaves the `<input>` keystrokes stop landing, the caret vanishes, an IME composition dies mid-word and the mobile keyboard drops. Its costs are yours: stable `id` per option, style the active option yourself (it has no `:focus`), and `scrollIntoView({ block: "nearest" })` by hand.',
+    codeExample: '<input role="combobox" aria-controls="lb" aria-activedescendant={activeId} />\n<ul id="lb" role="listbox"><li id="opt-2" role="option" aria-selected /></ul>'
+  },
+  'interactions-aria-hidden-focusable': {
+    priority: 'NEVER',
+    rule: 'Put `aria-hidden="true"` (or `role="presentation"`) on a visible focusable element or a subtree that is still tabbable — it strips the a11y tree but NOT the tab order, so focus walks into a ghost: the ring travels off screen and the screen reader announces nothing. Use `inert` on the container (removes it from tab order, a11y tree and hit-testing at once) or unmount it.',
+    codeExample: '// ghost: <div aria-hidden="true" className="opacity-0"><button>Close</button></div>\n<div inert={!open} className="opacity-0"><button>Close</button></div>'
+  },
+  'interactions-aria-disabled-vs-disabled': {
+    priority: 'MUST',
+    rule: 'Use `aria-disabled="true"` — not HTML `disabled` — for unavailable menu items, toolbar buttons, tabs, tree items and listbox options: `disabled` drops them out of the tab order and the arrow-key sequence, so users never discover the option exists. `aria-disabled` only changes the announcement, so YOUR handler must make activation a no-op. Keep HTML `disabled` for form controls whose state is already inferable from context.',
+    codeExample: '<li role="menuitem" tabIndex={-1} aria-disabled="true"\n    onClick={(e) => { if (isDisabled) return; run(); }}>Move to…</li>'
+  },
+  'layout-aria-landmarks': {
+    priority: 'MUST',
+    rule: 'Put all perceivable content inside a landmark, built from the native elements (`<header>` banner, `<nav>`, `<main>`, `<aside>`, `<footer>` contentinfo) rather than roles on divs — a div soup gives the screen-reader rotor nothing to jump to. Give each DUPLICATE landmark a unique `aria-label` (or `aria-labelledby` on its heading), and never put the role name in the label: "Site Navigation" announces as "Site Navigation navigation" — label it "Primary" and "Breadcrumb".',
+    codeExample: '<nav aria-label="Primary">…</nav>\n<nav aria-label="Breadcrumb">…</nav>'
+  },
+  'content-aria-label-overrides-visible-text': {
+    priority: 'NEVER',
+    rule: 'Give a control an `aria-label` that contradicts or omits its visible text — on any role that names from child content, `aria-label` REPLACES that text, so `<button aria-label="Submit form">Save</button>` answers only to "Submit form" and a voice-control user saying "click Save" hits nothing (WCAG SC 2.5.3 Label in Name, Level A requires the accessible name to contain the visible string). Name from child content; use `aria-labelledby` to point at visible text elsewhere; reserve `aria-label` for controls with no visible text. Extending is fine — `aria-label="Save draft"` on a button reading "Save".'
   }
 };
 

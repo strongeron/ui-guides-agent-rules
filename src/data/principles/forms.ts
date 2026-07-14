@@ -359,4 +359,20 @@ export const formsPrinciples: Principle[] = [
     badExampleKey: 'forms-no-password-manager-nonauth-bad',
     goodExampleKey: 'forms-no-password-manager-nonauth-good',
   },
+  {
+    id: 'forms-redundant-entry',
+    category: 'forms',
+    source: 'wcag',
+    title: 'No Redundant Entry',
+    description: 'Never ask for the same information twice in one process: auto-populate it, or let the user select it',
+    sourceQuote: 'Information previously entered by or provided to the user that is required to be entered again in the same process is either: auto-populated, or available for the user to select. Except when: re-entering the information is essential, the information is required to ensure the security of the content, or previously entered information is no longer valid.',
+    additionalExplanation: 'SC 3.3.7 Redundant Entry (Level A, WCAG 2.2) is about a single process — one checkout, one signup, one application — not about sessions. That is what separates it from forms-autocomplete, which is about the autocomplete attribute and browser autofill across visits (SC 1.3.5 Identify Input Purpose). The Understanding document is explicit that browser autofill does not satisfy this criterion: the content itself must carry the value forward. So a step-2 billing form that is an empty duplicate of the step-1 shipping form fails, even if every field is perfectly marked up for autofill. Satisfy it by auto-populating the second form, or by making the value available to select — a "same as shipping" checkbox, a dropdown of addresses already entered, or the value visibly printed next to the field so it can be copied. "Re-enter your email to confirm" is the classic violation: it exists to catch typos, but the previous value is right there on the page, so show it instead of demanding it again. The exceptions are narrow: re-entry that is essential (a password, a memory test), security-required re-entry, or data that has gone stale.',
+    sourceLinks: [
+      { text: 'Understanding SC 3.3.7: Redundant Entry', url: 'https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html' },
+      { text: 'Understanding SC 1.3.5: Identify Input Purpose', url: 'https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html' },
+    ],
+    tags: ['a11y', 'forms'],
+    badExampleKey: 'forms-redundant-entry-bad',
+    goodExampleKey: 'forms-redundant-entry-good',
+  },
 ];

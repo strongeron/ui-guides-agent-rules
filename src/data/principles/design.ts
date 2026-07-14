@@ -699,4 +699,20 @@ export const designPrinciples: Principle[] = [
     badExampleKey: 'design-text-antialiasing-transforms-bad',
     goodExampleKey: 'design-text-antialiasing-transforms-good',
   },
+  {
+    id: 'design-non-text-contrast',
+    category: 'design',
+    source: 'wcag',
+    title: 'Non-Text Contrast (3:1)',
+    description: 'Give control boundaries, states, and meaningful graphics at least 3:1 contrast against adjacent colors',
+    sourceQuote: 'The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): User Interface Components — visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; Graphical Objects — parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.',
+    additionalExplanation: 'Every other contrast rule here is about text: design-rams-color-contrast and design-rams-text-contrast enforce the 4.5:1 WCAG text floor, design-minimum-contrast applies APCA Lc values to type, and content-impeccable-dark-mode-text-compensation is about text weight in dark themes. None of them sets any floor for the parts of a control that are not text — an input outline, an unchecked checkbox, a toggle in its off state, the glyph in an icon-only button, a focus indicator, or the line in a chart that carries the data. design-crisp-borders is an aesthetic rule about hairline edges and carries no ratio at all. SC 1.4.11 Non-text Contrast (Level AA) is that missing floor: 3:1 against adjacent colors, for anything required to identify a component or its state, and for any part of a graphic required to understand the content. The common failure is a 1.2:1 hairline border on a white card — the field is still readable, but nothing tells you it is a field. Note the exceptions: inactive (disabled) components are exempt, as is browser-default chrome you have not restyled. Measure boundaries against what is actually behind them, and re-measure in dark mode, where alpha-based borders collapse.',
+    sourceLinks: [
+      { text: 'Understanding SC 1.4.11: Non-text Contrast', url: 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html' },
+      { text: 'Understanding SC 1.4.3: Contrast (Minimum)', url: 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html' },
+    ],
+    tags: ['a11y', 'color'],
+    badExampleKey: 'design-non-text-contrast-bad',
+    goodExampleKey: 'design-non-text-contrast-good',
+  },
 ];

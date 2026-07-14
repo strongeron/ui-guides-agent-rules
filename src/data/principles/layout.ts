@@ -303,4 +303,20 @@ export const layoutPrinciples: Principle[] = [
     badExampleKey: 'layout-interface-screen-grounding-bad',
     goodExampleKey: 'layout-interface-screen-grounding-good',
   },
+  {
+    id: 'layout-aria-landmarks',
+    category: 'layout',
+    source: 'aria',
+    title: 'Landmark Regions',
+    description: 'Put all perceivable content inside a landmark, use the native sectioning elements, and label duplicates',
+    sourceQuote: 'Including all perceivable content on a page in one of its landmark regions and giving each landmark region a semantically meaningful role is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs. [...] If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label. [...] Do not use the landmark role as part of the label. For example, a navigation landmark with a label "Site Navigation" will be announced by a screen reader as "Site Navigation Navigation". The label should simply be "Site".',
+    additionalExplanation: 'Landmarks are the structural layer of a page, and nothing else in this corpus covers them. layout-interface-screen-grounding is about visible wayfinding chrome — a sidebar, breadcrumbs, user context — which is a different substance: you can build all of it out of divs and still ship a page with zero landmarks. Screen readers expose a landmark rotor as the primary way to jump around a page; a div soup produces an empty rotor, so the only way to reach the main content is to walk every node from the top. Four rules cover it. First, every perceivable region belongs to a landmark. Second, use the native elements — header (banner at body scope), nav (navigation), main (main), aside (complementary), footer (contentinfo at body scope) — rather than role attributes on divs. Third, when a landmark type appears more than once, give each instance a unique label with aria-label, or aria-labelledby pointing at its heading; two unlabelled navs are indistinguishable in the rotor. Fourth, keep the role name out of the label: the role is announced already, so "Site Navigation" becomes "Site Navigation navigation". Label it "Primary" and "Breadcrumb", not "Primary Navigation".',
+    sourceLinks: [
+      { text: 'APG: Landmark Regions', url: 'https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/' },
+      { text: 'MDN: <nav>', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav' },
+    ],
+    tags: ['a11y', 'layout'],
+    badExampleKey: 'layout-aria-landmarks-bad',
+    goodExampleKey: 'layout-aria-landmarks-good',
+  },
 ];

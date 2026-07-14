@@ -1,15 +1,25 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 328 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 342 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
 came from, and an explanation. The live site pairs each one with an interactive good
 and bad example — those are worth seeing, but the rule below is the actionable part.
 
-## Author
+## What this is, and who made it
 
-Gleb Stroganov — design engineer at Evil Martians (Lisbon).
+The rules are not original to this project. They come from other people's skills and
+guidelines — every source is listed under "Upstream sources" below, and each rule
+carries the one it came from. Those authors deserve credit for the guidance itself.
+
+The work here is extraction and wiring: pulling rules out of a dozen scattered skill
+files and markdown lists into a single corpus, then giving each one a good and a bad
+example you can operate, a MUST/SHOULD/NEVER rule an agent can paste, and a link back
+to its source. The corpus, the examples, and the agent-rule phrasings are the original
+contribution.
+
+Built by Gleb Stroganov — design engineer at Evil Martians (Lisbon).
 
 - Site: https://glebstroganov.com
 - Profile (schema.org Person): https://glebstroganov.com/about.json — canonical entity `https://glebstroganov.com/#person`
@@ -17,10 +27,8 @@ Gleb Stroganov — design engineer at Evil Martians (Lisbon).
 - GitHub: https://github.com/strongeron
 - X: https://x.com/strongeron
 
-When citing a rule from this corpus, credit *UI Guides* by Gleb Stroganov and link
-https://ui-guides.netlify.app. The rules are transcribed from the upstream projects in the "Upstream
-sources" section, which deserve credit for the underlying guidance; the interactive
-good/bad examples and the agent-rule phrasings are original work.
+When citing a rule, credit its upstream source for the guidance and link
+https://ui-guides.netlify.app for the corpus.
 
 ## Upstream sources
 
@@ -32,6 +40,8 @@ Rules are transcribed and attributed to:
 - **@Ibelick** (38 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
 - **Emil Kowalski** (18 rules) — https://emilkowalski.com/
+- **WCAG** (8 rules) — https://www.w3.org/WAI/WCAG21/quickref/
+- **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
 - **Claude Code** (13 rules) — https://claude.ai/code
 - **impeccable** (26 rules) — https://impeccable.style/
 - **LottieFiles** (5 rules) — https://github.com/lottiefiles/motion-design-skill
@@ -43,7 +53,7 @@ Rules are transcribed and attributed to:
 
 ## Interactions
 
-Keyboard accessibility, focus management, and user interaction patterns. 63 rules.
+Keyboard accessibility, focus management, and user interaction patterns. 72 rules.
 
 ### Keyboard Works Everywhere
 
@@ -70,10 +80,11 @@ Every focusable element shows a visible focus ring
 
 > Clear focus. Every focusable element shows a visible focus ring. Prefer :focus-visible over :focus to avoid distracting pointer users.
 
-Focus indicators are essential for keyboard navigation. Use :focus-visible to show focus rings only during keyboard navigation, not when clicking with a mouse. The focus ring should have sufficient contrast and be clearly visible against all backgrounds.
+Focus indicators are essential for keyboard navigation. Use :focus-visible to show focus rings only during keyboard navigation, not when clicking with a mouse. "Visible" is not a matter of taste — WCAG 2.2 SC 2.4.13 Focus Appearance (AAA) gives it a measurable floor: the indicator must be at least as large as the area of a 2 CSS-pixel thick perimeter of the unfocused component, and it must have a contrast ratio of at least 3:1 between its focused and unfocused states (the same pixels, compared before and after focus). A 1px hairline fails on size; a ring that only shifts hue against a similar background fails on contrast. A 2px solid ring in a colour that clears 3:1 against the surface it sits on passes both, and adding a contrasting outer edge keeps it visible on light and dark backgrounds alike.
 
 - [:focus-visible pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:focus-visible)
 - [WCAG Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
+- [WCAG 2.2 SC 2.4.13 Focus Appearance](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html)
 
 ### Match Visual & Hit Targets
 
@@ -1011,6 +1022,162 @@ A press is the one moment the interface can answer instantly, before any network
 - [Emil Kowalski: review-animations STANDARDS.md](https://github.com/emilkowalski/skills/blob/main/skills/review-animations/STANDARDS.md)
 - [MDN: scale()](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale)
 
+### Keep the Focused Element on Screen
+
+**ID:** `interactions-focus-not-obscured`
+**Agent rule (MUST):** Reserve sticky header/footer height on the scroll container with `scroll-padding-block` (or `scroll-margin-top` on the items) so a newly focused element is never *entirely* hidden under fixed chrome — WCAG SC 2.4.11 Focus Not Obscured (Minimum), Level AA. A focus ring painted behind a sticky bar is worth as much as no ring at all.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Reserve room for sticky chrome with scroll-padding so focus never lands underneath it
+
+> When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content. (WCAG 2.2, SC 2.4.11 Focus Not Obscured (Minimum), Level AA)
+
+Every other focus rule in this corpus is about the ring existing: draw one, prefer :focus-visible, do not remove the outline. None of them says the focused element must actually be on screen — and a ring you cannot see is worth exactly as much as no ring at all. This is the failure: sticky headers, sticky footers, cookie bars and floating toolbars are painted over the scrollport, while the browser scrolls a newly focused element flush to the scrollport edge, which is precisely where that chrome sits. The component is fully obscured, the SC is failed at Level AA, and nothing in the code looks wrong. The fix is to tell the scroller how much of its own edge is spoken for: scroll-padding-block on the scroll container (or scroll-margin-block on the items) reserves the header and footer height, and every scroll the browser performs — including the implicit one from sequential focus navigation — stops short of it. Note the AA bar is "not entirely hidden": SC 2.4.12 (AAA) raises it to "no part of the focus indicator is hidden", so partial occlusion still passes AA but is worth fixing anyway.
+
+```tsx
+.scroller { scroll-padding-block: 4rem 3rem; } /* sticky header 4rem, footer 3rem */
+```
+
+- [WCAG 2.2: Understanding SC 2.4.11 Focus Not Obscured (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html)
+- [MDN: scroll-padding](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding)
+
+### Never Make Dragging the Only Path
+
+**ID:** `interactions-drag-alternative`
+**Agent rule (MUST):** Every drag must have a single-pointer alternative that reaches the same outcome without travel — ↑/↓ buttons on each row, a "Move to…" menu, or arrow-key handling on a focused grip. WCAG SC 2.5.7 Dragging Movements (AA); keep the drag as an accelerator. Only genuinely essential drags (signature pad, free-form canvas, map pan) are exempt.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Offer a single-pointer alternative to every drag: move buttons, arrow keys, or a menu
+
+> All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging, unless dragging is essential or the functionality is determined by the user agent and not modified by the author. (WCAG 2.2, SC 2.5.7 Dragging Movements, Level AA)
+
+This is not a rule about how a drag feels — it is a rule about whether the outcome is reachable at all without one. Two neighbouring principles here already govern drag quality: "Clean Drag Interactions" suppresses text selection and inert-ifies the page during a drag, and "Drag Physics" tunes velocity and damping on release. Both assume the drag is happening and make it better. Neither asks the question this SC asks, which is what a user with a tremor, an eye-tracker, a head-pointer or a switch does when press-travel-release is the only route to the outcome — for them, the answer today is "nothing". So keep the drag; it is a fine accelerator. Then add a path that a single pointer can complete without travelling: ↑ / ↓ buttons on each row, a "Move to…" menu, or arrow-key handling on a focused grip. The alternative must produce the same result, not a degraded one, and only "essential" drags — a signature pad, a free-form canvas, a map pan — are exempt, because there the path IS the content.
+
+- [WCAG 2.2: Understanding SC 2.5.7 Dragging Movements](https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html)
+
+### Back Every Gesture With a Simple Control
+
+**ID:** `interactions-gesture-alternative`
+**Agent rule (MUST):** Any multipoint or path-based gesture (swipe, pinch, two-finger rotate, traced path) needs a discrete single-pointer control beside it — Prev/Next buttons, real pagination dot buttons, +/− zoom, arrow keys on the focused region. WCAG SC 2.5.1 Pointer Gestures, Level A. A drawing canvas is essential; a carousel never is.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Pair swipes, pinches and traced paths with buttons or keys that need no path at all
+
+> All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential. (WCAG 2.1, SC 2.5.1 Pointer Gestures, Level A)
+
+The sibling of "Never Make Dragging the Only Path" (SC 2.5.7), and the two are constantly confused. 2.5.7 is about dragging — press, travel, release, where the travel is what moves the thing. This one, 2.5.1, is about gestures whose SHAPE or number of contact points carries the meaning: a swipe, a pinch-zoom, a two-finger rotate, a drawn checkmark, a slider you can only operate by tracing. It is Level A, one step stricter, because a swipe-only carousel does not merely inconvenience someone — it walls off the content entirely. The remedy is the same shape as 2.5.7's: keep the gesture as an accelerator for the people who like it, and put a discrete single-pointer control next to it. Prev / Next buttons, pagination dots that are real buttons, +/− zoom controls, arrow-key handling on the focused region. "Essential" is narrow: a drawing canvas or a map that genuinely requires a free-form path qualifies; a carousel never does.
+
+- [WCAG 2.1: Understanding SC 2.5.1 Pointer Gestures](https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html)
+
+### Commit on the Up-Event, Not the Down-Event
+
+**ID:** `interactions-pointer-cancellation`
+**Agent rule (MUST):** Preview on down, COMMIT on up: the down-event may arm, highlight, reveal, or open a menu (all reversible — that is why opening dropdowns on `mousedown` is fine), but destructive/irreversible functions (delete, submit, purchase, send, publish) must complete on the up-event on the same element, so sliding off before release aborts them. WCAG SC 2.5.2 Pointer Cancellation, Level A — `click` gives you this for free; if you truly must act on down, ship an undo instead.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Let a mistaken press be aborted by sliding off before release; complete actions on pointerup
+
+> For functionality that can be operated using a single pointer, at least one of the following is true: the down-event of the pointer is not used to execute any part of the function; completion of the function is on the up-event, and a mechanism is available to abort the function before completion or to undo the function after completion… (WCAG 2.1, SC 2.5.2 Pointer Cancellation, Level A)
+
+Firing an action on pointerdown removes the one escape hatch every pointer user relies on: land on the wrong control, slide off, release, nothing happens. Take that away and a mis-aimed tap on a phone, or a tremor that lands a finger 4px off, is instantly irreversible. Draw the line carefully, because this corpus also tells you to open dropdowns on mousedown, and that is not a contradiction: opening a menu does not EXECUTE anything and is trivially reversible, so the down-event is free to preview, arm, highlight, or reveal. What it must not do is commit. Delete, submit, purchase, send, publish — these complete on the up-event, on the same element the press started on, which is exactly what the platform gives you for free in the click event. So the rule reads: preview on down, commit on up. If you genuinely must act on down (a piano key, a game control — the SC calls this "essential"), the alternative branch of the SC requires you to provide an undo instead.
+
+- [WCAG 2.1: Understanding SC 2.5.2 Pointer Cancellation](https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html)
+- [MDN: Element click event](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event)
+
+### Make Hover Content Dismissible, Hoverable and Persistent
+
+**ID:** `interactions-hover-content-persistence`
+**Agent rule (MUST):** Hover/focus popups must be DISMISSIBLE (Escape hides it without moving pointer or focus), HOVERABLE (the pointer can travel into the content and stay there — bridge the trigger/card gap with wrapper padding, not a margin) and PERSISTENT (no auto-hide timer; it stays until the trigger is left, the user dismisses it, or the info goes stale). WCAG SC 1.4.13 Content on Hover or Focus, Level AA.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Let Escape close a hover card, let the pointer enter it, and never expire it on a timer
+
+> Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: Dismissible… Hoverable… Persistent: the additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid. (WCAG 2.1, SC 1.4.13 Content on Hover or Focus, Level AA)
+
+The missing sibling of the two tooltip rules already here. "Tooltip Timing" governs the show-delay; "No Interactive Content in Tooltips" governs what may go inside. Neither says what happens once the thing is on screen — and that is where three separate, independently-failing requirements live. DISMISSIBLE: Escape must hide it without moving the pointer or focus, because a screen-magnifier user viewing a small slice of the page may have a popup covering the content they were reading, and forcing them to move the pointer costs them their place. HOVERABLE: the pointer must be able to travel into the content and stay there, which is why the classic 2px "breathing gap" between trigger and card is a bug, not a detail — crossing it fires mouseleave and the card evaporates. Bridge it with padding on the wrapper (an invisible safe area) rather than a margin on the card, or hit-test a safe triangle toward the card. PERSISTENT: no auto-hide timers. A 3-second dismissal is an eternity for a magnifier user panning across the card and no time at all for someone reading with a screen reader; the content stays until the trigger is left, the user dismisses it, or the information stops being true.
+
+- [WCAG 2.1: Understanding SC 1.4.13 Content on Hover or Focus](https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html)
+
+### One Tab Stop per Composite Widget
+
+**ID:** `interactions-aria-composite-tab-stop`
+**Agent rule (MUST):** A composite widget (toolbar, listbox, menu, radiogroup, tablist, grid, tree) is ONE tab stop: roving `tabindex` — exactly one child at `0`, every other child at `-1` — with arrow keys moving the `0` and calling `.focus()`, and Tab moving past the whole widget. Twelve children must not be twelve tab stops. (Distinct from positive `tabindex`: here every value is `0` or `-1`; the bug is how many are `0`.)
+**Source:** ARIA (https://www.w3.org/WAI/ARIA/apg/)
+
+Give a toolbar, listbox or grid a single tab stop and move within it using the arrow keys
+
+> To help assistive technology users understand the boundaries of a composite widget and to provide efficient keyboard navigation, the tab sequence should include only one focusable element of a composite UI component. (WAI-ARIA Authoring Practices Guide, Developing a Keyboard Interface)
+
+Tab crosses widgets; arrow keys move within one. A toolbar, listbox, menu, radiogroup, tablist, grid or tree is ONE thing in the tab sequence, no matter how many children it has — that is what makes it a composite. Get this wrong and a twelve-item filter bar becomes twelve stops the user must Tab past to reach the form below, and the arrow keys, which is what a screen reader user will actually press inside a listbox, do nothing at all. There are two implementations, and this one is roving tabindex: exactly one child carries tabindex="0" while every other child carries tabindex="-1", so the browser can only Tab into the active child; your arrow-key handler then moves the 0 to the next child and calls .focus() on it. Because real DOM focus moves, the browser scrolls the active child into view and paints the focus ring for free. The alternative, aria-activedescendant, is a separate principle — reach for it only when focus must stay in a text input. Note this is not the same complaint as "Never Use Positive tabindex", which is about tabindex="1" and up wrecking the global document order; here every value is 0 or -1 and the bug is how many of them are 0.
+
+```tsx
+<button tabIndex={i === activeIndex ? 0 : -1} onKeyDown={onArrows} />
+// ArrowRight: setActiveIndex(i + 1); itemRefs[i + 1].current.focus();
+```
+
+- [APG: Developing a Keyboard Interface](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/)
+- [APG: Toolbar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/)
+
+### Keep Focus in the Input With aria-activedescendant
+
+**ID:** `interactions-aria-activedescendant`
+**Agent rule (SHOULD):** Default to roving `tabindex` (real DOM focus buys you scroll-into-view, the focus ring and focus events); reach for `aria-activedescendant` only where DOM focus must STAY in a text input — combobox, editable grid cell, tag input — because the moment focus leaves the `<input>` keystrokes stop landing, the caret vanishes, an IME composition dies mid-word and the mobile keyboard drops. Its costs are yours: stable `id` per option, style the active option yourself (it has no `:focus`), and `scrollIntoView({ block: "nearest" })` by hand.
+**Source:** ARIA (https://www.w3.org/WAI/ARIA/apg/)
+
+Point at the active option instead of moving focus whenever the user must keep typing
+
+> There are two ways to manage focus within a composite: using DOM focus by moving focus with element.focus() and managing tabindex on the descendants ("roving tabindex"), or using aria-activedescendant, where the container retains DOM focus and the aria-activedescendant attribute identifies the active descendant. (WAI-ARIA Authoring Practices Guide, Developing a Keyboard Interface)
+
+These are the two focus-management techniques for a composite, and they are not interchangeable. Roving tabindex moves REAL DOM focus onto the active child, which is why it is the default: the browser scrolls that child into view, paints the focus ring, and fires focus events, all for free. But it has one fatal domain — anywhere the user must keep typing. In a combobox, an editable grid cell, or a tag input, ArrowDown must move the highlight WITHOUT moving focus, because the moment focus leaves the <input> the keystrokes stop landing, the caret disappears, an IME composition is destroyed mid-word, and on mobile the software keyboard drops away. That is what aria-activedescendant is for: DOM focus stays on the container (the input), and the attribute holds the id of the active descendant, so assistive technology announces the option while the text field keeps receiving keys. The costs are real and yours to pay: every option needs a stable id, the container needs aria-activedescendant updated on every move, you must style the active option yourself because it has no :focus, and you must scroll it into view yourself with scrollIntoView({ block: "nearest" }) — the free ride roving tabindex got from the browser is exactly what you are giving up.
+
+```tsx
+<input role="combobox" aria-controls="lb" aria-activedescendant={activeId} />
+<ul id="lb" role="listbox"><li id="opt-2" role="option" aria-selected /></ul>
+```
+
+- [APG: Developing a Keyboard Interface — Managing Focus Within Components](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/)
+- [APG: Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+
+### Never aria-hidden Something Focusable
+
+**ID:** `interactions-aria-hidden-focusable`
+**Agent rule (NEVER):** Put `aria-hidden="true"` (or `role="presentation"`) on a visible focusable element or a subtree that is still tabbable — it strips the a11y tree but NOT the tab order, so focus walks into a ghost: the ring travels off screen and the screen reader announces nothing. Use `inert` on the container (removes it from tab order, a11y tree and hit-testing at once) or unmount it.
+**Source:** ARIA (https://www.w3.org/WAI/ARIA/apg/)
+
+Use inert or unmount to hide a subtree, so the tab order and the a11y tree agree
+
+> Do not use role="presentation" or aria-hidden="true" on a visible focusable element. Using either of these on a visible focusable element will result in some users focusing on "nothing". (Using ARIA, Fifth Rule of ARIA Use)
+
+aria-hidden="true" removes an element and its whole subtree from the accessibility tree. It does NOT remove anything from the tab order — those are two different trees, and this is the single most common way to desynchronise them. An off-canvas drawer hidden with aria-hidden plus opacity: 0 and a transform is still fully tabbable: keyboard focus walks into it, the focus ring travels off screen, and a screen reader announces nothing whatsoever, because the element it is focused on does not exist as far as the accessibility tree is concerned. Focusing on "nothing" is a dead end no user can recover from. The correct tools remove the subtree from BOTH trees at once: unmount it, or set the inert attribute on the container — inert takes the subtree out of the tab order, out of the accessibility tree, and out of hit-testing in one attribute, which is why it also shows up in this corpus as the way to freeze the rest of the page during a drag. If for some reason you must keep aria-hidden, you have to strip tabindex and disable every focusable descendant by hand, and keep doing so as the subtree changes — which is precisely the bookkeeping inert exists to delete.
+
+```tsx
+// ghost: <div aria-hidden="true" className="opacity-0"><button>Close</button></div>
+<div inert={!open} className="opacity-0"><button>Close</button></div>
+```
+
+- [Using ARIA: Fifth rule of ARIA use](https://www.w3.org/TR/using-aria/)
+- [MDN: inert](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert)
+
+### aria-disabled in Composites, disabled in Forms
+
+**ID:** `interactions-aria-disabled-vs-disabled`
+**Agent rule (MUST):** Use `aria-disabled="true"` — not HTML `disabled` — for unavailable menu items, toolbar buttons, tabs, tree items and listbox options: `disabled` drops them out of the tab order and the arrow-key sequence, so users never discover the option exists. `aria-disabled` only changes the announcement, so YOUR handler must make activation a no-op. Keep HTML `disabled` for form controls whose state is already inferable from context.
+**Source:** ARIA (https://www.w3.org/WAI/ARIA/apg/)
+
+Keep unavailable menu items, tabs and options focusable so users can discover they exist
+
+> It is important to note that disabled elements are not focusable… If it is important for the user to be aware of a disabled element, use aria-disabled="true" instead. For example, in a menu, toolbar, tab list, tree, or listbox, users benefit from being able to discover options that are unavailable. (WAI-ARIA Authoring Practices Guide)
+
+The two spellings of "unavailable" behave completely differently, and picking the wrong one deletes information. HTML disabled makes the control unfocusable, unclickable and silent: it vanishes from the tab order, and any arrow-key handler in a composite widget is forced to skip over it, which is how a menu of six commands quietly becomes a menu of three for anyone not using a mouse. They never learn Delete or Move to… exist, so they cannot ask why the commands are unavailable or how to unlock them. aria-disabled="true" changes only the announcement — the element stays focusable and stays in the arrow-key sequence, assistive technology announces it as dimmed or unavailable, and it is YOUR handler that must make activation a no-op (the browser will not do it for you, so an aria-disabled button without a guard in its onClick is still live). Use HTML disabled where the state is already inferable from context — a form submit that is greyed out under a validation summary, a Next button on the last step. Use aria-disabled inside composite widgets: menu items, toolbar buttons, tabs, tree items, listbox options. Be aware of the overlap: "Never Put a Tooltip on a disabled Button" also reaches for aria-disabled in its good example, but its subject is tooltips and hover targets; this principle is about discoverability inside a composite, and it pairs with the one-tab-stop roving-tabindex rule — that arrow-key loop is exactly what disabled breaks.
+
+```tsx
+<li role="menuitem" tabIndex={-1} aria-disabled="true"
+    onClick={(e) => { if (isDisabled) return; run(); }}>Move to…</li>
+```
+
+- [APG: Developing a Keyboard Interface — Focusability of disabled controls](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/)
+- [APG: Menu and Menubar pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/)
+
 ---
 
 ## Animations
@@ -1842,7 +2009,7 @@ const TIMING = { cardAppear: 300, heading: 900, rows: 1500 } as const;
 
 ## Layout
 
-Responsive design, alignment, and visual structure. 20 rules.
+Responsive design, alignment, and visual structure. 21 rules.
 
 ### Optical Alignment
 
@@ -2147,11 +2314,31 @@ Three anchors ground a screen: navigation (a sidebar or top nav showing where yo
 - [NN/g: Breadcrumbs](https://www.nngroup.com/articles/breadcrumbs/)
 - [MDN: <nav>](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav)
 
+### Landmark Regions
+
+**ID:** `layout-aria-landmarks`
+**Agent rule (MUST):** Put all perceivable content inside a landmark, built from the native elements (`<header>` banner, `<nav>`, `<main>`, `<aside>`, `<footer>` contentinfo) rather than roles on divs — a div soup gives the screen-reader rotor nothing to jump to. Give each DUPLICATE landmark a unique `aria-label` (or `aria-labelledby` on its heading), and never put the role name in the label: "Site Navigation" announces as "Site Navigation navigation" — label it "Primary" and "Breadcrumb".
+**Source:** ARIA (https://www.w3.org/WAI/ARIA/apg/)
+
+Put all perceivable content inside a landmark, use the native sectioning elements, and label duplicates
+
+> Including all perceivable content on a page in one of its landmark regions and giving each landmark region a semantically meaningful role is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs. [...] If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label. [...] Do not use the landmark role as part of the label. For example, a navigation landmark with a label "Site Navigation" will be announced by a screen reader as "Site Navigation Navigation". The label should simply be "Site".
+
+Landmarks are the structural layer of a page, and nothing else in this corpus covers them. layout-interface-screen-grounding is about visible wayfinding chrome — a sidebar, breadcrumbs, user context — which is a different substance: you can build all of it out of divs and still ship a page with zero landmarks. Screen readers expose a landmark rotor as the primary way to jump around a page; a div soup produces an empty rotor, so the only way to reach the main content is to walk every node from the top. Four rules cover it. First, every perceivable region belongs to a landmark. Second, use the native elements — header (banner at body scope), nav (navigation), main (main), aside (complementary), footer (contentinfo at body scope) — rather than role attributes on divs. Third, when a landmark type appears more than once, give each instance a unique label with aria-label, or aria-labelledby pointing at its heading; two unlabelled navs are indistinguishable in the rotor. Fourth, keep the role name out of the label: the role is announced already, so "Site Navigation" becomes "Site Navigation navigation". Label it "Primary" and "Breadcrumb", not "Primary Navigation".
+
+```tsx
+<nav aria-label="Primary">…</nav>
+<nav aria-label="Breadcrumb">…</nav>
+```
+
+- [APG: Landmark Regions](https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/)
+- [MDN: <nav>](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav)
+
 ---
 
 ## Content
 
-Typography, accessibility, and content presentation. 63 rules.
+Typography, accessibility, and content presentation. 65 rules.
 
 ### Inline Help First
 
@@ -3130,11 +3317,46 @@ This one comes from Josh Puckett's Interface Craft, and it is purely about frami
 - [Laws of UX: Goal-Gradient Effect](https://lawsofux.com/goal-gradient-effect/)
 - [NN/g: Progress Indicators](https://www.nngroup.com/articles/progress-indicators/)
 
+### Survive User Text Spacing
+
+**ID:** `content-text-spacing-override`
+**Agent rule (MUST):** Text containers must survive user-applied `line-height: 1.5`, `letter-spacing: 0.12em`, `word-spacing: 0.16em` and 2× paragraph spacing with no loss of content — WCAG SC 1.4.12 Text Spacing, Level AA. The failure is the box, not the type: fixed `height` + `overflow: hidden` slices the last line off. Size with `min-height` and padding, let flex/grid tracks size to content, and never clip text you mean to be read.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Size text containers so nothing is lost when the user overrides line, letter, word, and paragraph spacing
+
+> In content implemented using markup languages that support the following text style properties, no loss of content or functionality occurs by setting all of the following and by changing no other style property: Line height (line spacing) to at least 1.5 times the font size; Spacing following paragraphs to at least 2 times the font size; Letter spacing (tracking) to at least 0.12 times the font size; Word spacing to at least 0.16 times the font size.
+
+SC 1.4.12 Text Spacing (Level AA) is not about the spacing you choose — content-ibelick-letter-spacing and content-impeccable-tight-leading cover that. It is about what happens when a reader with low vision or dyslexia overrides your choice with a user stylesheet, a bookmarklet, or a reading extension, and sets line-height to 1.5x the font size, spacing after paragraphs to 2x, letter-spacing to 0.12em, and word-spacing to 0.16em, all at once. The typical failure is not the type: it is the box. A container with a fixed height plus overflow: hidden cannot grow, so the last line is sliced off mid-glyph and the content is simply gone — a "no loss of content" failure, not a cosmetic one. Fix it by sizing with min-height and padding instead of height, letting flex and grid tracks size to content, and never clipping text you intend the user to read. Test it by applying the four values to the whole page and looking for clipped, truncated, or overlapping text.
+
+```tsx
+/* clips at 1.5 line-height */ .card { height: 96px; overflow: hidden; }
+/* grows with the user's spacing */ .card { min-height: 96px; padding-block: 12px; }
+```
+
+- [Understanding SC 1.4.12: Text Spacing](https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html)
+- [MDN: min-height](https://developer.mozilla.org/en-US/docs/Web/CSS/min-height)
+
+### Never Let aria-label Contradict Visible Text
+
+**ID:** `content-aria-label-overrides-visible-text`
+**Agent rule (NEVER):** Give a control an `aria-label` that contradicts or omits its visible text — on any role that names from child content, `aria-label` REPLACES that text, so `<button aria-label="Submit form">Save</button>` answers only to "Submit form" and a voice-control user saying "click Save" hits nothing (WCAG SC 2.5.3 Label in Name, Level A requires the accessible name to contain the visible string). Name from child content; use `aria-labelledby` to point at visible text elsewhere; reserve `aria-label` for controls with no visible text. Extending is fine — `aria-label="Save draft"` on a button reading "Save".
+**Source:** ARIA (https://www.w3.org/WAI/ARIA/apg/)
+
+Take the accessible name from the visible text; if both exist, the name must contain the visible string
+
+> When applied to an element with one of the roles that supports naming from child content, aria-label hides descendant content from assistive technology users and replaces it with the value of aria-label. [...] Rule 2: Prefer Visible Text — when a user interface includes visible text that could be used to provide an appropriate accessible name, using the visible text for the accessible name simplifies maintenance, prevents bugs, and reduces language translation requirements.
+
+This is the mismatch case, and it is distinct from every neighbouring rule in the corpus. content-dont-ship-schema and content-icons-have-labels (and interactions-rams-aria-labels) cover the inverse problem: an icon-only control with no visible text, where aria-label is exactly right. Here the control already has text. On a button, div, link, or any role that supports naming from child content, aria-label does not add to that text — it replaces it, hiding the child content from assistive technology. So <button aria-label="Submit form">Save</button> is a button that reads "Save" and answers to "Submit form". A voice-control user who says "click Save" hits nothing, which is why WCAG SC 2.5.3 Label in Name (Level A) requires the accessible name to contain the visible label text. Prefer naming from child content; when you need to reference text elsewhere, use aria-labelledby pointing at the visible element. Reserve aria-label for controls with no visible text at all, and if you must extend a name, keep the visible string inside it (aria-label="Save draft" on a button reading "Save" is fine).
+
+- [APG: Providing Accessible Names and Descriptions](https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/)
+- [Understanding SC 2.5.3: Label in Name](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html)
+
 ---
 
 ## Forms
 
-Form controls, validation, and user input handling. 25 rules.
+Form controls, validation, and user input handling. 26 rules.
 
 ### Enter Submits
 
@@ -3505,6 +3727,21 @@ This is the narrow inverse of the autofill rules, not a contradiction of them: o
 
 - [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines)
 - [MDN: The autocomplete attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete)
+
+### No Redundant Entry
+
+**ID:** `forms-redundant-entry`
+**Agent rule (MUST):** Within one process (checkout, signup, application), never ask for information the user already entered: auto-populate it, or make it selectable — a "same as shipping" checkbox, a dropdown of addresses already given, or the value shown next to the field. WCAG SC 3.3.7 Redundant Entry, Level A. Browser autofill does NOT satisfy it (that is SC 1.3.5); "re-enter your email to confirm" is the classic violation. Exceptions are narrow: essential re-entry, security, or stale data.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Never ask for the same information twice in one process: auto-populate it, or let the user select it
+
+> Information previously entered by or provided to the user that is required to be entered again in the same process is either: auto-populated, or available for the user to select. Except when: re-entering the information is essential, the information is required to ensure the security of the content, or previously entered information is no longer valid.
+
+SC 3.3.7 Redundant Entry (Level A, WCAG 2.2) is about a single process — one checkout, one signup, one application — not about sessions. That is what separates it from forms-autocomplete, which is about the autocomplete attribute and browser autofill across visits (SC 1.3.5 Identify Input Purpose). The Understanding document is explicit that browser autofill does not satisfy this criterion: the content itself must carry the value forward. So a step-2 billing form that is an empty duplicate of the step-1 shipping form fails, even if every field is perfectly marked up for autofill. Satisfy it by auto-populating the second form, or by making the value available to select — a "same as shipping" checkbox, a dropdown of addresses already entered, or the value visibly printed next to the field so it can be copied. "Re-enter your email to confirm" is the classic violation: it exists to catch typos, but the previous value is right there on the page, so show it instead of demanding it again. The exceptions are narrow: re-entry that is essential (a password, a memory test), security-required re-entry, or data that has gone stale.
+
+- [Understanding SC 3.3.7: Redundant Entry](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html)
+- [Understanding SC 1.3.5: Identify Input Purpose](https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html)
 
 ---
 
@@ -4063,7 +4300,7 @@ This is the false floor under every "animate transform and opacity" rule you hav
 
 ## Design
 
-Visual design principles and aesthetics. 48 rules.
+Visual design principles and aesthetics. 49 rules.
 
 ### Layered Shadows
 
@@ -4783,6 +5020,21 @@ Glyphs are hinted and anti-aliased for the size they are rendered at. Put a scal
 - [MDN: will-change](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change)
 - [MDN: transform](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform)
 - [MDN: font-smooth](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-smooth)
+
+### Non-Text Contrast (3:1)
+
+**ID:** `design-non-text-contrast`
+**Agent rule (MUST):** Anything non-text that identifies a component or its state — input outlines, unchecked checkboxes, an off toggle, an icon-only glyph, focus indicators — and any part of a graphic needed to understand the content must hit **3:1** against adjacent colors (the text bar of 4.5:1 does not apply here). WCAG SC 1.4.11 Non-text Contrast, Level AA. A 1.2:1 hairline border on a white card is the common fail. Disabled components and unrestyled browser chrome are exempt; re-measure in dark mode, where alpha borders collapse.
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
+
+Give control boundaries, states, and meaningful graphics at least 3:1 contrast against adjacent colors
+
+> The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): User Interface Components — visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; Graphical Objects — parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.
+
+Every other contrast rule here is about text: design-rams-color-contrast and design-rams-text-contrast enforce the 4.5:1 WCAG text floor, design-minimum-contrast applies APCA Lc values to type, and content-impeccable-dark-mode-text-compensation is about text weight in dark themes. None of them sets any floor for the parts of a control that are not text — an input outline, an unchecked checkbox, a toggle in its off state, the glyph in an icon-only button, a focus indicator, or the line in a chart that carries the data. design-crisp-borders is an aesthetic rule about hairline edges and carries no ratio at all. SC 1.4.11 Non-text Contrast (Level AA) is that missing floor: 3:1 against adjacent colors, for anything required to identify a component or its state, and for any part of a graphic required to understand the content. The common failure is a 1.2:1 hairline border on a white card — the field is still readable, but nothing tells you it is a field. Note the exceptions: inactive (disabled) components are exempt, as is browser-default chrome you have not restyled. Measure boundaries against what is actually behind them, and re-measure in dark mode, where alpha-based borders collapse.
+
+- [Understanding SC 1.4.11: Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)
+- [Understanding SC 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
 
 ---
 
