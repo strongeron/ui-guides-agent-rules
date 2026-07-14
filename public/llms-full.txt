@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 359 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 378 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -39,11 +39,12 @@ Rules are transcribed and attributed to:
 - **RAMS** (18 rules) — https://www.rams.ai/
 - **@Ibelick** (50 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
-- **Emil Kowalski** (18 rules) — https://emilkowalski.com/
+- **Emil Kowalski** (25 rules) — https://emilkowalski.com/
 - **WCAG** (10 rules) — https://www.w3.org/WAI/WCAG21/quickref/
 - **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
 - **impeccable** (32 rules) — https://impeccable.style/
-- **Custom** (9 rules)
+- **jakubkrehel** (9 rules) — https://github.com/jakubkrehel/skills
+- **Custom** (12 rules)
 - **Web Platform** (5 rules) — https://web.dev/
 - **LottieFiles** (6 rules) — https://github.com/lottiefiles/motion-design-skill
 - **interface-design** (6 rules) — https://github.com/Dammyjay93/interface-design
@@ -53,7 +54,7 @@ Rules are transcribed and attributed to:
 
 ## Interactions
 
-Keyboard accessibility, focus management, and user interaction patterns. 78 rules.
+Keyboard accessibility, focus management, and user interaction patterns. 85 rules.
 
 ### Keyboard Works Everywhere
 
@@ -1317,11 +1318,135 @@ The thresholds are explicit and they are not aesthetic: at any decision point, c
 - [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 - [Laws of UX — Miller's Law](https://lawsofux.com/millers-law/)
 
+### Expanded Hit Areas Must Never Collide
+
+**ID:** `interactions-hit-target-collision`
+**Agent rule (NEVER):** Let two interactive elements have overlapping hit areas. This is the failure `interactions-match-hit-targets` creates: expand a sub-24px control with a pseudo-element and adjacent expanded targets overlap invisibly, so paint order decides the hit test and the element painted later steals the clicks. Grow each hit area only to the largest rect that does not collide with its neighbour's; if that lands below 24px, the layout is wrong — widen the pitch between the controls (WCAG 2.2 SC 2.5.8 measures spacing, not just size).
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Grow a small control's hit area as large as it will go without overlapping the next control's
+
+> If the extended hit area overlaps another interactive element, shrink the pseudo-element, but make it as large as possible without colliding. Two interactive elements should never have overlapping hit areas.
+
+This is the rule that makes our own advice safe. "Match Visual & Hit Targets" tells you to expand a sub-24px control with a pseudo-element; "Small Touch Targets" and "No Dead Zones" push the same way. All three are about size, and none of them is about collision. Apply them literally to a row of 20px icon buttons separated by a 4px gap and each 44px pseudo-element overshoots its neighbour by roughly 20px. Nothing warns you: the pseudo-elements are invisible, the icons still look correctly spaced, and the overlap is resolved silently by paint order — the element painted later wins the hit test. So a click that lands squarely on the star icon can fire the delete button sitting next to it, and the bug only shows up in a support ticket. The fix is a ceiling on the expansion: grow each hit area until it would touch its neighbour's, then stop. If that leaves you below the minimum, the layout itself is wrong and the controls need a wider pitch — 44px of spacing rather than 44px of overlapping padding. WCAG 2.2 SC 2.5.8 encodes exactly this trade: a target under 24px still passes if a 24px circle centred on it does not intersect the circle of any other target. Spacing, not just size, is what the criterion actually measures.
+
+```tsx
+/* 20px icons, 4px apart — cap the expansion, do not overshoot into the neighbour */
+.icon-btn { position: relative; }
+.icon-btn::after { content: ""; position: absolute; inset: -12px -2px; }
+```
+
+- [jakubkrehel/skills — better-ui: surfaces.md](https://github.com/jakubkrehel/skills/blob/main/skills/better-ui/surfaces.md)
+- [WCAG 2.2 SC 2.5.8 Target Size (Minimum) — spacing exception](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+
+### Project Where the Flick Is Going
+
+**ID:** `interactions-momentum-projection`
+**Agent rule (MUST):** Project the resting position from release velocity, THEN snap to the target nearest that projected point — never snap to the target nearest the release point, which cannot tell a nudge from a throw.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Use release velocity to project a resting position, then snap to the target nearest that point
+
+> Don't snap to the nearest boundary from the *release point*. Use velocity to **project the resting position** — exactly like scroll deceleration — then snap to the target nearest that projected point. This is what makes a flick feel like it throws the element.
+
+A carousel that snaps to whichever slide is nearest the release point cannot tell a nudge from a throw. Both gestures end at roughly the same x, so both advance exactly one slide, and the hard flick you meant as "skip ahead" is quietly discarded. Momentum projection uses the velocity you already measured to answer a different question: not "where did the finger stop" but "where would the element come to rest if it kept moving". Apple ships an exponential-decay projection rather than the physics-textbook v²/(2·decel) — `project(v) = (v / 1000) * d / (1 - d)` with a deceleration rate d of about 0.998 — and then picks the snap target nearest that projected endpoint. This is distinct from "Give Drag Gestures Real Physics", which uses velocity as a binary gate: above ~0.11 px/ms the sheet dismisses, below it springs back. That rule never computes a landing point, so it can decide whether to commit but not how far to travel. Projection is what turns a small input into a big output.
+
+```tsx
+const project = (v, decel = 0.998) => (v / 1000) * decel / (1 - decel);
+const rest = x + project(velocityX);
+snapTo(nearestTarget(rest)); // not nearestTarget(x)
+```
+
+- [Emil Kowalski: apple-design SKILL.md](https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md)
+- [WWDC 2018: Designing Fluid Interfaces](https://developer.apple.com/videos/play/wwdc2018/803/)
+
+### Respect Where the User Grabbed
+
+**ID:** `interactions-grab-offset`
+**Agent rule (MUST):** Store the pointer's offset within the element at `pointerdown` and subtract it on every `pointermove` so the element stays glued to the spot the user grabbed. Never re-centre the element under the cursor on grab — it teleports on the first frame and the illusion of holding an object dies.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Store the pointer's offset within the element on pointerdown and subtract it on every move
+
+> When the user drags something, it must stay glued to the finger — and respect the offset from *where they grabbed it*. Snapping to the element's center on grab breaks the illusion immediately.
+
+The cheapest way to write a drag is to set the element's position to the pointer's position, which silently centres it under the cursor. The result is a visible teleport at the instant of grab: you press the bottom edge of a card and the card jumps up so its middle is under your finger. Nothing in the physical world does this, and the illusion of holding an object dies in the first frame — before any of the release physics gets a chance to matter. The fix is two lines and no library: at pointerdown, record `e.clientY - element.getBoundingClientRect().top` (and the same for x), then on every pointermove subtract that offset from the pointer position. The element stays glued to the exact spot you took hold of. This is grab-time positioning, and no other rule in the corpus covers it: "Clean Drag Interactions" is about text selection and inert during the drag, and "Give Drag Gestures Real Physics" is about what happens on release. Between them sits the very first frame, which is the one users feel most sharply.
+
+```tsx
+const r = el.getBoundingClientRect();
+const offset = { x: e.clientX - r.left, y: e.clientY - r.top };
+// pointermove:
+el.style.translate = `${e.clientX - offset.x}px ${e.clientY - offset.y}px`;
+```
+
+- [Emil Kowalski: apple-design SKILL.md](https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md)
+- [MDN: Element.setPointerCapture()](https://developer.mozilla.org/en-US/docs/Web/API/Element/setPointerCapture)
+
+### Require Movement Before Committing to a Direction
+
+**ID:** `interactions-gesture-hysteresis`
+**Agent rule (MUST):** Require ~10px of movement from the `pointerdown` origin before committing a drag/swipe to an axis, then lock that axis and track 1:1 with no mid-gesture re-evaluation. Committing on the first `pointermove` reads the wobble at the start of a vertical scroll as a horizontal swipe and steals the scroll.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Wait ~10px before locking a gesture to an axis, then track it 1:1
+
+> **Drag/swipe:** require a small movement threshold (hysteresis, ~10px) before committing to a direction, then track 1:1.
+
+Fingers are not straight lines. A vertical scroll on a touch screen almost always begins with a couple of pixels of horizontal wobble, and a swipeable list row that commits to a direction on the very first pointermove will read that wobble as a swipe — locking the axis, calling preventDefault, and stealing the scroll the user actually wanted. From then on the list is unscrollable in the region where the rows are. Hysteresis makes the decision wait for evidence: accumulate movement from the pointerdown origin, ignore everything until the total distance passes a threshold of roughly 10px, and only then compare the horizontal and vertical components to decide which axis wins. Below the threshold the gesture is undecided and the browser keeps its native scroll; above it the axis is locked for the rest of the gesture and tracks the finger 1:1, with no re-evaluation that could cause a mid-drag flip. The threshold buys certainty about intent, and 10px is small enough that a deliberate swipe never feels delayed.
+
+- [Emil Kowalski: apple-design SKILL.md](https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md)
+- [MDN: touch-action](https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action)
+
+### Sound Is Never the Only Channel
+
+**ID:** `interactions-sound-not-sole-channel`
+**Agent rule (MUST):** Give every audio cue a visual equivalent — sound is a reinforcement channel and never carries feedback alone (WCAG 1.3.3). A Submit whose only success signal is a chime does nothing observable on a muted tab, and nothing at all for a deaf user. Removing the sound must cost nothing.
+**Source:** Custom
+
+Every audio cue needs a visual equivalent — sound supplements feedback, it never carries it
+
+> Every audio cue must have a visual equivalent; sound never replaces visual feedback.
+
+Cherry-picked from Raphael Salaja's sounds-on-the-web skill (rule `a11y-visual-equivalent`). The failure is easy to reproduce and easy to miss in development: a Submit button whose only success signal is a chime. On a muted tab — which is the default state of most tabs most of the time — pressing Submit produces no observable change at all, and the user presses it again. Deaf and hard-of-hearing users get the same nothing, permanently. This is WCAG 1.3.3 Sensory Characteristics: instructions and feedback must not depend on a single sensory characteristic. It is the same principle as "Redundant Status Cues", which is scoped to colour and WCAG 1.4.1 — one channel, one criterion, identical shape. Sound is simply the channel that is switched off far more often than colour is. The rule is not "no sound"; sound is a genuinely good second channel when the user is not looking at the screen. The rule is that removing it must cost nothing.
+
+- [Raphael Salaja: sounds-on-the-web SKILL.md](https://github.com/raphaelsalaja/skill/blob/main/skills/sounds-on-the-web/SKILL.md)
+- [WCAG 2.2 SC 1.3.3 Sensory Characteristics](https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html)
+
+### Sound Belongs to the User
+
+**ID:** `interactions-sound-is-user-owned`
+**Agent rule (MUST):** Ship an explicit mute toggle in settings plus a volume control independent of system volume, and default the volume subtle (`0.3`) — never loud, never autoplaying. The OS mixer silences everything, not just you, so "turn your machine down" is not an off switch.
+**Source:** Custom
+
+Ship an explicit mute toggle, an independent volume control, and a subtle default
+
+> Provide explicit toggle to disable sounds in settings. Allow volume adjustment independent of system volume. Default volume should be subtle, not loud.
+
+Cherry-picked from Raphael Salaja's sounds-on-the-web skill, merging three of its rules (`a11y-toggle-setting`, `a11y-volume-control`, `impl-default-subtle`). A sound provider with no off switch treats audio as a property of the product rather than a property of the session, and the user's only recourse is the OS mixer — which silences everything, not just you. Three controls fix it. An explicit toggle, because "turn down my whole machine" is not an answer to "this app is noisy". An in-app volume independent of system volume, because the right level for a notification chime and the right level for a video are different numbers, and only the user knows what else is playing. And a subtle default: the upstream number is 0.3, chosen so that the first sound a user hears is never the loudest thing they have heard today. Defaulting to full volume converts a nice touch into an ambush, and an ambushed user mutes the tab permanently — which loses you the channel entirely.
+
+- [Raphael Salaja: sounds-on-the-web SKILL.md](https://github.com/raphaelsalaja/skill/blob/main/skills/sounds-on-the-web/SKILL.md)
+- [WCAG 2.2 SC 1.4.2 Audio Control](https://www.w3.org/WAI/WCAG22/Understanding/audio-control.html)
+
+### Sound Only for Significant Events
+
+**ID:** `interactions-sound-only-for-significant-events`
+**Agent rule (NEVER):** Attach sound to high-frequency interactions — typing, keyboard navigation, hover, scroll. Reserve it for confirmations the user needs assurance of (payments, uploads, form submissions) and for errors/warnings that must not be overlooked. A cue that fires on every input stops being feedback and trains the user to tune out every other sound you make.
+**Source:** Custom
+
+Confirmations and errors earn a sound; typing, hover, scroll and navigation never do
+
+> Do not add sound to high-frequency interactions (typing, keyboard navigation). Sound is appropriate for confirmations: payments, uploads, form submissions. Sound is appropriate for errors and warnings that can't be overlooked.
+
+Cherry-picked from Raphael Salaja's sounds-on-the-web skill, merging `appropriate-no-high-frequency` with `appropriate-confirmations-only` and `appropriate-errors-warnings`. Frequency is the whole test. A sound on a payment confirmation fires once and reassures; the same sound on a keystroke fires eighty times a minute and becomes noise the user learns to tune out — taking every other sound in your product down with it, including the error you actually needed them to hear. The skill's own appropriateness matrix draws the line explicitly: payment success yes (significant confirmation), form submission yes (user needs assurance), error yes (can't be overlooked), notification yes (may not be looking at the screen), button click maybe (only for significant buttons), typing no (too frequent), hover no (decorative only), scroll no (too frequent), navigation no (keyboard nav would be noisy). This is the same shape as "Match Motion to Frequency", which withholds animation from keyboard-initiated and high-frequency interactions for exactly the same reason: feedback that fires on every input stops being feedback and becomes texture.
+
+- [Raphael Salaja: sounds-on-the-web SKILL.md](https://github.com/raphaelsalaja/skill/blob/main/skills/sounds-on-the-web/SKILL.md)
+- [MDN: Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+
 ---
 
 ## Animations
 
-Motion design principles and animation best practices. 52 rules.
+Motion design principles and animation best practices. 54 rules.
 
 ### Honor prefers-reduced-motion
 
@@ -1333,10 +1458,11 @@ Provide a reduced-motion variant for all animations
 
 > Honor prefers-reduced-motion. Provide a reduced-motion variant.
 
-Some users experience motion sickness or vestibular symptoms from movement they did not initiate. The media query surfaces an OS-level preference they have already expressed, so honouring it costs one @media block. The load-bearing detail: "reduced" is not "none". Strip the spatial travel and the spring, but KEEP the opacity crossfades and the instant state changes, so the interface still says what happened — a state change that was only ever communicated by motion becomes invisible the moment the motion is dropped (animations-lottie-never-opacity-only is the corollary). ibelick's baseline-ui converges on the same rule from the agent-guidelines side ("SHOULD respect `prefers-reduced-motion`"), which is why this corpus states it once here rather than twice.
+Some users experience motion sickness or vestibular symptoms from movement they did not initiate. The media query surfaces an OS-level preference they have already expressed, so honouring it costs one @media block. The load-bearing detail: "reduced" is not "none". Strip the spatial travel and the spring, but KEEP the opacity crossfades and the instant state changes, so the interface still says what happened — a state change that was only ever communicated by motion becomes invisible the moment the motion is dropped (animations-lottie-never-opacity-only is the corollary). ibelick's baseline-ui converges on the same rule from the agent-guidelines side ("SHOULD respect `prefers-reduced-motion`"), which is why this corpus states it once here rather than twice. CAVEAT, and it is worth stating plainly: Raphael Salaja's sounds-on-the-web skill advises treating prefers-reduced-motion as a proxy for sound sensitivity — defaulting audio OFF when it is set. That is pragmatic, because no `prefers-reduced-sound` media query has ever shipped, and it is a defensible default. But it is lossy: a vestibular preference is not a sound preference, and the overlap is a guess, not a signal. Use it as a default-OFF heuristic, never as a substitute for an explicit, persisted sound toggle (see interactions-sound-is-user-owned).
 
 - [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
 - [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [Raphael Salaja — sounds-on-the-web SKILL.md](https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/sounds-on-the-web/SKILL.md)
 - [Accessible Animations](https://www.a11yproject.com/posts/understanding-vestibular-disorders/)
 
 ### Compositor-friendly
@@ -2178,11 +2304,53 @@ Sometimes the thing that changes really is layout: a list reorders, a card expan
 - [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
 - [Paul Lewis — FLIP Your Animations](https://aerotwist.com/blog/flip-your-animations/)
 
+### Decompose 2D Motion Into X and Y Springs
+
+**ID:** `animations-apple-xy-springs`
+**Agent rule (MUST):** Decompose 2D motion into two independent springs — one on `x`, one on `y`, each seeded with its OWN release velocity. A single spring on the 2D distance (`Math.hypot(x, y)` → 0) can hold only one velocity, so both axes arrive together, the card slides home along a rigid radial line, and the tangential half of the throw is discarded.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+A gesture that moves in two dimensions needs two springs, not one spring on the distance
+
+> Decompose 2D motion into independent X and Y springs. A single spring on a 2D distance desyncs when X and Y have different velocities.
+
+This is the answer to a question the corpus has not asked before: not how to configure a spring, but HOW MANY springs a gesture needs. animations-spring-physics argues for springs over tweens because they carry velocity through an interruption; animations-emil-subtle-bounce bounds the bounce. Neither says anything about dimensionality — and a 2D drag is where the naive implementation quietly breaks. The tempting shortcut is to spring the scalar distance home: `Math.hypot(x, y)` → 0, one spring, one velocity. But one spring can only hold one velocity, so both axes are forced to share it and to arrive at the same instant. Throw a card diagonally with more speed on X than Y and the faster axis drags the slower one along with it; whatever direction you actually flicked, the card slides home along a rigid radial line, and the tangential half of your gesture is simply discarded. Two springs — one on x, one on y, each seeded with its OWN release velocity — let each axis settle on its own clock. The emergent 2D path curves: it continues the way you threw the thing and hooks back, which is what "it followed my finger" actually means. This is Apple's point from Designing Fluid Interfaces, and it also explains why Motion's `x`/`y` values are separate animatable channels rather than a single vector.
+
+```tsx
+animate(el, { x: 0 }, { type: "spring", velocity: vx });
+animate(el, { y: 0 }, { type: "spring", velocity: vy }); // not one spring on hypot(x, y)
+```
+
+- [Emil Kowalski — apple-design SKILL.md](https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md)
+- [Apple — Designing Fluid Interfaces (WWDC 2018)](https://developer.apple.com/videos/play/wwdc2018/803/)
+- [Motion — spring transitions](https://motion.dev/docs/react-transitions)
+
+### Enter and Exit Along the Same Path
+
+**ID:** `animations-symmetric-exit-path`
+**Agent rule (MUST):** Exit along the path the element entered on — in-from-the-right means out-to-the-right — with the easing mirrored via inverse cubic-bezier control points: enter `(x1, y1, x2, y2)` → exit `(1 - x2, 1 - y2, 1 - x1, 1 - y1)`. This is DIRECTION and curve shape, orthogonal to `animations-emil-asymmetric` (DURATION — exits snap); a correct panel obeys both: back out the right edge, on the mirrored curve, faster than it came in.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+A panel that slides in from the right must dismiss to the right, with the easing mirrored
+
+> Enter and exit along the same path. A panel that slides in from the right must dismiss to the right. In-from-right / out-the-bottom feels disconnected and confusing. Mirror the easing on reversible transitions so the outbound path matches the return path (use inverse cubic-bézier control points for the two directions).
+
+Motion is how an interface teaches spatial layout: the enter animation is a claim about where the panel LIVES when it is not on screen. Slide it in from the right and the user now believes it is parked off the right edge — so dismissing it downward silently revokes that, and they are left with no model of where the thing went or how to get it back. The exit must retrace the enter. Mirroring the easing is the same argument one level down: a cubic-bezier is a shape, and reversing endpoints does not reverse the shape. Take the enter's (x1, y1, x2, y2) and use its inverse control points — (1 - x2, 1 - y2, 1 - x1, 1 - y1) — for the return, so an ease-out entrance leaves on the ease-in that is literally its mirror image. IMPORTANT — this does NOT contradict animations-emil-asymmetric, and the two are constantly confused. That rule is about DURATION (deliberate actions take their time; exits snap). This one is about DIRECTION and CURVE SHAPE. They are orthogonal, and the correct panel obeys both: it exits back out the right edge, on the mirrored curve, in less time than it took to come in. Nor is this animations-correct-transform-origin, which fixes where a scale ORIGINATES — a popover can have a perfectly anchored origin and still be wrong because it travels out an edge it never came in through.
+
+```tsx
+/* enter */ transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+/* exit  */ transition-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+```
+
+- [Emil Kowalski — apple-design SKILL.md](https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md)
+- [Apple — Designing Fluid Interfaces (WWDC 2018)](https://developer.apple.com/videos/play/wwdc2018/803/)
+- [MDN — cubic-bezier() easing function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function/cubic-bezier)
+
 ---
 
 ## Layout
 
-Responsive design, alignment, and visual structure. 25 rules.
+Responsive design, alignment, and visual structure. 26 rules.
 
 ### Optical Alignment
 
@@ -2591,11 +2759,32 @@ The detector is precise about what "everywhere" means: it collects every padding
 - [impeccable.style](https://impeccable.style/)
 - [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 
+### Logical Properties for Direction
+
+**ID:** `layout-logical-properties`
+**Agent rule (MUST):** Use direction-agnostic properties so the layout mirrors in RTL: `margin-inline-start`/`-end` not `margin-left`/`-right`, `padding-inline-end` not `padding-right`, `inset-inline-start`/`-end` not `left`/`right`, `text-align: start`/`end` not `left`/`right` (Tailwind: `ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`). Set `lang` — it picks quotes, hyphenation, font fallback and the screen-reader voice — and `dir="rtl"` where needed. Under `dir="rtl"` the browser mirrors flex/grid order while every hardcoded left and right stays put, so icons detach and padding collides.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Use direction-agnostic CSS — margin-inline-start, not margin-left — so a layout mirrors correctly in right-to-left languages
+
+> To support right-to-left content, use direction-agnostic properties: `margin-inline-start` instead of `margin-left`, `text-align: start` instead of `left`. Set `lang` so browsers pick the right quotes and hyphenation, and `dir="rtl"` where needed.
+
+Physical properties encode a hardcoded assumption that text flows left-to-right. `margin-left` means "the left edge of the screen"; `margin-inline-start` means "the edge the reading starts at", which is the left in English and the right in Arabic, Hebrew, Persian and Urdu. Set `dir="rtl"` on a subtree built from physical properties and the browser dutifully mirrors the flex/grid order while every hardcoded left and right stays put — so the icon that hugged the text now detaches from it, the padding that kept a dismiss button clear of the label is now on the wrong side and the two collide, and the copy is still ragged-left in a language that is read right-to-left. The full mapping is small: `margin-inline-start`/`-end` for `margin-left`/`-right`, `padding-inline-start`/`-end`, `inset-inline-start`/`-end` for `left`/`right`, `border-inline-start`, and `text-align: start`/`end` for `left`/`right`. Tailwind ships all of them (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`), so the direction-agnostic version costs the same number of characters as the broken one. `lang` is the other half and is not decorative: it selects the right quotation marks, hyphenation dictionary and font fallbacks, and it is what a screen reader uses to pick a voice. Note this is a distinct gap from the internationalisation rules the guide already covers — content-language-detection and content-translate-no are about the words; this is about which way the box points.
+
+```tsx
+<html lang="ar" dir="rtl">
+/* .card { margin-left: 1rem; text-align: left; }  ✗ */
+.card { margin-inline-start: 1rem; text-align: start; } /* ✓ */
+```
+
+- [jakubkrehel/skills — better-typography](https://github.com/jakubkrehel/skills/tree/main/skills/better-typography)
+- [MDN: CSS logical properties and values](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values)
+
 ---
 
 ## Content
 
-Typography, accessibility, and content presentation. 68 rules.
+Typography, accessibility, and content presentation. 72 rules.
 
 ### Inline Help First
 
@@ -2665,9 +2854,10 @@ Use tabular-nums for comparisons and tables
 
 > Tabular numbers for comparisons. Use font-variant-numeric: tabular-nums or a monospace like Geist Mono.
 
-Proportional numbers have varying widths (1 is narrower than 8), making columns misalign. Tabular numbers have uniform width, so digits stack vertically in tables and make comparisons easier. Essential for prices, metrics, and data tables.
+Proportional numbers have varying widths (1 is narrower than 8), making columns misalign. Tabular numbers have uniform width, so digits stack vertically in tables and make comparisons easier. Essential for prices, metrics, and data tables. The same property carries a second switch worth reaching for on identifiers: `font-variant-numeric: slashed-zero` cuts a stroke through the zero so an order number, an API key, a serial, or a licence plate cannot be misread as an `O` by someone transcribing it.
 
 - [font-variant-numeric](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric)
+- [jakubkrehel — variable-fonts-and-opentype.md (slashed zero)](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/variable-fonts-and-opentype.md)
 
 ### Icons Have Labels
 
@@ -2735,9 +2925,10 @@ Don't rely on color alone; include text labels
 
 > Redundant status cues. Don't rely on color alone; include text labels.
 
-This is WCAG SC 1.4.1 Use of Color, and the Rams review files it as a Serious accessibility failure. Roughly 8% of men have some colour vision deficiency — but colour-only status also fails on monochrome displays, in bright sun, and on a printout, so the audience is far wider than the one people picture. Always carry the meaning on a second channel: an icon or glyph beside the status colour, a text label on the badge, an underline on the link, a pattern or a direct label on a chart series. Green alone is not success; green with a checkmark and the word "Success" is.
+Colour is the case everyone knows: WCAG SC 1.4.1 Use of Color, which the Rams review files as a Serious accessibility failure. Roughly 8% of men have some colour vision deficiency — but colour-only status also fails on monochrome displays, in bright sun, and on a printout, so the audience is far wider than the one people picture. The general rule is bigger than colour, though, and it is WCAG SC 1.3.3 Sensory Characteristics: no single sensory channel may carry meaning on its own. Colour is one channel. So is SOUND (an error chime with no on-screen message — see interactions-sound-not-sole-channel), SHAPE ("click the round button"), SIZE, and POSITION ("the panel on the right", "see the box below"), each of which means nothing to a screen reader user, and position means nothing to anyone on a narrow viewport where your two columns just became one. Test it by asking what survives if the channel is removed: greyscale the screen, mute the audio, read the DOM order aloud. Whatever is left must still identify the thing. Always carry the meaning on a second channel: an icon or glyph beside the status colour, a text label on the badge, an underline on the link, a pattern or a direct label on a chart series, a visible message beside the sound, a name beside the "round button". Green alone is not success; green with a checkmark and the word "Success" is.
 
 - [WCAG 1.4.1: Use of Color](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html)
+- [WCAG 1.3.3: Sensory Characteristics](https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html)
 - [Rams design review skill](https://rams.ai/rams.md)
 
 ### Use Ellipsis Character
@@ -2927,9 +3118,10 @@ Use text-balance for headings and text-pretty for body text to improve readabili
 
 > MUST use `text-balance` for headings and `text-pretty` for body/paragraphs
 
-From the Typography constraints in ibelick's baseline-ui skill. text-balance evens out line lengths in headings; text-pretty prevents orphans (a single word stranded on the last line) in paragraphs. Both improve readability without hand-managed line breaks.
+From the Typography constraints in ibelick's baseline-ui skill. text-balance evens out line lengths in headings; text-pretty prevents orphans (a single word stranded on the last line) in paragraphs. Both improve readability without hand-managed line breaks. DIRECT CONFLICT, deliberately kept: jakubkrehel's better-typography draws the scope line tighter. It agrees on `balance` for headings, but scopes `pretty` to *descriptions* — short blocks, a card subtitle, a meta line — and rules both out of long-form prose: "Skip both in long-form text: browsers ignore `balance` past a few lines anyway, and evening out a whole paragraph wastes space and makes it harder to read." Both positions stand, and the axis is the length of the block. On a two-line heading or a one-sentence description, the browser has few enough lines that rebalancing them is cheap and the orphan is glaring. On an article paragraph, `balance` is a no-op the engine declines to run past a handful of lines, and `pretty` buys an orphan fix by pulling text up from earlier lines, which loosens the whole rag. Take ibelick's rule as the default for UI text, which is nearly all of it, and take jakubkrehel's exception the moment the block is genuinely long-form.
 
 - [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [jakubkrehel — wrapping-and-punctuation.md (the counter-position)](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/wrapping-and-punctuation.md)
 - [CSS text-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap)
 
 ### Use Tabular Numbers for Data
@@ -3021,13 +3213,14 @@ Subset fonts based on content, alphabet, or relevant languages to reduce file si
 
 > Fonts should be subset based on the content, alphabet or relevant language(s).
 
-Full font files include glyphs for many languages and scripts you may not need. Subsetting to only the character ranges used on your site can reduce font file sizes by 80-90%, improving load times significantly.
+Full font files include glyphs for many languages and scripts you may not need. Subsetting to only the character ranges used on your site can reduce font file sizes by 80-90%, improving load times significantly. Subset into the right container while you are at it: serve `.woff2` on the web and never ship a raw `.ttf` or `.otf`, which carry no web compression and land roughly 30-50% heavier for exactly the same glyphs (jakubkrehel's choosing-fonts calls them "Desktop only unless there is no other option"; `.woff` is a fallback for very old browsers, nothing more).
 
 ```tsx
 @font-face { font-family: Inter; src: url(/inter-latin.woff2) format("woff2"); unicode-range: U+0000-00FF; }
 ```
 
 - [interfaces.rauno.me](https://interfaces.rauno.me/)
+- [jakubkrehel — choosing-fonts.md (formats)](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/choosing-fonts.md)
 - [Google Fonts CSS2 API](https://developers.google.com/fonts/docs/css2)
 
 ### Stable Font Weight on Hover
@@ -3665,6 +3858,83 @@ The detector catches three shapes: `<img src="">` (also `src=" "` and `src="#"`)
 - [impeccable.style](https://impeccable.style/)
 - [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 - [MDN — <img>: The Image Embed element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img)
+
+### No Synthetic Weights or Italics
+
+**ID:** `content-no-synthetic-weights`
+**Agent rule (MUST):** Set `font-synthesis: none` on the root so a weight or style you never loaded fails visibly instead of being faked. The browser draws a missing bold as the 400 outlines doubled a hair apart and a missing italic as a `skewX` on the roman — neither looks broken enough to file a ticket, so the missing files ship. The fix is always the same: load the file you asked for.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Set font-synthesis: none so a missing bold or italic file fails visibly instead of being faked
+
+> When a weight or style is not loaded, the browser synthesizes it. That is a safety mechanism, not a feature. Set `font-synthesis: none` so missing files fail visibly instead of rendering a faked bold or italic.
+
+Synthesis is the browser covering for you, and it covers so competently that the bug never surfaces. Ask for a bold the `@font-face` block never loaded and you do not get an error — you get the 400 outlines drawn twice, a hair apart, so the stems thicken and the counters clog. Ask for an italic and you get a `skewX` on the roman: a mechanical slant, not an italic, with no redrawn single-storey `a` and no descending `f`. Neither looks broken enough to file a ticket, so the missing files ship and every heading in the product is quietly mush. `font-synthesis: none` on the root removes the safety net: the `<strong>` renders at plain 400, which is unmistakably wrong, which is the point — it fails in review instead of in production. The fix is then always the same, load the file you actually asked for.
+
+```tsx
+html { font-synthesis: none; }
+```
+
+- [jakubkrehel — better-typography SKILL.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/SKILL.md)
+- [jakubkrehel — variable-fonts-and-opentype.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/variable-fonts-and-opentype.md)
+- [MDN — font-synthesis](https://developer.mozilla.org/en-US/docs/Web/CSS/font-synthesis)
+
+### Properties Over Raw Font Tags
+
+**ID:** `content-font-properties-over-tags`
+**Agent rule (MUST):** Use the CSS PROPERTY whenever one exists — `font-weight: 650`, `font-optical-sizing: auto`, `font-variant-numeric: tabular-nums` — not `font-variation-settings: "wght" 650` / `font-feature-settings: "tnum" 1`. Raw-tag declarations address axes that only exist inside the variable file, so when a non-variable fallback renders they SILENTLY DO NOTHING (weight collapses to 400, no console error). And `font-feature-settings` is ONE property, so a later declaration CLOBBERS an earlier one — add `"ss01" 1` to a rule that carried `"tnum" 1` and the tabular figures leave with it. Reserve the raw tags for custom axes (`"GRAD" 80`) and niche features (`"ss01" 1`) that have no property of their own.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Reach for font-weight and font-variant-numeric, not font-variation-settings and font-feature-settings
+
+> When a CSS property exists, use it. `font-weight: 650` instead of `font-variation-settings: "wght" 650`, `font-optical-sizing: auto` instead of `"opsz"`, `font-variant-numeric: tabular-nums` instead of `font-feature-settings: "tnum" 1`. Properties keep working when a non-variable fallback renders. Reserve the raw-tag properties for custom axes (`"GRAD" 80`) and niche features (`"ss01" 1`) that have no property of their own.
+
+This is an API rule, not a typography rule, and it is the one people get wrong precisely because both spellings look equivalent while the variable font is loading fine. They are not. `font-variation-settings: "wght" 650` addresses an axis that only exists inside a variable file, so the moment the fallback stack renders — the file 404s, the CDN is blocked, the user is on a metered connection with fonts disabled — the declaration is not overridden, it is inert. The weight collapses to 400, the console says nothing, and the semibold heading you designed is now body copy. `font-weight: 650` is a real property that every font stack understands: the browser picks the closest available face and the hierarchy survives. The same asymmetry applies below the surface for features: `font-feature-settings` is a single low-level property rather than a set of independent switches, so the day someone adds `"ss01" 1` to a rule that already carried `"tnum" 1`, the tabular figures leave with it and the ticker starts jittering again. `font-variant-numeric: tabular-nums` cannot be clobbered that way, because it lives on its own property. Note this is orthogonal to content-tabular-numbers, which says *what* to apply and never *which API* — this is the rule that picks the API. Raw tags are not banned; they are the escape hatch, and the only correct use of them, for custom axes like `"GRAD" 80` and niche features like `"ss01" 1` that have no property of their own.
+
+```tsx
+/* ✗ inert under a non-variable fallback; "tnum" clobbered by the next rule */
+.price { font-variation-settings: "wght" 650; font-feature-settings: "tnum" 1; }
+/* ✓ real properties, survive the fallback, cannot clobber each other */
+.price { font-weight: 650; font-variant-numeric: tabular-nums; font-feature-settings: "ss01" 1; }
+```
+
+- [jakubkrehel — better-typography SKILL.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/SKILL.md)
+- [jakubkrehel — variable-fonts-and-opentype.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/variable-fonts-and-opentype.md)
+- [MDN — font-variant-numeric](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric)
+- [MDN — font-weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-weight)
+
+### Heading Sizes Descend with Level
+
+**ID:** `content-heading-size-descends`
+**Agent rule (MUST):** Pick the heading tag from the document outline and the size from a DESCENDING step of the type scale — a lower level must never render larger than a higher one on the same page. Never reach for a tag because it "looks right". Adjacent levels may share a size at the small end if weight or spacing keeps them distinct; a line that must be the loudest thing on the card without owning a rank is a `<p>` at display size. Distinct from `content-rams-heading-levels`, which is about SKIPPING levels (a11y outline) — here the tags are sequential and lint passes, but the render contradicts them.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Map every heading level to a descending step of the scale so a lower level never renders larger than a higher one
+
+> Map each heading level used on a page to a descending step of the type scale: a lower level must never render larger than a higher one on the same page. Adjacent levels may share a size toward the small end of the scale as long as weight or spacing keeps them distinct. Pick the tag from the document outline and control the size with CSS; never skip levels or reach for an `h4` because it "looks right".
+
+This is a different failure from content-rams-heading-levels, and worth separating carefully. That rule is about SKIPPING levels — h1 straight to h3 — which lint catches and WCAG 1.3.1 names. This one is the inverse-SIZE failure, and every tag in it is sequential, so the lint passes: an `<h2>` set at `text-base` because it looked right in the card, wrapping an `<h3>` at `text-2xl` because that was the line the designer wanted read first. The tags are legal; the render contradicts them. A screen reader navigates the outline and hears "Revenue up 12%" as subordinate to "Q3 report"; the page says the opposite, in twice the pixels. Whenever a child level renders larger than its parent, the tag was picked for its default size instead of from the document structure. Take the tag from the outline, take the size from a descending step of the scale, and when a line genuinely needs to be the loudest thing on the card without owning a rank, make it a `<p>` at display size — it can be as big as it likes and it stays out of the outline entirely.
+
+- [jakubkrehel — better-typography SKILL.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/SKILL.md)
+- [jakubkrehel — spacing-and-sizing.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/spacing-and-sizing.md)
+- [MDN — Heading elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements)
+
+### Truncate Without Losing the Value
+
+**ID:** `content-truncation-keeps-value`
+**Agent rule (MUST):** If the text an ellipsis hides discriminates rather than decorates, keep the full value reachable — a `title` (which also lands in the accessible name), a tooltip, an expanded view, or middle truncation that pins the discriminating tail (`invoice-2026-…-final-v2.pdf`) and collapses the boring head. Hover-only tooltips are not enough on their own: keyboard and touch users never trigger them, so pair them with something focusable.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+If the text an ellipsis hides carries meaning, keep the full value reachable in a tooltip or an expanded view
+
+> Truncation hides content, so if the missing text matters, keep the full value reachable in a tooltip or expanded view.
+
+Two neighbouring rules already cover the mechanics and neither covers this. content-ibelick-text-overflow says to USE `truncate` or `line-clamp` in dense UI; layout-min-width-truncation makes truncation actually WORK inside a flex or grid child. Both are about the ellipsis appearing where it should. This rule is about what the ellipsis ate. A file column that renders `invoice-2026-q3-a…` on every row has not shortened three filenames, it has deleted the only part that told them apart, and the user is left choosing an invoice by its byte count. So: decide whether the hidden text is decoration or discrimination. If it discriminates, keep it reachable — a `title` (which also lands in the accessible name), a tooltip, a details view, or middle truncation that pins the tail (`invoice-2026-…-final-v2.pdf`) and collapses the boring head instead. Hover-only tooltips are not enough on their own, since keyboard and touch users never trigger them, so pair them with something focusable or an expand toggle.
+
+- [jakubkrehel — better-typography SKILL.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/SKILL.md)
+- [jakubkrehel — wrapping-and-punctuation.md](https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/wrapping-and-punctuation.md)
+- [MDN — text-overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-overflow)
+- [MDN — title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/title)
 
 ---
 
@@ -4644,7 +4914,7 @@ return () => cancelAnimationFrame(id); // teardown
 
 ## Design
 
-Visual design principles and aesthetics. 56 rules.
+Visual design principles and aesthetics. 61 rules.
 
 ### Layered Shadows
 
@@ -4684,9 +4954,10 @@ Child radius ≤ parent radius and concentric
 
 > Nested radii. Child radius ≤ parent radius & concentric so curves align.
 
-When a rounded element contains another rounded element, the inner radius should be the outer radius minus the padding. This keeps the curves concentric and visually aligned. Formula: innerRadius = outerRadius - padding.
+When a rounded element contains another rounded element, the inner radius should be the outer radius minus the padding. This keeps the curves concentric and visually aligned. Formula: innerRadius = outerRadius - padding. The formula has a bound, which the Vercel line does not state: better-ui's surfaces guide notes that "This rule is most useful when nested surfaces are close together. If padding is larger than `24px`, treat the layers as separate surfaces and choose each radius independently instead of forcing strict concentric math." Past roughly 24px of padding the eye no longer reads the two curves as one nested form, so the arithmetic starts producing an absurdly large outer radius in service of a relationship nobody perceives.
 
 - [Nested Border Radius](https://cloudfour.com/thinks/the-math-behind-nesting-rounded-corners/)
+- [jakubkrehel/skills — better-ui: surfaces](https://github.com/jakubkrehel/skills/blob/main/skills/better-ui/surfaces.md)
 
 ### Minimum Contrast
 
@@ -5262,10 +5533,11 @@ Reserve backdrop blur for a surface that genuinely overlaps scrolling content, a
 
 > Glassmorphism as default. Blurs and glass cards used decoratively. Rare and purposeful, or nothing.
 
-The detector flags `backdrop-filter: blur()` (any radius) applied to ordinary content surfaces — cards, tiles, panels — rather than to an overlay. Two costs follow. Paint: the browser must sample and blur everything behind the element on every frame it is composited, so a grid of glass cards re-blurs on each scroll tick. Contrast: the effective color behind translucent text is whatever happens to be scrolling underneath, so the same label can measure 8:1 over a dark band and 1.9:1 over a light one — the ratio is a property of the backdrop, not of your tokens, and cannot be tested. Blur earns its cost in exactly one place: chrome (a sticky nav, a sheet) that overlaps scrolling content, where the effect communicates layering.
+The detector flags `backdrop-filter: blur()` (any radius) applied to ordinary content surfaces — cards, tiles, panels — rather than to an overlay. Two costs follow. Paint: the browser must sample and blur everything behind the element on every frame it is composited, so a grid of glass cards re-blurs on each scroll tick. Contrast: the effective color behind translucent text is whatever happens to be scrolling underneath, so the same label can measure 8:1 over a dark band and 1.9:1 over a light one — the ratio is a property of the backdrop, not of your tokens, and cannot be tested. Blur earns its cost in exactly one place: chrome (a sticky nav, a sheet) that overlaps scrolling content, where the effect communicates layering. Even there, Emil Kowalski's apple-design skill draws one hard line inside the exception: "**Never stack a light translucent surface on another** — legibility collapses," because each layer samples the already-blurred layer beneath it and the text ends up floating on mush. And note what this principle does NOT cover: it polices glass on taste and cost grounds, but never asks whether the user has requested less of it — for that, see design-reduced-transparency-contrast.
 
 - [impeccable.style](https://impeccable.style/)
 - [MDN: backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter)
+- [emilkowalski/skills — apple-design](https://github.com/emilkowalski/skills/tree/main/skills/apple-design)
 
 ### Never #000, Never #fff
 
@@ -5530,6 +5802,112 @@ const isProd = process.env.VERCEL_ENV === "production";
 
 - [fixing-metadata (skill source)](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md)
 - [Google: Block search indexing with noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
+
+### Underlines From the Font
+
+**ID:** `design-underline-from-font`
+**Agent rule (SHOULD):** Take underline geometry from the font: `text-underline-position: from-font`, `text-decoration-thickness: from-font`, `text-decoration-skip-ink: auto` — the browser's default position slices through the descenders of g, y, p and j. Colour is the only part of a real `text-decoration` that animates reliably, so transition `text-decoration-color` for a colour hover and build anything richer (a wipe, a grow, a slide) as a separate element animated on `transform: scaleX()`.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Take underline position and thickness from the font's own metrics, and build any animated underline as a separate element
+
+> Default underlines sit wherever the browser decides. Pull position and thickness from the font's own metrics with `text-underline-position: from-font` and `text-decoration-thickness: from-font`, or tune manually with `text-decoration-thickness`, `text-underline-offset` and `text-decoration-skip-ink`. [...] Unless the only thing animating is a color change, build the underline as a separate element instead of using `text-decoration`: color is the only part of a real underline that animates reliably.
+
+Two halves, and the second is the one people miss. The first is placement: a default underline is drawn at a position the browser picks, which at large sizes and in serif faces slices straight through the descenders of g, y, p and j. A well-made font ships its own underline position and thickness in its metrics, and `text-underline-position: from-font` plus `text-decoration-thickness: from-font` tells the browser to use them; `text-decoration-skip-ink: auto` then breaks the line around any descender that still crosses it. The second half is animation. `text-decoration-thickness`, `text-underline-offset` and `text-decoration-line` are not reliably animatable — a hover transition on them either does nothing or steps in visible jumps. Color is the exception, and the only exception. So the rule is conditional, not absolute: if the hover effect is a color change, use a real `text-decoration` and transition `text-decoration-color`; the moment the effect is a wipe, a grow, or a slide, the underline has to be a separate element (a `::after` box, or a `background-image` line) that you can animate on `transform: scaleX()` — which is compositor-friendly, unlike anything `text-decoration` could have given you. A dotted underline via `text-decoration-style` remains the conventional hint that a word carries extra information, which is why `abbr` gets `text-decoration: underline dotted` by default.
+
+```tsx
+a { text-underline-position: from-font; text-decoration-thickness: from-font; text-decoration-skip-ink: auto; transition: text-decoration-color 150ms; }
+```
+
+- [jakubkrehel/skills — better-typography: details & accessibility](https://github.com/jakubkrehel/skills/blob/main/skills/better-typography/details-and-accessibility.md)
+- [MDN: text-underline-position](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-underline-position)
+
+### Trim the Text Box
+
+**ID:** `design-text-box-trim`
+**Agent rule (SHOULD):** Use `text-box: trim-both cap alphabetic` to remove the font's reserved space and half-leading, so symmetric padding becomes optically symmetric instead of leaving text riding low in badges, chips and short buttons. This is progressive enhancement — ship pre-tuned padding as the base and gate the trim (plus the symmetric padding it enables) behind `@supports`; the layout must be correct without it.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Symmetric padding does not optically centre text, because the font reserves uneven space above and below the letters — trim it with text-box
+
+> Fonts reserve space above and below the letters, which is why text sits slightly too low in buttons and badges. `text-box` trims it. [...] Browser support is still limited; treat it as progressive enhancement.
+
+A line box is not the same height as the letters in it. The font declares an ascent and a descent that leave room for accents and descenders, and the line-height adds half-leading above and below on top of that. Neither is symmetric around the cap height, so when you give a badge `py-2` on both sides, the text does NOT land in the optical middle — it sits a pixel or two low, and every badge, chip and short button in the product carries the same small wrongness. The usual fix is to fudge it: `pt-1.5 pb-2`, tuned by eye, per component, per font, and silently invalidated the moment the typeface changes. `text-box: trim-both cap alphabetic` fixes the cause instead — it tells the browser to measure the box from the cap height to the baseline and throw away the reserved space outside it, so symmetric padding becomes optically symmetric. Support is still limited, so this is genuinely progressive enhancement: ship the pre-tuned padding as the base, and let an `@supports (text-box: trim-both cap alphabetic)` block reset the padding to symmetric and apply the trim. The layout must be correct without it.
+
+```tsx
+.badge { padding-top: 0.375rem; padding-bottom: 0.5rem; }
+@supports (text-box: trim-both cap alphabetic) {
+  .badge { text-box: trim-both cap alphabetic; padding-block: 0.5rem; }
+}
+```
+
+- [jakubkrehel/skills — better-typography: spacing & sizing](https://github.com/jakubkrehel/skills/blob/main/skills/better-typography/spacing-and-sizing.md)
+- [MDN: text-box](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-box)
+
+### Image Hairline: Pure Alpha, Never Tinted
+
+**ID:** `design-image-hairline-outline`
+**Agent rule (NEVER):** Tint an image hairline. Separate an image from its surface with a 1px `outline` at low alpha in PURE black (`oklch(0 0 0 / 0.1)`) on light and PURE white (`oklch(1 0 0 / 0.1)`) on dark — never a near-black or near-white from the palette (`slate-900`, `#0a0a0a`, `#f5f5f7`). This is the ONE neutral you must not tint, and the scoped exception to `design-impeccable-tinted-neutrals`: that rule governs surfaces you control, while a hairline sits on arbitrary photographic content, where any hue picks up the surface behind it and reads as dirt on the image edge. Use `outline` with `outline-offset: -1px`, not `border` — an outline is painted outside the layout algorithm, so the image keeps its intended size and a grid stays aligned.
+**Source:** jakubkrehel (https://github.com/jakubkrehel/skills)
+
+Separate an image from its surface with an inset 1px outline of pure black or pure white at low alpha — the one neutral you must not tint
+
+> Add a subtle `1px` outline with low opacity to images. [...] **Light mode**: pure black, `oklch(0 0 0 / 0.1)`. **Dark mode**: pure white, `oklch(1 0 0 / 0.1)`. Never use a near-black or near-white from the project palette (e.g. slate-900, zinc-900, `#0a0a0a`, `#111827`, `#f5f5f7`). Tinted outlines pick up the surrounding surface color and read as dirt on the image edge. [...] **Why outline instead of border?** `outline` doesn't affect layout (no added width/height), and `outline-offset: -1px` keeps it inset so images stay their intended size.
+
+Read this against design-impeccable-tinted-neutrals, which says the opposite — never #000, never #fff, tint every neutral toward the brand hue. Both are right, and the conflict is kept rather than flattened, because they are scoped to different surfaces. A tinted neutral works when it sits on a surface you control: the hue is a quiet, deliberate relationship between two things you shipped. An image hairline sits on arbitrary photographic content, and on the boundary between that content and whatever surface the image happens to land on today. A hue that is invisible on your neutral-100 card goes muddy-green against a warm cream backdrop and grey-violet against a warm photograph — and because it is a 1px line at the exact edge of a photo, the brain does not read "a subtly tinted separator", it reads dirt on the image. Pure black and pure white at low alpha have no hue to shift, so they read as a shadow of the edge itself under any backdrop. This is the one neutral you must NOT tint. Second half of the rule, and cheap to get wrong: use `outline` with `outline-offset: -1px`, not `border`. A border adds 2px to the box, which knocks a grid of images out of alignment against anything unbordered next to it; an outline is painted outside the layout algorithm entirely, and the negative offset pulls it inside so the image keeps its intended size.
+
+```tsx
+img { outline: 1px solid oklch(0 0 0 / 0.1); outline-offset: -1px; }
+@media (prefers-color-scheme: dark) { img { outline-color: oklch(1 0 0 / 0.1); } }
+```
+
+- [jakubkrehel/skills — better-ui: surfaces](https://github.com/jakubkrehel/skills/blob/main/skills/better-ui/surfaces.md)
+- [MDN: outline-offset](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-offset)
+
+### Honour Reduced Transparency and Increased Contrast
+
+**ID:** `design-reduced-transparency-contrast`
+**Agent rule (MUST):** Honour the two OS preferences that govern translucency, not just `prefers-reduced-motion`: under `prefers-reduced-transparency: reduce` drop `backdrop-filter` to `none` and raise the background to a solid token; under `prefers-contrast: more` go near-solid and add a defined, contrasting border so the chrome still reads as a separate layer once the blur that did that job is gone. A `backdrop-filter` toolbar's effective text contrast is whatever happens to be scrolling under it — unmeasurable, and unreadable for a low-vision user.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Translucent chrome must go solid under prefers-reduced-transparency and gain a defined border under prefers-contrast: more
+
+> **`prefers-reduced-transparency: reduce`** — make translucent surfaces frostier/solid: raise background opacity, drop the blur. **`prefers-contrast: more`** — near-solid backgrounds with a defined, contrasting border.
+
+We honour `prefers-reduced-motion` everywhere and ignore the two OS preferences that govern translucency — the exact thing glass is made of. That gap is worth naming, because this codebase also ships design-impeccable-no-glassmorphism, which polices blur on taste and performance grounds and never once asks whether the user has asked for less of it. Taste is not consent. Both signals exist because translucent chrome is genuinely hostile to some people: a `backdrop-filter` toolbar's effective text contrast is whatever happens to be scrolling underneath it, which is unmeasurable and, for a low-vision user, unreadable — and for someone with a vestibular or cognitive sensitivity, a background that shifts continuously behind the text is noise. `prefers-reduced-transparency: reduce` is macOS "Reduce transparency", iOS the same, Windows "Transparency effects" off. `prefers-contrast: more` is macOS "Increase contrast" and the Windows contrast themes. The remedy is small and additive: keep the glass as the default, then in a `@media (prefers-reduced-transparency: reduce)` block drop `backdrop-filter` to `none` and raise the background to a solid token, and in a `@media (prefers-contrast: more)` block add a defined, contrasting border so the chrome still reads as a separate layer once the blur that used to do that job is gone. Neither query has a JS fallback you need — `window.matchMedia` reads both if you want to reflect the state in the UI.
+
+```tsx
+.chrome { background: oklch(1 0 0 / 0.6); backdrop-filter: blur(12px); }
+@media (prefers-reduced-transparency: reduce) {
+  .chrome { background: var(--surface); backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  .chrome { background: var(--surface); border: 1px solid var(--border-strong); }
+}
+```
+
+- [emilkowalski/skills — apple-design](https://github.com/emilkowalski/skills/tree/main/skills/apple-design)
+- [MDN: prefers-reduced-transparency](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-transparency)
+- [MDN: prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast)
+
+### Scroll Edge Effects, Not Hard Dividers
+
+**ID:** `design-scroll-edge-effects`
+**Agent rule (SHOULD):** Where floating chrome overlaps scrolling content, fade the seam with a short `mask-image` gradient instead of drawing a 1px divider under the sticky header — content should recede under the chrome, not be guillotined by a rule that claims it ends there. Apply the mask ONLY where floating UI actually overlaps content; a fade at an edge nothing floats over just eats readable text.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Where floating chrome overlaps scrolling content, fade the content out with a mask instead of drawing a 1px rule under the header
+
+> **Scroll edge effects, not hard dividers.** Instead of a 1px border under a sticky header, fade a small blur/gradient mask where content meets floating chrome — only where floating UI actually overlaps content.
+
+A hard border under a sticky header is a claim that the header is a boundary — that content ends there. It does not; content continues underneath, and the border cuts it. What the eye wants at that seam is evidence of depth: the content should recede under the chrome rather than being sliced by it. A short `mask-image: linear-gradient(...)` on the scroll container (or an equivalent gradient overlay) fades the last few pixels of content to transparent exactly where the floating chrome sits over it, so a scrolling line of text dissolves under the header instead of being guillotined by a rule. Note the last clause of the rule, which is the part that stops this becoming decoration: only where floating UI actually overlaps content. A mask at an edge nothing floats over is a gratuitous fade that eats readable text. Also worth reading against design-impeccable-hairline-plus-shadow: that principle bans a hairline and a soft shadow together and tells you to commit to one of them — but both of its options are still a drawn edge, and neither proposes the mask. This is the third answer it never offers, and at the one seam where the other two are both wrong.
+
+```tsx
+.scroller { mask-image: linear-gradient(to bottom, transparent 0, #000 48px); }
+```
+
+- [emilkowalski/skills — apple-design](https://github.com/emilkowalski/skills/tree/main/skills/apple-design)
+- [MDN: mask-image](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask-image)
 
 ---
 

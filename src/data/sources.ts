@@ -121,7 +121,47 @@ export const sourceCatalog: CatalogSource[] = [
         // STANDARDS.md holds the precise rules (duration budgets, spring config, gesture
         // physics). Without it the freshness check is blind to most of Emil's substance.
         'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/review-animations/STANDARDS.md',
+        // A second, distinct skill by the same author: WWDC "Designing Fluid Interfaces"
+        // rendered into web terms. review-animations is about REVIEWING motion; this is
+        // gesture physics. Same person, so it expands this entry rather than earning a badge.
+        'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md',
       ],
+    },
+  },
+  {
+    id: 'jakubkrehel',
+    name: 'jakubkrehel',
+    author: 'Jakub Krehel',
+    repo: 'jakubkrehel/skills',
+    originKind: 'github',
+    color: 'bg-lime-800 text-white border-lime-800',
+    patternSource: 'jakubkrehel',
+    defaultTags: ['typography', 'design'],
+    check: {
+      mode: 'github',
+      rawUrls: [
+        'https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/SKILL.md',
+        'https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-ui/surfaces.md',
+      ],
+    },
+  },
+  {
+    // Only cherry-picked: its durable rule ("sound never replaces visual feedback") is
+    // WCAG 1.3.3 wearing an audio costume, and an audio category is inaudible by default —
+    // a pane can demo the code but not the sound. Its rules ship under `custom`.
+    // NOTE: the SKILL.md frontmatter claims MIT but the repo has no LICENSE file, so we do
+    // not repeat that claim.
+    id: 'sounds-on-the-web',
+    name: 'sounds-on-the-web',
+    author: 'Raphael Salaja',
+    repo: 'raphaelsalaja/skill',
+    originKind: 'github',
+    color: 'bg-yellow-800 text-white border-yellow-800',
+    creditedUnder: 'custom',
+    defaultTags: ['a11y'],
+    check: {
+      mode: 'github',
+      rawUrls: ['https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/sounds-on-the-web/SKILL.md'],
     },
   },
   {

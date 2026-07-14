@@ -25,6 +25,7 @@ export type PatternSource =
   | 'impeccable'       // Paul Bakaus' impeccable design language (impeccable.style)
   | 'interface-design' // Damola Akinleye's interface-design craft principles
   | 'lottiefiles'      // LottieFiles motion-design skill (runtime-agnostic motion direction)
+  | 'jakubkrehel'      // jakubkrehel/skills — better-typography + better-ui
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

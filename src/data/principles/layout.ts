@@ -390,4 +390,20 @@ export const layoutPrinciples: Principle[] = [
     badExampleKey: 'layout-impeccable-monotonous-spacing-bad',
     goodExampleKey: 'layout-impeccable-monotonous-spacing-good',
   },
+  {
+    id: 'layout-logical-properties',
+    category: 'layout',
+    source: 'jakubkrehel',
+    title: 'Logical Properties for Direction',
+    description: 'Use direction-agnostic CSS — margin-inline-start, not margin-left — so a layout mirrors correctly in right-to-left languages',
+    sourceQuote: 'To support right-to-left content, use direction-agnostic properties: `margin-inline-start` instead of `margin-left`, `text-align: start` instead of `left`. Set `lang` so browsers pick the right quotes and hyphenation, and `dir="rtl"` where needed.',
+    additionalExplanation: 'Physical properties encode a hardcoded assumption that text flows left-to-right. `margin-left` means "the left edge of the screen"; `margin-inline-start` means "the edge the reading starts at", which is the left in English and the right in Arabic, Hebrew, Persian and Urdu. Set `dir="rtl"` on a subtree built from physical properties and the browser dutifully mirrors the flex/grid order while every hardcoded left and right stays put — so the icon that hugged the text now detaches from it, the padding that kept a dismiss button clear of the label is now on the wrong side and the two collide, and the copy is still ragged-left in a language that is read right-to-left. The full mapping is small: `margin-inline-start`/`-end` for `margin-left`/`-right`, `padding-inline-start`/`-end`, `inset-inline-start`/`-end` for `left`/`right`, `border-inline-start`, and `text-align: start`/`end` for `left`/`right`. Tailwind ships all of them (`ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`), so the direction-agnostic version costs the same number of characters as the broken one. `lang` is the other half and is not decorative: it selects the right quotation marks, hyphenation dictionary and font fallbacks, and it is what a screen reader uses to pick a voice. Note this is a distinct gap from the internationalisation rules the guide already covers — content-language-detection and content-translate-no are about the words; this is about which way the box points.',
+    sourceLinks: [
+      { text: 'jakubkrehel/skills — better-typography', url: 'https://github.com/jakubkrehel/skills/tree/main/skills/better-typography' },
+      { text: 'MDN: CSS logical properties and values', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values' },
+    ],
+    tags: ['layout', 'a11y'],
+    badExampleKey: 'layout-logical-properties-bad',
+    goodExampleKey: 'layout-logical-properties-good',
+  },
 ];

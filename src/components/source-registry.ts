@@ -100,6 +100,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://github.com/lottiefiles/motion-design-skill',
     color: 'bg-green-700 text-white border-green-700',
   },
+  jakubkrehel: {
+    id: 'jakubkrehel',
+    name: 'jakubkrehel',
+    description: 'The CSS mechanics of type and surfaces, from jakubkrehel/skills',
+    url: 'https://github.com/jakubkrehel/skills',
+    color: 'bg-lime-800 text-white border-lime-800',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',

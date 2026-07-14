@@ -1684,6 +1684,95 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'design-interface-control-tokens': {
     priority: 'SHOULD',
     rule: 'Declare `--control-bg`, `--control-border` and `--control-focus` as their own trio — do not bind inputs, selects and checkboxes to the surface/card tokens. A card is a surface that RECEIVES the eye and should recede; an input must announce itself as a place where something goes, and if it shares the card\'s background and the divider\'s border its boundary lands near 1.2:1 and the field becomes a rumour. Separable tokens are what let you meet `design-non-text-contrast` (WCAG 1.4.11, 3:1 for the boundary that identifies a control) without shouting every divider on the page. On dark, inputs read best slightly DARKER than their surroundings — an inset well says "type here" without chrome.'
+  },
+  'interactions-hit-target-collision': {
+    priority: 'NEVER',
+    rule: 'Let two interactive elements have overlapping hit areas. This is the failure `interactions-match-hit-targets` creates: expand a sub-24px control with a pseudo-element and adjacent expanded targets overlap invisibly, so paint order decides the hit test and the element painted later steals the clicks. Grow each hit area only to the largest rect that does not collide with its neighbour\'s; if that lands below 24px, the layout is wrong — widen the pitch between the controls (WCAG 2.2 SC 2.5.8 measures spacing, not just size).',
+    codeExample: '/* 20px icons, 4px apart — cap the expansion, do not overshoot into the neighbour */\n.icon-btn { position: relative; }\n.icon-btn::after { content: ""; position: absolute; inset: -12px -2px; }'
+  },
+  'interactions-momentum-projection': {
+    priority: 'MUST',
+    rule: 'Project the resting position from release velocity, THEN snap to the target nearest that projected point — never snap to the target nearest the release point, which cannot tell a nudge from a throw.',
+    codeExample: 'const project = (v, decel = 0.998) => (v / 1000) * decel / (1 - decel);\nconst rest = x + project(velocityX);\nsnapTo(nearestTarget(rest)); // not nearestTarget(x)'
+  },
+  'interactions-grab-offset': {
+    priority: 'MUST',
+    rule: 'Store the pointer\'s offset within the element at `pointerdown` and subtract it on every `pointermove` so the element stays glued to the spot the user grabbed. Never re-centre the element under the cursor on grab — it teleports on the first frame and the illusion of holding an object dies.',
+    codeExample: 'const r = el.getBoundingClientRect();\nconst offset = { x: e.clientX - r.left, y: e.clientY - r.top };\n// pointermove:\nel.style.translate = `${e.clientX - offset.x}px ${e.clientY - offset.y}px`;'
+  },
+  'interactions-gesture-hysteresis': {
+    priority: 'MUST',
+    rule: 'Require ~10px of movement from the `pointerdown` origin before committing a drag/swipe to an axis, then lock that axis and track 1:1 with no mid-gesture re-evaluation. Committing on the first `pointermove` reads the wobble at the start of a vertical scroll as a horizontal swipe and steals the scroll.'
+  },
+  'interactions-sound-not-sole-channel': {
+    priority: 'MUST',
+    rule: 'Give every audio cue a visual equivalent — sound is a reinforcement channel and never carries feedback alone (WCAG 1.3.3). A Submit whose only success signal is a chime does nothing observable on a muted tab, and nothing at all for a deaf user. Removing the sound must cost nothing.'
+  },
+  'interactions-sound-is-user-owned': {
+    priority: 'MUST',
+    rule: 'Ship an explicit mute toggle in settings plus a volume control independent of system volume, and default the volume subtle (`0.3`) — never loud, never autoplaying. The OS mixer silences everything, not just you, so "turn your machine down" is not an off switch.'
+  },
+  'interactions-sound-only-for-significant-events': {
+    priority: 'NEVER',
+    rule: 'Attach sound to high-frequency interactions — typing, keyboard navigation, hover, scroll. Reserve it for confirmations the user needs assurance of (payments, uploads, form submissions) and for errors/warnings that must not be overlooked. A cue that fires on every input stops being feedback and trains the user to tune out every other sound you make.'
+  },
+  'animations-apple-xy-springs': {
+    priority: 'MUST',
+    rule: 'Decompose 2D motion into two independent springs — one on `x`, one on `y`, each seeded with its OWN release velocity. A single spring on the 2D distance (`Math.hypot(x, y)` → 0) can hold only one velocity, so both axes arrive together, the card slides home along a rigid radial line, and the tangential half of the throw is discarded.',
+    codeExample: 'animate(el, { x: 0 }, { type: "spring", velocity: vx });\nanimate(el, { y: 0 }, { type: "spring", velocity: vy }); // not one spring on hypot(x, y)'
+  },
+  'animations-symmetric-exit-path': {
+    priority: 'MUST',
+    rule: 'Exit along the path the element entered on — in-from-the-right means out-to-the-right — with the easing mirrored via inverse cubic-bezier control points: enter `(x1, y1, x2, y2)` → exit `(1 - x2, 1 - y2, 1 - x1, 1 - y1)`. This is DIRECTION and curve shape, orthogonal to `animations-emil-asymmetric` (DURATION — exits snap); a correct panel obeys both: back out the right edge, on the mirrored curve, faster than it came in.',
+    codeExample: '/* enter */ transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);\n/* exit  */ transition-timing-function: cubic-bezier(0.7, 0, 0.84, 0);'
+  },
+  'layout-logical-properties': {
+    priority: 'MUST',
+    rule: 'Use direction-agnostic properties so the layout mirrors in RTL: `margin-inline-start`/`-end` not `margin-left`/`-right`, `padding-inline-end` not `padding-right`, `inset-inline-start`/`-end` not `left`/`right`, `text-align: start`/`end` not `left`/`right` (Tailwind: `ms-*`, `me-*`, `ps-*`, `pe-*`, `start-*`, `end-*`, `text-start`, `text-end`). Set `lang` — it picks quotes, hyphenation, font fallback and the screen-reader voice — and `dir="rtl"` where needed. Under `dir="rtl"` the browser mirrors flex/grid order while every hardcoded left and right stays put, so icons detach and padding collides.',
+    codeExample: '<html lang="ar" dir="rtl">\n/* .card { margin-left: 1rem; text-align: left; }  ✗ */\n.card { margin-inline-start: 1rem; text-align: start; } /* ✓ */'
+  },
+  'content-no-synthetic-weights': {
+    priority: 'MUST',
+    rule: 'Set `font-synthesis: none` on the root so a weight or style you never loaded fails visibly instead of being faked. The browser draws a missing bold as the 400 outlines doubled a hair apart and a missing italic as a `skewX` on the roman — neither looks broken enough to file a ticket, so the missing files ship. The fix is always the same: load the file you asked for.',
+    codeExample: 'html { font-synthesis: none; }'
+  },
+  'content-font-properties-over-tags': {
+    priority: 'MUST',
+    rule: 'Use the CSS PROPERTY whenever one exists — `font-weight: 650`, `font-optical-sizing: auto`, `font-variant-numeric: tabular-nums` — not `font-variation-settings: "wght" 650` / `font-feature-settings: "tnum" 1`. Raw-tag declarations address axes that only exist inside the variable file, so when a non-variable fallback renders they SILENTLY DO NOTHING (weight collapses to 400, no console error). And `font-feature-settings` is ONE property, so a later declaration CLOBBERS an earlier one — add `"ss01" 1` to a rule that carried `"tnum" 1` and the tabular figures leave with it. Reserve the raw tags for custom axes (`"GRAD" 80`) and niche features (`"ss01" 1`) that have no property of their own.',
+    codeExample: '/* ✗ inert under a non-variable fallback; "tnum" clobbered by the next rule */\n.price { font-variation-settings: "wght" 650; font-feature-settings: "tnum" 1; }\n/* ✓ real properties, survive the fallback, cannot clobber each other */\n.price { font-weight: 650; font-variant-numeric: tabular-nums; font-feature-settings: "ss01" 1; }'
+  },
+  'content-heading-size-descends': {
+    priority: 'MUST',
+    rule: 'Pick the heading tag from the document outline and the size from a DESCENDING step of the type scale — a lower level must never render larger than a higher one on the same page. Never reach for a tag because it "looks right". Adjacent levels may share a size at the small end if weight or spacing keeps them distinct; a line that must be the loudest thing on the card without owning a rank is a `<p>` at display size. Distinct from `content-rams-heading-levels`, which is about SKIPPING levels (a11y outline) — here the tags are sequential and lint passes, but the render contradicts them.'
+  },
+  'content-truncation-keeps-value': {
+    priority: 'MUST',
+    rule: 'If the text an ellipsis hides discriminates rather than decorates, keep the full value reachable — a `title` (which also lands in the accessible name), a tooltip, an expanded view, or middle truncation that pins the discriminating tail (`invoice-2026-…-final-v2.pdf`) and collapses the boring head. Hover-only tooltips are not enough on their own: keyboard and touch users never trigger them, so pair them with something focusable.'
+  },
+  'design-underline-from-font': {
+    priority: 'SHOULD',
+    rule: 'Take underline geometry from the font: `text-underline-position: from-font`, `text-decoration-thickness: from-font`, `text-decoration-skip-ink: auto` — the browser\'s default position slices through the descenders of g, y, p and j. Colour is the only part of a real `text-decoration` that animates reliably, so transition `text-decoration-color` for a colour hover and build anything richer (a wipe, a grow, a slide) as a separate element animated on `transform: scaleX()`.',
+    codeExample: 'a { text-underline-position: from-font; text-decoration-thickness: from-font; text-decoration-skip-ink: auto; transition: text-decoration-color 150ms; }'
+  },
+  'design-text-box-trim': {
+    priority: 'SHOULD',
+    rule: 'Use `text-box: trim-both cap alphabetic` to remove the font\'s reserved space and half-leading, so symmetric padding becomes optically symmetric instead of leaving text riding low in badges, chips and short buttons. This is progressive enhancement — ship pre-tuned padding as the base and gate the trim (plus the symmetric padding it enables) behind `@supports`; the layout must be correct without it.',
+    codeExample: '.badge { padding-top: 0.375rem; padding-bottom: 0.5rem; }\n@supports (text-box: trim-both cap alphabetic) {\n  .badge { text-box: trim-both cap alphabetic; padding-block: 0.5rem; }\n}'
+  },
+  'design-image-hairline-outline': {
+    priority: 'NEVER',
+    rule: 'Tint an image hairline. Separate an image from its surface with a 1px `outline` at low alpha in PURE black (`oklch(0 0 0 / 0.1)`) on light and PURE white (`oklch(1 0 0 / 0.1)`) on dark — never a near-black or near-white from the palette (`slate-900`, `#0a0a0a`, `#f5f5f7`). This is the ONE neutral you must not tint, and the scoped exception to `design-impeccable-tinted-neutrals`: that rule governs surfaces you control, while a hairline sits on arbitrary photographic content, where any hue picks up the surface behind it and reads as dirt on the image edge. Use `outline` with `outline-offset: -1px`, not `border` — an outline is painted outside the layout algorithm, so the image keeps its intended size and a grid stays aligned.',
+    codeExample: 'img { outline: 1px solid oklch(0 0 0 / 0.1); outline-offset: -1px; }\n@media (prefers-color-scheme: dark) { img { outline-color: oklch(1 0 0 / 0.1); } }'
+  },
+  'design-reduced-transparency-contrast': {
+    priority: 'MUST',
+    rule: 'Honour the two OS preferences that govern translucency, not just `prefers-reduced-motion`: under `prefers-reduced-transparency: reduce` drop `backdrop-filter` to `none` and raise the background to a solid token; under `prefers-contrast: more` go near-solid and add a defined, contrasting border so the chrome still reads as a separate layer once the blur that did that job is gone. A `backdrop-filter` toolbar\'s effective text contrast is whatever happens to be scrolling under it — unmeasurable, and unreadable for a low-vision user.',
+    codeExample: '.chrome { background: oklch(1 0 0 / 0.6); backdrop-filter: blur(12px); }\n@media (prefers-reduced-transparency: reduce) {\n  .chrome { background: var(--surface); backdrop-filter: none; }\n}\n@media (prefers-contrast: more) {\n  .chrome { background: var(--surface); border: 1px solid var(--border-strong); }\n}'
+  },
+  'design-scroll-edge-effects': {
+    priority: 'SHOULD',
+    rule: 'Where floating chrome overlaps scrolling content, fade the seam with a short `mask-image` gradient instead of drawing a 1px divider under the sticky header — content should recede under the chrome, not be guillotined by a rule that claims it ends there. Apply the mask ONLY where floating UI actually overlaps content; a fade at an edge nothing floats over just eats readable text.',
+    codeExample: '.scroller { mask-image: linear-gradient(to bottom, transparent 0, #000 48px); }'
   }
 };
 
