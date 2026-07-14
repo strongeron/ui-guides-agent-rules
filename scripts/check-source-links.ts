@@ -53,14 +53,24 @@ async function checkUrl(url: string, principleId: string, text: string): Promise
   const timeout = setTimeout(() => controller.abort(), 10000);
 
   try {
-    const response = await fetch(url, {
-      method: 'HEAD',
-      signal: controller.signal,
-      redirect: 'manual',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; PrincipleValidator/1.0)',
-      },
-    });
+    const request = (method: 'HEAD' | 'GET') =>
+      fetch(url, {
+        method,
+        signal: controller.signal,
+        redirect: 'manual',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; PrincipleValidator/1.0)',
+        },
+      });
+
+    let response = await request('HEAD');
+
+    // Some hosts (material.io, several CDNs) reject HEAD outright. A 405/403 says
+    // nothing about whether the page exists, so confirm with GET before calling it
+    // broken — otherwise the checker invents dead links that load fine in a browser.
+    if (response.status === 405 || response.status === 403) {
+      response = await request('GET');
+    }
 
     clearTimeout(timeout);
     const responseTime = Date.now() - startTime;
