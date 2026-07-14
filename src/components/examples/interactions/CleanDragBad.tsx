@@ -2,52 +2,71 @@ import { useState } from 'react';
 
 export function CleanDragBad() {
   const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [overIndex, setOverIndex] = useState<number | null>(null);
 
-  const handleDragStart = (index: number) => {
-    setDraggedIndex(index);
-  };
-
-  const handleDragOver = (e: React.DragEvent, index: number) => {
-    e.preventDefault();
-    if (draggedIndex === null || draggedIndex === index) return;
-
-    const newItems = [...items];
-    const [removed] = newItems.splice(draggedIndex, 1);
-    newItems.splice(index, 0, removed);
-    setItems(newItems);
-    setDraggedIndex(index);
-  };
-
-  const handleDragEnd = () => {
-    setDraggedIndex(null);
+  // Commit the move once, on drop. Reordering on every dragover would remount the
+  // node being dragged and abort the drag.
+  const commit = () => {
+    if (dragIndex !== null && overIndex !== null && dragIndex !== overIndex) {
+      const next = [...items];
+      const [moved] = next.splice(dragIndex, 1);
+      next.splice(overIndex, 0, moved);
+      setItems(next);
+    }
+    setDragIndex(null);
+    setOverIndex(null);
   };
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="bg-card border border-border rounded-lg p-4">
-        <p className="text-xs text-muted-foreground mb-3">
-          Drag items to reorder. Notice text selection during drag:
-        </p>
-        <div className="space-y-2">
-          {items.map((item, index) => (
-            <div
-              key={item}
-              draggable
-              onDragStart={() => handleDragStart(index)}
-              onDragOver={(e) => handleDragOver(e, index)}
-              onDragEnd={handleDragEnd}
-              className={`p-3 bg-muted border border-border rounded-lg cursor-grab ${
-                draggedIndex === index ? 'opacity-50' : ''
-              }`}
-            >
-              {item} - Try selecting this text while dragging
-            </div>
-          ))}
-        </div>
+    <div className="w-full max-w-sm space-y-3">
+      <p className="text-xs text-muted-foreground">
+        Drag an item. Try to select its text, and drag over the toolbar.
+      </p>
+
+      <div className="space-y-2">
+        {items.map((item, i) => (
+          <div
+            key={item}
+            draggable
+            onDragStart={(e) => {
+              setDragIndex(i);
+              e.dataTransfer.effectAllowed = 'move';
+              e.dataTransfer.setData('text/plain', item);
+            }}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setOverIndex(i);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              commit();
+            }}
+            onDragEnd={commit}
+            className={`p-3 bg-muted border rounded-lg cursor-grab ${
+              dragIndex === i ? 'opacity-50' : ''
+            } ${overIndex === i && dragIndex !== i ? 'border-primary' : 'border-border'}`}
+          >
+            {item} (try selecting this text mid-drag)
+          </div>
+        ))}
       </div>
-      <p className="text-xs text-error mt-4">
-        Text selection and hover states active during drag
+
+      {/* The rest of the UI stays fully live during the drag. */}
+      <div className="flex gap-2">
+        {['Edit', 'Share', 'Delete'].map((b) => (
+          <button
+            key={b}
+            className="px-3 py-1.5 rounded-md bg-muted text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            {b}
+          </button>
+        ))}
+      </div>
+
+      <p className="text-xs text-destructive">
+        The text selects as you drag, and the toolbar still lights up under the cursor, so the page looks dragged,
+        selected and hovered all at once
       </p>
     </div>
   );

@@ -2,58 +2,77 @@ import { useState } from 'react';
 
 export function CleanDragGood() {
   const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
-  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [overIndex, setOverIndex] = useState<number | null>(null);
 
-  const handleDragStart = (index: number) => {
-    setDraggedIndex(index);
-  };
+  const isDragging = dragIndex !== null;
 
-  const handleDragOver = (e: React.DragEvent, index: number) => {
-    e.preventDefault();
-    if (draggedIndex === null || draggedIndex === index) return;
-
-    const newItems = [...items];
-    const [removed] = newItems.splice(draggedIndex, 1);
-    newItems.splice(index, 0, removed);
-    setItems(newItems);
-    setDraggedIndex(index);
-  };
-
-  const handleDragEnd = () => {
-    setDraggedIndex(null);
+  const commit = () => {
+    if (dragIndex !== null && overIndex !== null && dragIndex !== overIndex) {
+      const next = [...items];
+      const [moved] = next.splice(dragIndex, 1);
+      next.splice(overIndex, 0, moved);
+      setItems(next);
+    }
+    setDragIndex(null);
+    setOverIndex(null);
   };
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="bg-card border border-border rounded-lg p-4">
-        <p className="text-xs text-muted-foreground mb-3">
-          Drag items to reorder. Clean drag - no text selection:
-        </p>
-        <div className="space-y-2">
-          {items.map((item, index) => {
-            const isOtherItem = draggedIndex !== null && draggedIndex !== index;
-            return (
-              <div
-                key={item}
-                draggable
-                onDragStart={() => handleDragStart(index)}
-                onDragOver={(e) => handleDragOver(e, index)}
-                onDragEnd={handleDragEnd}
-                // inert takes the other items out of the focus and accessibility tree
-                // while a drag is in flight, which pointer-events-none alone does not do.
-                inert={isOtherItem ? '' : undefined}
-                className={`p-3 bg-muted border border-border rounded-lg cursor-grab select-none ${
-                  draggedIndex === index ? 'opacity-50' : ''
-                }`}
-              >
-                {item} - Text won't select during drag
-              </div>
-            );
-          })}
-        </div>
+    <div className="w-full max-w-sm space-y-3">
+      <p className="text-xs text-muted-foreground">
+        Drag an item. The text will not select, and the toolbar stops reacting.
+      </p>
+
+      <div className="space-y-2">
+        {items.map((item, i) => (
+          <div
+            key={item}
+            draggable
+            onDragStart={(e) => {
+              setDragIndex(i);
+              e.dataTransfer.effectAllowed = 'move';
+              e.dataTransfer.setData('text/plain', item);
+            }}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setOverIndex(i);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              commit();
+            }}
+            onDragEnd={commit}
+            // select-none kills the text selection that a drag would otherwise start.
+            // The items stay interactive: they are the drop targets.
+            className={`select-none p-3 bg-muted border rounded-lg cursor-grab ${
+              dragIndex === i ? 'opacity-50' : ''
+            } ${overIndex === i && dragIndex !== i ? 'border-primary' : 'border-border'}`}
+          >
+            {item} (text will not select)
+          </div>
+        ))}
       </div>
-      <p className="text-xs text-success mt-4">
-        <code>select-none</code> stops text selection, and <code>inert</code> removes the other items from the focus and accessibility tree while dragging
+
+      {/* inert takes the rest of the UI out of hover, pointer and focus handling
+          for as long as the drag is in flight. */}
+      <div
+        inert={isDragging ? '' : undefined}
+        className={`flex gap-2 transition-opacity ${isDragging ? 'opacity-40' : ''}`}
+      >
+        {['Edit', 'Share', 'Delete'].map((b) => (
+          <button
+            key={b}
+            className="px-3 py-1.5 rounded-md bg-muted text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            {b}
+          </button>
+        ))}
+      </div>
+
+      <p className="text-xs text-success">
+        <code>select-none</code> stops the text selecting, and <code>inert</code> on the surrounding UI stops it
+        hovering or reacting mid-drag. The list itself stays droppable
       </p>
     </div>
   );
