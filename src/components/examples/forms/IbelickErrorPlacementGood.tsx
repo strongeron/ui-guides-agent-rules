@@ -2,40 +2,50 @@ import { useState } from 'react';
 
 export function IbelickErrorPlacementGood() {
   const [submitted, setSubmitted] = useState(false);
-  const errors = submitted ? ['Invalid email format', 'Password must be at least 8 characters'] : [];
 
   return (
     <div className="space-y-4">
       <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
+        {/* Field error -> next to the field. That is where that action happened. */}
         <div>
-          <label className="text-sm font-medium">Email</label>
+          <label className="text-sm font-medium" htmlFor="good-email">Email</label>
           <input
+            id="good-email"
             type="email"
             className={`w-full mt-1 px-3 py-2 border rounded-lg ${submitted ? 'border-destructive' : ''}`}
             placeholder="you@example.com"
-            aria-invalid={submitted}
+            aria-invalid={submitted || undefined}
+            aria-describedby={submitted ? 'good-email-error' : undefined}
           />
+          {submitted && (
+            <p id="good-email-error" className="text-xs text-destructive mt-1">
+              Invalid email format
+            </p>
+          )}
         </div>
 
         <div>
-          <label className="text-sm font-medium">Password</label>
+          <label className="text-sm font-medium" htmlFor="good-password">Password</label>
           <input
+            id="good-password"
             type="password"
             className={`w-full mt-1 px-3 py-2 border rounded-lg ${submitted ? 'border-destructive' : ''}`}
             placeholder="••••••••"
-            aria-invalid={submitted}
+            aria-invalid={submitted || undefined}
+            aria-describedby={submitted ? 'good-password-error' : undefined}
           />
+          {submitted && (
+            <p id="good-password-error" className="text-xs text-destructive mt-1">
+              Password must be at least 8 characters
+            </p>
+          )}
         </div>
 
-        {errors.length > 0 && (
-          <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg" role="alert">
-            <p className="text-sm font-medium text-destructive">Please fix the following:</p>
-            <ul className="mt-1 text-xs text-destructive list-disc list-inside">
-              {errors.map((error, i) => (
-                <li key={i}>{error}</li>
-              ))}
-            </ul>
-          </div>
+        {/* Submit-level error (the request failed) -> next to the button. That is where THAT action happened. */}
+        {submitted && (
+          <p className="text-sm text-destructive" role="alert">
+            Could not reach the server. Nothing was saved — try again.
+          </p>
         )}
 
         <button
@@ -46,7 +56,8 @@ export function IbelickErrorPlacementGood() {
         </button>
       </form>
       <p className="text-xs text-success">
-        Error summary near submit button - always visible when user clicks
+        Each error sits next to where its action happened: field errors on their fields (wired with
+        aria-describedby), the submit failure by the button.
       </p>
     </div>
   );

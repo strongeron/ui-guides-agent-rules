@@ -32,6 +32,9 @@ export function IbelickMinimizePaintGood() {
       <p className="text-xs text-success">
         Crossfade a pre-painted shadow layer with <code>opacity</code> — composited, so the cards keep pulsing even while the main thread is busy
       </p>
+      <p className="text-xs text-muted-foreground">
+        Note the button itself still animates a paint property (<code>transition-colors</code> on hover). That is the carve-out, not a violation: it repaints one small, local control once per hover, not eight large surfaces continuously.
+      </p>
     </div>
   );
 }

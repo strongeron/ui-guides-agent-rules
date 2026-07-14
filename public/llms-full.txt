@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 340 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 339 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -36,13 +36,13 @@ Rules are transcribed and attributed to:
 
 - **Vercel** (118 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
 - **Tailwind** (31 rules) — https://tailwindcss.com/docs
-- **RAMS** (24 rules) — https://www.rams.ai/
+- **RAMS** (18 rules) — https://www.rams.ai/
 - **@Ibelick** (38 rules) — https://www.ui-skills.com/
 - **Rauno** (37 rules) — https://interfaces.rauno.me/
 - **Emil Kowalski** (18 rules) — https://emilkowalski.com/
-- **WCAG** (9 rules) — https://www.w3.org/WAI/WCAG21/quickref/
+- **WCAG** (10 rules) — https://www.w3.org/WAI/WCAG21/quickref/
 - **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
-- **Custom** (5 rules)
+- **Custom** (9 rules)
 - **Web Platform** (5 rules) — https://web.dev/
 - **impeccable** (26 rules) — https://impeccable.style/
 - **LottieFiles** (5 rules) — https://github.com/lottiefiles/motion-design-skill
@@ -493,10 +493,11 @@ When combining classes dynamically, the last class in CSS source order wins (not
 
 Interactive elements without visible text need aria-label or aria-labelledby
 
-> Icon buttons and other interactive elements without visible text must have accessible names via aria-label or aria-labelledby.
+> Icon-only buttons (WCAG 4.1.2) — <button> with only SVG/icon, no aria-label
 
-Screen readers announce the accessible name of interactive elements. Without it, users hear only "button" with no indication of purpose.
+Rams ships this as a Critical checklist row, not prose. Our reading: screen readers announce the accessible name of interactive elements, so without one users hear only "button" with no indication of purpose. aria-label or aria-labelledby supplies that name.
 
+- [Rams review checklist](https://www.rams.ai/rams.md)
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 ### Missing Focus Outline
@@ -507,10 +508,11 @@ Screen readers announce the accessible name of interactive elements. Without it,
 
 Interactive elements must have visible focus indicators
 
-> Removing focus outlines with outline: none without providing an alternative makes keyboard navigation impossible.
+> Focus outline removed (WCAG 2.4.7) — outline-none or outline: none without visible focus replacement
 
-Focus indicators show keyboard users where they are on the page. Use :focus-visible to show outlines only for keyboard navigation.
+Rams ships this as a Serious checklist row, not prose. Our reading: focus indicators show keyboard users where they are on the page. Removing the outline is only acceptable if you replace it with something equally visible — use :focus-visible so the ring appears for keyboard navigation but not on mouse clicks.
 
+- [Rams review checklist](https://www.rams.ai/rams.md)
 - [WCAG 2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
 
 ### onClick Without Keyboard Handler
@@ -521,10 +523,11 @@ Focus indicators show keyboard users where they are on the page. Use :focus-visi
 
 Elements with onClick should also handle keyboard events
 
-> Elements with mouse handlers but no keyboard handlers are inaccessible to keyboard-only users. Add onKeyDown or use semantic elements.
+> Missing keyboard handlers (WCAG 2.1.1) — Interactive elements with onClick but no onKeyDown/onKeyUp
 
-Semantic elements like button and a handle keyboard events automatically. Custom elements with onClick need explicit onKeyDown handlers.
+Rams ships this as a Serious checklist row, not prose. Our reading: elements that only respond to the mouse are unreachable for keyboard-only users. Semantic elements like button and a fire click on Enter/Space for free — reach for those first, and only add explicit onKeyDown when you genuinely cannot.
 
+- [Rams review checklist](https://www.rams.ai/rams.md)
 - [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html)
 
 ### Role Without Required Attributes
@@ -535,10 +538,11 @@ Semantic elements like button and a handle keyboard events automatically. Custom
 
 ARIA roles must include all required attributes
 
-> ARIA roles have required attributes. A checkbox needs aria-checked; a slider needs aria-valuenow, aria-valuemin, aria-valuemax.
+> Role without required attributes (WCAG 4.1.2) — role="button" without tabIndex="0"
 
-Incomplete ARIA is often worse than no ARIA. If you use a role, include all attributes that screen readers expect.
+Rams ships this as a Moderate checklist row, not prose, and its only example is role="button" without tabIndex="0". The general rule (ours, from the ARIA spec rather than Rams): a role is a promise about behavior, and incomplete ARIA is often worse than none. role="checkbox" needs aria-checked; role="slider" needs aria-valuenow, aria-valuemin, and aria-valuemax.
 
+- [Rams review checklist](https://www.rams.ai/rams.md)
 - [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 ### Non-Interactive Element with Keyboard Handler
@@ -549,11 +553,12 @@ Incomplete ARIA is often worse than no ARIA. If you use a role, include all attr
 
 Use semantic interactive elements instead of divs with handlers
 
-> Adding keyboard handlers to non-interactive elements like div requires role, tabIndex, and proper keyboard handling. Use button or a instead.
+> Non-semantic click handlers (WCAG 2.1.1) — <div onClick> or <span onClick> without role, tabIndex, onKeyDown
 
-Semantic elements come with built-in accessibility. A button handles focus, keyboard events, and announces correctly without extra work.
+Rams ships this as a Critical checklist row, not prose. Our reading: bolting role, tabIndex, and onKeyDown onto a div is the expensive way to re-derive what <button> already gives you — focus, Enter/Space activation, and a correct screen-reader announcement. Reach for the semantic element first.
 
-- [WCAG 4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+- [Rams review checklist](https://www.rams.ai/rams.md)
+- [WCAG 2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html)
 
 ### Positive tabindex Values
 
@@ -563,10 +568,11 @@ Semantic elements come with built-in accessibility. A button handles focus, keyb
 
 Avoid positive tabindex values that disrupt natural tab order
 
-> Positive tabindex values create unpredictable tab order. Use tabindex="0" to add to natural order or tabindex="-1" for programmatic focus.
+> Positive tabIndex (WCAG 2.4.3) — tabIndex > 0 (disrupts natural tab order)
 
-Natural tab order follows the DOM. Positive tabindex creates a parallel ordering system that confuses keyboard users.
+Rams ships this as a Moderate checklist row, not prose. Our reading: natural tab order follows the DOM, and a positive tabindex creates a parallel ordering system on top of it. Use tabindex="0" to join the natural order, or tabindex="-1" for programmatic-only focus.
 
+- [Rams review checklist](https://www.rams.ai/rams.md)
 - [WCAG 2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html)
 
 ### Small Touch Targets
@@ -577,11 +583,13 @@ Natural tab order follows the DOM. Positive tabindex creates a parallel ordering
 
 Interactive elements should be at least 44x44 pixels for touch
 
-> Touch targets smaller than 44x44 pixels are difficult to tap accurately. This is especially important on mobile devices.
+> Touch target too small (WCAG 2.5.5) — Clickable elements smaller than 44x44px
 
-The 44px minimum comes from Apple's Human Interface Guidelines and WCAG 2.5.5 AAA. Padding can increase hit area without changing visual size.
+Rams ships this as a Serious checklist row, not prose, and cites SC 2.5.5 Target Size (Enhanced) — the 44x44px bar, which is level AAA and matches Apple's Human Interface Guidelines. Read it alongside SC 2.5.8 Target Size (Minimum), the newer WCAG 2.2 criterion: 24x24px is the level AA floor every target must clear, and 44x44px is the AAA/mobile bar Rams holds you to. They are two rungs of the same ladder, not a contradiction — clear 24px to be conformant, hit 44px on anything thumb-driven. Either way, padding can grow the hit area without changing the visual size.
 
-- [WCAG 2.5.5](https://www.w3.org/WAI/WCAG21/Understanding/target-size.html)
+- [Rams review checklist](https://www.rams.ai/rams.md)
+- [WCAG 2.5.5 Target Size (Enhanced) — AAA](https://www.w3.org/WAI/WCAG21/Understanding/target-size.html)
+- [WCAG 2.5.8 Target Size (Minimum) — AA](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
 
 ### Use Accessible Primitives
 
@@ -589,12 +597,15 @@ The 44px minimum comes from Apple's Human Interface Guidelines and WCAG 2.5.5 AA
 **Agent rule (MUST):** Use accessible component primitives (Base UI, React Aria, Radix) for keyboard/focus behavior. These handle ARIA, focus management, and keyboard navigation correctly.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-Always use accessible primitives (Radix, Headless UI, Base UI) for keyboard and focus management
+Anything with keyboard or focus behavior should be built on an accessible primitive (Base UI, React Aria, Radix)
 
-> MUST use accessible primitives (Radix, Headless UI, Base UI) for keyboard navigation, focus trapping, and ARIA attributes.
+> MUST use accessible component primitives for anything with keyboard or focus behavior (Base UI, React Aria, Radix)
 
-Building accessible components from scratch is incredibly difficult. You need to handle keyboard navigation, focus trapping, ARIA attributes, and screen reader announcements. Primitive libraries handle all of this correctly.
+Building accessible components from scratch is genuinely hard: keyboard navigation, focus trapping, ARIA wiring, and screen reader announcements all have to be right at once. Primitive libraries have already paid that cost. Note the trigger is narrow — "anything with keyboard or focus behavior." A static card does not need a primitive; a menu, dialog, combobox, or tab set does.
 
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
+- [Base UI](https://base-ui.com/react/components)
+- [React Aria](https://react-spectrum.adobe.com/react-aria/)
 - [Radix UI Primitives](https://www.radix-ui.com/primitives)
 
 ### Use Existing Components First
@@ -605,25 +616,26 @@ Building accessible components from scratch is incredibly difficult. You need to
 
 Before building custom UI, check if an existing component library already solves the problem
 
-> MUST use existing components from your design system or component library before building custom solutions.
+> MUST use the project's existing component primitives first
 
-Building UI components from scratch introduces accessibility bugs, inconsistent behavior, maintenance burden, and duplicated effort. Use existing components that have been tested and documented.
+Building UI components from scratch introduces accessibility bugs, inconsistent behavior, maintenance burden, and duplicated effort. The project's own primitives have already been tested, styled, and documented — reach for those before reaching for a new dependency or a hand-rolled component.
 
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
 - [shadcn/ui Components](https://ui.shadcn.com/)
 
-### Don't Mix Primitive Systems
+### Don't Mix Primitive Systems Within One Surface
 
 **ID:** `interactions-ibelick-no-primitive-mixing`
 **Agent rule (NEVER):** Mix primitive systems (Radix + React Aria) within the same interaction surface. Focus management conflicts cause bugs. Pick one system per component.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-Never mix different primitive libraries (Radix + Headless UI) in the same project
+Never mix primitive libraries within the same interaction surface — a dialog whose trigger, content, and focus trap come from different systems
 
-> NEVER mix primitive systems (e.g., Radix + Headless UI). Pick one and stick with it for consistency.
+> NEVER mix primitive systems within the same interaction surface
 
-Mixing primitive libraries creates inconsistent keyboard navigation patterns, different focus behaviors, conflicting styling approaches, and larger bundle sizes.
+The scope qualifier is the whole rule. Two primitive systems inside one interaction surface fight over the same state: focus trapping, portalling, outside-click dismissal, and Escape handling get claimed twice, so focus lands in the wrong place and Escape closes the wrong layer. Across separate surfaces this is not an error — a codebase mid-migration may legitimately serve Radix in one surface and Base UI in another, and forcing a big-bang swap is worse than living with the split. Converge surface by surface.
 
-- [React File Structure](https://www.joshwcomeau.com/react/file-structure/)
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
 
 ### Consider Base UI for New Components
 
@@ -631,13 +643,14 @@ Mixing primitive libraries creates inconsistent keyboard navigation patterns, di
 **Agent rule (SHOULD):** Prefer Base UI for new primitives if compatible with the stack. It's unstyled, accessible, and doesn't impose styling opinions.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-When building new accessible components, consider Base UI for its unstyled, accessible primitives
+Prefer Base UI for new primitives, if it is compatible with the stack you already have
 
-> Consider Base UI for new accessible components. It provides unstyled, accessible primitives that work with any styling solution.
+> SHOULD prefer Base UI for new primitives if compatible with the stack
 
-Base UI provides fully accessible primitives with no default styling, excellent TypeScript support, and works great with Tailwind CSS.
+This is a SHOULD, and the conditional matters: it applies to *new* primitives, and only where Base UI fits the existing stack. Base UI ships fully accessible, unstyled primitives with strong TypeScript support that pair well with Tailwind. It is not a mandate to migrate primitives you already have.
 
-- [Base UI Documentation](https://base-ui.com/)
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
+- [Base UI Components](https://base-ui.com/react/components)
 
 ### Icon Buttons Need Labels
 
@@ -647,10 +660,11 @@ Base UI provides fully accessible primitives with no default styling, excellent 
 
 Always add aria-label to icon-only buttons for screen reader users
 
-> MUST add aria-label to icon-only buttons. Screen readers need text to announce the button's purpose.
+> MUST add an aria-label to icon-only buttons
 
-Icon-only buttons have no visible text, so screen readers have nothing to announce. Users hear only "button" with no context. Adding aria-label gives screen readers meaningful text.
+Icon-only buttons have no visible text, so screen readers have nothing to announce — users hear only "button" with no context. An aria-label supplies that name. Pair it with aria-hidden="true" on the icon itself so the glyph is not announced twice.
 
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
 - [Icon Button Accessibility](https://www.sarasoueidan.com/blog/accessible-icon-buttons/)
 
 ### Don't Rebuild Keyboard Behavior
@@ -661,10 +675,11 @@ Icon-only buttons have no visible text, so screen readers have nothing to announ
 
 Avoid manually implementing keyboard navigation and focus management that libraries handle correctly
 
-> Avoid rebuilding keyboard navigation and focus behavior. Accessible primitive libraries handle edge cases you'll miss.
+> NEVER rebuild keyboard or focus behavior by hand unless explicitly requested
 
-Manual keyboard handling is error-prone. You'll likely miss RTL handling, disabled item navigation, type-ahead search, focus restoration, and roving tabindex patterns.
+Manual keyboard handling is error-prone. Hand-rolled versions routinely miss RTL arrow direction, skipping disabled items, type-ahead search, focus restoration on close, and roving tabindex. The escape hatch in the rule is real, though: if someone explicitly asks for custom behavior a primitive cannot express, build it — deliberately, not by accident.
 
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
 - [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
 
 ### Use AlertDialog for Destructive Actions
@@ -675,10 +690,11 @@ Manual keyboard handling is error-prone. You'll likely miss RTL handling, disabl
 
 Always use AlertDialog for destructive or irreversible actions to require explicit confirmation
 
-> MUST use AlertDialog for destructive actions. Users need explicit confirmation before irreversible operations like deletion.
+> MUST use an AlertDialog for destructive or irreversible actions
 
-Destructive actions like deletion are irreversible. A simple click shouldn't trigger them. AlertDialog requires explicit action, focuses on confirm/cancel, and makes severity clear.
+A destructive action should not be one stray click away. An AlertDialog differs from a plain Dialog in exactly the ways that matter here: it is modal, it announces as an alertdialog, it takes focus on the safe action, and it will not dismiss on an outside click — so confirming has to be deliberate.
 
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
 - [Radix AlertDialog](https://www.radix-ui.com/primitives/docs/components/alert-dialog)
 
 ### Prefer Skeletons Over Spinners
@@ -689,10 +705,11 @@ Destructive actions like deletion are irreversible. A simple click shouldn't tri
 
 Use skeleton placeholders instead of spinners for loading states to reduce perceived load time
 
-> Use skeleton screens instead of spinners for loading states. Skeletons reduce perceived load time and prevent layout shift.
+> SHOULD use structural skeletons for loading states
 
-Skeleton screens show the structure of content before it loads, reducing perceived loading time and preventing cumulative layout shift (CLS). Spinners feel like waiting.
+The load-bearing word upstream is *structural*: a skeleton earns its keep by mirroring the shape of the content that is about to arrive, which reserves the layout and cuts perceived wait. A generic shimmering block is just a spinner with extra steps. This is a SHOULD, not a MUST — a spinner is still fine for a short, unpredictable wait with no known shape.
 
+- [ibelick/ui-skills — baseline-ui](https://github.com/ibelick/ui-skills)
 - [Skeleton Screens](https://www.lukew.com/ff/entry.asp?1797)
 
 ### Toggles Take Immediate Effect
@@ -1331,10 +1348,11 @@ Pick the curve from what is changing, in this order: elements entering or exitin
 
 Use motion/react (Framer Motion) for JavaScript-driven animations instead of manual implementations
 
-> MUST use motion/react for JavaScript animations. It handles interruption, spring physics, and gesture integration correctly.
+> MUST use `motion/react` (formerly `framer-motion`) when JavaScript animation is required
 
-Hand-rolling animations with requestAnimationFrame or direct DOM manipulation leads to buggy, interruptible animations. motion/react handles complex edge cases out of the box.
+Note the conditional in the rule: it does not say to reach for a JS animation library, it says which one to use once you have established that JS is required at all. CSS first; JS only when the interaction genuinely needs it (see animations-implementation-preference). When it does, hand-rolling with requestAnimationFrame or direct DOM writes means re-solving interruption, velocity hand-off, spring physics and gesture integration yourself — motion/react handles those, and the alternative is a pile of animations that restart from zero every time the user touches them.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Motion Documentation](https://motion.dev/docs/react)
 
 ### tw-animate-css for Micro Animations
@@ -1345,10 +1363,11 @@ Hand-rolling animations with requestAnimationFrame or direct DOM manipulation le
 
 Use tw-animate-css plugin for entrance and micro-interaction animations
 
-> Use tw-animate-css for entrance animations and micro-interactions. It provides consistent, performant CSS animations as Tailwind utilities.
+> SHOULD use `tw-animate-css` for entrance and micro-animations in Tailwind CSS
 
-The tw-animate-css plugin provides a comprehensive set of entrance, exit, and micro-interaction animations. Using a standardized library ensures consistency.
+This is a SHOULD, not a MUST, and it is scoped to Tailwind projects. The point of it is that entrance and micro-interaction animations are the ones most often hand-rolled per component — a bespoke @keyframes here, an inline style there — which is how a product ends up with six slightly different fade-ins. tw-animate-css supplies them as utilities (fade-in, slide-in-from-bottom-4, zoom-in-95) so the whole surface shares one vocabulary. It is CSS-only, which also keeps it on the right side of animations-implementation-preference.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [tw-animate-css](https://github.com/Wombosvideo/tw-animate-css)
 
 ### Animation Only When Requested
@@ -1359,10 +1378,11 @@ The tw-animate-css plugin provides a comprehensive set of entrance, exit, and mi
 
 Never add animations unless explicitly requested - they can hurt UX if overused
 
-> NEVER add animation unless explicitly requested. Animations can hurt user experience if overused or inappropriate.
+> NEVER add animation unless it is explicitly requested
 
-Animations should serve a purpose: provide feedback, guide attention, or smooth transitions. Adding animation "because it looks cool" often slows perceived performance and frustrates users.
+Read this as what it is: agent-facing guidance. It is a default for the party that was not asked — a coding agent handed "build me a settings panel" should not decide on its own that the panel slides. It is not a claim that animation is bad. A human designer choosing to animate has, by definition, explicitly requested it. The failure it prevents is real: animation added because it looks cool taxes every future use of a control, slows perceived performance, and is the single loudest tell of generated UI. Where motion IS wanted, animations-necessity-check gives the test it has to pass.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [The Case Against Animation](https://web.dev/articles/animations-guide)
 
 ### Animate Only Compositor Properties
@@ -1373,10 +1393,12 @@ Animations should serve a purpose: provide feedback, guide attention, or smooth 
 
 Only animate transform and opacity for smooth 60fps animations
 
-> Animate only transform and opacity. These are compositor-thread properties that can achieve 60fps without triggering layout or paint.
+> MUST animate only compositor props (`transform`, `opacity`)
 
-Properties like transform and opacity only affect the composite phase, allowing the GPU to handle them on a separate thread for smooth animations even when the main thread is busy.
+transform and opacity are the only two properties the browser can change without redoing style, layout or paint — the compositor already holds the layer and just re-places or re-blends it, on its own thread. That is why they keep moving at 60fps even while the main thread is blocked, and why everything else stutters the moment it is not. ibelick's own fixing-motion-performance skill states the same rule with its exceptions attached: "paint or layout animation is acceptable only on small, isolated surfaces" and "one-shot effects are acceptable more often than continuous motion" — so read this MUST as the default, and the size/duration carve-outs (animations-ibelick-minimize-paint, performance-ibelick-no-blur-animation) as the priced exits from it.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
 - [High Performance Animations](https://web.dev/articles/animations-guide)
 
 ### Never Animate Layout Properties
@@ -1387,24 +1409,27 @@ Properties like transform and opacity only affect the composite phase, allowing 
 
 Never animate width, height, top, left, or other layout-triggering properties
 
-> NEVER animate width, height, top, left, margin, or padding. These trigger expensive layout recalculations on every frame.
+> NEVER animate layout properties (`width`, `height`, `top`, `left`, `margin`, `padding`)
 
-Animating layout properties forces the browser to recalculate positions of potentially hundreds of elements every frame. Use transform: scale() for size and translate() for position instead.
+A layout property does not just move the element — it invalidates the geometry of everything the element participates in, so the browser reflows potentially hundreds of siblings on every frame, then repaints them, then composites. Use transform: scale() for size and translate() for position: they produce the same visual result with none of that work. Where the effect genuinely needs a layout-like change (a panel actually growing), measure once and fake it with a transform — FLIP — rather than animating the property; ibelick's fixing-motion-performance skill puts it as "measure once, then animate via transform or opacity".
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Avoid Layout Thrashing](https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing)
 
-### Minimize Paint Animations
+### Minimize Paint Animations — Except on Small, Local UI
 
 **ID:** `animations-ibelick-minimize-paint`
 **Agent rule (SHOULD):** Avoid animating paint properties (background, color, box-shadow) except for small, local UI elements. Large paint areas cause jank on lower-end devices.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-Avoid animating colors, backgrounds, and box-shadows which trigger expensive paint operations
+Avoid animating paint properties on large surfaces — but a color transition on a button label or an icon is fine
 
-> Minimize animating colors, backgrounds, and box-shadows. These trigger paint operations which are more expensive than compositor-only animations.
+> SHOULD avoid animating paint properties (`background`, `color`) except for small, local UI (text, icons)
 
-Paint operations require the browser to fill in pixels, which is CPU-intensive. For color transitions, use opacity on overlaid elements instead of animating the color directly.
+The exception is the useful half of this rule, and it is easy to lose. A paint animation forces the browser to re-fill pixels on the main thread every frame, and the cost scales with the AREA being repainted — so it is the same size budget as the surface-area rule, not a property blacklist. Repainting a full-bleed hero background or eight pulsing cards is expensive enough to visibly stall; repainting the 60x20px of a button label on hover is not, and refusing to do it buys you nothing but a worse interface. So: `transition-colors` on a button, a link, an icon — fine, and the correct thing to reach for. The same transition on a large container, or running continuously rather than once, is what the rule is aimed at. Two extensions worth knowing that upstream does not state: `box-shadow` behaves the same way (it is a paint property, and shadows are expensive to rasterize — see the example), and when you do need an apparently paint-like change on a large surface, pre-paint it as a second layer and crossfade the two with `opacity`, which is composited.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
 - [Simplify Paint Complexity](https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas)
 
 ### Proper Animation Timing
@@ -1415,10 +1440,11 @@ Paint operations require the browser to fill in pixels, which is CPU-intensive. 
 
 Use ease-out for entrances and keep interaction feedback under 200ms
 
-> Use ease-out for entrances (elements appear fast, settle slow). Keep interaction feedback under 200ms to feel instant.
+> SHOULD use `ease-out` on entrance. NEVER exceed `200ms` for interaction feedback.
 
-Animation timing affects perceived performance: ease-out for entrances (elements appear quickly and decelerate), ease-in for exits, and < 200ms for interactions to feel responsive.
+Two separate upstream rules, quoted together because they answer the same question: how should a small interaction feel. ease-out on entrance puts the movement in the first frames — the ones the user is actually watching — and lets it settle, which is why a 200ms ease-out reads as faster than a 200ms ease-in even though the stopwatch says otherwise (animations-emil-no-ease-in makes the same case at length). The 200ms ceiling is specifically for INTERACTION FEEDBACK — a press, a hover, a toggle, the response to something the user just did — not for every animation on the page: a drawer or a modal moves a large surface and legitimately runs longer (animations-emil-duration-budget budgets 200–500ms for those). Upstream says nothing about the curve for exits; do not infer ease-in from its absence.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Material Design Motion](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs)
 
 ### Pause Offscreen Animations
@@ -1429,10 +1455,12 @@ Animation timing affects perceived performance: ease-out for entrances (elements
 
 Pause looping animations when they're not visible to save battery and CPU
 
-> Pause looping animations when not visible. Use IntersectionObserver to detect visibility and stop wasting resources.
+> MUST pause looping animations when off-screen
 
-Animations running off-screen waste CPU cycles and drain battery on mobile devices. Use IntersectionObserver or Page Visibility API to pause animations when not visible.
+An off-screen loop is pure waste: it keeps the compositor awake, burns CPU and battery, and produces exactly zero pixels anyone sees. The browser does not stop it for you — a CSS animation on a scrolled-past element runs forever. ibelick's fixing-motion-performance skill names the mechanism ("use IntersectionObserver for visibility and pausing"): observe the element, and toggle `animation-play-state: paused` or stop the rAF loop when it leaves the viewport. Note the scope is LOOPING animations — a one-shot entrance that finishes off-screen costs nothing.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
 - [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 
 ### Respect Reduced Motion
@@ -1443,10 +1471,11 @@ Animations running off-screen waste CPU cycles and drain battery on mobile devic
 
 Honor prefers-reduced-motion for users who are sensitive to animation
 
-> SHOULD respect prefers-reduced-motion. Disable or simplify animations for users who have requested reduced motion in their OS settings.
+> SHOULD respect `prefers-reduced-motion`
 
-Some users experience motion sickness or vestibular disorders. The prefers-reduced-motion media query lets you detect this preference and provide a calmer experience.
+Some users experience motion sickness or vestibular symptoms from movement they did not initiate. The media query surfaces an OS-level preference they have already expressed, so honouring it costs one @media block. "Reduced" is not "none": keep opacity crossfades and instant state changes so the interface still communicates what happened — see animations-lottie-never-opacity-only for the corollary, that a state change reinforced by motion must still be legible once the motion is dropped.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [prefers-reduced-motion MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
 
 ### Pause, Stop, Hide Controls (WCAG 2.2.2)
@@ -1662,7 +1691,7 @@ Replace the built-in easing keywords with a strong cubic-bezier for any motion m
 
 > Built-in CSS easings are too weak. Use strong custom curves: `--ease-out: cubic-bezier(0.23, 1, 0.32, 1);` `--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);` `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);`
 
-The keyword `ease-out` is cubic-bezier(0, 0, 0.58, 1) — a shallow curve that, over any real distance, reads as near-linear with a mushy stop. cubic-bezier(0.23, 1, 0.32, 1) reaches roughly 80% of the distance in the first third of the duration and then decelerates, which is what "responsive but composed" looks like. Define the curves once as tokens (ease-out for UI, ease-in-out for on-screen movement, the iOS-like 0.32/0.72/0/1 for drawers) rather than hand-rolling a bezier per component.
+The keyword `ease-out` is cubic-bezier(0, 0, 0.58, 1) — a shallow curve that, over any real distance, reads as near-linear with a mushy stop. cubic-bezier(0.23, 1, 0.32, 1) reaches roughly 80% of the distance in the first third of the duration and then decelerates, which is what "responsive but composed" looks like. Define the curves once as tokens (ease-out for UI, ease-in-out for on-screen movement, the iOS-like 0.32/0.72/0/1 for drawers) rather than hand-rolling a bezier per component. DIRECT CONFLICT, deliberately kept: ibelick's baseline-ui states the opposite — "NEVER introduce custom easing curves unless explicitly requested". Both are right for their reader, and the axis is DEFAULTS vs MASTERY. ibelick is writing for an agent, where an unprompted cubic-bezier is a guess: a model that invents curves per component produces exactly the incoherent motion that animations-emil-motion-cohesion warns about, so the conservative default — reach for the keyword, do not improvise — is correct for the party that was not asked. Emil is writing for a human tuning motion on purpose, where the keyword is the ceiling you eventually hit: `ease-out` really is cubic-bezier(0, 0, 0.58, 1), and no amount of duration tuning will make it feel composed. So: an agent should not invent a curve unprompted; a designer who has decided the motion matters should reach for a real one — and then ship it as a token, which is what makes it a request rather than an improvisation.
 
 ```tsx
 :root {
@@ -2128,10 +2157,11 @@ Tailwind does not ship every CSS property — `scrollbar-width`, `text-wrap: bal
 
 Use a defined z-index scale instead of arbitrary values like z-[999]
 
-> MUST use fixed z-index scale, no arbitrary z-*. Define semantic z-index layers (base, dropdown, sticky, modal, popover, tooltip).
+> MUST use a fixed `z-index` scale (no arbitrary `z-*`)
 
-Arbitrary z-index values like z-[999] create an unmanageable stacking context. A semantic scale ensures predictable stacking: tooltips above modals, modals above dropdowns.
+Arbitrary values are an escalation game: z-[999] wins today, so the next thing that must sit above it becomes z-[9999], and nobody can answer "should a tooltip be above a modal?" by reading the code. A fixed, named scale (base, dropdown, sticky, modal, popover, tooltip) turns stacking into a decision made once. The semantic layer names are our elaboration, not upstream's words — upstream only forbids the arbitrary values.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Tailwind Z-Index](https://tailwindcss.com/docs/z-index)
 
 ### Use size-* Utility
@@ -2142,10 +2172,11 @@ Arbitrary z-index values like z-[999] create an unmanageable stacking context. A
 
 Use size-* instead of separate w-* and h-* for square elements
 
-> Use size-* instead of separate w-* h-* for square elements. It's more concise and clearly communicates intent.
+> SHOULD use `size-*` for square elements instead of `w-*` + `h-*`
 
-When an element should be square (icons, avatars, buttons), using size-8 instead of w-8 h-8 is more concise and communicates intent clearly.
+w-8 h-8 states two independent facts that happen to agree. size-8 states one fact: this is square. The difference shows up on edit — resize a w-8 h-8 icon and it is trivially easy to change one and not the other, producing a 32x24 "square" that nobody notices until it is next to a real one. It is a SHOULD, and it applies only where squareness is the intent (icons, avatars, icon buttons); an element that is coincidentally square is still correctly written as w-* + h-*.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Tailwind Size Utility](https://tailwindcss.com/docs/width#setting-both-width-and-height)
 
 ### Use dvh Instead of h-screen
@@ -2156,24 +2187,27 @@ When an element should be square (icons, avatars, buttons), using size-8 instead
 
 Never use h-screen or 100vh on mobile - use h-dvh for dynamic viewport height
 
-> NEVER use h-screen (100vh) for full-height layouts. Use h-dvh (dynamic viewport height) to account for mobile browser chrome.
+> NEVER use `h-screen`, use `h-dvh`
 
-On mobile browsers, 100vh includes the area behind the browser's address bar and navigation. This causes content to be cut off. dvh adjusts as the browser chrome shows/hides.
+On mobile, 100vh is the LARGE viewport — the height the page would have if the browser chrome were hidden. It does not shrink when the address bar is showing, so a "full height" screen is taller than the visible area and its bottom row (usually the primary action) sits under the browser UI. dvh tracks the viewport as the chrome shows and hides. The tradeoff worth knowing: because dvh changes during scroll, a dvh-sized element can resize mid-gesture — where that reflow is worse than the clipping, svh (the small viewport, i.e. chrome always visible) is the stable choice.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Dynamic Viewports](https://web.dev/blog/viewport-units)
 
-### Respect Safe Area Insets
+### Respect Safe Area Insets on Fixed Elements
 
 **ID:** `layout-ibelick-safe-areas`
 **Agent rule (MUST):** Respect safe-area-inset for fixed/sticky elements on notched devices. Use pb-safe, pt-safe or env(safe-area-inset-*) to prevent content obscuring.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-Use safe-area-inset padding to prevent content from being hidden behind notches and home indicators
+Pad fixed elements with env(safe-area-inset-*) so they clear the notch and the home indicator
 
-> MUST respect safe-area-inset for content near screen edges. Use pb-safe, pt-safe, or env(safe-area-inset-*) to avoid notches and home indicators.
+> MUST respect `safe-area-inset` for fixed elements
 
-Modern phones have notches, rounded corners, and home indicators that can obscure content. The safe-area-inset CSS environment variables add padding that respects these hardware features.
+The scope is FIXED elements, and that is the whole point of the rule: normal document flow already stops short of the unsafe regions, so a paragraph does not need this. A `position: fixed` header, bottom bar, FAB or drawer is positioned against the viewport, which extends underneath the notch and the home indicator — so it, and only it, lands in hardware. Requires `viewport-fit=cover` in the viewport meta tag; without it the env() values all resolve to 0 and the rule silently does nothing. Write the padding as `padding-bottom: env(safe-area-inset-bottom)` (or, keeping the element's own padding, `calc(0.75rem + env(safe-area-inset-bottom))`), and note that `pb-safe` / `pt-safe` are NOT core Tailwind — they come from the tailwindcss-safe-area plugin or a hand-written `@utility`, and they do not exist in this project, so writing them here produces no CSS at all.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [MDN — env()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env)
 - [Designing for Notches](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
 
 ### Min-Width for Truncation
@@ -2658,10 +2692,11 @@ The official Tailwind CSS IntelliSense extension provides autocomplete, syntax h
 
 All images must have descriptive alt text for screen reader users
 
-> Images without alt text are invisible to screen reader users. Provide descriptive text that conveys the image content and purpose.
+> Images without alt — `<img>` without `alt` attribute
 
-Alt text is essential for accessibility. Decorative images should use alt="" to be skipped by screen readers, while meaningful images need descriptive text.
+Rams lists this as a Critical accessibility check (WCAG 1.1.1) in its review table; the upstream skill is a checklist, so that terse row is the whole rule. Why it matters: images without alt text are invisible to screen reader users. Decorative images should carry alt="" so they are skipped, while meaningful images need text conveying their content and purpose.
 
+- [rams.md (skill source)](https://rams.ai/rams.md)
 - [WCAG 1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
 
 ### Skipped Heading Levels
@@ -2672,25 +2707,27 @@ Alt text is essential for accessibility. Decorative images should use alt="" to 
 
 Heading levels should not skip (e.g., h1 to h3 without h2)
 
-> Skipping heading levels breaks the logical document structure. Screen reader users navigate by headings; skipped levels cause confusion.
+> Heading hierarchy — Skipped heading levels (h1 to h3)
 
-Headings create a document outline. Going from h1 to h3 suggests missing content. Always maintain sequential heading hierarchy.
+Rams lists this as a Moderate ("consider fixing") check (WCAG 1.3.1) in its review table; the upstream skill is a checklist, so that terse row is the whole rule. Why it matters: headings create a document outline that screen reader users navigate by. Going from h1 to h3 suggests missing content. Keep the hierarchy sequential.
 
+- [rams.md (skill source)](https://rams.ai/rams.md)
 - [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html)
 
 ### Links Without Descriptive Text
 
 **ID:** `content-rams-link-text`
 **Agent rule (MUST):** Link text must describe its destination - avoid generic text like "click here" or "read more". Links should make sense out of context for screen reader link lists.
-**Source:** RAMS (https://www.rams.ai/)
+**Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
 
 Links should have descriptive text, not generic phrases like "click here"
 
-> Generic link text like "click here" or "read more" provides no context. Link text should describe the destination or action.
+> The purpose of each link can be determined from the link text alone or from the link text together with its programmatically determined link context, except where the purpose of the link would be ambiguous to users in general.
 
-Screen reader users often navigate by links. Descriptive text helps them understand where the link goes without reading surrounding content.
+WCAG 2.1 Success Criterion 2.4.4 Link Purpose (In Context), Level A. Screen reader users often navigate by pulling up a list of links, stripped of surrounding prose — "click here" and "read more" tell them nothing. Note: this principle previously carried a Rams badge, but Rams has no descriptive-link-text rule (its only link check is "Missing link destination"), so it is now attributed to the WCAG criterion it actually comes from.
 
-- [WCAG 2.4.4](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html)
+- [WCAG 2.1 SC 2.4.4 (Understanding)](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html)
+- [WCAG 2.1 SC 2.4.4 (Quick Reference)](https://www.w3.org/WAI/WCAG21/quickref/#link-purpose-in-context)
 
 ### Use text-balance and text-pretty
 
@@ -2700,10 +2737,11 @@ Screen reader users often navigate by links. Descriptive text helps them underst
 
 Use text-balance for headings and text-pretty for body text to improve readability
 
-> Use text-balance for headings and text-pretty for body text. These CSS properties improve line breaks and readability.
+> MUST use `text-balance` for headings and `text-pretty` for body/paragraphs
 
-text-balance balances line lengths in headings. text-pretty prevents orphans (single words on last line) in paragraphs. Both improve readability without manual line break management.
+From the Typography constraints in ibelick's baseline-ui skill. text-balance evens out line lengths in headings; text-pretty prevents orphans (a single word stranded on the last line) in paragraphs. Both improve readability without hand-managed line breaks.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [CSS text-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap)
 
 ### Use Tabular Numbers for Data
@@ -2714,10 +2752,11 @@ text-balance balances line lengths in headings. text-pretty prevents orphans (si
 
 Always use tabular-nums for numbers in tables and data displays for proper alignment
 
-> MUST use tabular-nums (font-variant-numeric: tabular-nums) for data tables, prices, and numerical lists.
+> MUST use `tabular-nums` for data
 
-Proportional numbers have varying widths, causing columns to misalign. Tabular numbers have uniform widths, ensuring perfect alignment and professional appearance.
+From the Typography constraints in ibelick's baseline-ui skill (the Tailwind `tabular-nums` utility maps to font-variant-numeric: tabular-nums). Proportional figures have varying widths, so columns of numbers misalign and counters jitter as they tick. Tabular figures share one advance width, so data tables, prices, and numeric lists line up.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [font-variant-numeric MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric)
 
 ### Handle Text Overflow Properly
@@ -2728,10 +2767,11 @@ Proportional numbers have varying widths, causing columns to misalign. Tabular n
 
 Use truncate or line-clamp for predictable text overflow in dense layouts
 
-> Apply truncate or line-clamp for text in cards, lists, and dense layouts. Predictable overflow prevents layout breaking.
+> SHOULD use `truncate` or `line-clamp` for dense UI
 
-User-generated content can be any length. Without overflow handling, cards expand unexpectedly and grids break. Use truncate for single lines, line-clamp for multi-line limits.
+From the Typography constraints in ibelick's baseline-ui skill — a SHOULD, not a MUST. User-generated content can be any length; without overflow handling, cards expand unexpectedly and grids break. Use truncate for single lines, line-clamp for a multi-line cap.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Tailwind Line Clamp](https://tailwindcss.com/docs/line-clamp)
 
 ### Don't Modify Letter Spacing
@@ -2742,10 +2782,11 @@ User-generated content can be any length. Without overflow handling, cards expan
 
 Avoid changing letter-spacing unless explicitly requested - fonts are designed with proper spacing
 
-> Avoid modifying letter-spacing unless explicitly requested. Type designers carefully craft letter spacing for readability.
+> NEVER modify `letter-spacing` (`tracking-*`) unless explicitly requested
 
-Professional typefaces are meticulously designed with optimal letter spacing. Modifying it reduces readability and often looks unprofessional. Consider different font weights instead.
+From the Typography constraints in ibelick's baseline-ui skill. Type designers craft spacing per weight and optical size; overriding it usually costs readability and reads as amateurish. If the text needs more presence, reach for weight or size before tracking.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Typography Best Practices](https://fonts.google.com/knowledge/using_type)
 
 ### Font Smoothing
@@ -3645,10 +3686,11 @@ The cn() utility is a standard pattern that combines clsx (for conditional class
 
 All form inputs must have associated labels
 
-> Form inputs without labels are inaccessible. Use the label element with htmlFor, or aria-label for inputs without visible labels.
+> Form inputs without labels — `<input>`, `<select>`, `<textarea>` without associated `<label>` or `aria-label`
 
-Labels tell users what to enter. Screen readers announce the label when the input is focused. Placeholder text is not a substitute.
+Rams lists this as a Critical accessibility check (WCAG 1.3.1) in its review table; the upstream skill is a checklist, so that terse row is the whole rule. Why it matters: the label is what a screen reader announces on focus, and what a click target extends to. Placeholder text is not a substitute — it disappears the moment the user types.
 
+- [rams.md (skill source)](https://rams.ai/rams.md)
 - [WCAG 1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html)
 
 ### Use cn() Utility for Class Merging
@@ -3659,24 +3701,26 @@ Labels tell users what to enter. Screen readers announce the label when the inpu
 
 Always use the cn() utility (clsx + tailwind-merge) for conditional and merged class names
 
-> MUST use cn utility (clsx + tailwind-merge) for class name merging. It handles conflicts and conditionals correctly.
+> MUST use `cn` utility (`clsx` + `tailwind-merge`) for class logic
 
-When merging Tailwind classes, conflicts can occur (e.g., p-4 and p-2 both present). The cn() utility combines clsx for conditional logic with tailwind-merge for intelligent conflict resolution.
+From the Stack constraints in ibelick's baseline-ui skill. Naive string concatenation leaves both sides of a conflict in the class list (p-4 and p-2), and the winner is decided by stylesheet order, not by intent. cn() combines clsx for conditional logic with tailwind-merge for last-one-wins conflict resolution.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [tailwind-merge](https://github.com/dcastil/tailwind-merge)
 
-### Show Errors Near Actions
+### Show Errors Where the Action Happens
 
 **ID:** `forms-ibelick-error-placement`
 **Agent rule (MUST):** Show errors inline next to where the action happens. Disconnected toasts or top-of-form error summaries force users to hunt for problems.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-Display form errors next to the submit button or action, not just at the field level
+Put each error next to the thing that caused it: field errors on their field, submit errors by the submit button
 
-> MUST show form errors next to the submit action. Users focus on the button when submitting - that's where they need to see errors.
+> MUST show errors next to where the action happens
 
-When users submit a form, their attention is on the submit button. If errors only appear at individual fields (which may be scrolled away), users may not notice them.
+From the Interaction constraints in ibelick's baseline-ui skill. "Where the action happens" is deliberately general and resolves per error: a validation error on the email field happened at the field, so it belongs under the field (wired with aria-describedby and aria-invalid); a submit failure — the request was rejected or the network died — happened at the button, so it belongs by the button. The anti-pattern is a detached error: a summary parked at the top of the page, or a toast that fires and vanishes, leaving nothing next to the control the user was actually touching. Read this as the placement rule that generalizes forms-error-placement (Vercel: "Errors inline next to fields"), not as a competitor to it — Vercel names the field case, ibelick names the whole family.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Form Error Handling](https://www.nngroup.com/articles/errors-forms-design-guidelines/)
 
 ### Never Block Paste
@@ -3687,10 +3731,11 @@ When users submit a form, their attention is on the submit button. If errors onl
 
 Never prevent users from pasting into form fields - it breaks password managers and accessibility
 
-> NEVER block paste in form fields. It breaks password managers, accessibility tools, and frustrates users.
+> NEVER block paste in `input` or `textarea` elements
 
-Blocking paste breaks password managers (the #1 security tool), prevents users with motor disabilities from using assistive tools, and forces users to type sensitive data.
+From the Interaction constraints in ibelick's baseline-ui skill. Blocking paste breaks password managers (which is how strong, unique passwords get used at all), blocks users with motor disabilities who rely on assistive input, and forces people to retype sensitive data by hand — where they make errors and pick weaker values.
 
+- [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Why Paste Blocking Hurts Security](https://www.troyhunt.com/the-cobra-effect-that-is-disabling/)
 
 ### Input Decorations Positioning
@@ -3986,24 +4031,28 @@ v4 removed `safelist` along with the rest of the JS config. The replacement live
 
 Use Tailwind CSS default spacing, colors, and sizing scales unless a custom design token exists
 
-> MUST use Tailwind CSS defaults (spacing, colors, sizing) unless a custom design token exists in the config.
+> MUST use Tailwind CSS defaults unless custom values already exist or are explicitly requested
 
-Tailwind's default scale is carefully designed for consistency. Using arbitrary values like p-[13px] creates visual inconsistency and makes CSS harder to maintain.
+The two escapes are the interesting part: a custom value is allowed when the project ALREADY has one (you are following an existing token, not inventing one) or when it was explicitly asked for. Everything else takes the default scale. The failure this prevents is the arbitrary-value drift — p-[13px] here, text-[15px] there, gap-[7px] somewhere else — where every value is individually defensible and the set has no rhythm at all. It is also the single most common tell of generated UI, because a model has no reason to make independently-emitted numbers agree.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Tailwind Spacing Scale](https://tailwindcss.com/docs/theme)
 
-### Never Animate Blur Effects
+### Never Animate Large or Continuous Blur
 
 **ID:** `performance-ibelick-no-blur-animation`
 **Agent rule (NEVER):** Animate large blur() or backdrop-filter surfaces. They are expensive paint operations that cause frame drops, especially on mobile devices.
 **Source:** @Ibelick (https://www.ui-skills.com/)
 
-Never animate blur or backdrop-filter - they're extremely expensive and cause frame drops
+Never animate blur on a large surface or on a loop — a small (≤8px), short, one-time blur is the permitted exception
 
-> NEVER animate large blur or backdrop-filter. These operations are extremely expensive and cause significant frame drops.
+> NEVER animate large `blur()` or `backdrop-filter` surfaces. [fixing-motion-performance §7] keep blur animation small (<=8px) · use blur only for short, one-time effects · never animate blur continuously · never animate blur on large surfaces · prefer opacity and translate before blur
 
-Blur operations require sampling many pixels for every pixel rendered. Animating blur means recalculating this on every frame. Instead, use a static blur and animate opacity.
+Blur is expensive because it samples a neighbourhood of pixels for every pixel it produces: the cost scales with the AREA blurred and, worse, with the RADIUS, and animating it re-rasterizes the whole surface every frame. So the three variables are radius, area and duration — and ibelick prices all three rather than banning the property outright. The permitted case is a small radius (≤8px), on a small surface, running once. The forbidden cases are the ones that multiply: a full-screen backdrop-filter, a 40px radius, or any blur on a loop. Reach for opacity and translate first; where you truly need a big blur, pre-render it as a static layer and crossfade THAT with opacity, which is composited. IMPORTANT — this is what licenses animations-emil-blur-crossfade, which prescribes filter: blur(2px) during a crossfade to fuse two overlapping states. Under the old blanket phrasing ("never animate blur") the two principles in this corpus flatly contradicted each other. They do not: 2px, on one element, for the length of a transition, is exactly the small/short/one-time carve-out upstream defines. The threshold is the rule; the blanket ban was our overreach.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
+- [MDN — filter](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/filter)
 - [CSS Filter Performance](https://web.dev/articles/simplify-paint-complexity-and-reduce-paint-areas)
 
 ### Use will-change Sparingly
@@ -4014,10 +4063,12 @@ Blur operations require sampling many pixels for every pixel rendered. Animating
 
 Only apply will-change during active animations, never as a permanent style
 
-> Only apply will-change during active animations. Permanent will-change wastes GPU memory and can hurt performance.
+> NEVER apply `will-change` outside an active animation
 
-will-change tells the browser to create a GPU layer. Using it permanently on many elements wastes memory and can hurt performance through layer explosion.
+will-change is a promise, not an optimisation: it asks the browser to promote the element to its own compositor layer AHEAD of a change you are about to make. Left on permanently it is a promise you never keep — the layer is allocated, its memory is held, and nothing ever animates. Do it across a list and you get layer explosion, where the cost of compositing hundreds of layers exceeds whatever the promotion saved. ibelick's fixing-motion-performance skill states the discipline exactly: "use will-change temporarily and surgically", and "compositor motion requires layer promotion, never assume it" — so add it when the animation is about to start (or on hover, just before a press) and remove it when the animation ends.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
+- [ibelick — fixing-motion-performance SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/fixing-motion-performance/SKILL.md)
 - [will-change MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/will-change)
 
 ### Don't Use useEffect for Render Logic
@@ -4028,10 +4079,11 @@ will-change tells the browser to create a GPU layer. Using it permanently on man
 
 Never use useEffect to compute values that should be derived during render
 
-> NEVER use useEffect for render logic. If a value can be computed from props or state, compute it during render instead.
+> NEVER use `useEffect` for anything that can be expressed as render logic
 
-Using useEffect to set state based on other state causes extra re-renders and potential infinite loops. Compute derived values directly or use useMemo.
+The state-syncing effect — useEffect(() => setFullName(first + " " + last), [first, last]) — is not just slower, it is a second source of truth. React must render with the stale value, commit it, run the effect, set state, and render again: the user briefly sees the old value, and any bug in the dependency array leaves the two permanently out of step. Derived values are just expressions: compute them during render (const fullName = first + " " + last), and reach for useMemo only when the computation is genuinely expensive. Effects are for synchronising with something OUTSIDE React — the DOM, a subscription, the network — not with React's own state.
 
+- [ibelick — baseline-ui SKILL.md](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
 
 ### CSS Containment for Performance
@@ -4325,7 +4377,7 @@ This is the false floor under every "animate transform and opacity" rule you hav
 
 ## Design
 
-Visual design principles and aesthetics. 51 rules.
+Visual design principles and aesthetics. 50 rules.
 
 ### Layered Shadows
 
@@ -4538,38 +4590,26 @@ If you wait for JavaScript to run before checking the color scheme, users see a 
 
 Don't rely on color alone to convey information
 
-> Information conveyed only through color is inaccessible to colorblind users. Add icons, patterns, or text labels.
+> Status/error indicated only by color (no icon/text)
 
-About 8% of men have color vision deficiency. Use multiple visual cues: icons with status colors, underlines with links, patterns in charts.
+That line is the "what to look for" cell of the Rams review's Serious a11y check "Color-only information", mapped to WCAG 1.4.1. The rule itself is one row in a table; the reasoning is ours. Information conveyed only through color is unavailable to colourblind users — about 8% of men have some colour vision deficiency — and it is equally unavailable to anyone on a monochrome display, in bright sun, or reading a printout. Carry every colour-coded meaning on a second channel: an icon or glyph next to the status colour, a text label on the badge, an underline on the link, a pattern or direct label on the chart series.
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [WCAG 1.4.1](https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html)
 
-### Insufficient Color Contrast
+### Insufficient Text Contrast
 
 **ID:** `design-rams-color-contrast`
-**Agent rule (MUST):** UI components (buttons, inputs, icons) must have minimum 3:1 contrast ratio against adjacent colors (WCAG 1.4.11). Test in both light and dark themes.
+**Agent rule (MUST):** Text needs >= 4.5:1 against its background (WCAG 1.4.3); large text (>= 24px, or >= 19px bold) may use 3:1. Secondary text, captions and disabled states are where this fails. For UI component boundaries and states, `design-non-text-contrast` sets the separate 3:1 bar (WCAG 1.4.11). Test in both themes.
 **Source:** RAMS (https://www.rams.ai/)
 
-Text must have sufficient contrast with its background
+Text must have sufficient contrast with its background — including secondary text
 
-> Low contrast text is hard to read, especially for users with low vision. WCAG requires 4.5:1 for normal text, 3:1 for large text.
+> Contrast ratio below 4.5:1
 
-Use tools like the WebAIM contrast checker. Gray text on white backgrounds is a common violation. Large text (18pt+) has lower requirements.
+That is the whole upstream rule — one bullet under "Color & Contrast" in the Rams review. The number is WCAG 1.4.3 Level AA: 4.5:1 for body text, relaxed to 3:1 for large text (18pt / 14pt bold and above). The reasoning here is ours. The failures are almost never the headline; they are the quiet text — captions, helper text, placeholders, timestamps, and "muted" secondary copy, where a designer reached for light gray on white to make the layout calmer. Disabled controls are formally exempt from 1.4.3, but if the disabled label is the only thing telling a user why they cannot proceed, exempt is not the same as readable. Check with a contrast tool rather than by eye, and re-check in dark mode, where a token that passed on white can fail on near-black. This rule sets the floor for TEXT only. The parts of a control that are not text — an input outline, a checkbox in its off state, a focus ring, a chart line — are governed by design-non-text-contrast (WCAG 1.4.11), whose AA floor is 3:1, not 4.5:1. The two numbers are not in conflict; they measure different things.
 
-- [WCAG 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
-
-### Poor Text-Background Contrast
-
-**ID:** `design-rams-text-contrast`
-**Agent rule (MUST):** Text must have minimum 4.5:1 contrast ratio against background (WCAG 1.4.3). Large text (18pt+/14pt+ bold) can use 3:1. Low contrast causes eye strain.
-**Source:** RAMS (https://www.rams.ai/)
-
-Ensure readable text contrast, especially for secondary text
-
-> Secondary text, captions, and disabled states often have insufficient contrast. All readable text should meet contrast requirements.
-
-Don't sacrifice readability for aesthetics. Light gray on white is a common problem. Test with contrast checkers and in different lighting.
-
+- [Rams design review skill](https://rams.ai/rams.md)
 - [WCAG 1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
 
 ### Inconsistent Spacing
@@ -4580,39 +4620,40 @@ Don't sacrifice readability for aesthetics. Light gray on white is a common prob
 
 Use consistent spacing between similar elements
 
-> Inconsistent spacing creates visual noise and makes relationships between elements unclear. Use a spacing scale consistently.
+> Inconsistent spacing values
 
-Tailwind's spacing scale (4, 8, 12, 16, 24, 32...) provides consistent increments. Related elements should have consistent gaps.
+The upstream rule is that four-word bullet, under "Layout & Spacing" — the explanation below is ours. Arbitrary gaps (13px here, 17px there) read as noise because proximity is how a reader infers grouping: if the gap between a label and its input is the same as the gap between two unrelated fields, nothing tells them which label belongs to which control. Pick a scale and stay on it — Tailwind's (4, 8, 12, 16, 24, 32…) is fine — and make the same relationship take the same step everywhere: all card paddings equal, all stack gaps equal, tighter inside a group than between groups.
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [Design System Spacing](https://tailwindcss.com/docs/theme)
 
 ### Crowded Elements
 
 **ID:** `design-rams-crowded-elements`
 **Agent rule (SHOULD):** Provide adequate whitespace between interactive elements to prevent accidental activation. Touch targets should have at least 8px gap between them.
-**Source:** RAMS (https://www.rams.ai/)
+**Source:** Custom
 
 Elements too close together reduce readability and usability
 
-> Cramped layouts make content hard to scan and interactive elements hard to tap. Give elements room to breathe.
+> Our rule: give adjacent interactive elements enough padding and spacing that each one can be read as separate and hit without hitting its neighbour.
 
-Whitespace is not wasted space. Adequate padding and margins improve scanability and make touch targets easier to hit.
+This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. Two things go wrong in a cramped layout. Reading: with no breathing room, everything sits at the same visual weight and the eye has nothing to group by, so scanning degrades into reading. Pointing: adjacent tap targets with no gap between them produce mis-taps, which is the failure the WCAG 2.2 target rules are about — see interactions-match-hit-targets for the actual size floors (24×24 CSS px minimum, 44×44 on touch). Padding is the cheap fix; spacing between siblings is the one people forget.
 
-- [Visual Design Principles](https://www.nngroup.com/articles/form-design-white-space/)
+- [NN/g — White Space in Form Design](https://www.nngroup.com/articles/form-design-white-space/)
 
 ### Excessive Whitespace
 
 **ID:** `design-rams-excessive-whitespace`
 **Agent rule (SHOULD):** Balance whitespace - excessive gaps break visual relationships and increase scrolling. Group related elements with proximity. Whitespace should be intentional.
-**Source:** RAMS (https://www.rams.ai/)
+**Source:** Custom
 
 Too much whitespace can fragment related content
 
-> While whitespace is important, excessive gaps between related elements break visual relationships and make scanning difficult.
+> Our rule: space should encode grouping — keep related elements closer to each other than to anything else, so a gap always means a boundary.
 
-Balance is key. Related content should be grouped with proximity. Use Gestalt principles to create clear visual hierarchies.
+This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is the mirror of design-rams-crowded-elements, and the reason both exist is that whitespace is not a quantity to maximise, it is a signal. The Gestalt law of proximity says the eye groups what is near and separates what is far, so a generous gap dropped between a label and its input, or between a heading and the paragraph it introduces, actively tells the reader they are unrelated. Keep intra-group spacing smaller than inter-group spacing and the layout parses itself; invert that ratio and no amount of air will save it.
 
-- [Gestalt Principles](https://www.nngroup.com/articles/gestalt-proximity/)
+- [NN/g — The Principle of Proximity](https://www.nngroup.com/articles/gestalt-proximity/)
 
 ### Inconsistent Font Usage
 
@@ -4622,10 +4663,11 @@ Balance is key. Related content should be grouped with proximity. Use Gestalt pr
 
 Limit font families and use them consistently
 
-> Too many font families create visual chaos. Stick to 2-3 fonts maximum with clear roles for each.
+> Mixed font families, weights, or sizes
 
-Use one font for headings, one for body text. Font variations (weight, size) should follow a consistent type scale.
+The upstream rule is that single bullet under "Typography"; this entry covers the FAMILIES half of it (design-rams-text-sizing covers the sizes half). The explanation is ours. Every extra family is a new voice in the room, and readers do not hear "variety", they hear "assembled from parts". Two families is a system — one for display, one for text; three is a stretch that needs a reason (usually a mono for code). Get the range you need out of weight and size within one family before reaching for a second, and always ship a fallback stack so the substitute font is one you chose.
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [Typography Guidelines](https://tailwindcss.com/docs/font-family)
 
 ### Inconsistent Text Sizing
@@ -4636,23 +4678,24 @@ Use one font for headings, one for body text. Font variations (weight, size) sho
 
 Use a consistent type scale for text sizes
 
-> Random text sizes create visual noise. Follow a type scale where each size has a clear purpose in the hierarchy.
+> Mixed font families, weights, or sizes
 
-Tailwind's type scale (xs, sm, base, lg, xl, 2xl...) provides harmonious ratios. Each size should have a specific role.
+Same upstream bullet as design-rams-font-consistency — one line under "Typography" — but this entry is about the SIZES half of it. The explanation is ours. A type scale is not decoration, it is the index of the page: a reader who meets 15px, 16px, and 17px body copy on the same screen cannot tell whether the difference means anything, so they stop trusting size as a signal at all. Pick a scale (Tailwind's xs → 2xl is one), give each step a job — page title, section title, body, caption — and never introduce a size to solve a one-off fitting problem; fix the layout instead.
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [Type Scale](https://tailwindcss.com/docs/font-size)
 
 ### Colors That Clash
 
 **ID:** `design-rams-color-harmony`
 **Agent rule (SHOULD):** Use harmonious color combinations from a defined palette. Clashing colors create visual discomfort. Consider color temperature and saturation balance.
-**Source:** RAMS (https://www.rams.ai/)
+**Source:** Custom
 
 Use harmonious color combinations from a defined palette
 
-> Colors that clash create visual discomfort. Use complementary, analogous, or triadic color schemes from a defined palette.
+> Our rule: every colour in a view should come from one defined palette, related to the others by a deliberate relationship — not picked ad hoc at the call site.
 
-Design systems provide color palettes for consistency. Don't pick arbitrary colors; use the palette's semantic colors.
+This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. The practical test is not "do these two hues look nice together" but "where did this hue come from": a palette generated in a perceptual space (OKLCH is the practical one) gives you hues at matched lightness and chroma, so a warning next to a success next to a primary read as members of one family instead of three separate accidents. Ad-hoc picks fail in a specific way — they collide at the same lightness, so the eye cannot tell which one is meant to be louder. Choose the relationship (analogous, complementary, triadic) once, encode it as tokens, and let components consume tokens only.
 
 - [Color Mechanics in UI](https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/)
 
@@ -4660,13 +4703,13 @@ Design systems provide color palettes for consistency. Don't pick arbitrary colo
 
 **ID:** `design-rams-semantic-colors`
 **Agent rule (SHOULD):** Use semantic color tokens consistently - red/destructive for errors, green/success for confirmation, yellow/warning for caution, blue/info for information.
-**Source:** RAMS (https://www.rams.ai/)
+**Source:** Custom
 
 Use semantic colors consistently (error=red, success=green)
 
-> Semantic colors convey meaning. Using red for success or green for errors violates user expectations and causes confusion.
+> Our rule: once a colour carries a meaning in your product, it carries only that meaning — never ship a green Delete or a red Success.
 
-Establish and follow semantic color conventions: red/destructive for errors, green/success for positive, yellow/warning for caution.
+This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is NOT the same rule as design-semantic-colors, which is about token naming (write `bg-destructive`, not `bg-red-600`, so themes can move). You can obey that one perfectly and still hand `bg-destructive` to the Save button. This rule is about the meaning a colour has already acquired: users read red as stop/danger and green as go/safe before they read the label, so an inverted pair does not merely confuse, it gets the destructive action clicked. Fix the semantics of the mapping, then remember that colour is only ever the second signal — the label and the icon must say it too (see design-rams-color-only).
 
 - [Psychology of Color in UX](https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/)
 
@@ -4678,10 +4721,11 @@ Establish and follow semantic color conventions: red/destructive for errors, gre
 
 Use consistent border radius values across components
 
-> Mixing sharp corners with rounded ones creates visual inconsistency. Pick a radius style and apply it systematically.
+> Inconsistent borders, shadows, or icon sizing
 
-Tailwind provides radius tokens (sm, md, lg). Use them consistently: all buttons same radius, all cards same radius.
+The upstream rule is that one bullet under "Components" (design-rams-shadow-consistency covers its shadow half); the explanation is ours. Radius is a material property: a product where every surface is cut the same way reads as one object, and a card at 4px next to a card at 12px reads as two products glued together. Define radius tokens and hand them out by role — controls one value, containers another, pills fully round — rather than choosing per component. When one rounded box sits inside another, keep the curves concentric: child radius ≤ parent radius, ideally parent minus the padding (see design-nested-radii).
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [Border Radius](https://tailwindcss.com/docs/border-radius)
 
 ### Inconsistent Shadow Usage
@@ -4692,10 +4736,11 @@ Tailwind provides radius tokens (sm, md, lg). Use them consistently: all buttons
 
 Apply shadows consistently to establish visual hierarchy
 
-> Shadows indicate elevation. Inconsistent shadow usage confuses the visual hierarchy and makes the UI feel disjointed.
+> Inconsistent borders, shadows, or icon sizing
 
-Define shadow levels for different component types: cards get one shadow, modals get deeper shadow, buttons may have subtle hover shadow.
+Same upstream bullet as design-rams-border-radius — one line under "Components" — read here for its shadow half; the explanation is ours. A shadow is a claim about where an element sits in space, and the room only holds together if every claim assumes the same light source. Hand-rolled shadows with different blur, offset, and direction put three cards under three different suns, and the eye reads that as noise rather than depth. Assign elevation by role — resting cards one step, dropdowns and popovers a step above, modals the top — and take the values from one ramp (see design-ibelick-default-shadows for the Tailwind scale, and design-layered-shadows for building a two-layer shadow when you do need a custom one).
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [Box Shadow](https://tailwindcss.com/docs/box-shadow)
 
 ### Misaligned Elements
@@ -4706,10 +4751,11 @@ Define shadow levels for different component types: cards get one shadow, modals
 
 Elements should align to a consistent grid or baseline
 
-> Misaligned elements make the UI look unprofessional. Use grid systems and alignment utilities to maintain visual order.
+> Overflow issues, alignment problems
 
-Tailwind's flex and grid utilities make alignment straightforward. Left-align text blocks, center icons within buttons, maintain baseline alignment.
+The upstream rule is that four-word bullet under "Layout & Spacing"; the explanation is ours. Alignment is the cheapest structure you get for free: shared edges create implicit lines, and the eye uses those lines to decide what belongs together, so a control that sits 3px off the column reads as an error long before anyone can name why. Establish the edges once — a grid, or a flex container with a single alignment rule — and let every child inherit them, instead of nudging individual elements into place with margins. Watch the two places it usually breaks: text and icon on a shared baseline inside a button, and numbers in a table, which should be right-aligned and tabular so the digits line up by place value.
 
+- [Rams design review skill](https://rams.ai/rams.md)
 - [Flexbox](https://tailwindcss.com/docs/flex)
 - [Grid](https://tailwindcss.com/docs/grid-template-columns)
 
@@ -4721,10 +4767,11 @@ Tailwind's flex and grid utilities make alignment straightforward. Left-align te
 
 Solid colors are cleaner and more maintainable - only use gradients when explicitly asked
 
-> Avoid gradients unless explicitly requested. Solid colors are cleaner, more accessible, and easier to maintain.
+> NEVER use gradients unless explicitly requested
 
-Gradients often signal "AI-generated design" and can reduce contrast, create visual noise, be harder to maintain across themes, and look dated quickly.
+That is the rule verbatim from the baseline-ui skill — one RFC-2119 line under "Design". Our reasoning: a gradient is a decision nobody asked for that then has to be maintained in every theme, and it quietly breaks the things around it. Text on a gradient has no single contrast ratio, so it passes at one end and fails at the other; a gradient surface has no single token, so dark mode has to re-author it rather than re-map it. Solid colours are cheaper, testable, and themable. If the brand genuinely calls for a gradient, that is an explicit request — build it once, as a token, and keep text off it.
 
+- [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Flat Design Guidelines](https://www.nngroup.com/articles/flat-design/)
 
 ### Avoid Purple and Multicolor Gradients
@@ -4735,10 +4782,11 @@ Gradients often signal "AI-generated design" and can reduce contrast, create vis
 
 Purple and rainbow gradients are overused in AI-generated designs - avoid them
 
-> No purple or multicolor gradients. These are telltale signs of AI-generated or generic SaaS design.
+> NEVER use purple or multicolor gradients
 
-Purple-to-pink and rainbow gradients have become the default output of AI design tools. They signal "generic" rather than "thoughtful design."
+Verbatim from the baseline-ui skill — the line that follows its blanket "NEVER use gradients unless explicitly requested" (see design-ibelick-no-gradients), singling out the two variants that are never a considered choice. Our reasoning: violet-to-fuchsia and full-spectrum rainbows are the house style of every AI design tool and every undesigned SaaS template, so shipping one tells the viewer exactly where the interface came from. They also carry the same technical costs as any gradient — no stable contrast ratio under text, no single token to re-map in dark mode — with none of the brand justification.
 
+- [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Design System Colors](https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/)
 
 ### Don't Use Glow as Affordance
@@ -4749,10 +4797,11 @@ Purple-to-pink and rainbow gradients have become the default output of AI design
 
 Never rely on glow effects as the primary indicator for interactive elements
 
-> NEVER use glow as primary affordance. Glows are decorative, not functional - they don't clearly indicate interactivity.
+> NEVER use glow effects as primary affordances
 
-Glow effects are hard to see in bright environments, don't provide clear affordance, look inconsistent across displays, and can be expensive to render.
+Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: a glow is a soft, low-contrast halo, which is precisely the wrong material for the one job an affordance has, namely being unmistakable. It washes out in sunlight, renders differently on every panel, and is invisible to anyone who cannot perceive the hue it is made of. If a glow is the only thing marking a control as interactive, the control has no marking. Carry the affordance on something structural — a border, a fill, a shape, a label — and treat glow as ornament layered on top, never as the signal itself. The same applies to focus: a glow is not a focus ring.
 
+- [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Clickability Signifiers](https://www.nngroup.com/articles/clickable-elements/)
 
 ### Use Tailwind Default Shadows
@@ -4763,10 +4812,11 @@ Glow effects are hard to see in bright environments, don't provide clear afforda
 
 Stick with Tailwind's default shadow scale instead of custom values
 
-> Stick with the Tailwind default shadow scale. Custom shadows create inconsistency.
+> SHOULD use Tailwind CSS default shadow scale unless explicitly requested
 
-The scale is designed as one ramp lit from a single source, so elevation reads as depth rather than as noise; hand-rolled shadows with different blur, offset, and direction give you three cards that no longer sit in the same room. Get the names right, because they moved in v4: the scale runs `shadow-2xs`, `shadow-xs`, `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`, and there is no bare `shadow` class any more. Worse than missing, the old names silently changed meaning — v4's `shadow-sm` renders what v3's bare `shadow` did, and v3's `shadow-sm` is now `shadow-xs`. So a v3 codebase that upgrades without a codemod does not break loudly; every `shadow-sm` in it just quietly gets one step heavier.
+That is the rule verbatim from the baseline-ui skill; everything below is ours. The scale is designed as one ramp lit from a single source, so elevation reads as depth rather than as noise; hand-rolled shadows with different blur, offset, and direction give you three cards that no longer sit in the same room. Get the names right, because they moved in v4: the scale runs `shadow-2xs`, `shadow-xs`, `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`, `shadow-2xl`, and there is no bare `shadow` class any more. Worse than missing, the old names silently changed meaning — v4's `shadow-sm` renders what v3's bare `shadow` did, and v3's `shadow-sm` is now `shadow-xs`. So a v3 codebase that upgrades without a codemod does not break loudly; every `shadow-sm` in it just quietly gets one step heavier.
 
+- [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Tailwind v4: box-shadow](https://tailwindcss.com/docs/box-shadow)
 - [Tailwind v4: Upgrade guide](https://tailwindcss.com/docs/upgrade-guide)
 
@@ -4778,10 +4828,11 @@ The scale is designed as one ramp lit from a single source, so elevation reads a
 
 Every empty state should have one clear action to guide users forward
 
-> MUST give empty states one clear action. Users need guidance on what to do next - don't leave them stranded.
+> MUST give empty states one clear next action
 
-Empty states are critical onboarding moments. Users seeing "No items" with no guidance will feel confused and may abandon the product.
+Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: an empty state is the first screen a new user sees, and "No items" is a dead end dressed up as information. It reports a fact the user can already see and withholds the only thing they need, which is what to do about it. Give it three parts — what this space is for, why it is empty right now, and one primary action that fills it — and note the word "one": two competing buttons hand the decision straight back. Distinguish the empty cases, too, because they need different actions: nothing created yet is an invitation, no search results is a prompt to widen the filter, and a load failure is a retry.
 
+- [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Empty State Design](https://www.nngroup.com/articles/empty-state-interface-design/)
 
 ### Limit Accent Colors
@@ -4792,10 +4843,11 @@ Empty states are critical onboarding moments. Users seeing "No items" with no gu
 
 Use only one accent color per view to maintain visual hierarchy and reduce noise
 
-> Limit accent colors to one per view. Multiple bright colors compete for attention and create visual chaos.
+> SHOULD limit accent color usage to one per view
 
-When everything is highlighted, nothing is. Multiple accent colors dilute visual hierarchy, make it unclear what's important, and create cognitive overload.
+Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: an accent works by being the exception, so its power is inversely proportional to how often it appears. Two accents on one screen do not give you two emphases; they give you an argument, and the user has to resolve it before they can act. Spend the accent on the single most important action in the view and let everything else be neutral — secondary actions can be text or outline, not another colour. This is about EMPHASIS, and it is compatible with the semantic palette: destructive red on a delete confirmation and success green on a completed state are meanings, not accents (see design-rams-semantic-colors), and they should not be recruited to add visual interest.
 
+- [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Psychology of Color in UX](https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/)
 
 ### Custom Selection Styling
@@ -5058,7 +5110,7 @@ Give control boundaries, states, and meaningful graphics at least 3:1 contrast a
 
 > The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s): User Interface Components — visual information required to identify user interface components and states, except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author; Graphical Objects — parts of graphics required to understand the content, except when a particular presentation of graphics is essential to the information being conveyed.
 
-Every other contrast rule here is about text: design-rams-color-contrast and design-rams-text-contrast enforce the 4.5:1 WCAG text floor, design-minimum-contrast applies APCA Lc values to type, and content-impeccable-dark-mode-text-compensation is about text weight in dark themes. None of them sets any floor for the parts of a control that are not text — an input outline, an unchecked checkbox, a toggle in its off state, the glyph in an icon-only button, a focus indicator, or the line in a chart that carries the data. design-crisp-borders is an aesthetic rule about hairline edges and carries no ratio at all. SC 1.4.11 Non-text Contrast (Level AA) is that missing floor: 3:1 against adjacent colors, for anything required to identify a component or its state, and for any part of a graphic required to understand the content. The common failure is a 1.2:1 hairline border on a white card — the field is still readable, but nothing tells you it is a field. Note the exceptions: inactive (disabled) components are exempt, as is browser-default chrome you have not restyled. Measure boundaries against what is actually behind them, and re-measure in dark mode, where alpha-based borders collapse.
+Every other contrast rule here is about text: design-rams-color-contrast enforces the 4.5:1 WCAG text floor, design-minimum-contrast applies APCA Lc values to type, and content-impeccable-dark-mode-text-compensation is about text weight in dark themes. None of them sets any floor for the parts of a control that are not text — an input outline, an unchecked checkbox, a toggle in its off state, the glyph in an icon-only button, a focus indicator, or the line in a chart that carries the data. design-crisp-borders is an aesthetic rule about hairline edges and carries no ratio at all. SC 1.4.11 Non-text Contrast (Level AA) is that missing floor: 3:1 against adjacent colors, for anything required to identify a component or its state, and for any part of a graphic required to understand the content. The common failure is a 1.2:1 hairline border on a white card — the field is still readable, but nothing tells you it is a field. Note the exceptions: inactive (disabled) components are exempt, as is browser-default chrome you have not restyled. Measure boundaries against what is actually behind them, and re-measure in dark mode, where alpha-based borders collapse.
 
 - [Understanding SC 1.4.11: Non-text Contrast](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html)
 - [Understanding SC 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
@@ -5151,7 +5203,7 @@ Commit to one dominant color with a single sharp accent and keep everything arou
 
 > Spend your boldness in one place. Let the signature element be the one memorable thing, keep everything around it quiet and disciplined, and cut any decoration that does not serve the brief. Not taking a risk can be a risk itself!
 
-A palette where every color competes is not bold, it is undecided — and a palette of washed-out neutrals is not restraint, it is a refusal to choose. Both fail the same way. Spend the boldness once: one dominant color that carries the surface, one sharp accent reserved for the thing you want the eye to land on, and disciplined quiet everywhere else. This is a merge of the former `aesthetics-design-commitment`, whose quote simply restated this one.
+A palette where every color competes is not bold, it is undecided — and a palette of washed-out neutrals is not restraint, it is a refusal to choose. Both fail the same way. Spend the boldness once: one dominant color that carries the surface, one sharp accent reserved for the thing you want the eye to land on, and disciplined quiet everywhere else.
 
 - [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 - [Refactoring UI](https://www.refactoringui.com/)
@@ -5212,7 +5264,7 @@ Test the layout against the brief — if it is the grid you would produce for an
 
 > Then review that plan against the brief before building: if any part of it reads like the generic default you would produce for any similar page (work through a similar prompt to see if you arrive somewhere similar) rather than a choice made for this specific brief — revise that part, say what you changed and why.
 
-The symmetric three-column grid is the layout every generator arrives at, for every brief, which is exactly the test upstream proposes: run a similar prompt and see whether you land in the same place. If you do, the layout was not chosen, it was defaulted into. Asymmetry, overlap, varied scale, and diagonal flow are the usual escapes — but they are means, not the point. The point is that the composition should be traceable to something true about this subject. This principle absorbs the former `aesthetics-grid-breaking`, which said the same thing in the same words.
+The symmetric three-column grid is the layout every generator arrives at, for every brief, which is exactly the test upstream proposes: run a similar prompt and see whether you land in the same place. If you do, the layout was not chosen, it was defaulted into. Asymmetry, overlap, varied scale, and diagonal flow are the usual escapes — but they are means, not the point. The point is that the composition should be traceable to something true about this subject.
 
 - [Anthropic frontend-design skill](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md)
 - [Refactoring UI: Layout](https://www.refactoringui.com/)

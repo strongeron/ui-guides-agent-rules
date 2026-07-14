@@ -27,7 +27,10 @@ export function IbelickSafeAreasGood() {
         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-24 h-1 bg-black rounded-full" />
       </div>
       <p className="text-xs text-success">
-        pt-safe and pb-safe keep content visible around notch and home indicator
+        Fixed chrome pads itself out of the hardware: <code>padding-top: env(safe-area-inset-top)</code> on the header, <code>padding-bottom: env(safe-area-inset-bottom)</code> on the bar — so the title clears the notch and the buttons clear the home indicator.
+      </p>
+      <p className="text-xs text-muted-foreground">
+        The padding above is simulated, because a desktop viewport reports insets of 0. In a real app this needs <code>viewport-fit=cover</code> in the viewport meta tag, or every <code>env(safe-area-inset-*)</code> resolves to 0 and does nothing. Note <code>pt-safe</code> / <code>pb-safe</code> are not core Tailwind utilities — they require a plugin or a custom <code>@utility</code>.
       </p>
     </div>
   );

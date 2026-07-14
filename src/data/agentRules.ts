@@ -667,11 +667,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   },
   'design-rams-color-contrast': {
     priority: 'MUST',
-    rule: 'UI components (buttons, inputs, icons) must have minimum 3:1 contrast ratio against adjacent colors (WCAG 1.4.11). Test in both light and dark themes.'
-  },
-  'design-rams-text-contrast': {
-    priority: 'MUST',
-    rule: 'Text must have minimum 4.5:1 contrast ratio against background (WCAG 1.4.3). Large text (18pt+/14pt+ bold) can use 3:1. Low contrast causes eye strain.'
+    rule: 'Text needs >= 4.5:1 against its background (WCAG 1.4.3); large text (>= 24px, or >= 19px bold) may use 3:1. Secondary text, captions and disabled states are where this fails. For UI component boundaries and states, `design-non-text-contrast` sets the separate 3:1 bar (WCAG 1.4.11). Test in both themes.'
   },
   'design-rams-inconsistent-spacing': {
     priority: 'SHOULD',
