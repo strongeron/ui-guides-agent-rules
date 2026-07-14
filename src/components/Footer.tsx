@@ -34,9 +34,12 @@ export function Footer() {
         </p>
 
         <p className="mt-3 text-sm text-muted-foreground">
-          Principles are transcribed from their upstream authors and attributed on the{' '}
-          <span className="text-foreground">Sources</span> page. The interactive examples
-          and agent rules are original work.
+          The rules come from other people's skills and guidelines — Vercel, Rauno
+          Freiberg, @Ibelick, impeccable, Emil Kowalski, Tailwind, RAMS — each one
+          credited on the <span className="text-foreground">Sources</span> page. The work
+          here is extraction and wiring: every rule is pulled into one corpus, given a
+          good and a bad example you can operate, a MUST/SHOULD/NEVER rule an agent can
+          paste, and a link back to where it came from.
         </p>
 
         <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">

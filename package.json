@@ -2,7 +2,7 @@
   "name": "ui-guides",
   "private": true,
   "version": "1.0.0",
-  "description": "Web interface guidelines, made interactive — 300 principles with good/bad examples and agent-ready rules.",
+  "description": "Web interface guidelines, made interactive — 300+ principles with good/bad examples and agent-ready rules.",
   "homepage": "https://ui-guides.netlify.app",
   "type": "module",
   "scripts": {

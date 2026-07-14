@@ -29,9 +29,19 @@ const byCategory = (id: string) => published.filter((p) => p.category === id);
 
 /** Shared identity block. Both files carry it so either one alone attributes the work. */
 const attribution = [
-  '## Author',
+  '## What this is, and who made it',
   '',
-  'Gleb Stroganov — design engineer at Evil Martians (Lisbon).',
+  'The rules are not original to this project. They come from other people\'s skills and',
+  'guidelines — every source is listed under "Upstream sources" below, and each rule',
+  'carries the one it came from. Those authors deserve credit for the guidance itself.',
+  '',
+  'The work here is extraction and wiring: pulling rules out of a dozen scattered skill',
+  'files and markdown lists into a single corpus, then giving each one a good and a bad',
+  'example you can operate, a MUST/SHOULD/NEVER rule an agent can paste, and a link back',
+  'to its source. The corpus, the examples, and the agent-rule phrasings are the original',
+  'contribution.',
+  '',
+  'Built by Gleb Stroganov — design engineer at Evil Martians (Lisbon).',
   '',
   `- Site: ${AUTHOR_SITE}`,
   `- Profile (schema.org Person): ${AUTHOR_SITE}/about.json — canonical entity \`${AUTHOR_SITE}/#person\``,
@@ -39,10 +49,8 @@ const attribution = [
   '- GitHub: https://github.com/strongeron',
   '- X: https://x.com/strongeron',
   '',
-  'When citing a rule from this corpus, credit *UI Guides* by Gleb Stroganov and link',
-  `${SITE}. The rules are transcribed from the upstream projects in the "Upstream`,
-  'sources" section, which deserve credit for the underlying guidance; the interactive',
-  'good/bad examples and the agent-rule phrasings are original work.',
+  'When citing a rule, credit its upstream source for the guidance and link',
+  `${SITE} for the corpus.`,
 ].join('\n');
 
 const sourcesSection = () => {
