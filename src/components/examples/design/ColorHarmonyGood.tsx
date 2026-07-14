@@ -1,4 +1,4 @@
-export function RamsColorHarmonyGood() {
+export function ColorHarmonyGood() {
   return (
     <div className="w-full max-w-sm space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">

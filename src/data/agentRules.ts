@@ -615,7 +615,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'MUST',
     rule: 'Heading levels must be hierarchical (h1-h6) without skipping levels. Never go from h1 to h3. Screen reader users navigate by headings; skipped levels break navigation.'
   },
-  'content-rams-link-text': {
+  'content-descriptive-link-text': {
     priority: 'MUST',
     rule: 'Link text must describe its destination - avoid generic text like "click here" or "read more". Links should make sense out of context for screen reader link lists.'
   },
@@ -665,11 +665,11 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Use consistent spacing values from a defined scale (4px, 8px, 16px, etc.). Avoid mixing arbitrary pixel values. Inconsistent spacing creates visual imbalance.'
   },
-  'design-rams-crowded-elements': {
+  'design-crowded-elements': {
     priority: 'SHOULD',
     rule: 'Provide adequate whitespace between interactive elements to prevent accidental activation. Touch targets should have at least 8px gap between them.'
   },
-  'design-rams-excessive-whitespace': {
+  'design-excessive-whitespace': {
     priority: 'SHOULD',
     rule: 'Balance whitespace - excessive gaps break visual relationships and increase scrolling. Group related elements with proximity. Whitespace should be intentional.'
   },
@@ -677,11 +677,11 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Use consistent font families, weights, and sizes throughout the interface. Limit to 2-3 font families maximum; take sizes from one typographic scale, with body text >= 16px on web and nothing below 12px.'
   },
-  'design-rams-color-harmony': {
+  'design-color-harmony': {
     priority: 'SHOULD',
     rule: 'Use harmonious color combinations from a defined palette. Clashing colors create visual discomfort. Consider color temperature and saturation balance.'
   },
-  'design-rams-semantic-colors': {
+  'design-color-meaning': {
     priority: 'SHOULD',
     rule: 'Use semantic color tokens consistently - red/destructive for errors, green/success for confirmation, yellow/warning for caution, blue/info for information.'
   },

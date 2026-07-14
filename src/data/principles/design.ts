@@ -235,7 +235,7 @@ export const designPrinciples: Principle[] = [
     goodExampleKey: 'design-rams-inconsistent-spacing-good',
   },
   {
-    id: 'design-rams-crowded-elements',
+    id: 'design-crowded-elements',
     category: 'design',
     source: 'custom',
     title: 'Crowded Elements',
@@ -245,22 +245,22 @@ export const designPrinciples: Principle[] = [
     sourceLinks: [
       { text: 'NN/g — White Space in Form Design', url: 'https://www.nngroup.com/articles/form-design-white-space/' },
     ],
-    badExampleKey: 'design-rams-crowded-elements-bad',
-    goodExampleKey: 'design-rams-crowded-elements-good',
+    badExampleKey: 'design-crowded-elements-bad',
+    goodExampleKey: 'design-crowded-elements-good',
   },
   {
-    id: 'design-rams-excessive-whitespace',
+    id: 'design-excessive-whitespace',
     category: 'design',
     source: 'custom',
     title: 'Excessive Whitespace',
     description: 'Too much whitespace can fragment related content',
     sourceQuote: 'Our rule: space should encode grouping — keep related elements closer to each other than to anything else, so a gap always means a boundary.',
-    additionalExplanation: 'This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is the mirror of design-rams-crowded-elements, and the reason both exist is that whitespace is not a quantity to maximise, it is a signal. The Gestalt law of proximity says the eye groups what is near and separates what is far, so a generous gap dropped between a label and its input, or between a heading and the paragraph it introduces, actively tells the reader they are unrelated. Keep intra-group spacing smaller than inter-group spacing and the layout parses itself; invert that ratio and no amount of air will save it.',
+    additionalExplanation: 'This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is the mirror of design-crowded-elements, and the reason both exist is that whitespace is not a quantity to maximise, it is a signal. The Gestalt law of proximity says the eye groups what is near and separates what is far, so a generous gap dropped between a label and its input, or between a heading and the paragraph it introduces, actively tells the reader they are unrelated. Keep intra-group spacing smaller than inter-group spacing and the layout parses itself; invert that ratio and no amount of air will save it.',
     sourceLinks: [
       { text: 'NN/g — The Principle of Proximity', url: 'https://www.nngroup.com/articles/gestalt-proximity/' },
     ],
-    badExampleKey: 'design-rams-excessive-whitespace-bad',
-    goodExampleKey: 'design-rams-excessive-whitespace-good',
+    badExampleKey: 'design-excessive-whitespace-bad',
+    goodExampleKey: 'design-excessive-whitespace-good',
   },
   {
     id: 'design-rams-font-consistency',
@@ -281,7 +281,7 @@ export const designPrinciples: Principle[] = [
     goodExampleKey: 'design-rams-font-consistency-good',
   },
   {
-    id: 'design-rams-color-harmony',
+    id: 'design-color-harmony',
     category: 'design',
     source: 'custom',
     title: 'Colors That Clash',
@@ -291,11 +291,11 @@ export const designPrinciples: Principle[] = [
     sourceLinks: [
       { text: 'Color Mechanics in UI', url: 'https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/' },
     ],
-    badExampleKey: 'design-rams-color-harmony-bad',
-    goodExampleKey: 'design-rams-color-harmony-good',
+    badExampleKey: 'design-color-harmony-bad',
+    goodExampleKey: 'design-color-harmony-good',
   },
   {
-    id: 'design-rams-semantic-colors',
+    id: 'design-color-meaning',
     category: 'design',
     source: 'custom',
     title: 'Inconsistent Semantic Colors',
@@ -305,8 +305,8 @@ export const designPrinciples: Principle[] = [
     sourceLinks: [
       { text: 'Psychology of Color in UX', url: 'https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/' },
     ],
-    badExampleKey: 'design-rams-semantic-colors-bad',
-    goodExampleKey: 'design-rams-semantic-colors-good',
+    badExampleKey: 'design-color-meaning-bad',
+    goodExampleKey: 'design-color-meaning-good',
   },
   {
     id: 'design-rams-border-radius',
@@ -454,7 +454,7 @@ export const designPrinciples: Principle[] = [
     title: 'Limit Accent Colors',
     description: 'Use only one accent color per view to maintain visual hierarchy and reduce noise',
     sourceQuote: 'SHOULD limit accent color usage to one per view',
-    additionalExplanation: 'Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: an accent works by being the exception, so its power is inversely proportional to how often it appears. Two accents on one screen do not give you two emphases; they give you an argument, and the user has to resolve it before they can act. Spend the accent on the single most important action in the view and let everything else be neutral — secondary actions can be text or outline, not another colour. This is about EMPHASIS, and it is compatible with the semantic palette: destructive red on a delete confirmation and success green on a completed state are meanings, not accents (see design-rams-semantic-colors), and they should not be recruited to add visual interest.',
+    additionalExplanation: 'Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: an accent works by being the exception, so its power is inversely proportional to how often it appears. Two accents on one screen do not give you two emphases; they give you an argument, and the user has to resolve it before they can act. Spend the accent on the single most important action in the view and let everything else be neutral — secondary actions can be text or outline, not another colour. This is about EMPHASIS, and it is compatible with the semantic palette: destructive red on a delete confirmation and success green on a completed state are meanings, not accents (see design-color-meaning), and they should not be recruited to add visual interest.',
     sourceLinks: [
       { text: 'ibelick — baseline-ui skill', url: 'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md' },
       { text: 'Psychology of Color in UX', url: 'https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/' },

@@ -2904,7 +2904,7 @@ Rams lists this as a Moderate ("consider fixing") check (WCAG 1.3.1) in its revi
 
 ### Links Without Descriptive Text
 
-**ID:** `content-rams-link-text`
+**ID:** `content-descriptive-link-text`
 **Agent rule (MUST):** Link text must describe its destination - avoid generic text like "click here" or "read more". Links should make sense out of context for screen reader link lists.
 **Source:** WCAG (https://www.w3.org/WAI/WCAG21/quickref/)
 
@@ -4881,7 +4881,7 @@ The upstream rule is that four-word bullet, under "Layout & Spacing" — the exp
 
 ### Crowded Elements
 
-**ID:** `design-rams-crowded-elements`
+**ID:** `design-crowded-elements`
 **Agent rule (SHOULD):** Provide adequate whitespace between interactive elements to prevent accidental activation. Touch targets should have at least 8px gap between them.
 **Source:** Custom
 
@@ -4895,7 +4895,7 @@ This is our own rule, not an upstream citation — the Rams review has no bullet
 
 ### Excessive Whitespace
 
-**ID:** `design-rams-excessive-whitespace`
+**ID:** `design-excessive-whitespace`
 **Agent rule (SHOULD):** Balance whitespace - excessive gaps break visual relationships and increase scrolling. Group related elements with proximity. Whitespace should be intentional.
 **Source:** Custom
 
@@ -4903,7 +4903,7 @@ Too much whitespace can fragment related content
 
 > Our rule: space should encode grouping — keep related elements closer to each other than to anything else, so a gap always means a boundary.
 
-This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is the mirror of design-rams-crowded-elements, and the reason both exist is that whitespace is not a quantity to maximise, it is a signal. The Gestalt law of proximity says the eye groups what is near and separates what is far, so a generous gap dropped between a label and its input, or between a heading and the paragraph it introduces, actively tells the reader they are unrelated. Keep intra-group spacing smaller than inter-group spacing and the layout parses itself; invert that ratio and no amount of air will save it.
+This is our own rule, not an upstream citation — the Rams review has no bullet for it, and we previously mislabelled it as one. It is the mirror of design-crowded-elements, and the reason both exist is that whitespace is not a quantity to maximise, it is a signal. The Gestalt law of proximity says the eye groups what is near and separates what is far, so a generous gap dropped between a label and its input, or between a heading and the paragraph it introduces, actively tells the reader they are unrelated. Keep intra-group spacing smaller than inter-group spacing and the layout parses itself; invert that ratio and no amount of air will save it.
 
 - [NN/g — The Principle of Proximity](https://www.nngroup.com/articles/gestalt-proximity/)
 
@@ -4926,7 +4926,7 @@ That six-word bullet under "Typography" is the entire upstream rule, and it name
 
 ### Colors That Clash
 
-**ID:** `design-rams-color-harmony`
+**ID:** `design-color-harmony`
 **Agent rule (SHOULD):** Use harmonious color combinations from a defined palette. Clashing colors create visual discomfort. Consider color temperature and saturation balance.
 **Source:** Custom
 
@@ -4940,7 +4940,7 @@ This is our own rule, not an upstream citation — the Rams review has no bullet
 
 ### Inconsistent Semantic Colors
 
-**ID:** `design-rams-semantic-colors`
+**ID:** `design-color-meaning`
 **Agent rule (SHOULD):** Use semantic color tokens consistently - red/destructive for errors, green/success for confirmation, yellow/warning for caution, blue/info for information.
 **Source:** Custom
 
@@ -5100,7 +5100,7 @@ Use only one accent color per view to maintain visual hierarchy and reduce noise
 
 > SHOULD limit accent color usage to one per view
 
-Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: an accent works by being the exception, so its power is inversely proportional to how often it appears. Two accents on one screen do not give you two emphases; they give you an argument, and the user has to resolve it before they can act. Spend the accent on the single most important action in the view and let everything else be neutral — secondary actions can be text or outline, not another colour. This is about EMPHASIS, and it is compatible with the semantic palette: destructive red on a delete confirmation and success green on a completed state are meanings, not accents (see design-rams-semantic-colors), and they should not be recruited to add visual interest.
+Verbatim from the baseline-ui skill — one line under "Design". Our reasoning: an accent works by being the exception, so its power is inversely proportional to how often it appears. Two accents on one screen do not give you two emphases; they give you an argument, and the user has to resolve it before they can act. Spend the accent on the single most important action in the view and let everything else be neutral — secondary actions can be text or outline, not another colour. This is about EMPHASIS, and it is compatible with the semantic palette: destructive red on a delete confirmation and success green on a completed state are meanings, not accents (see design-color-meaning), and they should not be recruited to add visual interest.
 
 - [ibelick — baseline-ui skill](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md)
 - [Psychology of Color in UX](https://www.smashingmagazine.com/2025/08/psychology-color-ux-design-digital-products/)

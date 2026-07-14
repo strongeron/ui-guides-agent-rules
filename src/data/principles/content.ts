@@ -307,7 +307,7 @@ export const contentPrinciples: Principle[] = [
     goodExampleKey: 'content-rams-heading-levels-good',
   },
   {
-    id: 'content-rams-link-text',
+    id: 'content-descriptive-link-text',
     category: 'content',
     source: 'wcag',
     title: 'Links Without Descriptive Text',
@@ -318,8 +318,8 @@ export const contentPrinciples: Principle[] = [
       { text: 'WCAG 2.1 SC 2.4.4 (Understanding)', url: 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html' },
       { text: 'WCAG 2.1 SC 2.4.4 (Quick Reference)', url: 'https://www.w3.org/WAI/WCAG21/quickref/#link-purpose-in-context' },
     ],
-    badExampleKey: 'content-rams-link-text-bad',
-    goodExampleKey: 'content-rams-link-text-good',
+    badExampleKey: 'content-descriptive-link-text-bad',
+    goodExampleKey: 'content-descriptive-link-text-good',
   },
   {
     id: 'content-ibelick-text-balance',

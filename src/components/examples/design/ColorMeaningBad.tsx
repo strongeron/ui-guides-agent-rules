@@ -1,4 +1,4 @@
-export function RamsSemanticColorsBad() {
+export function ColorMeaningBad() {
   // BAD: Colors used inconsistently, contradicting universal expectations
   // Red typically means danger/stop, green means success/go
   return (
