@@ -313,4 +313,20 @@ export const formsPrinciples: Principle[] = [
     badExampleKey: 'forms-input-decorations-positioning-bad',
     goodExampleKey: 'forms-input-decorations-positioning-good',
   },
+  {
+    id: 'forms-native-validation',
+    category: 'forms',
+    source: 'rauno',
+    title: 'Lean on Native Constraint Validation',
+    description: 'Use required, type, pattern, min and max so the browser validates instead of hand-rolling every check in JS',
+    sourceQuote: 'Inputs should leverage HTML form validation by using the `required` attribute when appropriate.',
+    additionalExplanation: 'The platform already ships constraint validation: required, type="email", pattern, min, max and minlength are enforced by the browser on every submit path — click, Enter, autofill, programmatic — and it focuses the first offending control and announces the message to assistive tech for free. Hand-rolled JS checks miss those paths (a keyup handler never fires on a mouse paste), and hand-rolled email regexes routinely reject valid addresses like ada+work@example.com. Keep the submit button enabled and drop noValidate; reach for the Constraint Validation API (setCustomValidity, ValidityState) only for the rules HTML cannot express.',
+    sourceLinks: [
+      { text: 'MDN: required attribute', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/required' },
+      { text: 'MDN: Client-side form validation', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation' },
+      { text: 'MDN: ValidityState', url: 'https://developer.mozilla.org/en-US/docs/Web/API/ValidityState' },
+    ],
+    badExampleKey: 'forms-native-validation-bad',
+    goodExampleKey: 'forms-native-validation-good',
+  },
 ];

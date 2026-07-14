@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T00:42:48.827Z",
+  "generatedAt": "2026-07-14T10:08:16.581Z",
   "reports": [
     {
       "source": "vercel",
@@ -7,7 +7,7 @@
       "mode": "github",
       "status": "checked",
       "upstreamRules": 93,
-      "ourRules": 82,
+      "ourRules": 103,
       "newRules": [
         {
           "source": "vercel",
@@ -19,19 +19,6 @@
             "forms",
             "performance",
             "design"
-          ],
-          "bestMatch": 0
-        },
-        {
-          "source": "vercel",
-          "text": "Numerals for counts: \"8 deployments\" not \"eight\"",
-          "suggestedId": "vercel-numerals-for-counts-8-deployments-not",
-          "category": "content",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "content"
           ],
           "bestMatch": 0
         },
@@ -63,31 +50,6 @@
         },
         {
           "source": "vercel",
-          "text": "Prefer uncontrolled inputs; controlled inputs must be cheap per keystroke",
-          "suggestedId": "vercel-prefer-uncontrolled-inputs-controlled-inputs-must",
-          "category": "forms",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.14
-        },
-        {
-          "source": "vercel",
-          "text": "Title Case for headings/buttons (Chicago style)",
-          "suggestedId": "vercel-title-case-for-headings-buttons-chicago",
-          "category": "content",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "content"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "vercel",
           "text": "URL reflects state—filters, tabs, pagination, expanded panels in query params",
           "suggestedId": "vercel-url-reflects-state-filters-tabs-pagination",
           "category": "interactions",
@@ -111,96 +73,6 @@
             "design"
           ],
           "bestMatch": 0.2
-        },
-        {
-          "source": "vercel",
-          "text": "Brand names, code tokens, identifiers: wrap with `translate=\"no\"` to prevent garbled auto-translation",
-          "suggestedId": "vercel-brand-names-code-tokens-identifiers-wrap",
-          "category": "content",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "content"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "vercel",
-          "text": "Date/time rendering: guard against hydration mismatch (server vs client)",
-          "suggestedId": "vercel-date-time-rendering-guard-against-hydration",
-          "category": "performance",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.22
-        },
-        {
-          "source": "vercel",
-          "text": "Group focus with `:focus-within` for compound controls",
-          "suggestedId": "vercel-group-focus-with-for-compound-controls",
-          "category": "interactions",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "interactions"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "vercel",
-          "text": "Add `<link rel=\"preconnect\">` for CDN/asset domains",
-          "suggestedId": "vercel-add-for-cdn-asset-domains",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "vercel",
-          "text": "Error messages include fix/next step, not just problem",
-          "suggestedId": "vercel-error-messages-include-fix-next-step",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "vercel",
-          "text": "Second person; avoid first person",
-          "suggestedId": "vercel-second-person-avoid-first-person",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "vercel",
-          "text": "`&` over \"and\" where space-constrained",
-          "suggestedId": "vercel-over-and-where-space-constrained",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.25
         },
         {
           "source": "vercel",
@@ -253,18 +125,6 @@
         },
         {
           "source": "vercel",
-          "text": "Specific button labels: \"Save API Key\" not \"Continue\"",
-          "suggestedId": "vercel-specific-button-labels-save-api-key",
-          "category": "forms",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "vercel",
           "text": "Images need `alt` (or `alt=\"\"` if decorative)",
           "suggestedId": "vercel-images-need-or-if-decorative",
           "category": "content",
@@ -285,19 +145,6 @@
             "a11y",
             "forms",
             "performance"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "vercel",
-          "text": "SVG: transforms on `<g>` wrapper with `transform-box: fill-box; transform-origin: center`",
-          "suggestedId": "vercel-svg-transforms-on-wrapper-with",
-          "category": "animations",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "animations"
           ],
           "bestMatch": 0.33
         },
@@ -329,44 +176,6 @@
         },
         {
           "source": "vercel",
-          "text": "Flex children need `min-w-0` to allow text truncation",
-          "suggestedId": "vercel-flex-children-need-to-allow-text",
-          "category": "content",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "content"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "vercel",
-          "text": "`<meta name=\"theme-color\">` matches page background",
-          "suggestedId": "vercel-matches-page-background",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "vercel",
-          "text": "Inputs with `value` need `onChange` (or use `defaultValue` for uncontrolled)",
-          "suggestedId": "vercel-inputs-with-need-or-use-for",
-          "category": "forms",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "vercel",
           "text": "Buttons/links need `hover:` state (visual feedback)",
           "suggestedId": "vercel-buttons-links-need-state-visual-feedback",
           "category": "interactions",
@@ -375,19 +184,6 @@
             "forms",
             "performance",
             "interactions"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "vercel",
-          "text": "Active voice: \"Install the CLI\" not \"The CLI will be installed\"",
-          "suggestedId": "vercel-active-voice-install-the-cli-not",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
           ],
           "bestMatch": 0.33
         },
@@ -428,45 +224,6 @@
             "layout"
           ],
           "bestMatch": 0.4
-        },
-        {
-          "source": "vercel",
-          "text": "Flex/grid over JS measurement for layout",
-          "suggestedId": "vercel-flex-grid-over-js-measurement-for",
-          "category": "layout",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "layout"
-          ],
-          "bestMatch": 0.4
-        },
-        {
-          "source": "vercel",
-          "text": "`color-scheme: dark` on `<html>` for dark themes (fixes scrollbar, inputs)",
-          "suggestedId": "vercel-on-for-dark-themes-fixes-scrollbar",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.4
-        },
-        {
-          "source": "vercel",
-          "text": "Native `<select>`: explicit `background-color` and `color` (Windows dark mode)",
-          "suggestedId": "vercel-native-explicit-and-windows-dark-mode",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.4
         }
       ]
     },
@@ -476,32 +233,8 @@
       "mode": "github",
       "status": "checked",
       "upstreamRules": 63,
-      "ourRules": 30,
+      "ourRules": 37,
       "newRules": [
-        {
-          "source": "rauno",
-          "text": "Detect and adapt to the hardware and network capabilities of the user's device",
-          "suggestedId": "rauno-detect-and-adapt-to-the-hardware",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "motion",
-            "design"
-          ],
-          "bestMatch": 0.14
-        },
-        {
-          "source": "rauno",
-          "text": "Illustrations built with HTML should have an explicit `aria-label` instead of announcing the raw DOM tree to people using screen readers",
-          "suggestedId": "rauno-illustrations-built-with-html-should-have",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "motion",
-            "interactions"
-          ],
-          "bestMatch": 0.15
-        },
         {
           "source": "rauno",
           "text": "When using nested menus, use a \"prediction cone\" to prevent the pointer from accidentally closing the menu when moving across other elements.",
@@ -525,30 +258,6 @@
             "forms"
           ],
           "bestMatch": 0.2
-        },
-        {
-          "source": "rauno",
-          "text": "Box shadow should be used for focus rings, not outline which won’t respect radius",
-          "suggestedId": "rauno-box-shadow-should-be-used-for",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "motion",
-            "design"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "rauno",
-          "text": "Disable `touch-action` for custom components that implement pan and zoom gestures to prevent interference from native behavior like zooming and scrolling",
-          "suggestedId": "rauno-disable-for-custom-components-that-implement",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "motion",
-            "interactions"
-          ],
-          "bestMatch": 0.21
         },
         {
           "source": "rauno",
@@ -600,18 +309,6 @@
         },
         {
           "source": "rauno",
-          "text": "Inputs should leverage HTML form validation by using the `required` attribute when appropriate",
-          "suggestedId": "rauno-inputs-should-leverage-html-form-validation",
-          "category": "forms",
-          "tags": [
-            "interaction",
-            "motion",
-            "forms"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "rauno",
           "text": "Actions that are frequent and low in novelty should avoid extraneous animations:",
           "suggestedId": "rauno-actions-that-are-frequent-and-low",
           "category": "animations",
@@ -626,18 +323,6 @@
           "source": "rauno",
           "text": "Inputs should not auto focus on touch devices as it will open the keyboard and cover the screen",
           "suggestedId": "rauno-inputs-should-not-auto-focus-on",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "motion",
-            "interactions"
-          ],
-          "bestMatch": 0.3
-        },
-        {
-          "source": "rauno",
-          "text": "Images should always be rendered with `<img>` for screen readers and ease of copying from the right click menu",
-          "suggestedId": "rauno-images-should-always-be-rendered-with",
           "category": "interactions",
           "tags": [
             "interaction",
@@ -672,42 +357,6 @@
         },
         {
           "source": "rauno",
-          "text": "Toggle `will-change` on unperformant scroll animations for the duration of the animation",
-          "suggestedId": "rauno-toggle-on-unperformant-scroll-animations-for",
-          "category": "animations",
-          "tags": [
-            "interaction",
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "rauno",
-          "text": "Tooltips triggered by hover should not contain interactive content",
-          "suggestedId": "rauno-tooltips-triggered-by-hover-should-not",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "motion",
-            "interactions"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "rauno",
-          "text": "Animation duration should not be more than 200ms for interactions to feel immediate",
-          "suggestedId": "rauno-animation-duration-should-not-be-more",
-          "category": "animations",
-          "tags": [
-            "interaction",
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.38
-        },
-        {
-          "source": "rauno",
           "text": "Inputs should be wrapped with a `<form>` to submit by pressing Enter",
           "suggestedId": "rauno-inputs-should-be-wrapped-with-a",
           "category": "forms",
@@ -737,107 +386,19 @@
       "name": "Emil Kowalski",
       "mode": "github",
       "status": "checked",
-      "upstreamRules": 43,
-      "ourRules": 3,
+      "upstreamRules": 69,
+      "ourRules": 13,
       "newRules": [
         {
           "source": "emilkowalski",
-          "text": "Cohesion. Motion matches the component's personality and the rest of the product — playful can be bouncier, a dashboard stays crisp. Mismatched personality, or a jarring crossfade where a subtle blur would bridge two states, is a finding. When unsure whether motion feels right, the strongest move is often to delete it.",
-          "suggestedId": "emilkowalski-cohesion-motion-matches-the-component-s",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.06
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Responsive easing. Entering/exiting elements use `ease-out` or a strong custom curve. `ease-in` on UI is a block — it delays the moment the user watches most. Built-in CSS easings are too weak; expect custom cubic-beziers.",
-          "suggestedId": "emilkowalski-responsive-easing-entering-exiting-elements-use",
+          "text": "`clip-path: inset(t r b l)` is a powerful animation tool: each value eats in from that side. Uses: reveal-on-scroll (`inset(0 0 100% 0)` → `inset(0 0 0 0)`), hold-to-delete overlay, seamless tab color transitions (duplicate + clip the active copy), comparison sliders.",
+          "suggestedId": "emilkowalski-is-a-powerful-animation-tool-each",
           "category": "animations",
           "tags": [
             "motion",
             "animations"
           ],
           "bestMatch": 0.09
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Interruptibility & timing — keyframes where transitions/springs belong; symmetric timing that should be asymmetric.",
-          "suggestedId": "emilkowalski-interruptibility-timing-keyframes-where-transitions-springs",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.11
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Justified motion. Every animation must answer \"why does this animate?\" — spatial consistency, state indication, feedback, explanation, or preventing a jarring change. \"It looks cool\" on a frequently-seen element is a block.",
-          "suggestedId": "emilkowalski-justified-motion-every-animation-must-answer",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.13
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Sub-300ms UI. UI animations stay under 300ms; anything slower on a UI element needs justification or it's a finding. Per-element budgets live in STANDARDS.md.",
-          "suggestedId": "emilkowalski-sub-300ms-ui-ui-animations-stay",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.13
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Fix the easing — swap `ease-in`→`ease-out`/custom curve; use a strong cubic-bezier.",
-          "suggestedId": "emilkowalski-fix-the-easing-swap-custom-curve",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.13
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Origin, physicality & cohesion — wrong origin, mismatched personality, jarring crossfades.",
-          "suggestedId": "emilkowalski-origin-physicality-cohesion-wrong-origin-mismatched",
-          "category": "aesthetics",
-          "tags": [
-            "motion",
-            "aesthetics"
-          ],
-          "bestMatch": 0.13
-        },
-        {
-          "source": "emilkowalski",
-          "text": "When unsure whether motion feels right, recommend reviewing it in slow motion / frame-by-frame and with fresh eyes the next day rather than guessing.",
-          "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.13
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Keyframes on toasts, toggles, or anything added/triggered rapidly",
-          "suggestedId": "emilkowalski-keyframes-on-toasts-toggles-or-anything",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.14
         },
         {
           "source": "emilkowalski",
@@ -852,25 +413,47 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Interruptibility. Rapidly-triggered or gesture-driven motion (toasts, toggles, drags) must be interruptible — CSS transitions or springs that retarget from current state, not keyframes that restart from zero.",
-          "suggestedId": "emilkowalski-interruptibility-rapidly-triggered-or-gesture-driven",
-          "category": "animations",
+          "text": "Real devices for gestures (drawers, swipe) — connect a phone, hit the dev server by IP, use Safari remote devtools.",
+          "suggestedId": "emilkowalski-real-devices-for-gestures-drawers-swipe",
+          "category": "design",
           "tags": [
             "motion",
-            "animations"
+            "design"
           ],
-          "bestMatch": 0.16
+          "bestMatch": 0.15
         },
         {
           "source": "emilkowalski",
-          "text": "Accessibility & cohesion — add reduced-motion + hover gating; tune to match the component's personality.",
-          "suggestedId": "emilkowalski-accessibility-cohesion-add-reduced-motion-hover",
+          "text": "Justified motion. Every animation must answer \"why does this animate?\" — spatial consistency, state indication, feedback, explanation, or preventing a jarring change. \"It looks cool\" on a frequently-seen element is a block.",
+          "suggestedId": "emilkowalski-justified-motion-every-animation-must-answer",
           "category": "animations",
           "tags": [
             "motion",
             "animations"
           ],
-          "bestMatch": 0.18
+          "bestMatch": 0.17
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Never `scale(0)`. Start from `scale(0.9–0.97)` + `opacity: 0`. Nothing in the real world appears from nothing.",
+          "suggestedId": "emilkowalski-never-start-from-nothing-in-the",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "emilkowalski",
+          "text": "`translate` percentages are relative to the element's own size — `translateY(100%)` moves by the element's height regardless of dimensions (how Sonner/Vaul position toasts/drawers). Prefer over hardcoded px.",
+          "suggestedId": "emilkowalski-percentages-are-relative-to-the-element",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.17
         },
         {
           "source": "emilkowalski",
@@ -885,19 +468,30 @@
         },
         {
           "source": "emilkowalski",
-          "text": "`scale(0)` or pure-fade entrances with no initial transform",
-          "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
-          "category": "forms",
+          "text": "Frame-by-frame: Chrome DevTools Animations panel reveals timing drift between coordinated properties.",
+          "suggestedId": "emilkowalski-frame-by-frame-chrome-devtools-animations",
+          "category": "animations",
           "tags": [
             "motion",
-            "forms"
+            "animations"
           ],
-          "bestMatch": 0.2
+          "bestMatch": 0.18
         },
         {
           "source": "emilkowalski",
-          "text": "Updating a CSS variable on a parent to drive a child transform (style recalc storm)",
-          "suggestedId": "emilkowalski-updating-a-css-variable-on-a",
+          "text": "When unsure whether motion feels right, recommend reviewing it in slow motion / frame-by-frame and with fresh eyes the next day rather than guessing.",
+          "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.19
+        },
+        {
+          "source": "emilkowalski",
+          "text": "`scale(0)` or pure-fade entrances with no initial transform",
+          "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
           "category": "forms",
           "tags": [
             "motion",
@@ -918,12 +512,23 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Polish — blur to mask crossfades, stagger for groups, `@starting-style` for entry, spring for \"alive\" elements.",
-          "suggestedId": "emilkowalski-polish-blur-to-mask-crossfades-stagger",
+          "text": "Slow motion: bump duration 2–5× or use DevTools animation inspector. Check colors crossfade cleanly, easing doesn't stop abruptly, `transform-origin` is right, coordinated properties stay in sync.",
+          "suggestedId": "emilkowalski-slow-motion-bump-duration-2-5",
           "category": "animations",
           "tags": [
             "motion",
             "animations"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Fresh eyes next day — imperfections invisible during development surface later.",
+          "suggestedId": "emilkowalski-fresh-eyes-next-day-imperfections-invisible",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
           ],
           "bestMatch": 0.2
         },
@@ -940,25 +545,47 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Origin & physical correctness. Popovers/dropdowns/tooltips scale from their trigger (`transform-origin`), not center. Never animate from `scale(0)` — start from `scale(0.9–0.97)` + opacity (Modals are exempt — they stay centered.)",
-          "suggestedId": "emilkowalski-origin-physical-correctness-popovers-dropdowns-tooltips",
+          "text": "Interruptibility & timing — keyframes where transitions/springs belong; symmetric timing that should be asymmetric.",
+          "suggestedId": "emilkowalski-interruptibility-timing-keyframes-where-transitions-springs",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "emilkowalski",
+          "text": "WAAPI gives JS control with CSS performance (hardware-accelerated, interruptible, no library):",
+          "suggestedId": "emilkowalski-waapi-gives-js-control-with-css",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "emilkowalski",
+          "text": "`scale()` scales children too (font, icons, content) — a feature for press feedback.",
+          "suggestedId": "emilkowalski-scales-children-too-font-icons-content",
+          "category": "content",
+          "tags": [
+            "motion",
+            "content"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "emilkowalski",
+          "text": "CSS animations beat JS under load — they run off the main thread; rAF-based animations stutter while the browser loads/scripts/paints. Use CSS for predetermined motion, JS for dynamic/interruptible.",
+          "suggestedId": "emilkowalski-css-animations-beat-js-under-load",
           "category": "animations",
           "tags": [
             "motion",
             "animations"
           ],
           "bestMatch": 0.24
-        },
-        {
-          "source": "emilkowalski",
-          "text": "UI duration > 300ms with no stated reason",
-          "suggestedId": "emilkowalski-ui-duration-300ms-with-no-stated",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.25
         },
         {
           "source": "emilkowalski",
@@ -984,8 +611,63 @@
         },
         {
           "source": "emilkowalski",
-          "text": "`ease-in` on any UI interaction; weak built-in easing on a deliberate animation",
-          "suggestedId": "emilkowalski-on-any-ui-interaction-weak-built",
+          "text": "Origin, physicality & cohesion — wrong origin, mismatched personality, jarring crossfades.",
+          "suggestedId": "emilkowalski-origin-physicality-cohesion-wrong-origin-mismatched",
+          "category": "aesthetics",
+          "tags": [
+            "motion",
+            "aesthetics"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Constant motion (marquee, progress) → `linear`",
+          "suggestedId": "emilkowalski-constant-motion-marquee-progress",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Framer Motion shorthands are NOT hardware-accelerated. `x`/`y`/`scale` run on the main thread via rAF and drop frames under load. Use the full transform string:",
+          "suggestedId": "emilkowalski-framer-motion-shorthands-are-not-hardware",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "emilkowalski",
+          "text": "3D: `rotateX/Y` + `transform-style: preserve-3d` for depth/orbit/flip without JS.",
+          "suggestedId": "emilkowalski-3d-for-depth-orbit-flip-without",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Friction over hard stops — allow over-drag with rising resistance rather than an invisible wall.",
+          "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Origin & physical correctness. Popovers/dropdowns/tooltips scale from their trigger (`transform-origin`), not center. Never animate from `scale(0)` — start from `scale(0.9–0.97)` + opacity (Modals are exempt — they stay centered.)",
+          "suggestedId": "emilkowalski-origin-physical-correctness-popovers-dropdowns-tooltips",
           "category": "animations",
           "tags": [
             "motion",
@@ -1014,6 +696,17 @@
             "animations"
           ],
           "bestMatch": 0.29
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Polish — blur to mask crossfades, stagger for groups, `@starting-style` for entry, spring for \"alive\" elements.",
+          "suggestedId": "emilkowalski-polish-blur-to-mask-crossfades-stagger",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.3
         },
         {
           "source": "emilkowalski",
@@ -1083,6 +776,39 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Entering or exiting → `ease-out` (starts fast, feels responsive)",
+          "suggestedId": "emilkowalski-entering-or-exiting-starts-fast-feels",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Moving / morphing on screen → `ease-in-out`",
+          "suggestedId": "emilkowalski-moving-morphing-on-screen",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Origin-aware popovers. Scale from the trigger, not center:",
+          "suggestedId": "emilkowalski-origin-aware-popovers-scale-from-the",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "emilkowalski",
           "text": "Prefer CSS transitions/`@starting-style`/WAAPI for predetermined motion; JS/springs for dynamic, interruptible, gesture-driven motion.",
           "suggestedId": "emilkowalski-prefer-css-transitions-waapi-for-predetermined",
           "category": "animations",
@@ -1091,6 +817,50 @@
             "animations"
           ],
           "bestMatch": 0.36
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Sub-300ms UI. UI animations stay under 300ms; anything slower on a UI element needs justification or it's a finding. Per-element budgets live in STANDARDS.md.",
+          "suggestedId": "emilkowalski-sub-300ms-ui-ui-animations-stay",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Responsive easing. Entering/exiting elements use `ease-out` or a strong custom curve. `ease-in` on UI is a block — it delays the moment the user watches most. Built-in CSS easings are too weak; expect custom cubic-beziers.",
+          "suggestedId": "emilkowalski-responsive-easing-entering-exiting-elements-use",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.41
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Cohesion. Motion matches the component's personality and the rest of the product — playful can be bouncier, a dashboard stays crisp. Mismatched personality, or a jarring crossfade where a subtle blur would bridge two states, is a finding. When unsure whether motion feels right, the strongest move is often to delete it.",
+          "suggestedId": "emilkowalski-cohesion-motion-matches-the-component-s",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.41
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Only animate `transform` and `opacity` — they skip layout/paint and run on the GPU. `padding`/`margin`/`height`/`width`/`top`/`left` trigger all three rendering steps.",
+          "suggestedId": "emilkowalski-only-animate-and-they-skip-layout",
+          "category": "performance",
+          "tags": [
+            "motion",
+            "performance"
+          ],
+          "bestMatch": 0.42
         },
         {
           "source": "emilkowalski",
@@ -1113,6 +883,17 @@
             "design"
           ],
           "bestMatch": 0.43
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Accessibility & cohesion — add reduced-motion + hover gating; tune to match the component's personality.",
+          "suggestedId": "emilkowalski-accessibility-cohesion-add-reduced-motion-hover",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.45
         }
       ]
     },
@@ -1266,8 +1047,9 @@
       "name": "impeccable",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
+      "ourRules": 25,
+      "reviewEveryDays": 60,
+      "note": "https://impeccable.style/"
     },
     {
       "source": "clarify",
@@ -1275,15 +1057,8 @@
       "mode": "manual",
       "status": "manual-due",
       "ourRules": 0,
-      "reviewEveryDays": 60
-    },
-    {
-      "source": "react-tailwind",
-      "name": "react-tailwind",
-      "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 0,
-      "reviewEveryDays": 60
+      "reviewEveryDays": 60,
+      "note": "https://impeccable.style/"
     },
     {
       "source": "ce-frontend-design",

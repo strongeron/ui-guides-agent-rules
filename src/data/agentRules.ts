@@ -306,10 +306,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'MUST',
     rule: 'Profile with CPU/network throttling'
   },
-  'performance-minimize-layout-work': {
-    priority: 'MUST',
-    rule: 'Batch layout reads/writes; avoid unnecessary reflows/repaints'
-  },
   'performance-latency-budgets': {
     priority: 'MUST',
     rule: 'Mutations (`POST/PATCH/DELETE`) target <500 ms'
@@ -321,10 +317,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'performance-large-lists': {
     priority: 'MUST',
     rule: 'Virtualize large lists (eg, `virtua`)'
-  },
-  'performance-preload-wisely': {
-    priority: 'MUST',
-    rule: 'Preload only above-the-fold images; lazy-load the rest'
   },
   'performance-no-image-cls': {
     priority: 'MUST',
@@ -361,14 +353,6 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'design-interactions-increase-contrast': {
     priority: 'MUST',
     rule: 'Increase contrast on `:hover/:active/:focus`'
-  },
-  'design-browser-ui-match': {
-    priority: 'SHOULD',
-    rule: 'Match browser UI to bg'
-  },
-  'design-gradient-banding': {
-    priority: 'SHOULD',
-    rule: 'Avoid gradient banding (use masks when needed)'
   },
   // Tailwind CSS Golden Rules - Performance
   'performance-content-paths': {
@@ -511,7 +495,7 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   // Ref: https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Fundamentals
   'animations-frame-budget': {
     priority: 'SHOULD',
-    rule: 'Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch DOM reads then writes to avoid layout thrashing in animation loops.'
+    rule: 'Animation work SHOULD complete within 16ms frame budget (60fps). Use requestAnimationFrame for JS animations. Batch layout reads then writes — never interleave them — so a frame does not thrash between reflows and repaints.'
   },
 
   // View Transitions API
@@ -976,6 +960,461 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
   'animations-emil-stagger': {
     priority: 'SHOULD',
     rule: 'Stagger entrance animations for groups of items by 30–80ms. A whole list animating at once reads as a single flash.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Rauno Freiberg — Interactions
+  // ---------------------------------------------------------------------------
+  'interactions-toggles-immediate-effect': {
+    priority: 'MUST',
+    rule: 'Toggles apply their change immediately — never pair a toggle with a separate Save/confirm step. If the action needs confirmation, use a checkbox + submit button instead.'
+  },
+  'interactions-user-select-interactive': {
+    priority: 'SHOULD',
+    rule: 'Set `user-select: none` on the inner content of interactive elements (buttons, tabs, menu items) so click-drag never selects their label text.',
+    codeExample: 'button, [role="tab"] { user-select: none; }'
+  },
+  'interactions-decorative-pointer-events': {
+    priority: 'MUST',
+    rule: 'Set `pointer-events: none` on purely decorative layers (glows, gradients, overlays) so they never intercept clicks meant for elements underneath.',
+    codeExample: '.glow { position: absolute; inset: 0; pointer-events: none; }'
+  },
+  'interactions-hover-media-query': {
+    priority: 'MUST',
+    rule: 'Gate hover styles behind `@media (hover: hover)` so touch devices never get a flash of sticky hover state on press.',
+    codeExample: '@media (hover: hover) {\n  .btn:hover { background: var(--accent); }\n}'
+  },
+  'interactions-video-autoplay-ios': {
+    priority: 'MUST',
+    rule: 'Autoplaying `<video>` needs `muted` and `playsInline` — without both, iOS Safari blocks playback or forces fullscreen.',
+    codeExample: '<video autoPlay muted loop playsInline src="/clip.mp4" />'
+  },
+  'interactions-tap-highlight-replacement': {
+    priority: 'MUST',
+    rule: 'If you clear `-webkit-tap-highlight-color`, replace it with your own touch feedback (an `:active` state) — never leave a tap with zero visual confirmation.',
+    codeExample: 'a { -webkit-tap-highlight-color: rgba(0,0,0,0); }\na:active { background: var(--muted); }'
+  },
+  'interactions-disabled-no-tooltips': {
+    priority: 'NEVER',
+    rule: 'Put a tooltip on a `disabled` button — it cannot receive focus or hover reliably, so keyboard users never see it. Use `aria-disabled` plus visible explanation text instead.'
+  },
+  'interactions-list-delete-shortcut': {
+    priority: 'SHOULD',
+    rule: 'In a sequential list of focusable items, support `ArrowUp`/`ArrowDown` to move between items and `⌘/Ctrl + Backspace` to delete the focused item.'
+  },
+  'interactions-mousedown-dropdown': {
+    priority: 'SHOULD',
+    rule: 'Open dropdown menus on `mousedown`, not `click` — `click` fires on mouseup and adds perceived latency to the press.'
+  },
+  'interactions-svg-favicon-theme': {
+    priority: 'SHOULD',
+    rule: 'Ship an SVG favicon containing an inline `<style>` with `prefers-color-scheme` so the icon adapts to light/dark browser chrome.',
+    codeExample: '<style>path { fill: #000 }\n@media (prefers-color-scheme: dark) { path { fill: #fff } }</style>'
+  },
+  'interactions-focus-ring-shadow': {
+    priority: 'SHOULD',
+    rule: 'Draw focus rings with `box-shadow` (Tailwind `ring-*`), not `outline` — outline ignores `border-radius` before Safari 16.4, so rounded controls get a rectangle.',
+    codeExample: ':focus-visible { box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }'
+  },
+  'interactions-tooltip-interactive-content': {
+    priority: 'NEVER',
+    rule: 'Put interactive content inside a hover tooltip — the tooltip unmounts as the pointer leaves the trigger and its controls never enter the tab order. If it has something to press, make it a click-triggered popover/dialog with `aria-haspopup`, focus movement and Escape dismiss.'
+  },
+  'interactions-gesture-touch-action': {
+    priority: 'MUST',
+    rule: 'Set `touch-action: none` on surfaces that implement their own pan/zoom (map, canvas, carousel, drag handle) or the browser claims the gesture and fires `pointercancel` mid-drag. Scope it to the gesture surface — never the page.',
+    codeExample: '.canvas { touch-action: none; }'
+  },
+  'interactions-gradient-text-selection': {
+    priority: 'MUST',
+    rule: 'For gradient text (`background-clip: text`), unset the gradient in `::selection` — otherwise the selection highlight renders it unreadable.',
+    codeExample: '.gradient-text::selection { -webkit-text-fill-color: #fff; background: var(--accent); }'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Rauno Freiberg — Animations
+  // ---------------------------------------------------------------------------
+  'animations-theme-switch-no-transitions': {
+    priority: 'MUST',
+    rule: 'Suppress `transition` and `animation` on every element while flipping the theme, then restore them on the next frame — otherwise each colour-animating element ripples across the page.',
+    codeExample: 'document.documentElement.classList.add("theme-switching");\nsetTheme(next);\nrequestAnimationFrame(() => document.documentElement.classList.remove("theme-switching"));\n/* .theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important } */'
+  },
+  'animations-proportional-values': {
+    priority: 'SHOULD',
+    rule: 'Keep animation values proportional to the element: dialogs scale from ~0.95–0.8 (never 0), buttons compress to ~0.96 on press (never 0.8).'
+  },
+  'animations-smooth-scroll-anchors': {
+    priority: 'SHOULD',
+    rule: 'Use `scroll-behavior: smooth` for in-page anchors, with `scroll-margin-top` on targets so headings clear any sticky header.',
+    codeExample: 'html { scroll-behavior: smooth; }\n:target { scroll-margin-top: 5rem; }'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Rauno Freiberg — Content & Typography
+  // ---------------------------------------------------------------------------
+  'content-font-smoothing': {
+    priority: 'SHOULD',
+    rule: 'Apply `-webkit-font-smoothing: antialiased` so subpixel rendering does not make text look heavier than the designed weight.',
+    codeExample: 'body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }'
+  },
+  'content-text-rendering': {
+    priority: 'SHOULD',
+    rule: 'Apply `text-rendering: optimizeLegibility` to enable kerning and ligatures, most visible at heading sizes.'
+  },
+  'content-font-subsetting': {
+    priority: 'SHOULD',
+    rule: 'Subset webfonts to the alphabets/languages actually used and declare `unicode-range` — full font files ship glyphs you never render.',
+    codeExample: '@font-face { font-family: Inter; src: url(/inter-latin.woff2) format("woff2"); unicode-range: U+0000-00FF; }'
+  },
+  'content-font-weight-hover-stable': {
+    priority: 'NEVER',
+    rule: 'Change `font-weight` on hover or selected state — bolder text takes more space and reflows its neighbors. Reserve the space up front (or use color/background/opacity instead).',
+    codeExample: '/* reserve bold width so the label never reflows */\n.item::after { content: attr(data-label); font-weight: 600; height: 0; visibility: hidden; }'
+  },
+  'content-min-font-weight': {
+    priority: 'NEVER',
+    rule: 'Use font weights below 400 — thin and light weights (100–300) hurt readability on low-DPI screens and for low-vision users.'
+  },
+  'content-heading-weight': {
+    priority: 'SHOULD',
+    rule: 'Give medium-sized headings a `font-weight` of 500–600; 800–900 reads heavy and disconnected from body text.'
+  },
+  'content-fluid-clamp': {
+    priority: 'SHOULD',
+    rule: 'Scale type fluidly with `clamp(min, preferred-vw, max)` instead of stacking font-size breakpoints.',
+    codeExample: 'h1 { font-size: clamp(48px, 5vw, 72px); }'
+  },
+  'content-text-size-adjust': {
+    priority: 'MUST',
+    rule: 'Set `-webkit-text-size-adjust: 100%` so iOS Safari does not inflate text on landscape rotation (this still allows user zoom).',
+    codeExample: 'html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }'
+  },
+  'content-image-tag-not-background': {
+    priority: 'MUST',
+    rule: 'Render content images with `<img>` + meaningful `alt`, never CSS `background-image` — a background has no role, no accessible name, and no "copy image" context menu. Reserve `background-image` for textures and gradients.'
+  },
+  'content-illustration-label': {
+    priority: 'MUST',
+    rule: 'Give a div-built illustration or chart `role="img"` + `aria-label` on the wrapper and `aria-hidden="true"` on its inner nodes, so screen readers announce it once instead of walking every group.',
+    codeExample: '<div role="img" aria-label="Revenue grew 40% in Q3">\n  <div className="bar" aria-hidden="true" />\n</div>'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Rauno Freiberg — Forms
+  // ---------------------------------------------------------------------------
+  'forms-input-decorations-positioning': {
+    priority: 'MUST',
+    rule: 'Absolutely position input prefix/suffix icons on top of the input and pad the input around them — do not place them as flex siblings. Clicking a decoration must focus the input.',
+    codeExample: '<div className="relative">\n  <SearchIcon className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" />\n  <input className="pl-9" />\n</div>'
+  },
+
+  'forms-native-validation': {
+    priority: 'SHOULD',
+    rule: 'Lean on native constraint validation (`required`, `type="email"`, `pattern`, `min`, `minlength`) instead of hand-rolled JS checks; drop `noValidate` and reach for `setCustomValidity` only for rules HTML cannot express.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Rauno Freiberg — Performance
+  // ---------------------------------------------------------------------------
+  'performance-adaptive-capabilities': {
+    priority: 'SHOULD',
+    rule: 'Branch on `navigator.deviceMemory`, `navigator.hardwareConcurrency` and `navigator.connection.effectiveType`/`.saveData` to drop blurs, autoplay and heavy assets on weak devices. Treat them as hints: always ship a working default when undefined, and never fingerprint with them.',
+    codeExample: 'const lite = navigator.connection?.saveData || (navigator.deviceMemory ?? 8) < 4;'
+  },
+  'performance-gradient-banding': {
+    priority: 'SHOULD',
+    rule: 'Build soft glows with `radial-gradient()` rather than a filled rectangle scaled and run through `filter: blur()` — the blur+scale route bands. Where a gradient still bands, fade it with a `mask-image` gradient instead of stacking more blur.',
+    codeExample: '.glow { background: radial-gradient(circle, oklch(0.7 0.2 250 / 0.5), transparent 70%); }'
+  },
+  'performance-gpu-translatez': {
+    priority: 'SHOULD',
+    rule: 'Reach for `transform: translateZ(0)` / `will-change` sparingly — only on the specific element with a measured animation problem. Blanket layer promotion burns GPU memory and can make things slower.'
+  },
+  'performance-video-autoplay-performance': {
+    priority: 'MUST',
+    rule: 'Do not autoplay every video at once — observe visibility with `IntersectionObserver` and pause (or unmount) off-screen videos; iOS chokes otherwise.'
+  },
+  'performance-refs-bypass-render': {
+    priority: 'SHOULD',
+    rule: 'For high-frequency real-time values (pointer position, scroll, rAF), write to the DOM through a `ref` instead of `useState` — the visual result is identical with zero re-renders.',
+    codeExample: 'const el = useRef<HTMLDivElement>(null);\nonPointerMove = (e) => { el.current!.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; };'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Rauno Freiberg — Design
+  // ---------------------------------------------------------------------------
+  'design-selection-styling': {
+    priority: 'SHOULD',
+    rule: 'Style `::selection` with brand colors instead of shipping the browser default blue.',
+    codeExample: '::selection { background: var(--accent); color: var(--accent-foreground); }'
+  },
+  'design-feedback-near-trigger': {
+    priority: 'MUST',
+    rule: 'Render feedback at its trigger: swap the copy button to an inline checkmark, highlight the erroring input — do not fire a distant toast for a local action.'
+  },
+  'design-server-auth-redirect': {
+    priority: 'MUST',
+    rule: 'Redirect unauthenticated users on the server (302 before any HTML ships), not from a client-side effect — client redirects flash the protected page and jank the URL.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Interactions — focus grouping, hydration, drag physics
+  // ---------------------------------------------------------------------------
+  'interactions-focus-within-group': {
+    priority: 'MUST',
+    rule: 'Ring the wrapper of a compound control with `:focus-within` (and `outline: none` on the children), keeping a distinct style on the focused child — do not ring only the inner `<input>`.',
+    codeExample: '.field:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }\n.field :is(input, button):focus-visible { outline: none; background: var(--muted); }'
+  },
+  'interactions-hydration-warning-suppression': {
+    priority: 'NEVER',
+    rule: 'Put `suppressHydrationWarning` on a subtree or layout wrapper to quiet mismatch noise — it keeps the wrong server value on screen. Apply it to the single element rendering a genuinely unstable value (`Date.now()`, a local clock, a random id) and fix every other mismatch at the source.'
+  },
+  'interactions-drag-physics': {
+    priority: 'SHOULD',
+    rule: 'Give drags real physics: dismiss on velocity (`Math.abs(distance) / elapsedMs > ~0.11`) rather than a distance threshold, damp past boundaries (`over * limit / (over + limit)`), call `setPointerCapture(e.pointerId)` on drag start, and ignore extra pointers once a drag owns one.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Animations — Emil Kowalski (easing, duration, entry, springs)
+  // ---------------------------------------------------------------------------
+  'animations-emil-no-ease-in': {
+    priority: 'NEVER',
+    rule: 'Reach for `ease-in` on UI motion: it barely moves during the first ~100ms the user is watching, so a 200ms `ease-in` reads slower than a 200ms `ease-out`. Default both entrances and exits to `ease-out`; `ease-in-out` for on-screen morphs, `ease` for hover/color, `linear` for constant motion. (This is the strict Emil position; other sources here allow `ease-in` on exits — pick one stance per product and apply it consistently.)'
+  },
+  'animations-emil-strong-easing': {
+    priority: 'SHOULD',
+    rule: 'Replace the weak built-in easing keywords with strong custom curves, defined once as tokens rather than hand-rolled per component.',
+    codeExample: ':root {\n  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);\n  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);\n  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);\n}'
+  },
+  'animations-emil-duration-budget': {
+    priority: 'MUST',
+    rule: 'Keep UI animations under 300ms, budgeted per element: press feedback 100–160ms, tooltip/small popover 125–200ms, dropdown/select 150–250ms, modal/drawer 200–500ms (the only type allowed past the 300ms ceiling). Marketing and explanatory motion is exempt — it is content, not interface.'
+  },
+  'animations-emil-transitions-over-keyframes': {
+    priority: 'SHOULD',
+    rule: 'Drive rapidly-retriggered motion (toasts, toggles) with CSS `transition` or a spring, not `@keyframes` — a transition retargets from the element\'s current value, while a keyframe animation restarts from its `from` and visibly teleports.'
+  },
+  'animations-emil-starting-style': {
+    priority: 'SHOULD',
+    rule: 'Animate first-render entrances with `@starting-style` instead of a `useEffect` mounted-flag plus double `requestAnimationFrame` — it degrades to an instant appearance where unsupported.',
+    codeExample: '.popover { opacity: 1; transition: opacity 200ms var(--ease-out); }\n@starting-style { .popover { opacity: 0; } }'
+  },
+  'animations-emil-blur-crossfade': {
+    priority: 'SHOULD',
+    rule: 'When a crossfade still reads as a ghosted double exposure, add a small transition-scoped `filter: blur(2px)` (2–4px, single element, only for the duration of the transition, always < 20px) so the two states fuse into one morph. This is the narrow carve-out from "never animate blur", which targets large, long-lived, or continuously-animating blurs — stay especially conservative in Safari.'
+  },
+  'animations-emil-subtle-bounce': {
+    priority: 'SHOULD',
+    rule: 'Keep spring bounce within 0.1–0.3 (`{ type: "spring", duration: 0.5, bounce: 0.2 }`) and reserve any bounce for drag-to-dismiss and playful interactions — everyday menus, dropdowns and modals are usually better with none.'
+  },
+  'animations-emil-motion-cohesion': {
+    priority: 'SHOULD',
+    rule: 'Define duration and easing once as motion tokens and spend them everywhere, matching the curve to the product\'s personality (crisp and bounce-free for a dashboard, slower and bouncier for a playful app) rather than letting each component be animated to whoever built it\'s taste.'
+  },
+  'animations-svg-transform-box': {
+    priority: 'MUST',
+    rule: 'Transform animated SVG shapes on a `<g>` wrapper with `transform-box: fill-box` and `transform-origin: center` — the CSS default `view-box` resolves the origin against the `viewBox`, so an off-centre shape orbits the canvas instead of spinning in place.',
+    codeExample: 'g.spinner { transform-box: fill-box; transform-origin: center; animation: spin 1s linear infinite; }'
+  },
+  'animations-impeccable-no-bounce-easing': {
+    priority: 'NEVER',
+    rule: 'Let a UI element overshoot its final position: no `animate-bounce`, no animation named `bounce|elastic|wobble|jiggle|spring`, and no `cubic-bezier()` whose y1 or y2 falls outside `[-0.1, 1.1]`. Ease out with exponential curves (ease-out-quart / quint / expo).'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Layout — sizing, containers, overflow
+  // ---------------------------------------------------------------------------
+  'layout-min-width-truncation': {
+    priority: 'MUST',
+    rule: 'Add `min-w-0` (`min-width: 0`) to any flex child that must truncate — flex items default to `min-width: auto` and refuse to shrink below their content, so `text-overflow: ellipsis` never has an overflow to clip. Grid children need `min-w-0` or `minmax(0, 1fr)`.',
+    codeExample: '<div class="flex items-center gap-2">\n  <span class="min-w-0 flex-1 truncate">{longFileName}</span>\n  <button class="shrink-0">Open</button>\n</div>'
+  },
+  'layout-flex-over-measurement': {
+    priority: 'SHOULD',
+    rule: 'Solve layout with flex and grid instead of reading `getBoundingClientRect`/`offsetWidth` and writing the result back as inline styles — measurement forces a synchronous reflow, can only run after first paint (so the UI visibly jumps), is wrong during SSR, and goes stale without a `ResizeObserver`.'
+  },
+  'layout-impeccable-nested-cards': {
+    priority: 'NEVER',
+    rule: 'Nest a card inside a card — an element counts as card-like when it has (a shadow OR a border) AND (a radius OR a background). Build hierarchy inside a card with padding, one hairline divider, and type weight, not a second chrome layer.'
+  },
+  'layout-impeccable-cramped-padding': {
+    priority: 'MUST',
+    rule: 'Scale padding inside any bordered, outlined, or filled container from its font size: vertical >= `max(4px, fontSize * 0.3)` and horizontal >= `max(8px, fontSize * 0.5)` — at least 8px, ideally 12–16px. Also catch the `padding: 28px 0 0` shorthand bug, where the sides get quietly zeroed and text sits flush against the border.'
+  },
+  'layout-impeccable-body-text-viewport-edge': {
+    priority: 'MUST',
+    rule: 'Never let a paragraph or list item land within 16px of the left or right viewport edge — give the wrapping container at least 16px (ideally 24–32px) of horizontal padding, or a `max-width` plus `mx-auto` once there is room for one.'
+  },
+  'layout-impeccable-clipped-overflow': {
+    priority: 'NEVER',
+    rule: 'Leave an absolutely-positioned tooltip, menu, or popover inside an ancestor with `overflow: hidden` or `overflow: clip` — the layer gets silently cut off. Clip the image rather than the whole card, or promote the layer out of the subtree with the native Popover API (top layer) or a portal.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Content — voice, copy mechanics, i18n
+  // ---------------------------------------------------------------------------
+  'content-active-voice': {
+    priority: 'MUST',
+    rule: 'Write instructions, empty states, and errors in active voice — "Install the CLI", not "The CLI will be installed".'
+  },
+  'content-title-case': {
+    priority: 'SHOULD',
+    rule: 'Use Chicago-style Title Case for headings, buttons, and menu items — capitalize principal words, lowercase short articles, conjunctions, and prepositions.'
+  },
+  'content-numerals-for-counts': {
+    priority: 'MUST',
+    rule: 'Write counts and quantities as numerals — "8 deployments", not "eight deployments" — so they can be scanned, compared, and aligned.'
+  },
+  'content-specific-button-labels': {
+    priority: 'MUST',
+    rule: 'Label buttons with verb plus object ("Save API Key", "Delete Project"), never a generic "Continue" or "OK" — the label is read out of context by a screen reader cycling controls.'
+  },
+  'content-actionable-errors': {
+    priority: 'MUST',
+    rule: 'Every error message states the fix, not just the problem: the expected format, the missing permission, or a link/button to the place the user can resolve it.'
+  },
+  'content-second-person-voice': {
+    priority: 'SHOULD',
+    rule: 'Address the reader as "you" and avoid "we"/"I" in product copy — "your build failed", not "we were unable to complete the build".'
+  },
+  'content-ampersand-in-tight-space': {
+    priority: 'SHOULD',
+    rule: 'Use `&` instead of "and" in width-constrained labels (sidebar items, tabs, table headers) so compound labels like "Billing & Invoices" stay on one line; keep "and" in prose.'
+  },
+  'content-translate-no': {
+    priority: 'MUST',
+    rule: 'Wrap brand names, code tokens, commands, and identifiers in `translate="no"` so browser auto-translate leaves them runnable while the surrounding prose stays translatable.',
+    codeExample: '<code translate="no">npm install vercel</code>'
+  },
+  'content-language-detection': {
+    priority: 'MUST',
+    rule: 'Pick the UI language from `Accept-Language` / `navigator.languages`, never from IP geolocation (VPNs, travel, and multilingual countries break that assumption), and still expose an explicit language switcher as the override.'
+  },
+  'content-impeccable-line-length': {
+    priority: 'MUST',
+    rule: 'Cap the measure: give prose containers `max-width: 65ch`–`75ch`. The detector estimates characters per line as `width / (fontSize * 0.5)` and flags anything above 85.'
+  },
+  'content-impeccable-tight-leading': {
+    priority: 'MUST',
+    rule: 'Set body `line-height` to 1.5–1.7 and never below 1.3 (flagged on any non-heading carrying more than 50 characters); derive the whole spacing scale from the resulting line box (16px × 1.5 = 24px).'
+  },
+  'content-impeccable-tiny-text': {
+    priority: 'MUST',
+    rule: 'Set prose at 14px minimum, 16px ideally, in `rem` so browser font settings still apply — anything under 12px on an element with more than 20 characters of text is a bug. UI chrome (buttons, links, labels, nav, badges, code, captions) is exempt.'
+  },
+  'content-impeccable-all-caps-body': {
+    priority: 'NEVER',
+    rule: 'Apply `text-transform: uppercase` to running text — flagged on any non-heading over 30 characters, because capitals erase the word shape readers recognize. Reserve uppercase for short labels and headings, and give those 0.05em–0.12em of letter-spacing.'
+  },
+  'content-impeccable-justified-text': {
+    priority: 'NEVER',
+    rule: 'Ship `text-align: justify` without `hyphens: auto` — stretched word-spacing carves rivers of white through the paragraph. Left-align body text; if a justified column is non-negotiable, set `hyphens: auto` plus a `lang` attribute so the browser has a dictionary.',
+    codeExample: 'p { text-align: justify; hyphens: auto; } /* requires <html lang="en"> */'
+  },
+  'content-impeccable-type-scale-contrast': {
+    priority: 'SHOULD',
+    rule: 'Generate every type step from one ratio of at least 1.25 (major third), 1.333, or 1.5 rather than adding near-identical sizes — a page with 3 or more distinct sizes whose largest-to-smallest ratio is under 2.0 has no hierarchy left to squint at.'
+  },
+  'content-impeccable-em-dash-overuse': {
+    priority: 'SHOULD',
+    rule: 'Punctuate with commas, colons, semicolons, periods, or parentheses instead of em-dashes (and never the ASCII `--`) — 5 or more in body text is a machine-written cadence readers register even when each individual dash is defensible.'
+  },
+  'content-impeccable-marketing-buzzwords': {
+    priority: 'NEVER',
+    rule: 'Ship generic SaaS phrasing — "streamline your", "empower your", "supercharge", "unleash the power", "best-in-class", "industry-leading", "world-class", "enterprise-grade", "next-generation", "cutting-edge", "seamless experience", "harness the power" (~30 blocked phrases, any single hit fires). If the sentence would fit a CRM, a CDN, and a coffee machine equally well, replace it with a specific verb and noun. Same for 3 or more manufactured-contrast lines ("Not a feature. A platform.").'
+  },
+  'content-impeccable-dark-mode-text-compensation': {
+    priority: 'MUST',
+    rule: 'Compensate light-on-dark type on all three axes at once — `line-height` +0.05 to +0.1, `letter-spacing` +0.01em to +0.02em, and optionally one step of body weight — because light glyphs optically bloom. One type spec cannot serve both themes.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Performance — hydration, connections, images, gestures
+  // ---------------------------------------------------------------------------
+  'performance-hydration-safe-dates': {
+    priority: 'MUST',
+    rule: 'Render dates deterministically on the server — a fixed locale and time zone, or an ISO string inside `<time dateTime>` — and localize inside `useEffect` after hydration. Calling `toLocaleString()`/`new Date()` during render mismatches between a UTC server and the user\'s zone, discarding the SSR subtree.'
+  },
+  'performance-preconnect-asset-domains': {
+    priority: 'SHOULD',
+    rule: 'Add `<link rel="preconnect">` for every CDN and asset origin the page is certain to hit (with `crossorigin` for fonts and CORS-fetched assets) so DNS, TCP, and TLS overlap with HTML parsing. Only preconnect to origins you will definitely use — each holds an open socket.',
+    codeExample: '<link rel="preconnect" href="https://cdn.example.com" crossorigin>'
+  },
+  'performance-lazy-load-below-fold': {
+    priority: 'MUST',
+    rule: 'Eagerly load (and `rel="preload"`) only above-the-fold imagery; give every below-the-fold image `loading="lazy"`. Keep `width`/`height` or `aspect-ratio` on it so deferring the download does not reintroduce layout shift, and never lazy-load the LCP hero.',
+    codeExample: '<img src="/chart.png" width="800" height="450" loading="lazy" decoding="async" alt="…">'
+  },
+  'performance-transform-not-css-variable': {
+    priority: 'NEVER',
+    rule: 'Drive child transforms by writing a CSS variable on the parent during a gesture (`el.style.setProperty(\'--swipe-amount\', …)`) — it invalidates every descendant reading that variable, recalculating styles across the subtree on each pointer move. Set `transform` directly on the one element that moves, and prefer `animate={{ transform: "translateX(100px)" }}` over Motion\'s main-thread `x`/`y`/`scale` shorthands.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Design — theming, native controls, AI-UI tells
+  // ---------------------------------------------------------------------------
+  'design-color-scheme': {
+    priority: 'MUST',
+    rule: 'Set `color-scheme` on `<html>` (`dark`, or `light dark` to follow the OS) so browser-drawn UI — scrollbars, checkboxes, radios, range tracks, date pickers, number spinners — repaints for the theme. This is separate from reading `prefers-color-scheme`, which only tells you what the user wants.',
+    codeExample: 'html { color-scheme: light dark; }\nhtml[data-theme="dark"] { color-scheme: dark; }'
+  },
+  'design-theme-color-meta': {
+    priority: 'SHOULD',
+    rule: 'Match the mobile browser and PWA chrome to the page background by shipping one `<meta name="theme-color">` per scheme with the literal background value — a `<meta>` tag cannot read CSS custom properties, and leaving it unset puts a default light address bar above a dark page.',
+    codeExample: '<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">\n<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">'
+  },
+  'design-select-colors': {
+    priority: 'MUST',
+    rule: 'Set BOTH `background-color` and `color` on every native `<select>` from your tokens (and pair them with `color-scheme` so the option popup follows) — form controls do not inherit them, so styling only the text leaves near-white on the platform\'s white Field background in Windows dark mode.'
+  },
+  'design-impeccable-side-tab-border': {
+    priority: 'NEVER',
+    rule: 'Hang a thick colored stripe off one side of a card (one border side >= 2px while the others are <= 1px, in a non-neutral color, on a rounded box) — it makes the border-box asymmetric so text lands off-centre, and encodes status in hue alone. Use one even border, a tinted surface, and a leading icon plus a worded status.'
+  },
+  'design-impeccable-dark-glow': {
+    priority: 'NEVER',
+    rule: 'Add a colored `box-shadow` glow (chroma >= 30, blur radius > 4px) to elements sitting on a near-black surface (relative luminance < 0.1). Build depth on dark from a surface lightness scale (roughly 15% / 20% / 25%), which stays legible in bright ambient light and costs no extra paint.'
+  },
+  'design-impeccable-gradient-text': {
+    priority: 'NEVER',
+    rule: 'Use `background-clip: text` (or `-webkit-background-clip: text`) with a gradient background and a transparent text color — the glyphs then have no color, so the selection highlight paints behind invisible letters and forced-colors mode can erase the heading entirely. Set one solid color and carry emphasis with weight or size.'
+  },
+  'design-impeccable-no-glassmorphism': {
+    priority: 'NEVER',
+    rule: 'Apply `backdrop-filter: blur()` to ordinary content surfaces (cards, tiles, panels) — it re-blurs everything behind it on every scroll tick, and makes text contrast a property of whatever happens to be scrolling underneath (the same label can measure 8:1 over one band and 1.9:1 over the next), which no test can catch. Reserve blur for chrome that genuinely overlaps scrolling content — a sticky nav, a sheet — and use opaque surfaces everywhere else.'
+  },
+  'design-impeccable-tinted-neutrals': {
+    priority: 'NEVER',
+    rule: 'Ship `#000`, `#fff`, or zero-chroma grays like `#808080` — tint every neutral toward the brand\'s hue at OKLCH chroma ~0.005–0.015, letting chroma fall toward 0 as lightness approaches 0 or 100. Use the actual brand hue, not a reflexive warm-orange or cool-blue.',
+    codeExample: '--surface: oklch(0.98 0.008 265);\n--ink: oklch(0.18 0.01 265);'
+  },
+  'design-impeccable-alpha-smell': {
+    priority: 'SHOULD',
+    rule: 'Define an explicit opaque token per surface instead of reaching for `rgba()`/`hsla()` to fake a missing palette step — a translucent color\'s contrast ratio belongs to the backdrop, not the token, so the same `text-white/60` can measure 6.2:1 on one surface and 2.7:1 on the next. Exception: focus rings and transient hover/pressed states, which never carry text.'
+  },
+
+  // ---------------------------------------------------------------------------
+  // Aesthetics — impeccable: the AI-generated-UI template tells
+  // ---------------------------------------------------------------------------
+  'aesthetics-impeccable-icon-tile-stack': {
+    priority: 'NEVER',
+    rule: 'Stack a rounded-square icon tile above a feature heading — the tell is geometric: a heading\'s previous sibling measuring 32–128px on both axes, roughly square, with a visible background or border and a border-radius under half its width. Move the icon inline into the heading line, drop the container, or give the feature a real image. (A circular avatar, radius = half the width, is exempt.)'
+  },
+  'aesthetics-impeccable-hero-eyebrow': {
+    priority: 'NEVER',
+    rule: 'Put a tracked-caps eyebrow or pill chip immediately above a hero headline — font-size <= 14px combined with either uppercase plus letter-spacing >= 1.6px, or font-weight >= 700 in an accent color; 3 or more such kickers on one page is the same failure at page scale. Fold its content ("Now in beta") into the subhead or a real nav-level badge, and separate sections with structure (a rule, spacing, a genuine `<h2>`).'
+  },
+  'aesthetics-impeccable-cream-palette': {
+    priority: 'NEVER',
+    rule: 'Reach for the reflexive warm cream/beige page surface — mechanically: `min(r,g,b) >= 209`, channels ordered `r >= g >= b`, and warmth `r - b` between 6 and 48, which catches `bg-amber-50/100`, `bg-orange-50/100`, `bg-yellow-50`, and `bg-stone-50/100/200`. If you can guess the palette from the product\'s domain alone, it is the training-data reflex. Derive the surface instead: hold the brand hue angle and drop chroma to roughly 0.01.'
+  },
+  'aesthetics-impeccable-oversized-hero': {
+    priority: 'SHOULD',
+    rule: 'Reserve display size for short headlines — an `h1` is oversized only when ALL THREE hold: font-size >= 72px AND at least 40 characters AND >= 28% of viewport height (or >= 25% of viewport area). Keep the display size, cut the headline to its shortest true form, and let the full sentence live at 18–20px directly underneath.'
+  },
+  'aesthetics-impeccable-hero-metric-template': {
+    priority: 'NEVER',
+    rule: 'Ship a decorative hero metric — a round, unsourced "10x faster" / "99.99%" / "500M+" with no denominator, no window, and no source, dressed in a gradient accent. A prominent number is allowed on exactly one condition: it shows actual user data (this account, this window, live, timestamped). Otherwise replace the stat row with one concrete product screenshot.'
   }
 };
 

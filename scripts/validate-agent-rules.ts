@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, relative } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { agentRules } from '../src/data/agentRules';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -98,20 +99,14 @@ const RULE_PATTERN_OVERRIDES: Record<string, { expected?: string[]; forbidden?: 
   },
 };
 
+/**
+ * Import the rules rather than regex-scraping agentRules.ts. The previous regex
+ * terminated its capture at the first backtick, so every rule that quotes a CSS
+ * property or attribute — the house style — was truncated or dropped entirely,
+ * silently exempting ~22 rules from validation.
+ */
 function parseAgentRules(): Map<string, AgentRule> {
-  const rulesPath = join(rootDir, 'src/data/agentRules.ts');
-  const content = readFileSync(rulesPath, 'utf-8');
-  const rules = new Map<string, AgentRule>();
-
-  const ruleRegex = /'([^']+)':\s*{\s*priority:\s*'(MUST|SHOULD|NEVER)',\s*rule:\s*['"`]([^'"`]+)['"`]/g;
-
-  let match;
-  while ((match = ruleRegex.exec(content)) !== null) {
-    const [, id, priority, rule] = match;
-    rules.set(id, { priority: priority as 'MUST' | 'SHOULD' | 'NEVER', rule });
-  }
-
-  return rules;
+  return new Map(Object.entries(agentRules) as [string, AgentRule][]);
 }
 
 function getExamplePaths(principleId: string): { good?: string; bad?: string } {

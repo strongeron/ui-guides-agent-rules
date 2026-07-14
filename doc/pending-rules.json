@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T00:42:48.827Z",
+  "generatedAt": "2026-07-14T10:08:16.581Z",
   "pending": [
     {
       "suggestedId": "emilkowalski-cohesion-motion-matches-the-component-s",
@@ -12,7 +12,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-responsive-easing-entering-exiting-elements-use",
@@ -25,7 +25,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-interruptibility-timing-keyframes-where-transitions-springs",
@@ -38,7 +38,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-justified-motion-every-animation-must-answer",
@@ -51,7 +51,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-sub-300ms-ui-ui-animations-stay",
@@ -64,7 +64,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-fix-the-easing-swap-custom-curve",
@@ -77,7 +77,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "emilkowalski-origin-physicality-cohesion-wrong-origin-mismatched",
@@ -90,7 +90,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
@@ -103,7 +103,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-keyframes-on-toasts-toggles-or-anything",
@@ -116,7 +116,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "emilkowalski-everything-at-once-entrance-where-a",
@@ -142,7 +142,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-accessibility-is-honored-gentler-not-zero",
@@ -155,7 +155,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-frequency-appropriate-match-motion-to-how",
@@ -181,7 +181,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "emilkowalski-asymmetric-enter-exit-deliberate-actions-a",
@@ -207,7 +207,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-accessibility-cohesion-add-reduced-motion-hover",
@@ -220,7 +220,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-approve-no-feel-breaking-regressions-no",
@@ -233,7 +233,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
@@ -246,7 +246,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-updating-a-css-variable-on-a",
@@ -259,7 +259,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "emilkowalski-move-it-to-the-gpu-layout",
@@ -272,7 +272,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-polish-blur-to-mask-crossfades-stagger",
@@ -285,7 +285,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-animation-on-a-keyboard-shortcut-command",
@@ -311,7 +311,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-origin-physical-correctness-popovers-dropdowns-tooltips",
@@ -324,7 +324,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-ui-duration-300ms-with-no-stated",
@@ -337,7 +337,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "emilkowalski-symmetric-enter-exit-timing-on-a",
@@ -363,7 +363,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-on-any-ui-interaction-weak-built",
@@ -376,7 +376,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "emilkowalski-framer-motion-props-on-motion-that",
@@ -389,7 +389,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-delete-the-animation-high-frequency-no",
@@ -402,7 +402,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-asymmetric-timing-slow-the-deliberate-phase",
@@ -415,7 +415,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-gpu-only-properties-animate-and-only",
@@ -428,7 +428,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-unbounded-property-animation",
@@ -441,7 +441,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-missing-handling-on-movement",
@@ -454,7 +454,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-fix-the-origin-physicality-correct-replace",
@@ -467,7 +467,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-missed-simplifications-animations-that-should-be",
@@ -480,7 +480,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-accessibility-reduced-motion-and-pointer-hover",
@@ -493,7 +493,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "emilkowalski-prefer-css-transitions-waapi-for-predetermined",
@@ -506,7 +506,241 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-is-a-powerful-animation-tool-each",
+      "source": "emilkowalski",
+      "text": "`clip-path: inset(t r b l)` is a powerful animation tool: each value eats in from that side. Uses: reveal-on-scroll (`inset(0 0 100% 0)` → `inset(0 0 0 0)`), hold-to-delete overlay, seamless tab color transitions (duplicate + clip the active copy), comparison sliders.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-real-devices-for-gestures-drawers-swipe",
+      "source": "emilkowalski",
+      "text": "Real devices for gestures (drawers, swipe) — connect a phone, hit the dev server by IP, use Safari remote devtools.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-never-start-from-nothing-in-the",
+      "source": "emilkowalski",
+      "text": "Never `scale(0)`. Start from `scale(0.9–0.97)` + `opacity: 0`. Nothing in the real world appears from nothing.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-percentages-are-relative-to-the-element",
+      "source": "emilkowalski",
+      "text": "`translate` percentages are relative to the element's own size — `translateY(100%)` moves by the element's height regardless of dimensions (how Sonner/Vaul position toasts/drawers). Prefer over hardcoded px.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-frame-by-frame-chrome-devtools-animations",
+      "source": "emilkowalski",
+      "text": "Frame-by-frame: Chrome DevTools Animations panel reveals timing drift between coordinated properties.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-slow-motion-bump-duration-2-5",
+      "source": "emilkowalski",
+      "text": "Slow motion: bump duration 2–5× or use DevTools animation inspector. Check colors crossfade cleanly, easing doesn't stop abruptly, `transform-origin` is right, coordinated properties stay in sync.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-fresh-eyes-next-day-imperfections-invisible",
+      "source": "emilkowalski",
+      "text": "Fresh eyes next day — imperfections invisible during development surface later.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-waapi-gives-js-control-with-css",
+      "source": "emilkowalski",
+      "text": "WAAPI gives JS control with CSS performance (hardware-accelerated, interruptible, no library):",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-scales-children-too-font-icons-content",
+      "source": "emilkowalski",
+      "text": "`scale()` scales children too (font, icons, content) — a feature for press feedback.",
+      "category": "content",
+      "tags": [
+        "motion",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-css-animations-beat-js-under-load",
+      "source": "emilkowalski",
+      "text": "CSS animations beat JS under load — they run off the main thread; rAF-based animations stutter while the browser loads/scripts/paints. Use CSS for predetermined motion, JS for dynamic/interruptible.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-constant-motion-marquee-progress",
+      "source": "emilkowalski",
+      "text": "Constant motion (marquee, progress) → `linear`",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-framer-motion-shorthands-are-not-hardware",
+      "source": "emilkowalski",
+      "text": "Framer Motion shorthands are NOT hardware-accelerated. `x`/`y`/`scale` run on the main thread via rAF and drop frames under load. Use the full transform string:",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-3d-for-depth-orbit-flip-without",
+      "source": "emilkowalski",
+      "text": "3D: `rotateX/Y` + `transform-style: preserve-3d` for depth/orbit/flip without JS.",
+      "category": "forms",
+      "tags": [
+        "motion",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
+      "source": "emilkowalski",
+      "text": "Friction over hard stops — allow over-drag with rising resistance rather than an invisible wall.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-entering-or-exiting-starts-fast-feels",
+      "source": "emilkowalski",
+      "text": "Entering or exiting → `ease-out` (starts fast, feels responsive)",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-moving-morphing-on-screen",
+      "source": "emilkowalski",
+      "text": "Moving / morphing on screen → `ease-in-out`",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-origin-aware-popovers-scale-from-the",
+      "source": "emilkowalski",
+      "text": "Origin-aware popovers. Scale from the trigger, not center:",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
+    },
+    {
+      "suggestedId": "emilkowalski-only-animate-and-they-skip-layout",
+      "source": "emilkowalski",
+      "text": "Only animate `transform` and `opacity` — they skip layout/paint and run on the GPU. `padding`/`margin`/`height`/`width`/`top`/`left` trigger all three rendering steps.",
+      "category": "performance",
+      "tags": [
+        "motion",
+        "performance"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-14T10:08:16.581Z",
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-detect-and-adapt-to-the-hardware",
@@ -520,7 +754,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-illustrations-built-with-html-should-have",
@@ -534,7 +768,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-when-using-nested-menus-use-a",
@@ -548,7 +782,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-inputs-should-disable-and-attributes-most",
@@ -562,7 +796,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-box-shadow-should-be-used-for",
@@ -576,7 +810,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-disable-for-custom-components-that-implement",
@@ -590,7 +824,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-buttons-should-be-disabled-after-submission",
@@ -604,7 +838,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-where-available-tabular-figures-should-be",
@@ -618,7 +852,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-large-values-for-and-may-be",
@@ -632,7 +866,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-empty-states-should-prompt-to-create",
@@ -646,7 +880,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-inputs-should-leverage-html-form-validation",
@@ -660,7 +894,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-actions-that-are-frequent-and-low",
@@ -674,7 +908,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-inputs-should-not-auto-focus-on",
@@ -688,7 +922,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-images-should-always-be-rendered-with",
@@ -702,7 +936,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-interactive-elements-in-a-vertical-or",
@@ -716,7 +950,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-hovering-trivial-buttons",
@@ -730,7 +964,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-toggle-on-unperformant-scroll-animations-for",
@@ -744,7 +978,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-tooltips-triggered-by-hover-should-not",
@@ -758,7 +992,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-animation-duration-should-not-be-more",
@@ -772,7 +1006,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "rauno-inputs-should-be-wrapped-with-a",
@@ -786,7 +1020,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "rauno-inputs-should-have-an-appropriate-like",
@@ -800,7 +1034,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-not",
@@ -815,7 +1049,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-numerals-for-counts-8-deployments-not",
@@ -830,7 +1064,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-prefer-uncontrolled-inputs-controlled-inputs-must",
@@ -844,7 +1078,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-title-case-for-headings-buttons-chicago",
@@ -859,7 +1093,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-url-reflects-state-filters-tabs-pagination",
@@ -874,7 +1108,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-deep-link-all-stateful-ui-if",
@@ -889,7 +1123,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-brand-names-code-tokens-identifiers-wrap",
@@ -904,7 +1138,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-date-time-rendering-guard-against-hydration",
@@ -918,7 +1152,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-group-focus-with-for-compound-controls",
@@ -933,7 +1167,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-add-for-cdn-asset-domains",
@@ -948,7 +1182,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-error-messages-include-fix-next-step",
@@ -963,7 +1197,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-second-person-avoid-first-person",
@@ -978,7 +1212,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-over-and-where-space-constrained",
@@ -993,7 +1227,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-large-arrays-without-virtualization",
@@ -1007,7 +1241,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-hardcoded-date-number-formats-use",
@@ -1021,7 +1255,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-headings-hierarchical-include-skip-link-for",
@@ -1036,7 +1270,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-on-non-auth-fields-to-avoid",
@@ -1050,7 +1284,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-specific-button-labels-save-api-key",
@@ -1064,7 +1298,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-images-need-or-if-decorative",
@@ -1079,7 +1313,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-inputs-need-and-meaningful",
@@ -1093,7 +1327,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-svg-transforms-on-wrapper-with",
@@ -1108,7 +1342,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-for-number-columns-comparisons",
@@ -1123,7 +1357,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-use-or-on-headings-prevents-widows",
@@ -1138,7 +1372,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-flex-children-need-to-allow-text",
@@ -1153,7 +1387,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-matches-page-background",
@@ -1168,7 +1402,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-inputs-with-need-or-use-for",
@@ -1182,7 +1416,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-buttons-links-need-state-visual-feedback",
@@ -1197,7 +1431,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-active-voice-install-the-cli-not",
@@ -1212,7 +1446,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-without-clear-justification",
@@ -1227,7 +1461,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-handle-empty-states-don-t-render",
@@ -1241,7 +1475,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-full-bleed-layouts-need-for-notches",
@@ -1256,7 +1490,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T10:08:16.581Z"
     },
     {
       "suggestedId": "vercel-flex-grid-over-js-measurement-for",
@@ -1271,7 +1505,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-on-for-dark-themes-fixes-scrollbar",
@@ -1286,7 +1520,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     },
     {
       "suggestedId": "vercel-native-explicit-and-windows-dark-mode",
@@ -1301,7 +1535,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-13T00:42:48.827Z"
+      "lastSeen": "2026-07-14T01:37:24.805Z"
     }
   ]
 }

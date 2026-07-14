@@ -76,7 +76,12 @@ export const sourceCatalog: CatalogSource[] = [
     defaultTags: ['motion'],
     check: {
       mode: 'github',
-      rawUrls: ['https://raw.githubusercontent.com/emilkowalski/skills/main/skills/review-animations/SKILL.md'],
+      rawUrls: [
+        'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/review-animations/SKILL.md',
+        // STANDARDS.md holds the precise rules (duration budgets, spring config, gesture
+        // physics). Without it the freshness check is blind to most of Emil's substance.
+        'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/review-animations/STANDARDS.md',
+      ],
     },
   },
   {
@@ -84,7 +89,7 @@ export const sourceCatalog: CatalogSource[] = [
     name: '@Ibelick',
     author: 'ibelick',
     homepage: 'https://www.ui-skills.com/',
-    repo: 'strongeron/agent-skills',
+    repo: 'ibelick/ui-skills',
     originKind: 'github',
     color: 'bg-amber-700 text-white border-amber-700',
     patternSource: 'ibelick',
@@ -262,31 +267,26 @@ export const sourceCatalog: CatalogSource[] = [
   {
     id: 'impeccable',
     name: 'impeccable',
-    author: 'strongeron',
-    repo: 'strongeron/agent-skills',
+    author: 'Paul Bakaus',
+    homepage: 'https://impeccable.style/',
+    repo: 'pbakaus/impeccable',
     originKind: 'github',
+    installCmd: 'npx impeccable install',
     color: 'bg-stone-700 text-white border-stone-700',
+    patternSource: 'impeccable',
     defaultTags: ['craft'],
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {
+    // `clarify` is one of impeccable's sub-commands, not a standalone skill.
     id: 'clarify',
     name: 'clarify',
-    author: 'strongeron',
-    repo: 'strongeron/agent-skills',
+    author: 'Paul Bakaus',
+    homepage: 'https://impeccable.style/',
+    repo: 'pbakaus/impeccable',
     originKind: 'github',
     color: 'bg-cyan-800 text-white border-cyan-800',
     defaultTags: ['typography'],
-    check: { mode: 'manual', reviewEveryDays: 60 },
-  },
-  {
-    id: 'react-tailwind',
-    name: 'react-tailwind',
-    author: 'strongeron',
-    repo: 'strongeron/agent-skills',
-    originKind: 'github',
-    color: 'bg-sky-700 text-white border-sky-700',
-    defaultTags: ['tailwind'],
     check: { mode: 'manual', reviewEveryDays: 60 },
   },
   {

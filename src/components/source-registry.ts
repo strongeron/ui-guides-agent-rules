@@ -79,6 +79,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://emilkowalski.com/',
     color: 'bg-violet-700 text-white border-violet-700',
   },
+  impeccable: {
+    id: 'impeccable',
+    name: 'impeccable',
+    description: 'The design language for AI harnesses, by Paul Bakaus',
+    url: 'https://impeccable.style/',
+    color: 'bg-stone-700 text-white border-stone-700',
+  },
   custom: {
     id: 'custom',
     name: 'Custom',
