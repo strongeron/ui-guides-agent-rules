@@ -1,15 +1,34 @@
+import { useEffect, useRef, useState } from 'react';
+
 const rows = Array.from({ length: 20 }, (_, i) => i);
 
-export function GpuTranslateZGood() {
-  return (
-    <div className="w-full max-w-sm space-y-4">
-      <style>{`
-        @keyframes gpuSlide { from { transform: translateX(0); } to { transform: translateX(140px); } }
-      `}</style>
+/** Count how many elements the CSS has actually promoted to their own layer. */
+function usePromotedCount(ref: React.RefObject<HTMLDivElement | null>) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    const all = [root, ...Array.from(root.querySelectorAll('*'))];
+    setCount(all.filter((el) => getComputedStyle(el).willChange.includes('transform')).length);
+  }, [ref]);
+  return count;
+}
 
-      <div className="bg-card border border-border rounded-lg p-3">
+export function GpuTranslateZGood() {
+  const ref = useRef<HTMLDivElement>(null);
+  const promoted = usePromotedCount(ref);
+
+  return (
+    <div className="w-full max-w-sm space-y-3">
+      <style>{`@keyframes gpuSlide { from { transform: translateX(0); } to { transform: translateX(140px); } }`}</style>
+
+      <span className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium tabular-nums text-success">
+        promoted layers: {promoted}
+      </span>
+
+      <div ref={ref} className="bg-card border border-border rounded-lg p-3">
         <div className="relative h-8 mb-2 rounded bg-muted/50 overflow-hidden">
-          {/* Only the element that actually animates is promoted. */}
+          {/* Only the element that actually moves is promoted. */}
           <div
             className="absolute top-1 size-6 rounded bg-primary"
             style={{ animation: 'gpuSlide 1.4s ease-in-out infinite alternate', willChange: 'transform' }}
@@ -25,8 +44,8 @@ export function GpuTranslateZGood() {
       </div>
 
       <p className="text-xs text-success">
-        The same motion, but only the moving square is promoted. The 20 static rows stay on the normal paint path and
-        cost no GPU memory
+        The same motion, promoting exactly one element: the one that moves. Everything else stays on the normal paint
+        path and costs no GPU memory
       </p>
     </div>
   );
