@@ -1,7 +1,21 @@
 #!/usr/bin/env npx tsx
 /**
  * Agent Rules Alignment Validator
- * Checks that examples follow their corresponding agent rules
+ *
+ * Checks that a principle's Good/Bad examples actually demonstrate its agent rule.
+ *
+ * Design note — why this only checks a declared subset:
+ * The previous version inferred expectations by scanning the rule's *prose* for
+ * keywords ("focus", "label", "transition") and then requiring the matching code
+ * patterns to appear in the example. Nobody declared those expectations, so it
+ * invented them, and it compared with naive substring matching — `disabled`
+ * matched `aria-disabled`, `transform` matched `transition-transform`. The result
+ * was confident, wrong findings: a correct example that merely *names* the thing
+ * it avoids got flagged critical.
+ *
+ * An automated checker cannot read intent. So it now checks only what a human has
+ * explicitly declared in RULE_CHECKS, and reports the rest as `unchecked` instead
+ * of guessing. A smaller honest gate beats a large lying one.
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
@@ -20,13 +34,23 @@ interface AgentRule {
   codeExample?: string;
 }
 
+/** What an example must / must not contain. Regexes, so tokens can be anchored. */
+interface ExampleSpec {
+  must?: RegExp[];
+  mustNot?: RegExp[];
+}
+
+interface RuleCheck {
+  good?: ExampleSpec;
+  bad?: ExampleSpec;
+}
+
 interface AlignmentIssue {
   principleId: string;
-  ruleId: string;
   priority: string;
   rule: string;
   issue: string;
-  severity: 'critical' | 'high' | 'medium' | 'low';
+  severity: 'high' | 'medium';
   exampleType: 'good' | 'bad';
   examplePath: string;
 }
@@ -35,78 +59,96 @@ interface AlignmentReport {
   timestamp: string;
   summary: {
     totalRules: number;
-    aligned: number;
-    misaligned: number;
-    missing: number;
+    checked: number;
+    unchecked: number;
+    missingExamples: number;
+    passed: number;
+    failed: number;
   };
+  /** Rules with no declared check — candidates for a spec, NOT failures. */
+  unchecked: string[];
   issues: AlignmentIssue[];
 }
 
-// Keywords that indicate specific patterns
-const PATTERN_KEYWORDS: Record<string, string[]> = {
-  'keyboard': ['tabIndex', 'onKeyDown', 'onKeyUp', 'role=', 'aria-'],
-  'focus': ['focus', ':focus', 'focus-visible', 'focus-within', 'tabIndex'],
-  'focus-visible': [':focus-visible', 'focus-visible:'],
-  'autocomplete': ['autoComplete', 'autocomplete='],
-  'label': ['<label', 'htmlFor', 'aria-label', 'aria-labelledby'],
-  'validation': ['required', 'pattern=', 'aria-invalid', 'aria-describedby'],
-  'reduced-motion': ['prefers-reduced-motion', 'motion-reduce', 'motion-safe'],
-  'transition': ['transition-transform', 'transition-opacity', 'transition-colors', 'transition-shadow'],
-  'transition-all': ['transition-all', 'transition: all'],
-  'transform': ['transform', 'translate', 'scale(', 'rotate('],
-  'layout-properties': ['width:', 'height:', 'top:', 'left:', 'margin:', 'padding:'],
-  'aria': ['aria-', 'role='],
-  'semantic': ['<button', '<a ', '<nav', '<main', '<header', '<footer'],
-  'div-onclick': ['<div onClick', '<span onClick', 'div onClick', 'span onClick'],
-  'dark-mode': ['dark:', 'dark-mode', 'color-scheme'],
-  'lazy': ['lazy', 'loading="lazy"', 'Suspense'],
-  'debounce': ['debounce', 'throttle', 'setTimeout'],
-  'sr-only': ['sr-only', 'visually-hidden'],
-  'tabular-nums': ['tabular-nums', 'font-variant-numeric'],
-  'alertdialog': ['AlertDialog', 'alertdialog', 'role="alertdialog"'],
-};
-
-// Rule-specific pattern overrides (more precise than keyword matching)
-const RULE_PATTERN_OVERRIDES: Record<string, { expected?: string[]; forbidden?: string[] }> = {
+/**
+ * Declared checks. Only add one when the rule maps to an unambiguous code token —
+ * if a correct example could plausibly omit the token, or an incorrect one could
+ * contain it, leave the rule unchecked rather than encoding a guess.
+ */
+const RULE_CHECKS: Record<string, RuleCheck> = {
   'performance-no-transition-all': {
-    forbidden: ['transition-all', 'transition: all'],
-    expected: ['transition-transform', 'transition-opacity', 'transition-colors'],
+    good: { mustNot: [/transition-all\b/, /transition:\s*all\b/] },
+    bad: { must: [/transition-all\b/, /transition:\s*all\b/] },
   },
   'animations-never-transition-all': {
-    forbidden: ['transition-all', 'transition: all'],
-    expected: ['transition-transform', 'transition-opacity'],
+    good: { mustNot: [/transition-all\b/, /transition:\s*all\b/] },
+    bad: { must: [/transition-all\b/, /transition:\s*all\b/] },
   },
   'interactions-rams-semantic-handlers': {
-    forbidden: ['<div onClick', '<span onClick'],
-    expected: ['<button', '<a '],
+    good: { must: [/<button\b/, /<a\s/] },
+    bad: { must: [/<(div|span)[^>]*onClick/] },
   },
   'animations-ibelick-no-layout': {
-    forbidden: ['width:', 'height:', 'top:', 'left:'],
-    expected: ['transform', 'scale(', 'translate('],
-  },
-  'interactions-ibelick-manual-behavior': {
-    forbidden: ['onKeyDown', 'onKeyUp', 'handleKeyDown'],
-    expected: ['Tabs', 'Dialog', 'Popover', 'Menu', 'Radix', 'Base UI', 'React Aria'],
+    good: { must: [/transform|translate|scale\(/] },
   },
   'interactions-sr-only': {
-    expected: ['sr-only', 'visually-hidden'],
+    good: { must: [/sr-only|visually-hidden/] },
   },
   'content-ibelick-tabular-nums': {
-    expected: ['tabular-nums', 'font-variant-numeric'],
+    good: { must: [/tabular-nums|font-variant-numeric/] },
   },
   'interactions-ibelick-alert-dialog': {
-    expected: ['AlertDialog', 'alertdialog'],
+    good: { must: [/AlertDialog|role=["']alertdialog["']/] },
+  },
+  'animations-prefers-reduced-motion': {
+    // `useSimulatedReducedMotion` is the project idiom: it ORs the real
+    // `prefers-reduced-motion` media query with the demo toggle, so delegating to it
+    // is a correct implementation, not an omission.
+    good: { must: [/prefers-reduced-motion|motion-safe:|motion-reduce:|useSimulatedReducedMotion/] },
+  },
+  'layout-min-width-truncation': {
+    // Anchored to className: every example *names* `min-w-0` in its caption prose,
+    // so an unanchored token would match the text that explains the bug.
+    good: { must: [/className=["'][^"']*\bmin-w-0\b/, /min-width:\s*0/] },
+    bad: { mustNot: [/className=["'][^"']*\bmin-w-0\b/] },
+  },
+  'content-translate-no': {
+    good: { must: [/translate=["']no["']/] },
+  },
+  'animations-svg-transform-box': {
+    good: { must: [/transform-box/] },
+  },
+  'interactions-focus-within-group': {
+    good: { must: [/focus-within/] },
+  },
+  'performance-lazy-load-below-fold': {
+    good: { must: [/loading=["']lazy["']/] },
+  },
+  'animations-emil-starting-style': {
+    good: { must: [/@starting-style/] },
+  },
+  'content-impeccable-justified-text': {
+    good: { must: [/hyphens/] },
+    bad: { must: [/justify/] },
+  },
+  'design-color-scheme': {
+    good: { must: [/colorScheme|color-scheme/] },
+  },
+  'content-non-breaking-spaces': {
+    good: { must: [/&nbsp;|\u00a0/] },
   },
 };
 
 /**
- * Import the rules rather than regex-scraping agentRules.ts. The previous regex
- * terminated its capture at the first backtick, so every rule that quotes a CSS
- * property or attribute — the house style — was truncated or dropped entirely,
- * silently exempting ~22 rules from validation.
+ * Strip comments before matching. Examples deliberately *name* the anti-pattern in
+ * their comments ("overflow-hidden: added for the rounded corner, kept forever"),
+ * and matching against that prose is how the old version produced false positives.
  */
-function parseAgentRules(): Map<string, AgentRule> {
-  return new Map(Object.entries(agentRules) as [string, AgentRule][]);
+function stripComments(src: string): string {
+  return src
+    .replace(/\{\s*\/\*[\s\S]*?\*\/\s*\}/g, '') // {/* jsx */}
+    .replace(/\/\*[\s\S]*?\*\//g, '') // /* block */
+    .replace(/^[^\n]*?\/\/.*$/gm, (line) => (/https?:\/\//.test(line) ? line : line.replace(/\/\/.*$/, '')));
 }
 
 function getExamplePaths(principleId: string): { good?: string; bad?: string } {
@@ -118,167 +160,143 @@ function getExamplePaths(principleId: string): { good?: string; bad?: string } {
     (r: { id: string; goodExampleAnalysis?: { path?: string }; badExampleAnalysis?: { path?: string } }) =>
       r.id === principleId
   );
-
   if (!result) return {};
 
-  return {
-    good: result.goodExampleAnalysis?.path,
-    bad: result.badExampleAnalysis?.path,
-  };
+  return { good: result.goodExampleAnalysis?.path, bad: result.badExampleAnalysis?.path };
 }
 
-function checkAlignment(
+function checkExample(
   principleId: string,
   rule: AgentRule,
-  exampleContent: string,
+  spec: ExampleSpec | undefined,
+  source: string,
   exampleType: 'good' | 'bad',
   examplePath: string
-): AlignmentIssue | null {
-  const ruleLower = rule.rule.toLowerCase();
-  let expectedPatterns: string[] = [];
-  let forbiddenPatterns: string[] = [];
+): AlignmentIssue[] {
+  if (!spec) return [];
+  const code = stripComments(source);
+  const issues: AlignmentIssue[] = [];
 
-  // Check for rule-specific overrides first (more precise)
-  const override = RULE_PATTERN_OVERRIDES[principleId];
-  if (override) {
-    if (override.expected) expectedPatterns = override.expected;
-    if (override.forbidden) forbiddenPatterns = override.forbidden;
-  } else {
-    // Fall back to keyword-based matching
-    for (const [keyword, patterns] of Object.entries(PATTERN_KEYWORDS)) {
-      if (ruleLower.includes(keyword)) {
-        if (rule.priority === 'NEVER') {
-          forbiddenPatterns.push(...patterns);
-        } else {
-          expectedPatterns.push(...patterns);
-        }
-      }
+  // `must` is satisfied by ANY listed pattern — the list is alternatives, not a conjunction.
+  if (spec.must?.length && !spec.must.some((re) => re.test(code))) {
+    issues.push({
+      principleId,
+      priority: rule.priority,
+      rule: rule.rule,
+      issue:
+        exampleType === 'good'
+          ? `Good example does not use the pattern the rule requires (${spec.must.map(String).join(' | ')})`
+          : `Bad example does not demonstrate the anti-pattern (${spec.must.map(String).join(' | ')})`,
+      severity: exampleType === 'good' ? 'high' : 'medium',
+      exampleType,
+      examplePath,
+    });
+  }
+
+  for (const re of spec.mustNot ?? []) {
+    if (re.test(code)) {
+      issues.push({
+        principleId,
+        priority: rule.priority,
+        rule: rule.rule,
+        issue:
+          exampleType === 'good'
+            ? `Good example contains the pattern the rule forbids (${re})`
+            : `Bad example avoids the anti-pattern it is supposed to show (${re})`,
+        severity: exampleType === 'good' ? 'high' : 'medium',
+        exampleType,
+        examplePath,
+      });
     }
   }
 
-  if (exampleType === 'good') {
-    // For NEVER rules, check that good example doesn't have forbidden patterns
-    if (rule.priority === 'NEVER' && forbiddenPatterns.length > 0) {
-      const hasForbidden = forbiddenPatterns.some(p => exampleContent.includes(p));
-      if (hasForbidden) {
-        return {
-          principleId, ruleId: principleId, priority: rule.priority, rule: rule.rule,
-          issue: `Good example contains forbidden pattern for NEVER rule`,
-          severity: 'critical', exampleType, examplePath,
-        };
-      }
-    }
-    // For MUST/SHOULD rules, check that good example has expected patterns
-    if (rule.priority !== 'NEVER' && expectedPatterns.length > 0) {
-      const hasExpected = expectedPatterns.some(p =>
-        exampleContent.includes(p) || exampleContent.toLowerCase().includes(p.toLowerCase())
-      );
-      if (!hasExpected) {
-        return {
-          principleId, ruleId: principleId, priority: rule.priority, rule: rule.rule,
-          issue: `Good example missing expected patterns for ${rule.priority} rule`,
-          severity: rule.priority === 'MUST' ? 'high' : 'medium',
-          exampleType, examplePath,
-        };
-      }
-    }
-  }
-
-  if (exampleType === 'bad') {
-    // For MUST/SHOULD rules, bad examples should NOT have the expected patterns
-    if (rule.priority !== 'NEVER' && expectedPatterns.length > 0) {
-      const hasExpected = expectedPatterns.some(p =>
-        exampleContent.includes(p) || exampleContent.toLowerCase().includes(p.toLowerCase())
-      );
-      if (hasExpected) {
-        return {
-          principleId, ruleId: principleId, priority: rule.priority, rule: rule.rule,
-          issue: `Bad example has correct patterns - not demonstrating anti-pattern`,
-          severity: 'medium', exampleType, examplePath,
-        };
-      }
-    }
-  }
-
-  return null;
+  return issues;
 }
 
 function main() {
   console.log('🔍 Validating Agent Rules Alignment...\n');
 
-  const rules = parseAgentRules();
-  console.log(`Found ${rules.size} agent rules\n`);
-
+  const rules = new Map(Object.entries(agentRules) as [string, AgentRule][]);
   const issues: AlignmentIssue[] = [];
-  let aligned = 0;
-  let misaligned = 0;
-  let missing = 0;
+  const unchecked: string[] = [];
+  let checked = 0;
+  let missingExamples = 0;
+  let failed = 0;
 
   for (const [principleId, rule] of rules) {
-    const paths = getExamplePaths(principleId);
-    if (!paths.good && !paths.bad) { missing++; continue; }
+    const check = RULE_CHECKS[principleId];
+    if (!check) {
+      unchecked.push(principleId);
+      continue;
+    }
 
-    let hasIssue = false;
+    const paths = getExamplePaths(principleId);
+    if (!paths.good && !paths.bad) {
+      missingExamples++;
+      continue;
+    }
+
+    checked++;
+    const before = issues.length;
 
     if (paths.good && existsSync(paths.good)) {
-      const content = readFileSync(paths.good, 'utf-8');
-      const issue = checkAlignment(principleId, rule, content, 'good', paths.good);
-      if (issue) { issues.push(issue); hasIssue = true; }
+      issues.push(
+        ...checkExample(principleId, rule, check.good, readFileSync(paths.good, 'utf-8'), 'good', paths.good)
+      );
     }
-
     if (paths.bad && existsSync(paths.bad)) {
-      const content = readFileSync(paths.bad, 'utf-8');
-      const issue = checkAlignment(principleId, rule, content, 'bad', paths.bad);
-      if (issue) { issues.push(issue); hasIssue = true; }
+      issues.push(
+        ...checkExample(principleId, rule, check.bad, readFileSync(paths.bad, 'utf-8'), 'bad', paths.bad)
+      );
     }
 
-    if (hasIssue) misaligned++; else aligned++;
+    if (issues.length > before) failed++;
   }
 
   console.log('📊 Summary\n');
-  console.log(`Total Rules: ${rules.size}`);
-  console.log(`✅ Aligned: ${aligned}`);
-  console.log(`⚠️ Misaligned: ${misaligned}`);
-  console.log(`❓ Missing Examples: ${missing}`);
+  console.log(`Total rules       : ${rules.size}`);
+  console.log(`Checked           : ${checked}  (rules with a declared spec in RULE_CHECKS)`);
+  console.log(`Unchecked         : ${unchecked.length}  (no spec — not a failure, see report)`);
+  console.log(`Missing examples  : ${missingExamples}`);
+  console.log(`✅ Passed         : ${checked - failed}`);
+  console.log(`❌ Failed         : ${failed}`);
 
   if (issues.length > 0) {
-    console.log('\n\n⚠️ Alignment Issues\n');
-    const critical = issues.filter(i => i.severity === 'critical');
-    const high = issues.filter(i => i.severity === 'high');
-
-    if (critical.length > 0) {
-      console.log('### 🔴 Critical\n');
-      for (const issue of critical) {
-        console.log(`**${issue.principleId}** (${issue.exampleType})`);
-        console.log(`  Rule: ${issue.rule}`);
-        console.log(`  Issue: ${issue.issue}\n`);
+    console.log('\n\n⚠️  Alignment Issues\n');
+    for (const sev of ['high', 'medium'] as const) {
+      const group = issues.filter((i) => i.severity === sev);
+      if (!group.length) continue;
+      console.log(`### ${sev === 'high' ? '🟠 High' : '🟡 Medium'} (${group.length})\n`);
+      for (const i of group) {
+        console.log(`**${i.principleId}** (${i.exampleType}) — ${relative(rootDir, i.examplePath)}`);
+        console.log(`  Rule : ${i.rule}`);
+        console.log(`  Issue: ${i.issue}\n`);
       }
     }
-
-    if (high.length > 0) {
-      console.log('### 🟠 High\n');
-      for (const issue of high) {
-        console.log(`**${issue.principleId}** (${issue.exampleType})`);
-        console.log(`  Rule: ${issue.rule}`);
-        console.log(`  Issue: ${issue.issue}\n`);
-      }
-    }
-
-    console.log(`### 🟡 Medium: ${issues.filter(i => i.severity === 'medium').length} issues`);
-    console.log(`### 🟢 Low: ${issues.filter(i => i.severity === 'low').length} issues`);
+  } else {
+    console.log('\n✅ Every declared check passed.');
   }
 
   const report: AlignmentReport = {
     timestamp: new Date().toISOString(),
-    summary: { totalRules: rules.size, aligned, misaligned, missing },
+    summary: {
+      totalRules: rules.size,
+      checked,
+      unchecked: unchecked.length,
+      missingExamples,
+      passed: checked - failed,
+      failed,
+    },
+    unchecked,
     issues,
   };
 
   const outputPath = join(rootDir, 'doc/agent-rules-alignment.json');
   writeFileSync(outputPath, JSON.stringify(report, null, 2));
-  console.log(`\n📁 Report saved to ${relative(rootDir, outputPath)}`);
+  console.log(`📁 Report saved to ${relative(rootDir, outputPath)}`);
 
-  process.exit(issues.filter(i => i.severity === 'critical' || i.severity === 'high').length > 0 ? 1 : 0);
+  // Only a declared, verified violation fails the build.
+  process.exit(issues.some((i) => i.severity === 'high') ? 1 : 0);
 }
 
 main();
