@@ -469,4 +469,19 @@ export const performancePrinciples: Principle[] = [
     badExampleKey: 'performance-transform-not-css-variable-bad',
     goodExampleKey: 'performance-transform-not-css-variable-good',
   },
+  {
+    id: 'performance-measure-reliably',
+    category: 'performance',
+    source: 'vercel',
+    title: 'Measure Reliably',
+    description: 'Profile in a clean browser profile with extensions disabled',
+    sourceQuote: 'Measure reliably. Disable extensions that add overhead or change runtime behavior.',
+    additionalExplanation: 'Extensions run content scripts on your page, on your main thread, inside your measurements. Ad blockers rewrite the DOM, password managers scan every form, React DevTools instruments each render — all of it lands in the same numbers you are about to draw a conclusion from. The damage is not that the timings are slower but that they are noisy: when run-to-run spread is larger than the regression you are hunting, the profile stops being evidence. Measure in a clean profile or incognito with extensions off, take several runs, and compare spreads rather than a single number.',
+    sourceLinks: [
+      { text: 'Vercel Web Interface Guidelines', url: 'https://github.com/vercel-labs/web-interface-guidelines' },
+      { text: 'Chrome DevTools: Performance features reference', url: 'https://developer.chrome.com/docs/devtools/performance/reference' },
+    ],
+    badExampleKey: 'performance-measure-reliably-bad',
+    goodExampleKey: 'performance-measure-reliably-good',
+  },
 ];

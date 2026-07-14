@@ -329,4 +329,19 @@ export const formsPrinciples: Principle[] = [
     badExampleKey: 'forms-native-validation-bad',
     goodExampleKey: 'forms-native-validation-good',
   },
+  {
+    id: 'forms-text-replacements',
+    category: 'forms',
+    source: 'vercel',
+    title: 'Trim Text Expansions',
+    description: 'Trim input values so invisible whitespace never fails validation',
+    sourceQuote: 'Text replacements & expansions. Some input methods add trailing whitespace. The input should trim the value to avoid showing a confusing error message.',
+    additionalExplanation: 'Autocorrect, keyboard text-expansion snippets, password managers, and copy-paste from a spreadsheet all routinely append a trailing space. The value looks correct on screen, so when validation rejects it the user is told their own email or coupon code is invalid with nothing visibly wrong — an error with no discoverable fix. Trim before validating. Prefer trimming on blur or submit rather than on every keystroke, so you do not delete a space the moment a user legitimately types one.',
+    sourceLinks: [
+      { text: 'Vercel Web Interface Guidelines', url: 'https://github.com/vercel-labs/web-interface-guidelines' },
+      { text: 'MDN: String.prototype.trim()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim' },
+    ],
+    badExampleKey: 'forms-text-replacements-bad',
+    goodExampleKey: 'forms-text-replacements-good',
+  },
 ];
