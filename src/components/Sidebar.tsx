@@ -4,8 +4,7 @@ import { Cancel01Icon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
 import { categories } from '../data/principles';
 import { Principle, PrincipleCategory, PatternSource } from '../types/principle';
 import { Button } from '@/components/ui/button';
-import { SourceFilter } from './SourceFilter';
-import { TagFilter } from './TagFilter';
+import { FilterPopover } from './FilterPopover';
 import { SIDEBAR_FOCUS_DELAY_MS, SIDEBAR_WIDTH_CLASS } from '@/constants/ui';
 import { categoryIcons, fallbackCategoryIcon } from '@/constants/categories';
 
@@ -150,6 +149,7 @@ export function Sidebar({
         ref={sidebarRef}
         className={`
           fixed top-14 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background border-r border-border
+          flex flex-col
           transition-[left] duration-300 ease-in-out
           ${isDesktop
             ? 'left-0 z-30'
@@ -162,7 +162,7 @@ export function Sidebar({
       >
         {/* Mobile close button */}
         {!isDesktop && (
-          <div className="flex items-center justify-between p-4 border-b border-border">
+          <div className="shrink-0 flex items-center justify-between p-4 border-b border-border">
             <span className="text-sm font-medium text-foreground">Navigation</span>
             <Button
               ref={closeButtonRef}
@@ -177,21 +177,19 @@ export function Sidebar({
           </div>
         )}
 
-        {/* Source + tag filters */}
-        <div className="p-4 border-b border-border space-y-2">
-          <SourceFilter
+        {/* Consolidated source + tag filter */}
+        <div className="shrink-0 p-4 border-b border-border">
+          <FilterPopover
             selectedSources={selectedSources}
             onSourcesChange={onSourcesChange}
             availableSources={availableSources}
-          />
-          <TagFilter
             selectedTags={selectedTags}
             onTagsChange={onTagsChange}
             availableTags={availableTags}
           />
         </div>
 
-        <nav className="overflow-y-auto overflow-x-hidden overscroll-contain h-[calc(100%-113px)]">
+        <nav className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain">
           {filteredPrinciples.length === 0 ? (
             <div className="p-4 text-center text-muted-foreground">
               <p className="text-sm">No rules match these filters</p>

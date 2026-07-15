@@ -8,6 +8,7 @@ import { CodeHikeDemo } from './components/CodeHikeDemo';
 import { CommandPalette } from './components/CommandPalette';
 import { SkipLink } from './components/SkipLink';
 import { Footer } from './components/Footer';
+import { ActiveFilterChips } from './components/ActiveFilterChips';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { principles } from './data/principles';
 import type { PatternSource } from './types/principle';
@@ -23,8 +24,16 @@ function App() {
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
-  const [selectedSources, setSelectedSources] = useState<PatternSource[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedSources, setSelectedSources] = useState<PatternSource[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = new URLSearchParams(window.location.search).get('source');
+    return raw ? (raw.split(',').filter(Boolean) as PatternSource[]) : [];
+  });
+  const [selectedTags, setSelectedTags] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const raw = new URLSearchParams(window.location.search).get('tag');
+    return raw ? raw.split(',').filter(Boolean) : [];
+  });
   const initialHash = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
   const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(initialHash === 'codehike-demo');
   const [showSources, setShowSources] = useState(initialHash === 'sources');
@@ -68,7 +77,7 @@ function App() {
     // Handle special CodeHike demo route
     if (principleId === 'codehike-demo') {
       setShowCodeHikeDemo(true);
-      window.history.replaceState(null, '', '#codehike-demo');
+      window.history.replaceState(null, '', `${window.location.search}#codehike-demo`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -85,7 +94,7 @@ function App() {
   const handleShowSources = useCallback(() => {
     setShowSources(true);
     setShowCodeHikeDemo(false);
-    window.history.replaceState(null, '', '#sources');
+    window.history.replaceState(null, '', `${window.location.search}#sources`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -157,12 +166,23 @@ function App() {
     }
   }, []);
 
-  // Update URL hash when principle changes
+  // Update URL hash when principle changes (preserve the filter query string)
   useEffect(() => {
     if (!showCodeHikeDemo && !showSources) {
-      window.history.replaceState(null, '', `#${currentPrinciple.id}`);
+      window.history.replaceState(null, '', `${window.location.search}#${currentPrinciple.id}`);
     }
   }, [currentPrinciple.id, showCodeHikeDemo, showSources]);
+
+  // Sync active filters to the URL query string (preserving the hash) so a filtered view is shareable
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (selectedSources.length) params.set('source', selectedSources.join(','));
+    else params.delete('source');
+    if (selectedTags.length) params.set('tag', selectedTags.join(','));
+    else params.delete('tag');
+    const qs = params.toString();
+    window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}${window.location.hash}`);
+  }, [selectedSources, selectedTags]);
 
   // Dynamic page title
   useEffect(() => {
@@ -207,6 +227,14 @@ function App() {
       />
 
       <main id="main-content" className={`min-h-screen pt-14 ${isDesktop ? 'ml-80' : ''}`}>
+        {!showSources && !showCodeHikeDemo && (
+          <ActiveFilterChips
+            selectedSources={selectedSources}
+            onSourcesChange={setSelectedSources}
+            selectedTags={selectedTags}
+            onTagsChange={setSelectedTags}
+          />
+        )}
         {showSources ? (
           <SourcesPage />
         ) : showCodeHikeDemo ? (
