@@ -856,4 +856,21 @@ export const animationsPrinciples: Principle[] = [
     badExampleKey: 'animations-symmetric-exit-path-bad',
     goodExampleKey: 'animations-symmetric-exit-path-good',
   },
+  {
+    id: 'animations-ambient-motion-reduced',
+    category: 'animations',
+    source: 'custom',
+    title: 'Reduce Ambient 3D Motion',
+    description: 'Auto-rotating models, parallax tilt, and scroll-driven cameras are motion too — pause or flatten them under prefers-reduced-motion',
+    sourceQuote: 'prefers-reduced-motion applies to WebGL and 3D, not only to CSS. Auto-rotation, pointer parallax, and scroll-linked camera moves must be reduced like any other motion.',
+    additionalExplanation: 'This is animations-prefers-reduced-motion followed onto the canvas, and it is written here because the 3D ecosystem almost universally forgets it — a survey of the major three.js / R3F skills turned up no reduced-motion rule at all. The reason it gets dropped is structural: the media query lives in CSS while the motion lives in a `requestAnimationFrame` loop, so the loop has to read the preference itself and nobody wires it up. Yet ambient 3D is the MOST provocative motion on the page for a vestibular user — a model idling on a slow auto-rotate, a hero that tilts toward the pointer, a camera that dollies as you scroll: large, continuous, viewport-filling, and self-initiated by the site rather than the user. Under `prefers-reduced-motion: reduce` (check it in JS with `matchMedia`, not only in CSS): stop auto-rotation, disable pointer parallax and tilt, replace scroll-driven camera moves with a static framing or an instant cut, and drop idle ambient motion to zero. Keep the scene interactive on demand — a user who drags to orbit is initiating that motion, which is allowed, the same carve-out WCAG 2.3.3 makes for motion from interaction. Pairs with animations-ibelick-pause-offscreen (don\'t even run the loop when it is not visible) and performance-webgl-gpu-budget (the cost side of the same loop).',
+    sourceLinks: [
+      { text: 'MDN — prefers-reduced-motion', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion' },
+      { text: 'WCAG 2.3.3 — Animation from Interactions', url: 'https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html' },
+      { text: 'Poimandres — react-three-a11y', url: 'https://github.com/pmndrs/react-three-a11y' },
+    ],
+    tags: ['motion', '3d', 'a11y'],
+    badExampleKey: 'animations-ambient-motion-reduced-bad',
+    goodExampleKey: 'animations-ambient-motion-reduced-good',
+  },
 ];

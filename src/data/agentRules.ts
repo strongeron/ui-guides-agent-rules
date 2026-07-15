@@ -1773,6 +1773,86 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Where floating chrome overlaps scrolling content, fade the seam with a short `mask-image` gradient instead of drawing a 1px divider under the sticky header — content should recede under the chrome, not be guillotined by a rule that claims it ends there. Apply the mask ONLY where floating UI actually overlaps content; a fade at an edge nothing floats over just eats readable text.',
     codeExample: '.scroller { mask-image: linear-gradient(to bottom, transparent 0, #000 48px); }'
+  },
+  'interactions-menu-prediction-cone': {
+    priority: 'SHOULD',
+    rule: 'A submenu that opens to the side must forgive diagonal pointer travel toward it. Do not swap or close it the instant the pointer leaves the parent row: use a safe-triangle/prediction cone (suppress sibling hover while the pointer aims at the open submenu) or, as a cheap approximation, a ~150ms close-delay that any re-entry into the submenu cancels.',
+    codeExample: 'onMouseEnter={(id) => { clearTimeout(t); t = setTimeout(() => setActive(id), 160); }}\n// submenu panel: onMouseEnter={() => clearTimeout(t)}'
+  },
+  'content-tracking-is-size-specific': {
+    priority: 'SHOULD',
+    rule: 'Do not ship one `letter-spacing` for all sizes. Leave body near 0, tighten display type (~ -0.02em at 36px+), and give small caps/captions a small positive nudge. Prefer a variable font\'s optical-sizing axis (`font-optical-sizing: auto`) over a hardcoded value. This refines, not contradicts, "don\'t track body text".',
+    codeExample: 'h1 { font-size: 48px; letter-spacing: -0.02em; }\n.caption { font-size: 11px; letter-spacing: 0.04em; }\nbody { font-optical-sizing: auto; }'
+  },
+  'content-leading-tracks-size': {
+    priority: 'SHOULD',
+    rule: 'Set line-height inversely to font size — do not inherit one ratio everywhere. Large display type wants ~1.0–1.2 so wrapped lines cohere; body wants ~1.5–1.7. Give scripts with tall ascenders/descenders more, dense data UI less. Pair each type-scale step with its own ratio.',
+    codeExample: 'h1 { font-size: 48px; line-height: 1.1; }\np  { font-size: 16px; line-height: 1.6; }'
+  },
+  'content-vibrant-text-on-translucent': {
+    priority: 'SHOULD',
+    rule: 'Text over a `backdrop-filter` surface faces a background whose luminance changes as content scrolls. Raise contrast and weight, nudge letter-spacing up slightly, and keep the opacity/color on a SOLID backing layer while the text itself stays fully opaque — never fade the text with the surface.',
+    codeExample: '.glass { background: rgba(20,18,28,0.55); backdrop-filter: blur(8px); }\n.glass p { color: #fff; font-weight: 600; letter-spacing: 0.01em; }'
+  },
+  'interactions-sound-weight-matches-action': {
+    priority: 'SHOULD',
+    rule: 'Make a cue\'s sound proportional to the action\'s consequence: a trivial action gets a short, high, quiet tick; a heavy or irreversible one gets a lower, longer, slightly louder tone. Do not reuse one blip for everything — identical sound erases hierarchy. Stay subtle and keep the visual channel primary.',
+    codeExample: 'star()   => playTone({ frequency: 1046, duration: 0.09, volume: 0.22 });\ndelete() => playTone({ frequency: 220, endFrequency: 150, duration: 0.34, volume: 0.34 });'
+  },
+  'interactions-sound-not-punishing': {
+    priority: 'SHOULD',
+    rule: 'An error sound must inform, not scold. Keep it brief, moderate in level, and gentle — typically lower and falling, distinct from a rising success tone. A harsh, loud, dissonant buzzer makes users mute the whole product, losing every useful cue with it. The worded, visible error still carries the message and the fix.',
+    codeExample: '// gentle, brief, downward — noticed, not punishing\nplayTone({ frequency: 392, endFrequency: 294, duration: 0.28, type: \'sine\', volume: 0.3 });'
+  },
+  'content-canvas-accessible-fallback': {
+    priority: 'MUST',
+    rule: 'A <canvas> (2D or WebGL) is an opaque bitmap to assistive tech. Name it (role="img" + aria-label stating the data, or descriptive fallback children between the tags), mirror any interactive 3D objects in real focusable DOM with an announcer, and provide the same information without the canvas (a data table, a static-image fallback where WebGL is absent).',
+    codeExample: '<canvas role="img" aria-label="Revenue by quarter: Q1 $12k, Q2 $18k, Q3 $15k, Q4 $24k" />\n{/* plus a visually-hidden <table> with the same data */}'
+  },
+  'animations-ambient-motion-reduced': {
+    priority: 'SHOULD',
+    rule: 'prefers-reduced-motion applies to 3D/WebGL, not just CSS — and the rAF loop must read it in JS (matchMedia). Under reduce: stop auto-rotation, disable pointer parallax/tilt, replace scroll-driven camera moves with a static framing, and drop idle ambient motion to zero. Keep the scene interactive on demand (drag-to-orbit is user-initiated and allowed).',
+    codeExample: 'const reduce = matchMedia(\'(prefers-reduced-motion: reduce)\').matches;\nif (!reduce) controls.autoRotate = true; // otherwise hold a static frame'
+  },
+  'performance-webgl-gpu-budget': {
+    priority: 'SHOULD',
+    rule: 'WebGL cost scales with pixels and object count, not DOM size. Cap pixel ratio at 2 (setPixelRatio(Math.min(devicePixelRatio, 2)) — fragment cost is quadratic in DPR), keep draw calls low by merging/instancing static geometry (~<100/frame), and dispose() geometries, materials, and textures on unmount because GPU memory is not garbage-collected. Keep mobile textures ≤1024².',
+    codeExample: 'renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));\nuseEffect(() => () => { geometry.dispose(); material.dispose(); }, []);'
+  },
+  'content-dash-taxonomy': {
+    priority: 'SHOULD',
+    rule: 'Use the correct dash: hyphen (-) for compounds, en dash (–) for ranges and connections (2020–2024, pages 10–20), em dash (—) for sentence-level breaks. A hyphen in a range is a typesetting error. In JSX use the real UTF-8 character or a named entity — a \\u2013 escape renders literally in a text node. (Use dashes sparingly per content-impeccable-em-dash-overuse; this is about picking the right one when you do.)',
+    codeExample: '2020–2024  {/* en dash, not 2020-2024 */}\npages 10–20  {/* en dash */}\nwell-known  {/* hyphen: compound */}'
+  },
+  'content-math-symbol-glyphs': {
+    priority: 'SHOULD',
+    rule: 'Use real typographic symbols, not ASCII look-alikes: × (U+00D7) for multiplication not the letter x, − (U+2212) for minus not a hyphen, and © ™ ® not (c) / (TM) / (R). The substitutes read as unfinished and can be ambiguous in data and dimensions.',
+    codeExample: '1920 × 1080   {/* not 1920 x 1080 */}\n−40°C         {/* U+2212, not a hyphen */}\n© 2026 · Pro™'
+  },
+  'content-emphasis-one-signal': {
+    priority: 'SHOULD',
+    rule: 'Emphasize with bold OR italic, never both on the same text, and never underline for emphasis — on the web underline means link. Reserve underline for links, bold for strong emphasis, italic for titles/terms/mild stress, each used alone. Stacking emphasis markers cancels the contrast they exist to create.',
+    codeExample: '<strong>important</strong> · <em>term</em> · <a href="…">link</a>\n// not: <span class="font-bold italic underline">…</span>'
+  },
+  'content-no-centered-body': {
+    priority: 'SHOULD',
+    rule: 'Set running body text flush-left (ragged right) so the eye returns to one fixed edge each line. Centered text moves every line\'s start and makes the reader hunt for it — acceptable only for short, deliberate lines (a hero, a pull quote), never for paragraphs.',
+    codeExample: '<p class="text-left">…paragraph…</p>   {/* not text-center */}'
+  },
+  'layout-stacking-context-zindex': {
+    priority: 'SHOULD',
+    rule: 'z-index is compared only within a stacking context, not globally. transform, opacity<1, filter, will-change, position:fixed/sticky, isolation, and flex/grid children with z-index all create one — trapping descendants no matter how high their z-index. Do not fix overlap with a bigger number; remove the accidental context or lift the overlay out of the trapping ancestor.',
+    codeExample: '/* z-index:9999 inside a transformed parent can\'t beat a later sibling. */\n.card { transform: none; } /* or move the overlay to a portal / higher context */'
+  },
+  'layout-fixed-element-budget': {
+    priority: 'SHOULD',
+    rule: 'A fixed/sticky element is out of flow, so reserve its space: offset content by the bar height (padding-top) and add scroll-padding-top so anchors and focus land clear. Do not position multiple fixed elements independently — budget them together with each other and env(safe-area-inset-*) so they never collide or hide content.',
+    codeExample: '.scroll { padding-top: var(--nav-h); scroll-padding-top: var(--nav-h); }'
+  },
+  'layout-responsive-table-overflow': {
+    priority: 'SHOULD',
+    rule: 'A table wider than the viewport must not widen the page. Wrap it in an overflow-x:auto container so only the table scrolls, or reflow rows into label–value cards on narrow screens. Add an edge fade/shadow so the scroll is discoverable, and keep the header reachable.',
+    codeExample: '<div class="overflow-x-auto"><table>…</table></div>'
   }
 };
 

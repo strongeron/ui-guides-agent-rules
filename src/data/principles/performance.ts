@@ -513,4 +513,21 @@ export const performancePrinciples: Principle[] = [
     badExampleKey: 'performance-raf-stop-condition-bad',
     goodExampleKey: 'performance-raf-stop-condition-good',
   },
+  {
+    id: 'performance-webgl-gpu-budget',
+    category: 'performance',
+    source: 'web-platform',
+    title: 'Budget the GPU for WebGL',
+    description: 'Cap pixel ratio at ~2, keep draw calls low, and dispose GPU resources — WebGL cost scales with pixels and object count, not DOM size',
+    sourceQuote: 'Limit pixel ratio to 2. Target under ~100 draw calls per frame. Dispose geometries, materials, and textures. On mobile prefer cheap materials and keep textures ≤1024².',
+    additionalExplanation: 'Distilled from the Core Web Vitals / mobile / draw-call budgets in emalorenzo\'s three-agent-skills and web.dev\'s WebGL guidance, and it matters because WebGL performance is governed by metrics that have nothing to do with the rest of the page. Two costs dominate. Fragment shading scales with the pixels drawn, which is `cssPixels × devicePixelRatio²`, so `renderer.setPixelRatio(window.devicePixelRatio)` on a 3× phone quietly asks the GPU to shade NINE times the area of a 1× render — the single most common cause of a 3D hero that melts a mid-range phone. Cap it hard: `setPixelRatio(Math.min(devicePixelRatio, 2))`, above which the extra density is imperceptible and only expensive. Second, every draw call carries fixed CPU overhead, so a scene is bounded by object COUNT more than triangle count; hundreds of separate meshes stall the main thread, and the fix is to merge static geometry or use instancing to draw many copies in one call (budget: well under ~100 draw calls/frame). A third, silent failure: GPU memory is not garbage-collected — geometries, materials and textures must be explicitly `.dispose()`d when a scene unmounts, or they leak until the browser drops the context. This is the runtime companion to content-canvas-accessible-fallback (the same 3D feature needs a static fallback where WebGL is weak or absent) and to performance-raf-stop-condition / animations-ibelick-pause-offscreen (do not run the render loop when nothing is on screen).',
+    sourceLinks: [
+      { text: 'emalorenzo — three-agent-skills', url: 'https://github.com/emalorenzo/three-agent-skills' },
+      { text: 'MDN — WebGL best practices', url: 'https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices' },
+      { text: 'web.dev — Rendering performance', url: 'https://web.dev/articles/rendering-performance' },
+    ],
+    tags: ['performance', '3d'],
+    badExampleKey: 'performance-webgl-gpu-budget-bad',
+    goodExampleKey: 'performance-webgl-gpu-budget-good',
+  },
 ];

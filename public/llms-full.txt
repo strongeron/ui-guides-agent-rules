@@ -1,6 +1,6 @@
 # UI Guides — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 378 rules across
+> Every published principle from https://ui-guides.netlify.app, inline. 394 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -38,14 +38,14 @@ Rules are transcribed and attributed to:
 - **Tailwind** (30 rules) — https://tailwindcss.com/docs
 - **RAMS** (18 rules) — https://www.rams.ai/
 - **@Ibelick** (50 rules) — https://www.ui-skills.com/
-- **Rauno** (37 rules) — https://interfaces.rauno.me/
-- **Emil Kowalski** (25 rules) — https://emilkowalski.com/
+- **Rauno** (38 rules) — https://interfaces.rauno.me/
+- **Emil Kowalski** (28 rules) — https://emilkowalski.com/
 - **WCAG** (10 rules) — https://www.w3.org/WAI/WCAG21/quickref/
 - **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
 - **impeccable** (32 rules) — https://impeccable.style/
 - **jakubkrehel** (9 rules) — https://github.com/jakubkrehel/skills
-- **Custom** (12 rules)
-- **Web Platform** (5 rules) — https://web.dev/
+- **Custom** (21 rules)
+- **Web Platform** (8 rules) — https://web.dev/
 - **LottieFiles** (6 rules) — https://github.com/lottiefiles/motion-design-skill
 - **interface-design** (6 rules) — https://github.com/Dammyjay93/interface-design
 - **Skills** (14 rules) — https://skills.sh/
@@ -54,7 +54,7 @@ Rules are transcribed and attributed to:
 
 ## Interactions
 
-Keyboard accessibility, focus management, and user interaction patterns. 85 rules.
+Keyboard accessibility, focus management, and user interaction patterns. 88 rules.
 
 ### Keyboard Works Everywhere
 
@@ -1442,11 +1442,72 @@ Cherry-picked from Raphael Salaja's sounds-on-the-web skill, merging `appropriat
 - [Raphael Salaja: sounds-on-the-web SKILL.md](https://github.com/raphaelsalaja/skill/blob/main/skills/sounds-on-the-web/SKILL.md)
 - [MDN: Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 
+### Match Sound Weight to the Action
+
+**ID:** `interactions-sound-weight-matches-action`
+**Agent rule (SHOULD):** Make a cue's sound proportional to the action's consequence: a trivial action gets a short, high, quiet tick; a heavy or irreversible one gets a lower, longer, slightly louder tone. Do not reuse one blip for everything — identical sound erases hierarchy. Stay subtle and keep the visual channel primary.
+**Source:** Custom
+
+Scale a sound's pitch, length, and heft to the consequence — a light tick for the trivial, a low weighty tone for the grave
+
+> Sound weight should match the action's weight, and sound duration should match the action. A small action gets a light, short sound; a large or significant one gets a heavier, longer sound.
+
+Cherry-picked from the weight-matching rules in Raphael Salaja's sounds-on-the-web skill, and it presumes interactions-sound-only-for-significant-events has already decided WHICH events get a sound at all — this rule governs, among those, how MUCH sound. The audio channel is a hierarchy channel or it is noise: if starring an item and deleting an account make the same 880Hz blip, the ear learns nothing and tunes the whole product out. Weight is carried by three knobs, and they stack — lower pitch reads heavier, longer duration reads weightier, and a slightly higher level reads more significant, so a grave, irreversible action wants a low tone that lingers (and can glide downward), while a trivial toggle wants a short, high, quiet tick. This is the audio sibling of two motion rules the corpus already holds: animations-lottie-distance-duration derives duration from how far an element travels, and animations-emil-frequency withholds motion from high-frequency actions — same instinct, that feedback must be proportional to what it is reporting. Stay inside the other sound constraints while you do it: keep the loudest tone subtle and user-controlled (interactions-sound-is-user-owned) and never let the sound carry meaning the screen does not (interactions-sound-not-sole-channel).
+
+```tsx
+star()   => playTone({ frequency: 1046, duration: 0.09, volume: 0.22 });
+delete() => playTone({ frequency: 220, endFrequency: 150, duration: 0.34, volume: 0.34 });
+```
+
+- [Raphael Salaja: sounds-on-the-web SKILL.md](https://github.com/raphaelsalaja/skill/blob/main/skills/sounds-on-the-web/SKILL.md)
+- [MDN: OscillatorNode](https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode)
+
+### Error Sounds Must Not Punish
+
+**ID:** `interactions-sound-not-punishing`
+**Agent rule (SHOULD):** An error sound must inform, not scold. Keep it brief, moderate in level, and gentle — typically lower and falling, distinct from a rising success tone. A harsh, loud, dissonant buzzer makes users mute the whole product, losing every useful cue with it. The worded, visible error still carries the message and the fix.
+**Source:** Custom
+
+An error tone should be distinct and calm, not a harsh loud alarm — punishing sounds make users mute everything
+
+> Do not use harsh or punishing sounds for errors. An error sound should inform, not startle or scold.
+
+Cherry-picked from the appropriateness rules in Raphael Salaja's sounds-on-the-web skill. An error is information, not a verdict, and the sound has to agree with that. A loud, low, dissonant buzzer does the opposite — it startles, it reads as a reprimand for a typo, and the entirely rational response is to mute the product, which also silences the confirmations you actually wanted the user to hear. It is the same escape-hatch failure that over-frequent sound causes, arrived at from the other direction: make any one sound intolerable and the user kills all of them. A good error tone is brief, moderate in level, and gentle — often pitched lower than success and falling rather than rising, so it is instantly distinguishable from a confirmation without being aggressive. As always the sound is the junior partner: the visible, worded error carries the message and the fix (this is the audio counterpart of content-actionable-errors and content-positive-language, which say the copy should guide rather than blame), and interactions-sound-not-sole-channel keeps it that way.
+
+```tsx
+// gentle, brief, downward — noticed, not punishing
+playTone({ frequency: 392, endFrequency: 294, duration: 0.28, type: 'sine', volume: 0.3 });
+```
+
+- [Raphael Salaja: sounds-on-the-web SKILL.md](https://github.com/raphaelsalaja/skill/blob/main/skills/sounds-on-the-web/SKILL.md)
+- [NN/g: Error-Message Guidelines](https://www.nngroup.com/articles/error-message-guidelines/)
+
+### Prediction Cone for Nested Menus
+
+**ID:** `interactions-menu-prediction-cone`
+**Agent rule (SHOULD):** A submenu that opens to the side must forgive diagonal pointer travel toward it. Do not swap or close it the instant the pointer leaves the parent row: use a safe-triangle/prediction cone (suppress sibling hover while the pointer aims at the open submenu) or, as a cheap approximation, a ~150ms close-delay that any re-entry into the submenu cancels.
+**Source:** Rauno (https://interfaces.rauno.me/)
+
+When a submenu opens on hover, forgive diagonal pointer travel toward it instead of closing the instant the pointer leaves the parent row
+
+> When using nested menus, use a "prediction cone" to prevent the pointer from accidentally closing the menu when moving across other elements.
+
+The naive nested menu closes the submenu the moment the pointer leaves the parent item. That is exactly wrong, because the submenu opens to the side, so the shortest path to it runs diagonally across the sibling rows below the one you are pointing at. Each sibling the pointer crosses fires its own hover, swaps the open submenu out for its own, and the option you were reaching for vanishes before you arrive. The user learns to travel in an L — straight down the border, then across — which is the tell of a menu that does not forgive its own geometry. The fix has two well-known shapes. The "prediction cone" (or "safe triangle", the Amazon mega-menu trick Ben Kamens documented) reads pointer velocity and builds a triangle between the cursor and the top and bottom corners of the open submenu; while the pointer stays inside that triangle it is presumed to be aiming AT the submenu, so sibling hovers are suppressed for a short grace window. The cheaper approximation is a short close-delay (~100–200ms) on the submenu that any pointer re-entry cancels. This is the same forgiveness principle as interactions-forgiving-design and interactions-hover-content-persistence (hover targets must be reachable and not expire on a timer); it pairs with interactions-mousedown-dropdown, which handles the open, where this handles the traverse.
+
+```tsx
+onMouseEnter={(id) => { clearTimeout(t); t = setTimeout(() => setActive(id), 160); }}
+// submenu panel: onMouseEnter={() => clearTimeout(t)}
+```
+
+- [Rauno Freiberg — interfaces.rauno.me](https://raw.githubusercontent.com/raunofreiberg/interfaces/main/README.md)
+- [Ben Kamens — Breaking down Amazon’s mega dropdown](https://bjk5.com/post/44698559168/breaking-down-amazons-mega-dropdown)
+- [MDN — Pointer events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
+
 ---
 
 ## Animations
 
-Motion design principles and animation best practices. 54 rules.
+Motion design principles and animation best practices. 55 rules.
 
 ### Honor prefers-reduced-motion
 
@@ -2346,11 +2407,32 @@ Motion is how an interface teaches spatial layout: the enter animation is a clai
 - [Apple — Designing Fluid Interfaces (WWDC 2018)](https://developer.apple.com/videos/play/wwdc2018/803/)
 - [MDN — cubic-bezier() easing function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function/cubic-bezier)
 
+### Reduce Ambient 3D Motion
+
+**ID:** `animations-ambient-motion-reduced`
+**Agent rule (SHOULD):** prefers-reduced-motion applies to 3D/WebGL, not just CSS — and the rAF loop must read it in JS (matchMedia). Under reduce: stop auto-rotation, disable pointer parallax/tilt, replace scroll-driven camera moves with a static framing, and drop idle ambient motion to zero. Keep the scene interactive on demand (drag-to-orbit is user-initiated and allowed).
+**Source:** Custom
+
+Auto-rotating models, parallax tilt, and scroll-driven cameras are motion too — pause or flatten them under prefers-reduced-motion
+
+> prefers-reduced-motion applies to WebGL and 3D, not only to CSS. Auto-rotation, pointer parallax, and scroll-linked camera moves must be reduced like any other motion.
+
+This is animations-prefers-reduced-motion followed onto the canvas, and it is written here because the 3D ecosystem almost universally forgets it — a survey of the major three.js / R3F skills turned up no reduced-motion rule at all. The reason it gets dropped is structural: the media query lives in CSS while the motion lives in a `requestAnimationFrame` loop, so the loop has to read the preference itself and nobody wires it up. Yet ambient 3D is the MOST provocative motion on the page for a vestibular user — a model idling on a slow auto-rotate, a hero that tilts toward the pointer, a camera that dollies as you scroll: large, continuous, viewport-filling, and self-initiated by the site rather than the user. Under `prefers-reduced-motion: reduce` (check it in JS with `matchMedia`, not only in CSS): stop auto-rotation, disable pointer parallax and tilt, replace scroll-driven camera moves with a static framing or an instant cut, and drop idle ambient motion to zero. Keep the scene interactive on demand — a user who drags to orbit is initiating that motion, which is allowed, the same carve-out WCAG 2.3.3 makes for motion from interaction. Pairs with animations-ibelick-pause-offscreen (don't even run the loop when it is not visible) and performance-webgl-gpu-budget (the cost side of the same loop).
+
+```tsx
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce) controls.autoRotate = true; // otherwise hold a static frame
+```
+
+- [MDN — prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+- [WCAG 2.3.3 — Animation from Interactions](https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html)
+- [Poimandres — react-three-a11y](https://github.com/pmndrs/react-three-a11y)
+
 ---
 
 ## Layout
 
-Responsive design, alignment, and visual structure. 26 rules.
+Responsive design, alignment, and visual structure. 29 rules.
 
 ### Optical Alignment
 
@@ -2780,11 +2862,72 @@ Physical properties encode a hardcoded assumption that text flows left-to-right.
 - [jakubkrehel/skills — better-typography](https://github.com/jakubkrehel/skills/tree/main/skills/better-typography)
 - [MDN: CSS logical properties and values](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values)
 
+### z-index Only Works Inside Its Stacking Context
+
+**ID:** `layout-stacking-context-zindex`
+**Agent rule (SHOULD):** z-index is compared only within a stacking context, not globally. transform, opacity<1, filter, will-change, position:fixed/sticky, isolation, and flex/grid children with z-index all create one — trapping descendants no matter how high their z-index. Do not fix overlap with a bigger number; remove the accidental context or lift the overlay out of the trapping ancestor.
+**Source:** Web Platform (https://web.dev/)
+
+A parent with transform, opacity, or filter makes a new stacking context that traps its children's z-index — the fix is not a bigger number
+
+> New stacking contexts reset z-index. z-index only compares elements within the same stacking context, so a z-index:9999 child cannot escape a parent that sits below a later sibling.
+
+The recurring bug: a dropdown set to `z-index: 9999` still renders under the next section and nobody can explain why the number does not win. z-index is not global — it is compared only among siblings inside the same STACKING CONTEXT, and a long list of ordinary CSS silently creates one: `transform`, `opacity` below 1, `filter`, `backdrop-filter`, `will-change`, `position: fixed`/`sticky`, `isolation: isolate`, and being a flex/grid child that has a z-index. Once a parent forms a context, its descendants' z-index are resolved only against each other and the whole subtree is clamped to the parent's own place in the stack — so a `9999` inside a `transform`ed card can never climb above a sibling card that comes later in the DOM. Raising the number is the wrong fix and starts the arms race that layout-ibelick-z-index-scale exists to prevent. The right fixes: remove the accidental context (drop the stray `transform`/`opacity`), or lift the overlay out of the trapping ancestor entirely — the same escape move layout-impeccable-clipped-overflow prescribes for a popover trapped in an `overflow` ancestor.
+
+```tsx
+/* z-index:9999 inside a transformed parent can't beat a later sibling. */
+.card { transform: none; } /* or move the overlay to a portal / higher context */
+```
+
+- [MDN — The stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Stacking_context)
+- [nextlevelbuilder — ui-ux-pro-max](https://skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max)
+- [MDN — z-index](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index)
+
+### Fixed Elements Need a Space Budget
+
+**ID:** `layout-fixed-element-budget`
+**Agent rule (SHOULD):** A fixed/sticky element is out of flow, so reserve its space: offset content by the bar height (padding-top) and add scroll-padding-top so anchors and focus land clear. Do not position multiple fixed elements independently — budget them together with each other and env(safe-area-inset-*) so they never collide or hide content.
+**Source:** Custom
+
+Reserve room for a fixed or sticky bar by offsetting content, and don't stack multiple fixed elements into collisions
+
+> A fixed nav should not obscure content — offset the content by its height. Don't stack multiple fixed elements carelessly; account for safe areas and for each other. (nextlevelbuilder, ui-ux-pro-max)
+
+A `position: fixed` (or sticky) element is lifted out of normal flow, so the layout no longer reserves space for it — and by default the first section of content renders UNDERNEATH a fixed header, its top lines hidden behind the bar. Pay the space back: offset the content by the bar's height with `padding-top` on the scroll container, and add `scroll-padding-top` so anchored jumps and keyboard focus also land clear of it (that focus case is interactions-focus-not-obscured). The second failure is stacking: a fixed header, a fixed cookie banner, and a fixed chat button, each positioned on its own, will overlap one another and the device notch because none of them knows the others exist. Budget them together — collapse them into one fixed region, or give each an explicit offset that accounts for the others and for `env(safe-area-inset-*)` (layout-ibelick-safe-areas). The principle under both halves: taking an element out of flow is borrowing space you now have to repay by hand.
+
+```tsx
+.scroll { padding-top: var(--nav-h); scroll-padding-top: var(--nav-h); }
+```
+
+- [nextlevelbuilder — ui-ux-pro-max](https://skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max)
+- [MDN — position: fixed](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+- [MDN — scroll-padding](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding)
+
+### Wide Tables Need a Scroll Wrapper or Cards
+
+**ID:** `layout-responsive-table-overflow`
+**Agent rule (SHOULD):** A table wider than the viewport must not widen the page. Wrap it in an overflow-x:auto container so only the table scrolls, or reflow rows into label–value cards on narrow screens. Add an edge fade/shadow so the scroll is discoverable, and keep the header reachable.
+**Source:** Custom
+
+A table wider than the viewport must scroll inside its own overflow-x container or reflow to cards — never push the whole page wide
+
+> Tables can overflow on mobile. Use a horizontal-scroll wrapper (overflow-x: auto) or a card layout — don't let a wide table break the page layout. (nextlevelbuilder, ui-ux-pro-max)
+
+A table sizes to its columns, and on a phone a real data table is almost always wider than the screen. Left alone it does the worst possible thing: it stretches its containing block, so the WHOLE page gains a horizontal scrollbar and every other element overflows with it — now the body copy scrolls sideways to reveal nothing. Two correct fixes. Wrap the table in an `overflow-x: auto` container so ONLY the table scrolls, within its own bounds, while the page stays put — this is the specific, useful case that layout-no-excessive-scrollbars carves out (a scrollbar on the one thing that genuinely needs it). Or, for the best small-screen result, reflow each row into a stacked card of label–value pairs, so there is no horizontal scroll at all. Give the scroll container an edge affordance (a fade or shadow) so people know more is there, and keep the header reachable. This is the inverse framing of layout-no-excessive-scrollbars: that rule says do not create scrollbars you do not need; this one says when a table truly needs one, contain it to the table instead of the page.
+
+```tsx
+<div class="overflow-x-auto"><table>…</table></div>
+```
+
+- [nextlevelbuilder — ui-ux-pro-max](https://skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max)
+- [MDN — overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/overflow)
+- [web.dev — Responsive tables](https://web.dev/articles/responsive-web-design-basics)
+
 ---
 
 ## Content
 
-Typography, accessibility, and content presentation. 72 rules.
+Typography, accessibility, and content presentation. 80 rules.
 
 ### Inline Help First
 
@@ -3164,7 +3307,7 @@ Avoid changing letter-spacing unless explicitly requested - fonts are designed w
 
 > NEVER modify `letter-spacing` (`tracking-*`) unless explicitly requested
 
-From the Typography constraints in ibelick's baseline-ui skill. Type designers craft spacing per weight and optical size; overriding it usually costs readability and reads as amateurish. If the text needs more presence, reach for weight or size before tracking.
+From the Typography constraints in ibelick's baseline-ui skill. Type designers craft spacing per weight and optical size; overriding it usually costs readability and reads as amateurish. If the text needs more presence, reach for weight or size before tracking. Counter-view worth reading alongside this: content-tracking-is-size-specific argues from Emil Kowalski's apple-design skill that tracking IS size-dependent at the extremes — display type wants it slightly tighter, caption type slightly looser. The two are not really in conflict: this rule is the correct default for body text, that one is the correction for very large and very small sizes, ideally applied through a variable font's optical-sizing axis rather than a hardcoded value.
 
 - [baseline-ui (skill source)](https://github.com/ibelick/ui-skills/blob/main/skills/baseline-ui/SKILL.md)
 - [Typography Best Practices](https://fonts.google.com/knowledge/using_type)
@@ -3936,6 +4079,173 @@ Two neighbouring rules already cover the mechanics and neither covers this. cont
 - [MDN — text-overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-overflow)
 - [MDN — title attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/title)
 
+### Tracking Is Size-Specific
+
+**ID:** `content-tracking-is-size-specific`
+**Agent rule (SHOULD):** Do not ship one `letter-spacing` for all sizes. Leave body near 0, tighten display type (~ -0.02em at 36px+), and give small caps/captions a small positive nudge. Prefer a variable font's optical-sizing axis (`font-optical-sizing: auto`) over a hardcoded value. This refines, not contradicts, "don't track body text".
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Tighten letter-spacing as display type grows and leave body near zero — a single tracking value is wrong at some size
+
+> Tracking (letter-spacing) is size-specific — never one value for all sizes. Large display text wants negative tracking; small text wants slightly positive tracking for legibility. Tighten headings, leave body near 0.
+
+From the typography section of Emil Kowalski's apple-design skill, and it sits in DELIBERATE TENSION with content-ibelick-letter-spacing, which says never touch tracking unless asked. The corpus keeps both, because they are right about different sizes. ibelick's rule protects body text, where a face was hinted for reading and any manual tracking almost always makes it worse — that is the common case and the safe default. Emil's rule is about the extremes a text-optimised face was never spaced for: at display sizes (36px and up) the designer-intended spacing reads too loose, the letters drift apart, and the headline stops cohering, so it wants slightly NEGATIVE tracking; at caption sizes (11–12px) it wants a touch POSITIVE to hold the glyphs apart. The honest reconciliation is that the best tool is not manual tracking at all but optical sizing — `font-optical-sizing: auto` on a variable font with an `opsz` axis corrects spacing, contrast and detail per size automatically, which is exactly what "type is designed with proper spacing" should mean end to end. Reach for a manual `letter-spacing` step only when the face has no `opsz` axis. So: never randomly track body (that is ibelick's rule intact), do correct display and caption, and prefer `opsz` over a hardcoded value. Related: content-impeccable-type-scale-contrast, content-heading-size-descends, content-leading-tracks-size (its line-height counterpart).
+
+```tsx
+h1 { font-size: 48px; letter-spacing: -0.02em; }
+.caption { font-size: 11px; letter-spacing: 0.04em; }
+body { font-optical-sizing: auto; }
+```
+
+- [Emil Kowalski — apple-design SKILL.md](https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md)
+- [MDN — font-optical-sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/font-optical-sizing)
+- [MDN — letter-spacing](https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing)
+
+### Leading Tightens as Size Grows
+
+**ID:** `content-leading-tracks-size`
+**Agent rule (SHOULD):** Set line-height inversely to font size — do not inherit one ratio everywhere. Large display type wants ~1.0–1.2 so wrapped lines cohere; body wants ~1.5–1.7. Give scripts with tall ascenders/descenders more, dense data UI less. Pair each type-scale step with its own ratio.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Set line-height inversely to font size — tight on large headings, generous on body — instead of one ratio for everything
+
+> Leading (line-height) tracks size inversely. Tight on large headings, looser on body copy. Increase it for scripts with tall ascenders/descenders; tighten it for dense, information-heavy UI.
+
+From the typography section of Emil Kowalski's apple-design skill, and the complement to content-impeccable-tight-leading rather than a repeat of it. That rule sets the FLOOR — body copy wants 1.5 to 1.7 so lines do not crowd. This rule is about the slope: as size climbs, the ratio must come DOWN. The reason is that line-height is proportional, so a 1.5 that is perfect at 16px body becomes 72px of leading on a 48px headline — the two lines of a wrapped title drift so far apart they read as unrelated rows instead of one heading. Large display type wants roughly 1.0 to 1.2; a bare 1 is often right for a single-line hero. Because unitless line-height inherits as a multiplier, the practical implementation is a scale that pairs each size step with its own ratio, not one global `line-height` on `body`. Two edge cases from the source: scripts with tall ascenders and descenders (and any mixed-language UI) need MORE leading than Latin at the same size, and dense information UI (tables, compact lists) can go tighter than prose. Related: content-heading-size-descends, content-impeccable-type-scale-contrast, content-tracking-is-size-specific (its letter-spacing counterpart).
+
+```tsx
+h1 { font-size: 48px; line-height: 1.1; }
+p  { font-size: 16px; line-height: 1.6; }
+```
+
+- [Emil Kowalski — apple-design SKILL.md](https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md)
+- [MDN — line-height](https://developer.mozilla.org/en-US/docs/Web/CSS/line-height)
+
+### Legible Text on Translucent Surfaces
+
+**ID:** `content-vibrant-text-on-translucent`
+**Agent rule (SHOULD):** Text over a `backdrop-filter` surface faces a background whose luminance changes as content scrolls. Raise contrast and weight, nudge letter-spacing up slightly, and keep the opacity/color on a SOLID backing layer while the text itself stays fully opaque — never fade the text with the surface.
+**Source:** Emil Kowalski (https://emilkowalski.com/)
+
+Over a blurred or translucent surface, raise text contrast and weight and keep color on a solid layer — flat gray text vanishes as the backdrop shifts
+
+> Vibrancy keeps text legible over changing backgrounds. Over blurred/translucent surfaces, don't use flat gray text — use higher-contrast, slightly heavier weight, and a small letter-spacing bump. Put color on a solid layer, not the translucent foreground.
+
+From the vibrancy section of Emil Kowalski's apple-design skill, and it fills the gap between two rules the corpus already has about translucent surfaces. design-impeccable-no-glassmorphism decides WHEN glass is justified (only over content that genuinely scrolls behind it); design-reduced-transparency-contrast handles the accessibility fallback (go solid under prefers-reduced-transparency). Neither says how to make the text on the glass readable once you have decided to keep it — and that is the hard part, because a `backdrop-filter` surface shows whatever is behind it, so the luminance under any given word changes as the user scrolls. A muted gray tuned against one section of the page becomes unreadable over the next. Apple's answer is "vibrancy": foreground text that adapts to what it sits on. On the web you approximate it deliberately — raise the contrast (secondary text on glass should read closer to primary than it would on a solid card), add a touch of weight, and nudge letter-spacing up a hair so thin strokes survive the blur. The load-bearing detail is the last clause: keep any color and the opacity on a SOLID backing layer behind the text, and render the text itself fully opaque on top — never fade the text with the surface, or it dims exactly where the background is busiest. Related: content-impeccable-dark-mode-text-compensation (the same weight/spacing compensation for light-on-dark), design-minimum-contrast.
+
+```tsx
+.glass { background: rgba(20,18,28,0.55); backdrop-filter: blur(8px); }
+.glass p { color: #fff; font-weight: 600; letter-spacing: 0.01em; }
+```
+
+- [Emil Kowalski — apple-design SKILL.md](https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md)
+- [Apple HIG — Materials (vibrancy)](https://developer.apple.com/design/human-interface-guidelines/materials)
+- [MDN — backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
+
+### Canvas and WebGL Need an Accessible Fallback
+
+**ID:** `content-canvas-accessible-fallback`
+**Agent rule (MUST):** A <canvas> (2D or WebGL) is an opaque bitmap to assistive tech. Name it (role="img" + aria-label stating the data, or descriptive fallback children between the tags), mirror any interactive 3D objects in real focusable DOM with an announcer, and provide the same information without the canvas (a data table, a static-image fallback where WebGL is absent).
+**Source:** Web Platform (https://web.dev/)
+
+A <canvas> renders pixels the accessibility tree cannot see — give it a name, fallback content, and a non-canvas path to the same information
+
+> A canvas is an opaque bitmap to assistive technology. Provide fallback content inside the element, give interactive 3D objects a parallel focusable DOM layer with an announcer, and offer the same information without the canvas.
+
+Distilled from the Poimandres react-three-a11y docs and the MDN canvas-accessibility guidance, and it is the hardest surface content-accessible-content and content-icons-have-labels ever point at. A `<canvas>` — 2D or WebGL — is a single flat bitmap to a screen reader: every bar in the chart, every clickable region, every label you painted is invisible and unreachable, because none of it is in the DOM. Three fixes stack, in order of effort. First, name the surface: a static visualisation takes `role="img"` plus an `aria-label` that states what it shows ("Revenue by quarter: Q1 $12k, Q2 $18k…"), and any markup placed BETWEEN the `<canvas>` tags is both the legacy no-canvas fallback and what AT reads. Second, for anything interactive, mirror it in real focusable DOM — WebGL objects cannot take Tab focus or receive key events, which is exactly why react-three-a11y injects a parallel HTML layer and an announcer node beside the R3F canvas. Third, provide the information without the canvas at all: a data table behind the chart, and a static image where WebGL is unavailable (the progressive-enhancement half — see performance-webgl-gpu-budget for the runtime side). The test is the corpus's standard one: turn the visual off and check the accessibility tree still answers what the picture said.
+
+```tsx
+<canvas role="img" aria-label="Revenue by quarter: Q1 $12k, Q2 $18k, Q3 $15k, Q4 $24k" />
+{/* plus a visually-hidden <table> with the same data */}
+```
+
+- [Poimandres — react-three-a11y](https://github.com/pmndrs/react-three-a11y)
+- [MDN — Canvas accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Hit_regions_and_accessibility)
+- [WCAG 1.1.1 — Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
+
+### Three Dashes, Three Jobs
+
+**ID:** `content-dash-taxonomy`
+**Agent rule (SHOULD):** Use the correct dash: hyphen (-) for compounds, en dash (–) for ranges and connections (2020–2024, pages 10–20), em dash (—) for sentence-level breaks. A hyphen in a range is a typesetting error. In JSX use the real UTF-8 character or a named entity — a \u2013 escape renders literally in a text node. (Use dashes sparingly per content-impeccable-em-dash-overuse; this is about picking the right one when you do.)
+**Source:** Custom
+
+Hyphen joins compounds, en dash spans ranges (1–10), em dash breaks a sentence — one glyph for all three is a typographic error
+
+> The hyphen, en dash, and em dash are different characters with different jobs. Hyphen: compound words. En dash: ranges and connections. Em dash: sentence-level breaks. (Matthew Butterick, Practical Typography)
+
+The keyboard has one dash key; English needs three characters. A hyphen (-) joins compounds — well-known, sign-in. An en dash (–) spans ranges and connections and reads as "to" or "through": 2020–2024, pages 10–20, the New York–London route. A hyphen in a range (2020-2024) is one of the most common tells that text was never typeset. An em dash (—) marks a sentence-level break. The distinction is invisible until it is wrong, at which point it quietly says "nobody set this type." A tension worth naming, because the corpus holds both: content-impeccable-em-dash-overuse warns that leaning on em dashes reads as an AI tell and pushes you toward commas, colons, and parentheses — that rule is about FREQUENCY, this one is about CORRECTNESS, and they agree. Use dashes sparingly; but when a range needs one, make it an en dash, not a hyphen. In JSX, use the real UTF-8 character or a named entity — a `\u2013` escape renders literally inside a text node. Neighbour to content-typographic-quotes and content-ellipsis-character: the same "use the designed character, not the typewriter approximation" instinct.
+
+```tsx
+2020–2024  {/* en dash, not 2020-2024 */}
+pages 10–20  {/* en dash */}
+well-known  {/* hyphen: compound */}
+```
+
+- [Butterick — Practical Typography: hyphens & dashes](https://practicaltypography.com/hyphens-and-dashes.html)
+- [bencium — typography skill (Butterick-derived)](https://skills.sh/bencium/bencium-marketplace/ui-typography)
+- [MDN — en dash / em dash](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Character_references)
+
+### Real Symbols, Not ASCII Look-alikes
+
+**ID:** `content-math-symbol-glyphs`
+**Agent rule (SHOULD):** Use real typographic symbols, not ASCII look-alikes: × (U+00D7) for multiplication not the letter x, − (U+2212) for minus not a hyphen, and © ™ ® not (c) / (TM) / (R). The substitutes read as unfinished and can be ambiguous in data and dimensions.
+**Source:** Custom
+
+Use ×, −, © ™ ® for multiplication, minus, and marks — not the letter x, a hyphen, or (c) / (TM) / (R)
+
+> Use real typographic symbols, not ASCII substitutes. Multiplication is ×, not x. Minus is −, not a hyphen. Use © ™ ® not (c) (TM) (R). (Matthew Butterick, Practical Typography)
+
+The letter x is not a multiplication sign, a hyphen is not a minus, and "(c)" is not a copyright symbol — they are ASCII stand-ins from an era of 95 printable characters, and Unicode retired the excuse decades ago. "1920 x 1080" should be "1920 × 1080" (× is `&times;` / U+00D7); "-40°" should carry a real minus "−40°" (− is U+2212, which has the correct width and, unlike a hyphen, will not line-break away from its number); and (c) / (TM) / (R) should be © ™ ® (`&copy;` `&trade;` `&reg;`). The substitutes are legible but read as unfinished, and in dimensions or data they are genuinely ambiguous — is "2 x 3" a product or a variable named x? This is the same rule as content-typographic-quotes and content-ellipsis-character, just the less-remembered corner of it: reach for the character that was designed for the job, not the one that happened to be on a 1970s keyboard.
+
+```tsx
+1920 × 1080   {/* not 1920 x 1080 */}
+−40°C         {/* U+2212, not a hyphen */}
+© 2026 · Pro™
+```
+
+- [Butterick — Practical Typography: math symbols](https://practicaltypography.com/math-symbols.html)
+- [bencium — typography skill (html entities)](https://skills.sh/bencium/bencium-marketplace/ui-typography)
+- [MDN — Character references](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Character_references)
+
+### One Emphasis Signal at a Time
+
+**ID:** `content-emphasis-one-signal`
+**Agent rule (SHOULD):** Emphasize with bold OR italic, never both on the same text, and never underline for emphasis — on the web underline means link. Reserve underline for links, bold for strong emphasis, italic for titles/terms/mild stress, each used alone. Stacking emphasis markers cancels the contrast they exist to create.
+**Source:** Custom
+
+Emphasize with bold OR italic, never both at once, and never with underline — on the web, underline means link
+
+> Bold and italic are mutually exclusive — never combine them. Never underline for emphasis; underlining is a typewriter workaround and, on the web, means a link. (Matthew Butterick, Practical Typography)
+
+Emphasis is a contrast, and contrast only works while it is scarce. Stacking bold and italic on the same words does not make them twice as important — it makes the line look like it is shouting and spends the next level of emphasis you might have needed later. Pick one: bold for strong emphasis, italic for titles, terms, and mild stress. Underline is worse than redundant on the web, because it is the near-universal signal for a link: underlining for emphasis trains users to click text that does nothing, and it collides with design-underline-from-font, which is about styling the underline on actual links. Reserve underline for links, and use bold and italic one at a time. This is the character-formatting version of the over-signalling failure the corpus flags elsewhere (design-ibelick-color-restraint for accent colour, content-impeccable-em-dash-overuse for punctuation): more emphasis markers do not add emphasis, they cancel it.
+
+```tsx
+<strong>important</strong> · <em>term</em> · <a href="…">link</a>
+// not: <span class="font-bold italic underline">…</span>
+```
+
+- [Butterick — Practical Typography: bold or italic](https://practicaltypography.com/bold-or-italic.html)
+- [bencium — typography skill (Butterick-derived)](https://skills.sh/bencium/bencium-marketplace/ui-typography)
+
+### Don't Center Body Text
+
+**ID:** `content-no-centered-body`
+**Agent rule (SHOULD):** Set running body text flush-left (ragged right) so the eye returns to one fixed edge each line. Centered text moves every line's start and makes the reader hunt for it — acceptable only for short, deliberate lines (a hero, a pull quote), never for paragraphs.
+**Source:** Custom
+
+Center a heading or a short line if you must, but set running paragraphs flush-left — centered body makes the eye hunt for each line's start
+
+> Don't center body text. Centered text has no consistent left edge, so the reader must find the start of every line. (Matthew Butterick, Practical Typography)
+
+Reading is a loop: the eye sweeps left to right, then flicks back to a KNOWN horizontal position to begin the next line. Flush-left text keeps that return point fixed, so the flick is automatic and unconscious. Centered text moves the start of every line, so the reader has to visually hunt for where each one begins — tolerable for a two-line hero or a pull quote, genuinely tiring across a paragraph. A centered column of body copy is a reliable tell of template or AI layout: it looked "balanced" in the mock and reads like work at length. Set running text flush-left with a ragged right edge, and reserve centring for short, deliberate lines. This is distinct from content-impeccable-justified-text, which is about the RIGHT edge (do not justify without hyphenation); this rule is about the left edge existing at all.
+
+```tsx
+<p class="text-left">…paragraph…</p>   {/* not text-center */}
+```
+
+- [Butterick — Practical Typography: centered text](https://practicaltypography.com/centered-text.html)
+- [bencium — typography skill (Butterick-derived)](https://skills.sh/bencium/bencium-marketplace/ui-typography)
+
 ---
 
 ## Forms
@@ -4358,7 +4668,7 @@ From the forms and errors rules in ibelick's fixing-accessibility skill. This is
 
 ## Performance
 
-Optimization techniques and rendering efficiency. 34 rules.
+Optimization techniques and rendering efficiency. 35 rules.
 
 ### Minimize Re-renders
 
@@ -4909,6 +5219,27 @@ return () => cancelAnimationFrame(id); // teardown
 
 - [ibelick — fixing-motion-performance SKILL.md](https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md)
 - [MDN — requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
+
+### Budget the GPU for WebGL
+
+**ID:** `performance-webgl-gpu-budget`
+**Agent rule (SHOULD):** WebGL cost scales with pixels and object count, not DOM size. Cap pixel ratio at 2 (setPixelRatio(Math.min(devicePixelRatio, 2)) — fragment cost is quadratic in DPR), keep draw calls low by merging/instancing static geometry (~<100/frame), and dispose() geometries, materials, and textures on unmount because GPU memory is not garbage-collected. Keep mobile textures ≤1024².
+**Source:** Web Platform (https://web.dev/)
+
+Cap pixel ratio at ~2, keep draw calls low, and dispose GPU resources — WebGL cost scales with pixels and object count, not DOM size
+
+> Limit pixel ratio to 2. Target under ~100 draw calls per frame. Dispose geometries, materials, and textures. On mobile prefer cheap materials and keep textures ≤1024².
+
+Distilled from the Core Web Vitals / mobile / draw-call budgets in emalorenzo's three-agent-skills and web.dev's WebGL guidance, and it matters because WebGL performance is governed by metrics that have nothing to do with the rest of the page. Two costs dominate. Fragment shading scales with the pixels drawn, which is `cssPixels × devicePixelRatio²`, so `renderer.setPixelRatio(window.devicePixelRatio)` on a 3× phone quietly asks the GPU to shade NINE times the area of a 1× render — the single most common cause of a 3D hero that melts a mid-range phone. Cap it hard: `setPixelRatio(Math.min(devicePixelRatio, 2))`, above which the extra density is imperceptible and only expensive. Second, every draw call carries fixed CPU overhead, so a scene is bounded by object COUNT more than triangle count; hundreds of separate meshes stall the main thread, and the fix is to merge static geometry or use instancing to draw many copies in one call (budget: well under ~100 draw calls/frame). A third, silent failure: GPU memory is not garbage-collected — geometries, materials and textures must be explicitly `.dispose()`d when a scene unmounts, or they leak until the browser drops the context. This is the runtime companion to content-canvas-accessible-fallback (the same 3D feature needs a static fallback where WebGL is weak or absent) and to performance-raf-stop-condition / animations-ibelick-pause-offscreen (do not run the render loop when nothing is on screen).
+
+```tsx
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+useEffect(() => () => { geometry.dispose(); material.dispose(); }, []);
+```
+
+- [emalorenzo — three-agent-skills](https://github.com/emalorenzo/three-agent-skills)
+- [MDN — WebGL best practices](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices)
+- [web.dev — Rendering performance](https://web.dev/articles/rendering-performance)
 
 ---
 
