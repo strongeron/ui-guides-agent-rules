@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ScreenReaderView } from '@/components/demo-kit/ScreenReaderView';
 
 const DATA = [
   { label: 'Q1', value: 12 },
@@ -34,6 +35,7 @@ export function CanvasAccessibleFallbackGood() {
 
   return (
     <div className="w-full max-w-sm">
+      <ScreenReaderView>
       <figure className="rounded-lg border border-border bg-card p-4 text-primary">
         <canvas ref={ref} role="img" aria-label={SUMMARY} width={280} height={120} className="w-full" />
         <figcaption className="mt-2 text-xs text-muted-foreground">Revenue by quarter (thousands)</figcaption>
@@ -56,6 +58,7 @@ export function CanvasAccessibleFallbackGood() {
           </tbody>
         </table>
       </figure>
+      </ScreenReaderView>
       <p className="mt-4 text-xs text-success">
         Named with role=&quot;img&quot; + aria-label, and backed by a hidden data table — the numbers survive without the pixels.
       </p>

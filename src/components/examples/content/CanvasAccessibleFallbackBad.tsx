@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ScreenReaderView } from '@/components/demo-kit/ScreenReaderView';
 
 const DATA = [
   { label: 'Q1', value: 12 },
@@ -31,10 +32,12 @@ export function CanvasAccessibleFallbackBad() {
 
   return (
     <div className="w-full max-w-sm">
-      <div className="rounded-lg border border-border bg-card p-4 text-primary">
-        {/* No role, no aria-label, no fallback children, no data alternative */}
-        <canvas ref={ref} width={280} height={120} className="w-full" />
-      </div>
+      <ScreenReaderView>
+        <div className="rounded-lg border border-border bg-card p-4 text-primary">
+          {/* No role, no aria-label, no fallback children, no data alternative */}
+          <canvas ref={ref} width={280} height={120} className="w-full" />
+        </div>
+      </ScreenReaderView>
       <p className="mt-4 text-xs text-destructive">
         Screen readers announce nothing — an unnamed graphic with the data locked inside the bitmap.
       </p>

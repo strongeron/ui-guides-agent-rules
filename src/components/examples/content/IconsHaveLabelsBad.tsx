@@ -1,8 +1,10 @@
 import { Edit, Trash2, Share2 } from 'lucide-react';
+import { ScreenReaderView } from '@/components/demo-kit/ScreenReaderView';
 
 export function IconsHaveLabelsBad() {
   return (
     <div className="w-full max-w-sm">
+      <ScreenReaderView>
       <div className="flex gap-2">
         <button className="p-2 bg-muted rounded hover:bg-muted">
           <Edit className="w-5 h-5 text-foreground" />
@@ -14,6 +16,7 @@ export function IconsHaveLabelsBad() {
           <Share2 className="w-5 h-5 text-foreground" />
         </button>
       </div>
+      </ScreenReaderView>
       <p className="text-xs text-error mt-4">
         Icon-only buttons have no accessible labels
       </p>
