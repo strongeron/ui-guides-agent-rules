@@ -1,0 +1,218 @@
+{
+  "generatedAt": "2026-07-15T12:58:09.302Z",
+  "tokenUsed": true,
+  "reports": [
+    {
+      "source": "vercel",
+      "name": "Vercel",
+      "repo": "vercel-labs/web-interface-guidelines",
+      "mode": "github",
+      "status": "no-skill-dirs",
+      "note": "rules live in README/other, not SKILL.md dirs"
+    },
+    {
+      "source": "vercel-agent-skills",
+      "name": "Vercel Agent Skills",
+      "repo": "vercel-labs/agent-skills",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "composition-patterns",
+        "deploy-to-vercel",
+        "react-best-practices",
+        "react-native-skills",
+        "react-view-transitions",
+        "vercel-cli-with-tokens",
+        "vercel-optimize",
+        "web-design-guidelines",
+        "writing-guidelines"
+      ]
+    },
+    {
+      "source": "rauno",
+      "name": "Rauno",
+      "repo": "raunofreiberg/interfaces",
+      "mode": "github",
+      "status": "no-skill-dirs",
+      "note": "rules live in README/other, not SKILL.md dirs"
+    },
+    {
+      "source": "emilkowalski",
+      "name": "Emil Kowalski",
+      "repo": "emilkowalski/skills",
+      "mode": "github",
+      "status": "scanned",
+      "wired": [
+        "apple-design",
+        "review-animations"
+      ],
+      "unwired": [
+        "animation-vocabulary",
+        "emil-design-eng",
+        "improve-animations"
+      ]
+    },
+    {
+      "source": "jakubkrehel",
+      "name": "jakubkrehel",
+      "repo": "jakubkrehel/skills",
+      "mode": "github",
+      "status": "scanned",
+      "wired": [
+        "better-typography",
+        "better-ui"
+      ],
+      "unwired": [
+        "better-colors"
+      ]
+    },
+    {
+      "source": "sounds-on-the-web",
+      "name": "sounds-on-the-web",
+      "repo": "raphaelsalaja/skill",
+      "mode": "github",
+      "status": "scanned",
+      "wired": [
+        "sounds-on-the-web"
+      ],
+      "unwired": [
+        "12-principles-of-animation",
+        "generating-sounds-with-ai",
+        "mastering-animate-presence",
+        "morphing-icons",
+        "pseudo-elements",
+        "to-spring-or-not-to-spring"
+      ]
+    },
+    {
+      "source": "ui-skills",
+      "name": "@Ibelick",
+      "repo": "ibelick/ui-skills",
+      "mode": "github",
+      "status": "scanned",
+      "wired": [
+        "baseline-ui",
+        "fixing-accessibility",
+        "fixing-metadata",
+        "fixing-motion-performance"
+      ],
+      "unwired": [
+        "improve-ui",
+        "ui-skills-root"
+      ]
+    },
+    {
+      "source": "anthropic",
+      "name": "Anthropic Skills",
+      "repo": "anthropics/skills",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "algorithmic-art",
+        "brand-guidelines",
+        "canvas-design",
+        "claude-api",
+        "doc-coauthoring",
+        "docx",
+        "frontend-design",
+        "internal-comms",
+        "mcp-builder",
+        "pdf",
+        "pptx",
+        "skill-creator",
+        "slack-gif-creator",
+        "template",
+        "theme-factory",
+        "web-artifacts-builder",
+        "webapp-testing",
+        "xlsx"
+      ]
+    },
+    {
+      "source": "lottiefiles",
+      "name": "LottieFiles",
+      "repo": "lottiefiles/motion-design-skill",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "motion-design"
+      ]
+    },
+    {
+      "source": "interface-design",
+      "name": "interface-design",
+      "repo": "Dammyjay93/interface-design",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "interface-design"
+      ]
+    },
+    {
+      "source": "impeccable",
+      "name": "impeccable",
+      "repo": "pbakaus/impeccable",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "impeccable"
+      ]
+    },
+    {
+      "source": "clarify",
+      "name": "clarify",
+      "repo": "pbakaus/impeccable",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "impeccable"
+      ]
+    },
+    {
+      "source": "ce-frontend-design",
+      "name": "ce-frontend-design",
+      "repo": "EveryInc/compound-engineering-plugin",
+      "mode": "manual",
+      "status": "scanned",
+      "wired": [],
+      "unwired": [
+        "ce-babysit-pr",
+        "ce-brainstorm",
+        "ce-code-review",
+        "ce-commit",
+        "ce-commit-push-pr",
+        "ce-compound",
+        "ce-compound-refresh",
+        "ce-debug",
+        "ce-doc-review",
+        "ce-dogfood",
+        "ce-explain",
+        "ce-ideate",
+        "ce-optimize",
+        "ce-plan",
+        "ce-polish",
+        "ce-pov",
+        "ce-product-pulse",
+        "ce-promote",
+        "ce-proof",
+        "ce-resolve-pr-feedback",
+        "ce-riffrec-feedback-analysis",
+        "ce-setup",
+        "ce-simplify-code",
+        "ce-strategy",
+        "ce-sweep",
+        "ce-test-browser",
+        "ce-test-xcode",
+        "ce-work",
+        "ce-worktree",
+        "lfg"
+      ]
+    }
+  ]
+}

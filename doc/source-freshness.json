@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T16:58:18.407Z",
+  "generatedAt": "2026-07-15T12:53:44.959Z",
   "reports": [
     {
       "source": "vercel",
@@ -219,30 +219,6 @@
         },
         {
           "source": "vercel",
-          "text": "Handle empty states—don't render broken UI for empty strings/arrays",
-          "suggestedId": "vercel-handle-empty-states-don-t-render",
-          "category": "performance",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "vercel",
-          "text": "Large arrays `.map()` without virtualization",
-          "suggestedId": "vercel-large-arrays-without-virtualization",
-          "category": "performance",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "vercel",
           "text": "Hardcoded date/number formats (use `Intl.*`)",
           "suggestedId": "vercel-hardcoded-date-number-formats-use",
           "category": "forms",
@@ -397,6 +373,18 @@
         },
         {
           "source": "vercel",
+          "text": "Handle empty states—don't render broken UI for empty strings/arrays",
+          "suggestedId": "vercel-handle-empty-states-don-t-render",
+          "category": "performance",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance"
+          ],
+          "bestMatch": 0.38
+        },
+        {
+          "source": "vercel",
           "text": "Headings & skip link. Hierarchical <h1–h6> & a “Skip to content” link.",
           "suggestedId": "vercel-headings-skip-link-hierarchical-h1-h6",
           "category": "content",
@@ -474,25 +462,22 @@
       ]
     },
     {
+      "source": "vercel-agent-skills",
+      "name": "Vercel Agent Skills",
+      "mode": "manual",
+      "status": "manual-due",
+      "ourRules": 0,
+      "reviewEveryDays": 90,
+      "note": "https://github.com/vercel-labs/agent-skills"
+    },
+    {
       "source": "rauno",
       "name": "Rauno",
       "mode": "github",
       "status": "checked",
       "upstreamRules": 63,
-      "ourRules": 37,
+      "ourRules": 38,
       "newRules": [
-        {
-          "source": "rauno",
-          "text": "When using nested menus, use a \"prediction cone\" to prevent the pointer from accidentally closing the menu when moving across other elements.",
-          "suggestedId": "rauno-when-using-nested-menus-use-a",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "motion",
-            "interactions"
-          ],
-          "bestMatch": 0.15
-        },
         {
           "source": "rauno",
           "text": "Buttons should be disabled after submission to avoid duplicate network requests",
@@ -567,18 +552,6 @@
         },
         {
           "source": "rauno",
-          "text": "Interactive elements in a vertical or horizontal list should have no dead areas between each element, instead, increase their `padding`",
-          "suggestedId": "rauno-interactive-elements-in-a-vertical-or",
-          "category": "animations",
-          "tags": [
-            "interaction",
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.31
-        },
-        {
-          "source": "rauno",
           "text": "Hovering trivial buttons",
           "suggestedId": "rauno-hovering-trivial-buttons",
           "category": "interactions",
@@ -588,6 +561,18 @@
             "interactions"
           ],
           "bestMatch": 0.33
+        },
+        {
+          "source": "rauno",
+          "text": "Interactive elements in a vertical or horizontal list should have no dead areas between each element, instead, increase their `padding`",
+          "suggestedId": "rauno-interactive-elements-in-a-vertical-or",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.38
         },
         {
           "source": "rauno",
@@ -632,9 +617,163 @@
       "name": "Emil Kowalski",
       "mode": "github",
       "status": "checked",
-      "upstreamRules": 69,
-      "ourRules": 18,
+      "upstreamRules": 126,
+      "ourRules": 28,
       "newRules": [
+        {
+          "source": "emilkowalski",
+          "text": "Flexibility. Design for different contexts, devices, and the full range of abilities. Adapt to the platform (iPhone = quick touch; desktop = deep workflows with precise pointer control) and to the situation. Design inclusively (age, language, expertise, accessibility). When no single layout fits everyone, let people personalize — rearrange controls, hide what they don't use.",
+          "suggestedId": "emilkowalski-flexibility-design-for-different-contexts-devices",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.08
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Responsibility. Act in the user's interest. Privacy: ask at the right moment, only for what's needed, transparently. Safety: anticipate misuse and harm — especially with AI (an allergy-aware recipe app must not suggest a harmful ingredient). Add previews, confirmations, disclaimers; cut a feature whose risk outweighs its value.",
+          "suggestedId": "emilkowalski-responsibility-act-in-the-user-s",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.09
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Familiarity. Build on what people already know. Use metaphors that are neither too literal nor too abstract (a trash can means delete), and honor their physics. Be consistent: things that look the same must behave the same and live in the same place (close is always top-left on macOS) so people can predict what happens next. Only break a familiar pattern if you can prove it's better — then test it, don't assume.",
+          "suggestedId": "emilkowalski-familiarity-build-on-what-people-already",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.09
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Craft. Uncompromising attention to detail builds trust. Beautiful typography, colors that adapt to light/dark, clear iconography, and responsive animations that give immediate, natural feedback. Nothing is random — every spacing, timing, and alignment value is a deliberate choice you can defend. Jittery scroll, misaligned icons, and layouts that break on rotation read as carelessness. Craft needs iteration and longevity — keep evolving the design as features and hardware change.",
+          "suggestedId": "emilkowalski-craft-uncompromising-attention-to-detail-builds",
+          "category": "layout",
+          "tags": [
+            "motion",
+            "layout"
+          ],
+          "bestMatch": 0.1
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Delight. The result of getting the other seven right, not confetti tacked on top. Decide the emotion you want people to feel (calm, confident, excited) and reinforce it in every decision.",
+          "suggestedId": "emilkowalski-delight-the-result-of-getting-the",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.1
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Prototype interactively — an interactive demo is worth \"a million static designs.\" You discover the interface by building and playing with it; a working prototype also sets a concrete bar that prevents a mediocre final implementation.",
+          "suggestedId": "emilkowalski-prototype-interactively-an-interactive-demo-is",
+          "category": "content",
+          "tags": [
+            "motion",
+            "content"
+          ],
+          "bestMatch": 0.1
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Tap: highlight on touch-down (instant), commit on touch-up. Add ~10px of hysteresis/hit padding around the target, and allow cancel-by-dragging-away and back.",
+          "suggestedId": "emilkowalski-tap-highlight-on-touch-down-instant",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.11
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Detect all plausible gestures in parallel from the first move, then confidently cancel the losers once intent is clear. Avoid recognizers that only report a final state (`swipeleft`-type events) — they throw away the continuous tracking you need for feedback.",
+          "suggestedId": "emilkowalski-detect-all-plausible-gestures-in-parallel",
+          "category": "content",
+          "tags": [
+            "motion",
+            "content"
+          ],
+          "bestMatch": 0.11
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Response — how quickly the value reaches the target, in seconds. Lower = snappier. This is not \"duration\" — a spring has no fixed duration; its settle time emerges from the parameters.",
+          "suggestedId": "emilkowalski-response-how-quickly-the-value-reaches",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.12
+        },
+        {
+          "source": "emilkowalski",
+          "text": "When a gesture reverses, blend velocity — don't hard-cut it. Replacing one animation with another at a reversal creates a velocity discontinuity, a \"brick wall.\" Spring libraries that carry velocity through a re-target avoid it. (This is what iOS's additive animations do natively; on the web, choose a spring library that re-targets from the current velocity.)",
+          "suggestedId": "emilkowalski-when-a-gesture-reverses-blend-velocity",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.13
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Start most UI at damping `1.0` (critically damped) — graceful and non-distracting.",
+          "suggestedId": "emilkowalski-start-most-ui-at-damping-critically",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.13
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Anchor interactions to their source. A menu, popover, or sheet should originate from the element that triggered it — set `transform-origin` to the trigger, so the spatial relationship between button and content is obvious. (This is the same origin-awareness point as popovers scaling from their trigger, not their center.)",
+          "suggestedId": "emilkowalski-anchor-interactions-to-their-source-a",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.13
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Dim to focus, separate to keep flow. A modal task pairs the surface with a dimming scrim and pushes the background back/down. A parallel, non-blocking panel uses translucency and offset without a scrim so the flow isn't broken. For stacked sheets, progressively dim and push back each parent layer.",
+          "suggestedId": "emilkowalski-dim-to-focus-separate-to-keep",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.13
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Utility — add feedback only where it earns its place. Reserve haptics/sound for meaningful moments (success, error, commit, snap). Over-feedback trains users to ignore all of it.",
+          "suggestedId": "emilkowalski-utility-add-feedback-only-where-it",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.14
+        },
         {
           "source": "emilkowalski",
           "text": "Real devices for gestures (drawers, swipe) — connect a phone, hit the dev server by IP, use Safari remote devtools.",
@@ -645,6 +784,83 @@
             "design"
           ],
           "bestMatch": 0.15
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Damping ratio — controls overshoot. `1.0` = critically damped, no bounce, smooth settle. `< 1.0` = overshoots and oscillates. Lower = bouncier.",
+          "suggestedId": "emilkowalski-damping-ratio-controls-overshoot-critically-damped",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.15
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Harmony — the visual, the sound, and the haptic must fire on the same frame. Latency between them destroys the illusion. Don't let a CSS transition lag the audio/haptic (Vibration API).",
+          "suggestedId": "emilkowalski-harmony-the-visual-the-sound-and",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.15
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Agency. Keep people in control: offer choices, don't force a single path. Back it with forgiveness — easy undo for slips, a confirmation dialog only for genuinely destructive, irreversible actions (use sparingly; overusing it trains people to click through).",
+          "suggestedId": "emilkowalski-agency-keep-people-in-control-offer",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.15
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Be vigilant about every latency. Audit debounces, artificial timers, transition waits, and the ~300ms tap delay. Anything on the input path that isn't essential is a regression.",
+          "suggestedId": "emilkowalski-be-vigilant-about-every-latency-audit",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.16
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Material weight encodes hierarchy: darker/heavier materials separate structural regions (sidebars); lighter materials draw attention to interactive elements (buttons). Never stack a light translucent surface on another — legibility collapses.",
+          "suggestedId": "emilkowalski-material-weight-encodes-hierarchy-darker-heavier",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.16
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Simplicity — not minimalism. Strip the unnecessary so the core purpose shines; burying everything in one place looks minimal but isn't simple. Be concise (plain language, no jargon, fewer steps) and clear (use hierarchy — order, spacing, contrast — so the most important thing is the most obvious). Every element earns its place; sometimes adding context simplifies (a video scrubber that shows time remaining). Show the common path first, advanced options one level deeper.",
+          "suggestedId": "emilkowalski-simplicity-not-minimalism-strip-the-unnecessary",
+          "category": "content",
+          "tags": [
+            "motion",
+            "content"
+          ],
+          "bestMatch": 0.16
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Feedback comes in four kinds: status, completion, warning, error. Confirm meaningful actions, expose ongoing status, warn before problems, validate inline (not on submit).",
+          "suggestedId": "emilkowalski-feedback-comes-in-four-kinds-status",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
+          ],
+          "bestMatch": 0.16
         },
         {
           "source": "emilkowalski",
@@ -665,6 +881,39 @@
           "tags": [
             "motion",
             "interactions"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Causality — it must be obvious what caused the feedback. Trigger it on the actual causal event (the toggle flipping, the item snapping home), and match its character to the action's physicality.",
+          "suggestedId": "emilkowalski-causality-it-must-be-obvious-what",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "emilkowalski",
+          "text": "`prefers-reduced-motion: reduce` — replace slides/springs/parallax with short opacity cross-fades or static transitions. Drop elastic/overshoot. Keep opacity/color changes that aid comprehension.",
+          "suggestedId": "emilkowalski-replace-slides-springs-parallax-with-short",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Grouping & mapping. Proximity implies relationship; place a control near what it affects and arrange controls to mirror what they change. If you need a label to explain a control, the mapping is weak.",
+          "suggestedId": "emilkowalski-grouping-mapping-proximity-implies-relationship-place",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
           ],
           "bestMatch": 0.17
         },
@@ -692,6 +941,50 @@
         },
         {
           "source": "emilkowalski",
+          "text": "*Always animate from the presentation (current) value, never the target value.* On interrupt, read the element's live on-screen transform and start the new animation from there. Starting from the logical/target value causes a visible jump.",
+          "suggestedId": "emilkowalski-always-animate-from-the-presentation-current",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.18
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Build nav/toolbars/sheets as translucent layers (`backdrop-filter: blur()` + a semi-transparent background) with content scrolling underneath — not opaque bars that consume a fixed strip.",
+          "suggestedId": "emilkowalski-build-nav-toolbars-sheets-as-translucent",
+          "category": "performance",
+          "tags": [
+            "motion",
+            "performance"
+          ],
+          "bestMatch": 0.18
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Add bounce (damping ~`0.8`) only when the gesture itself carried momentum (a flick, a throw, a drag release). Overshoot on a menu that just faded in feels wrong; overshoot on a card you flicked feels right.",
+          "suggestedId": "emilkowalski-add-bounce-damping-only-when-the",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.19
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Test with real people in real context, and review motion with fresh eyes — play it in slow motion / frame-by-frame to catch what's invisible at full speed.",
+          "suggestedId": "emilkowalski-test-with-real-people-in-real",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.19
+        },
+        {
+          "source": "emilkowalski",
           "text": "Slow motion: bump duration 2–5× or use DevTools animation inspector. Check colors crossfade cleanly, easing doesn't stop abruptly, `transform-origin` is right, coordinated properties stay in sync.",
           "suggestedId": "emilkowalski-slow-motion-bump-duration-2-5",
           "category": "animations",
@@ -711,6 +1004,83 @@
             "design"
           ],
           "bestMatch": 0.2
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Minimize disambiguation delays. Double-tap detection unavoidably delays single taps; only pay that cost where double-tap truly exists.",
+          "suggestedId": "emilkowalski-minimize-disambiguation-delays-double-tap-detection",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Respond on pointer-down, not on release. Highlight a button the instant it's pressed. Waiting for `click`/touch-up to show feedback feels dead.",
+          "suggestedId": "emilkowalski-respond-on-pointer-down-not-on",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.21
+        },
+        {
+          "source": "emilkowalski",
+          "text": "*Feedback must be continuous during the interaction, not just at the end.* For a drag, slider, or drawer, update the UI 1:1 with the pointer the whole way through — never animate only when the gesture completes.",
+          "suggestedId": "emilkowalski-feedback-must-be-continuous-during-the",
+          "category": "interactions",
+          "tags": [
+            "motion",
+            "interactions"
+          ],
+          "bestMatch": 0.21
+        },
+        {
+          "source": "emilkowalski",
+          "text": "For very fast motion, a subtle motion blur / stretch encodes speed and reads better than a hard sharp streak.",
+          "suggestedId": "emilkowalski-for-very-fast-motion-a-subtle",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.21
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Build hierarchy from weight + size + leading as a set, not size alone. Emphasize with weight — it adds presence without taking more space.",
+          "suggestedId": "emilkowalski-build-hierarchy-from-weight-size-leading",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.21
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Purpose. Make with intention; decide what not to build. Every feature asks for the user's time, attention, and trust — spend that budget only where it pays off.",
+          "suggestedId": "emilkowalski-purpose-make-with-intention-decide-what",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.21
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Direct, specific labels beat safe generic ones. Name nav items for their contents (\"Progress\", \"Library\"), not vague umbrellas (\"Home\"). Specificity creates predictability.",
+          "suggestedId": "emilkowalski-direct-specific-labels-beat-safe-generic",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
+          ],
+          "bestMatch": 0.21
         },
         {
           "source": "emilkowalski",
@@ -758,6 +1128,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Default to the platform's system font before a custom face; it already ships optical sizing, tracking tables, and legibility tuning. Override only with a reason.",
+          "suggestedId": "emilkowalski-default-to-the-platform-s-system",
+          "category": "forms",
+          "tags": [
+            "motion",
+            "forms"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "emilkowalski",
           "text": "Accessibility. `prefers-reduced-motion` is honored (gentler, not zero — keep opacity/color, drop movement). Hover animations are gated behind `@media (hover: hover) and (pointer: fine)`.",
           "suggestedId": "emilkowalski-accessibility-is-honored-gentler-not-zero",
           "category": "animations",
@@ -766,6 +1147,39 @@
             "animations"
           ],
           "bestMatch": 0.23
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Avoid CSS transitions and `@keyframes` for anything gesture-driven — they can't be smoothly grabbed and reversed mid-flight. Springs animate from the current value by default, which is exactly what interruption needs.",
+          "suggestedId": "emilkowalski-avoid-css-transitions-and-for-anything",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.23
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Materialize, don't just fade. For glass/blur surfaces, animate blur radius and scale together on enter/exit, so the surface reads as a real material arriving rather than a plain opacity fade.",
+          "suggestedId": "emilkowalski-materialize-don-t-just-fade-for",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.23
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Design interaction and visuals together. \"You shouldn't be able to tell where one ends and the other begins.\" Motion is not a layer added after the pixels.",
+          "suggestedId": "emilkowalski-design-interaction-and-visuals-together-you",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.24
         },
         {
           "source": "emilkowalski",
@@ -835,6 +1249,28 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Bigger surfaces should read as thicker: stronger blur + a deeper shadow than small chips. Consider context-aware shadow — heavier over busy/text content for separation, lighter over plain backgrounds.",
+          "suggestedId": "emilkowalski-bigger-surfaces-should-read-as-thicker",
+          "category": "performance",
+          "tags": [
+            "motion",
+            "performance"
+          ],
+          "bestMatch": 0.26
+        },
+        {
+          "source": "emilkowalski",
+          "text": "`requestAnimationFrame` is the web's display-synced clock (Apple uses `CADisplayLink`). Animate only compositor-friendly properties — `transform` and `opacity` — and hint with `will-change` where motion is imminent.",
+          "suggestedId": "emilkowalski-is-the-web-s-display-synced",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.27
+        },
+        {
+          "source": "emilkowalski",
           "text": "Origin & physical correctness. Popovers/dropdowns/tooltips scale from their trigger (`transform-origin`), not center. Never animate from `scale(0)` — start from `scale(0.9–0.97)` + opacity (Modals are exempt — they stay centered.)",
           "suggestedId": "emilkowalski-origin-physical-correctness-popovers-dropdowns-tooltips",
           "category": "animations",
@@ -868,6 +1304,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Wayfinding. Every screen should answer: Where am I? Where can I go? What's there? How do I get out? Never trap the user.",
+          "suggestedId": "emilkowalski-wayfinding-every-screen-should-answer-where",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "emilkowalski",
           "text": "Move it to the GPU — layout props → `transform`/`opacity`; shorthand → full `transform` string; WAAPI for programmatic CSS.",
           "suggestedId": "emilkowalski-move-it-to-the-gpu-layout",
           "category": "forms",
@@ -887,6 +1334,17 @@
             "animations"
           ],
           "bestMatch": 0.3
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Track a short velocity/position history (last few `pointermove` events), not just the current point — you'll need velocity at release.",
+          "suggestedId": "emilkowalski-track-a-short-velocity-position-history",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.31
         },
         {
           "source": "emilkowalski",
@@ -925,17 +1383,6 @@
           "source": "emilkowalski",
           "text": "Missed simplifications — animations that should be removed or drastically reduced.",
           "suggestedId": "emilkowalski-missed-simplifications-animations-that-should-be",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Accessibility — reduced-motion and pointer/hover gating.",
-          "suggestedId": "emilkowalski-accessibility-reduced-motion-and-pointer-hover",
           "category": "animations",
           "tags": [
             "motion",
@@ -1000,6 +1447,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Never lock out input during a transition.",
+          "suggestedId": "emilkowalski-never-lock-out-input-during-a",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "emilkowalski",
           "text": "Prefer CSS transitions/`@starting-style`/WAAPI for predetermined motion; JS/springs for dynamic, interruptible, gesture-driven motion.",
           "suggestedId": "emilkowalski-prefer-css-transitions-waapi-for-predetermined",
           "category": "animations",
@@ -1050,6 +1508,28 @@
           "tags": [
             "motion",
             "interactions"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Keep the per-frame positional change below the perception threshold to avoid strobing.",
+          "suggestedId": "emilkowalski-keep-the-per-frame-positional-change",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Respect the user's text-size setting (Dynamic Type). Scale layout with the text — spacing in `rem`/`em`, not fixed px — so a larger font doesn't break the layout.",
+          "suggestedId": "emilkowalski-respect-the-user-s-text-size",
+          "category": "content",
+          "tags": [
+            "motion",
+            "content"
           ],
           "bestMatch": 0.4
         },
@@ -1111,13 +1591,1148 @@
       ]
     },
     {
+      "source": "jakubkrehel",
+      "name": "jakubkrehel",
+      "mode": "github",
+      "status": "checked",
+      "upstreamRules": 22,
+      "ourRules": 9,
+      "newRules": [
+        {
+          "source": "jakubkrehel",
+          "text": "Copy stored in natural case, presentation via `text-transform`",
+          "suggestedId": "jakubkrehel-copy-stored-in-natural-case-presentation",
+          "category": "content",
+          "tags": [
+            "typography",
+            "design",
+            "content"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Underlines use `from-font` or tuned thickness, offset and skip-ink",
+          "suggestedId": "jakubkrehel-underlines-use-or-tuned-thickness-offset",
+          "category": "content",
+          "tags": [
+            "typography",
+            "design",
+            "content"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Long-form text capped around 60–75 characters per line",
+          "suggestedId": "jakubkrehel-long-form-text-capped-around-60",
+          "category": "forms",
+          "tags": [
+            "typography",
+            "design",
+            "forms"
+          ],
+          "bestMatch": 0.38
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Never match the outline to the project's accent or ink color. The outline is a neutral separator, not a themed element.",
+          "suggestedId": "jakubkrehel-never-match-the-outline-to-the",
+          "category": "design",
+          "tags": [
+            "typography",
+            "design"
+          ],
+          "bestMatch": 0.45
+        }
+      ]
+    },
+    {
+      "source": "sounds-on-the-web",
+      "name": "sounds-on-the-web",
+      "mode": "github",
+      "status": "checked",
+      "upstreamRules": 5,
+      "ourRules": 0,
+      "newRules": [
+        {
+          "source": "sounds-on-the-web",
+          "text": "Check against all rules below",
+          "suggestedId": "sounds-on-the-web-check-against-all-rules-below",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "design"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "sounds-on-the-web",
+          "text": "Read the specified files (or prompt user for files/pattern)",
+          "suggestedId": "sounds-on-the-web-read-the-specified-files-or-prompt",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "sounds-on-the-web",
+          "text": "Output findings in `file:line` format",
+          "suggestedId": "sounds-on-the-web-output-findings-in-format",
+          "category": "forms",
+          "tags": [
+            "a11y",
+            "forms"
+          ],
+          "bestMatch": 0.33
+        }
+      ]
+    },
+    {
       "source": "ui-skills",
       "name": "@Ibelick",
-      "mode": "manual",
-      "status": "manual-due",
+      "mode": "github",
+      "status": "checked",
+      "upstreamRules": 208,
       "ourRules": 50,
-      "reviewEveryDays": 30,
-      "note": "https://www.ui-skills.com/"
+      "newRules": [
+        {
+          "source": "ui-skills",
+          "text": "`/baseline-ui`",
+          "suggestedId": "ibelick-",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0
+        },
+        {
+          "source": "ui-skills",
+          "text": "`/baseline-ui <file>`",
+          "suggestedId": "ibelick-",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0
+        },
+        {
+          "source": "ui-skills",
+          "text": "`/fixing-accessibility`",
+          "suggestedId": "ibelick-",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0
+        },
+        {
+          "source": "ui-skills",
+          "text": "`/fixing-accessibility <file>`",
+          "suggestedId": "ibelick-",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0
+        },
+        {
+          "source": "ui-skills",
+          "text": "`/fixing-motion-performance`",
+          "suggestedId": "ibelick-",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0
+        },
+        {
+          "source": "ui-skills",
+          "text": "`/fixing-motion-performance <file>`",
+          "suggestedId": "ibelick-",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0
+        },
+        {
+          "source": "ui-skills",
+          "text": "enforce critical rules first (never patterns, tool boundaries)",
+          "suggestedId": "ibelick-enforce-critical-rules-first-never-patterns",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.13
+        },
+        {
+          "source": "ui-skills",
+          "text": "prefer minimal changes, do not refactor unrelated code",
+          "suggestedId": "ibelick-prefer-minimal-changes-do-not-refactor",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "ui-skills",
+          "text": "descriptions must be plain text, no markdown or quote spam",
+          "suggestedId": "ibelick-descriptions-must-be-plain-text-no",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "ui-skills",
+          "text": "JSON-LD must be valid and reflect what is actually rendered",
+          "suggestedId": "ibelick-json-ld-must-be-valid-and",
+          "category": "performance",
+          "tags": [
+            "interaction",
+            "performance"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not invent ratings, reviews, prices, or organization details",
+          "suggestedId": "ibelick-do-not-invent-ratings-reviews-prices",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "ui-skills",
+          "text": "localized pages must canonicalize correctly per locale",
+          "suggestedId": "ibelick-localized-pages-must-canonicalize-correctly-per",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "ui-skills",
+          "text": "follow the project's existing metadata pattern (Next.js metadata API, react-helmet, manual head, etc.)",
+          "suggestedId": "ibelick-follow-the-project-s-existing-metadata",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.17
+        },
+        {
+          "source": "ui-skills",
+          "text": "Audit against the priority rules below — fix critical issues (duplicates, indexing) first",
+          "suggestedId": "ibelick-audit-against-the-priority-rules-below",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.18
+        },
+        {
+          "source": "ui-skills",
+          "text": "violations (quote the exact line/snippet)",
+          "suggestedId": "ibelick-violations-quote-the-exact-line-snippet",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "a concrete fix (code-level suggestion)",
+          "suggestedId": "ibelick-a-concrete-fix-code-level-suggestion",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "violations (quote the exact line or snippet)",
+          "suggestedId": "ibelick-violations-quote-the-exact-line-or",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "disabled submit actions must explain why",
+          "suggestedId": "ibelick-disabled-submit-actions-must-explain-why",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "metadata must be deterministic, no random or unstable values",
+          "suggestedId": "ibelick-metadata-must-be-deterministic-no-random",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "use a sensible og:type, usually website or article",
+          "suggestedId": "ibelick-use-a-sensible-og-type-usually",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "include apple-touch-icon when relevant",
+          "suggestedId": "ibelick-include-apple-touch-icon-when-relevant",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.2
+        },
+        {
+          "source": "ui-skills",
+          "text": "fix critical issues first (names, keyboard, focus, tool boundaries)",
+          "suggestedId": "ibelick-fix-critical-issues-first-names-keyboard",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "ui-skills",
+          "text": "Identify pages with missing or incorrect metadata (titles, descriptions, canonical, OG tags)",
+          "suggestedId": "ibelick-identify-pages-with-missing-or-incorrect",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "ui-skills",
+          "text": "Keep diffs minimal and scoped to metadata only — do not refactor unrelated code",
+          "suggestedId": "ibelick-keep-diffs-minimal-and-scoped-to",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "ui-skills",
+          "text": "prefer one structured data block per page unless required",
+          "suggestedId": "ibelick-prefer-one-structured-data-block-per",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.22
+        },
+        {
+          "source": "ui-skills",
+          "text": "avoid autoplaying media with sound",
+          "suggestedId": "ibelick-avoid-autoplaying-media-with-sound",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "quote the exact snippet, state the failure, propose a small fix",
+          "suggestedId": "ibelick-quote-the-exact-snippet-state-the",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "for complex widgets (menu, dialog, combobox), prefer established accessible primitives over custom behavior",
+          "suggestedId": "ibelick-for-complex-widgets-menu-dialog-combobox",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "refactoring janky interactions or transitions",
+          "suggestedId": "ibelick-refactoring-janky-interactions-or-transitions",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "for any non-default choice, state the constraint that justifies it (surface size, duration, or interaction requirement)",
+          "suggestedId": "ibelick-for-any-non-default-choice-state",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "when reviewing, prefer actionable notes and concrete alternatives over theory",
+          "suggestedId": "ibelick-when-reviewing-prefer-actionable-notes-and",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "Verify social cards render correctly on a real URL, not localhost",
+          "suggestedId": "ibelick-verify-social-cards-render-correctly-on",
+          "category": "performance",
+          "tags": [
+            "interaction",
+            "performance"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "adding structured data (JSON-LD)",
+          "suggestedId": "ibelick-adding-structured-data-json-ld",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "manifest must be valid and referenced when used",
+          "suggestedId": "ibelick-manifest-must-be-valid-and-referenced",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "icon paths should be stable and cacheable",
+          "suggestedId": "ibelick-icon-paths-should-be-stable-and",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not add JSON-LD unless it clearly maps to real page content",
+          "suggestedId": "ibelick-do-not-add-json-ld-unless",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "set og:locale when localization exists",
+          "suggestedId": "ibelick-set-og-locale-when-localization-exists",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "ui-skills",
+          "text": "animating layout, filters, masks, gradients, or CSS variables",
+          "suggestedId": "ibelick-animating-layout-filters-masks-gradients-or",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "paint: color, borders, gradients, masks, images, filters",
+          "suggestedId": "ibelick-paint-color-borders-gradients-masks-images",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "scope animated CSS variables locally and avoid inheritance",
+          "suggestedId": "ibelick-scope-animated-css-variables-locally-and",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "compositor motion requires layer promotion, never assume it",
+          "suggestedId": "ibelick-compositor-motion-requires-layer-promotion-never",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "apply these rules within the existing animation system",
+          "suggestedId": "ibelick-apply-these-rules-within-the-existing",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "choose the least expensive rendering work that matches the intent",
+          "suggestedId": "ibelick-choose-the-least-expensive-rendering-work",
+          "category": "performance",
+          "tags": [
+            "interaction",
+            "performance"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "adding or changing page titles, descriptions, canonical, robots",
+          "suggestedId": "ibelick-adding-or-changing-page-titles-descriptions",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "setting favicons, app icons, manifest, theme-color",
+          "suggestedId": "ibelick-setting-favicons-app-icons-manifest-theme",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "building shared SEO components or layout metadata defaults",
+          "suggestedId": "ibelick-building-shared-seo-components-or-layout",
+          "category": "layout",
+          "tags": [
+            "interaction",
+            "layout"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not emit duplicate title, description, canonical, or robots tags",
+          "suggestedId": "ibelick-do-not-emit-duplicate-title-description",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "escape and sanitize any user-generated or dynamic strings",
+          "suggestedId": "ibelick-escape-and-sanitize-any-user-generated",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "include at least one favicon that works across browsers",
+          "suggestedId": "ibelick-include-at-least-one-favicon-that",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "add hreflang alternates only when pages truly exist",
+          "suggestedId": "ibelick-add-hreflang-alternates-only-when-pages",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "fix critical issues first (duplicates, canonical, indexing)",
+          "suggestedId": "ibelick-fix-critical-issues-first-duplicates-canonical",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "prefer stable, boring metadata over clever or dynamic",
+          "suggestedId": "ibelick-prefer-stable-boring-metadata-over-clever",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "ui-skills",
+          "text": "adding or changing buttons, links, inputs, menus, dialogs, tabs, dropdowns",
+          "suggestedId": "ibelick-adding-or-changing-buttons-links-inputs",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "working on focus states, focus trapping, or modal behavior",
+          "suggestedId": "ibelick-working-on-focus-states-focus-trapping",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not use tabindex greater than 0",
+          "suggestedId": "ibelick-do-not-use-tabindex-greater-than",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "tables must use th for headers when applicable",
+          "suggestedId": "ibelick-tables-must-use-th-for-headers",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "required fields must be announced",
+          "suggestedId": "ibelick-required-fields-must-be-announced",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "loading states should use aria-busy or status text",
+          "suggestedId": "ibelick-loading-states-should-use-aria-busy",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "toasts must not be the only way to convey critical information",
+          "suggestedId": "ibelick-toasts-must-not-be-the-only",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "reviewing components that use will-change, transforms, or measurement",
+          "suggestedId": "ibelick-reviewing-components-that-use-will-change",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "use IntersectionObserver for visibility and pausing",
+          "suggestedId": "ibelick-use-intersectionobserver-for-visibility-and-pausing",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "validate layer behavior with tooling when performance matters",
+          "suggestedId": "ibelick-validate-layer-behavior-with-tooling-when",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "avoid view transitions when interruption or cancellation is required",
+          "suggestedId": "ibelick-avoid-view-transitions-when-interruption-or",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "treat size changes as potentially layout-triggering",
+          "suggestedId": "ibelick-treat-size-changes-as-potentially-layout",
+          "category": "layout",
+          "tags": [
+            "interaction",
+            "layout"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "Ensure title, description, canonical, and og:url all agree with each other",
+          "suggestedId": "ibelick-ensure-title-description-canonical-and-og",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "changing locale, alternate languages, or canonical routing",
+          "suggestedId": "ibelick-changing-locale-alternate-languages-or-canonical",
+          "category": "content",
+          "tags": [
+            "interaction",
+            "content"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "shipping new pages, marketing pages, or shareable links",
+          "suggestedId": "ibelick-shipping-new-pages-marketing-pages-or",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "define metadata in one place per page, avoid competing systems",
+          "suggestedId": "ibelick-define-metadata-in-one-place-per",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "paginated pages must have correct canonical behavior",
+          "suggestedId": "ibelick-paginated-pages-must-have-correct-canonical",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "verify social cards on a real URL, not localhost",
+          "suggestedId": "ibelick-verify-social-cards-on-a-real",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "keep diffs minimal and scoped to metadata only",
+          "suggestedId": "ibelick-keep-diffs-minimal-and-scoped-to",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.33
+        },
+        {
+          "source": "ui-skills",
+          "text": "adding or changing UI animations (CSS, WAAPI, Motion, rAF, GSAP)",
+          "suggestedId": "ibelick-adding-or-changing-ui-animations-css",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.38
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not mix multiple animation systems that each measure or mutate layout",
+          "suggestedId": "ibelick-do-not-mix-multiple-animation-systems",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.38
+        },
+        {
+          "source": "ui-skills",
+          "text": "why it matters (one short sentence)",
+          "suggestedId": "ibelick-why-it-matters-one-short-sentence",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "implementing keyboard shortcuts or custom interactions",
+          "suggestedId": "ibelick-implementing-keyboard-shortcuts-or-custom-interactions",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "every input, select, and textarea must be labeled",
+          "suggestedId": "ibelick-every-input-select-and-textarea-must",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "all interactive elements must be reachable by Tab",
+          "suggestedId": "ibelick-all-interactive-elements-must-be-reachable",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "modals must trap focus while open",
+          "suggestedId": "ibelick-modals-must-trap-focus-while-open",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "critical form errors should use aria-live",
+          "suggestedId": "ibelick-critical-form-errors-should-use-aria",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "videos with speech should provide captions when relevant",
+          "suggestedId": "ibelick-videos-with-speech-should-provide-captions",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "use JS-driven animation only when interaction requires it",
+          "suggestedId": "ibelick-use-js-driven-animation-only-when",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not read layout repeatedly during an animation",
+          "suggestedId": "ibelick-do-not-read-layout-repeatedly-during",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "prefer approaches that batch measurement and writes",
+          "suggestedId": "ibelick-prefer-approaches-that-batch-measurement-and",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "avoid many or large promoted layers",
+          "suggestedId": "ibelick-avoid-many-or-large-promoted-layers",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "avoid view transitions for interaction-heavy UI",
+          "suggestedId": "ibelick-avoid-view-transitions-for-interaction-heavy",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "set the html lang attribute correctly",
+          "suggestedId": "ibelick-set-the-html-lang-attribute-correctly",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.4
+        },
+        {
+          "source": "ui-skills",
+          "text": "building forms, validation, error states, helper text",
+          "suggestedId": "ibelick-building-forms-validation-error-states-helper",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.43
+        },
+        {
+          "source": "ui-skills",
+          "text": "do not add aria when native semantics already solve the problem",
+          "suggestedId": "ibelick-do-not-add-aria-when-native",
+          "category": "interactions",
+          "tags": [
+            "interaction",
+            "interactions"
+          ],
+          "bestMatch": 0.43
+        },
+        {
+          "source": "ui-skills",
+          "text": "prefer downgrading technique over removing motion entirely",
+          "suggestedId": "ibelick-prefer-downgrading-technique-over-removing-motion",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.43
+        },
+        {
+          "source": "ui-skills",
+          "text": "set theme-color intentionally to avoid mismatched UI chrome",
+          "suggestedId": "ibelick-set-theme-color-intentionally-to-avoid",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.43
+        },
+        {
+          "source": "ui-skills",
+          "text": "prefer native elements (button, a, input) over role-based hacks",
+          "suggestedId": "ibelick-prefer-native-elements-button-a-input",
+          "category": "forms",
+          "tags": [
+            "interaction",
+            "forms"
+          ],
+          "bestMatch": 0.44
+        },
+        {
+          "source": "ui-skills",
+          "text": "one-shot effects are acceptable more often than continuous motion",
+          "suggestedId": "ibelick-one-shot-effects-are-acceptable-more",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.44
+        },
+        {
+          "source": "ui-skills",
+          "text": "scroll-linked motion must not trigger continuous layout or paint on large surfaces",
+          "suggestedId": "ibelick-scroll-linked-motion-must-not-trigger",
+          "category": "animations",
+          "tags": [
+            "interaction",
+            "animations"
+          ],
+          "bestMatch": 0.44
+        },
+        {
+          "source": "ui-skills",
+          "text": "never partially migrate APIs or mix styles within the same component",
+          "suggestedId": "ibelick-never-partially-migrate-apis-or-mix",
+          "category": "design",
+          "tags": [
+            "interaction",
+            "design"
+          ],
+          "bestMatch": 0.44
+        }
+      ]
     },
     {
       "source": "tailwind",
@@ -1133,7 +2748,7 @@
       "name": "RAMS",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 17,
+      "ourRules": 18,
       "reviewEveryDays": 30,
       "note": "https://www.rams.ai/"
     },
@@ -1151,7 +2766,7 @@
       "name": "Web Platform",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 5,
+      "ourRules": 8,
       "reviewEveryDays": 90,
       "note": "https://web.dev/"
     },
@@ -1204,7 +2819,7 @@
       "name": "impeccable",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 27,
+      "ourRules": 32,
       "reviewEveryDays": 60,
       "note": "https://impeccable.style/"
     },
@@ -1216,6 +2831,14 @@
       "ourRules": 0,
       "reviewEveryDays": 60,
       "note": "https://impeccable.style/"
+    },
+    {
+      "source": "custom",
+      "name": "Custom",
+      "mode": "manual",
+      "status": "manual-due",
+      "ourRules": 21,
+      "reviewEveryDays": 180
     },
     {
       "source": "ce-frontend-design",

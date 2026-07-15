@@ -28,6 +28,7 @@
     "sources:build": "npx tsx scripts/build-source-rules.ts",
     "sources:catalog": "npx tsx scripts/check-source-catalog.ts",
     "sources:discover": "npx tsx scripts/discover-sources.ts",
+    "check:secrets": "npx tsx scripts/check-secrets.ts",
     "validate:links": "npx tsx scripts/check-source-links.ts",
     "validate:rules": "npx tsx scripts/validate-agent-rules.ts",
     "validate:report": "npx tsx scripts/generate-validation-report.ts",

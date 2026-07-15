@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T16:58:18.407Z",
+  "generatedAt": "2026-07-15T12:53:44.959Z",
   "pending": [
     {
       "suggestedId": "emilkowalski-cohesion-motion-matches-the-component-s",
@@ -12,7 +12,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-responsive-easing-entering-exiting-elements-use",
@@ -25,7 +25,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-interruptibility-timing-keyframes-where-transitions-springs",
@@ -38,7 +38,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-justified-motion-every-animation-must-answer",
@@ -51,7 +51,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-sub-300ms-ui-ui-animations-stay",
@@ -64,7 +64,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-fix-the-easing-swap-custom-curve",
@@ -90,7 +90,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
@@ -103,7 +103,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-keyframes-on-toasts-toggles-or-anything",
@@ -142,7 +142,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-accessibility-is-honored-gentler-not-zero",
@@ -155,7 +155,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-frequency-appropriate-match-motion-to-how",
@@ -207,7 +207,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-accessibility-cohesion-add-reduced-motion-hover",
@@ -220,7 +220,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-approve-no-feel-breaking-regressions-no",
@@ -233,7 +233,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-or-pure-fade-entrances-with-no",
@@ -246,7 +246,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-updating-a-css-variable-on-a",
@@ -272,7 +272,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-polish-blur-to-mask-crossfades-stagger",
@@ -285,7 +285,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-animation-on-a-keyboard-shortcut-command",
@@ -311,7 +311,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-origin-physical-correctness-popovers-dropdowns-tooltips",
@@ -324,7 +324,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-ui-duration-300ms-with-no-stated",
@@ -363,7 +363,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-on-any-ui-interaction-weak-built",
@@ -389,7 +389,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-delete-the-animation-high-frequency-no",
@@ -402,7 +402,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-asymmetric-timing-slow-the-deliberate-phase",
@@ -415,7 +415,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-gpu-only-properties-animate-and-only",
@@ -441,7 +441,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-missing-handling-on-movement",
@@ -454,7 +454,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-fix-the-origin-physicality-correct-replace",
@@ -467,7 +467,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-missed-simplifications-animations-that-should-be",
@@ -480,7 +480,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-accessibility-reduced-motion-and-pointer-hover",
@@ -506,7 +506,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-is-a-powerful-animation-tool-each",
@@ -532,7 +532,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-never-start-from-nothing-in-the",
@@ -571,7 +571,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-slow-motion-bump-duration-2-5",
@@ -584,7 +584,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-fresh-eyes-next-day-imperfections-invisible",
@@ -597,7 +597,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-waapi-gives-js-control-with-css",
@@ -610,7 +610,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-scales-children-too-font-icons-content",
@@ -623,7 +623,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-css-animations-beat-js-under-load",
@@ -636,7 +636,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-constant-motion-marquee-progress",
@@ -649,7 +649,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-framer-motion-shorthands-are-not-hardware",
@@ -675,7 +675,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
@@ -688,7 +688,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-entering-or-exiting-starts-fast-feels",
@@ -701,7 +701,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-moving-morphing-on-screen",
@@ -714,7 +714,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-origin-aware-popovers-scale-from-the",
@@ -727,7 +727,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-only-animate-and-they-skip-layout",
@@ -740,7 +740,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T10:08:16.581Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-make-it-interruptible-keyframes-transitions-or",
@@ -753,7 +753,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T16:58:18.407Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "emilkowalski-on-a-trigger-anchored-popover-dropdown",
@@ -766,7 +766,660 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T16:58:18.407Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-flexibility-design-for-different-contexts-devices",
+      "source": "emilkowalski",
+      "text": "Flexibility. Design for different contexts, devices, and the full range of abilities. Adapt to the platform (iPhone = quick touch; desktop = deep workflows with precise pointer control) and to the situation. Design inclusively (age, language, expertise, accessibility). When no single layout fits everyone, let people personalize — rearrange controls, hide what they don't use.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-responsibility-act-in-the-user-s",
+      "source": "emilkowalski",
+      "text": "Responsibility. Act in the user's interest. Privacy: ask at the right moment, only for what's needed, transparently. Safety: anticipate misuse and harm — especially with AI (an allergy-aware recipe app must not suggest a harmful ingredient). Add previews, confirmations, disclaimers; cut a feature whose risk outweighs its value.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-familiarity-build-on-what-people-already",
+      "source": "emilkowalski",
+      "text": "Familiarity. Build on what people already know. Use metaphors that are neither too literal nor too abstract (a trash can means delete), and honor their physics. Be consistent: things that look the same must behave the same and live in the same place (close is always top-left on macOS) so people can predict what happens next. Only break a familiar pattern if you can prove it's better — then test it, don't assume.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-craft-uncompromising-attention-to-detail-builds",
+      "source": "emilkowalski",
+      "text": "Craft. Uncompromising attention to detail builds trust. Beautiful typography, colors that adapt to light/dark, clear iconography, and responsive animations that give immediate, natural feedback. Nothing is random — every spacing, timing, and alignment value is a deliberate choice you can defend. Jittery scroll, misaligned icons, and layouts that break on rotation read as carelessness. Craft needs iteration and longevity — keep evolving the design as features and hardware change.",
+      "category": "layout",
+      "tags": [
+        "motion",
+        "layout"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-delight-the-result-of-getting-the",
+      "source": "emilkowalski",
+      "text": "Delight. The result of getting the other seven right, not confetti tacked on top. Decide the emotion you want people to feel (calm, confident, excited) and reinforce it in every decision.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-prototype-interactively-an-interactive-demo-is",
+      "source": "emilkowalski",
+      "text": "Prototype interactively — an interactive demo is worth \"a million static designs.\" You discover the interface by building and playing with it; a working prototype also sets a concrete bar that prevents a mediocre final implementation.",
+      "category": "content",
+      "tags": [
+        "motion",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-tap-highlight-on-touch-down-instant",
+      "source": "emilkowalski",
+      "text": "Tap: highlight on touch-down (instant), commit on touch-up. Add ~10px of hysteresis/hit padding around the target, and allow cancel-by-dragging-away and back.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-detect-all-plausible-gestures-in-parallel",
+      "source": "emilkowalski",
+      "text": "Detect all plausible gestures in parallel from the first move, then confidently cancel the losers once intent is clear. Avoid recognizers that only report a final state (`swipeleft`-type events) — they throw away the continuous tracking you need for feedback.",
+      "category": "content",
+      "tags": [
+        "motion",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-response-how-quickly-the-value-reaches",
+      "source": "emilkowalski",
+      "text": "Response — how quickly the value reaches the target, in seconds. Lower = snappier. This is not \"duration\" — a spring has no fixed duration; its settle time emerges from the parameters.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-when-a-gesture-reverses-blend-velocity",
+      "source": "emilkowalski",
+      "text": "When a gesture reverses, blend velocity — don't hard-cut it. Replacing one animation with another at a reversal creates a velocity discontinuity, a \"brick wall.\" Spring libraries that carry velocity through a re-target avoid it. (This is what iOS's additive animations do natively; on the web, choose a spring library that re-targets from the current velocity.)",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-start-most-ui-at-damping-critically",
+      "source": "emilkowalski",
+      "text": "Start most UI at damping `1.0` (critically damped) — graceful and non-distracting.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-anchor-interactions-to-their-source-a",
+      "source": "emilkowalski",
+      "text": "Anchor interactions to their source. A menu, popover, or sheet should originate from the element that triggered it — set `transform-origin` to the trigger, so the spatial relationship between button and content is obvious. (This is the same origin-awareness point as popovers scaling from their trigger, not their center.)",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-dim-to-focus-separate-to-keep",
+      "source": "emilkowalski",
+      "text": "Dim to focus, separate to keep flow. A modal task pairs the surface with a dimming scrim and pushes the background back/down. A parallel, non-blocking panel uses translucency and offset without a scrim so the flow isn't broken. For stacked sheets, progressively dim and push back each parent layer.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-utility-add-feedback-only-where-it",
+      "source": "emilkowalski",
+      "text": "Utility — add feedback only where it earns its place. Reserve haptics/sound for meaningful moments (success, error, commit, snap). Over-feedback trains users to ignore all of it.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-damping-ratio-controls-overshoot-critically-damped",
+      "source": "emilkowalski",
+      "text": "Damping ratio — controls overshoot. `1.0` = critically damped, no bounce, smooth settle. `< 1.0` = overshoots and oscillates. Lower = bouncier.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-harmony-the-visual-the-sound-and",
+      "source": "emilkowalski",
+      "text": "Harmony — the visual, the sound, and the haptic must fire on the same frame. Latency between them destroys the illusion. Don't let a CSS transition lag the audio/haptic (Vibration API).",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-agency-keep-people-in-control-offer",
+      "source": "emilkowalski",
+      "text": "Agency. Keep people in control: offer choices, don't force a single path. Back it with forgiveness — easy undo for slips, a confirmation dialog only for genuinely destructive, irreversible actions (use sparingly; overusing it trains people to click through).",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-be-vigilant-about-every-latency-audit",
+      "source": "emilkowalski",
+      "text": "Be vigilant about every latency. Audit debounces, artificial timers, transition waits, and the ~300ms tap delay. Anything on the input path that isn't essential is a regression.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-material-weight-encodes-hierarchy-darker-heavier",
+      "source": "emilkowalski",
+      "text": "Material weight encodes hierarchy: darker/heavier materials separate structural regions (sidebars); lighter materials draw attention to interactive elements (buttons). Never stack a light translucent surface on another — legibility collapses.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-simplicity-not-minimalism-strip-the-unnecessary",
+      "source": "emilkowalski",
+      "text": "Simplicity — not minimalism. Strip the unnecessary so the core purpose shines; burying everything in one place looks minimal but isn't simple. Be concise (plain language, no jargon, fewer steps) and clear (use hierarchy — order, spacing, contrast — so the most important thing is the most obvious). Every element earns its place; sometimes adding context simplifies (a video scrubber that shows time remaining). Show the common path first, advanced options one level deeper.",
+      "category": "content",
+      "tags": [
+        "motion",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-feedback-comes-in-four-kinds-status",
+      "source": "emilkowalski",
+      "text": "Feedback comes in four kinds: status, completion, warning, error. Confirm meaningful actions, expose ongoing status, warn before problems, validate inline (not on submit).",
+      "category": "forms",
+      "tags": [
+        "motion",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-causality-it-must-be-obvious-what",
+      "source": "emilkowalski",
+      "text": "Causality — it must be obvious what caused the feedback. Trigger it on the actual causal event (the toggle flipping, the item snapping home), and match its character to the action's physicality.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-replace-slides-springs-parallax-with-short",
+      "source": "emilkowalski",
+      "text": "`prefers-reduced-motion: reduce` — replace slides/springs/parallax with short opacity cross-fades or static transitions. Drop elastic/overshoot. Keep opacity/color changes that aid comprehension.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-grouping-mapping-proximity-implies-relationship-place",
+      "source": "emilkowalski",
+      "text": "Grouping & mapping. Proximity implies relationship; place a control near what it affects and arrange controls to mirror what they change. If you need a label to explain a control, the mapping is weak.",
+      "category": "forms",
+      "tags": [
+        "motion",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-always-animate-from-the-presentation-current",
+      "source": "emilkowalski",
+      "text": "*Always animate from the presentation (current) value, never the target value.* On interrupt, read the element's live on-screen transform and start the new animation from there. Starting from the logical/target value causes a visible jump.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-build-nav-toolbars-sheets-as-translucent",
+      "source": "emilkowalski",
+      "text": "Build nav/toolbars/sheets as translucent layers (`backdrop-filter: blur()` + a semi-transparent background) with content scrolling underneath — not opaque bars that consume a fixed strip.",
+      "category": "performance",
+      "tags": [
+        "motion",
+        "performance"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-add-bounce-damping-only-when-the",
+      "source": "emilkowalski",
+      "text": "Add bounce (damping ~`0.8`) only when the gesture itself carried momentum (a flick, a throw, a drag release). Overshoot on a menu that just faded in feels wrong; overshoot on a card you flicked feels right.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-test-with-real-people-in-real",
+      "source": "emilkowalski",
+      "text": "Test with real people in real context, and review motion with fresh eyes — play it in slow motion / frame-by-frame to catch what's invisible at full speed.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-minimize-disambiguation-delays-double-tap-detection",
+      "source": "emilkowalski",
+      "text": "Minimize disambiguation delays. Double-tap detection unavoidably delays single taps; only pay that cost where double-tap truly exists.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-respond-on-pointer-down-not-on",
+      "source": "emilkowalski",
+      "text": "Respond on pointer-down, not on release. Highlight a button the instant it's pressed. Waiting for `click`/touch-up to show feedback feels dead.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-feedback-must-be-continuous-during-the",
+      "source": "emilkowalski",
+      "text": "*Feedback must be continuous during the interaction, not just at the end.* For a drag, slider, or drawer, update the UI 1:1 with the pointer the whole way through — never animate only when the gesture completes.",
+      "category": "interactions",
+      "tags": [
+        "motion",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-for-very-fast-motion-a-subtle",
+      "source": "emilkowalski",
+      "text": "For very fast motion, a subtle motion blur / stretch encodes speed and reads better than a hard sharp streak.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-build-hierarchy-from-weight-size-leading",
+      "source": "emilkowalski",
+      "text": "Build hierarchy from weight + size + leading as a set, not size alone. Emphasize with weight — it adds presence without taking more space.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-purpose-make-with-intention-decide-what",
+      "source": "emilkowalski",
+      "text": "Purpose. Make with intention; decide what not to build. Every feature asks for the user's time, attention, and trust — spend that budget only where it pays off.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-direct-specific-labels-beat-safe-generic",
+      "source": "emilkowalski",
+      "text": "Direct, specific labels beat safe generic ones. Name nav items for their contents (\"Progress\", \"Library\"), not vague umbrellas (\"Home\"). Specificity creates predictability.",
+      "category": "forms",
+      "tags": [
+        "motion",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-default-to-the-platform-s-system",
+      "source": "emilkowalski",
+      "text": "Default to the platform's system font before a custom face; it already ships optical sizing, tracking tables, and legibility tuning. Override only with a reason.",
+      "category": "forms",
+      "tags": [
+        "motion",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-avoid-css-transitions-and-for-anything",
+      "source": "emilkowalski",
+      "text": "Avoid CSS transitions and `@keyframes` for anything gesture-driven — they can't be smoothly grabbed and reversed mid-flight. Springs animate from the current value by default, which is exactly what interruption needs.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-materialize-don-t-just-fade-for",
+      "source": "emilkowalski",
+      "text": "Materialize, don't just fade. For glass/blur surfaces, animate blur radius and scale together on enter/exit, so the surface reads as a real material arriving rather than a plain opacity fade.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-design-interaction-and-visuals-together-you",
+      "source": "emilkowalski",
+      "text": "Design interaction and visuals together. \"You shouldn't be able to tell where one ends and the other begins.\" Motion is not a layer added after the pixels.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-bigger-surfaces-should-read-as-thicker",
+      "source": "emilkowalski",
+      "text": "Bigger surfaces should read as thicker: stronger blur + a deeper shadow than small chips. Consider context-aware shadow — heavier over busy/text content for separation, lighter over plain backgrounds.",
+      "category": "performance",
+      "tags": [
+        "motion",
+        "performance"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-is-the-web-s-display-synced",
+      "source": "emilkowalski",
+      "text": "`requestAnimationFrame` is the web's display-synced clock (Apple uses `CADisplayLink`). Animate only compositor-friendly properties — `transform` and `opacity` — and hint with `will-change` where motion is imminent.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-wayfinding-every-screen-should-answer-where",
+      "source": "emilkowalski",
+      "text": "Wayfinding. Every screen should answer: Where am I? Where can I go? What's there? How do I get out? Never trap the user.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-track-a-short-velocity-position-history",
+      "source": "emilkowalski",
+      "text": "Track a short velocity/position history (last few `pointermove` events), not just the current point — you'll need velocity at release.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-never-lock-out-input-during-a",
+      "source": "emilkowalski",
+      "text": "Never lock out input during a transition.",
+      "category": "animations",
+      "tags": [
+        "motion",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-keep-the-per-frame-positional-change",
+      "source": "emilkowalski",
+      "text": "Keep the per-frame positional change below the perception threshold to avoid strobing.",
+      "category": "design",
+      "tags": [
+        "motion",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "emilkowalski-respect-the-user-s-text-size",
+      "source": "emilkowalski",
+      "text": "Respect the user's text-size setting (Dynamic Type). Scale layout with the text — spacing in `rem`/`em`, not fixed px — so a larger font doesn't break the layout.",
+      "category": "content",
+      "tags": [
+        "motion",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "jakubkrehel-copy-stored-in-natural-case-presentation",
+      "source": "jakubkrehel",
+      "text": "Copy stored in natural case, presentation via `text-transform`",
+      "category": "content",
+      "tags": [
+        "typography",
+        "design",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "jakubkrehel-underlines-use-or-tuned-thickness-offset",
+      "source": "jakubkrehel",
+      "text": "Underlines use `from-font` or tuned thickness, offset and skip-ink",
+      "category": "content",
+      "tags": [
+        "typography",
+        "design",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "jakubkrehel-long-form-text-capped-around-60",
+      "source": "jakubkrehel",
+      "text": "Long-form text capped around 60–75 characters per line",
+      "category": "forms",
+      "tags": [
+        "typography",
+        "design",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "jakubkrehel-never-match-the-outline-to-the",
+      "source": "jakubkrehel",
+      "text": "Never match the outline to the project's accent or ink color. The outline is a neutral separator, not a themed element.",
+      "category": "design",
+      "tags": [
+        "typography",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-detect-and-adapt-to-the-hardware",
@@ -822,7 +1475,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-box-shadow-should-be-used-for",
@@ -864,7 +1517,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-where-available-tabular-figures-should-be",
@@ -878,7 +1531,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-large-values-for-and-may-be",
@@ -892,7 +1545,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-empty-states-should-prompt-to-create",
@@ -906,7 +1559,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-inputs-should-leverage-html-form-validation",
@@ -934,7 +1587,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-inputs-should-not-auto-focus-on",
@@ -948,7 +1601,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-images-should-always-be-rendered-with",
@@ -976,7 +1629,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-hovering-trivial-buttons",
@@ -990,7 +1643,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-toggle-on-unperformant-scroll-animations-for",
@@ -1046,7 +1699,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "rauno-inputs-should-have-an-appropriate-like",
@@ -1060,7 +1713,1190 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "sounds-on-the-web-check-against-all-rules-below",
+      "source": "sounds-on-the-web",
+      "text": "Check against all rules below",
+      "category": "design",
+      "tags": [
+        "a11y",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "sounds-on-the-web-read-the-specified-files-or-prompt",
+      "source": "sounds-on-the-web",
+      "text": "Read the specified files (or prompt user for files/pattern)",
+      "category": "design",
+      "tags": [
+        "a11y",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "sounds-on-the-web-output-findings-in-format",
+      "source": "sounds-on-the-web",
+      "text": "Output findings in `file:line` format",
+      "category": "forms",
+      "tags": [
+        "a11y",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:47:37.037Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-",
+      "source": "ui-skills",
+      "text": "`/baseline-ui`",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-enforce-critical-rules-first-never-patterns",
+      "source": "ui-skills",
+      "text": "enforce critical rules first (never patterns, tool boundaries)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-prefer-minimal-changes-do-not-refactor",
+      "source": "ui-skills",
+      "text": "prefer minimal changes, do not refactor unrelated code",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-descriptions-must-be-plain-text-no",
+      "source": "ui-skills",
+      "text": "descriptions must be plain text, no markdown or quote spam",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-json-ld-must-be-valid-and",
+      "source": "ui-skills",
+      "text": "JSON-LD must be valid and reflect what is actually rendered",
+      "category": "performance",
+      "tags": [
+        "interaction",
+        "performance"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-invent-ratings-reviews-prices",
+      "source": "ui-skills",
+      "text": "do not invent ratings, reviews, prices, or organization details",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-localized-pages-must-canonicalize-correctly-per",
+      "source": "ui-skills",
+      "text": "localized pages must canonicalize correctly per locale",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-follow-the-project-s-existing-metadata",
+      "source": "ui-skills",
+      "text": "follow the project's existing metadata pattern (Next.js metadata API, react-helmet, manual head, etc.)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-audit-against-the-priority-rules-below",
+      "source": "ui-skills",
+      "text": "Audit against the priority rules below — fix critical issues (duplicates, indexing) first",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-violations-quote-the-exact-line-snippet",
+      "source": "ui-skills",
+      "text": "violations (quote the exact line/snippet)",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-a-concrete-fix-code-level-suggestion",
+      "source": "ui-skills",
+      "text": "a concrete fix (code-level suggestion)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-disabled-submit-actions-must-explain-why",
+      "source": "ui-skills",
+      "text": "disabled submit actions must explain why",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-metadata-must-be-deterministic-no-random",
+      "source": "ui-skills",
+      "text": "metadata must be deterministic, no random or unstable values",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-use-a-sensible-og-type-usually",
+      "source": "ui-skills",
+      "text": "use a sensible og:type, usually website or article",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-include-apple-touch-icon-when-relevant",
+      "source": "ui-skills",
+      "text": "include apple-touch-icon when relevant",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-fix-critical-issues-first-names-keyboard",
+      "source": "ui-skills",
+      "text": "fix critical issues first (names, keyboard, focus, tool boundaries)",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-identify-pages-with-missing-or-incorrect",
+      "source": "ui-skills",
+      "text": "Identify pages with missing or incorrect metadata (titles, descriptions, canonical, OG tags)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-keep-diffs-minimal-and-scoped-to",
+      "source": "ui-skills",
+      "text": "Keep diffs minimal and scoped to metadata only — do not refactor unrelated code",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-prefer-one-structured-data-block-per",
+      "source": "ui-skills",
+      "text": "prefer one structured data block per page unless required",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-avoid-autoplaying-media-with-sound",
+      "source": "ui-skills",
+      "text": "avoid autoplaying media with sound",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-quote-the-exact-snippet-state-the",
+      "source": "ui-skills",
+      "text": "quote the exact snippet, state the failure, propose a small fix",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-for-complex-widgets-menu-dialog-combobox",
+      "source": "ui-skills",
+      "text": "for complex widgets (menu, dialog, combobox), prefer established accessible primitives over custom behavior",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-refactoring-janky-interactions-or-transitions",
+      "source": "ui-skills",
+      "text": "refactoring janky interactions or transitions",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-for-any-non-default-choice-state",
+      "source": "ui-skills",
+      "text": "for any non-default choice, state the constraint that justifies it (surface size, duration, or interaction requirement)",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-when-reviewing-prefer-actionable-notes-and",
+      "source": "ui-skills",
+      "text": "when reviewing, prefer actionable notes and concrete alternatives over theory",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-verify-social-cards-render-correctly-on",
+      "source": "ui-skills",
+      "text": "Verify social cards render correctly on a real URL, not localhost",
+      "category": "performance",
+      "tags": [
+        "interaction",
+        "performance"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-adding-structured-data-json-ld",
+      "source": "ui-skills",
+      "text": "adding structured data (JSON-LD)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-manifest-must-be-valid-and-referenced",
+      "source": "ui-skills",
+      "text": "manifest must be valid and referenced when used",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-icon-paths-should-be-stable-and",
+      "source": "ui-skills",
+      "text": "icon paths should be stable and cacheable",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-add-json-ld-unless",
+      "source": "ui-skills",
+      "text": "do not add JSON-LD unless it clearly maps to real page content",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-set-og-locale-when-localization-exists",
+      "source": "ui-skills",
+      "text": "set og:locale when localization exists",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-animating-layout-filters-masks-gradients-or",
+      "source": "ui-skills",
+      "text": "animating layout, filters, masks, gradients, or CSS variables",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-paint-color-borders-gradients-masks-images",
+      "source": "ui-skills",
+      "text": "paint: color, borders, gradients, masks, images, filters",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-scope-animated-css-variables-locally-and",
+      "source": "ui-skills",
+      "text": "scope animated CSS variables locally and avoid inheritance",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-compositor-motion-requires-layer-promotion-never",
+      "source": "ui-skills",
+      "text": "compositor motion requires layer promotion, never assume it",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-apply-these-rules-within-the-existing",
+      "source": "ui-skills",
+      "text": "apply these rules within the existing animation system",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-choose-the-least-expensive-rendering-work",
+      "source": "ui-skills",
+      "text": "choose the least expensive rendering work that matches the intent",
+      "category": "performance",
+      "tags": [
+        "interaction",
+        "performance"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-adding-or-changing-page-titles-descriptions",
+      "source": "ui-skills",
+      "text": "adding or changing page titles, descriptions, canonical, robots",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-setting-favicons-app-icons-manifest-theme",
+      "source": "ui-skills",
+      "text": "setting favicons, app icons, manifest, theme-color",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-building-shared-seo-components-or-layout",
+      "source": "ui-skills",
+      "text": "building shared SEO components or layout metadata defaults",
+      "category": "layout",
+      "tags": [
+        "interaction",
+        "layout"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-emit-duplicate-title-description",
+      "source": "ui-skills",
+      "text": "do not emit duplicate title, description, canonical, or robots tags",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-escape-and-sanitize-any-user-generated",
+      "source": "ui-skills",
+      "text": "escape and sanitize any user-generated or dynamic strings",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-include-at-least-one-favicon-that",
+      "source": "ui-skills",
+      "text": "include at least one favicon that works across browsers",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-add-hreflang-alternates-only-when-pages",
+      "source": "ui-skills",
+      "text": "add hreflang alternates only when pages truly exist",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-fix-critical-issues-first-duplicates-canonical",
+      "source": "ui-skills",
+      "text": "fix critical issues first (duplicates, canonical, indexing)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-prefer-stable-boring-metadata-over-clever",
+      "source": "ui-skills",
+      "text": "prefer stable, boring metadata over clever or dynamic",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-adding-or-changing-buttons-links-inputs",
+      "source": "ui-skills",
+      "text": "adding or changing buttons, links, inputs, menus, dialogs, tabs, dropdowns",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-working-on-focus-states-focus-trapping",
+      "source": "ui-skills",
+      "text": "working on focus states, focus trapping, or modal behavior",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-use-tabindex-greater-than",
+      "source": "ui-skills",
+      "text": "do not use tabindex greater than 0",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-tables-must-use-th-for-headers",
+      "source": "ui-skills",
+      "text": "tables must use th for headers when applicable",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-required-fields-must-be-announced",
+      "source": "ui-skills",
+      "text": "required fields must be announced",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-loading-states-should-use-aria-busy",
+      "source": "ui-skills",
+      "text": "loading states should use aria-busy or status text",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-toasts-must-not-be-the-only",
+      "source": "ui-skills",
+      "text": "toasts must not be the only way to convey critical information",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-reviewing-components-that-use-will-change",
+      "source": "ui-skills",
+      "text": "reviewing components that use will-change, transforms, or measurement",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-use-intersectionobserver-for-visibility-and-pausing",
+      "source": "ui-skills",
+      "text": "use IntersectionObserver for visibility and pausing",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-validate-layer-behavior-with-tooling-when",
+      "source": "ui-skills",
+      "text": "validate layer behavior with tooling when performance matters",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-avoid-view-transitions-when-interruption-or",
+      "source": "ui-skills",
+      "text": "avoid view transitions when interruption or cancellation is required",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-treat-size-changes-as-potentially-layout",
+      "source": "ui-skills",
+      "text": "treat size changes as potentially layout-triggering",
+      "category": "layout",
+      "tags": [
+        "interaction",
+        "layout"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-ensure-title-description-canonical-and-og",
+      "source": "ui-skills",
+      "text": "Ensure title, description, canonical, and og:url all agree with each other",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-changing-locale-alternate-languages-or-canonical",
+      "source": "ui-skills",
+      "text": "changing locale, alternate languages, or canonical routing",
+      "category": "content",
+      "tags": [
+        "interaction",
+        "content"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-shipping-new-pages-marketing-pages-or",
+      "source": "ui-skills",
+      "text": "shipping new pages, marketing pages, or shareable links",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-define-metadata-in-one-place-per",
+      "source": "ui-skills",
+      "text": "define metadata in one place per page, avoid competing systems",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-paginated-pages-must-have-correct-canonical",
+      "source": "ui-skills",
+      "text": "paginated pages must have correct canonical behavior",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-verify-social-cards-on-a-real",
+      "source": "ui-skills",
+      "text": "verify social cards on a real URL, not localhost",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-keep-diffs-minimal-and-scoped-to",
+      "source": "ui-skills",
+      "text": "keep diffs minimal and scoped to metadata only",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-adding-or-changing-ui-animations-css",
+      "source": "ui-skills",
+      "text": "adding or changing UI animations (CSS, WAAPI, Motion, rAF, GSAP)",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-mix-multiple-animation-systems",
+      "source": "ui-skills",
+      "text": "do not mix multiple animation systems that each measure or mutate layout",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-why-it-matters-one-short-sentence",
+      "source": "ui-skills",
+      "text": "why it matters (one short sentence)",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-implementing-keyboard-shortcuts-or-custom-interactions",
+      "source": "ui-skills",
+      "text": "implementing keyboard shortcuts or custom interactions",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-every-input-select-and-textarea-must",
+      "source": "ui-skills",
+      "text": "every input, select, and textarea must be labeled",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-all-interactive-elements-must-be-reachable",
+      "source": "ui-skills",
+      "text": "all interactive elements must be reachable by Tab",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-modals-must-trap-focus-while-open",
+      "source": "ui-skills",
+      "text": "modals must trap focus while open",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-critical-form-errors-should-use-aria",
+      "source": "ui-skills",
+      "text": "critical form errors should use aria-live",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-videos-with-speech-should-provide-captions",
+      "source": "ui-skills",
+      "text": "videos with speech should provide captions when relevant",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-use-js-driven-animation-only-when",
+      "source": "ui-skills",
+      "text": "use JS-driven animation only when interaction requires it",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-read-layout-repeatedly-during",
+      "source": "ui-skills",
+      "text": "do not read layout repeatedly during an animation",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-prefer-approaches-that-batch-measurement-and",
+      "source": "ui-skills",
+      "text": "prefer approaches that batch measurement and writes",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-avoid-many-or-large-promoted-layers",
+      "source": "ui-skills",
+      "text": "avoid many or large promoted layers",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-avoid-view-transitions-for-interaction-heavy",
+      "source": "ui-skills",
+      "text": "avoid view transitions for interaction-heavy UI",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-set-the-html-lang-attribute-correctly",
+      "source": "ui-skills",
+      "text": "set the html lang attribute correctly",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-building-forms-validation-error-states-helper",
+      "source": "ui-skills",
+      "text": "building forms, validation, error states, helper text",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-do-not-add-aria-when-native",
+      "source": "ui-skills",
+      "text": "do not add aria when native semantics already solve the problem",
+      "category": "interactions",
+      "tags": [
+        "interaction",
+        "interactions"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-prefer-downgrading-technique-over-removing-motion",
+      "source": "ui-skills",
+      "text": "prefer downgrading technique over removing motion entirely",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-set-theme-color-intentionally-to-avoid",
+      "source": "ui-skills",
+      "text": "set theme-color intentionally to avoid mismatched UI chrome",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-prefer-native-elements-button-a-input",
+      "source": "ui-skills",
+      "text": "prefer native elements (button, a, input) over role-based hacks",
+      "category": "forms",
+      "tags": [
+        "interaction",
+        "forms"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-one-shot-effects-are-acceptable-more",
+      "source": "ui-skills",
+      "text": "one-shot effects are acceptable more often than continuous motion",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-scroll-linked-motion-must-not-trigger",
+      "source": "ui-skills",
+      "text": "scroll-linked motion must not trigger continuous layout or paint on large surfaces",
+      "category": "animations",
+      "tags": [
+        "interaction",
+        "animations"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
+    },
+    {
+      "suggestedId": "ibelick-never-partially-migrate-apis-or-mix",
+      "source": "ui-skills",
+      "text": "never partially migrate APIs or mix styles within the same component",
+      "category": "design",
+      "tags": [
+        "interaction",
+        "design"
+      ],
+      "status": "needs-examples",
+      "firstSeen": "2026-07-15T12:50:48.185Z",
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-not",
@@ -1075,7 +2911,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-numerals-for-counts-8-deployments-not",
@@ -1134,7 +2970,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-deep-link-all-stateful-ui-if",
@@ -1149,7 +2985,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-brand-names-code-tokens-identifiers-wrap",
@@ -1281,7 +3117,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-headings-hierarchical-include-skip-link-for",
@@ -1296,7 +3132,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-on-non-auth-fields-to-avoid",
@@ -1353,7 +3189,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-svg-transforms-on-wrapper-with",
@@ -1383,7 +3219,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-use-or-on-headings-prevents-widows",
@@ -1398,7 +3234,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-flex-children-need-to-allow-text",
@@ -1457,7 +3293,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-active-voice-install-the-cli-not",
@@ -1487,7 +3323,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-handle-empty-states-don-t-render",
@@ -1501,7 +3337,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-full-bleed-layouts-need-for-notches",
@@ -1516,7 +3352,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-12T23:51:19.873Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-flex-grid-over-js-measurement-for",
@@ -1576,7 +3412,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-interfaces-succeed-because-of-hundreds-of",
@@ -1591,7 +3427,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-these-preferences-reflect-vercel-s-brand",
@@ -1606,7 +3442,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-source-https-github-com-vercel-labs",
@@ -1621,7 +3457,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-an-agents-md-file-provides-guidance",
@@ -1636,7 +3472,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-rules-https-raw-githubusercontent-com-vercel",
@@ -1651,7 +3487,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-minimum-loading-state-duration-if-you",
@@ -1711,7 +3547,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-don-t-trigger-password-managers-for",
@@ -1740,7 +3576,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-instead-of-invalid-api-key-say",
@@ -1755,7 +3591,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-let-the-browser-size-things-prefer",
@@ -1770,7 +3606,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-don-t-use-the-main-thread",
@@ -1815,7 +3651,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-action-oriented-language",
@@ -1830,7 +3666,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-instead-of-10mb-say-10-mb",
@@ -1845,7 +3681,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-avoid-gradient-banding-some-colors-display",
@@ -1860,7 +3696,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-headings-skip-link-hierarchical-h1-h6",
@@ -1875,7 +3711,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-set-the-appropriate-color-scheme-style",
@@ -1890,7 +3726,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-avoid-ambiguity-labels-are-clear-specific",
@@ -1904,7 +3740,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-cross-browser-svg-transforms-apply-css",
@@ -1919,7 +3755,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-no-excessive-scrollbars-only-render-useful",
@@ -1934,7 +3770,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-preconnect-to-origins-use-link-rel",
@@ -1948,7 +3784,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T11:24:40.749Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     },
     {
       "suggestedId": "vercel-inline-navigation-without",
@@ -1963,7 +3799,7 @@
       ],
       "status": "needs-examples",
       "firstSeen": "2026-07-14T16:58:18.407Z",
-      "lastSeen": "2026-07-14T16:58:18.407Z"
+      "lastSeen": "2026-07-15T12:53:44.959Z"
     }
   ]
 }

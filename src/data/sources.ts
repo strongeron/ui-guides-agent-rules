@@ -89,6 +89,25 @@ export const sourceCatalog: CatalogSource[] = [
     },
   },
   {
+    // Distinct from vercel-labs/web-interface-guidelines above: this is Vercel's
+    // React/Next engineering rule set (perf waterfalls, bundle size, composition
+    // patterns). Catalogued to satisfy the sources:catalog "in report, not catalogued"
+    // flag. github-mode was tested (2026-07-15) and rejected: it yields 180 rules with
+    // ZERO overlap with our corpus — `.toSorted()`, `prefetchDNS`, "Cache invalidation"
+    // — i.e. React-internals, not interface guidelines. Auto-diffing floods the backlog
+    // with 151 off-domain items, so it stays `manual` (coverage/attribution only). If we
+    // ever want its handful of genuinely interface-level rules, harvest them by hand.
+    id: 'vercel-agent-skills',
+    name: 'Vercel Agent Skills',
+    author: 'Vercel Engineering',
+    homepage: 'https://github.com/vercel-labs/agent-skills',
+    repo: 'vercel-labs/agent-skills',
+    originKind: 'github',
+    color: 'bg-foreground text-background border-foreground',
+    defaultTags: ['performance'],
+    check: { mode: 'manual', reviewEveryDays: 90 },
+  },
+  {
     id: 'rauno',
     name: 'Rauno',
     author: 'Rauno Freiberg',
@@ -174,7 +193,18 @@ export const sourceCatalog: CatalogSource[] = [
     color: 'bg-amber-700 text-white border-amber-700',
     patternSource: 'ibelick',
     defaultTags: ['interaction'],
-    check: { mode: 'manual', reviewEveryDays: 30 },
+    check: {
+      mode: 'github',
+      // ui-skills.com is a landing page, but the rules live in this repo as clean
+      // MUST/SHOULD/NEVER bullet lists — directly diffable. `baseline-ui` is the
+      // deslop constraint set; the `fixing-*` skills are focused rule packs.
+      rawUrls: [
+        'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md',
+        'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md',
+        'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md',
+        'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md',
+      ],
+    },
   },
   {
     id: 'tailwind',
@@ -206,6 +236,13 @@ export const sourceCatalog: CatalogSource[] = [
     color: 'bg-[#cc785c] text-white border-[#cc785c]',
     patternSource: 'anthropic',
     defaultTags: ['design'],
+    // github-mode was tested (2026-07-15): the only design-adjacent files are
+    // canvas-design (art/poster-generation philosophy — "SPATIAL EXPRESSION",
+    // "PURE DESIGN") and brand-guidelines (a per-brand hex/font dump, the same
+    // non-portable shape we DECLINED for ihlamury/design-skills). It surfaced 36
+    // items, ~all off-domain art/brand noise. Kept `manual` so the diff isn't flooded;
+    // skills.sh is a registry, not a portable UI rule file. Revisit if Anthropic ships
+    // an interface-guidelines skill.
     check: { mode: 'manual', reviewEveryDays: 90 },
   },
   {

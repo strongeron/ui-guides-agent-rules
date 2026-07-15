@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { sourceCatalog } from '../src/data/sources';
+import { sourceCatalog, declinedSources } from '../src/data/sources';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const docDir = join(__dirname, '..', 'doc');
@@ -70,7 +70,12 @@ function main() {
     reportRepos = extractRepos(readFileSync(reportPath, 'utf-8'));
   }
 
-  const inReportNotCatalog = reportRepos.filter((r) => !catalogRepos.has(r));
+  // Subtract deliberately-declined repos: they appear in the report but were reviewed
+  // and rejected (see `declinedSources`). Re-surfacing them as "candidates to add"
+  // re-litigates settled decisions — the exact thing that array exists to prevent.
+  const declined = new Set<string>(declinedSources.map((r) => r.toLowerCase()));
+  const inReportNotCatalog = reportRepos.filter((r) => !catalogRepos.has(r) && !declined.has(r));
+  const inReportDeclined = reportRepos.filter((r) => declined.has(r));
   const inCatalogNotReport = [...catalogRepos].filter((r) => !reportRepos.includes(r)).sort();
   const catalogMissingCheck = sourceCatalog
     .filter((s) => s.check.mode === 'github' && (s.check.rawUrls?.length ?? 0) === 0)
@@ -91,6 +96,9 @@ function main() {
     } else {
       console.log('\n  ✅ Every report repo is represented in the catalog.');
     }
+    if (inReportDeclined.length) {
+      console.log(`\n  🚫 In report but previously DECLINED (${inReportDeclined.length}, not re-surfaced): ${inReportDeclined.join(', ')}`);
+    }
     if (inCatalogNotReport.length) {
       console.log(`\n  ℹ️  In catalog, not matched in report (${inCatalogNotReport.length}): ${inCatalogNotReport.join(', ')}`);
     }
@@ -101,7 +109,7 @@ function main() {
 
   writeFileSync(
     outPath,
-    JSON.stringify({ generatedAt: nowISO, reportFound, reportPath, inReportNotCatalog, inCatalogNotReport, catalogMissingCheck }, null, 2) + '\n'
+    JSON.stringify({ generatedAt: nowISO, reportFound, reportPath, inReportNotCatalog, inReportDeclined, inCatalogNotReport, catalogMissingCheck }, null, 2) + '\n'
   );
   console.log(`\n📁 → doc/source-catalog-check.json\n`);
 }

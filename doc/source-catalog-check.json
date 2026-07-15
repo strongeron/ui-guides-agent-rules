@@ -1,12 +1,25 @@
 {
-  "generatedAt": "2026-07-13T00:29:00.241Z",
+  "generatedAt": "2026-07-15T12:53:47.477Z",
   "reportFound": true,
   "reportPath": "/Users/strongeron/Library/Mobile Documents/iCloud~md~obsidian/Documents/Fox Brains/AI/Claude Code/UI · Animation · Design Skills — Source Directory 2026.md",
   "inReportNotCatalog": [
-    "vercel-labs/agent-skills"
+    "strongeron/agent-skills"
+  ],
+  "inReportDeclined": [
+    "arvindrk/extract-design-system",
+    "cloudai-x/threejs-skills",
+    "heygen-com/hyperframes",
+    "ihlamury/design-skills",
+    "mattpocock/skills",
+    "remotion-dev/skills",
+    "wshobson/agents"
   ],
   "inCatalogNotReport": [
     "anthropics/skills",
+    "ibelick/ui-skills",
+    "jakubkrehel/skills",
+    "pbakaus/impeccable",
+    "raphaelsalaja/skill",
     "raunofreiberg/interfaces"
   ],
   "catalogMissingCheck": []

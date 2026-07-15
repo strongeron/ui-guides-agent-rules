@@ -200,7 +200,17 @@ async function main() {
       });
     }
   }
-  const pending = [...byKey.values()].sort((a, b) => a.source.localeCompare(b.source));
+  // Self-heal: drop pending entries whose source is no longer github-diffable
+  // (reverted to manual, or removed from the catalog). The backlog accumulates across
+  // runs, so without this a source that leaves github mode leaves its rules stranded —
+  // they can never be re-verified against an upstream list. github sources that are
+  // merely unreachable this run keep their entries (they're still in this set).
+  const githubSourceIds = new Set(
+    sourceCatalog.filter((s) => s.check.mode === 'github').map((s) => s.id)
+  );
+  const pending = [...byKey.values()]
+    .filter((e) => githubSourceIds.has(e.source))
+    .sort((a, b) => a.source.localeCompare(b.source));
   writeFileSync(pendingPath, JSON.stringify({ generatedAt: nowISO, pending }, null, 2) + '\n');
   writeFileSync(freshnessPath, JSON.stringify({ generatedAt: nowISO, reports }, null, 2) + '\n');
 
