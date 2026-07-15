@@ -221,9 +221,10 @@ export const sourceCatalog: CatalogSource[] = [
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/baseline-ui/SKILL.md',
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md',
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md',
-        'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md',
         // Surfaced by sources:discover (2026-07-15). ui-skills-root is a context router,
-        // not rules, so it is left out.
+        // not rules, so it is left out. fixing-metadata was wired then dropped: it is an
+        // SEO/social-card checklist (og:type, JSON-LD, canonical locales), off-domain for
+        // an interface-guidelines corpus — its rules only cluttered the backlog.
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/improve-ui/SKILL.md',
       ],
     },

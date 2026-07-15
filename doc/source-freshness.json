@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T13:08:34.939Z",
+  "generatedAt": "2026-07-15T18:57:24.075Z",
   "reports": [
     {
       "source": "vercel",
@@ -618,7 +618,7 @@
       "mode": "github",
       "status": "checked",
       "upstreamRules": 165,
-      "ourRules": 28,
+      "ourRules": 30,
       "newRules": [
         {
           "source": "emilkowalski",
@@ -782,17 +782,6 @@
           "tags": [
             "motion",
             "animations"
-          ],
-          "bestMatch": 0.13
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Dim to focus, separate to keep flow. A modal task pairs the surface with a dimming scrim and pushes the background back/down. A parallel, non-blocking panel uses translucency and offset without a scrim so the flow isn't broken. For stacked sheets, progressively dim and push back each parent layer.",
-          "suggestedId": "emilkowalski-dim-to-focus-separate-to-keep",
-          "category": "interactions",
-          "tags": [
-            "motion",
-            "interactions"
           ],
           "bestMatch": 0.13
         },
@@ -1444,17 +1433,6 @@
             "design"
           ],
           "bestMatch": 0.25
-        },
-        {
-          "source": "emilkowalski",
-          "text": "Bigger surfaces should read as thicker: stronger blur + a deeper shadow than small chips. Consider context-aware shadow — heavier over busy/text content for separation, lighter over plain backgrounds.",
-          "suggestedId": "emilkowalski-bigger-surfaces-should-read-as-thicker",
-          "category": "performance",
-          "tags": [
-            "motion",
-            "performance"
-          ],
-          "bestMatch": 0.26
         },
         {
           "source": "emilkowalski",
@@ -2133,7 +2111,7 @@
       "name": "@Ibelick",
       "mode": "github",
       "status": "checked",
-      "upstreamRules": 222,
+      "upstreamRules": 169,
       "ourRules": 50,
       "newRules": [
         {
@@ -2281,61 +2259,6 @@
         },
         {
           "source": "ui-skills",
-          "text": "descriptions must be plain text, no markdown or quote spam",
-          "suggestedId": "ibelick-descriptions-must-be-plain-text-no",
-          "category": "content",
-          "tags": [
-            "interaction",
-            "content"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "ui-skills",
-          "text": "JSON-LD must be valid and reflect what is actually rendered",
-          "suggestedId": "ibelick-json-ld-must-be-valid-and",
-          "category": "performance",
-          "tags": [
-            "interaction",
-            "performance"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "ui-skills",
-          "text": "do not invent ratings, reviews, prices, or organization details",
-          "suggestedId": "ibelick-do-not-invent-ratings-reviews-prices",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "ui-skills",
-          "text": "localized pages must canonicalize correctly per locale",
-          "suggestedId": "ibelick-localized-pages-must-canonicalize-correctly-per",
-          "category": "content",
-          "tags": [
-            "interaction",
-            "content"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "ui-skills",
-          "text": "follow the project's existing metadata pattern (Next.js metadata API, react-helmet, manual head, etc.)",
-          "suggestedId": "ibelick-follow-the-project-s-existing-metadata",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "ui-skills",
           "text": "The problem does not exactly match the cited implementation.",
           "suggestedId": "ibelick-the-problem-does-not-exactly-match",
           "category": "design",
@@ -2355,17 +2278,6 @@
             "design"
           ],
           "bestMatch": 0.17
-        },
-        {
-          "source": "ui-skills",
-          "text": "Audit against the priority rules below — fix critical issues (duplicates, indexing) first",
-          "suggestedId": "ibelick-audit-against-the-priority-rules-below",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.18
         },
         {
           "source": "ui-skills",
@@ -2413,39 +2325,6 @@
         },
         {
           "source": "ui-skills",
-          "text": "metadata must be deterministic, no random or unstable values",
-          "suggestedId": "ibelick-metadata-must-be-deterministic-no-random",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "interactions"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "ui-skills",
-          "text": "use a sensible og:type, usually website or article",
-          "suggestedId": "ibelick-use-a-sensible-og-type-usually",
-          "category": "content",
-          "tags": [
-            "interaction",
-            "content"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "ui-skills",
-          "text": "include apple-touch-icon when relevant",
-          "suggestedId": "ibelick-include-apple-touch-icon-when-relevant",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "interactions"
-          ],
-          "bestMatch": 0.2
-        },
-        {
-          "source": "ui-skills",
           "text": "Make every plan self-contained; its executor has no context from the audit or conversation.",
           "suggestedId": "ibelick-make-every-plan-self-contained-its",
           "category": "content",
@@ -2485,39 +2364,6 @@
           "tags": [
             "interaction",
             "interactions"
-          ],
-          "bestMatch": 0.22
-        },
-        {
-          "source": "ui-skills",
-          "text": "Identify pages with missing or incorrect metadata (titles, descriptions, canonical, OG tags)",
-          "suggestedId": "ibelick-identify-pages-with-missing-or-incorrect",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.22
-        },
-        {
-          "source": "ui-skills",
-          "text": "Keep diffs minimal and scoped to metadata only — do not refactor unrelated code",
-          "suggestedId": "ibelick-keep-diffs-minimal-and-scoped-to",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.22
-        },
-        {
-          "source": "ui-skills",
-          "text": "prefer one structured data block per page unless required",
-          "suggestedId": "ibelick-prefer-one-structured-data-block-per",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
           ],
           "bestMatch": 0.22
         },
@@ -2591,72 +2437,6 @@
           "source": "ui-skills",
           "text": "when reviewing, prefer actionable notes and concrete alternatives over theory",
           "suggestedId": "ibelick-when-reviewing-prefer-actionable-notes-and",
-          "category": "content",
-          "tags": [
-            "interaction",
-            "content"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "ui-skills",
-          "text": "Verify social cards render correctly on a real URL, not localhost",
-          "suggestedId": "ibelick-verify-social-cards-render-correctly-on",
-          "category": "performance",
-          "tags": [
-            "interaction",
-            "performance"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "ui-skills",
-          "text": "adding structured data (JSON-LD)",
-          "suggestedId": "ibelick-adding-structured-data-json-ld",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "ui-skills",
-          "text": "manifest must be valid and referenced when used",
-          "suggestedId": "ibelick-manifest-must-be-valid-and-referenced",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "ui-skills",
-          "text": "icon paths should be stable and cacheable",
-          "suggestedId": "ibelick-icon-paths-should-be-stable-and",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "interactions"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "ui-skills",
-          "text": "do not add JSON-LD unless it clearly maps to real page content",
-          "suggestedId": "ibelick-do-not-add-json-ld-unless",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "ui-skills",
-          "text": "set og:locale when localization exists",
-          "suggestedId": "ibelick-set-og-locale-when-localization-exists",
           "category": "content",
           "tags": [
             "interaction",
@@ -2749,105 +2529,6 @@
           "tags": [
             "interaction",
             "performance"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "adding or changing page titles, descriptions, canonical, robots",
-          "suggestedId": "ibelick-adding-or-changing-page-titles-descriptions",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "setting favicons, app icons, manifest, theme-color",
-          "suggestedId": "ibelick-setting-favicons-app-icons-manifest-theme",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "building shared SEO components or layout metadata defaults",
-          "suggestedId": "ibelick-building-shared-seo-components-or-layout",
-          "category": "layout",
-          "tags": [
-            "interaction",
-            "layout"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "do not emit duplicate title, description, canonical, or robots tags",
-          "suggestedId": "ibelick-do-not-emit-duplicate-title-description",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "escape and sanitize any user-generated or dynamic strings",
-          "suggestedId": "ibelick-escape-and-sanitize-any-user-generated",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "include at least one favicon that works across browsers",
-          "suggestedId": "ibelick-include-at-least-one-favicon-that",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "add hreflang alternates only when pages truly exist",
-          "suggestedId": "ibelick-add-hreflang-alternates-only-when-pages",
-          "category": "content",
-          "tags": [
-            "interaction",
-            "content"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "fix critical issues first (duplicates, canonical, indexing)",
-          "suggestedId": "ibelick-fix-critical-issues-first-duplicates-canonical",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.29
-        },
-        {
-          "source": "ui-skills",
-          "text": "prefer stable, boring metadata over clever or dynamic",
-          "suggestedId": "ibelick-prefer-stable-boring-metadata-over-clever",
-          "category": "interactions",
-          "tags": [
-            "interaction",
-            "interactions"
           ],
           "bestMatch": 0.29
         },
@@ -2980,83 +2661,6 @@
           "tags": [
             "interaction",
             "layout"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "Ensure title, description, canonical, and og:url all agree with each other",
-          "suggestedId": "ibelick-ensure-title-description-canonical-and-og",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "changing locale, alternate languages, or canonical routing",
-          "suggestedId": "ibelick-changing-locale-alternate-languages-or-canonical",
-          "category": "content",
-          "tags": [
-            "interaction",
-            "content"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "shipping new pages, marketing pages, or shareable links",
-          "suggestedId": "ibelick-shipping-new-pages-marketing-pages-or",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "define metadata in one place per page, avoid competing systems",
-          "suggestedId": "ibelick-define-metadata-in-one-place-per",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "paginated pages must have correct canonical behavior",
-          "suggestedId": "ibelick-paginated-pages-must-have-correct-canonical",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "verify social cards on a real URL, not localhost",
-          "suggestedId": "ibelick-verify-social-cards-on-a-real",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
-          "text": "keep diffs minimal and scoped to metadata only",
-          "suggestedId": "ibelick-keep-diffs-minimal-and-scoped-to",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
           ],
           "bestMatch": 0.33
         },
@@ -3227,17 +2831,6 @@
         },
         {
           "source": "ui-skills",
-          "text": "set the html lang attribute correctly",
-          "suggestedId": "ibelick-set-the-html-lang-attribute-correctly",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
-          ],
-          "bestMatch": 0.4
-        },
-        {
-          "source": "ui-skills",
           "text": "building forms, validation, error states, helper text",
           "suggestedId": "ibelick-building-forms-validation-error-states-helper",
           "category": "forms",
@@ -3266,17 +2859,6 @@
           "tags": [
             "interaction",
             "animations"
-          ],
-          "bestMatch": 0.43
-        },
-        {
-          "source": "ui-skills",
-          "text": "set theme-color intentionally to avoid mismatched UI chrome",
-          "suggestedId": "ibelick-set-theme-color-intentionally-to-avoid",
-          "category": "design",
-          "tags": [
-            "interaction",
-            "design"
           ],
           "bestMatch": 0.43
         },

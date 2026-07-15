@@ -1,0 +1,101 @@
+{
+  "note": "Rule-level reviewed-and-declined list \u2014 the analog of declinedSources in sources.ts. check:sources filters these suggestedIds out of the backlog permanently. Add here when an upstream rule is real but will never onboard (product philosophy, dev process, off-domain, library-specific).",
+  "dismissed": [
+    {
+      "suggestedId": "emilkowalski-responsibility-act-in-the-user-s",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Responsibility. Act in the user's interest. Privacy: ask at the right moment, only for what's needed, transparently. Saf"
+    },
+    {
+      "suggestedId": "emilkowalski-purpose-make-with-intention-decide-what",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Purpose. Make with intention; decide what not to build. Every feature asks for the user's time, attention, and trust \u2014 s"
+    },
+    {
+      "suggestedId": "emilkowalski-agency-keep-people-in-control-offer",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Agency. Keep people in control: offer choices, don't force a single path. Back it with forgiveness \u2014 easy undo for slips"
+    },
+    {
+      "suggestedId": "emilkowalski-familiarity-build-on-what-people-already",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Familiarity. Build on what people already know. Use metaphors that are neither too literal nor too abstract (a trash can"
+    },
+    {
+      "suggestedId": "emilkowalski-flexibility-design-for-different-contexts-devices",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Flexibility. Design for different contexts, devices, and the full range of abilities. Adapt to the platform (iPhone = qu"
+    },
+    {
+      "suggestedId": "emilkowalski-craft-uncompromising-attention-to-detail-builds",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Craft. Uncompromising attention to detail builds trust. Beautiful typography, colors that adapt to light/dark, clear ico"
+    },
+    {
+      "suggestedId": "emilkowalski-simplicity-not-minimalism-strip-the-unnecessary",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Simplicity \u2014 not minimalism. Strip the unnecessary so the core purpose shines; burying everything in one place looks min"
+    },
+    {
+      "suggestedId": "emilkowalski-utility-add-feedback-only-where-it",
+      "source": "emilkowalski",
+      "reason": "product philosophy (HIG values) \u2014 not a demoable interface rule",
+      "text": "Utility \u2014 add feedback only where it earns its place. Reserve haptics/sound for meaningful moments (success, error, comm"
+    },
+    {
+      "suggestedId": "emilkowalski-real-devices-for-gestures-drawers-swipe",
+      "source": "emilkowalski",
+      "reason": "dev workflow, not an interface rule",
+      "text": "Real devices for gestures (drawers, swipe) \u2014 connect a phone, hit the dev server by IP, use Safari remote devtools."
+    },
+    {
+      "suggestedId": "emilkowalski-fresh-eyes-next-day-imperfections-invisible",
+      "source": "emilkowalski",
+      "reason": "dev workflow, not an interface rule",
+      "text": "Fresh eyes next day \u2014 imperfections invisible during development surface later."
+    },
+    {
+      "suggestedId": "emilkowalski-prototype-interactively-an-interactive-demo-is",
+      "source": "emilkowalski",
+      "reason": "dev workflow, not an interface rule",
+      "text": "Prototype interactively \u2014 an interactive demo is worth \"a million static designs.\" You discover the interface by buildin"
+    },
+    {
+      "suggestedId": "emilkowalski-no-mutating-operations-no-installs-no",
+      "source": "emilkowalski",
+      "reason": "dev workflow, not an interface rule",
+      "text": "No mutating operations. No installs, no builds with side effects, no commits, no formatters. Read-only analysis only."
+    },
+    {
+      "suggestedId": "emilkowalski-when-unsure-whether-motion-feels-right",
+      "source": "emilkowalski",
+      "reason": "dev workflow, not an interface rule",
+      "text": "When unsure whether motion feels right, recommend reviewing it in slow motion / frame-by-frame and with fresh eyes the n"
+    },
+    {
+      "suggestedId": "emilkowalski-build-a-great-documentation-site-let",
+      "source": "emilkowalski",
+      "reason": "dev workflow, not an interface rule",
+      "text": "Build a great documentation site. Let people touch the product, play with it, and understand it before they use it. Inte"
+    },
+    {
+      "suggestedId": "emilkowalski-developer-experience-is-key-no-hooks",
+      "source": "emilkowalski",
+      "reason": "library-specific (Sonner), not portable guidance",
+      "text": "Developer experience is key. No hooks, no context, no complex setup. Insert `<Toaster />` once, call `toast()` from anyw"
+    },
+    {
+      "suggestedId": "emilkowalski-naming-creates-identity-sonner-french-for",
+      "source": "emilkowalski",
+      "reason": "library-specific (Sonner), not portable guidance",
+      "text": "Naming creates identity. \"Sonner\" (French for \"to ring\") feels more elegant than \"react-toast\". Sacrifice discoverabilit"
+    }
+  ]
+}

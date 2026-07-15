@@ -26,6 +26,10 @@ const docDir = join(__dirname, '..', 'doc');
 const freshnessPath = join(docDir, 'source-freshness.json');
 const pendingPath = join(docDir, 'pending-rules.json');
 const reviewStatePath = join(docDir, 'source-review-state.json');
+// Rule-level "reviewed & declined" — the analog of `declinedSources` in sources.ts, but
+// for individual upstream rules we never intend to onboard (product philosophy, dev
+// process, off-domain). Keyed by suggestedId. Keeps them out of the backlog for good.
+const dismissedPath = join(docDir, 'dismissed-rules.json');
 
 const MATCH_THRESHOLD = 0.5;
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -180,8 +184,12 @@ async function main() {
   const existing = loadJson<{ pending: PendingEntry[] }>(pendingPath, { pending: [] });
   const byKey = new Map(existing.pending.map((e) => [`${e.source}::${tokenizeKey(e.text)}`, e]));
 
+  // Everything actually observed upstream this run (uncovered rules from reachable sources).
+  const seenKeys = new Set<string>();
+  const checkedSources = new Set(reports.filter((r) => r.status === 'checked').map((r) => r.source));
   for (const nr of reports.flatMap((r) => r.newRules ?? [])) {
     const key = `${nr.source}::${tokenizeKey(nr.text)}`;
+    seenKeys.add(key);
     const prev = byKey.get(key);
     if (prev) {
       prev.lastSeen = nowISO;
@@ -200,17 +208,32 @@ async function main() {
       });
     }
   }
-  // Self-heal: drop pending entries whose source is no longer github-diffable
-  // (reverted to manual, or removed from the catalog). The backlog accumulates across
-  // runs, so without this a source that leaves github mode leaves its rules stranded —
-  // they can never be re-verified against an upstream list. github sources that are
-  // merely unreachable this run keep their entries (they're still in this set).
-  const githubSourceIds = new Set(
-    sourceCatalog.filter((s) => s.check.mode === 'github').map((s) => s.id)
+
+  const dismissed = new Set(
+    loadJson<{ dismissed: { suggestedId: string }[] }>(dismissedPath, { dismissed: [] }).dismissed.map((d) => d.suggestedId)
   );
+  const githubSourceIds = new Set(sourceCatalog.filter((s) => s.check.mode === 'github').map((s) => s.id));
+
+  // A pending item survives only if it is still a live, undismissed, uncovered upstream rule.
+  // Drop it when: its source left github mode; it was reviewed-and-dismissed; or its source
+  // was fetched this run but the rule was NOT re-observed — meaning upstream removed it, we
+  // stopped fetching that file (a rawUrl was pruned), or we have since covered it (best >=
+  // threshold, so it no longer counts as new). Items from a source that was unreachable this
+  // run are kept untouched, since absence there means "couldn't check", not "gone".
+  let droppedStale = 0;
+  let droppedDismissed = 0;
   const pending = [...byKey.values()]
-    .filter((e) => githubSourceIds.has(e.source))
+    .filter((e) => {
+      if (!githubSourceIds.has(e.source)) return false;
+      if (dismissed.has(e.suggestedId)) { droppedDismissed++; return false; }
+      const key = `${e.source}::${tokenizeKey(e.text)}`;
+      if (checkedSources.has(e.source) && !seenKeys.has(key)) { droppedStale++; return false; }
+      return true;
+    })
     .sort((a, b) => a.source.localeCompare(b.source));
+  if (droppedStale || droppedDismissed) {
+    console.log(`\n🧹 pruned ${droppedStale} stale (covered/removed) + ${droppedDismissed} dismissed from the backlog`);
+  }
   writeFileSync(pendingPath, JSON.stringify({ generatedAt: nowISO, pending }, null, 2) + '\n');
   writeFileSync(freshnessPath, JSON.stringify({ generatedAt: nowISO, reports }, null, 2) + '\n');
 
