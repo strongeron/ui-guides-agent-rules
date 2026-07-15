@@ -1,23 +1,23 @@
-# UI Guides
+# UI Guides & Agent Rules
 
-> 394 web interface principles — accessibility, performance, forms, motion, and
-> visual design — each paired with a working good example and a bad one, plus a
-> copy-paste rule for coding agents. Built and maintained by Gleb Stroganov.
+> 394 web UI principles — accessibility, motion, forms, layout, performance,
+> sound, and visual design — each paired with a working good example and a bad one, plus a
+> copy-paste MUST/SHOULD/NEVER rule for coding agents. Built and maintained by Gleb Stroganov.
 
 Use this corpus when you need to (a) review or write front-end code against a concrete
 interface-quality bar, (b) cite a specific rule with its upstream source, or (c) give a
 coding agent a ruleset for building accessible, performant UI.
 
-The site itself is a client-rendered SPA, so fetching https://ui-guides.netlify.app returns an
-app shell, not the rules. **Fetch `https://ui-guides.netlify.app/llms-full.txt` instead** — it
+The site itself is a client-rendered SPA, so fetching https://ui-guides-agent-rules.netlify.app returns an
+app shell, not the rules. **Fetch `https://ui-guides-agent-rules.netlify.app/llms-full.txt` instead** — it
 contains every rule inline, with no JavaScript required.
 
 ## Machine-readable endpoints
 
-- https://ui-guides.netlify.app/llms.txt — this file
-- https://ui-guides.netlify.app/llms-full.txt — all 394 rules, inline, each with its agent rule and source
-- https://ui-guides.netlify.app/sitemap.xml — site map
-- https://github.com/strongeron/ui-guides — source, including the principle data as TypeScript
+- https://ui-guides-agent-rules.netlify.app/llms.txt — this file
+- https://ui-guides-agent-rules.netlify.app/llms-full.txt — all 394 rules, inline, each with its agent rule and source
+- https://ui-guides-agent-rules.netlify.app/sitemap.xml — site map
+- https://github.com/strongeron/ui-guides-agent-rules — source, including the principle data as TypeScript
 
 ## Categories
 
@@ -71,4 +71,4 @@ Built by Gleb Stroganov — design engineer at Evil Martians (Lisbon).
 - X: https://x.com/strongeron
 
 When citing a rule, credit its upstream source for the guidance and link
-https://ui-guides.netlify.app for the corpus.
+https://ui-guides-agent-rules.netlify.app for the corpus.

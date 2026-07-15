@@ -18,9 +18,9 @@ import { agentRules } from '../src/data/agentRules';
 import { sourceRegistry } from '../src/components/source-registry';
 import type { Principle } from '../src/types/principle';
 
-const SITE = 'https://ui-guides.netlify.app';
+const SITE = 'https://ui-guides-agent-rules.netlify.app';
 const AUTHOR_SITE = 'https://glebstroganov.com';
-const REPO = 'https://github.com/strongeron/ui-guides';
+const REPO = 'https://github.com/strongeron/ui-guides-agent-rules';
 
 const PUBLIC_DIR = join(fileURLToPath(new URL('.', import.meta.url)), '..', 'public');
 

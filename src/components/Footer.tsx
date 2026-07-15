@@ -45,7 +45,7 @@ export function Footer() {
         <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <li>
             <a
-              href="https://github.com/strongeron/ui-guides"
+              href="https://github.com/strongeron/ui-guides-agent-rules"
               rel="noopener"
               className={`hover:text-foreground ${linkStyles}`}
             >

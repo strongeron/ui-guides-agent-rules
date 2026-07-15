@@ -1,4 +1,4 @@
-# https://ui-guides.netlify.app — robots policy
+# https://ui-guides-agent-rules.netlify.app — robots policy
 #
 # Default: allow everything for everyone (humans + AI agents). This site is a public
 # catalog of web interface guidelines written to be read and applied by coding agents,
@@ -66,4 +66,4 @@ Allow: /
 User-agent: MistralAI-User
 Allow: /
 
-Sitemap: https://ui-guides.netlify.app/sitemap.xml
+Sitemap: https://ui-guides-agent-rules.netlify.app/sitemap.xml

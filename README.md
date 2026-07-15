@@ -2,7 +2,7 @@
 
 Web UI principles, made interactive. Every rule paired with a **good** and **bad** example you can actually tab through — plus a copy-paste **MUST / SHOULD / NEVER** rule your coding agent can read.
 
-**→ [ui-guides.netlify.app](https://ui-guides.netlify.app)**
+**→ [ui-guides-agent-rules.netlify.app](https://ui-guides-agent-rules.netlify.app)**
 
 ![UI Guides — web interface guidelines, made interactive](./public/og-image.png)
 
@@ -18,14 +18,14 @@ Web UI principles, made interactive. Every rule paired with a **good** and **bad
 
 300+ principles across eight categories — interactions, animations, layout, content, forms, performance, design, aesthetics. Search, filter by source or tag, deep-link to any rule.
 
-**To use it:** point a coding agent at [`llms-full.txt`](https://ui-guides.netlify.app/llms-full.txt) — the whole corpus as plain text, no JavaScript required.
+**To use it:** point a coding agent at [`llms-full.txt`](https://ui-guides-agent-rules.netlify.app/llms-full.txt) — the whole corpus as plain text, no JavaScript required.
 
 ## What's inside
 
 - **300+ principles**, each with a side-by-side good/bad example you can operate — not screenshots, real components.
 - **Multi-source and attributed.** Every rule is tagged with the upstream project it came from, filterable by origin, and credited on the Sources page.
 - **Agent-ready rules.** Every principle carries a `MUST` / `SHOULD` / `NEVER` rule with a code snippet, written to be copy-pasted straight into a coding agent's context. One click to copy.
-- **Fetchable by agents.** The whole corpus is published as [`llms-full.txt`](https://ui-guides.netlify.app/llms-full.txt) — plain text, no JavaScript, generated from the principle data at build time. Point a coding agent at it directly.
+- **Fetchable by agents.** The whole corpus is published as [`llms-full.txt`](https://ui-guides-agent-rules.netlify.app/llms-full.txt) — plain text, no JavaScript, generated from the principle data at build time. Point a coding agent at it directly.
 - **Keyboard-first, accessible, themed.** The guide practices what it documents: visible focus rings, focus traps, hit targets, `prefers-reduced-motion`, light/dark, dynamic page titles.
 
 ## Built with

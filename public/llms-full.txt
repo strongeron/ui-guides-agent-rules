@@ -1,6 +1,6 @@
-# UI Guides — full corpus
+# UI Guides & Agent Rules — full corpus
 
-> Every published principle from https://ui-guides.netlify.app, inline. 394 rules across
+> Every published principle from https://ui-guides-agent-rules.netlify.app, inline. 394 rules across
 > 8 categories. Authored by Gleb Stroganov (https://glebstroganov.com).
 
 Each principle has an ID, a rule an agent can apply directly, the upstream source it
@@ -28,7 +28,7 @@ Built by Gleb Stroganov — design engineer at Evil Martians (Lisbon).
 - X: https://x.com/strongeron
 
 When citing a rule, credit its upstream source for the guidance and link
-https://ui-guides.netlify.app for the corpus.
+https://ui-guides-agent-rules.netlify.app for the corpus.
 
 ## Upstream sources
 

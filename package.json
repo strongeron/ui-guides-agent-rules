@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "UI Guides & Agent Rules — 300+ web UI principles with good/bad examples and copy-paste MUST/SHOULD/NEVER rules for coding agents.",
-  "homepage": "https://ui-guides.netlify.app",
+  "homepage": "https://ui-guides-agent-rules.netlify.app",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -94,6 +94,6 @@
   "author": "Gleb Stroganov <strongeron@evilmartians.com> (https://glebstroganov.com)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/strongeron/ui-guides.git"
+    "url": "git+https://github.com/strongeron/ui-guides-agent-rules.git"
   }
 }
