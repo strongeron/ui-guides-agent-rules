@@ -935,4 +935,20 @@ export const designPrinciples: Principle[] = [
     badExampleKey: 'design-scroll-edge-effects-bad',
     goodExampleKey: 'design-scroll-edge-effects-good',
   },
+  {
+    id: 'design-shadow-scales-with-elevation',
+    category: 'design',
+    source: 'emilkowalski',
+    title: 'Shadow Scales With Elevation',
+    description: 'Bigger, higher surfaces cast larger, softer shadows — never reuse one flat shadow at every size',
+    sourceQuote: 'Bigger surfaces should read as thicker: a stronger blur and a deeper shadow than small chips. Consider context-aware shadows — heavier over busy or text-heavy content.',
+    additionalExplanation: 'A shadow is a claim about height. A chip resting on the surface throws a tight, near shadow; a sheet or dialog floating well above the page throws a large, soft, spread one. Reuse a single shadow token at both sizes and the physics contradict the geometry — the small element looks like it is hovering too high, the large one looks pasted flat against the page. This is distinct from two neighbours in this corpus: "Layered Shadows" is about realism within one shadow (ambient + direct light), and "Use Tailwind Default Shadows" is about staying on a consistent scale; this principle is about which rung of that scale a surface earns — proportional to its size and elevation. Practically: map the shadow tier to how high the surface sits (chip → `shadow-sm`, card → `shadow-md`, popover → `shadow-lg`, dialog/sheet → `shadow-xl`), and remember shadows read weakly on dark backgrounds, where a border often carries the elevation instead (see "On Dark, Borders Beat Shadows").',
+    sourceLinks: [
+      { text: 'Emil Kowalski — apple-design skill', url: 'https://github.com/emilkowalski/skills/tree/main/skills/apple-design' },
+      { text: 'Material Design 3 — Elevation', url: 'https://m3.material.io/styles/elevation/overview' },
+    ],
+    tags: ['design'],
+    badExampleKey: 'design-shadow-scales-with-elevation-bad',
+    goodExampleKey: 'design-shadow-scales-with-elevation-good',
+  },
 ];

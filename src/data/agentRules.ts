@@ -1853,6 +1853,16 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'A table wider than the viewport must not widen the page. Wrap it in an overflow-x:auto container so only the table scrolls, or reflow rows into label–value cards on narrow screens. Add an edge fade/shadow so the scroll is discoverable, and keep the header reachable.',
     codeExample: '<div class="overflow-x-auto"><table>…</table></div>'
+  },
+  'design-shadow-scales-with-elevation': {
+    priority: 'SHOULD',
+    rule: 'Scale a shadow to the surface\'s size and elevation — never reuse one flat shadow at every size. Map the tier to how high it sits: chip → shadow-sm, card → shadow-md, popover → shadow-lg, dialog/sheet → shadow-xl. Shadows read weakly on dark backgrounds, so lean on a border for elevation there.',
+    codeExample: '<span class="shadow-sm">chip</span>\n<div class="shadow-xl">dialog / sheet</div>'
+  },
+  'interactions-modal-dims-and-recedes': {
+    priority: 'SHOULD',
+    rule: 'For a blocking dialog, dim the page with a scrim and push the background back slightly so depth signals "paused" — and pair it with the semantics (trap focus, role="dialog", aria-modal). For a parallel, non-blocking panel (inspector, side sheet), do NOT dim the page; it should coexist with the content.',
+    codeExample: '<div class="fixed inset-0 bg-black/50" />\n<main style="transform: scale(0.96)">…</main>'
   }
 };
 

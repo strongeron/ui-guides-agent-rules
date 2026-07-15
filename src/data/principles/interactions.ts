@@ -1308,4 +1308,20 @@ export const interactionsPrinciples: Principle[] = [
     badExampleKey: 'interactions-menu-prediction-cone-bad',
     goodExampleKey: 'interactions-menu-prediction-cone-good',
   },
+  {
+    id: 'interactions-modal-dims-and-recedes',
+    category: 'interactions',
+    source: 'emilkowalski',
+    title: 'Modals Dim and Recede',
+    description: 'A blocking dialog dims the page and pushes it back to establish focus; a non-blocking panel coexists without a scrim',
+    sourceQuote: 'A modal task pairs the surface with a dimming scrim and pushes the background back; a parallel, non-blocking task coexists with the content instead of blocking it.',
+    additionalExplanation: 'Modality is a promise about attention, and depth is how you keep it. When a task truly blocks — a destructive confirm, a required choice — dim the page behind a scrim and push it back a touch; the recede plus the dim say "everything else is paused" before the user reads a word. Skip that and the dialog reads as just one more floating panel competing with a still-bright background. The inverse mistake is as common: a parallel, non-blocking surface (an inspector, a side sheet you keep working alongside) that dims the whole page claims focus it does not need and makes the app feel modal when it is not. This is a different axis from "The Modal Is the Last Resort", which argues about *whether* to interrupt at all; this is about doing the interruption legibly *once you have decided to*. Pair the visual treatment with the semantics — a blocking dialog also traps focus and is labelled as a dialog (see the focus-management principles) — so the depth cue and the accessibility contract agree.',
+    sourceLinks: [
+      { text: 'Emil Kowalski — apple-design skill', url: 'https://github.com/emilkowalski/skills/tree/main/skills/apple-design' },
+      { text: 'Apple HIG — Modality', url: 'https://developer.apple.com/design/human-interface-guidelines/modality' },
+    ],
+    tags: ['interaction'],
+    badExampleKey: 'interactions-modal-dims-and-recedes-bad',
+    goodExampleKey: 'interactions-modal-dims-and-recedes-good',
+  },
 ];
