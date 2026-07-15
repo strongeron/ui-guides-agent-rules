@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Opt-in pre-commit secret gate. Enable with:  npm run hooks:install
+# (sets core.hooksPath to .githooks). Scans only staged changes so it stays fast.
+set -euo pipefail
+
+npm run --silent check:secrets -- --staged

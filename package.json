@@ -29,6 +29,7 @@
     "sources:catalog": "npx tsx scripts/check-source-catalog.ts",
     "sources:discover": "npx tsx scripts/discover-sources.ts",
     "check:secrets": "npx tsx scripts/check-secrets.ts",
+    "hooks:install": "git config core.hooksPath .githooks && echo 'pre-commit secret gate enabled'",
     "validate:links": "npx tsx scripts/check-source-links.ts",
     "validate:rules": "npx tsx scripts/validate-agent-rules.ts",
     "validate:report": "npx tsx scripts/generate-validation-report.ts",

@@ -144,6 +144,12 @@ export const sourceCatalog: CatalogSource[] = [
         // rendered into web terms. review-animations is about REVIEWING motion; this is
         // gesture physics. Same person, so it expands this entry rather than earning a badge.
         'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/apple-design/SKILL.md',
+        // Surfaced by sources:discover (2026-07-15). improve-animations is the audit
+        // protocol; emil-design-eng is Emil's broader UI-polish/component-design
+        // philosophy. Diffed against the corpus, so overlap with review-animations
+        // silently drops and only net-new guidance reaches the backlog.
+        'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/improve-animations/SKILL.md',
+        'https://raw.githubusercontent.com/emilkowalski/skills/main/skills/emil-design-eng/SKILL.md',
       ],
     },
   },
@@ -161,26 +167,39 @@ export const sourceCatalog: CatalogSource[] = [
       rawUrls: [
         'https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-typography/SKILL.md',
         'https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-ui/surfaces.md',
+        // Surfaced by sources:discover (2026-07-15): the repo's third skill, OKLCH
+        // color guidance — the natural companion to better-typography/better-ui.
+        'https://raw.githubusercontent.com/jakubkrehel/skills/main/skills/better-colors/SKILL.md',
       ],
     },
   },
   {
-    // Only cherry-picked: its durable rule ("sound never replaces visual feedback") is
-    // WCAG 1.3.3 wearing an audio costume, and an audio category is inaudible by default —
-    // a pane can demo the code but not the sound. Its rules ship under `custom`.
+    // raphaelsalaja/skill hosts several motion-audit skills; sources:discover (2026-07-15)
+    // showed we were only diffing one of them. The `sounds-on-the-web` skill contributes a
+    // single durable rule ("sound never replaces visual feedback") — WCAG 1.3.3 in an audio
+    // costume, inaudible in a demo pane, so it ships under `custom`. The motion-audit skills
+    // (Disney's 12 principles, AnimatePresence, spring-vs-easing, pseudo-elements) are now
+    // diffed too. Excluded: generating-sounds-with-ai (Web Audio synthesis, off-domain) and
+    // morphing-icons (a build recipe, not a rule set).
     // NOTE: the SKILL.md frontmatter claims MIT but the repo has no LICENSE file, so we do
-    // not repeat that claim.
+    // not repeat that claim. `id` kept stable so existing pending entries survive.
     id: 'sounds-on-the-web',
-    name: 'sounds-on-the-web',
+    name: 'Raphael Salaja',
     author: 'Raphael Salaja',
     repo: 'raphaelsalaja/skill',
     originKind: 'github',
     color: 'bg-yellow-800 text-white border-yellow-800',
     creditedUnder: 'custom',
-    defaultTags: ['a11y'],
+    defaultTags: ['motion', 'a11y'],
     check: {
       mode: 'github',
-      rawUrls: ['https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/sounds-on-the-web/SKILL.md'],
+      rawUrls: [
+        'https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/sounds-on-the-web/SKILL.md',
+        'https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/12-principles-of-animation/SKILL.md',
+        'https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/mastering-animate-presence/SKILL.md',
+        'https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/to-spring-or-not-to-spring/SKILL.md',
+        'https://raw.githubusercontent.com/raphaelsalaja/skill/main/skills/pseudo-elements/SKILL.md',
+      ],
     },
   },
   {
@@ -203,6 +222,9 @@ export const sourceCatalog: CatalogSource[] = [
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-accessibility/SKILL.md',
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-motion-performance/SKILL.md',
         'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/fixing-metadata/SKILL.md',
+        // Surfaced by sources:discover (2026-07-15). ui-skills-root is a context router,
+        // not rules, so it is left out.
+        'https://raw.githubusercontent.com/ibelick/ui-skills/main/skills/improve-ui/SKILL.md',
       ],
     },
   },
