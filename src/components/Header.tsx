@@ -49,8 +49,13 @@ export function Header({ onMenuToggle, onSearchClick, onSourcesClick, isDesktop 
               <HugeiconsIcon icon={Menu01Icon} size={18} />
             </Button>
           )}
-          <a href="/" className="font-semibold text-foreground whitespace-nowrap">
+          <a
+            href="/"
+            className="font-semibold text-foreground whitespace-nowrap"
+            aria-label="UI Guides & Agent Rules — home"
+          >
             UI Guides
+            <span className="hidden text-muted-foreground sm:inline"> &amp; Agent Rules</span>
           </a>
         </div>
 

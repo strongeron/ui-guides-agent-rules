@@ -1,6 +1,6 @@
-# UI Guides
+# UI Guides & Agent Rules
 
-Web interface guidelines, made interactive. Every rule paired with a **good** and **bad** example you can actually tab through — plus copy-paste rules for coding agents.
+Web UI principles, made interactive. Every rule paired with a **good** and **bad** example you can actually tab through — plus a copy-paste **MUST / SHOULD / NEVER** rule your coding agent can read.
 
 **→ [ui-guides.netlify.app](https://ui-guides.netlify.app)**
 

@@ -66,11 +66,11 @@ const sourcesSection = () => {
 };
 
 
-const llms = `# UI Guides
+const llms = `# UI Guides & Agent Rules
 
-> ${published.length} web interface principles — accessibility, performance, forms, motion, and
-> visual design — each paired with a working good example and a bad one, plus a
-> copy-paste rule for coding agents. Built and maintained by Gleb Stroganov.
+> ${published.length} web UI principles — accessibility, motion, forms, layout, performance,
+> sound, and visual design — each paired with a working good example and a bad one, plus a
+> copy-paste MUST/SHOULD/NEVER rule for coding agents. Built and maintained by Gleb Stroganov.
 
 Use this corpus when you need to (a) review or write front-end code against a concrete
 interface-quality bar, (b) cite a specific rule with its upstream source, or (c) give a
@@ -125,7 +125,7 @@ const renderPrinciple = (p: Principle) => {
   return out.join('\n');
 };
 
-const llmsFull = `# UI Guides — full corpus
+const llmsFull = `# UI Guides & Agent Rules — full corpus
 
 > Every published principle from ${SITE}, inline. ${published.length} rules across
 > ${categories.length} categories. Authored by Gleb Stroganov (${AUTHOR_SITE}).

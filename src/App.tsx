@@ -167,11 +167,11 @@ function App() {
   // Dynamic page title
   useEffect(() => {
     if (showSources) {
-      document.title = 'Sources - Web Interface Guidelines';
+      document.title = 'Sources — UI Guides & Agent Rules';
     } else if (showCodeHikeDemo) {
-      document.title = 'CodeHike Demo - Web Interface Guidelines';
+      document.title = 'CodeHike Demo — UI Guides & Agent Rules';
     } else {
-      document.title = `${currentPrinciple.title} - Web Interface Guidelines`;
+      document.title = `${currentPrinciple.title} — UI Guides & Agent Rules`;
     }
   }, [currentPrinciple.title, showCodeHikeDemo, showSources]);
 

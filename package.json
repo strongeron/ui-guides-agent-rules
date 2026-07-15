@@ -2,7 +2,7 @@
   "name": "ui-guides",
   "private": true,
   "version": "1.0.0",
-  "description": "Web interface guidelines, made interactive — 300+ principles with good/bad examples and agent-ready rules.",
+  "description": "UI Guides & Agent Rules — 300+ web UI principles with good/bad examples and copy-paste MUST/SHOULD/NEVER rules for coding agents.",
   "homepage": "https://ui-guides.netlify.app",
   "type": "module",
   "scripts": {
@@ -27,6 +27,7 @@
     "check:sources": "npx tsx scripts/check-source-freshness.ts",
     "sources:build": "npx tsx scripts/build-source-rules.ts",
     "sources:catalog": "npx tsx scripts/check-source-catalog.ts",
+    "sources:discover": "npx tsx scripts/discover-sources.ts",
     "validate:links": "npx tsx scripts/check-source-links.ts",
     "validate:rules": "npx tsx scripts/validate-agent-rules.ts",
     "validate:report": "npx tsx scripts/generate-validation-report.ts",
