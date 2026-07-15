@@ -873,4 +873,20 @@ export const animationsPrinciples: Principle[] = [
     badExampleKey: 'animations-ambient-motion-reduced-bad',
     goodExampleKey: 'animations-ambient-motion-reduced-good',
   },
+  {
+    id: 'animations-text-motion-uses-transform',
+    category: 'animations',
+    source: 'web-platform',
+    title: 'Animate Text With Transform, Not Metrics',
+    description: 'Pulse or emphasize text with transform/opacity — animating font weight, size, or letter-spacing relayouts the line',
+    sourceQuote: 'transform and opacity are the only properties that can be animated without triggering layout or paint. Text metrics — font-weight, font-size, letter-spacing, font-variation-settings — resize the glyphs, so every frame relayouts.',
+    additionalExplanation: 'This is the general "only animate transform and opacity" rule at its least obvious edge. A "breathing" heading built by animating font-weight, or a word that emphasizes itself by growing its letter-spacing, changes the glyphs\' advance widths on every frame — which reflows the whole line and shoves neighbouring content around, the exact jank the compositor was meant to avoid. Variable fonts make this especially tempting because `font-variation-settings: "wght"` animates smoothly, but it is still a layout property, not a composited one. Get the same effect with transform: an inline-block word scaling from 1 to 1.1, or a crossfade in opacity, runs entirely on the GPU and never moves its neighbours. If a genuine weight animation is the point, treat it as a deliberate, isolated, reduced-motion-gated effect — not a default.',
+    sourceLinks: [
+      { text: 'web.dev — Animations and performance', url: 'https://web.dev/articles/animations-guide' },
+      { text: 'MDN — CSS performance: reflow', url: 'https://developer.mozilla.org/en-US/docs/Web/Performance/CSS_JavaScript_animation_performance' },
+    ],
+    tags: ['motion', 'typography', 'performance'],
+    badExampleKey: 'animations-text-motion-uses-transform-bad',
+    goodExampleKey: 'animations-text-motion-uses-transform-good',
+  },
 ];

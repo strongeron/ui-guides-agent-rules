@@ -26,6 +26,7 @@ export type PatternSource =
   | 'interface-design' // Damola Akinleye's interface-design craft principles
   | 'lottiefiles'      // LottieFiles motion-design skill (runtime-agnostic motion direction)
   | 'jakubkrehel'      // jakubkrehel/skills — better-typography + better-ui
+  | 'vercel-composition' // Vercel agent-skills — composition-patterns (React component design)
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

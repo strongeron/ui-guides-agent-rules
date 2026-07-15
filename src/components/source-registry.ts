@@ -79,6 +79,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://emilkowalski.com/',
     color: 'bg-violet-700 text-white border-violet-700',
   },
+  'vercel-composition': {
+    id: 'vercel-composition',
+    name: 'Composition Patterns',
+    description: "React component composition patterns from Vercel's agent-skills",
+    url: 'https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns',
+    color: 'bg-teal-700 text-white border-teal-700',
+  },
   impeccable: {
     id: 'impeccable',
     name: 'impeccable',

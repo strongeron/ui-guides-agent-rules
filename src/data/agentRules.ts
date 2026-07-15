@@ -1863,6 +1863,46 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'For a blocking dialog, dim the page with a scrim and push the background back slightly so depth signals "paused" — and pair it with the semantics (trap focus, role="dialog", aria-modal). For a parallel, non-blocking panel (inspector, side sheet), do NOT dim the page; it should coexist with the content.',
     codeExample: '<div class="fixed inset-0 bg-black/50" />\n<main style="transform: scale(0.96)">…</main>'
+  },
+  'content-animated-text-stays-readable': {
+    priority: 'MUST',
+    rule: 'When splitting text into per-letter/word spans for animation, keep the accessible name on the wrapper (aria-label with the full text) and mark the shards aria-hidden="true". Otherwise a screen reader reads the word letter by letter or drops it. Drop the reveal to a fade under prefers-reduced-motion.',
+    codeExample: '<span aria-label="Announcing">\n  {letters.map(c => <span aria-hidden="true">{c}</span>)}\n</span>'
+  },
+  'content-moving-text-can-be-paused': {
+    priority: 'MUST',
+    rule: 'Auto-scrolling tickers/marquees that run more than 5s alongside other content need a pause/stop/hide control (WCAG 2.2.2) and must stop under prefers-reduced-motion. Toggle animation-play-state and expose aria-pressed on the button.',
+    codeExample: '@media (prefers-reduced-motion: reduce){ .ticker{ animation: none } }\n<button aria-pressed={paused} onClick={toggle}>Pause</button>'
+  },
+  'animations-text-motion-uses-transform': {
+    priority: 'SHOULD',
+    rule: 'Emphasize or pulse text with transform/opacity, never by animating font-weight, font-size, letter-spacing, or font-variation-settings — those are layout properties that relayout the line every frame and shove neighbours around. A real variable-font weight animation must be a deliberate, isolated, reduced-motion-gated effect.',
+    codeExample: '/* reflows */ @keyframes b{50%{letter-spacing:.2em}}\n/* composited */ @keyframes g{50%{transform:scale(1.1)}}'
+  },
+  'design-flip-card-depth': {
+    priority: 'MUST',
+    rule: 'For a flip card or any true 3D transform: put perspective on the container, transform-style: preserve-3d on the rotating element, and backface-visibility: hidden on each face. rotateY alone (default transform-style: flat) only mirror-flips a flat element — text reads backwards and there is no back face.',
+    codeExample: '.scene{perspective:800px}\n.card{transform-style:preserve-3d}\n.face{backface-visibility:hidden}'
+  },
+  'design-perspective-on-parent': {
+    priority: 'SHOULD',
+    rule: 'Set the perspective property once on the shared container so all its 3D children share one vanishing point. Do NOT bake the perspective() function into each child\'s transform — that gives every element its own viewpoint and the scene stops being coherent.',
+    codeExample: '/* good */ .row{perspective:700px} .card{transform:rotateY(35deg)}\n/* bad */ .card{transform:perspective(300px) rotateY(35deg)}'
+  },
+  'design-compound-over-mega-component': {
+    priority: 'SHOULD',
+    rule: 'Expose components as composable compound parts (Parent owns state/context; Parent.Trigger, Parent.Content, Parent.Item are children) rather than one component with a dozen configuration props. New needs become children, not new props and internal branches. Reserve flat single-prop APIs for atomic things with no inside.',
+    codeExample: '<Select value={v} onChange={setV}>\n  <SelectTrigger />\n  <SelectContent><SelectItem value="a">A</SelectItem></SelectContent>\n</Select>'
+  },
+  'design-explicit-variants-over-booleans': {
+    priority: 'SHOULD',
+    rule: 'Model mutually-exclusive styles as one enumerated variant prop, not isPrimary/isGhost/isLarge booleans that allow illegal combinations and multiply with every new style. Keep booleans only for orthogonal toggles (disabled, loading, fullWidth). Maps cleanly onto CVA.',
+    codeExample: '// good\n<Button variant="ghost" size="sm" />\n// bad\n<Button isGhost isSmall isPrimary />'
+  },
+  'design-render-as-child': {
+    priority: 'SHOULD',
+    rule: 'Give styled primitives an asChild / Slot escape hatch so they can render AS the element they wrap (a Button that is really an <a href>) instead of forcing a fixed tag or nesting interactive elements. Styling stays with the primitive; semantics stay with the child.',
+    codeExample: '<Button asChild>\n  <a href="/pricing">Pricing</a>\n</Button>'
   }
 };
 

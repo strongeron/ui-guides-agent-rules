@@ -91,20 +91,21 @@ export const sourceCatalog: CatalogSource[] = [
   {
     // Distinct from vercel-labs/web-interface-guidelines above: this is Vercel's
     // React/Next engineering rule set (perf waterfalls, bundle size, composition
-    // patterns). Catalogued to satisfy the sources:catalog "in report, not catalogued"
-    // flag. github-mode was tested (2026-07-15) and rejected: it yields 180 rules with
-    // ZERO overlap with our corpus — `.toSorted()`, `prefetchDNS`, "Cache invalidation"
-    // — i.e. React-internals, not interface guidelines. Auto-diffing floods the backlog
-    // with 151 off-domain items, so it stays `manual` (coverage/attribution only). If we
-    // ever want its handful of genuinely interface-level rules, harvest them by hand.
+    // patterns). github-mode was tested (2026-07-15) and rejected for auto-diffing: its
+    // react-best-practices file yields ~180 React-internals rules with ZERO corpus overlap
+    // (`.toSorted()`, `prefetchDNS`), so it stays `manual`. Its composition-patterns skill,
+    // however, IS demoable component-design guidance — three of those rules were onboarded
+    // by hand under the `vercel-composition` badge (compound components, explicit variants,
+    // render-as-child), which is why this entry now carries a patternSource.
     id: 'vercel-agent-skills',
     name: 'Vercel Agent Skills',
     author: 'Vercel Engineering',
     homepage: 'https://github.com/vercel-labs/agent-skills',
     repo: 'vercel-labs/agent-skills',
     originKind: 'github',
-    color: 'bg-foreground text-background border-foreground',
-    defaultTags: ['performance'],
+    color: 'bg-teal-700 text-white border-teal-700',
+    patternSource: 'vercel-composition',
+    defaultTags: ['design'],
     check: { mode: 'manual', reviewEveryDays: 90 },
   },
   {
