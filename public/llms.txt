@@ -1,6 +1,6 @@
 # UI Guides & Agent Rules
 
-> 394 web UI principles — accessibility, motion, forms, layout, performance,
+> 404 web UI principles — accessibility, motion, forms, layout, performance,
 > sound, and visual design — each paired with a working good example and a bad one, plus a
 > copy-paste MUST/SHOULD/NEVER rule for coding agents. Built and maintained by Gleb Stroganov.
 
@@ -15,19 +15,19 @@ contains every rule inline, with no JavaScript required.
 ## Machine-readable endpoints
 
 - https://ui-guides-agent-rules.netlify.app/llms.txt — this file
-- https://ui-guides-agent-rules.netlify.app/llms-full.txt — all 394 rules, inline, each with its agent rule and source
+- https://ui-guides-agent-rules.netlify.app/llms-full.txt — all 404 rules, inline, each with its agent rule and source
 - https://ui-guides-agent-rules.netlify.app/sitemap.xml — site map
 - https://github.com/strongeron/ui-guides-agent-rules — source, including the principle data as TypeScript
 
 ## Categories
 
-- **Interactions** (88 rules) — Keyboard accessibility, focus management, and user interaction patterns
-- **Animations** (55 rules) — Motion design principles and animation best practices
+- **Interactions** (89 rules) — Keyboard accessibility, focus management, and user interaction patterns
+- **Animations** (56 rules) — Motion design principles and animation best practices
 - **Layout** (29 rules) — Responsive design, alignment, and visual structure
-- **Content** (80 rules) — Typography, accessibility, and content presentation
+- **Content** (82 rules) — Typography, accessibility, and content presentation
 - **Forms** (27 rules) — Form controls, validation, and user input handling
 - **Performance** (35 rules) — Optimization techniques and rendering efficiency
-- **Design** (61 rules) — Visual design principles and aesthetics
+- **Design** (67 rules) — Visual design principles and aesthetics
 - **Aesthetics** (19 rules) — Creative visual design principles for distinctive, production-grade interfaces
 
 ## Upstream sources
@@ -39,15 +39,16 @@ Rules are transcribed and attributed to:
 - **RAMS** (18 rules) — https://www.rams.ai/
 - **@Ibelick** (50 rules) — https://www.ui-skills.com/
 - **Rauno** (38 rules) — https://interfaces.rauno.me/
-- **Emil Kowalski** (28 rules) — https://emilkowalski.com/
-- **WCAG** (10 rules) — https://www.w3.org/WAI/WCAG21/quickref/
+- **Emil Kowalski** (30 rules) — https://emilkowalski.com/
+- **WCAG** (11 rules) — https://www.w3.org/WAI/WCAG21/quickref/
 - **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
 - **impeccable** (32 rules) — https://impeccable.style/
 - **jakubkrehel** (9 rules) — https://github.com/jakubkrehel/skills
-- **Custom** (21 rules)
-- **Web Platform** (8 rules) — https://web.dev/
+- **Custom** (22 rules)
+- **Web Platform** (11 rules) — https://web.dev/
 - **LottieFiles** (6 rules) — https://github.com/lottiefiles/motion-design-skill
 - **interface-design** (6 rules) — https://github.com/Dammyjay93/interface-design
+- **Composition Patterns** (3 rules) — https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns
 - **Skills** (14 rules) — https://skills.sh/
 
 ## What this is, and who made it
