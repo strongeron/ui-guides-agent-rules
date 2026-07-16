@@ -16,24 +16,17 @@ const TOTAL_MS = Math.max(...DELAYS_MS) + DURATION_MS + 100;
 const CARDS = ['Revenue', 'Signups', 'Churn', 'Latency', 'Errors', 'Uptime', 'Sessions', 'Retention', 'NPS'];
 
 /**
- * Good: identical grid, identical per-card motion — only the concurrency changes.
- * The hero card lands first and becomes the anchor; the remaining cards enter in
- * waves so no more than a third of the grid is in active motion at any instant.
+ * The cascade lives in its own component so a changing `key` remounts it — that is
+ * what makes Replay start the enter transition over from scratch instead of trying
+ * (and failing) to reset an already-entered grid in place.
  */
-export function LottieConcurrencyCapGood() {
-  const [run, setRun] = useState(0);
+function Reveal({ reduced }: { reduced: boolean }) {
   const [entered, setEntered] = useState(false);
-  const [elapsed, setElapsed] = useState(TOTAL_MS);
+  const [elapsed, setElapsed] = useState(0);
   const peakRef = useRef(0);
   const [peak, setPeak] = useState(0);
-  const reduced = useSimulatedReducedMotion();
 
   useEffect(() => {
-    setEntered(false);
-    setElapsed(0);
-    peakRef.current = 0;
-    setPeak(0);
-
     let inner = 0;
     let raf = 0;
     const outer = requestAnimationFrame(() => {
@@ -59,22 +52,12 @@ export function LottieConcurrencyCapGood() {
       cancelAnimationFrame(inner);
       cancelAnimationFrame(raf);
     };
-  }, [run]);
+  }, []);
 
   const inFlight = entered ? DELAYS_MS.filter((d) => elapsed >= d && elapsed < d + DURATION_MS).length : 0;
 
   return (
-    <div className="w-full space-y-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <button
-          onClick={() => setRun((r) => r + 1)}
-          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          Replay reveal
-        </button>
-        <ReducedMotionSwitch />
-      </div>
-
+    <>
       {reduced ? (
         <p className="text-xs text-muted-foreground">
           Reduced motion: every card appears at once with no travel. Concurrency is a motion problem, so with the
@@ -106,6 +89,32 @@ export function LottieConcurrencyCapGood() {
           </div>
         ))}
       </div>
+    </>
+  );
+}
+
+/**
+ * Good: identical grid, identical per-card motion — only the concurrency changes.
+ * The hero card lands first and becomes the anchor; the remaining cards enter in
+ * waves so no more than a third of the grid is in active motion at any instant.
+ */
+export function LottieConcurrencyCapGood() {
+  const [run, setRun] = useState(0);
+  const reduced = useSimulatedReducedMotion();
+
+  return (
+    <div className="w-full space-y-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          onClick={() => setRun((r) => r + 1)}
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          Replay reveal
+        </button>
+        <ReducedMotionSwitch />
+      </div>
+
+      <Reveal key={run} reduced={reduced} />
 
       <p className="text-xs text-success">
         Peak concurrency is 3 of 9. The hero lands alone and anchors the eye, then waves of three follow — and the

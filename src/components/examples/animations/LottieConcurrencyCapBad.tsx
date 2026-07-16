@@ -10,23 +10,17 @@ const TOTAL_MS = Math.max(...DELAYS_MS) + DURATION_MS + 100;
 const CARDS = ['Revenue', 'Signups', 'Churn', 'Latency', 'Errors', 'Uptime', 'Sessions', 'Retention', 'NPS'];
 
 /**
- * Bad: all nine cards scale, fade and slide on mount. At the peak, 9 of 9 elements
- * are in active motion — the eye has nothing to hold on to, so the grid reads as a
- * burst of noise that then resolves, rather than as a reveal you can follow.
+ * The cascade lives in its own component so a changing `key` remounts it — that is
+ * what makes Replay start the enter transition over from scratch instead of trying
+ * (and failing) to reset an already-entered grid in place.
  */
-export function LottieConcurrencyCapBad() {
-  const [run, setRun] = useState(0);
+function Reveal() {
   const [entered, setEntered] = useState(false);
-  const [elapsed, setElapsed] = useState(TOTAL_MS);
+  const [elapsed, setElapsed] = useState(0);
   const peakRef = useRef(0);
   const [peak, setPeak] = useState(0);
 
   useEffect(() => {
-    setEntered(false);
-    setElapsed(0);
-    peakRef.current = 0;
-    setPeak(0);
-
     let inner = 0;
     let raf = 0;
     const outer = requestAnimationFrame(() => {
@@ -52,24 +46,16 @@ export function LottieConcurrencyCapBad() {
       cancelAnimationFrame(inner);
       cancelAnimationFrame(raf);
     };
-  }, [run]);
+  }, []);
 
   const inFlight = entered ? DELAYS_MS.filter((d) => elapsed >= d && elapsed < d + DURATION_MS).length : 0;
 
   return (
-    <div className="w-full space-y-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <button
-          onClick={() => setRun((r) => r + 1)}
-          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          Replay reveal
-        </button>
-        <span className="text-xs tabular-nums text-muted-foreground">
-          In motion now: <strong className="text-foreground">{inFlight}</strong>/9 · peak{' '}
-          <strong className="text-destructive">{peak}</strong>/9
-        </span>
-      </div>
+    <>
+      <p className="text-xs tabular-nums text-muted-foreground">
+        In motion now: <strong className="text-foreground">{inFlight}</strong>/9 · peak{' '}
+        <strong className="text-destructive">{peak}</strong>/9
+      </p>
 
       <div className="grid grid-cols-3 gap-2 rounded-lg border border-border bg-muted/40 p-3">
         {CARDS.map((label, i) => (
@@ -86,6 +72,30 @@ export function LottieConcurrencyCapBad() {
           </div>
         ))}
       </div>
+    </>
+  );
+}
+
+/**
+ * Bad: all nine cards scale, fade and slide on mount. At the peak, 9 of 9 elements
+ * are in active motion — the eye has nothing to hold on to, so the grid reads as a
+ * burst of noise that then resolves, rather than as a reveal you can follow.
+ */
+export function LottieConcurrencyCapBad() {
+  const [run, setRun] = useState(0);
+
+  return (
+    <div className="w-full space-y-4">
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          onClick={() => setRun((r) => r + 1)}
+          className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm transition-transform duration-150 ease-out active:scale-[0.97] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          Replay reveal
+        </button>
+      </div>
+
+      <Reveal key={run} />
 
       <p className="text-xs text-destructive">
         Peak concurrency is 9 of 9. With three or more elements, keeping more than a third of them in flight at once

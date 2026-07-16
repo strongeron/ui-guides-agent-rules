@@ -24,7 +24,7 @@ export function ClassPrecedenceGood() {
     <div className="w-full max-w-sm space-y-4">
       <div className="bg-card border border-border rounded-lg p-4">
         <h4 className="font-medium mb-3">Using cn() / tailwind-merge</h4>
-        <div className="space-y-3">
+        <div className="flex flex-wrap items-center gap-3">
           <MergedButton />
           <MergedButton variant="large" />
           <MergedButton className="bg-secondary text-secondary-foreground" />

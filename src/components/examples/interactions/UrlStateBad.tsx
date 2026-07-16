@@ -1,16 +1,29 @@
 import { useState } from 'react';
+import { Globe, RotateCw } from 'lucide-react';
+
+const tabs = ['overview', 'analytics', 'settings'] as const;
+const filters = ['all', 'active', 'archived'] as const;
+type Tab = (typeof tabs)[number];
+type Filter = (typeof filters)[number];
 
 export function UrlStateBad() {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [filter, setFilter] = useState('all');
+  const [activeTab, setActiveTab] = useState<Tab>('overview');
+  const [filter, setFilter] = useState<Filter>('all');
+  const [flash, setFlash] = useState(false);
 
-  const tabs = ['overview', 'analytics', 'settings'];
-  const filters = ['all', 'active', 'archived'];
+  const reload = () => {
+    // The URL never captured the state, so a reload has nothing to restore —
+    // everything snaps back to defaults.
+    setActiveTab('overview');
+    setFilter('all');
+    setFlash(true);
+    setTimeout(() => setFlash(false), 600);
+  };
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="bg-card border border-border rounded-lg p-4">
-        <div className="flex gap-1 mb-4 border-b border-border">
+    <div className="w-full max-w-sm space-y-3">
+      <div className="rounded-lg border border-border bg-card p-4">
+        <div className="mb-4 flex gap-1 border-b border-border">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -25,27 +38,47 @@ export function UrlStateBad() {
             </button>
           ))}
         </div>
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2">
           {filters.map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-3 py-1 text-xs rounded-full capitalize ${
+              className={`rounded-full px-3 py-1 text-xs capitalize ${
                 filter === f
                   ? 'bg-primary/10 text-primary'
-                  : 'bg-muted text-muted-foreground hover:bg-muted'
+                  : 'bg-muted text-muted-foreground hover:text-foreground'
               }`}
             >
               {f}
             </button>
           ))}
         </div>
-        <p className="text-xs text-muted-foreground">
-          State is only in React. Refresh page or share URL - state is lost.
-        </p>
       </div>
-      <p className="text-xs text-error mt-4">
-        State not in URL - can't share, refresh loses state
+
+      {/* Simulated address bar — stays frozen no matter what you click */}
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Address bar</span>
+          <button
+            onClick={reload}
+            className="flex items-center gap-1 rounded px-1.5 py-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <RotateCw className="h-3 w-3" />
+            Reload
+          </button>
+        </div>
+        <div
+          className={`flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs transition-colors duration-300 ${
+            flash ? 'border-error bg-error/10' : 'border-border bg-muted'
+          }`}
+        >
+          <Globe className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+          <span className="truncate text-muted-foreground">app.example.com/dashboard</span>
+        </div>
+      </div>
+
+      <p className="text-xs text-error">
+        The tab and filter never reach the URL. Reload the address bar and your selection is gone.
       </p>
     </div>
   );

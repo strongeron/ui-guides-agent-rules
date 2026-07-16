@@ -1,50 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Globe, RotateCw } from 'lucide-react';
 
 const tabs = ['overview', 'analytics', 'settings'] as const;
 const filters = ['all', 'active', 'archived'] as const;
+type Tab = (typeof tabs)[number];
+type Filter = (typeof filters)[number];
 
 export function UrlStateGood() {
-  const [activeTab, setActiveTab] = useState<typeof tabs[number]>('overview');
-  const [filter, setFilter] = useState<typeof filters[number]>('all');
+  const [activeTab, setActiveTab] = useState<Tab>('overview');
+  const [filter, setFilter] = useState<Filter>('all');
+  const [flash, setFlash] = useState(false);
 
-  // Sync state with URL (simplified demo - in real app use nuqs or similar)
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+  // In a real app this is the browser's address bar (use nuqs or
+  // URLSearchParams). Here we derive it from state so both halves of the
+  // demo stay self-contained.
+  const query = `?tab=${activeTab}&filter=${filter}`;
+
+  const reload = () => {
+    // A real reload keeps the URL and rebuilds state from it — so the view
+    // lands right back where it was.
+    const params = new URLSearchParams(query);
     const tab = params.get('tab');
     const f = params.get('filter');
-    if (tab && (tabs as readonly string[]).includes(tab)) {
-      setActiveTab(tab as typeof tabs[number]);
-    }
-    if (f && (filters as readonly string[]).includes(f)) {
-      setFilter(f as typeof filters[number]);
-    }
-  }, []);
-
-  const updateUrl = (tab: typeof tabs[number], f: typeof filters[number]) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('tab', tab);
-    url.searchParams.set('filter', f);
-    window.history.replaceState({}, '', url.toString());
-  };
-
-  const handleTabChange = (tab: typeof tabs[number]) => {
-    setActiveTab(tab);
-    updateUrl(tab, filter);
-  };
-
-  const handleFilterChange = (f: typeof filters[number]) => {
-    setFilter(f);
-    updateUrl(activeTab, f);
+    setActiveTab((tabs as readonly string[]).includes(tab ?? '') ? (tab as Tab) : 'overview');
+    setFilter((filters as readonly string[]).includes(f ?? '') ? (f as Filter) : 'all');
+    setFlash(true);
+    setTimeout(() => setFlash(false), 600);
   };
 
   return (
-    <div className="w-full max-w-sm">
-      <div className="bg-card border border-border rounded-lg p-4">
-        <div className="flex gap-1 mb-4 border-b border-border">
+    <div className="w-full max-w-sm space-y-3">
+      <div className="rounded-lg border border-border bg-card p-4">
+        <div className="mb-4 flex gap-1 border-b border-border">
           {tabs.map((tab) => (
             <button
               key={tab}
-              onClick={() => handleTabChange(tab)}
+              onClick={() => setActiveTab(tab)}
               className={`px-3 py-2 text-sm capitalize ${
                 activeTab === tab
                   ? 'border-b-2 border-primary text-primary'
@@ -55,27 +46,50 @@ export function UrlStateGood() {
             </button>
           ))}
         </div>
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2">
           {filters.map((f) => (
             <button
               key={f}
-              onClick={() => handleFilterChange(f)}
-              className={`px-3 py-1 text-xs rounded-full capitalize ${
+              onClick={() => setFilter(f)}
+              className={`rounded-full px-3 py-1 text-xs capitalize ${
                 filter === f
                   ? 'bg-primary/10 text-primary'
-                  : 'bg-muted text-muted-foreground hover:bg-muted'
+                  : 'bg-muted text-muted-foreground hover:text-foreground'
               }`}
             >
               {f}
             </button>
           ))}
         </div>
-        <p className="text-xs text-muted-foreground">
-          State synced to URL. Share link or refresh - state persists!
-        </p>
       </div>
-      <p className="text-xs text-success mt-4">
-        State in URL - shareable, refresh-safe, Back/Forward works
+
+      {/* Simulated address bar — updates on every interaction */}
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Address bar</span>
+          <button
+            onClick={reload}
+            className="flex items-center gap-1 rounded px-1.5 py-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <RotateCw className="h-3 w-3" />
+            Reload
+          </button>
+        </div>
+        <div
+          className={`flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs transition-colors duration-300 ${
+            flash ? 'border-success bg-success/10' : 'border-border bg-muted'
+          }`}
+        >
+          <Globe className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+          <span className="truncate">
+            <span className="text-muted-foreground">app.example.com/dashboard</span>
+            <span className="text-foreground">{query}</span>
+          </span>
+        </div>
+      </div>
+
+      <p className="text-xs text-success">
+        State lives in the URL. Reload restores it, and the link is shareable — Back/Forward work too.
       </p>
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const itemClass =
-  'w-full text-left px-3 py-2 bg-card rounded text-sm hover:bg-muted focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring';
+  'w-full text-left px-3 py-2 bg-card rounded text-sm border border-border shadow-sm transition-transform-shadow hover:shadow-md hover:-translate-y-px focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring';
 
 export function EllipsisForInputGood() {
   const [saving, setSaving] = useState(false);
