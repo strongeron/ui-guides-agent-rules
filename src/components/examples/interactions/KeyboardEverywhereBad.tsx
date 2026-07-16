@@ -6,19 +6,19 @@ export function KeyboardEverywhereBad() {
         <div className="space-y-2">
           <div
             onClick={() => alert('Edit clicked')}
-            className="px-3 py-2 bg-card rounded border border-border shadow-sm transition-transform-shadow cursor-pointer hover:shadow-md hover:-translate-y-px"
+            className="px-3 py-2 bg-card rounded border border-border transition-colors cursor-pointer hover:bg-background"
           >
             Edit
           </div>
           <div
             onClick={() => alert('Delete clicked')}
-            className="px-3 py-2 bg-card rounded border border-border shadow-sm transition-transform-shadow cursor-pointer hover:shadow-md hover:-translate-y-px"
+            className="px-3 py-2 bg-card rounded border border-border transition-colors cursor-pointer hover:bg-background"
           >
             Delete
           </div>
           <div
             onClick={() => alert('Share clicked')}
-            className="px-3 py-2 bg-card rounded border border-border shadow-sm transition-transform-shadow cursor-pointer hover:shadow-md hover:-translate-y-px"
+            className="px-3 py-2 bg-card rounded border border-border transition-colors cursor-pointer hover:bg-background"
           >
             Share
           </div>
