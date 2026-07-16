@@ -1,11 +1,18 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
 import { PrincipleView } from './components/PrincipleView';
-import { SourcesPage } from './components/SourcesPage';
-import { CodeHikeDemo } from './components/CodeHikeDemo';
 import { CommandPalette } from './components/CommandPalette';
+
+// Non-default routes — lazy so their code (and, for the demo, the ~266kB-gzip
+// codehike syntax highlighter) stays off the initial load.
+const SourcesPage = lazy(() =>
+  import('./components/SourcesPage').then((m) => ({ default: m.SourcesPage }))
+);
+const CodeHikeDemo = lazy(() =>
+  import('./components/CodeHikeDemo').then((m) => ({ default: m.CodeHikeDemo }))
+);
 import { SkipLink } from './components/SkipLink';
 import { Footer } from './components/Footer';
 import { ActiveFilterChips } from './components/ActiveFilterChips';
@@ -235,13 +242,15 @@ function App() {
             onTagsChange={setSelectedTags}
           />
         )}
-        {showSources ? (
-          <SourcesPage />
-        ) : showCodeHikeDemo ? (
-          <CodeHikeDemo />
-        ) : (
-          <PrincipleView principle={currentPrinciple} />
-        )}
+        <Suspense fallback={null}>
+          {showSources ? (
+            <SourcesPage />
+          ) : showCodeHikeDemo ? (
+            <CodeHikeDemo />
+          ) : (
+            <PrincipleView principle={currentPrinciple} />
+          )}
+        </Suspense>
         <Footer />
       </main>
 

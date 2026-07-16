@@ -42,4 +42,23 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Split vendors into separately-cached chunks so a change to app code
+        // doesn't invalidate the (rarely-changing) library bundles, and the
+        // browser can download them in parallel.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return;
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react';
+          if (id.includes('@radix-ui')) return 'radix';
+          if (id.includes('@hugeicons') || id.includes('lucide-react')) return 'icons';
+          if (id.includes('cmdk')) return 'cmdk';
+          if (/codehike|shiki|@code-hike/.test(id)) return 'codehike';
+          if (/node_modules\/motion\//.test(id) || id.includes('framer-motion')) return 'motion';
+          return 'vendor';
+        },
+      },
+    },
+  },
 });
