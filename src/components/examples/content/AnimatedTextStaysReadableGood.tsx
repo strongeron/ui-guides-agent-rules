@@ -34,7 +34,11 @@ export function AnimatedTextStaysReadableGood() {
           ))}
         </span>
       </p>
-      <p className="mt-4 text-xs text-success">
+      <p className="mt-3 text-xs text-muted-foreground">
+        Screen reader gets:{' '}
+        <span className="font-mono text-success">{word}</span>
+      </p>
+      <p className="mt-2 text-xs text-success">
         aria-label carries “Announcing” as one word; the per-letter shards are aria-hidden. Same animation, intact semantics.
       </p>
     </div>

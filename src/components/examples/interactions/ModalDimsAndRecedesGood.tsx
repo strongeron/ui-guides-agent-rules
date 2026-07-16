@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 export function ModalDimsAndRecedesGood() {
-  const [open, setOpen] = useState(false);
+  // Open by default so the scrim + recede is visible at rest, not only after a click.
+  const [open, setOpen] = useState(true);
   return (
     <div className="w-full max-w-sm">
       <div className="relative overflow-hidden rounded-xl border border-border" style={{ height: 260 }}>

@@ -31,8 +31,12 @@ export function AnimatedTextStaysReadableBad() {
           </span>
         ))}
       </p>
-      <p className="mt-4 text-xs text-destructive">
-        Ten separate spans, no wrapper name: a screen reader reads “A, n, n, o…” letter by letter, or drops the word.
+      <p className="mt-3 text-xs text-muted-foreground">
+        Screen reader gets:{' '}
+        <span className="font-mono text-destructive">{word.split('').join(' · ')}</span>
+      </p>
+      <p className="mt-2 text-xs text-destructive">
+        Ten bare spans, no wrapper name: with per-letter animation the word can be read as fragments — or dropped.
       </p>
     </div>
   );

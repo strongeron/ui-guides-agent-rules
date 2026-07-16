@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 export function ModalDimsAndRecedesBad() {
-  const [open, setOpen] = useState(false);
+  // Open by default so the (missing) focus treatment is visible at rest.
+  const [open, setOpen] = useState(true);
   return (
     <div className="w-full max-w-sm">
       <div className="relative overflow-hidden rounded-xl border border-border" style={{ height: 260 }}>
