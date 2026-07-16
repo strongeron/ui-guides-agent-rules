@@ -49,6 +49,16 @@ export default defineConfig({
         // doesn't invalidate the (rarely-changing) library bundles, and the
         // browser can download them in parallel.
         manualChunks(id) {
+          // Principle dataset — its own chunk so editing a principle doesn't
+          // bust the app-code bundle (and vice versa). Still loaded eagerly;
+          // the sidebar needs the full list on first paint.
+          if (
+            id.includes('/src/data/principles/') ||
+            id.includes('/src/data/agentRules') ||
+            id.includes('/src/data/tags')
+          ) {
+            return 'principles-data';
+          }
           if (!id.includes('node_modules')) return;
           if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react';
           if (id.includes('@radix-ui')) return 'radix';
