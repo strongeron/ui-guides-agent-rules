@@ -26,7 +26,7 @@ https://github.com/user-attachments/assets/cd40ca11-f7e3-439d-993a-7f5aa99132b6
 
 - **404 principles**, each with a side-by-side good/bad example you can operate — not screenshots, real components.
 - **Multi-source and attributed.** Every rule is tagged with the upstream project it came from, filterable by origin, and credited on the Sources page.
-- **Agent-ready rules.** Every principle carries a `MUST` / `SHOULD` / `NEVER` rule with a code snippet, written to be copy-pasted straight into a coding agent's context. One click to copy.
+- **Agent-ready rules.** All 404 principles carry a `MUST` / `SHOULD` / `NEVER` rule written to be pasted straight into a coding agent's context; 106 of them add a code example. One click to copy.
 - **Fetchable by agents.** The whole corpus is published as [`llms-full.txt`](https://ui-guides-agent-rules.netlify.app/llms-full.txt) — plain text, no JavaScript, generated from the principle data at build time. Point a coding agent at it directly.
 - **Keyboard-first, accessible, themed.** The guide practices what it documents: visible focus rings, focus traps, hit targets, `prefers-reduced-motion`, light/dark, dynamic page titles.
 
@@ -38,10 +38,10 @@ The rules are free to take. There's no package to install — the corpus is one 
 
 ```md
 When writing or reviewing UI code, follow the interface rules at
-https://ui-guides-agent-rules.netlify.app/llms-full.txt
+https://ui-guides-agent-rules.netlify.app/llms.txt
 ```
 
-Your agent fetches it when it needs it. Nothing gets stored in your repo, and you get updates for free.
+Point at `llms.txt`, not the full corpus. It's about 1k tokens and names all eight categories with their rule counts, so the agent spends a rounding error finding out what exists, then pulls `llms-full.txt` — or one category out of it — only when it actually needs the rules. Nothing is stored in your repo, and you get updates for free.
 
 **Or vendor a copy** if you want the rules pinned and offline:
 
@@ -49,17 +49,22 @@ Your agent fetches it when it needs it. Nothing gets stored in your repo, and yo
 curl -o .agent/ui-rules.md https://ui-guides-agent-rules.netlify.app/llms-full.txt
 ```
 
-**Watch the size.** The full corpus is ~590 KB, roughly 150k tokens. That's a large chunk of a context window, so don't paste the whole thing into a system prompt. Let the agent fetch it on demand, or take just the slice you need — the file is organized by `## Category` headings (Interactions, Animations, Layout, Content, Forms, Performance, Design, Aesthetics):
+**Watch the size.** The full corpus is 588 KB, roughly 149k tokens — a large chunk of a context window, so don't paste the whole thing into a system prompt. Let the agent fetch it on demand, or take just the slice you need. The file is organized under eight `## Category` headings, in this order:
+
+`Interactions` · `Animations` · `Layout` · `Content` · `Forms` · `Performance` · `Design` · `Aesthetics`
 
 ```bash
-# just the forms rules
+# one category — works for any of the eight, including the last one
+CATEGORY=Forms
 curl -s https://ui-guides-agent-rules.netlify.app/llms-full.txt \
-  | awk '/^## Forms$/,/^## Performance$/'
+  | awk -v c="## $CATEGORY" '$0==c{f=1} f&&/^## /&&$0!=c{exit} f'
 ```
 
-**Or take one rule.** Every principle on the site has a **Copy Rule** button that yields a single `MUST` / `SHOULD` / `NEVER` line with its code snippet — useful when you're fixing one thing and don't want to reshape the agent's whole context.
+Each entry carries its ID, the agent rule, the upstream source, and an explanation — so a slice stays self-contained and citable.
 
-Each rule carries the upstream project it came from. If you cite one, credit that source, not this repo.
+**Or take one rule.** Every principle on the site has a **Copy Rule** button. It copies the `MUST` / `SHOULD` / `NEVER` line, the principle's description, and a code example where one exists — useful when you're fixing one thing and don't want to reshape the agent's whole context.
+
+If you cite a rule, credit the upstream author it came from — not this repo.
 
 ## Built with
 
