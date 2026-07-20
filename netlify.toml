@@ -6,3 +6,11 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# The demo video and poster are meant to be embedded and fetched from
+# elsewhere (README, social cards), so allow cross-origin reads.
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000, immutable"
