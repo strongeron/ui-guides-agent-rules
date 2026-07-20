@@ -48,6 +48,8 @@ npm run test:e2e:principle # Run principle visual tests only
 ### Component Structure
 
 - `App.tsx`: Main layout with keyboard navigation, URL hash state, dynamic page title, sidebar toggle
+
+  **The hash is a two-way binding, and both directions are load-bearing.** Reading it needs `hashchange` *and* `popstate`: an anchor or a manual URL edit fires only the former, while back/forward over a pushed entry fires only the latter. Writing it uses `pushState`, so each principle is its own history entry — with two guards that are easy to delete by accident. Skipping the write when the hash already matches prevents a change that *came from* the URL being pushed back on top of itself; and the first run of the effect uses `replaceState`, so landing on `/` corrects the address bar without leaving a phantom entry behind the user's first Back press. That first-run flag is consumed before the early returns — if it only flipped on an actual write, a deep link would leave it unset and the next navigation would silently eat a history step.
 - `PrincipleView.tsx`: Displays principle details with side-by-side good/bad examples
 - `ExampleRenderer.tsx`: Lazy-loads examples automatically from `./examples/**/*.tsx`
 - `Sidebar.tsx`: Navigation with search, focus trap, and `overscroll-behavior: contain`

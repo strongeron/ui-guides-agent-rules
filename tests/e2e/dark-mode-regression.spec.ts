@@ -1,17 +1,28 @@
 import { test, expect, type Page } from '@playwright/test';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, '../..');
 
-// Get principle IDs from the data file
+// Get principle IDs from the data modules. The corpus used to be one
+// principles.ts; it is now one module per category, so read the directory
+// rather than a single file. drafts.ts is excluded on purpose — draft entries
+// are not in the `principles` array and have no page to screenshot.
 function getPrincipleIds(): string[] {
-  const principlesPath = join(rootDir, 'src/data/principles.ts');
-  const content = readFileSync(principlesPath, 'utf-8');
-  const idMatches = content.matchAll(/id:\s*['"]([^'"]+)['"]/g);
-  return Array.from(idMatches, (m) => m[1]);
+  const dir = join(rootDir, 'src/data/principles');
+  const ids: string[] = [];
+
+  for (const file of readdirSync(dir)) {
+    if (!file.endsWith('.ts')) continue;
+    if (file === 'index.ts' || file === 'categories.ts' || file === 'drafts.ts') continue;
+
+    const content = readFileSync(join(dir, file), 'utf-8');
+    for (const m of content.matchAll(/id:\s*['"]([^'"]+)['"]/g)) ids.push(m[1]);
+  }
+
+  return ids;
 }
 
 const principleIds = getPrincipleIds();

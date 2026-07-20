@@ -128,7 +128,6 @@ export function AgentRuleCard({
             e.stopPropagation();
             handleCopy();
           }}
-          aria-label="Copy agent rule"
           className="w-full sm:w-auto transition-colors hover:bg-foreground/10 hover:text-foreground group-hover:border-foreground/25"
         >
           {copied ? (

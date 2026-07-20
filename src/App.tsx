@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
@@ -101,7 +101,7 @@ function App() {
   const handleShowSources = useCallback(() => {
     setShowSources(true);
     setShowCodeHikeDemo(false);
-    window.history.replaceState(null, '', `${window.location.search}#sources`);
+    window.history.pushState(null, '', `${window.location.search}#sources`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -157,26 +157,64 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, handleNext, handlePrevious, isSidebarOpen]);
 
-  // Restore state from URL hash
+  // Read state FROM the URL — on mount, and on every later change to it.
+  // Both listeners are required and neither is redundant: editing the hash or
+  // following an in-page anchor fires `hashchange`, while back/forward over an
+  // entry we pushed fires `popstate` and never `hashchange`.
   useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (hash === 'codehike-demo') {
-      setShowCodeHikeDemo(true);
-    } else if (hash === 'sources') {
-      setShowSources(true);
-    } else if (hash) {
-      setShowCodeHikeDemo(false);
+    const syncFromUrl = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash === 'codehike-demo') {
+        setShowCodeHikeDemo(true);
+        setShowSources(false);
+        return;
+      }
+      if (hash === 'sources') {
+        setShowSources(true);
+        setShowCodeHikeDemo(false);
+        return;
+      }
       const index = principles.findIndex((p) => p.id === hash);
       if (index !== -1) {
+        setShowCodeHikeDemo(false);
+        setShowSources(false);
         setCurrentIndex(index);
       }
-    }
+    };
+
+    syncFromUrl();
+    window.addEventListener('hashchange', syncFromUrl);
+    window.addEventListener('popstate', syncFromUrl);
+    return () => {
+      window.removeEventListener('hashchange', syncFromUrl);
+      window.removeEventListener('popstate', syncFromUrl);
+    };
   }, []);
 
-  // Update URL hash when principle changes (preserve the filter query string)
+  // Write state back TO the URL (preserving the filter query string).
+  // pushState, not replaceState, so each principle is its own history entry and
+  // Back returns to the previous one. The guard below keeps that honest: when a
+  // change *came from* the URL the hash already matches, so we skip the write
+  // and avoid pushing a duplicate entry on top of the one we just navigated to.
+  const hasSyncedOnce = useRef(false);
   useEffect(() => {
-    if (!showCodeHikeDemo && !showSources) {
-      window.history.replaceState(null, '', `${window.location.search}#${currentPrinciple.id}`);
+    // Consume the first-run flag before any early return. If it only flipped on
+    // an actual write, a mount that returns early (deep link, or landing on
+    // #sources) would leave it false, and the *next* navigation would replace
+    // that entry instead of pushing — silently eating one step of history.
+    const isInitial = !hasSyncedOnce.current;
+    hasSyncedOnce.current = true;
+
+    if (showCodeHikeDemo || showSources) return;
+    if (window.location.hash.slice(1) === currentPrinciple.id) return;
+
+    const url = `${window.location.search}#${currentPrinciple.id}`;
+    // The initial write only corrects the address bar (e.g. landing on "/"), so
+    // it must not leave an extra entry behind the user's first Back press.
+    if (isInitial) {
+      window.history.replaceState(null, '', url);
+    } else {
+      window.history.pushState(null, '', url);
     }
   }, [currentPrinciple.id, showCodeHikeDemo, showSources]);
 
