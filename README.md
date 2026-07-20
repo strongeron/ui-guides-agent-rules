@@ -4,9 +4,9 @@ Web UI principles, made interactive. Every rule paired with a **good** and **bad
 
 **→ [ui-guides-agent-rules.netlify.app](https://ui-guides-agent-rules.netlify.app)**
 
-![Tabbing through a bad and a good example, keyboard only](./public/media/keyboard-demo.gif)
+https://github.com/user-attachments/assets/fa853434-2f94-4fe1-aa50-f5b426202164
 
-<sup>Two principles, keyboard only. On **Keyboard Works Everywhere** focus leaps straight over the bad card — its menu items are `div`s, so there is nothing to land on. On **Clear Focus** both cards take focus, but only the good one tells you where you are. — [sharper MP4](https://ui-guides-agent-rules.netlify.app/media/keyboard-demo.mp4)</sup>
+<sup>Two principles, keyboard only. On **Keyboard Works Everywhere** focus leaps straight over the bad card — its menu items are `div`s, so there is nothing to land on. On **Clear Focus** both cards take focus, but only the good one tells you where you are.</sup>
 
 ## What it is
 
