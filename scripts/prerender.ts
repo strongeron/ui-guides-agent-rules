@@ -120,7 +120,11 @@ let bytes = 0;
 for (const p of published) {
   const body = render({ kind: 'principle', id: p.id });
   const html = pageHtml(p, body);
-  const out = join(DIST, 'principles', p.id, 'index.html');
+  // `<id>.html`, not `<id>/index.html`. Netlify resolves a extensionless request to
+  // the sibling .html file and serves it 200; a directory would instead 301 to a
+  // trailing slash, so the canonical URL emitted below would not be the URL that
+  // actually answers. One redirect per rule, on every crawl, for nothing.
+  const out = join(DIST, 'principles', `${p.id}.html`);
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html, 'utf8');
   written++;
@@ -129,12 +133,11 @@ for (const p of published) {
 
 // The root keeps the SPA shell: it is the app's entry, not a rule, and its <head> is
 // already correct for the site as a whole.
-for (const [route, dir] of [
-  [{ kind: 'sources' } as Route, 'sources'],
-  [{ kind: 'principle', id: published[0].id } as Route, ''],
-]) {
+for (const [route, file] of [
+  [{ kind: 'sources' } as Route, join(DIST, 'sources.html')],
+  [{ kind: 'principle', id: published[0].id } as Route, join(DIST, 'index.html')],
+] as const) {
   const body = render(route);
-  const file = dir ? join(DIST, dir, 'index.html') : join(DIST, 'index.html');
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, template.replace('<div id="root"></div>', `<div id="root">${body}</div>`), 'utf8');
 }
