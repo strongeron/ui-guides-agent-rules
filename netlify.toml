@@ -2,6 +2,25 @@
   command = "npm run build"
   publish = "dist"
 
+# Agent endpoints must fail loudly, and these rules must stay ABOVE the SPA fallback —
+# Netlify applies the first matching redirect. Without them a typo'd rule id falls
+# through to index.html and returns 200 with 7 KB of React shell, which an agent then
+# tries to parse as a rule. Netlify still serves existing static files before applying
+# any redirect, so every real payload wins and only wrong paths reach these.
+#
+# Forward-compatible with the planned HTML routes at /principles/<id>: those will be
+# prerendered files, so they will be served directly, and an unknown id should 404 there
+# too rather than rendering an empty app.
+[[redirects]]
+  from = "/principles/*"
+  to = "/agent-404.txt"
+  status = 404
+
+[[redirects]]
+  from = "/categories/*"
+  to = "/agent-404.txt"
+  status = 404
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

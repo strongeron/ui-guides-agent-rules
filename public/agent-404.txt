@@ -1,0 +1,13 @@
+# Not found
+
+No rule or category exists at that path.
+
+Rule ids look like `forms-enter-submits` — category prefix, then a slug. The full
+list is at https://ui-guides-agent-rules.netlify.app/principles/index.md
+
+  /principles/index.md          every id, priority, title and trigger symbols
+  /principles/must.md           all MUST rules
+  /categories/<category>.md     one category: interactions, animations, layout,
+                                content, forms, performance, design, aesthetics
+  /principles/<id>.md           one rule, with its good and bad example source
+  /principles/<id>.json         the same, structured
