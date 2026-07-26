@@ -42,6 +42,84 @@ const examples = loadExampleSources();
 /** ~4 chars/token is close enough to size a payload and cheaper than a tokenizer. */
 const tokens = (s: string) => Math.round(s.length / 4);
 
+/**
+ * Trigger symbols — what makes the index navigable rather than a list to guess from.
+ *
+ * A title tells an agent almost nothing about whether a rule applies to the file in
+ * front of it ("Enter Submits" does not say `onSubmit`), and the tag vocabulary is too
+ * coarse to help: 7 tags over 404 rules, 39% of them untagged. So each rule is
+ * annotated with the concrete symbols its own examples use. An agent can then match
+ * the identifiers already in its diff instead of reasoning about titles.
+ *
+ * Symbols are mined from the good and bad example source plus the rule text, then
+ * filtered by document frequency: anything in more than 15% of rules is React or UI
+ * boilerplate (`onClick`, `useState`, `<button>`) and discriminates nothing, and
+ * anything unique to one rule is usually incidental. What survives reaches ~60% of the
+ * corpus — the mechanical rules. The rest are judgment calls about design and prose,
+ * where the category is the right axis and no symbol would help.
+ */
+const SYMBOL_PATTERNS: RegExp[] = [
+  /\bon[A-Z][a-zA-Z]+/g, // JSX handlers
+  /\baria-[a-z-]+/g,
+  /<(form|dialog|button|input|label|select|textarea|table|nav|img|video|a)\b/g,
+  /\b(transition|transform|animation|overscroll-behavior|will-change|opacity|scroll-behavior|touch-action|user-select|contain)\b/g,
+  /\b(tabIndex|autoComplete|autoFocus|inputMode|enterKeyHint|role|type|alt|lang|dir|loading|decoding|hidden|disabled|required|placeholder)=/g,
+  /\b(useEffect|useState|useRef|requestAnimationFrame|setTimeout|IntersectionObserver|ResizeObserver|matchMedia|prefers-reduced-motion|preventDefault)\b/g,
+  // Pseudo-classes and sizing idioms carry several rules that name no JS API at all —
+  // focus styling, tap-target size, and the iOS zoom threshold among them.
+  /:focus-visible|:focus-within|focus\(\)|font-size|min-h-|min-w-/g,
+];
+
+/** Above this share of the corpus a symbol is boilerplate and carries no signal. */
+const MAX_DOC_FREQUENCY = 0.15;
+
+/** Enough to match on without turning every index line into a wall of tokens. */
+const MAX_TRIGGERS_PER_RULE = 4;
+
+function buildTriggers(): Map<string, string[]> {
+  const candidates = new Map<string, Set<string>>();
+
+  for (const p of published) {
+    const haystack = [
+      examples.get(p.goodExampleKey) ?? '',
+      examples.get(p.badExampleKey) ?? '',
+      agentRules[p.id]?.rule ?? '',
+    ].join('\n');
+
+    const found = new Set<string>();
+    for (const pattern of SYMBOL_PATTERNS) {
+      for (const [match] of haystack.matchAll(pattern)) {
+        found.add(match.replace(/[<=]/g, ''));
+      }
+    }
+    candidates.set(p.id, found);
+  }
+
+  const frequency = new Map<string, number>();
+  for (const found of candidates.values()) {
+    for (const symbol of found) frequency.set(symbol, (frequency.get(symbol) ?? 0) + 1);
+  }
+  const ceiling = published.length * MAX_DOC_FREQUENCY;
+
+  const triggers = new Map<string, string[]>();
+  for (const [id, found] of candidates) {
+    triggers.set(
+      id,
+      [...found]
+        .filter((s) => {
+          const n = frequency.get(s)!;
+          return n >= 2 && n <= ceiling;
+        })
+        // Rarest first: the most distinctive symbol is the most useful to match on.
+        .sort((a, b) => frequency.get(a)! - frequency.get(b)! || a.localeCompare(b))
+        .slice(0, MAX_TRIGGERS_PER_RULE),
+    );
+  }
+  return triggers;
+}
+
+const triggers = buildTriggers();
+
 const permalink = (id: string) => `${SITE}/principles/${id}.md`;
 
 const sourceLine = (p: Principle) => {
@@ -114,6 +192,7 @@ function ruleJson(p: Principle) {
     title: p.title,
     category: p.category,
     tags: p.tags ?? [],
+    triggers: triggers.get(p.id) ?? [],
     priority: rule?.priority ?? null,
     rule: rule?.rule ?? null,
     ruleSnippet: rule?.codeExample ?? null,
@@ -129,13 +208,27 @@ function ruleJson(p: Principle) {
   };
 }
 
-/** Compact enough that reading the whole index is an affordable first move. */
+/**
+ * The navigation entry point. Compact enough to read in full as a first move, and
+ * annotated so an agent can match rules against the code in front of it rather than
+ * inferring applicability from a title.
+ */
 function indexMd(): string {
+  const withTriggers = published.filter((p) => triggers.get(p.id)!.length).length;
   const out = [
     '# Rule index',
     '',
-    `${published.length} rules across ${categories.length} categories. This index is`,
-    'ids and titles only — fetch what you need:',
+    `${published.length} rules across ${categories.length} categories — ids, titles and`,
+    'the symbols each rule concerns. Nothing here is the rule itself.',
+    '',
+    '## How to use this index',
+    '',
+    '1. Scan the code you are reviewing or writing for identifiers — event handlers,',
+    '   ARIA attributes, CSS properties, element names.',
+    `2. Search this file for those identifiers. ${withTriggers} of ${published.length} rules list the`,
+    '   symbols their own examples use, after the `·`.',
+    '3. Fetch only the rules that matched. Rules with no symbols listed are judgment',
+    '   calls about design or prose — reach those by category instead.',
     '',
     `- one rule, with its good and bad example source: \`${SITE}/principles/<id>.md\``,
     `- one category, rules and prose only: \`${SITE}/categories/<category>.md\``,
@@ -149,8 +242,13 @@ function indexMd(): string {
     out.push(`## ${c.id} (${items.length})`, '');
     for (const p of items) {
       const priority = agentRules[p.id]?.priority ?? '—';
-      const tags = p.tags?.length ? ` [${p.tags.join(', ')}]` : '';
-      out.push(`- \`${p.id}\` ${priority} — ${p.title}${tags}`);
+      const symbols = triggers.get(p.id)!;
+      const suffix = symbols.length
+        ? ` · ${symbols.join(' ')}`
+        : p.tags?.length
+          ? ` · ${p.tags.join(' ')}`
+          : '';
+      out.push(`- \`${p.id}\` ${priority} — ${p.title}${suffix}`);
     }
     out.push('');
   }
@@ -232,7 +330,11 @@ for (const c of categories) {
 }
 
 console.log(`  principles/          ${published.length * 2} files (.md + .json per rule)`);
-console.log(`  principles/index.md  ${String(tokens(index)).padStart(6)} tokens`);
+const triggerCoverage = published.filter((p) => triggers.get(p.id)!.length).length;
+console.log(
+  `  principles/index.md  ${String(tokens(index)).padStart(6)} tokens` +
+    ` (${triggerCoverage}/${published.length} rules carry trigger symbols)`,
+);
 console.log(`  principles/must.md   ${String(tokens(must)).padStart(6)} tokens`);
 for (const c of categories) {
   if (!published.some((p) => p.category === c.id)) continue;
