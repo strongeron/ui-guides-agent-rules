@@ -9,7 +9,7 @@
     "dev": "vite",
     "generate:llms": "npx tsx scripts/generate-llms.ts",
     "generate:og": "npx tsx scripts/generate-og.ts",
-    "prebuild": "npm run generate:llms",
+    "prebuild": "npm run generate:llms && npm run generate:agent-layers",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -40,7 +40,8 @@
     "validate:dark-mode:all": "npx tsx scripts/validate-dark-mode-screenshots.ts --all",
     "validate:init": "npx tsx scripts/visual-validation.ts init",
     "validate:comprehensive": "npx tsx scripts/validate-all-comprehensive.ts",
-    "validate:all": "npm run validate:comprehensive"
+    "validate:all": "npm run validate:comprehensive",
+    "generate:agent-layers": "npx tsx scripts/generate-agent-layers.ts"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^3.1.1",

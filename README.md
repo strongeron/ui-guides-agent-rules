@@ -20,49 +20,68 @@ https://github.com/user-attachments/assets/cd40ca11-f7e3-439d-993a-7f5aa99132b6
 
 404 principles across eight categories — interactions, animations, layout, content, forms, performance, design, aesthetics — drawn from 15 upstream sources. Search, filter by source or tag, deep-link to any rule.
 
-**To use it:** point a coding agent at [`llms-full.txt`](https://ui-guides-agent-rules.netlify.app/llms-full.txt) — the whole corpus as plain text, no JavaScript required.
+**To use it:** point a coding agent at [`principles/index.md`](https://ui-guides-agent-rules.netlify.app/principles/index.md) — every rule id and title in ~8k tokens — and let it fetch the categories or individual rules that apply. Or install the [`web-design-guidelines`](https://github.com/strongeron/agent-skills/tree/main/skills/web-design-guidelines) skill and skip the wiring.
 
 ## What's inside
 
 - **404 principles**, each with a side-by-side good/bad example you can operate — not screenshots, real components.
 - **Multi-source and attributed.** Every rule is tagged with the upstream project it came from, filterable by origin, and credited on the Sources page.
 - **Agent-ready rules.** All 404 principles carry a `MUST` / `SHOULD` / `NEVER` rule written to be pasted straight into a coding agent's context; 106 of them add a code example. One click to copy.
-- **Fetchable by agents.** The whole corpus is published as [`llms-full.txt`](https://ui-guides-agent-rules.netlify.app/llms-full.txt) — plain text, no JavaScript, generated from the principle data at build time. Point a coding agent at it directly.
+- **Fetchable in slices.** Published as static files an agent pays for by the piece: a ~8k-token [index](https://ui-guides-agent-rules.netlify.app/principles/index.md), all 191 [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md) at ~11k, one category at 6k–26k, or [a single rule](https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md) at ~1.4k — that last one carrying **both example components as real code**, which nothing else exposes. All generated from the principle data at build time.
 - **Keyboard-first, accessible, themed.** The guide practices what it documents: visible focus rings, focus traps, hit targets, `prefers-reduced-motion`, light/dark, dynamic page titles.
 
 ## Use the rules in your own project
 
-The rules are free to take. There's no package to install — the corpus is one plain-text file.
+The rules are free to take. Nothing to install — everything below is a static file you fetch.
 
-**Give your agent the URL.** The simplest setup, and the one to start with. Add a line to your `CLAUDE.md`, `AGENTS.md`, or Cursor rules:
+### Install the skill
+
+If you use Claude Code, Codex or Cursor, the
+[`web-design-guidelines`](https://github.com/strongeron/agent-skills/tree/main/skills/web-design-guidelines)
+skill wires this up for you: it knows which slice to fetch for the code being
+reviewed, so you don't have to think about it.
+
+### Or point your agent at the endpoints
+
+The whole corpus is **166k tokens**, so fetching it is almost never right. Fetch the slice that matches what you're doing:
+
+| Doing | Fetch | Cost |
+| --- | --- | --- |
+| Reviewing a diff or a few files | `/categories/<category>.md` | 6k–26k |
+| A fast pass over anything | `/principles/must.md` — all 191 MUST rules | ~11k |
+| Fixing or applying one rule | `/principles/<id>.md` | ~1.4k |
+| Finding which rule covers something | `/principles/index.md` — every id + title | ~8k |
+| Programmatic use | `/principles/<id>.json` | ~1.4k |
+| Everything, rarely correct | `/llms-full.txt` | 166k |
+
+Base URL: `https://ui-guides-agent-rules.netlify.app` · categories are
+`interactions` `animations` `layout` `content` `forms` `performance` `design` `aesthetics`
+
+```bash
+# every forms rule, with reasoning
+curl -s https://ui-guides-agent-rules.netlify.app/categories/forms.md
+
+# one rule — including the good AND bad component, as real code
+curl -s https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md
+```
+
+**The per-rule payload is the one worth knowing about.** It carries both example
+components in full — the correct implementation and the wrong one. No other
+endpoint exposes them, and the wrong example is often more useful than the rule
+text, because it shows the specific mistake the rule exists to prevent.
+
+### Or add a line to your agent config
+
+In `CLAUDE.md`, `AGENTS.md`, or Cursor rules:
 
 ```md
-When writing or reviewing UI code, follow the interface rules at
-https://ui-guides-agent-rules.netlify.app/llms.txt
+When writing or reviewing UI code, consult
+https://ui-guides-agent-rules.netlify.app/principles/index.md,
+then fetch the categories or individual rules that apply.
+Do not fetch llms-full.txt — it is 166k tokens.
 ```
 
-Point at `llms.txt`, not the full corpus. It's about 1k tokens and names all eight categories with their rule counts, so the agent spends a rounding error finding out what exists, then pulls `llms-full.txt` — or one category out of it — only when it actually needs the rules. Nothing is stored in your repo, and you get updates for free.
-
-**Or vendor a copy** if you want the rules pinned and offline:
-
-```bash
-curl -o .agent/ui-rules.md https://ui-guides-agent-rules.netlify.app/llms-full.txt
-```
-
-**Watch the size.** The full corpus is 588 KB, roughly 149k tokens — a large chunk of a context window, so don't paste the whole thing into a system prompt. Let the agent fetch it on demand, or take just the slice you need. The file is organized under eight `## Category` headings, in this order:
-
-`Interactions` · `Animations` · `Layout` · `Content` · `Forms` · `Performance` · `Design` · `Aesthetics`
-
-```bash
-# one category — works for any of the eight, including the last one
-CATEGORY=Forms
-curl -s https://ui-guides-agent-rules.netlify.app/llms-full.txt \
-  | awk -v c="## $CATEGORY" '$0==c{f=1} f&&/^## /&&$0!=c{exit} f'
-```
-
-Each entry carries its ID, the agent rule, the upstream source, and an explanation — so a slice stays self-contained and citable.
-
-**Or take one rule.** Every principle on the site has a **Copy Rule** button. It copies the `MUST` / `SHOULD` / `NEVER` line, the principle's description, and a code example where one exists — useful when you're fixing one thing and don't want to reshape the agent's whole context.
+**Or take one rule by hand.** Every principle on the site has a **Copy Rule** button — the `MUST` / `SHOULD` / `NEVER` line, the description, and a code example where one exists.
 
 If you cite a rule, credit the upstream author it came from — not this repo.
 

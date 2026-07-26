@@ -56,3 +56,10 @@ doc/validation-report.md
 doc/validation-results.json
 doc/visual-validation-*
 doc/agent-rules-alignment.json
+
+# Generated agent payloads — 800+ files rebuilt by `prebuild` from src/data/principles.
+# Vite copies public/ into dist/, so they ship on the deploy without living in git.
+# The three small discovery files (llms.txt, llms-full.txt, sitemap.xml) stay tracked
+# on purpose: their diffs are how a corpus change is reviewed.
+public/principles/
+public/categories/

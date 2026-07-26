@@ -12,19 +12,12 @@
 
 import { writeFileSync } from 'fs';
 import { join } from 'path';
-import { fileURLToPath } from 'url';
-import { categories, principles } from '../src/data/principles';
+import { categories } from '../src/data/principles';
 import { agentRules } from '../src/data/agentRules';
 import { sourceRegistry } from '../src/components/source-registry';
+import { AUTHOR_SITE, PUBLIC_DIR, REPO, SITE, published } from './lib/corpus';
 import type { Principle } from '../src/types/principle';
 
-const SITE = 'https://ui-guides-agent-rules.netlify.app';
-const AUTHOR_SITE = 'https://glebstroganov.com';
-const REPO = 'https://github.com/strongeron/ui-guides-agent-rules';
-
-const PUBLIC_DIR = join(fileURLToPath(new URL('.', import.meta.url)), '..', 'public');
-
-const published = principles.filter((p) => p.status !== 'draft');
 const byCategory = (id: string) => published.filter((p) => p.category === id);
 
 /**
@@ -107,6 +100,26 @@ ${[
     `all ${published.length} rules inline, each with its agent rule, explanation and source — start here`,
   ),
   link('This index (llms.txt)', `${SITE}/llms.txt`, 'the file you are reading'),
+  link(
+    'Rule index',
+    `${SITE}/principles/index.md`,
+    'every rule id, priority and title in ~8k tokens — read this, then fetch only what you need',
+  ),
+  link(
+    'MUST rules',
+    `${SITE}/principles/must.md`,
+    `all ${published.filter((p) => agentRules[p.id]?.priority === 'MUST').length} MUST rules in ~11k tokens — a review gate you can apply to a diff`,
+  ),
+  link(
+    'One rule + both examples',
+    `${SITE}/principles/<id>.md`,
+    'per-rule payload, ~1.4k tokens, carrying the good AND bad component source — the code no other endpoint exposes. Also as .json',
+  ),
+  link(
+    'One category',
+    `${SITE}/categories/<category>.md`,
+    'rules and reasoning for one category, 6k-26k tokens, no example code',
+  ),
   link('Sitemap', `${SITE}/sitemap.xml`, 'fetchable URLs only — the per-rule views are hash fragments'),
   link('Sources page', `${SITE}/#sources`, 'every upstream skill and guideline, with its licence and coverage'),
   link('Source repository', REPO, 'the principle data as TypeScript, plus every example component'),
