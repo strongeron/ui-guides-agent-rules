@@ -2,6 +2,9 @@
 
 **Date:** 2026-07-26
 **Status:** Draft — awaiting approval before `ce-plan` / implementation
+**Revised:** 2026-07-26 — direction changed from a hand-built static shell to
+islands SSG, after probing the components under `react-dom/server` instead of
+assuming they would fail. See "Measured, not assumed".
 
 ## Problem
 
@@ -37,49 +40,84 @@ CLAUDE.md has called this "the unlock" for a while. This spec decides how.
   replaceState, `hashchange` **and** `popstate`) documented in CLAUDE.md. Whatever
   replaces it must preserve Back/Forward behaviour, not regress it.
 
+## Measured, not assumed
+
+The first draft of this spec assumed the components were not server-renderable and
+recommended hand-building a static shell from the data. That assumption was wrong,
+and it was cheap to test. Rendering the real components under `react-dom/server`:
+
+| Component | Result |
+|---|---|
+| `AgentRuleCard` | renders, 10 KB, agent rule present in the markup |
+| `PrincipleReferencesCard` | renders, all 6 split paragraphs present |
+| `Footer` | renders, 2.7 KB |
+| `Header` | renders, 7.0 KB |
+| `Sidebar` | renders, **340 KB** — every one of the 404 links |
+
+Nothing touches `window` during render. The only genuinely client-only part is
+`ExampleRenderer`, which is already lazy-loaded — i.e. already an island.
+
+Also measured, for the URL question: all 404 ids are prefixed by their own
+category (0 exceptions), no id collides with a reserved root path, and exactly one
+slug (`no-dead-zones`) appears in two categories.
+
 ## Options
 
-### A. React SSR / SSG the whole app (`vite-react-ssg`, or `renderToString` at build)
+### A. SSR the whole app, examples included
 
-Render each route fully — including the Good/Bad examples — to static HTML.
+Still rejected. The 404 example components touch DOM, canvas, WebGL and timers;
+making them all server-safe is open-ended work with no user-visible payoff.
 
-- **Pro:** maximal fidelity; the served HTML is exactly the app.
-- **Con:** requires all 404 example components to be SSR-safe. They are not, and
-  making them so is open-ended work with no user-visible payoff. This is the
-  option that looks obvious and is actually the trap.
+### B. Hand-built static shell per route, generated from principle data
 
-### B. Static shell per route, generated from principle data (recommended)
+Emit HTML from a template fed by the `Principle` object; React wipes and replaces
+it on mount.
 
-Emit `dist/principles/<id>/index.html` at build: correct `<title>`, meta,
-canonical, OG/Twitter, per-rule JSON-LD, and a **real content block** carrying the
-rule prose (title, category, MUST/SHOULD/NEVER rule, description, explanation,
-source links). React mounts and takes over; the static block is removed on mount.
-The examples stay client-only — they are interactive demos, not indexable prose.
+- **Pro:** no SSR machinery.
+- **Con:** the template duplicates the JSX structure, so the two drift. Replacing
+  the content on mount means a flash and a layout shift. And it forces two
+  arbitrary decisions — how much prose to include, and whether hidden-ish content
+  is safe — that only exist *because* the HTML is a hand-made approximation.
 
-- **Pro:** no SSR constraint at all; reuses the data pipeline that already writes
-  `llms-full.txt`; the generator is ~1 file. Ships every SEO/OG/agent benefit that
-  motivated the work.
-- **Con:** served HTML is not byte-identical to the hydrated app (examples are
-  absent pre-hydration). Drift risk between the static block and the React view —
-  mitigated by generating both from the same `Principle` object and keeping the
-  static block deliberately minimal.
+### C. Islands SSG — prerender the real components, examples stay client-only ✅
 
-### C. `.md` twins only, keep hash routing
+Render the actual `PrincipleView` tree at build time with `ExampleRenderer`
+replaced by a sized placeholder, then `hydrateRoot` on the client.
 
-Emit `/principles/<id>.md` and stop.
+- **Pro:** no duplication and therefore no drift — the same components produce
+  both renders. No flash: React hydrates in place rather than replacing. The
+  agent rule, the description and the split explanation are all in the HTML
+  because the components put them there. The example cards already carry
+  `min-h-[180px]`, so the island placeholder reserves its own height and the
+  hydration swap costs no layout shift.
+- **Con:** needs a second Vite build pass (SSR target) and `hydrateRoot` instead
+  of `createRoot`. More setup than B — but less bespoke code, because there is no
+  template to write or maintain.
 
-- **Pro:** cheapest; real agent value today.
-- **Con:** does nothing for options 1 and 2 — no indexable pages, no OG cards.
-  This is a *subset* of B, not an alternative to it.
+### D. `.md` twins only
+
+A subset of C, not an alternative: real agent value, but no indexable pages and no
+OG cards. Folds into C's generator.
 
 ## Chosen direction
 
-**B, with C's `.md` output folded in** — the same generator emits, per rule:
+**C, with D's `.md` output folded in.** Per rule, the build emits:
 
 | Path | Purpose |
 |---|---|
-| `/principles/<id>/index.html` | indexable page, per-rule `<head>`, static prose |
+| `/principles/<id>` | indexable page, per-rule `<head>`, real prerendered content |
 | `/principles/<id>.md` | clean Markdown twin for agents |
+
+**URL shape: `/principles/<id>`** — flat, not `/principles/<category>/<slug>`.
+Hierarchy is derivable (measured above) and would enable category hub pages, but
+it couples every rule's URL to a mutable piece of metadata: recategorising a rule
+would change its URL and need a redirect. Deriving permanent URLs from a stable
+identifier rather than from taxonomy is the older and better rule — it is why
+WordPress permalinks moved off `/category/post`. Category hubs can live at their
+own path without rule URLs depending on them. The `/principles/` prefix also keeps
+the root namespace free, which `/` -squatting ids would not.
+
+The id→URL map is 1:1 and total, so no mapping table is needed.
 
 Routing moves from hash to History API. **Hand-rolled, not react-router**: the app
 has exactly three route shapes (`/`, `/principles/:id`, `/sources`), the existing
@@ -115,13 +153,33 @@ hash permalinks to real ones, and the sitemap grows from 3 URLs to 400+.
 - Per-rule OG **images**. Per-rule OG *metadata* is in scope; generating 404
   images is a separate piece of work.
 
-## Open questions
+## Resolved
 
-1. **URL shape** — `/principles/<id>` (namespaced, room to grow) vs `/<id>`
-   (shorter, but squats the root namespace). Spec assumes the former.
-2. **Hydration flash** — the static block is removed on mount. If React is slow
-   on a cold cache the user sees unstyled-ish prose first. Arguably better than a
-   blank screen, but it is a visible behaviour change worth agreeing on.
-3. **Does the static block include the agent rule verbatim?** It is the most
-   citable part, which argues yes; it also duplicates `llms-full.txt`, which is
-   fine, but it means the HTML is no longer a strict subset of the app view.
+The three questions the first draft left open were artifacts of choosing option B.
+Two of them stop existing under C:
+
+1. **URL shape** — settled above: `/principles/<id>`, flat, on the
+   stable-identifier argument.
+2. **Hydration flash** — does not occur. Hydration reuses the server markup rather
+   than replacing it, and the example island's placeholder inherits the existing
+   `min-h-[180px]`, so there is no layout shift either.
+3. **Agent rule in the HTML** — not a decision. `AgentRuleCard` renders it, so it
+   is there; verified in the probe. That it also appears in `llms-full.txt` is the
+   point of `rel="alternate"`, not a duplication problem — and the GEO evidence is
+   that visible rendered text is what models actually weight.
+
+## Open question
+
+**Sidebar weight.** It renders every one of the 404 links, which is 340 KB per
+page — about 137 MB across the corpus, before gzip. Full nav on every page is good
+internal linking, but that is a lot of bytes for LCP and for the build. Three ways
+out, in preference order:
+
+1. Prerender the current category's rules only (~89 worst case, ~20 KB) and let
+   the client fill in the rest on hydrate.
+2. Prerender the 8 category headings only; rules load client-side.
+3. Keep the sidebar entirely client-only and rely on `sitemap.xml` plus category
+   hubs for crawl paths.
+
+Option 1 keeps meaningful internal linking at ~6% of the cost and is the default
+unless there is a reason to prefer another.
