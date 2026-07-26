@@ -50,6 +50,20 @@ async function getComparisonLocator(page: Page) {
   return comparison;
 }
 
+/**
+ * Two separate baseline directories are in play, and conflating them hides gaps:
+ *
+ *   tests/visual-baselines/{light,dark}-mode/<id>.png   — the *gate*. Its presence
+ *       decides whether a principle is tested at all; nothing compares against it.
+ *   tests/e2e/…-snapshots/<id>-<mode>-chromium-darwin.png — what toHaveScreenshot
+ *       actually diffs.
+ *
+ * When the gate file exists but the snapshot does not, Playwright writes the snapshot
+ * and the test PASSES — locally, silently. So a green run can mean "nothing was
+ * compared". Keep the snapshots for the default sample committed, or this suite
+ * reports coverage it does not have. CI does not run e2e at all, so local is the only
+ * place this is caught.
+ */
 test.describe('Dark mode visual regression', () => {
   // Test a sample of principles (configurable via env var)
   const sampleSize = parseInt(process.env.VISUAL_SAMPLE_SIZE || '20', 10);
