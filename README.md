@@ -18,40 +18,31 @@ https://github.com/user-attachments/assets/cd40ca11-f7e3-439d-993a-7f5aa99132b6
 2. **A `MUST` / `SHOULD` / `NEVER` rule** an agent can paste straight into its context.
 3. **A link back to where it came from**, so credit stays attached to the rule.
 
-404 principles across eight categories — interactions, animations, layout, content, forms, performance, design, aesthetics — drawn from 15 upstream sources. Search, filter by source or tag, deep-link to any rule.
+404 principles across eight categories — interactions, animations, layout, content, forms, performance, design, aesthetics — drawn from 15 upstream sources. Search, filter by source or tag. Every rule is its own page at `/principles/<id>`, with a Markdown twin at `/principles/<id>.md`.
 
-**To use it:** point a coding agent at [`principles/index.md`](https://ui-guides-agent-rules.netlify.app/principles/index.md) — every rule id and title in ~8k tokens — and let it fetch the categories or individual rules that apply. Or install the [`web-design-guidelines`](https://github.com/strongeron/agent-skills/tree/main/skills/web-design-guidelines) skill and skip the wiring.
+**To use it:** point a coding agent at [`principles/index.md`](https://ui-guides-agent-rules.netlify.app/principles/index.md) — every rule tagged with what it applies to, searchable in ~12k tokens — and let it fetch only what matched.
 
 ## What's inside
 
 - **404 principles**, each with a side-by-side good/bad example you can operate — not screenshots, real components.
 - **Multi-source and attributed.** Every rule is tagged with the upstream project it came from, filterable by origin, and credited on the Sources page.
 - **Agent-ready rules.** All 404 principles carry a `MUST` / `SHOULD` / `NEVER` rule written to be pasted straight into a coding agent's context; 106 of them add a code example. One click to copy.
-- **Fetchable in slices.** Published as static files an agent pays for by the piece: a ~8k-token [index](https://ui-guides-agent-rules.netlify.app/principles/index.md), all 191 [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md) at ~11k, one category at 6k–26k, or [a single rule](https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md) at ~1.4k — that last one carrying **both example components as real code**, which nothing else exposes. All generated from the principle data at build time.
+- **Fetchable in slices.** Static files an agent pays for by the piece: a searchable [index](https://ui-guides-agent-rules.netlify.app/principles/index.md) at ~12k tokens, all 191 [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md) at ~11k, one category at 6k–26k, or [a single rule](https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md) at ~1.4k — that last one carrying **both example components as real code**, which nothing else exposes.
+- **Every rule is a real page**, prerendered with its own title, description, OG card and structured data — 408 URLs in the sitemap, not one. All of it generated from the principle data at build time.
 - **Keyboard-first, accessible, themed.** The guide practices what it documents: visible focus rings, focus traps, hit targets, `prefers-reduced-motion`, light/dark, dynamic page titles.
 
 ## Use the rules in your own project
 
-The rules are free to take. Nothing to install — everything below is a static file you fetch.
-
-### Install the skill
-
-If you use Claude Code, Codex or Cursor, the
-[`web-design-guidelines`](https://github.com/strongeron/agent-skills/tree/main/skills/web-design-guidelines)
-skill wires this up for you: it knows which slice to fetch for the code being
-reviewed, so you don't have to think about it.
-
-### Or point your agent at the endpoints
+The rules are free to take. Everything below is a static file you fetch — no install, no key, no build step.
 
 The whole corpus is **166k tokens**, so fetching it is almost never right. Fetch the slice that matches what you're doing:
 
 | Doing | Fetch | Cost |
 | --- | --- | --- |
-| **Starting anywhere** | `/principles/index.md` — search it, then fetch what matched | ~12k |
-| Reviewing a diff or a few files | `/categories/<category>.md` | 6k–26k |
-| A fast pass over anything | `/principles/must.md` — all 191 MUST rules | ~11k |
-| Fixing or applying one rule | `/principles/<id>.md` | ~1.4k |
-| Finding which rules apply | `/principles/index.md` — searchable by surface + symbol | ~12k |
+| **Finding which rules apply** | `/principles/index.md` — searchable by surface + symbol | ~12k |
+| Fixing or applying one rule | `/principles/<id>.md` — includes both examples | ~1.4k |
+| A fast pass over a large diff | `/principles/must.md` — all 191 MUST rules | ~11k |
+| Everything in one area | `/categories/<category>.md` | 6k–26k |
 | Programmatic use | `/principles/<id>.json` | ~1.4k |
 | Everything, rarely correct | `/llms-full.txt` | 166k |
 
