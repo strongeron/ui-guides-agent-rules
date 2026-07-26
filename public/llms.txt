@@ -14,12 +14,12 @@ contains every rule inline, with no JavaScript required.
 
 ## Machine-readable endpoints
 
-- [Full corpus (llms-full.txt)](https://ui-guides-agent-rules.netlify.app/llms-full.txt): all 404 rules inline, each with its agent rule, explanation and source — start here
-- [This index (llms.txt)](https://ui-guides-agent-rules.netlify.app/llms.txt): the file you are reading
-- [Rule index](https://ui-guides-agent-rules.netlify.app/principles/index.md): every rule id, priority and title in ~8k tokens — read this, then fetch only what you need
-- [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md): all 191 MUST rules in ~11k tokens — a review gate you can apply to a diff
+- [Rule index](https://ui-guides-agent-rules.netlify.app/principles/index.md): START HERE. Every rule id and title, tagged with the surface it applies to (form-input, dialog-overlay, focus-keyboard...) and the symbols its examples use. Search it for what you are building, then fetch only what matched
 - [One rule + both examples](https://ui-guides-agent-rules.netlify.app/principles/<id>.md): per-rule payload, ~1.4k tokens, carrying the good AND bad component source — the code no other endpoint exposes. Also as .json
 - [One category](https://ui-guides-agent-rules.netlify.app/categories/<category>.md): rules and reasoning for one category, 6k-26k tokens, no example code
+- [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md): broad sweep when the index does not narrow it: all 191 MUST rules, ~11k tokens
+- [This index (llms.txt)](https://ui-guides-agent-rules.netlify.app/llms.txt): the file you are reading
+- [Full corpus (llms-full.txt)](https://ui-guides-agent-rules.netlify.app/llms-full.txt): every rule inline, ~166k tokens — almost never the right fetch; use the index and per-rule payloads instead
 - [Sitemap](https://ui-guides-agent-rules.netlify.app/sitemap.xml): fetchable URLs only — the per-rule views are hash fragments
 - [Sources page](https://ui-guides-agent-rules.netlify.app/#sources): every upstream skill and guideline, with its licence and coverage
 - [Source repository](https://github.com/strongeron/ui-guides-agent-rules): the principle data as TypeScript, plus every example component

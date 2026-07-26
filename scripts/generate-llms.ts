@@ -95,20 +95,9 @@ contains every rule inline, with no JavaScript required.
 
 ${[
   link(
-    'Full corpus (llms-full.txt)',
-    `${SITE}/llms-full.txt`,
-    `all ${published.length} rules inline, each with its agent rule, explanation and source — start here`,
-  ),
-  link('This index (llms.txt)', `${SITE}/llms.txt`, 'the file you are reading'),
-  link(
     'Rule index',
     `${SITE}/principles/index.md`,
-    'every rule id, priority and title in ~8k tokens — read this, then fetch only what you need',
-  ),
-  link(
-    'MUST rules',
-    `${SITE}/principles/must.md`,
-    `all ${published.filter((p) => agentRules[p.id]?.priority === 'MUST').length} MUST rules in ~11k tokens — a review gate you can apply to a diff`,
+    'START HERE. Every rule id and title, tagged with the surface it applies to (form-input, dialog-overlay, focus-keyboard...) and the symbols its examples use. Search it for what you are building, then fetch only what matched',
   ),
   link(
     'One rule + both examples',
@@ -119,6 +108,17 @@ ${[
     'One category',
     `${SITE}/categories/<category>.md`,
     'rules and reasoning for one category, 6k-26k tokens, no example code',
+  ),
+  link(
+    'MUST rules',
+    `${SITE}/principles/must.md`,
+    `broad sweep when the index does not narrow it: all ${published.filter((p) => agentRules[p.id]?.priority === 'MUST').length} MUST rules, ~11k tokens`,
+  ),
+  link('This index (llms.txt)', `${SITE}/llms.txt`, 'the file you are reading'),
+  link(
+    'Full corpus (llms-full.txt)',
+    `${SITE}/llms-full.txt`,
+    'every rule inline, ~166k tokens — almost never the right fetch; use the index and per-rule payloads instead',
   ),
   link('Sitemap', `${SITE}/sitemap.xml`, 'fetchable URLs only — the per-rule views are hash fragments'),
   link('Sources page', `${SITE}/#sources`, 'every upstream skill and guideline, with its licence and coverage'),

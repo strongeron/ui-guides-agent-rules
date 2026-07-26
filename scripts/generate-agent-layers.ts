@@ -120,6 +120,51 @@ function buildTriggers(): Map<string, string[]> {
 
 const triggers = buildTriggers();
 
+/**
+ * Surfaces — the "what am I building" axis, modelled on the WAI-ARIA APG, which
+ * organises by the thing being built rather than by concern or severity. An agent
+ * works on a dialog or a form, not on "the animations category".
+ *
+ * APG can make that a clean partition because each of its pages *is* a component.
+ * This corpus cannot: measured across all 404 rules, a rule belongs to 2.1 surfaces on
+ * average, because "visible focus rings" genuinely applies to buttons and forms and
+ * dialogs and links alike. So surfaces are labels, not folders — every rule keeps
+ * exactly one canonical file, and the lookup is multi-label. Re-partitioning the
+ * filesystem this way would force false single-parents or duplicate rules on disk.
+ *
+ * 43 rules match no surface. They stay reachable by category and by trigger symbol,
+ * and the index says so rather than inventing a bucket for them.
+ */
+const SURFACE_PATTERNS: [string, RegExp][] = [
+  ['focus-keyboard', /\b(focus|keyboard|tab order|tabindex|hit target|touch target|shortcut|arrow key|escape|enter key|aria-|role=|semantic)\b/i],
+  ['form-input', /\b(form|input|field|textarea|select|checkbox|radio|label|validation|submit|autocomplete|placeholder|password)\b/i],
+  ['button-action', /\b(button|cta|click|tap|press|action|destructive|confirm|clickable|interactive)\b/i],
+  ['dialog-overlay', /\b(modal|dialog|drawer|sheet|overlay|popover|backdrop|tooltip|hint)\b/i],
+  ['menu-select', /\b(menu|dropdown|combobox|listbox|command palette)\b/i],
+  ['nav-link', /\b(link|anchor|nav|navigation|breadcrumb|tab|router|route|href)\b/i],
+  ['table-list', /\b(table|grid|row|column|list|virtual|infinite scroll|pagination)\b/i],
+  ['media', /\b(image|img|video|canvas|svg|icon|picture|media|poster)\b/i],
+  ['feedback-status', /\b(toast|alert|loading|skeleton|spinner|empty state|error|announce|live region|progress|optimistic)\b/i],
+  ['scroll-overflow', /\b(scroll|overflow|overscroll|sticky|viewport)\b/i],
+  ['text-typography', /\b(typography|font|text|heading|line-height|letter|truncat|wrap|copy|label)\b/i],
+  ['color-theme', /\b(color|contrast|theme|dark mode|palette|hue|opacity|shadow)\b/i],
+  ['motion', /\b(animation|animate|transition|motion|easing|duration|spring)\b/i],
+  ['layout-spacing', /\b(layout|spacing|align|margin|padding|responsive|breakpoint|container|z-index|zoom)\b/i],
+  ['perf-loading', /\b(performance|bundle|render|lazy|defer|prefetch|cache|memo|paint|layout shift|hydrat)\b/i],
+];
+
+const surfaceOf = (p: Principle): string[] => {
+  const haystack = [
+    p.title,
+    p.description,
+    agentRules[p.id]?.rule ?? '',
+    (p.tags ?? []).join(' '),
+  ].join(' ');
+  return SURFACE_PATTERNS.filter(([, re]) => re.test(haystack)).map(([name]) => name);
+};
+
+const surfaces = new Map(published.map((p) => [p.id, surfaceOf(p)]));
+
 const permalink = (id: string) => `${SITE}/principles/${id}.md`;
 
 const sourceLine = (p: Principle) => {
@@ -192,6 +237,7 @@ function ruleJson(p: Principle) {
     title: p.title,
     category: p.category,
     tags: p.tags ?? [],
+    surfaces: surfaces.get(p.id) ?? [],
     triggers: triggers.get(p.id) ?? [],
     priority: rule?.priority ?? null,
     rule: rule?.rule ?? null,
@@ -209,30 +255,48 @@ function ruleJson(p: Principle) {
 }
 
 /**
- * The navigation entry point. Compact enough to read in full as a first move, and
- * annotated so an agent can match rules against the code in front of it rather than
- * inferring applicability from a title.
+ * The navigation entry point. One index, one axis to search: every rule line ends in
+ * match tokens — the surface it belongs to and the symbols its examples use — so
+ * finding a rule is a text search, not a judgement about which category a concern
+ * lives in. An agent building a modal should not have to know that focus, motion and
+ * ARIA rules are filed in three different categories.
  */
 function indexMd(): string {
-  const withTriggers = published.filter((p) => triggers.get(p.id)!.length).length;
+  const counts = new Map<string, number>();
+  for (const list of surfaces.values()) {
+    for (const s of list) counts.set(s, (counts.get(s) ?? 0) + 1);
+  }
+  const vocabulary = [...counts]
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, n]) => `${name} (${n})`);
+  const unclassified = published.filter((p) => !surfaces.get(p.id)!.length).length;
+
   const out = [
     '# Rule index',
     '',
-    `${published.length} rules across ${categories.length} categories — ids, titles and`,
-    'the symbols each rule concerns. Nothing here is the rule itself.',
+    `${published.length} rules. Every line below ends with match tokens after a \`·\`.`,
+    'Search this file for a token; fetch only what matched. Nothing here is the rule',
+    'itself.',
     '',
-    '## How to use this index',
+    '## 1. Search by what you are building',
     '',
-    '1. Scan the code you are reviewing or writing for identifiers — event handlers,',
-    '   ARIA attributes, CSS properties, element names.',
-    `2. Search this file for those identifiers. ${withTriggers} of ${published.length} rules list the`,
-    '   symbols their own examples use, after the `·`.',
-    '3. Fetch only the rules that matched. Rules with no symbols listed are judgment',
-    '   calls about design or prose — reach those by category instead.',
+    vocabulary.join(' · '),
+    '',
+    'A rule carries every surface it applies to, not one — a focus rule is listed under',
+    `buttons, forms, dialogs and links alike. ${unclassified} rules match no surface and are`,
+    'reachable by category heading or by symbol below.',
+    '',
+    '## 2. Or search by a symbol already in your code',
+    '',
+    'Event handlers, ARIA attributes, CSS properties, element names — `onSubmit`,',
+    '`aria-live`, `:focus-visible`, `overscroll-behavior`. Scan the file you are working',
+    'on, then search for what you find.',
+    '',
+    '## 3. Then fetch',
     '',
     `- one rule, with its good and bad example source: \`${SITE}/principles/<id>.md\``,
     `- one category, rules and prose only: \`${SITE}/categories/<category>.md\``,
-    `- every MUST rule, as a gate: \`${SITE}/principles/must.md\``,
+    `- a broad sweep when nothing above narrows it: \`${SITE}/principles/must.md\``,
     '',
   ];
 
@@ -242,12 +306,10 @@ function indexMd(): string {
     out.push(`## ${c.id} (${items.length})`, '');
     for (const p of items) {
       const priority = agentRules[p.id]?.priority ?? '—';
-      const symbols = triggers.get(p.id)!;
-      const suffix = symbols.length
-        ? ` · ${symbols.join(' ')}`
-        : p.tags?.length
-          ? ` · ${p.tags.join(' ')}`
-          : '';
+      // Surfaces and symbols are both just search targets, so they share one list
+      // rather than inventing two annotation syntaxes to explain.
+      const match = [...surfaces.get(p.id)!, ...triggers.get(p.id)!];
+      const suffix = match.length ? ` · ${match.join(' ')}` : '';
       out.push(`- \`${p.id}\` ${priority} — ${p.title}${suffix}`);
     }
     out.push('');
@@ -330,10 +392,11 @@ for (const c of categories) {
 }
 
 console.log(`  principles/          ${published.length * 2} files (.md + .json per rule)`);
-const triggerCoverage = published.filter((p) => triggers.get(p.id)!.length).length;
+const surfaced = published.filter((p) => surfaces.get(p.id)!.length).length;
+const triggered = published.filter((p) => triggers.get(p.id)!.length).length;
 console.log(
   `  principles/index.md  ${String(tokens(index)).padStart(6)} tokens` +
-    ` (${triggerCoverage}/${published.length} rules carry trigger symbols)`,
+    ` (${surfaced}/${published.length} surfaced, ${triggered}/${published.length} with symbols)`,
 );
 console.log(`  principles/must.md   ${String(tokens(must)).padStart(6)} tokens`);
 for (const c of categories) {
