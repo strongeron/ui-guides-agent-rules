@@ -47,10 +47,11 @@ The whole corpus is **166k tokens**, so fetching it is almost never right. Fetch
 
 | Doing | Fetch | Cost |
 | --- | --- | --- |
+| **Starting anywhere** | `/principles/index.md` — search it, then fetch what matched | ~12k |
 | Reviewing a diff or a few files | `/categories/<category>.md` | 6k–26k |
 | A fast pass over anything | `/principles/must.md` — all 191 MUST rules | ~11k |
 | Fixing or applying one rule | `/principles/<id>.md` | ~1.4k |
-| Finding which rule covers something | `/principles/index.md` — every id + title | ~8k |
+| Finding which rules apply | `/principles/index.md` — searchable by surface + symbol | ~12k |
 | Programmatic use | `/principles/<id>.json` | ~1.4k |
 | Everything, rarely correct | `/llms-full.txt` | 166k |
 
@@ -65,6 +66,13 @@ curl -s https://ui-guides-agent-rules.netlify.app/categories/forms.md
 curl -s https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md
 ```
 
+**Start at the index.** Every line ends with match tokens — the surface a rule
+applies to (`form-input`, `dialog-overlay`, `focus-keyboard`, `motion`…) and the
+symbols its examples use (`onSubmit`, `:focus-visible`, `aria-live`). Search for
+what you're building or for an identifier already in your code, then fetch only
+what matched. A rule carries every surface it applies to, so a focus rule shows
+up under buttons, forms, dialogs and links alike.
+
 **The per-rule payload is the one worth knowing about.** It carries both example
 components in full — the correct implementation and the wrong one. No other
 endpoint exposes them, and the wrong example is often more useful than the rule
@@ -75,9 +83,10 @@ text, because it shows the specific mistake the rule exists to prevent.
 In `CLAUDE.md`, `AGENTS.md`, or Cursor rules:
 
 ```md
-When writing or reviewing UI code, consult
-https://ui-guides-agent-rules.netlify.app/principles/index.md,
-then fetch the categories or individual rules that apply.
+When writing or reviewing UI code, search
+https://ui-guides-agent-rules.netlify.app/principles/index.md
+for the surface you're working on (form-input, dialog-overlay, focus-keyboard...)
+or for an identifier in the code, then fetch only the rules that matched.
 Do not fetch llms-full.txt — it is 166k tokens.
 ```
 
