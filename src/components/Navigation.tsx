@@ -20,7 +20,7 @@ export function Navigation({
 }: NavigationProps) {
   return (
     <div className={`fixed bottom-0 right-0 z-40 bg-background border-t border-border ${isDesktop ? 'left-80' : 'left-0'}`}>
-      <div className="flex items-center justify-between px-4 py-4 max-w-screen-2xl mx-auto">
+      <div className="flex items-center justify-between px-4 py-3 max-w-screen-2xl mx-auto">
         <Button
           variant="outline"
           onClick={onPrevious}

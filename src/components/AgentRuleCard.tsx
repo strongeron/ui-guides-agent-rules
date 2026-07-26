@@ -82,13 +82,13 @@ export function AgentRuleCard({
   return (
     <Card
       className={cn(
-        'group overflow-hidden gap-0 py-5 cursor-pointer transition-colors hover:border-foreground/15 hover:bg-foreground/[0.03] dark:hover:bg-foreground/[0.06]',
+        'group overflow-hidden gap-0 py-4 cursor-pointer transition-colors hover:border-foreground/15 hover:bg-foreground/[0.03] dark:hover:bg-foreground/[0.06]',
         className
       )}
       onClick={handleCopy}
       title="Click to copy this rule"
     >
-      <CardHeader className="pb-3 gap-0">
+      <CardHeader className="px-5 pb-2.5 gap-0">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Badge variant="outline" className={cn('font-semibold', config.className)}>
@@ -103,7 +103,7 @@ export function AgentRuleCard({
         </div>
       </CardHeader>
 
-      <CardContent className="pt-0">
+      <CardContent className="px-5 pt-0">
         <p className="text-sm font-semibold text-foreground leading-relaxed">
           {formattedRule}
         </p>
@@ -114,13 +114,13 @@ export function AgentRuleCard({
         )}
 
         {rule.codeExample && (
-          <pre className="mt-4 p-3 bg-muted rounded-md text-xs overflow-x-auto">
+          <pre className="mt-3 p-3 bg-muted rounded-md text-xs overflow-x-auto">
             <code className="text-muted-foreground">{rule.codeExample}</code>
           </pre>
         )}
       </CardContent>
 
-      <CardFooter className="pt-4">
+      <CardFooter className="px-5 pt-3.5">
         <Button
           variant="outline"
           size="sm"
