@@ -20,8 +20,8 @@ contains every rule inline, with no JavaScript required.
 - [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md): broad sweep when the index does not narrow it: all 191 MUST rules, ~11k tokens
 - [This index (llms.txt)](https://ui-guides-agent-rules.netlify.app/llms.txt): the file you are reading
 - [Full corpus (llms-full.txt)](https://ui-guides-agent-rules.netlify.app/llms-full.txt): every rule inline, ~166k tokens — almost never the right fetch; use the index and per-rule payloads instead
-- [Sitemap](https://ui-guides-agent-rules.netlify.app/sitemap.xml): fetchable URLs only — the per-rule views are hash fragments
-- [Sources page](https://ui-guides-agent-rules.netlify.app/#sources): every upstream skill and guideline, with its licence and coverage
+- [Sitemap](https://ui-guides-agent-rules.netlify.app/sitemap.xml): every page, including all 404 rule URLs
+- [Sources page](https://ui-guides-agent-rules.netlify.app/sources): every upstream skill and guideline, with its licence and coverage
 - [Source repository](https://github.com/strongeron/ui-guides-agent-rules): the principle data as TypeScript, plus every example component
 
 ## Categories
@@ -29,14 +29,14 @@ contains every rule inline, with no JavaScript required.
 Each link opens the first rule in that category; the rest are reachable from the
 in-app sidebar, or in full from llms-full.txt.
 
-- [Interactions](https://ui-guides-agent-rules.netlify.app/#interactions-keyboard-everywhere): 89 rules — Keyboard accessibility, focus management, and user interaction patterns
-- [Animations](https://ui-guides-agent-rules.netlify.app/#animations-prefers-reduced-motion): 56 rules — Motion design principles and animation best practices
-- [Layout](https://ui-guides-agent-rules.netlify.app/#layout-optical-alignment): 29 rules — Responsive design, alignment, and visual structure
-- [Content](https://ui-guides-agent-rules.netlify.app/#content-inline-help-first): 82 rules — Typography, accessibility, and content presentation
-- [Forms](https://ui-guides-agent-rules.netlify.app/#forms-enter-submits): 27 rules — Form controls, validation, and user input handling
-- [Performance](https://ui-guides-agent-rules.netlify.app/#performance-minimize-rerenders): 35 rules — Optimization techniques and rendering efficiency
-- [Design](https://ui-guides-agent-rules.netlify.app/#design-layered-shadows): 67 rules — Visual design principles and aesthetics
-- [Aesthetics](https://ui-guides-agent-rules.netlify.app/#aesthetics-distinctive-typography): 19 rules — Creative visual design principles for distinctive, production-grade interfaces
+- [Interactions](https://ui-guides-agent-rules.netlify.app/principles/interactions-keyboard-everywhere): 89 rules — Keyboard accessibility, focus management, and user interaction patterns
+- [Animations](https://ui-guides-agent-rules.netlify.app/principles/animations-prefers-reduced-motion): 56 rules — Motion design principles and animation best practices
+- [Layout](https://ui-guides-agent-rules.netlify.app/principles/layout-optical-alignment): 29 rules — Responsive design, alignment, and visual structure
+- [Content](https://ui-guides-agent-rules.netlify.app/principles/content-inline-help-first): 82 rules — Typography, accessibility, and content presentation
+- [Forms](https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits): 27 rules — Form controls, validation, and user input handling
+- [Performance](https://ui-guides-agent-rules.netlify.app/principles/performance-minimize-rerenders): 35 rules — Optimization techniques and rendering efficiency
+- [Design](https://ui-guides-agent-rules.netlify.app/principles/design-layered-shadows): 67 rules — Visual design principles and aesthetics
+- [Aesthetics](https://ui-guides-agent-rules.netlify.app/principles/aesthetics-distinctive-typography): 19 rules — Creative visual design principles for distinctive, production-grade interfaces
 
 ## Upstream sources
 
@@ -52,7 +52,7 @@ Rules are transcribed and attributed to:
 - [ARIA](https://www.w3.org/WAI/ARIA/apg/): 6 rules
 - [impeccable](https://impeccable.style/): 32 rules
 - [jakubkrehel](https://github.com/jakubkrehel/skills): 9 rules
-- [Custom](https://ui-guides-agent-rules.netlify.app/#sources): 22 rules
+- [Custom](https://ui-guides-agent-rules.netlify.app/sources): 22 rules
 - [Web Platform](https://web.dev/): 11 rules
 - [LottieFiles](https://github.com/lottiefiles/motion-design-skill): 6 rules
 - [interface-design](https://github.com/Dammyjay93/interface-design): 6 rules

@@ -4,6 +4,8 @@ import { Cancel01Icon, ArrowDown01Icon } from '@hugeicons/core-free-icons';
 import { categories } from '../data/principles';
 import { Principle, PrincipleCategory, PatternSource } from '../types/principle';
 import { Button } from '@/components/ui/button';
+import { principlePath, shouldInterceptClick } from '@/lib/routes';
+import { useMounted } from '@/hooks/useMounted';
 import { FilterPopover } from './FilterPopover';
 import { SIDEBAR_FOCUS_DELAY_MS, SIDEBAR_WIDTH_CLASS } from '@/constants/ui';
 import { categoryIcons, fallbackCategoryIcon } from '@/constants/categories';
@@ -52,8 +54,22 @@ export function Sidebar({
     });
   };
 
+  // Prerendered HTML carries only the current rule's category. All 404 links render at
+  // 340 KB per page — 137 MB across the corpus — which is a lot of bytes for LCP and for
+  // the build to earn back in internal linking. One category is ~6% of that, still gives
+  // a crawler real links to follow, and the rest fill in on mount.
+  const mounted = useMounted();
+  const currentCategory = principles.find((p) => p.id === currentPrincipleId)?.category;
+  // No current category means a non-rule route (/sources), where the page's own content
+  // is what matters and a 340 KB nav would be pure weight. Ship none of it until mount.
+  const visiblePrinciples = mounted
+    ? principles
+    : currentCategory
+      ? principles.filter((p) => p.category === currentCategory)
+      : [];
+
   // Filter principles by selected sources AND tags (empty selection = show all)
-  const filteredPrinciples = principles.filter((p) => {
+  const filteredPrinciples = visiblePrinciples.filter((p) => {
     const sourceOk = selectedSources.length === 0 || (p.source && selectedSources.includes(p.source));
     const tagOk = selectedTags.length === 0 || (p.tags?.some((t) => selectedTags.includes(t)) ?? false);
     return sourceOk && tagOk;
@@ -131,13 +147,27 @@ export function Sidebar({
     };
   }, [isOpen, handleKeyDown, isDesktop]);
 
-  // On desktop, sidebar is always visible
+  // `inert` and `aria-hidden` are applied in an effect rather than during render.
+  // They depend on isDesktop, which is unknowable on the server — setting them while
+  // rendering would make the prerendered markup disagree with the client's first pass
+  // and break hydration. Everything else about the drawer is expressed in CSS.
   const isVisible = isDesktop || isOpen;
+  useEffect(() => {
+    const el = sidebarRef.current;
+    if (!el) return;
+    if (isVisible) {
+      el.removeAttribute('inert');
+      el.removeAttribute('aria-hidden');
+    } else {
+      el.setAttribute('inert', '');
+      el.setAttribute('aria-hidden', 'true');
+    }
+  }, [isVisible]);
 
   return (
     <>
-      {/* Overlay - mobile only */}
-      {!isDesktop && isOpen && (
+      {/* Overlay - mobile only. isOpen starts false everywhere, so this is SSR-safe. */}
+      {isOpen && (
         <div
           className="fixed inset-0 bg-overlay z-40 transition-opacity md:hidden"
           onClick={onClose}
@@ -151,18 +181,13 @@ export function Sidebar({
           fixed top-14 bottom-0 ${SIDEBAR_WIDTH_CLASS} bg-background border-r border-border
           flex flex-col
           transition-[left] duration-300 ease-in-out
-          ${isDesktop
-            ? 'left-0 z-30'
-            : `z-50 shadow-2xl ${isOpen ? 'left-0' : '-left-80'}`
-          }
+          z-50 shadow-2xl md:z-30 md:shadow-none
+          ${isOpen ? 'left-0' : '-left-80'} md:left-0
         `}
         aria-label="Navigation menu"
-        aria-hidden={!isVisible}
-        inert={!isVisible ? '' : undefined}
       >
         {/* Mobile close button */}
-        {!isDesktop && (
-          <div className="shrink-0 flex items-center justify-between p-4 border-b border-border">
+        <div className="md:hidden shrink-0 flex items-center justify-between p-4 border-b border-border">
             <span className="text-sm font-medium text-foreground">Navigation</span>
             <Button
               ref={closeButtonRef}
@@ -174,8 +199,7 @@ export function Sidebar({
             >
               <HugeiconsIcon icon={Cancel01Icon} size={18} />
             </Button>
-          </div>
-        )}
+        </div>
 
         {/* Consolidated source + tag filter */}
         <div className="shrink-0 p-4 border-b border-border">
@@ -233,14 +257,28 @@ export function Sidebar({
                         <li key={principle.id}>
                           <Button
                             variant="ghost"
-                            onClick={() => handlePrincipleClick(principle.id)}
+                            asChild
                             className={`w-full justify-start rounded-none pl-15 pr-4 py-2 h-auto text-sm text-left whitespace-normal leading-snug transition-colors hover:bg-foreground/[0.06] dark:hover:bg-foreground/[0.06] hover:text-foreground focus-visible:border-transparent focus-visible:ring-inset focus-visible:ring-foreground/25 ${
                               currentPrincipleId === principle.id
                                 ? 'bg-foreground/10 text-foreground font-medium'
                                 : 'text-foreground'
                             }`}
                           >
-                            {principle.title}
+                            {/* A real href, so a crawler can follow it and ⌘-click works;
+                                the handler intercepts plain left-clicks for client nav. */}
+                            <a
+                              href={principlePath(principle.id)}
+                              aria-current={
+                                currentPrincipleId === principle.id ? 'page' : undefined
+                              }
+                              onClick={(e) => {
+                                if (!shouldInterceptClick(e)) return;
+                                e.preventDefault();
+                                handlePrincipleClick(principle.id);
+                              }}
+                            >
+                              {principle.title}
+                            </a>
                           </Button>
                         </li>
                       ))}

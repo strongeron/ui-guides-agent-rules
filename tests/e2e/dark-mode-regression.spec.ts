@@ -38,7 +38,7 @@ async function gotoPrincipleWithTheme(
     document.documentElement.classList.add(value);
   }, theme);
 
-  await page.goto(`/#${principleId}`);
+  await page.goto(`/principles/${principleId}`);
   await page.waitForTimeout(500);
 }
 

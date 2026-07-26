@@ -24,31 +24,27 @@ interface HeaderProps {
   onSearchClick: () => void;
   /** Navigate to the Sources page */
   onSourcesClick: () => void;
-  /** Whether sidebar is always visible (desktop/tablet) */
-  isDesktop?: boolean;
 }
 
 const isMac =
   typeof navigator !== 'undefined' &&
   /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '');
 
-export function Header({ onMenuToggle, onSearchClick, onSourcesClick, isDesktop = false }: HeaderProps) {
+export function Header({ onMenuToggle, onSearchClick, onSourcesClick }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
       <div className="flex items-center h-14 px-4">
         {/* Left side: logo area - matches sidebar width on desktop */}
-        <div className={`flex items-center gap-2 flex-shrink-0 ${isDesktop ? 'w-76' : ''}`}>
-          {!isDesktop && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onMenuToggle}
-              aria-label="Toggle menu"
-              className="h-9 w-9 hover:bg-muted hover:text-foreground"
-            >
-              <HugeiconsIcon icon={Menu01Icon} size={18} />
-            </Button>
-          )}
+        <div className="flex items-center gap-2 flex-shrink-0 md:w-76">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onMenuToggle}
+            aria-label="Toggle menu"
+            className="md:hidden h-9 w-9 hover:bg-muted hover:text-foreground"
+          >
+            <HugeiconsIcon icon={Menu01Icon} size={18} />
+          </Button>
           <a
             href="/"
             className="font-semibold text-foreground whitespace-nowrap"

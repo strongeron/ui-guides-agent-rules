@@ -47,9 +47,15 @@ npm run test:e2e:principle # Run principle visual tests only
 
 ### Component Structure
 
-- `App.tsx`: Main layout with keyboard navigation, URL hash state, dynamic page title, sidebar toggle
+- `App.tsx`: Main layout with keyboard navigation, path-based routing, dynamic page title, sidebar toggle
 
-  **The hash is a two-way binding, and both directions are load-bearing.** Reading it needs `hashchange` *and* `popstate`: an anchor or a manual URL edit fires only the former, while back/forward over a pushed entry fires only the latter. Writing it uses `pushState`, so each principle is its own history entry — with two guards that are easy to delete by accident. Skipping the write when the hash already matches prevents a change that *came from* the URL being pushed back on top of itself; and the first run of the effect uses `replaceState`, so landing on `/` corrects the address bar without leaving a phantom entry behind the user's first Back press. That first-run flag is consumed before the early returns — if it only flipped on an actual write, a deep link would leave it unset and the next navigation would silently eat a history step.
+  **Routing is path-based (`/principles/:id`), and every write goes through `navigate()`.** `popstate` is the only listener needed — with real paths there is no `hashchange` to miss. Two rules keep history honest: `navigate` pushes, so each rule is its own entry, while the mount-time correction for landing on `/` uses `replaceState` so it does not sit behind the user's first Back press as a phantom entry.
+
+  **Legacy hash URLs are rewritten on mount and that code is permanent.** `llms.txt` deep-linked categories by hash and `llms-full.txt` carried a hash permalink for all 404 rules — published, in the wild, uncontrollable. `routeFromLegacyHash` in `src/lib/routes.ts` maps them onto paths. Deleting it breaks citations we made.
+
+  **URLs derive from the principle id, never from `category` + slug.** Hierarchy is derivable (every id is category-prefixed) but it would couple a permanent URL to mutable metadata: recategorise a rule and its page moves. Same reasoning that moved WordPress permalinks off `/category/post`.
+
+  **`isDesktop` must never affect render output.** `useMediaQuery` cannot know the viewport on the server, so branching on it while rendering guarantees a hydration mismatch. Layout is expressed in CSS (`md:` variants); the hook is used only in effects and event handlers. `Sidebar` sets `inert`/`aria-hidden` in an effect for the same reason.
 - `PrincipleView.tsx`: Displays principle details with side-by-side good/bad examples
 - `ExampleRenderer.tsx`: Lazy-loads examples automatically from `./examples/**/*.tsx`
 - `Sidebar.tsx`: Navigation with search, focus trap, and `overscroll-behavior: contain`
@@ -127,7 +133,7 @@ See `doc/specs/2026-07-12-source-freshness-sync.md`.
 
 ### Discoverability & Attribution
 
-The app is a client-rendered SPA whose per-principle state lives in the **URL hash**, so a crawler or coding agent that fetches the site gets a React shell and none of the rules. Two consequences shape this layer:
+Each rule is a prerendered page at `/principles/<id>` carrying its own title, meta, canonical, OG card and JSON-LD, plus the rule and its reasoning as real text. Three consequences shape this layer:
 
 - **`scripts/generate-llms.ts`** (run by `prebuild`, so `npm run build` always refreshes it) emits `public/llms.txt`, `public/llms-full.txt`, and `public/sitemap.xml` from the principle data. `llms-full.txt` is the **only** machine-readable copy of the corpus — it's what agents actually fetch and cite. Never hand-edit those three files; edit `src/data/principles/*` and regenerate. `public/robots.txt` is hand-written and allows all AI crawlers.
 
@@ -146,7 +152,11 @@ The app is a client-rendered SPA whose per-principle state lives in the **URL ha
 - **Discovery pointers exist in three places because three different clients look in three different places.** `index.html` has `<link rel="alternate">` for DOM-parsing crawlers; `netlify.toml` sets an HTTP `Link` header for headless fetchers that never read the body; and `Footer.tsx` carries an `sr-only aria-hidden` sentence naming `llms-full.txt`, for the case where a human pastes the URL into a chat model that only sees rendered text. The `.txt` files stay `text/plain` on the wire on purpose — `text/markdown` makes browsers download them, and the footer links a human to `llms-full.txt`.
 - **Authorship is expressed by a shared `@id`.** The JSON-LD in `index.html` names the author as `{"@id": "https://glebstroganov.com/#person"}` — the same node glebstroganov.com publishes in its `/about.json`. That is what merges the project into its author's works graph instead of creating a second, unlinked "Gleb Stroganov". `src/components/Footer.tsx` carries the visible credit with `rel="author me"` to the same URL. Keep the footer href, the JSON-LD `@id`/`sameAs`, and the generator's attribution block in sync.
 
-**Known ceiling:** hash fragments are not indexable as separate URLs, so all 300+ principles collapse into one indexable page, and `sitemap.xml` honestly lists only what is fetchable. Converting to real routes (`/principles/:id`) plus a prerender step is the unlock — it would turn 1 indexable page into 300+, each with its own title, OG card, and author credit. Not done.
+- **`scripts/prerender.ts`** (after both Vite builds) writes `dist/principles/<id>/index.html` for every rule. It renders the **real component tree** via `src/entry-server.tsx`, not a hand-written template — a template would duplicate the JSX and drift from it. `main.tsx` calls `hydrateRoot` when the container already has markup, so React attaches rather than re-rendering.
+
+  Two things are held back from the static HTML so server and client agree, both gated on `useMounted`: the example components (interactive demos, not indexable prose — 809 of them, and making them server-safe would be open-ended work with no payoff), and the sidebar beyond the current rule's category (all 404 links is 340 KB per page, 137 MB across the corpus; one category is ~6% of that and still gives a crawler real links).
+
+**Where this landed:** `sitemap.xml` lists **408 URLs**, up from 3. Per-rule OG *images* are still generic — the metadata is per-rule, the picture is not.
 
 ### UI Components (shadcn/ui + Radix)
 

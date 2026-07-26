@@ -63,3 +63,4 @@ doc/agent-rules-alignment.json
 # on purpose: their diffs are how a corpus change is reviewed.
 public/principles/
 public/categories/
+dist-ssr/
