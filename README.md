@@ -35,50 +35,68 @@ https://github.com/user-attachments/assets/cd40ca11-f7e3-439d-993a-7f5aa99132b6
 
 The rules are free to take. Everything below is a static file you fetch — no install, no key, no build step.
 
-The whole corpus is **166k tokens**, so fetching it is almost never right. Fetch the slice that matches what you're doing:
+The whole corpus is **169k tokens**. Almost nothing needs it — the point of the
+layout below is that a real review costs about **5k**.
 
-| Doing | Fetch | Cost |
-| --- | --- | --- |
-| **Finding which rules apply** | `/principles/index.md` — searchable by surface + symbol | ~12k |
-| Fixing or applying one rule | `/principles/<id>.md` — includes both examples | ~1.4k |
-| A fast pass over a large diff | `/principles/must.md` — all 191 MUST rules | ~11k |
-| Everything in one area | `/categories/<category>.md` | 6k–26k |
-| Programmatic use | `/principles/<id>.json` | ~1.4k |
-| Everything, rarely correct | `/llms-full.txt` | 166k |
-
-Base URL: `https://ui-guides-agent-rules.netlify.app` · categories are
-`interactions` `animations` `layout` `content` `forms` `performance` `design` `aesthetics`
+### The cheap path
 
 ```bash
-# every forms rule, with reasoning
-curl -s https://ui-guides-agent-rules.netlify.app/categories/forms.md
+BASE=https://ui-guides-agent-rules.netlify.app
 
-# one rule — including the good AND bad component, as real code
-curl -s https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md
+# 1. Grep the index for what you're building, or for a symbol already in your code.
+#    Don't read it whole — grepping is 5-25x cheaper.
+curl -s $BASE/principles/index.md | grep onSubmit         # ~540 tokens, 16 lines
+curl -s $BASE/principles/index.md | grep dialog-overlay   # 25 lines
+
+# 2. Fetch only what matched. Each payload carries the rule, the reasoning,
+#    and BOTH example components as real code.
+curl -s $BASE/principles/forms-enter-submits.md           # 917 tokens
 ```
 
-**Start at the index.** Every line ends with match tokens — the surface a rule
-applies to (`form-input`, `dialog-overlay`, `focus-keyboard`, `motion`…) and the
-symbols its examples use (`onSubmit`, `:focus-visible`, `aria-live`). Search for
-what you're building or for an identifier already in your code, then fetch only
-what matched. A rule carries every surface it applies to, so a focus rule shows
-up under buttons, forms, dialogs and links alike.
+Every index line ends with match tokens: the surfaces a rule applies to
+(`form-input`, `dialog-overlay`, `focus-keyboard`, `motion`, `media`…) and the
+symbols its examples use (`onSubmit`, `:focus-visible`, `aria-live`,
+`overscroll-behavior`). A rule carries *every* surface it applies to, so a focus
+rule turns up under buttons, forms, dialogs and links alike.
 
-**The per-rule payload is the one worth knowing about.** It carries both example
+### What each fetch costs
+
+| Fetch | Cost | For |
+| --- | --- | --- |
+| `/llms.txt` | 1.5k | What exists at all. Cheapest possible start. |
+| `grep` on `/principles/index.md` | 0.5k–2.6k | **Finding which rules apply.** |
+| `/principles/<id>.md` | ~1.5k | One rule + both examples. The payload worth knowing about. |
+| `/principles/<id>.json` | ~1.5k | Same, structured. |
+| `/principles/index.md` (whole) | 12k | Only if you can't grep. |
+| `/principles/must.md` | 11k | All 191 MUST rules — a sweep over a large diff. |
+| `/categories/<category>.md` | 6k–26k | Everything in one area, no example code. |
+| `/llms-full.txt` | **169k** | Rarely correct. |
+
+Categories: `interactions` `animations` `layout` `content` `forms` `performance`
+`design` `aesthetics`
+
+**Why the per-rule payload is the one to reach for.** It carries both example
 components in full — the correct implementation and the wrong one. No other
 endpoint exposes them, and the wrong example is often more useful than the rule
-text, because it shows the specific mistake the rule exists to prevent.
+text, because it shows the exact mistake the rule exists to prevent.
+
+A wrong id returns **404** with a pointer back to the index, so a typo fails
+loudly instead of handing your agent an HTML page to parse.
 
 ### Or add a line to your agent config
 
 In `CLAUDE.md`, `AGENTS.md`, or Cursor rules:
 
 ```md
-When writing or reviewing UI code, search
-https://ui-guides-agent-rules.netlify.app/principles/index.md
-for the surface you're working on (form-input, dialog-overlay, focus-keyboard...)
-or for an identifier in the code, then fetch only the rules that matched.
-Do not fetch llms-full.txt — it is 166k tokens.
+When writing or reviewing UI code, consult ui-guides-agent-rules:
+
+1. Grep https://ui-guides-agent-rules.netlify.app/principles/index.md for the
+   surface you're working on (form-input, dialog-overlay, focus-keyboard,
+   motion, media...) or for a symbol already in the code (onSubmit,
+   :focus-visible, aria-live). Grep it — don't read the whole file.
+2. Fetch only the matched rules at /principles/<id>.md. Each is ~1.5k tokens
+   and includes a correct and an incorrect implementation.
+3. Never fetch llms-full.txt — it is 169k tokens.
 ```
 
 **Or take one rule by hand.** Every principle on the site has a **Copy Rule** button — the `MUST` / `SHOULD` / `NEVER` line, the description, and a code example where one exists.
