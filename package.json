@@ -10,7 +10,7 @@
     "generate:llms": "npx tsx scripts/generate-llms.ts",
     "generate:og": "npx tsx scripts/generate-og.ts",
     "prebuild": "npm run generate:llms && npm run generate:agent-layers",
-    "build": "vite build",
+    "build": "npm run build:client && npm run build:ssr && npm run prerender",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
@@ -41,7 +41,10 @@
     "validate:init": "npx tsx scripts/visual-validation.ts init",
     "validate:comprehensive": "npx tsx scripts/validate-all-comprehensive.ts",
     "validate:all": "npm run validate:comprehensive",
-    "generate:agent-layers": "npx tsx scripts/generate-agent-layers.ts"
+    "generate:agent-layers": "npx tsx scripts/generate-agent-layers.ts",
+    "build:client": "vite build",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-ssr",
+    "prerender": "npx tsx scripts/prerender.ts"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^3.1.1",

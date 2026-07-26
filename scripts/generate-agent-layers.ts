@@ -191,7 +191,7 @@ function ruleSection(p: Principle, heading = '##', self = false): string {
   if (src) out.push(src);
   out.push(
     self
-      ? `**Interactive version:** ${SITE}/#${p.id}`
+      ? `**Interactive version:** ${SITE}/principles/${p.id}`
       : `**Full rule + examples:** ${permalink(p.id)}`,
     '',
   );

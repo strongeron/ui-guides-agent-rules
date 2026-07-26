@@ -9,7 +9,7 @@ const principleIds = rawIds
 test.describe('Principle visuals', () => {
   for (const principleId of principleIds) {
     test(`renders ${principleId} content and examples`, async ({ page }) => {
-      await page.goto(`/#${principleId}`);
+      await page.goto(`/principles/${principleId}`);
 
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 

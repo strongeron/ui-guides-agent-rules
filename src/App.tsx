@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Navigation } from './components/Navigation';
@@ -19,16 +19,36 @@ import { ActiveFilterChips } from './components/ActiveFilterChips';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import { principles } from './data/principles';
 import type { PatternSource } from './types/principle';
+import {
+  parsePath,
+  pathForRoute,
+  routeFromLegacyHash,
+  type Route,
+} from './lib/routes';
 
-function App() {
-  // Resolve the principle from the URL hash synchronously, so a deep link isn't
-  // clobbered by the hash-sync effect on first commit.
-  const [currentIndex, setCurrentIndex] = useState(() => {
-    if (typeof window === 'undefined') return 0;
-    const hash = window.location.hash.slice(1);
-    const i = principles.findIndex((p) => p.id === hash);
-    return i === -1 ? 0 : i;
-  });
+const indexOfId = (id: string) => principles.findIndex((p) => p.id === id);
+
+/**
+ * Resolve the route the document was opened at. Legacy hash URLs are honoured here and
+ * rewritten to a path on mount — llms.txt and llms-full.txt published hash permalinks
+ * for every rule, so those links have to keep working indefinitely.
+ */
+function resolveInitialRoute(): Route {
+  if (typeof window === 'undefined') return { kind: 'principle', id: principles[0].id };
+  const fromPath = parsePath(window.location.pathname);
+  if (fromPath) return fromPath;
+  const fromHash = routeFromLegacyHash(window.location.hash);
+  if (fromHash && (fromHash.kind !== 'principle' || indexOfId(fromHash.id) !== -1)) {
+    return fromHash;
+  }
+  return { kind: 'principle', id: principles[0].id };
+}
+
+/** `initialRoute` is supplied by the prerenderer; the browser resolves it from the URL. */
+function App({ initialRoute }: { initialRoute?: Route } = {}) {
+  // One route, resolved synchronously, so a deep link is never clobbered by an effect
+  // on first commit and the server and the client agree on what to render.
+  const [route, setRoute] = useState<Route>(() => initialRoute ?? resolveInitialRoute());
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
   const [selectedSources, setSelectedSources] = useState<PatternSource[]>(() => {
@@ -41,10 +61,6 @@ function App() {
     const raw = new URLSearchParams(window.location.search).get('tag');
     return raw ? raw.split(',').filter(Boolean) : [];
   });
-  const initialHash = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
-  const [showCodeHikeDemo, setShowCodeHikeDemo] = useState(initialHash === 'codehike-demo');
-  const [showSources, setShowSources] = useState(initialHash === 'sources');
-
   // Desktop/tablet: sidebar always visible (md breakpoint = 768px)
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
@@ -64,46 +80,50 @@ function App() {
     return Array.from(tags).sort();
   }, []);
 
+  const showSources = route.kind === 'sources';
+  const showCodeHikeDemo = route.kind === 'codehike';
+  const currentIndex =
+    route.kind === 'principle' ? Math.max(0, indexOfId(route.id)) : 0;
   const currentPrinciple = principles[currentIndex];
+
+  /**
+   * Every navigation goes through here. pushState keeps one history entry per rule;
+   * the filter query string rides along so a filtered view stays shareable.
+   */
+  const navigate = useCallback((next: Route, { replace = false } = {}) => {
+    setRoute(next);
+    const url = `${pathForRoute(next)}${window.location.search}`;
+    if (replace) window.history.replaceState(null, '', url);
+    else window.history.pushState(null, '', url);
+    window.scrollTo({ top: 0, behavior: replace ? 'auto' : 'smooth' });
+  }, []);
 
   const handleNext = useCallback(() => {
     if (currentIndex < principles.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      navigate({ kind: 'principle', id: principles[currentIndex + 1].id });
     }
-  }, [currentIndex]);
+  }, [currentIndex, navigate]);
 
   const handlePrevious = useCallback(() => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      navigate({ kind: 'principle', id: principles[currentIndex - 1].id });
     }
-  }, [currentIndex]);
+  }, [currentIndex, navigate]);
 
-  const handlePrincipleSelect = useCallback((principleId: string) => {
-    // Handle special CodeHike demo route
-    if (principleId === 'codehike-demo') {
-      setShowCodeHikeDemo(true);
-      window.history.replaceState(null, '', `${window.location.search}#codehike-demo`);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
+  const handlePrincipleSelect = useCallback(
+    (principleId: string) => {
+      if (principleId === 'codehike-demo') {
+        navigate({ kind: 'codehike' });
+        return;
+      }
+      if (indexOfId(principleId) !== -1) {
+        navigate({ kind: 'principle', id: principleId });
+      }
+    },
+    [navigate]
+  );
 
-    setShowCodeHikeDemo(false);
-    setShowSources(false);
-    const index = principles.findIndex((p) => p.id === principleId);
-    if (index !== -1) {
-      setCurrentIndex(index);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, []);
-
-  const handleShowSources = useCallback(() => {
-    setShowSources(true);
-    setShowCodeHikeDemo(false);
-    window.history.pushState(null, '', `${window.location.search}#sources`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  const handleShowSources = useCallback(() => navigate({ kind: 'sources' }), [navigate]);
 
   // ⌘K / Ctrl+K toggles the command palette
   useEffect(() => {
@@ -157,66 +177,36 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, handleNext, handlePrevious, isSidebarOpen]);
 
-  // Read state FROM the URL — on mount, and on every later change to it.
-  // Both listeners are required and neither is redundant: editing the hash or
-  // following an in-page anchor fires `hashchange`, while back/forward over an
-  // entry we pushed fires `popstate` and never `hashchange`.
+  // Back/forward. `hashchange` is gone along with the hash — with real paths, popstate
+  // is the only event that fires, and it fires for every entry `navigate` pushed.
   useEffect(() => {
     const syncFromUrl = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash === 'codehike-demo') {
-        setShowCodeHikeDemo(true);
-        setShowSources(false);
-        return;
-      }
-      if (hash === 'sources') {
-        setShowSources(true);
-        setShowCodeHikeDemo(false);
-        return;
-      }
-      const index = principles.findIndex((p) => p.id === hash);
-      if (index !== -1) {
-        setShowCodeHikeDemo(false);
-        setShowSources(false);
-        setCurrentIndex(index);
-      }
+      const next = parsePath(window.location.pathname);
+      if (next) setRoute(next);
     };
-
-    syncFromUrl();
-    window.addEventListener('hashchange', syncFromUrl);
     window.addEventListener('popstate', syncFromUrl);
-    return () => {
-      window.removeEventListener('hashchange', syncFromUrl);
-      window.removeEventListener('popstate', syncFromUrl);
-    };
+    return () => window.removeEventListener('popstate', syncFromUrl);
   }, []);
 
-  // Write state back TO the URL (preserving the filter query string).
-  // pushState, not replaceState, so each principle is its own history entry and
-  // Back returns to the previous one. The guard below keeps that honest: when a
-  // change *came from* the URL the hash already matches, so we skip the write
-  // and avoid pushing a duplicate entry on top of the one we just navigated to.
-  const hasSyncedOnce = useRef(false);
+  // Rewrite a legacy hash URL to its path, once, without leaving a history entry the
+  // user's first Back press would land on. Published permalinks depend on this.
   useEffect(() => {
-    // Consume the first-run flag before any early return. If it only flipped on
-    // an actual write, a mount that returns early (deep link, or landing on
-    // #sources) would leave it false, and the *next* navigation would replace
-    // that entry instead of pushing — silently eating one step of history.
-    const isInitial = !hasSyncedOnce.current;
-    hasSyncedOnce.current = true;
+    const legacy = routeFromLegacyHash(window.location.hash);
+    if (!legacy) return;
+    if (legacy.kind === 'principle' && indexOfId(legacy.id) === -1) return;
+    window.history.replaceState(null, '', `${pathForRoute(legacy)}${window.location.search}`);
+    setRoute(legacy);
+  }, []);
 
-    if (showCodeHikeDemo || showSources) return;
-    if (window.location.hash.slice(1) === currentPrinciple.id) return;
-
-    const url = `${window.location.search}#${currentPrinciple.id}`;
-    // The initial write only corrects the address bar (e.g. landing on "/"), so
-    // it must not leave an extra entry behind the user's first Back press.
-    if (isInitial) {
-      window.history.replaceState(null, '', url);
-    } else {
-      window.history.pushState(null, '', url);
-    }
-  }, [currentPrinciple.id, showCodeHikeDemo, showSources]);
+  // Landing on "/" resolves to the first rule, so correct the address bar to its real
+  // path. replaceState, not push — the correction must not sit behind the user's first
+  // Back press as a phantom entry. `navigate` owns every write after this one.
+  useEffect(() => {
+    if (parsePath(window.location.pathname)) return;
+    window.history.replaceState(null, '', `${pathForRoute(route)}${window.location.search}`);
+    // Deliberately once, on mount: this only exists to normalise the entry URL.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Sync active filters to the URL query string (preserving the hash) so a filtered view is shareable
   useEffect(() => {
@@ -226,7 +216,7 @@ function App() {
     if (selectedTags.length) params.set('tag', selectedTags.join(','));
     else params.delete('tag');
     const qs = params.toString();
-    window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}${window.location.hash}`);
+    window.history.replaceState(null, '', `${window.location.pathname}${qs ? `?${qs}` : ''}`);
   }, [selectedSources, selectedTags]);
 
   // Dynamic page title
@@ -247,7 +237,6 @@ function App() {
         onMenuToggle={() => setIsSidebarOpen(true)}
         onSearchClick={() => setIsPaletteOpen(true)}
         onSourcesClick={handleShowSources}
-        isDesktop={isDesktop}
       />
 
       <CommandPalette
@@ -271,7 +260,7 @@ function App() {
         isDesktop={isDesktop}
       />
 
-      <main id="main-content" className={`min-h-screen pt-14 ${isDesktop ? 'ml-80' : ''}`}>
+      <main id="main-content" className="min-h-screen pt-14 md:ml-80">
         {!showSources && !showCodeHikeDemo && (
           <ActiveFilterChips
             selectedSources={selectedSources}
@@ -298,7 +287,8 @@ function App() {
           onNext={handleNext}
           hasPrevious={currentIndex > 0}
           hasNext={currentIndex < principles.length - 1}
-          isDesktop={isDesktop}
+          previousId={principles[currentIndex - 1]?.id}
+          nextId={principles[currentIndex + 1]?.id}
         />
       )}
     </div>

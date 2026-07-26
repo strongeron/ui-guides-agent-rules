@@ -71,7 +71,7 @@ const sourcesSection = () => {
     // Sources with no upstream URL (e.g. rules original to this corpus) still need a
     // link target, or the section degrades into the bare-text list validators reject.
     // The Sources page is the honest destination — it is where their provenance lives.
-    lines.push(link(info.name, info.url || `${SITE}/#sources`, `${count} rules`));
+    lines.push(link(info.name, info.url || `${SITE}/sources`, `${count} rules`));
   }
   return lines.join('\n');
 };
@@ -120,8 +120,8 @@ ${[
     `${SITE}/llms-full.txt`,
     'every rule inline, ~166k tokens — almost never the right fetch; use the index and per-rule payloads instead',
   ),
-  link('Sitemap', `${SITE}/sitemap.xml`, 'fetchable URLs only — the per-rule views are hash fragments'),
-  link('Sources page', `${SITE}/#sources`, 'every upstream skill and guideline, with its licence and coverage'),
+  link('Sitemap', `${SITE}/sitemap.xml`, `every page, including all ${published.length} rule URLs`),
+  link('Sources page', `${SITE}/sources`, 'every upstream skill and guideline, with its licence and coverage'),
   link('Source repository', REPO, 'the principle data as TypeScript, plus every example component'),
 ].join('\n')}
 
@@ -136,7 +136,7 @@ ${categories
     const first = items[0];
     return link(
       c.title,
-      first ? `${SITE}/#${first.id}` : `${SITE}/llms-full.txt`,
+      first ? `${SITE}/principles/${first.id}` : `${SITE}/llms-full.txt`,
       `${items.length} rules — ${c.description}`,
     );
   })
@@ -153,7 +153,7 @@ const renderPrinciple = (p: Principle) => {
   const out = [
     `### ${p.title}`,
     '',
-    `**ID:** \`${p.id}\` · **Permalink:** [${SITE}/#${p.id}](${SITE}/#${p.id})`,
+    `**ID:** \`${p.id}\` · **Permalink:** [${SITE}/principles/${p.id}](${SITE}/principles/${p.id})`,
   ];
 
   if (rule) out.push(`**Agent rule (${rule.priority}):** ${rule.rule}`);
@@ -215,10 +215,15 @@ ${categories
 
 
 const today = new Date().toISOString().slice(0, 10);
+// Now that each rule is a prerendered page rather than a hash fragment, the sitemap
+// can finally list them. It used to hold three entries because three was all that was
+// genuinely fetchable — listing hashes would have been a lie to a crawler.
 const urls = [
   { loc: `${SITE}/`, priority: '1.0' },
+  { loc: `${SITE}/sources`, priority: '0.6' },
   { loc: `${SITE}/llms.txt`, priority: '0.5' },
   { loc: `${SITE}/llms-full.txt`, priority: '0.8' },
+  ...published.map((p) => ({ loc: `${SITE}/principles/${p.id}`, priority: '0.7' })),
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

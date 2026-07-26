@@ -1,5 +1,6 @@
 import { lazy, Suspense, ComponentType } from 'react';
 import { pathToKey } from '@/utils/exampleKeys';
+import { useMounted } from '@/hooks/useMounted';
 
 // Auto-discover all example components using import.meta.glob
 const exampleModules = import.meta.glob<{ [key: string]: ComponentType }>(
@@ -41,6 +42,11 @@ interface ExampleRendererProps {
 
 export function ExampleRenderer({ exampleKey }: ExampleRendererProps) {
   const Component = exampleComponents[exampleKey];
+  // The one genuinely client-only part of the page. The prerendered HTML carries the
+  // rule, its reasoning and its links; the runnable demo arrives a tick later. Holding
+  // the placeholder through the first client render is what keeps hydration clean, and
+  // the card's own min-h-[180px] means the swap costs no layout shift.
+  const mounted = useMounted();
 
   if (!Component) {
     return (
@@ -51,6 +57,8 @@ export function ExampleRenderer({ exampleKey }: ExampleRendererProps) {
       </div>
     );
   }
+
+  if (!mounted) return <LoadingFallback />;
 
   return (
     <Suspense fallback={<LoadingFallback />}>
