@@ -7,6 +7,18 @@
   to = "/index.html"
   status = 200
 
+# Agent discovery over HTTP. A headless fetcher never parses the <head>, so the
+# <link rel="alternate"> tags in index.html are invisible to it — the same pointer has
+# to exist as a response header.
+#
+# type is text/plain because that is what Netlify serves for .txt, and it needs to stay
+# that way: text/markdown makes browsers download the file, and the footer links a human
+# to llms-full.txt. The payload is Markdown either way.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Link = '''</llms-full.txt>; rel="alternate"; type="text/plain"; title="Full rule corpus", </llms.txt>; rel="alternate"; type="text/plain"; title="LLM index", <https://glebstroganov.com>; rel="author"'''
+
 # The demo video and poster are meant to be embedded and fetched from
 # elsewhere (README, social cards), so allow cross-origin reads.
 [[headers]]

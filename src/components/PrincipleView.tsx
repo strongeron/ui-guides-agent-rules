@@ -19,9 +19,9 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
   const CategoryIcon = categoryIcons[principle.category] ?? fallbackCategoryIcon;
 
   return (
-    <div className="pt-6 pb-24 px-4 max-w-screen-2xl mx-auto">
-      <div className="mb-10">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+    <div className="pt-5 px-4 max-w-screen-2xl mx-auto">
+      <div className="mb-6">
+        <div className="flex flex-wrap items-center gap-2 mb-2.5">
           <Badge
             variant="outline"
             className="uppercase bg-card border-border text-foreground gap-1.5"
@@ -31,13 +31,13 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
           </Badge>
           {principle.source && <SourceBadge source={principle.source} size="sm" />}
         </div>
-        <h1 className="text-3xl font-bold text-foreground mb-3">
+        <h1 className="text-3xl font-bold text-foreground">
           {principle.title}
         </h1>
       </div>
 
       {agentRule && (
-        <div className="mb-10">
+        <div className="mb-6">
           <AgentRuleCard
             rule={agentRule}
             description={principle.description}
@@ -47,35 +47,39 @@ export function PrincipleView({ principle }: PrincipleViewProps) {
       )}
 
       <div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4"
         data-testid="example-comparison"
       >
         <Card className="bg-card overflow-hidden gap-0 py-0">
-          <CardHeader className="px-6 pt-3 !pb-3 gap-0 border-b border-border">
-            <CardTitle className="flex items-center gap-2 text-sm font-semibold text-error">
-              <HugeiconsIcon icon={AlertCircleIcon} size={16} aria-hidden="true" />
-              Bad
+          <CardHeader className="px-5 pt-2.5 !pb-2.5 gap-0 border-b border-border">
+            <CardTitle asChild>
+              <h2 className="flex items-center gap-2 text-sm font-semibold text-error">
+                <HugeiconsIcon icon={AlertCircleIcon} size={16} aria-hidden="true" />
+                Bad
+              </h2>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 min-h-[200px] flex items-center justify-center">
+          <CardContent className="p-5 min-h-[180px] flex items-center justify-center">
             <ExampleRenderer exampleKey={principle.badExampleKey} />
           </CardContent>
         </Card>
 
         <Card className="bg-card overflow-hidden gap-0 py-0">
-          <CardHeader className="px-6 pt-3 !pb-3 gap-0 border-b border-border">
-            <CardTitle className="flex items-center gap-2 text-sm font-semibold text-success">
-              <HugeiconsIcon icon={CheckmarkCircle01Icon} size={16} aria-hidden="true" />
-              Good
+          <CardHeader className="px-5 pt-2.5 !pb-2.5 gap-0 border-b border-border">
+            <CardTitle asChild>
+              <h2 className="flex items-center gap-2 text-sm font-semibold text-success">
+                <HugeiconsIcon icon={CheckmarkCircle01Icon} size={16} aria-hidden="true" />
+                Good
+              </h2>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6 min-h-[200px] flex items-center justify-center">
+          <CardContent className="p-5 min-h-[180px] flex items-center justify-center">
             <ExampleRenderer exampleKey={principle.goodExampleKey} />
           </CardContent>
         </Card>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-4">
         <PrincipleReferencesCard
           additionalExplanation={principle.additionalExplanation}
           links={principle.sourceLinks}

@@ -14,48 +14,52 @@ contains every rule inline, with no JavaScript required.
 
 ## Machine-readable endpoints
 
-- https://ui-guides-agent-rules.netlify.app/llms.txt — this file
-- https://ui-guides-agent-rules.netlify.app/llms-full.txt — all 404 rules, inline, each with its agent rule and source
-- https://ui-guides-agent-rules.netlify.app/sitemap.xml — site map
-- https://github.com/strongeron/ui-guides-agent-rules — source, including the principle data as TypeScript
+- [Full corpus (llms-full.txt)](https://ui-guides-agent-rules.netlify.app/llms-full.txt): all 404 rules inline, each with its agent rule, explanation and source — start here
+- [This index (llms.txt)](https://ui-guides-agent-rules.netlify.app/llms.txt): the file you are reading
+- [Sitemap](https://ui-guides-agent-rules.netlify.app/sitemap.xml): fetchable URLs only — the per-rule views are hash fragments
+- [Sources page](https://ui-guides-agent-rules.netlify.app/#sources): every upstream skill and guideline, with its licence and coverage
+- [Source repository](https://github.com/strongeron/ui-guides-agent-rules): the principle data as TypeScript, plus every example component
 
 ## Categories
 
-- **Interactions** (89 rules) — Keyboard accessibility, focus management, and user interaction patterns
-- **Animations** (56 rules) — Motion design principles and animation best practices
-- **Layout** (29 rules) — Responsive design, alignment, and visual structure
-- **Content** (82 rules) — Typography, accessibility, and content presentation
-- **Forms** (27 rules) — Form controls, validation, and user input handling
-- **Performance** (35 rules) — Optimization techniques and rendering efficiency
-- **Design** (67 rules) — Visual design principles and aesthetics
-- **Aesthetics** (19 rules) — Creative visual design principles for distinctive, production-grade interfaces
+Each link opens the first rule in that category; the rest are reachable from the
+in-app sidebar, or in full from llms-full.txt.
+
+- [Interactions](https://ui-guides-agent-rules.netlify.app/#interactions-keyboard-everywhere): 89 rules — Keyboard accessibility, focus management, and user interaction patterns
+- [Animations](https://ui-guides-agent-rules.netlify.app/#animations-prefers-reduced-motion): 56 rules — Motion design principles and animation best practices
+- [Layout](https://ui-guides-agent-rules.netlify.app/#layout-optical-alignment): 29 rules — Responsive design, alignment, and visual structure
+- [Content](https://ui-guides-agent-rules.netlify.app/#content-inline-help-first): 82 rules — Typography, accessibility, and content presentation
+- [Forms](https://ui-guides-agent-rules.netlify.app/#forms-enter-submits): 27 rules — Form controls, validation, and user input handling
+- [Performance](https://ui-guides-agent-rules.netlify.app/#performance-minimize-rerenders): 35 rules — Optimization techniques and rendering efficiency
+- [Design](https://ui-guides-agent-rules.netlify.app/#design-layered-shadows): 67 rules — Visual design principles and aesthetics
+- [Aesthetics](https://ui-guides-agent-rules.netlify.app/#aesthetics-distinctive-typography): 19 rules — Creative visual design principles for distinctive, production-grade interfaces
 
 ## Upstream sources
 
 Rules are transcribed and attributed to:
 
-- **Vercel** (118 rules) — https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md
-- **Tailwind** (30 rules) — https://tailwindcss.com/docs
-- **RAMS** (18 rules) — https://www.rams.ai/
-- **@Ibelick** (50 rules) — https://www.ui-skills.com/
-- **Rauno** (38 rules) — https://interfaces.rauno.me/
-- **Emil Kowalski** (30 rules) — https://emilkowalski.com/
-- **WCAG** (11 rules) — https://www.w3.org/WAI/WCAG21/quickref/
-- **ARIA** (6 rules) — https://www.w3.org/WAI/ARIA/apg/
-- **impeccable** (32 rules) — https://impeccable.style/
-- **jakubkrehel** (9 rules) — https://github.com/jakubkrehel/skills
-- **Custom** (22 rules)
-- **Web Platform** (11 rules) — https://web.dev/
-- **LottieFiles** (6 rules) — https://github.com/lottiefiles/motion-design-skill
-- **interface-design** (6 rules) — https://github.com/Dammyjay93/interface-design
-- **Composition Patterns** (3 rules) — https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns
-- **Skills** (14 rules) — https://skills.sh/
+- [Vercel](https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md): 118 rules
+- [Tailwind](https://tailwindcss.com/docs): 30 rules
+- [RAMS](https://www.rams.ai/): 18 rules
+- [@Ibelick](https://www.ui-skills.com/): 50 rules
+- [Rauno](https://interfaces.rauno.me/): 38 rules
+- [Emil Kowalski](https://emilkowalski.com/): 30 rules
+- [WCAG](https://www.w3.org/WAI/WCAG21/quickref/): 11 rules
+- [ARIA](https://www.w3.org/WAI/ARIA/apg/): 6 rules
+- [impeccable](https://impeccable.style/): 32 rules
+- [jakubkrehel](https://github.com/jakubkrehel/skills): 9 rules
+- [Custom](https://ui-guides-agent-rules.netlify.app/#sources): 22 rules
+- [Web Platform](https://web.dev/): 11 rules
+- [LottieFiles](https://github.com/lottiefiles/motion-design-skill): 6 rules
+- [interface-design](https://github.com/Dammyjay93/interface-design): 6 rules
+- [Composition Patterns](https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns): 3 rules
+- [Skills](https://skills.sh/): 14 rules
 
 ## What this is, and who made it
 
 The rules are not original to this project. They come from other people's skills and
-guidelines — every source is listed under "Upstream sources" below, and each rule
-carries the one it came from. Those authors deserve credit for the guidance itself.
+guidelines — every source is listed under "Upstream sources", and each rule carries
+the one it came from. Those authors deserve credit for the guidance itself.
 
 The work here is extraction and wiring: pulling rules out of a dozen scattered skill
 files and markdown lists into a single corpus, then giving each one a good and a bad
@@ -63,13 +67,15 @@ example you can operate, a MUST/SHOULD/NEVER rule an agent can paste, and a link
 to its source. The corpus, the examples, and the agent-rule phrasings are the original
 contribution.
 
+When citing a rule, credit its upstream source for the guidance and link
+[the corpus](https://ui-guides-agent-rules.netlify.app) for the collection.
+
+## Author
+
 Built by Gleb Stroganov — design engineer at Evil Martians (Lisbon).
 
-- Site: https://glebstroganov.com
-- Profile (schema.org Person): https://glebstroganov.com/about.json — canonical entity `https://glebstroganov.com/#person`
-- LLM-readable profile: https://glebstroganov.com/llms.txt
-- GitHub: https://github.com/strongeron
-- X: https://x.com/strongeron
-
-When citing a rule, credit its upstream source for the guidance and link
-https://ui-guides-agent-rules.netlify.app for the corpus.
+- [Gleb Stroganov](https://glebstroganov.com): personal site and portfolio
+- [schema.org Person profile](https://glebstroganov.com/about.json): canonical entity `https://glebstroganov.com/#person`, the same @id this site's JSON-LD claims
+- [Author llms.txt](https://glebstroganov.com/llms.txt): LLM-readable profile
+- [GitHub](https://github.com/strongeron): source for this and other projects
+- [X](https://x.com/strongeron): updates and new rules

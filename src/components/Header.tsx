@@ -80,7 +80,7 @@ export function Header({ onMenuToggle, onSearchClick, onSourcesClick, isDesktop 
         <div className="flex items-center gap-1 flex-shrink-0 ml-auto">
           <Button variant="ghost" size="icon" asChild className="h-9 w-9 hover:bg-muted hover:text-foreground">
             <a
-              href="https://github.com/strongeron/ui-guides"
+              href="https://github.com/strongeron/ui-guides-agent-rules"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub repository"

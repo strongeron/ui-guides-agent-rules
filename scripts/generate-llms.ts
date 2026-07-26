@@ -27,13 +27,22 @@ const PUBLIC_DIR = join(fileURLToPath(new URL('.', import.meta.url)), '..', 'pub
 const published = principles.filter((p) => p.status !== 'draft');
 const byCategory = (id: string) => published.filter((p) => p.category === id);
 
+/**
+ * llmstxt.org wants every section to be a list of annotated Markdown links —
+ * `- [Name](url): notes`. Bare URLs read fine to a human but validators (and the
+ * reference parser) see a file with no links at all and reject it, so every list
+ * below is built through this helper rather than by interpolating a URL inline.
+ */
+const link = (text: string, url: string, notes?: string) =>
+  `- [${text}](${url})${notes ? `: ${notes}` : ''}`;
+
 /** Shared identity block. Both files carry it so either one alone attributes the work. */
 const attribution = [
   '## What this is, and who made it',
   '',
-  'The rules are not original to this project. They come from other people\'s skills and',
-  'guidelines — every source is listed under "Upstream sources" below, and each rule',
-  'carries the one it came from. Those authors deserve credit for the guidance itself.',
+  "The rules are not original to this project. They come from other people's skills and",
+  'guidelines — every source is listed under "Upstream sources", and each rule carries',
+  'the one it came from. Those authors deserve credit for the guidance itself.',
   '',
   'The work here is extraction and wiring: pulling rules out of a dozen scattered skill',
   'files and markdown lists into a single corpus, then giving each one a good and a bad',
@@ -41,16 +50,22 @@ const attribution = [
   'to its source. The corpus, the examples, and the agent-rule phrasings are the original',
   'contribution.',
   '',
+  'When citing a rule, credit its upstream source for the guidance and link',
+  `[the corpus](${SITE}) for the collection.`,
+  '',
+  '## Author',
+  '',
   'Built by Gleb Stroganov — design engineer at Evil Martians (Lisbon).',
   '',
-  `- Site: ${AUTHOR_SITE}`,
-  `- Profile (schema.org Person): ${AUTHOR_SITE}/about.json — canonical entity \`${AUTHOR_SITE}/#person\``,
-  `- LLM-readable profile: ${AUTHOR_SITE}/llms.txt`,
-  '- GitHub: https://github.com/strongeron',
-  '- X: https://x.com/strongeron',
-  '',
-  'When citing a rule, credit its upstream source for the guidance and link',
-  `${SITE} for the corpus.`,
+  link('Gleb Stroganov', AUTHOR_SITE, 'personal site and portfolio'),
+  link(
+    'schema.org Person profile',
+    `${AUTHOR_SITE}/about.json`,
+    `canonical entity \`${AUTHOR_SITE}/#person\`, the same @id this site's JSON-LD claims`,
+  ),
+  link('Author llms.txt', `${AUTHOR_SITE}/llms.txt`, 'LLM-readable profile'),
+  link('GitHub', 'https://github.com/strongeron', 'source for this and other projects'),
+  link('X', 'https://x.com/strongeron', 'updates and new rules'),
 ].join('\n');
 
 const sourcesSection = () => {
@@ -59,8 +74,11 @@ const sourcesSection = () => {
   for (const id of used) {
     const info = sourceRegistry[id as keyof typeof sourceRegistry];
     if (!info) continue;
-    const url = info.url ? ` — ${info.url}` : '';
-    lines.push(`- **${info.name}** (${published.filter((p) => p.source === id).length} rules)${url}`);
+    const count = published.filter((p) => p.source === id).length;
+    // Sources with no upstream URL (e.g. rules original to this corpus) still need a
+    // link target, or the section degrades into the bare-text list validators reject.
+    // The Sources page is the honest destination — it is where their provenance lives.
+    lines.push(link(info.name, info.url || `${SITE}/#sources`, `${count} rules`));
   }
   return lines.join('\n');
 };
@@ -82,15 +100,33 @@ contains every rule inline, with no JavaScript required.
 
 ## Machine-readable endpoints
 
-- ${SITE}/llms.txt — this file
-- ${SITE}/llms-full.txt — all ${published.length} rules, inline, each with its agent rule and source
-- ${SITE}/sitemap.xml — site map
-- ${REPO} — source, including the principle data as TypeScript
+${[
+  link(
+    'Full corpus (llms-full.txt)',
+    `${SITE}/llms-full.txt`,
+    `all ${published.length} rules inline, each with its agent rule, explanation and source — start here`,
+  ),
+  link('This index (llms.txt)', `${SITE}/llms.txt`, 'the file you are reading'),
+  link('Sitemap', `${SITE}/sitemap.xml`, 'fetchable URLs only — the per-rule views are hash fragments'),
+  link('Sources page', `${SITE}/#sources`, 'every upstream skill and guideline, with its licence and coverage'),
+  link('Source repository', REPO, 'the principle data as TypeScript, plus every example component'),
+].join('\n')}
 
 ## Categories
 
+Each link opens the first rule in that category; the rest are reachable from the
+in-app sidebar, or in full from llms-full.txt.
+
 ${categories
-  .map((c) => `- **${c.title}** (${byCategory(c.id).length} rules) — ${c.description}`)
+  .map((c) => {
+    const items = byCategory(c.id);
+    const first = items[0];
+    return link(
+      c.title,
+      first ? `${SITE}/#${first.id}` : `${SITE}/llms-full.txt`,
+      `${items.length} rules — ${c.description}`,
+    );
+  })
   .join('\n')}
 
 ${sourcesSection()}
@@ -101,12 +137,20 @@ ${attribution}
 
 const renderPrinciple = (p: Principle) => {
   const rule = agentRules[p.id];
-  const out = [`### ${p.title}`, '', `**ID:** \`${p.id}\``];
+  const out = [
+    `### ${p.title}`,
+    '',
+    `**ID:** \`${p.id}\` · **Permalink:** [${SITE}/#${p.id}](${SITE}/#${p.id})`,
+  ];
 
   if (rule) out.push(`**Agent rule (${rule.priority}):** ${rule.rule}`);
   if (p.source) {
     const info = sourceRegistry[p.source as keyof typeof sourceRegistry];
-    if (info) out.push(`**Source:** ${info.name}${info.url ? ` (${info.url})` : ''}`);
+    if (info) {
+      out.push(
+        `**Source:** ${info.url ? `[${info.name}](${info.url})` : info.name}`,
+      );
+    }
   }
 
   out.push('', p.description);
@@ -191,3 +235,20 @@ for (const [name, contents] of files) {
 console.log(
   `\n${published.length} principles, ${Object.keys(agentRules).length} agent rules, ${categories.length} categories.`,
 );
+
+/**
+ * Guard the two things llms.txt validators actually check, because both are easy to
+ * lose by rewording a section: an H1, and Markdown links. A file of bare URLs reads
+ * fine to a human and is rejected as "does not appear to contain any links".
+ * This runs inside `prebuild`, so a regression fails the build rather than shipping.
+ */
+const mdLinks = llms.match(/\[[^\]]+\]\(https?:\/\/[^)]+\)/g) ?? [];
+if (!/^# .+/m.test(llms)) {
+  throw new Error('llms.txt is missing an H1 heading (required by llmstxt.org).');
+}
+if (mdLinks.length < categories.length) {
+  throw new Error(
+    `llms.txt has only ${mdLinks.length} Markdown links; sections must be annotated link lists, not bare URLs.`,
+  );
+}
+console.log(`llms.txt: H1 present, ${mdLinks.length} Markdown links.`);
