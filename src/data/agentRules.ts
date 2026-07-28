@@ -1903,6 +1903,41 @@ export const agentRules: Partial<Record<KnownPrincipleId, AgentRule>> & Record<s
     priority: 'SHOULD',
     rule: 'Give styled primitives an asChild / Slot escape hatch so they can render AS the element they wrap (a Button that is really an <a href>) instead of forcing a fixed tag or nesting interactive elements. Styling stays with the primitive; semantics stay with the child.',
     codeExample: '<Button asChild>\n  <a href="/pricing">Pricing</a>\n</Button>'
+  },
+  'animations-text-split-granularity': {
+    priority: 'MUST',
+    rule: 'Choose the split unit from the string length, not by reflex: per-character only under ~40 chars (22–46ms stagger), per-word beyond that (70–95ms), per-line for paragraphs (90–120ms). Total reveal = stagger × unit count, so the count is the variable that matters. Do not fix a long per-character cascade by clamping the delay — that collapses the tail into a flash. Preserve spaces: a gap that ends up inside an inline-block shard is collapsed away, so set white-space: pre-wrap on the wrapper or emit the space as a text node between tokens.',
+    codeExample: '// bad — 45 chars x 60ms = last letter starts at 2.6s\ntext.split("").map((c, i) => <span style={{ animationDelay: `${i * 60}ms` }}>{c}</span>)\n// good — 8 words x 70ms, cascade intact, done in 1.2s, gaps outside the shards\ntext.split(" ").map((w, i, all) => (\n  <Fragment key={i}>\n    <span className="inline-block" style={{ animationDelay: `${i * 70}ms` }}>{w}</span>\n    {i < all.length - 1 ? " " : null}\n  </Fragment>\n))'
+  },
+  'animations-text-swap-overlap': {
+    priority: 'MUST',
+    rule: 'Rotating/replaced text must overlap its exit and enter (100–300ms, or at minimum a 28–85ms micro-delay) so no frame shows an empty slot, and both layers must share one grid cell (grid-area: 1/1) sized to the longest string so surrounding content never reflows. A looping swap also needs a pause control and a reduced-motion path.',
+    codeExample: '// bad — hard cut, slot resizes every tick\nsetInterval(() => setI(i => (i + 1) % words.length), 2000)\n// good — stacked layers, enter starts before exit ends\n<span style={{ display: "inline-grid" }}>\n  {words.map((w, i) => (\n    <span key={w} style={{ gridArea: "1 / 1" }} className={i === index ? "enter" : i === leaving ? "exit" : "invisible"}>{w}</span>\n  ))}\n</span>'
+  },
+  'animations-text-reveal-scales-with-type': {
+    priority: 'SHOULD',
+    rule: 'Reprice a text reveal for the type size it lands on. Hero (48px+): blur up to 12px, 25ms stagger, per-character. Body (<24px): blur 6px, 15ms stagger, per-word. Never copy a hero preset onto body copy — an absolute blur radius that softens a 5px stem erases a 1.5px one.',
+    codeExample: 'const HERO = { blurPx: 12, staggerMs: 25, unit: "char" };\nconst BODY = { blurPx: 6,  staggerMs: 15, unit: "word" };'
+  },
+  'animations-hard-cut-uses-steps': {
+    priority: 'MUST',
+    rule: 'Any effect whose identity is discreteness — typewriter, per-word hard cut, blinking caret — must use steps(1, end), not an eased opacity ramp. A fade puts every unit in a half-present state for its whole duration, so at a normal stagger several are ghosting at once and the line smears instead of typing. The rhythm belongs to the stagger; the duration is only a gate.',
+    codeExample: '// bad — 240ms ramp, ~5 glyphs half-present at a 46ms stagger\nanimation: fade 240ms ease-out both;\n// good — struck or absent, never in between\nanimation: type 240ms steps(1, end) both;\nanimationDelay: `${i * 46}ms`;'
+  },
+  'animations-stagger-floor-one-frame': {
+    priority: 'MUST',
+    rule: 'Never set a per-unit stagger below ~16ms. One frame at 60Hz is 16.7ms, so a smaller delay quantizes multiple units onto the same paint and the cascade renders as a flash — you ship N elements and N animations for nothing. Hold the 16ms floor even though a 120Hz panel could resolve less, or the effect differs between displays. Floor 16ms, per-unit 22–95ms by unit type, total under 500ms.',
+    codeExample: '// bad — 8ms is half a frame; letters 1-2 start together\nconst STAGGER_MS = 8;\n// good — clears the frame floor, total stays under the 500ms ceiling\nconst STAGGER_MS = 24; // >= 16.7ms (one frame at 60Hz)\n// if units * STAGGER_MS > 500, coarsen the unit — do not shrink the delay'
+  },
+  'animations-text-swap-mode-matches-layout': {
+    priority: 'MUST',
+    rule: 'Pick the swap mode from whether the slot holds still, not from habit. Opacity/blur replacement in a fixed slot: crossfade with 100–300ms overlap. Anything that travels, pushes, or restacks layout: exit fully, then a 70–220ms micro-delay before enter — overlapping two moving phrases sends them through the same space on opposite vectors and reads as a glitch.',
+    codeExample: '// stable slot (opacity/blur only) — overlap\nconst enterDelay = exitMs - 220;\n// travelling / pushing layout — exit, then a beat\nconst enterDelay = exitMs + 70;'
+  },
+  'animations-transform-order-changes-result': {
+    priority: 'MUST',
+    rule: 'Compose transform as translate → rotate → scale, and keep that order everywhere in the system. transform is a right-to-left matrix chain, so a translate written after a scale is measured in the scaled space: scale(0.5) translateY(60px) travels 30px, and the distance grows as the scale animates, bending the path into an easing you never wrote. Hoist the order with the rest of the motion constants; this bug never throws.',
+    codeExample: '// bad — translate lives in the scaled space; 60px becomes 30px at scale 0.5\ntransform: scale(0.5) translateY(60px);\n// good — translation first, scale last: 60px is 60px at every scale\ntransform: translate3d(0, 60px, 0) scale(0.5);'
   }
 };
 

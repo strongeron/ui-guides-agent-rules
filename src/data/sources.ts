@@ -231,6 +231,26 @@ export const sourceCatalog: CatalogSource[] = [
     },
   },
   {
+    // A catalog, not a rule list — which is why this is `manual` despite being a clean
+    // GitHub repo. Its markdown references are 24 EFFECT DESCRIPTIONS ("`typewriter`
+    // (per-character) Per-character stepped reveal…"), so github-mode would extract every
+    // catalog row as a "rule" and park 24 permanently-uncovered items in the backlog. The
+    // actual guidance lives in the `usage_notes` and `swap.scenario_spec` fields INSIDE
+    // `assets/specs/*.json`, which the markdown bullet extractor cannot see. Onboarded by
+    // hand from those fields; re-read the JSON specs, not the references, on review.
+    id: 'animate-text',
+    name: 'animate-text',
+    author: 'Pixel Point',
+    homepage: 'https://pixelpoint.io/skills/animate-text/',
+    repo: 'pixel-point/animate-text',
+    originKind: 'github',
+    installCmd: 'npx skills add pixel-point/animate-text --skill animate-text',
+    color: 'bg-indigo-700 text-white border-indigo-700',
+    patternSource: 'animate-text',
+    defaultTags: ['motion', 'typography'],
+    check: { mode: 'manual', reviewEveryDays: 60 },
+  },
+  {
     id: 'tailwind',
     name: 'Tailwind',
     homepage: 'https://tailwindcss.com/docs',

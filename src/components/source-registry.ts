@@ -107,6 +107,13 @@ export const sourceRegistry: Record<PatternSource, PatternSourceInfo> = {
     url: 'https://github.com/lottiefiles/motion-design-skill',
     color: 'bg-green-700 text-white border-green-700',
   },
+  'animate-text': {
+    id: 'animate-text',
+    name: 'animate-text',
+    description: 'Text reveal and swap choreography from Pixel Point’s animate-text catalog',
+    url: 'https://pixelpoint.io/skills/animate-text/',
+    color: 'bg-indigo-700 text-white border-indigo-700',
+  },
   jakubkrehel: {
     id: 'jakubkrehel',
     name: 'jakubkrehel',

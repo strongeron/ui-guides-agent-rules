@@ -27,6 +27,7 @@ export type PatternSource =
   | 'lottiefiles'      // LottieFiles motion-design skill (runtime-agnostic motion direction)
   | 'jakubkrehel'      // jakubkrehel/skills — better-typography + better-ui
   | 'vercel-composition' // Vercel agent-skills — composition-patterns (React component design)
+  | 'animate-text'     // Pixel Point's animate-text catalog — text reveal and swap choreography
   | 'custom';          // Internal/custom patterns
 
 export interface PatternSourceInfo {

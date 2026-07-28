@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T12:53:47.477Z",
+  "generatedAt": "2026-07-27T16:25:18.984Z",
   "reportFound": true,
   "reportPath": "/Users/strongeron/Library/Mobile Documents/iCloud~md~obsidian/Documents/Fox Brains/AI/Claude Code/UI · Animation · Design Skills — Source Directory 2026.md",
   "inReportNotCatalog": [
@@ -19,6 +19,7 @@
     "ibelick/ui-skills",
     "jakubkrehel/skills",
     "pbakaus/impeccable",
+    "pixel-point/animate-text",
     "raphaelsalaja/skill",
     "raunofreiberg/interfaces"
   ],

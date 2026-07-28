@@ -64,3 +64,9 @@ doc/agent-rules-alignment.json
 public/principles/
 public/categories/
 dist-ssr/
+
+# Upstream skills installed locally for transcription (npx skills add …).
+# Source of truth for what we ingested is src/data/sources.ts, not a vendored copy.
+.agents/
+.claude/skills/
+skills-lock.json

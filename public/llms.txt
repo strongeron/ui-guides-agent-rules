@@ -1,6 +1,6 @@
 # UI Guides & Agent Rules
 
-> 404 web UI principles — accessibility, motion, forms, layout, performance,
+> 411 web UI principles — accessibility, motion, forms, layout, performance,
 > sound, and visual design — each paired with a working good example and a bad one, plus a
 > copy-paste MUST/SHOULD/NEVER rule for coding agents. Built and maintained by Gleb Stroganov.
 
@@ -17,10 +17,10 @@ contains every rule inline, with no JavaScript required.
 - [Rule index](https://ui-guides-agent-rules.netlify.app/principles/index.md): START HERE. Every rule id and title, tagged with the surface it applies to (form-input, dialog-overlay, focus-keyboard...) and the symbols its examples use. Search it for what you are building, then fetch only what matched
 - [One rule + both examples](https://ui-guides-agent-rules.netlify.app/principles/<id>.md): per-rule payload, ~1.4k tokens, carrying the good AND bad component source — the code no other endpoint exposes. Also as .json
 - [One category](https://ui-guides-agent-rules.netlify.app/categories/<category>.md): rules and reasoning for one category, 6k-26k tokens, no example code
-- [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md): broad sweep when the index does not narrow it: all 191 MUST rules, ~11k tokens
+- [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md): broad sweep when the index does not narrow it: all 197 MUST rules, ~11k tokens
 - [This index (llms.txt)](https://ui-guides-agent-rules.netlify.app/llms.txt): the file you are reading
 - [Full corpus (llms-full.txt)](https://ui-guides-agent-rules.netlify.app/llms-full.txt): every rule inline, ~166k tokens — almost never the right fetch; use the index and per-rule payloads instead
-- [Sitemap](https://ui-guides-agent-rules.netlify.app/sitemap.xml): every page, including all 404 rule URLs
+- [Sitemap](https://ui-guides-agent-rules.netlify.app/sitemap.xml): every page, including all 411 rule URLs
 - [Sources page](https://ui-guides-agent-rules.netlify.app/sources): every upstream skill and guideline, with its licence and coverage
 - [Source repository](https://github.com/strongeron/ui-guides-agent-rules): the principle data as TypeScript, plus every example component
 
@@ -30,7 +30,7 @@ Each link opens the first rule in that category; the rest are reachable from the
 in-app sidebar, or in full from llms-full.txt.
 
 - [Interactions](https://ui-guides-agent-rules.netlify.app/principles/interactions-keyboard-everywhere): 89 rules — Keyboard accessibility, focus management, and user interaction patterns
-- [Animations](https://ui-guides-agent-rules.netlify.app/principles/animations-prefers-reduced-motion): 56 rules — Motion design principles and animation best practices
+- [Animations](https://ui-guides-agent-rules.netlify.app/principles/animations-prefers-reduced-motion): 63 rules — Motion design principles and animation best practices
 - [Layout](https://ui-guides-agent-rules.netlify.app/principles/layout-optical-alignment): 29 rules — Responsive design, alignment, and visual structure
 - [Content](https://ui-guides-agent-rules.netlify.app/principles/content-inline-help-first): 82 rules — Typography, accessibility, and content presentation
 - [Forms](https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits): 27 rules — Form controls, validation, and user input handling
@@ -55,6 +55,7 @@ Rules are transcribed and attributed to:
 - [Custom](https://ui-guides-agent-rules.netlify.app/sources): 22 rules
 - [Web Platform](https://web.dev/): 11 rules
 - [LottieFiles](https://github.com/lottiefiles/motion-design-skill): 6 rules
+- [animate-text](https://pixelpoint.io/skills/animate-text/): 7 rules
 - [interface-design](https://github.com/Dammyjay93/interface-design): 6 rules
 - [Composition Patterns](https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns): 3 rules
 - [Skills](https://skills.sh/): 14 rules
