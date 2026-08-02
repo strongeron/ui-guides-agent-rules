@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T18:57:24.075Z",
+  "generatedAt": "2026-08-02T01:53:51.441Z",
   "reports": [
     {
       "source": "vercel",
@@ -78,19 +78,6 @@
           "source": "vercel",
           "text": "source: https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
           "suggestedId": "vercel-source-https-github-com-vercel-labs",
-          "category": "design",
-          "tags": [
-            "a11y",
-            "forms",
-            "performance",
-            "design"
-          ],
-          "bestMatch": 0.14
-        },
-        {
-          "source": "vercel",
-          "text": "Avoid widows/orphans. Tidy rag & line breaks.",
-          "suggestedId": "vercel-avoid-widows-orphans-tidy-rag-line",
           "category": "design",
           "tags": [
             "a11y",
@@ -252,6 +239,19 @@
             "forms",
             "performance",
             "content"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "vercel",
+          "text": "Avoid widows/orphans. Tidy rag & line breaks.",
+          "suggestedId": "vercel-avoid-widows-orphans-tidy-rag-line",
+          "category": "design",
+          "tags": [
+            "a11y",
+            "forms",
+            "performance",
+            "design"
           ],
           "bestMatch": 0.29
         },
@@ -466,7 +466,7 @@
       "name": "Vercel Agent Skills",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 0,
+      "ourRules": 3,
       "reviewEveryDays": 90,
       "note": "https://github.com/vercel-labs/agent-skills"
     },
@@ -930,17 +930,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Friction over hard stops — allow over-drag with rising resistance rather than an invisible wall.",
-          "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
-          "category": "interactions",
-          "tags": [
-            "motion",
-            "interactions"
-          ],
-          "bestMatch": 0.17
-        },
-        {
-          "source": "emilkowalski",
           "text": "Causality — it must be obvious what caused the feedback. Trigger it on the actual causal event (the toggle flipping, the item snapping home), and match its character to the action's physicality.",
           "suggestedId": "emilkowalski-causality-it-must-be-obvious-what",
           "category": "design",
@@ -1205,17 +1194,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Build hierarchy from weight + size + leading as a set, not size alone. Emphasize with weight — it adds presence without taking more space.",
-          "suggestedId": "emilkowalski-build-hierarchy-from-weight-size-leading",
-          "category": "design",
-          "tags": [
-            "motion",
-            "design"
-          ],
-          "bestMatch": 0.21
-        },
-        {
-          "source": "emilkowalski",
           "text": "Purpose. Make with intention; decide what not to build. Every feature asks for the user's time, attention, and trust — spend that budget only where it pays off.",
           "suggestedId": "emilkowalski-purpose-make-with-intention-decide-what",
           "category": "design",
@@ -1359,17 +1337,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Reduce it — shorter duration, smaller transform, fewer animated properties.",
-          "suggestedId": "emilkowalski-reduce-it-shorter-duration-smaller-transform",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.25
-        },
-        {
-          "source": "emilkowalski",
           "text": "Feel-breaking regressions — sluggish easing, comes-from-nowhere, fires on high-frequency/keyboard actions.",
           "suggestedId": "emilkowalski-feel-breaking-regressions-sluggish-easing-comes",
           "category": "animations",
@@ -1414,12 +1381,12 @@
         },
         {
           "source": "emilkowalski",
-          "text": "3D: `rotateX/Y` + `transform-style: preserve-3d` for depth/orbit/flip without JS.",
-          "suggestedId": "emilkowalski-3d-for-depth-orbit-flip-without",
-          "category": "forms",
+          "text": "Friction over hard stops — allow over-drag with rising resistance rather than an invisible wall.",
+          "suggestedId": "emilkowalski-friction-over-hard-stops-allow-over",
+          "category": "interactions",
           "tags": [
             "motion",
-            "forms"
+            "interactions"
           ],
           "bestMatch": 0.25
         },
@@ -1486,6 +1453,17 @@
           "tags": [
             "motion",
             "animations"
+          ],
+          "bestMatch": 0.29
+        },
+        {
+          "source": "emilkowalski",
+          "text": "Build hierarchy from weight + size + leading as a set, not size alone. Emphasize with weight — it adds presence without taking more space.",
+          "suggestedId": "emilkowalski-build-hierarchy-from-weight-size-leading",
+          "category": "design",
+          "tags": [
+            "motion",
+            "design"
           ],
           "bestMatch": 0.29
         },
@@ -1733,6 +1711,17 @@
         },
         {
           "source": "emilkowalski",
+          "text": "Reduce it — shorter duration, smaller transform, fewer animated properties.",
+          "suggestedId": "emilkowalski-reduce-it-shorter-duration-smaller-transform",
+          "category": "animations",
+          "tags": [
+            "motion",
+            "animations"
+          ],
+          "bestMatch": 0.38
+        },
+        {
+          "source": "emilkowalski",
           "text": "Make it interruptible — keyframes → transitions, or a spring for gesture-driven motion.",
           "suggestedId": "emilkowalski-make-it-interruptible-keyframes-transitions-or",
           "category": "animations",
@@ -1854,17 +1843,6 @@
         },
         {
           "source": "emilkowalski",
-          "text": "Are multiple animated properties (opacity, transform, color) in sync?",
-          "suggestedId": "emilkowalski-are-multiple-animated-properties-opacity-transform",
-          "category": "animations",
-          "tags": [
-            "motion",
-            "animations"
-          ],
-          "bestMatch": 0.43
-        },
-        {
-          "source": "emilkowalski",
           "text": "Accessibility & cohesion — add reduced-motion + hover gating; tune to match the component's personality.",
           "suggestedId": "emilkowalski-accessibility-cohesion-add-reduced-motion-hover",
           "category": "animations",
@@ -1881,20 +1859,64 @@
       "name": "jakubkrehel",
       "mode": "github",
       "status": "checked",
-      "upstreamRules": 30,
+      "upstreamRules": 19,
       "ourRules": 9,
       "newRules": [
         {
           "source": "jakubkrehel",
-          "text": "Perceptual uniformity. Equal L steps = equal brightness. `oklch(0.5 ...)` is visually mid. HSL's `lightness: 50%` varies wildly by hue.",
-          "suggestedId": "jakubkrehel-perceptual-uniformity-equal-l-steps-equal",
-          "category": "forms",
+          "text": "Why: name the violated principle and include measured contrast or gamut evidence when relevant.",
+          "suggestedId": "jakubkrehel-why-name-the-violated-principle-and",
+          "category": "design",
+          "tags": [
+            "typography",
+            "design"
+          ],
+          "bestMatch": 0.1
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Verification: list the exact checks run and their observed results, including wrapping, hierarchy, text resizing, font loading, and dynamic-value stability when applicable. If a check was not run, state what still needs verification.",
+          "suggestedId": "jakubkrehel-verification-list-the-exact-checks-run",
+          "category": "content",
           "tags": [
             "typography",
             "design",
-            "forms"
+            "content"
           ],
-          "bestMatch": 0.09
+          "bestMatch": 0.13
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Severity: `HIGH` makes content unreadable or assigns a misleading semantic color; `MEDIUM` creates a noticeable theme, gamut, or consistency failure; `LOW` is isolated polish.",
+          "suggestedId": "jakubkrehel-severity-makes-content-unreadable-or-assigns",
+          "category": "design",
+          "tags": [
+            "typography",
+            "design"
+          ],
+          "bestMatch": 0.13
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Why: name the violated principle and its effect on readability or hierarchy.",
+          "suggestedId": "jakubkrehel-why-name-the-violated-principle-and",
+          "category": "design",
+          "tags": [
+            "typography",
+            "design"
+          ],
+          "bestMatch": 0.14
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Verification: list the exact checks run and their observed results, including contrast measurements, gamut checks, and both light and dark appearances when applicable. If a check was not run, state what still needs verification.",
+          "suggestedId": "jakubkrehel-verification-list-the-exact-checks-run",
+          "category": "design",
+          "tags": [
+            "typography",
+            "design"
+          ],
+          "bestMatch": 0.14
         },
         {
           "source": "jakubkrehel",
@@ -1909,6 +1931,18 @@
         },
         {
           "source": "jakubkrehel",
+          "text": "Perceptual uniformity. Equal L steps = equal brightness. `oklch(0.5 ...)` is visually mid. HSL's `lightness: 50%` varies wildly by hue.",
+          "suggestedId": "jakubkrehel-perceptual-uniformity-equal-l-steps-equal",
+          "category": "forms",
+          "tags": [
+            "typography",
+            "design",
+            "forms"
+          ],
+          "bestMatch": 0.18
+        },
+        {
+          "source": "jakubkrehel",
           "text": "Independent chroma. Chroma is an absolute measure of colorfulness that doesn't depend on lightness. HSL saturation does.",
           "suggestedId": "jakubkrehel-independent-chroma-chroma-is-an-absolute",
           "category": "design",
@@ -1920,15 +1954,14 @@
         },
         {
           "source": "jakubkrehel",
-          "text": "Copy stored in natural case, presentation via `text-transform`",
-          "suggestedId": "jakubkrehel-copy-stored-in-natural-case-presentation",
-          "category": "content",
+          "text": "Respect the existing system. Do not convert notation merely because this skill was loaded. Reuse the project's semantic tokens and authoring format unless the task includes a color-system migration.",
+          "suggestedId": "jakubkrehel-respect-the-existing-system-do-not",
+          "category": "design",
           "tags": [
             "typography",
-            "design",
-            "content"
+            "design"
           ],
-          "bestMatch": 0.2
+          "bestMatch": 0.19
         },
         {
           "source": "jakubkrehel",
@@ -1944,20 +1977,20 @@
         },
         {
           "source": "jakubkrehel",
-          "text": "color-conversion.md: Supported formats, conversion examples, bulk conversion rules, what to leave alone",
-          "suggestedId": "jakubkrehel-color-conversion-md-supported-formats-conversion",
-          "category": "forms",
+          "text": "Severity: `HIGH` makes text unreadable, unavailable, or structurally misleading; `MEDIUM` harms hierarchy, wrapping, or scanning; `LOW` is isolated typographic polish.",
+          "suggestedId": "jakubkrehel-severity-makes-text-unreadable-unavailable-or",
+          "category": "content",
           "tags": [
             "typography",
             "design",
-            "forms"
+            "content"
           ],
-          "bestMatch": 0.2
+          "bestMatch": 0.21
         },
         {
           "source": "jakubkrehel",
-          "text": "accessibility-contrast.md: APCA and WCAG 2 thresholds, fixing contrast with L, lightness gap guide, hue drift detection",
-          "suggestedId": "jakubkrehel-accessibility-contrast-md-apca-and-wcag",
+          "text": "Verdict: `Block` if any `HIGH` finding remains, `Needs changes` if only `MEDIUM` or `LOW` findings remain, and `Approve` only when no actionable findings remain.",
+          "suggestedId": "jakubkrehel-verdict-if-any-finding-remains-if",
           "category": "design",
           "tags": [
             "typography",
@@ -1967,49 +2000,37 @@
         },
         {
           "source": "jakubkrehel",
-          "text": "Underlines use `from-font` or tuned thickness, offset and skip-ink",
-          "suggestedId": "jakubkrehel-underlines-use-or-tuned-thickness-offset",
+          "text": "Before / After: show the current value or token and the exact replacement.",
+          "suggestedId": "jakubkrehel-before-after-show-the-current-value",
+          "category": "design",
+          "tags": [
+            "typography",
+            "design"
+          ],
+          "bestMatch": 0.25
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Before / After: show the current typography and an actionable replacement.",
+          "suggestedId": "jakubkrehel-before-after-show-the-current-typography",
           "category": "content",
           "tags": [
             "typography",
             "design",
             "content"
           ],
-          "bestMatch": 0.33
+          "bestMatch": 0.29
         },
         {
           "source": "jakubkrehel",
-          "text": "palette-generation.md: Scale convention, generation algorithm, multi-hue palettes, dark mode, why not HSL",
-          "suggestedId": "jakubkrehel-palette-generation-md-scale-convention-generation",
+          "text": "Location: cite `path/to/file:line`. If the artifact has no source files, cite the exact screen and component instead.",
+          "suggestedId": "jakubkrehel-location-cite-if-the-artifact-has",
           "category": "design",
           "tags": [
             "typography",
             "design"
           ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "jakubkrehel",
-          "text": "gamut-and-tailwind.md: sRGB vs P3, gamut clamping, CSS fallback patterns, Tailwind v4 @theme and migration",
-          "suggestedId": "jakubkrehel-gamut-and-tailwind-md-srgb-vs",
-          "category": "design",
-          "tags": [
-            "typography",
-            "design"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "jakubkrehel",
-          "text": "Long-form text capped around 60–75 characters per line",
-          "suggestedId": "jakubkrehel-long-form-text-capped-around-60",
-          "category": "forms",
-          "tags": [
-            "typography",
-            "design",
-            "forms"
-          ],
-          "bestMatch": 0.38
+          "bestMatch": 0.3
         },
         {
           "source": "jakubkrehel",
@@ -2655,17 +2676,6 @@
         },
         {
           "source": "ui-skills",
-          "text": "treat size changes as potentially layout-triggering",
-          "suggestedId": "ibelick-treat-size-changes-as-potentially-layout",
-          "category": "layout",
-          "tags": [
-            "interaction",
-            "layout"
-          ],
-          "bestMatch": 0.33
-        },
-        {
-          "source": "ui-skills",
           "text": "Never modify product source. Create or edit files only under `design-plans/`.",
           "suggestedId": "ibelick-never-modify-product-source-create-or",
           "category": "design",
@@ -2909,6 +2919,16 @@
       ]
     },
     {
+      "source": "animate-text",
+      "name": "animate-text",
+      "mode": "manual",
+      "status": "manual-ok",
+      "ourRules": 7,
+      "daysSinceReview": 0,
+      "reviewEveryDays": 60,
+      "note": "https://pixelpoint.io/skills/animate-text/"
+    },
+    {
       "source": "tailwind",
       "name": "Tailwind",
       "mode": "manual",
@@ -2940,7 +2960,7 @@
       "name": "Web Platform",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 8,
+      "ourRules": 11,
       "reviewEveryDays": 90,
       "note": "https://web.dev/"
     },
@@ -2949,7 +2969,7 @@
       "name": "WCAG",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 10,
+      "ourRules": 11,
       "reviewEveryDays": 90,
       "note": "https://www.w3.org/WAI/WCAG21/quickref/"
     },
@@ -3011,7 +3031,7 @@
       "name": "Custom",
       "mode": "manual",
       "status": "manual-due",
-      "ourRules": 21,
+      "ourRules": 22,
       "reviewEveryDays": 180
     },
     {

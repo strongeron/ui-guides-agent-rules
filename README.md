@@ -18,17 +18,17 @@ https://github.com/user-attachments/assets/cd40ca11-f7e3-439d-993a-7f5aa99132b6
 2. **A `MUST` / `SHOULD` / `NEVER` rule** an agent can paste straight into its context.
 3. **A link back to where it came from**, so credit stays attached to the rule.
 
-404 principles across eight categories — interactions, animations, layout, content, forms, performance, design, aesthetics — drawn from 15 upstream sources. Search, filter by source or tag. Every rule is its own page at `/principles/<id>`, with a Markdown twin at `/principles/<id>.md`.
+411 principles across eight categories — interactions, animations, layout, content, forms, performance, design, aesthetics — drawn from 16 upstream sources. Search, filter by source or tag. Every rule is its own page at `/principles/<id>`, with a Markdown twin at `/principles/<id>.md`.
 
 **To use it:** point a coding agent at [`principles/index.md`](https://ui-guides-agent-rules.netlify.app/principles/index.md) — every rule tagged with what it applies to, searchable in ~12k tokens — and let it fetch only what matched.
 
 ## What's inside
 
-- **404 principles**, each with a side-by-side good/bad example you can operate — not screenshots, real components.
+- **411 principles**, each with a side-by-side good/bad example you can operate — not screenshots, real components.
 - **Multi-source and attributed.** Every rule is tagged with the upstream project it came from, filterable by origin, and credited on the Sources page.
-- **Agent-ready rules.** All 404 principles carry a `MUST` / `SHOULD` / `NEVER` rule written to be pasted straight into a coding agent's context; 106 of them add a code example. One click to copy.
+- **Agent-ready rules.** All 411 principles carry a `MUST` / `SHOULD` / `NEVER` rule written to be pasted straight into a coding agent's context; 113 of them add a code example. One click to copy.
 - **Fetchable in slices.** Static files an agent pays for by the piece: a searchable [index](https://ui-guides-agent-rules.netlify.app/principles/index.md) at ~12k tokens, all 191 [MUST rules](https://ui-guides-agent-rules.netlify.app/principles/must.md) at ~11k, one category at 6k–26k, or [a single rule](https://ui-guides-agent-rules.netlify.app/principles/forms-enter-submits.md) at ~1.4k — that last one carrying **both example components as real code**, which nothing else exposes.
-- **Every rule is a real page**, prerendered with its own title, description, OG card and structured data — 408 URLs in the sitemap, not one. All of it generated from the principle data at build time.
+- **Every rule is a real page**, prerendered with its own title, description, OG card and structured data — 415 URLs in the sitemap, not one. All of it generated from the principle data at build time.
 - **Keyboard-first, accessible, themed.** The guide practices what it documents: visible focus rings, focus traps, hit targets, `prefers-reduced-motion`, light/dark, dynamic page titles.
 
 ## Use the rules in your own project
@@ -116,7 +116,7 @@ When writing or reviewing UI code, consult ui-guides-agent-rules:
 | `/principles/<id>.md` | ~1.5k | One rule + both examples. The payload worth knowing about. |
 | `/principles/<id>.json` | ~1.5k | Same, structured. |
 | `/principles/index.md` (whole) | 12k | Only if you can't grep. |
-| `/principles/must.md` | 11k | All 191 MUST rules — a sweep over a large diff. |
+| `/principles/must.md` | 11k | All 197 MUST rules — a sweep over a large diff. |
 | `/categories/<category>.md` | 6k–26k | Everything in one area, no example code. |
 | `/llms-full.txt` | **169k** | Rarely correct. |
 

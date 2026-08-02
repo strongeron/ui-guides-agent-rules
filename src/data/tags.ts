@@ -43,7 +43,8 @@ const DUPLICATE_TAGS = new Set<string>([
   // sources (mirror the Source filter)
   'vercel', 'wcag', 'aria', 'design-system', 'tailwind', 'rams', 'ibelick',
   'web-platform', 'anthropic', 'rauno', 'emilkowalski', 'impeccable',
-  'interface-design', 'lottiefiles', 'jakubkrehel', 'custom',
+  'interface-design', 'lottiefiles', 'jakubkrehel', 'vercel-composition',
+  'animate-text', 'custom',
 ]);
 
 export function deriveTags(p: Principle): string[] {

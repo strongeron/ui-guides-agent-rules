@@ -231,6 +231,38 @@ export const sourceCatalog: CatalogSource[] = [
     },
   },
   {
+    // A catalog, not a rule list — which is why this is `manual` despite being a clean
+    // GitHub repo. Its markdown references are 24 EFFECT DESCRIPTIONS ("`typewriter`
+    // (per-character) Per-character stepped reveal…"), so github-mode would extract every
+    // catalog row as a "rule" and park 24 permanently-uncovered items in the backlog. The
+    // actual guidance lives in the `usage_notes` and `swap.scenario_spec` fields INSIDE
+    // `assets/specs/*.json`, which the markdown bullet extractor cannot see. Onboarded by
+    // hand from those fields; re-read the JSON specs, not the references, on review.
+    //
+    // Where the seven onboarded rules got their evidence — check these paths on review,
+    // and each rule's `sourceLinks` deep-links to the same file:
+    //   assets/specs/soft-blur-in.json       usage_notes (>40 chars → per-word; blur/stagger
+    //                                        by type size) + swap.scenario_spec (overlap order)
+    //   assets/specs/per-character-rise.json "don't go below 16ms or it flattens"
+    //   assets/specs/typewriter.json         signature_easing: steps(1, end)
+    //   assets/specs/shared-axis-y.json      per-word hard cut, also steps(1, end)
+    //   assets/specs/micro-scale-fade.json   } overlap_ms: 0 "to avoid content intersections"
+    //   assets/specs/line-by-line-slide.json }  — the travelling effects run sequential
+    //   assets/effects/soft-blur-in.json     rendering_contract.transform_order
+    //   references/catalog.md                per-unit stagger bands (char/word/line)
+    id: 'animate-text',
+    name: 'animate-text',
+    author: 'Pixel Point',
+    homepage: 'https://pixelpoint.io/skills/animate-text/',
+    repo: 'pixel-point/animate-text',
+    originKind: 'github',
+    installCmd: 'npx skills add pixel-point/animate-text --skill animate-text',
+    color: 'bg-indigo-700 text-white border-indigo-700',
+    patternSource: 'animate-text',
+    defaultTags: ['motion', 'typography'],
+    check: { mode: 'manual', reviewEveryDays: 60 },
+  },
+  {
     id: 'tailwind',
     name: 'Tailwind',
     homepage: 'https://tailwindcss.com/docs',
