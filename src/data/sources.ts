@@ -238,6 +238,18 @@ export const sourceCatalog: CatalogSource[] = [
     // actual guidance lives in the `usage_notes` and `swap.scenario_spec` fields INSIDE
     // `assets/specs/*.json`, which the markdown bullet extractor cannot see. Onboarded by
     // hand from those fields; re-read the JSON specs, not the references, on review.
+    //
+    // Where the seven onboarded rules got their evidence — check these paths on review,
+    // and each rule's `sourceLinks` deep-links to the same file:
+    //   assets/specs/soft-blur-in.json       usage_notes (>40 chars → per-word; blur/stagger
+    //                                        by type size) + swap.scenario_spec (overlap order)
+    //   assets/specs/per-character-rise.json "don't go below 16ms or it flattens"
+    //   assets/specs/typewriter.json         signature_easing: steps(1, end)
+    //   assets/specs/shared-axis-y.json      per-word hard cut, also steps(1, end)
+    //   assets/specs/micro-scale-fade.json   } overlap_ms: 0 "to avoid content intersections"
+    //   assets/specs/line-by-line-slide.json }  — the travelling effects run sequential
+    //   assets/effects/soft-blur-in.json     rendering_contract.transform_order
+    //   references/catalog.md                per-unit stagger bands (char/word/line)
     id: 'animate-text',
     name: 'animate-text',
     author: 'Pixel Point',

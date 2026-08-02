@@ -2496,8 +2496,8 @@ text.split(" ").map((w, i, all) => (
 ))
 ```
 
-- [animate-text — spec catalog](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text — soft-blur-in spec](https://github.com/pixel-point/animate-text/blob/main/catalog/text-animations/catalog.json)
+- [animate-text — soft-blur-in spec (usage_notes)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/soft-blur-in.json)
+- [animate-text — per-word / per-line staggers (catalog)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/references/catalog.md)
 - [MDN — animation-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-delay)
 
 ### Overlap a Text Swap; Never Hard-Cut the Slot
@@ -2523,8 +2523,8 @@ setInterval(() => setI(i => (i + 1) % words.length), 2000)
 </span>
 ```
 
-- [animate-text — swap scenario spec](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text](https://github.com/pixel-point/animate-text)
+- [animate-text — soft-blur-in swap.scenario_spec](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/soft-blur-in.json)
+- [animate-text — SKILL.md](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/SKILL.md)
 - [MDN — grid-area](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid-area)
 
 ### Reveal Blur Is Priced by Type Size
@@ -2544,8 +2544,8 @@ const HERO = { blurPx: 12, staggerMs: 25, unit: "char" };
 const BODY = { blurPx: 6,  staggerMs: 15, unit: "word" };
 ```
 
-- [animate-text — soft-blur-in usage notes](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text](https://github.com/pixel-point/animate-text)
+- [animate-text — soft-blur-in spec (usage_notes)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/soft-blur-in.json)
+- [animate-text — focus-blur-resolve spec](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/focus-blur-resolve.json)
 - [MDN — filter: blur()](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Functions/blur)
 
 ### A Hard Cut Is steps(), Not a Fast Fade
@@ -2568,8 +2568,8 @@ animation: type 240ms steps(1, end) both;
 animationDelay: `${i * 46}ms`;
 ```
 
-- [animate-text — typewriter spec](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text](https://github.com/pixel-point/animate-text)
+- [animate-text — typewriter spec (steps(1, end))](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/typewriter.json)
+- [animate-text — shared-axis-y spec (per-word hard cut)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/shared-axis-y.json)
 - [MDN — steps() easing function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function/steps)
 
 ### A Stagger Below One Frame Is Not a Stagger
@@ -2592,8 +2592,8 @@ const STAGGER_MS = 24; // >= 16.7ms (one frame at 60Hz)
 // if units * STAGGER_MS > 500, coarsen the unit — do not shrink the delay
 ```
 
-- [animate-text — per-character-rise spec](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text](https://github.com/pixel-point/animate-text)
+- [animate-text — per-character-rise spec (16ms floor)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/per-character-rise.json)
+- [animate-text — stagger-from-center spec (22ms, tightest)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/stagger-from-center.json)
 - [MDN — requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
 
 ### Overlap Only When the Slot Holds Still
@@ -2615,8 +2615,8 @@ const enterDelay = exitMs - 220;
 const enterDelay = exitMs + 70;
 ```
 
-- [animate-text — swap modes](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text](https://github.com/pixel-point/animate-text)
+- [animate-text — micro-scale-fade spec (overlap_ms: 0)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/micro-scale-fade.json)
+- [animate-text — line-by-line-slide spec (travelling, sequential)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/specs/line-by-line-slide.json)
 - [Material Design — Shared axis transitions](https://m2.material.io/design/motion/the-motion-system.html)
 
 ### Transform Order Is Not Cosmetic
@@ -2638,8 +2638,8 @@ transform: scale(0.5) translateY(60px);
 transform: translate3d(0, 60px, 0) scale(0.5);
 ```
 
-- [animate-text — rendering contract](https://pixelpoint.io/skills/animate-text/)
-- [pixel-point/animate-text](https://github.com/pixel-point/animate-text)
+- [animate-text — soft-blur-in effect (rendering_contract.transform_order)](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/assets/effects/soft-blur-in.json)
+- [animate-text — schema reference](https://github.com/pixel-point/animate-text/blob/main/skills/animate-text/references/schema.md)
 - [MDN — transform function order](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform)
 
 ---
