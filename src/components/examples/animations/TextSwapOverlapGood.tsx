@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const WORDS = ['faster', 'smarter', 'collaboratively', 'together'];
 
@@ -15,13 +15,17 @@ export function TextSwapOverlapGood() {
   const [leaving, setLeaving] = useState<number | null>(null);
   const [playing, setPlaying] = useState(true);
 
+  // Read the live index without re-creating the interval on every swap, so the
+  // rotation keeps a steady beat. A state updater must stay pure — setting
+  // `leaving` from inside one fires twice under StrictMode's double-invoke.
+  const indexRef = useRef(index);
+  indexRef.current = index;
+
   useEffect(() => {
     if (!playing) return;
     const id = setInterval(() => {
-      setIndex((current) => {
-        setLeaving(current);
-        return (current + 1) % WORDS.length;
-      });
+      setLeaving(indexRef.current);
+      setIndex((current) => (current + 1) % WORDS.length);
     }, HOLD_MS + EXIT_MS);
     return () => clearInterval(id);
   }, [playing]);

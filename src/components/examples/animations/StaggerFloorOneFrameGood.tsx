@@ -20,7 +20,8 @@ export function StaggerFloorOneFrameGood() {
       </button>
 
       <div className="min-h-[6rem] flex items-center rounded-lg bg-muted p-4">
-        <p key={run} className="text-3xl font-semibold" aria-label={WORD}>
+        <p key={run} className="text-3xl font-semibold">
+          <span className="sr-only">{WORD}</span>
           {WORD.split('').map((char, i) => (
             <span
               key={i}

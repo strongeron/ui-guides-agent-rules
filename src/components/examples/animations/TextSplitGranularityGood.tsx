@@ -24,7 +24,8 @@ export function TextSplitGranularityGood() {
 
       <div className="min-h-[7rem] rounded-lg bg-muted p-4">
         {/* The split shards are decoration; the accessibility tree gets one string. */}
-        <h3 key={run} className="text-2xl font-medium leading-snug" aria-label={HEADLINE}>
+        <h3 key={run} className="text-2xl font-medium leading-snug">
+          <span className="sr-only">{HEADLINE}</span>
           {WORDS.map((word, i) => (
             // The gap is a text node BETWEEN the tokens, not inside one: a trailing
             // space at the end of an inline-block is collapsed away, and the headline

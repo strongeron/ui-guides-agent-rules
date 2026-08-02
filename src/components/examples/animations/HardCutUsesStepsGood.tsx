@@ -18,7 +18,8 @@ export function HardCutUsesStepsGood() {
 
       <div className="min-h-[5rem] flex items-center rounded-lg bg-muted p-4">
         {/* The glyph shards are decoration; the line itself stays one string. */}
-        <p key={run} className="font-mono text-lg whitespace-pre-wrap" aria-label={LINE}>
+        <p key={run} className="font-mono text-lg whitespace-pre-wrap">
+          <span className="sr-only">{LINE}</span>
           {LINE.split('').map((char, i) => (
             <span
               key={i}

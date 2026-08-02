@@ -116,7 +116,7 @@ When writing or reviewing UI code, consult ui-guides-agent-rules:
 | `/principles/<id>.md` | ~1.5k | One rule + both examples. The payload worth knowing about. |
 | `/principles/<id>.json` | ~1.5k | Same, structured. |
 | `/principles/index.md` (whole) | 12k | Only if you can't grep. |
-| `/principles/must.md` | 11k | All 191 MUST rules — a sweep over a large diff. |
+| `/principles/must.md` | 11k | All 197 MUST rules — a sweep over a large diff. |
 | `/categories/<category>.md` | 6k–26k | Everything in one area, no example code. |
 | `/llms-full.txt` | **169k** | Rarely correct. |
 

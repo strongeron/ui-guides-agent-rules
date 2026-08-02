@@ -24,10 +24,8 @@ export function TextRevealScalesWithTypeGood() {
       <div key={run} className="space-y-3 rounded-lg bg-muted p-4 min-h-[9rem]">
         {/* pre-wrap keeps the space characters that per-character splitting turns
             into their own collapsible inline-blocks. */}
-        <p
-          className="text-4xl font-semibold leading-tight whitespace-pre-wrap"
-          aria-label={HERO}
-        >
+        <p className="text-4xl font-semibold leading-tight whitespace-pre-wrap">
+          <span className="sr-only">{HERO}</span>
           {HERO.split('').map((char, i) => (
             <span
               key={i}
@@ -40,7 +38,8 @@ export function TextRevealScalesWithTypeGood() {
           ))}
         </p>
 
-        <p className="text-base leading-relaxed text-muted-foreground" aria-label={BODY}>
+        <p className="text-base leading-relaxed text-muted-foreground">
+          <span className="sr-only">{BODY}</span>
           {BODY.split(' ').map((word, i, all) => (
             // Word gaps live between the tokens so the paragraph can still wrap.
             <Fragment key={i}>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T16:25:14.000Z",
+  "generatedAt": "2026-08-02T01:53:51.441Z",
   "reports": [
     {
       "source": "vercel",
@@ -1864,18 +1864,6 @@
       "newRules": [
         {
           "source": "jakubkrehel",
-          "text": "Perceptual uniformity. Equal L steps = equal brightness. `oklch(0.5 ...)` is visually mid. HSL's `lightness: 50%` varies wildly by hue.",
-          "suggestedId": "jakubkrehel-perceptual-uniformity-equal-l-steps-equal",
-          "category": "forms",
-          "tags": [
-            "typography",
-            "design",
-            "forms"
-          ],
-          "bestMatch": 0.09
-        },
-        {
-          "source": "jakubkrehel",
           "text": "Why: name the violated principle and include measured contrast or gamut evidence when relevant.",
           "suggestedId": "jakubkrehel-why-name-the-violated-principle-and",
           "category": "design",
@@ -1940,6 +1928,18 @@
             "design"
           ],
           "bestMatch": 0.17
+        },
+        {
+          "source": "jakubkrehel",
+          "text": "Perceptual uniformity. Equal L steps = equal brightness. `oklch(0.5 ...)` is visually mid. HSL's `lightness: 50%` varies wildly by hue.",
+          "suggestedId": "jakubkrehel-perceptual-uniformity-equal-l-steps-equal",
+          "category": "forms",
+          "tags": [
+            "typography",
+            "design",
+            "forms"
+          ],
+          "bestMatch": 0.18
         },
         {
           "source": "jakubkrehel",
@@ -2922,8 +2922,9 @@
       "source": "animate-text",
       "name": "animate-text",
       "mode": "manual",
-      "status": "manual-due",
-      "ourRules": 3,
+      "status": "manual-ok",
+      "ourRules": 7,
+      "daysSinceReview": 0,
       "reviewEveryDays": 60,
       "note": "https://pixelpoint.io/skills/animate-text/"
     },
